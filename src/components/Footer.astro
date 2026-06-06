@@ -1,5 +1,7 @@
 ---
 import { SITE } from "../config";
+
+const sourceCommitUrl = SITE.source.commit ? `${SITE.source.repository}/commit/${SITE.source.commit}` : "";
 ---
 <footer class="site-footer">
   <div class="container d-flex flex-column flex-md-row align-items-center justify-content-center justify-content-md-between gap-4">
@@ -8,7 +10,9 @@ import { SITE } from "../config";
       <span>
         &copy; 2026 KingdomsX. A plugin by <a href={SITE.author} target="_blank" rel="noopener noreferrer">Crypto Morin</a>.
         <br />
-        Website proudly hosted by AfkF24.
+        <i class="fa-solid fa-code-branch" aria-hidden="true"></i> <a href={SITE.source.repository} target="_blank" rel="noopener noreferrer">KingdomsX-Web</a>{SITE.source.shortCommit && (
+          <> @ <a href={sourceCommitUrl} target="_blank" rel="noopener noreferrer">{SITE.source.shortCommit}</a></>
+        )}
       </span>
     </div>
     <div class="footer-links d-flex flex-wrap gap-4" aria-label="Footer links">
