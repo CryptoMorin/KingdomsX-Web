@@ -23,7 +23,6 @@
   let isPaused = false;
   let isPreviewVisible = false;
   let isProgressHovered = false;
-  let isProgressFocused = false;
   const preloadedFrames = new Set();
 
   if (mapFrames.length === 0) {
@@ -169,26 +168,12 @@
   };
 
   const syncPreviewPauseState = () => {
-    if (isProgressHovered || isProgressFocused) {
+    if (isProgressHovered) {
       pausePreview();
       return;
     }
 
     resumePreview();
-  };
-
-  const pausePreviewOnFocus = () => {
-    isProgressFocused = true;
-    syncPreviewPauseState();
-  };
-
-  const resumePreviewOnFocus = (event) => {
-    if (event.relatedTarget instanceof Element && progressTrack?.contains(event.relatedTarget)) {
-      return;
-    }
-
-    isProgressFocused = false;
-    syncPreviewPauseState();
   };
 
   function showStep(step, options = {}) {
@@ -249,8 +234,6 @@
     progressTrack?.addEventListener("mouseenter", pausePreview);
     progressTrack?.addEventListener("mouseleave", resumePreview);
   }
-  progressTrack?.addEventListener("focusin", pausePreviewOnFocus);
-  progressTrack?.addEventListener("focusout", resumePreviewOnFocus);
 
   const syncPreviewLayout = () => {
     showStep(activeStep, { skipSchedule: true });

@@ -11,7 +11,14 @@ import { SITE } from "../config";
           <img class="icon icon-img" src={`${SITE.assets}/images/spigot.webp`} alt="" width="24" height="24" aria-hidden="true" draggable="false" />
           Get on SpigotMC
         </a>
-        <a class="btn btn-kingdom btn-dev-builds d-inline-flex align-items-center justify-content-center gap-2 fw-bold" href={SITE.discordDevBuilds} target="_blank" rel="noopener noreferrer">
+        <a
+          class="btn btn-kingdom btn-dev-builds d-inline-flex align-items-center justify-content-center gap-2 fw-bold"
+          href={SITE.discord}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-discord-deep-link={SITE.discordDevBuilds}
+          data-discord-fallback={SITE.discord}
+        >
           <i class="fa-solid fa-hammer icon" aria-hidden="true"></i>
           Get Dev Builds
         </a>
