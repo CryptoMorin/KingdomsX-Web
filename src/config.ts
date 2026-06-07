@@ -16,6 +16,7 @@ export const SITE = {
   assetVersion: shortGitSha || buildTimestamp,
   wiki: "https://wiki.kingdomsx.com",
   discord: "https://discord.kingdomsx.com",
+  download: "https://download.kingdomsx.com",
   discordDevBuilds: "discord://-/channels/429132410748141579/430983456932102154",
   spigot: "https://www.spigotmc.org/resources/77670/",
   modrinth: "https://modrinth.com/plugin/kingdomsx/",
