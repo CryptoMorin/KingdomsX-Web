@@ -2,7 +2,7 @@
   "id": "https://kingdomsx.com/",
   "name": "KingdomsX",
   "short_name": "KingdomsX",
-  "description": "A Minecraft kingdoms and factions-style plugin with land claiming, nations, diplomacy, turrets, structures, Nexus upgrades, and invasion wars.",
+  "description": "KingdomsX is a plugin similar to Factions which provides more advanced core features and introduces new mechanics such as turrets, structures, and invasions to make the game more fun.",
   "start_url": "https://kingdomsx.com/",
   "scope": "https://kingdomsx.com/",
   "icons": [

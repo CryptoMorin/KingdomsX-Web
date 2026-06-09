@@ -1,0 +1,56 @@
+---
+type CellValue = "yes" | "partial" | "addon" | "no" | "na" | string;
+
+interface Props {
+  value: CellValue;
+  highlight?: boolean;
+  [key: string]: any;
+}
+
+const { value, highlight = false, ...rest } = Astro.props;
+
+const normalized = value.toLowerCase();
+
+const labels: Record<string, string> = {
+  yes: "Yes",
+  partial: "Partial",
+  addon: "Addon",
+  no: "No",
+  na: "N/A",
+  free: "Free",
+  premium: "Premium",
+};
+
+const isSymbolic = normalized === "yes" || normalized === "no";
+const isTextLabel = normalized === "addon" || normalized === "na" || normalized.startsWith("free") || normalized.startsWith("premium");
+const ariaLabel = labels[normalized] || value;
+const cellClass = highlight ? "kingdomsx-column" : "";
+---
+
+<td class:list={["comparison-cell", cellClass]} data-value={normalized} {...rest}>
+  {normalized === "yes" && (
+    <span class="comparison-symbol comparison-symbol--yes" aria-label={ariaLabel} title={ariaLabel}>
+      <i class="fa-solid fa-check" aria-hidden="true"></i>
+    </span>
+  )}
+  {normalized === "no" && (
+    <span class="comparison-symbol comparison-symbol--no" aria-label={ariaLabel} title={ariaLabel}>
+      <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+    </span>
+  )}
+  {normalized === "addon" && (
+    <span class="comparison-text-label comparison-text-label--addon" aria-label={ariaLabel}>{labels[normalized]}</span>
+  )}
+  {normalized === "na" && (
+    <span class="comparison-text-label comparison-text-label--na" aria-label={ariaLabel}>{labels[normalized]}</span>
+  )}
+  {normalized.startsWith("free") && (
+    <span class="comparison-text-label comparison-text-label--free" aria-label={ariaLabel}>{value}</span>
+  )}
+  {normalized.startsWith("premium") && (
+    <span class="comparison-text-label comparison-text-label--premium" aria-label={ariaLabel}>{value}</span>
+  )}
+  {!isSymbolic && !isTextLabel && (
+    <span class:list={["comparison-text", normalized === "partial" && "comparison-text--partial"]} aria-label={ariaLabel}>{labels[normalized] || value}</span>
+  )}
+</td>
