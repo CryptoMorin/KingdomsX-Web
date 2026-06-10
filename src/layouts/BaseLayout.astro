@@ -23,10 +23,21 @@ const {
   includeStructuredData = true
 } = Astro.props;
 const normalizedCanonicalPath = canonicalPath === "/" ? "/" : `/${canonicalPath.replace(/^\/+|\/+$/g, "")}`;
-const canonicalUrl = `${SITE.url}${normalizedCanonicalPath}`;
+const siteUrl = SITE.url || "";
+const shouldIncludeStructuredData = includeStructuredData && siteUrl;
+const canonicalUrl = siteUrl ? `${siteUrl}${normalizedCanonicalPath}` : normalizedCanonicalPath;
+const publicUrl = (path: string) => {
+  const normalizedPath = `/${path.replace(/^\/+/, "")}`;
+  return siteUrl ? `${siteUrl}${normalizedPath}` : normalizedPath;
+};
 const heroBannerUrl = typeof heroBanner === "string" ? heroBanner : heroBanner.src;
-const manifestIconUrl = `${SITE.url}/web-app-manifest-512x512.png`;
-const ogImageUrl = `${SITE.url}/og-img.png`;
+const faviconPngUrl = publicUrl("favicon-96x96.png");
+const faviconSvgUrl = publicUrl("favicon.svg");
+const faviconIcoUrl = publicUrl("favicon.ico");
+const appleTouchIconUrl = publicUrl("apple-touch-icon.png");
+const manifestUrl = publicUrl("site.webmanifest");
+const manifestIconUrl = publicUrl("web-app-manifest-512x512.png");
+const ogImageUrl = publicUrl("og-img.png");
 ---
 <!doctype html>
 <html lang="en" data-bs-theme="dark">
@@ -47,13 +58,13 @@ const ogImageUrl = `${SITE.url}/og-img.png`;
     <link rel="canonical" href={canonicalUrl} />
     <link rel="alternate" hreflang="en" href={canonicalUrl} />
     <link rel="alternate" hreflang="x-default" href={canonicalUrl} />
-    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="shortcut icon" href="/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" href={faviconPngUrl} sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href={faviconSvgUrl} />
+    <link rel="shortcut icon" href={faviconIcoUrl} />
+    <link rel="apple-touch-icon" sizes="180x180" href={appleTouchIconUrl} />
     <meta name="apple-mobile-web-app-title" content="KingdomsX" />
     <meta name="msapplication-TileColor" content="#071019" />
-    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="manifest" href={manifestUrl} />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="KingdomsX" />
     <meta property="og:title" content={title} />
@@ -77,24 +88,24 @@ const ogImageUrl = `${SITE.url}/og-img.png`;
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" integrity="sha256-2FMn2Zx6PuH5tdBQDRNwrOo60ts5wWPC9R8jK67b3t4=" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css" integrity="sha256-MVopmdyC2tYTiJ8wlktf0uh0v4NgT+vNdyVFepi7Q0c=" crossorigin="anonymous" />
-    {includeStructuredData && (
+    {shouldIncludeStructuredData && (
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@graph": [
         {
           "@type": "WebSite",
-          "@id": `${SITE.url}/#website`,
+          "@id": `${siteUrl}/#website`,
           "name": SITE.name,
-          "url": `${SITE.url}/`,
+          "url": `${siteUrl}/`,
           "description": description,
           "inLanguage": "en",
-          "publisher": { "@id": `${SITE.url}/#organization` }
+          "publisher": { "@id": `${siteUrl}/#organization` }
         },
         {
           "@type": "Organization",
-          "@id": `${SITE.url}/#organization`,
+          "@id": `${siteUrl}/#organization`,
           "name": SITE.name,
-          "url": `${SITE.url}/`,
+          "url": `${siteUrl}/`,
           "logo": {
             "@type": "ImageObject",
             "url": manifestIconUrl,
@@ -105,17 +116,17 @@ const ogImageUrl = `${SITE.url}/og-img.png`;
         },
         {
           "@type": "SoftwareApplication",
-          "@id": `${SITE.url}/#software`,
+          "@id": `${siteUrl}/#software`,
           "name": SITE.name,
           "applicationCategory": "GameApplication",
           "operatingSystem": "Minecraft server",
-          "url": `${SITE.url}/`,
+          "url": `${siteUrl}/`,
           "downloadUrl": SITE.spigot,
           "softwareHelp": SITE.wiki,
           "image": ogImageUrl,
           "description": description,
           "author": { "@type": "Person", "name": "Crypto Morin", "url": SITE.author },
-          "publisher": { "@id": `${SITE.url}/#organization` },
+          "publisher": { "@id": `${siteUrl}/#organization` },
           "offers": { "@type": "Offer", "url": SITE.spigot, "availability": "https://schema.org/InStock" }
         }
       ]

@@ -25,4 +25,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: docker build -f deploy/Dockerfile --build-arg PUBLIC_GIT_COMMIT_SHA=${{ github.sha }} -t kingdomsx-web:${{ github.sha }} .
+      - run: >-
+          docker build
+          -f deploy/Dockerfile
+          --build-arg PUBLIC_SITE_URL=https://kingdomsx.com
+          --build-arg PUBLIC_ASSETS_BASE=https://assets.kingdomsx.com
+          --build-arg PUBLIC_GIT_COMMIT_SHA=${{ github.sha }}
+          -t kingdomsx-web:${{ github.sha }}
+          .

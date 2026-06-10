@@ -10,7 +10,7 @@ const shortGitSha = gitSha.slice(0, 7);
 
 export const SITE = {
   name: "KingdomsX",
-  url: trimTrailingSlash(import.meta.env.PUBLIC_SITE_URL ?? "https://kingdomsx.com"),
+  url: trimTrailingSlash(import.meta.env.PUBLIC_SITE_URL ?? ""),
   wiki: "https://wiki.kingdomsx.com",
   discord: "https://discord.kingdomsx.com",
   download: "https://download.kingdomsx.com",

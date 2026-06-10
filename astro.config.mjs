@@ -6,20 +6,24 @@ const trimTrailingSlash = (value) => {
   return trimmed ? trimmed.replace(/\/+$/, "") : undefined;
 };
 
-const siteUrl = trimTrailingSlash(process.env.PUBLIC_SITE_URL) ?? "https://kingdomsx.com";
+const siteUrl = trimTrailingSlash(process.env.PUBLIC_SITE_URL);
 const assetsPrefix = trimTrailingSlash(process.env.PUBLIC_ASSETS_BASE);
 
 export default defineConfig({
-  site: siteUrl,
+  ...(siteUrl ? { site: siteUrl } : {}),
   output: "static",
   build: {
     format: "file",
     assets: "build",
-    assetsPrefix
+    ...(assetsPrefix ? { assetsPrefix } : {})
   },
   integrations: [
-    sitemap({
-      filter: (page) => !["/403.html", "/404.html"].some((path) => new URL(page).pathname === path)
-    })
+    ...(siteUrl
+      ? [
+          sitemap({
+            filter: (page) => !["/403.html", "/404.html"].some((path) => new URL(page).pathname === path)
+          })
+        ]
+      : [])
   ]
 });
