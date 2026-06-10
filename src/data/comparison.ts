@@ -1,4 +1,4 @@
-export type PluginId = "kingdomsx" | "factionsuuid" | "lands" | "towny" | "griefprevention";
+export type PluginId = "kingdomsx" | "factionsuuid" | "lands" | "towny" | "griefprevention" | "residence";
 
 export type CellValue = "yes" | "partial" | "addon" | "no" | "na" | string;
 
@@ -21,6 +21,7 @@ export const plugins: { id: PluginId; label: string }[] = [
   { id: "lands", label: "Lands" },
   { id: "towny", label: "Towny" },
   { id: "griefprevention", label: "GriefPrevention" },
+  { id: "residence", label: "Residence" },
 ];
 
 export const comparisonCategories: ComparisonCategory[] = [
@@ -38,6 +39,7 @@ export const comparisonCategories: ComparisonCategory[] = [
           lands: "SMP servers",
           towny: "SMP / roleplay servers",
           griefprevention: "SMP servers",
+          residence: "SMP servers",
         },
       },
       {
@@ -49,6 +51,7 @@ export const comparisonCategories: ComparisonCategory[] = [
           lands: "Premium",
           towny: "Free",
           griefprevention: "Free",
+          residence: "Free (Dev builds)",
         },
       },
       {
@@ -60,6 +63,7 @@ export const comparisonCategories: ComparisonCategory[] = [
           lands: "no",
           towny: "yes",
           griefprevention: "yes",
+          residence: "yes",
         },
       },
       {
@@ -71,6 +75,7 @@ export const comparisonCategories: ComparisonCategory[] = [
           lands: "Medium",
           towny: "High",
           griefprevention: "Low",
+          residence: "Medium",
         },
       },
     ],
@@ -86,9 +91,10 @@ export const comparisonCategories: ComparisonCategory[] = [
         values: {
           kingdomsx: "Chunks",
           factionsuuid: "Chunks",
-          lands: "Chunks + block-based subareas",
-          towny: "Townblocks / grid squares",
-          griefprevention: "Block-level rectangles",
+          lands: "Chunks + block subareas",
+          towny: "Townblocks (grid squares)",
+          griefprevention: "Block rectangles",
+          residence: "Block cuboids",
         },
       },
       {
@@ -100,6 +106,7 @@ export const comparisonCategories: ComparisonCategory[] = [
           lands: "yes",
           towny: "yes",
           griefprevention: "yes",
+          residence: "yes",
         },
       },
       {
@@ -111,6 +118,7 @@ export const comparisonCategories: ComparisonCategory[] = [
           lands: "yes",
           towny: "no",
           griefprevention: "no",
+          residence: "no",
         },
       },
       {
@@ -122,6 +130,7 @@ export const comparisonCategories: ComparisonCategory[] = [
           lands: "partial",
           towny: "yes",
           griefprevention: "no",
+          residence: "yes",
         },
       },
       {
@@ -133,6 +142,7 @@ export const comparisonCategories: ComparisonCategory[] = [
           lands: "yes",
           towny: "partial",
           griefprevention: "yes",
+          residence: "yes",
         },
       },
       {
@@ -144,6 +154,7 @@ export const comparisonCategories: ComparisonCategory[] = [
           lands: "yes",
           towny: "partial",
           griefprevention: "yes",
+          residence: "yes",
         },
       },
       {
@@ -155,6 +166,7 @@ export const comparisonCategories: ComparisonCategory[] = [
           lands: "yes",
           towny: "yes",
           griefprevention: "yes",
+          residence: "yes",
         },
       },
       {
@@ -166,6 +178,7 @@ export const comparisonCategories: ComparisonCategory[] = [
           lands: "yes",
           towny: "yes",
           griefprevention: "addon",
+          residence: "yes",
         },
       },
       {
@@ -177,6 +190,7 @@ export const comparisonCategories: ComparisonCategory[] = [
           lands: "yes",
           towny: "addon",
           griefprevention: "addon",
+          residence: "yes",
         },
       },
     ],
@@ -195,6 +209,7 @@ export const comparisonCategories: ComparisonCategory[] = [
           lands: "yes",
           towny: "addon",
           griefprevention: "no",
+          residence: "partial",
         },
       },
       {
@@ -206,6 +221,7 @@ export const comparisonCategories: ComparisonCategory[] = [
           lands: "partial",
           towny: "no",
           griefprevention: "no",
+          residence: "yes",
         },
       },
       {
@@ -217,6 +233,7 @@ export const comparisonCategories: ComparisonCategory[] = [
           lands: "yes",
           towny: "partial",
           griefprevention: "no",
+          residence: "no",
         },
       },
       {
@@ -228,6 +245,7 @@ export const comparisonCategories: ComparisonCategory[] = [
           lands: "yes",
           towny: "no",
           griefprevention: "no",
+          residence: "na",
         },
       },
     ],
@@ -246,6 +264,7 @@ export const comparisonCategories: ComparisonCategory[] = [
           lands: "no",
           towny: "addon",
           griefprevention: "no",
+          residence: "partial",
         },
       },
       {
@@ -257,6 +276,7 @@ export const comparisonCategories: ComparisonCategory[] = [
           lands: "yes",
           towny: "addon",
           griefprevention: "na",
+          residence: "yes",
         },
       },
       {
@@ -268,6 +288,7 @@ export const comparisonCategories: ComparisonCategory[] = [
           lands: "yes",
           towny: "partial",
           griefprevention: "no",
+          residence: "yes",
         },
       },
     ],
@@ -286,6 +307,7 @@ export const comparisonCategories: ComparisonCategory[] = [
           lands: "partial",
           towny: "partial",
           griefprevention: "no",
+          residence: "yes",
         },
       },
       {
@@ -297,6 +319,7 @@ export const comparisonCategories: ComparisonCategory[] = [
           lands: "yes",
           towny: "yes",
           griefprevention: "addon",
+          residence: "yes",
         },
       },
       {
@@ -308,6 +331,7 @@ export const comparisonCategories: ComparisonCategory[] = [
           lands: "yes",
           towny: "partial",
           griefprevention: "na",
+          residence: "no",
         },
       },
       {
@@ -319,6 +343,7 @@ export const comparisonCategories: ComparisonCategory[] = [
           lands: "yes",
           towny: "yes",
           griefprevention: "yes",
+          residence: "yes",
         },
       },
       {
@@ -330,6 +355,7 @@ export const comparisonCategories: ComparisonCategory[] = [
           lands: "yes",
           towny: "partial",
           griefprevention: "addon",
+          residence: "partial",
         },
       },
       {
@@ -341,6 +367,7 @@ export const comparisonCategories: ComparisonCategory[] = [
           lands: "yes",
           towny: "yes",
           griefprevention: "no",
+          residence: "partial",
         },
       },
       {
@@ -352,6 +379,7 @@ export const comparisonCategories: ComparisonCategory[] = [
           lands: "no",
           towny: "no",
           griefprevention: "no",
+          residence: "no",
         },
       },
       {
@@ -363,6 +391,7 @@ export const comparisonCategories: ComparisonCategory[] = [
           lands: "partial",
           towny: "partial",
           griefprevention: "partial",
+          residence: "partial",
         },
       },
     ],
@@ -381,6 +410,7 @@ export const comparisonCategories: ComparisonCategory[] = [
           lands: "yes",
           towny: "yes",
           griefprevention: "no",
+          residence: "yes",
         },
       },
       {
@@ -392,6 +422,7 @@ export const comparisonCategories: ComparisonCategory[] = [
           lands: "yes",
           towny: "no",
           griefprevention: "no",
+          residence: "no",
         },
       },
       {
@@ -403,6 +434,7 @@ export const comparisonCategories: ComparisonCategory[] = [
           lands: "no",
           towny: "addon",
           griefprevention: "no",
+          residence: "no",
         },
       },
       {
@@ -414,6 +446,7 @@ export const comparisonCategories: ComparisonCategory[] = [
           lands: "partial",
           towny: "yes",
           griefprevention: "na",
+          residence: "partial",
         },
       },
       {
@@ -425,6 +458,7 @@ export const comparisonCategories: ComparisonCategory[] = [
           lands: "yes",
           towny: "yes",
           griefprevention: "no",
+          residence: "partial",
         },
       },
       {
@@ -436,6 +470,7 @@ export const comparisonCategories: ComparisonCategory[] = [
           lands: "yes",
           towny: "yes",
           griefprevention: "no",
+          residence: "no",
         },
       },
       {
@@ -447,6 +482,7 @@ export const comparisonCategories: ComparisonCategory[] = [
           lands: "yes",
           towny: "yes",
           griefprevention: "no",
+          residence: "partial",
         },
       },
     ],
@@ -465,6 +501,7 @@ export const comparisonCategories: ComparisonCategory[] = [
           lands: "addon",
           towny: "yes",
           griefprevention: "partial",
+          residence: "partial",
         },
       },
       {
@@ -476,6 +513,7 @@ export const comparisonCategories: ComparisonCategory[] = [
           lands: "yes",
           towny: "partial",
           griefprevention: "yes",
+          residence: "yes",
         },
       },
       {
@@ -487,6 +525,7 @@ export const comparisonCategories: ComparisonCategory[] = [
           lands: "partial",
           towny: "partial",
           griefprevention: "partial",
+          residence: "partial",
         },
       },
       {
@@ -498,6 +537,7 @@ export const comparisonCategories: ComparisonCategory[] = [
           lands: "partial",
           towny: "partial",
           griefprevention: "partial",
+          residence: "partial",
         },
       },
     ],
@@ -512,10 +552,11 @@ export const comparisonCategories: ComparisonCategory[] = [
         hint: "Whether the plugin has structured wars, invasions, sieges, or similar conflict systems.",
         values: {
           kingdomsx: "yes",
-          factionsuuid: "no",
+          factionsuuid: "partial",
           lands: "yes",
-          towny: "addon",
+          towny: "partial",
           griefprevention: "partial",
+          residence: "yes",
         },
       },
       {
@@ -527,6 +568,7 @@ export const comparisonCategories: ComparisonCategory[] = [
           lands: "yes",
           towny: "addon",
           griefprevention: "no",
+          residence: "yes",
         },
       },
       {
@@ -538,6 +580,7 @@ export const comparisonCategories: ComparisonCategory[] = [
           lands: "no",
           towny: "no",
           griefprevention: "no",
+          residence: "no",
         },
       },
       {
@@ -549,6 +592,7 @@ export const comparisonCategories: ComparisonCategory[] = [
           lands: "addon",
           towny: "yes",
           griefprevention: "partial",
+          residence: "no",
         },
       },
       {
@@ -560,6 +604,7 @@ export const comparisonCategories: ComparisonCategory[] = [
           lands: "yes",
           towny: "yes",
           griefprevention: "na",
+          residence: "no",
         },
       },
       {
@@ -571,6 +616,7 @@ export const comparisonCategories: ComparisonCategory[] = [
           lands: "partial",
           towny: "addon",
           griefprevention: "na",
+          residence: "no",
         },
       },
       {
@@ -582,6 +628,7 @@ export const comparisonCategories: ComparisonCategory[] = [
           lands: "no",
           towny: "no",
           griefprevention: "na",
+          residence: "no",
         },
       },
       {
@@ -593,6 +640,7 @@ export const comparisonCategories: ComparisonCategory[] = [
           lands: "yes",
           towny: "yes",
           griefprevention: "na",
+          residence: "no",
         },
       },
       {
@@ -604,6 +652,7 @@ export const comparisonCategories: ComparisonCategory[] = [
           lands: "yes",
           towny: "partial",
           griefprevention: "na",
+          residence: "no",
         },
       },
     ],
@@ -622,6 +671,7 @@ export const comparisonCategories: ComparisonCategory[] = [
           lands: "yes",
           towny: "yes",
           griefprevention: "yes",
+          residence: "no",
         },
       },
       {
@@ -633,6 +683,7 @@ export const comparisonCategories: ComparisonCategory[] = [
           lands: "yes",
           towny: "yes",
           griefprevention: "partial",
+          residence: "no",
         },
       },
       {
@@ -644,6 +695,7 @@ export const comparisonCategories: ComparisonCategory[] = [
           lands: "no",
           towny: "yes",
           griefprevention: "no",
+          residence: "no",
         },
       },
       {
@@ -655,6 +707,7 @@ export const comparisonCategories: ComparisonCategory[] = [
           lands: "yes",
           towny: "addon",
           griefprevention: "addon",
+          residence: "yes",
         },
       },
       {
@@ -666,6 +719,7 @@ export const comparisonCategories: ComparisonCategory[] = [
           lands: "yes",
           towny: "addon",
           griefprevention: "partial",
+          residence: "yes",
         },
       },
       {
@@ -677,6 +731,7 @@ export const comparisonCategories: ComparisonCategory[] = [
           lands: "yes",
           towny: "addon",
           griefprevention: "no",
+          residence: "no",
         },
       },
       {
@@ -688,6 +743,7 @@ export const comparisonCategories: ComparisonCategory[] = [
           lands: "yes",
           towny: "no",
           griefprevention: "no",
+          residence: "no",
         },
       },
     ],

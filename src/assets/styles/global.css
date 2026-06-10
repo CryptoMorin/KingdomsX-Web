@@ -964,13 +964,18 @@ h1 span:nth-child(2) {
   vertical-align: middle;
 }
 
+.comparison-table thead th:not(.comparison-feature-col) {
+  white-space: normal !important;
+  overflow-wrap: anywhere;
+}
+
 .comparison-table th,
 .comparison-table td {
-  width: 15.2%;
+  width: 13%;
 }
 
 .comparison-table .comparison-feature-col {
-  width: 24%;
+  width: 22%;
   position: sticky;
   left: 0;
   z-index: 1;
@@ -1707,8 +1712,8 @@ h1 span:nth-child(2) {
   }
 
   .comparison-table {
-    width: calc(var(--comparison-step) * 6) !important;
-    min-width: calc(var(--comparison-step) * 6) !important;
+    width: calc(var(--comparison-step) * 7) !important;
+    min-width: calc(var(--comparison-step) * 7) !important;
     table-layout: fixed;
   }
 
@@ -1739,6 +1744,6 @@ h1 span:nth-child(2) {
 
 @media (max-width: 575.98px) {
   .comparison-shell {
-    --comparison-step: calc((100vw - 3.25rem) / 2);
+    --comparison-step: calc((100vw - 2.5rem) / 2);
   }
 }
