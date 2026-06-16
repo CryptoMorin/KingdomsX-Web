@@ -325,33 +325,17 @@ img {
   min-height: clamp(35.625rem, calc(100svh - 9.75rem), 43.125rem);
 }
 
-.hero-grid::before,
-.hero-grid::after {
-  content: "";
-  position: absolute;
-  z-index: 1;
-  width: 7.5rem;
-  height: 7.5rem;
-  pointer-events: none;
-  background:
-    radial-gradient(circle at 50% 100%, rgba(255, 207, 90, 0.7), transparent 13%),
-    radial-gradient(ellipse at 50% 90%, rgba(255, 116, 23, 0.5), transparent 26%),
-    radial-gradient(ellipse at 45% 75%, rgba(219, 61, 18, 0.35), transparent 42%);
-  filter: blur(0.0125rem) drop-shadow(0 0 1.25rem rgba(255, 116, 23, 0.4));
-  opacity: 0.8;
-  transform-origin: bottom center;
-  animation: cornerFlame 1.9s ease-in-out infinite alternate;
+.hero-particles {
+  width: 100vw;
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - var(--hero-divider-edge)), 67% calc(100% - var(--hero-divider-valley)), 50% calc(100% - var(--hero-divider-valley)), 33% calc(100% - var(--hero-divider-valley)), 0 calc(100% - var(--hero-divider-edge)));
+  -webkit-mask-image: linear-gradient(0deg, #000 0%, rgba(0, 0, 0, 0.9) 48%, rgba(0, 0, 0, 0.6) 82%, rgba(0, 0, 0, 0.2) 100%);
+  mask-image: linear-gradient(0deg, #000 0%, rgba(0, 0, 0, 0.9) 48%, rgba(0, 0, 0, 0.6) 82%, rgba(0, 0, 0, 0.2) 100%);
+  mix-blend-mode: screen;
+  opacity: 0.9;
 }
 
-.hero-grid::before {
-  left: -2.125rem;
-  bottom: 2.125rem;
-}
-
-.hero-grid::after {
-  right: -2.25rem;
-  top: 1.625rem;
-  animation-delay: -0.8s;
+.hero-particles canvas {
+  display: block;
 }
 
 .hero-copy {
@@ -2144,18 +2128,6 @@ h1 span:nth-child(2) {
   color: #f0e7da;
   font-size: clamp(1.05rem, 2vw, 1.2rem);
   line-height: 1.7;
-}
-
-@keyframes cornerFlame {
-  0% {
-    opacity: 0.45;
-    transform: translateY(0.1875rem) scaleX(0.86) scaleY(0.84) rotate(-2deg);
-  }
-
-  100% {
-    opacity: 0.8;
-    transform: translateY(-0.25rem) scaleX(1.08) scaleY(1.14) rotate(3deg);
-  }
 }
 
 @media (max-width: 767.98px) {

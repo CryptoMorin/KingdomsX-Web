@@ -5,6 +5,7 @@ import "./gallery.js";
 import "./dev-builds-link.js";
 import "./copy-command.js";
 import "./comparison.js";
+import "./hero-particles.js";
 
 const compactNavigationQuery = window.matchMedia("(max-width: 1199.98px)");
 
