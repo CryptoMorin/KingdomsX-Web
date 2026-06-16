@@ -12,7 +12,7 @@ const sectionHref = (id: string) => `${homeUrl}#${id}`;
 <header class="site-header sticky-top">
   <nav class="navbar navbar-expand-xl" aria-label="Main navigation">
     <div class="container">
-      <a class="navbar-brand brand d-inline-flex align-items-center gap-3 mb-0 fw-bold" href={sectionHref("top")} aria-label="KingdomsX home">
+      <a class="navbar-brand brand d-inline-flex align-items-center gap-3 mb-0 fw-bold" href={sectionHref("home")} aria-label="KingdomsX home">
         <img src={siteImages.logo} alt="" width="256" height="256" draggable="false" />
         <span>KingdomsX</span>
       </a>
@@ -29,6 +29,7 @@ const sectionHref = (id: string) => `${homeUrl}#${id}`;
         </div>
         <div class="offcanvas-body position-relative z-1 d-flex flex-column flex-xl-row justify-content-start text-center align-items-xl-center w-100">
           <div class="navbar-nav nav-links mx-xl-auto align-items-stretch align-items-xl-center gap-2 gap-xl-4" aria-label="Page sections">
+            <a class="nav-link d-flex d-xl-block align-items-center justify-content-center fw-bold" href={sectionHref("home")}><i class="fa-solid fa-house fa-fw me-2 d-xl-none" aria-hidden="true"></i>Home</a>
             <a class="nav-link d-flex d-xl-block align-items-center justify-content-center fw-bold" href={sectionHref("features")}><i class="fa-solid fa-star fa-fw me-2 d-xl-none" aria-hidden="true"></i>Features</a>
             <a class="nav-link d-flex d-xl-block align-items-center justify-content-center fw-bold" href={sectionHref("preview")}><i class="fa-solid fa-eye fa-fw me-2 d-xl-none" aria-hidden="true"></i>Preview</a>
             <a class="nav-link d-flex d-xl-block align-items-center justify-content-center fw-bold" href={sectionHref("comparison")}><i class="fa-solid fa-scale-balanced fa-fw me-2 d-xl-none" aria-hidden="true"></i>Compare</a>
