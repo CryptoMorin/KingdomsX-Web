@@ -5,7 +5,9 @@ const getGitSha = (value: string | undefined) => {
 };
 
 const sourceRepository = "https://github.com/CryptoMorin/KingdomsX-Web";
-const gitSha = getGitSha(import.meta.env.PUBLIC_GIT_COMMIT_SHA ?? import.meta.env.PUBLIC_GIT_SHA);
+const gitSha = getGitSha(
+  import.meta.env.CF_PAGES_COMMIT_SHA ?? import.meta.env.PUBLIC_GIT_COMMIT_SHA ?? import.meta.env.PUBLIC_GIT_SHA
+);
 const shortGitSha = gitSha.slice(0, 7);
 
 export const SITE = {
