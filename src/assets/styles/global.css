@@ -1726,6 +1726,7 @@ h1 span:nth-child(2) {
   .hero {
     min-height: auto;
     padding-top: 2.875rem;
+    padding-bottom: calc(var(--hero-divider-height) + 1.5rem);
   }
 
   .hero::before,
@@ -1846,6 +1847,10 @@ h1 span:nth-child(2) {
   .hero::before,
   .hero::after {
     background-position: 68% center;
+  }
+
+  .hero {
+    padding-bottom: calc(var(--hero-divider-height) + 2rem);
   }
 
   h1 {
