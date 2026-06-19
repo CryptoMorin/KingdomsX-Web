@@ -1878,6 +1878,11 @@ h1 span:nth-child(2) {
     width: min(100%, 14rem);
     margin: 0 auto;
   }
+
+  .header-actions .btn-kingdom {
+    width: min(100%, 14rem);
+    margin: 0 auto;
+  }
 }
 
 @media (min-width: 992px) {
