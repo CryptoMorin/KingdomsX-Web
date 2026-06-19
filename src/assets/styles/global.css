@@ -249,6 +249,14 @@ img {
   border-color: rgba(113, 137, 255, 0.85);
 }
 
+.btn-wiki {
+  border-color: rgba(251, 176, 59, 0.8);
+}
+
+.btn-download {
+  border-color: rgba(255, 116, 23, 0.9);
+}
+
 .btn-modrinth {
   border-color: rgba(39, 225, 100, 0.8);
 }
@@ -265,6 +273,80 @@ img {
   background:
     linear-gradient(135deg, rgba(251, 176, 59, 0.2), rgba(16, 27, 39, 0.8)),
     rgba(16, 27, 39, 0.7);
+}
+
+.header-actions .btn-kingdom {
+  min-height: 2.5625rem;
+}
+
+.header-actions .btn-kingdom:hover,
+.header-actions .btn-kingdom:focus-visible {
+  transform: none;
+}
+
+.header-action-label {
+  white-space: nowrap;
+}
+
+.header-action-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 1200px) {
+  .header-actions {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none;
+  }
+
+  .header-action-buttons {
+    position: absolute;
+    inset: 0;
+    justify-content: flex-end !important;
+  }
+
+  .header-action-buttons .btn-kingdom {
+    width: auto;
+    flex: 0 0 auto;
+    gap: 0 !important;
+    justify-content: center !important;
+    overflow: hidden;
+    transition: color 180ms ease, background 180ms ease, border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease, filter 180ms ease;
+  }
+
+  .header-action-icon {
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    text-align: center;
+  }
+
+  .header-action-buttons .btn-kingdom:hover,
+  .header-action-buttons .btn-kingdom:focus-visible {
+    justify-content: center !important;
+  }
+
+  .header-action-buttons .btn-kingdom:hover .header-action-label,
+  .header-action-buttons .btn-kingdom:focus-visible .header-action-label {
+    grid-template-columns: 1fr;
+    margin-left: 1rem;
+    opacity: 1;
+  }
+
+  .header-action-buttons .header-action-label {
+    display: inline-grid;
+    grid-template-columns: 0fr;
+    margin-left: 0;
+    opacity: 0;
+    transition: grid-template-columns 220ms ease, margin-left 220ms ease, opacity 160ms ease;
+  }
+
+  .header-action-buttons .header-action-label > span {
+    min-width: 0;
+    overflow: hidden;
+  }
 }
 
 .icon {
@@ -1717,8 +1799,12 @@ h1 span:nth-child(2) {
     background: rgba(28, 44, 60, 0.6);
   }
 
+  .header-actions {
+    width: 100%;
+  }
+
   .header-actions .btn-kingdom {
-    width: min(100%, 14rem);
+    width: 100%;
   }
 }
 
