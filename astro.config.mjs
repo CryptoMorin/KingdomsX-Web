@@ -1,6 +1,8 @@
 import { defineConfig, fontProviders } from "astro/config";
 import sitemap from "@astrojs/sitemap";
 
+import cloudflare from "@astrojs/cloudflare";
+
 const trimTrailingSlash = (value) => {
   const trimmed = value?.trim();
   return trimmed ? trimmed.replace(/\/+$/, "") : undefined;
@@ -12,11 +14,13 @@ const assetsPrefix = trimTrailingSlash(process.env.PUBLIC_ASSETS_BASE);
 export default defineConfig({
   ...(siteUrl ? { site: siteUrl } : {}),
   output: "static",
+
   build: {
     format: "file",
     assets: "build",
     ...(assetsPrefix ? { assetsPrefix } : {})
   },
+
   fonts: [
     {
       provider: fontProviders.google(),
@@ -27,6 +31,7 @@ export default defineConfig({
       fallbacks: ["serif"]
     }
   ],
+
   integrations: [
     ...(siteUrl
       ? [
@@ -35,5 +40,7 @@ export default defineConfig({
           })
         ]
       : [])
-  ]
+  ],
+
+  adapter: cloudflare()
 });
