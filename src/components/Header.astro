@@ -37,26 +37,29 @@ const sectionHref = (id: string) => `${homeUrl}#${id}`;
             <a class="nav-link d-flex d-xl-block align-items-center justify-content-center fw-bold" href={sectionHref("addons")}><i class="fa-solid fa-puzzle-piece fa-fw me-2 d-xl-none" aria-hidden="true"></i>Addons</a>
           </div>
           <div class="header-actions position-relative flex-xl-shrink-0 mt-3 mt-xl-0 ms-xl-5">
-            <div class="header-action-buttons d-flex flex-column flex-xl-row align-items-stretch align-items-xl-center justify-content-center gap-2 w-100">
-              <a class="btn btn-kingdom btn-discord d-inline-flex align-items-center justify-content-center gap-3 fw-bold py-2 px-3" href={SITE.discord} target="_blank" rel="noopener noreferrer" aria-label="Join Discord">
-                <span class="header-action-icon" aria-hidden="true"><i class="fa-brands fa-discord"></i></span><span class="header-action-label"><span>Discord</span></span>
+            <div class="header-action-buttons d-flex flex-column flex-xl-row align-items-stretch align-items-xl-center justify-content-center justify-content-xl-end gap-2 w-100 top-0 end-0 bottom-0 start-0">
+              <a class="btn btn-kingdom btn-discord d-inline-flex align-items-center justify-content-center gap-2 gap-xl-0 fw-bold py-2 px-3 overflow-hidden flex-xl-shrink-0" href={SITE.discord} target="_blank" rel="noopener noreferrer" aria-label="Join Discord">
+                <span class="header-action-icon d-inline-flex align-items-center justify-content-center flex-shrink-0" aria-hidden="true"><i class="fa-brands fa-discord"></i></span>
+                <span class="header-action-label d-xl-inline-grid overflow-hidden text-nowrap"><span>Discord</span></span>
               </a>
-              <a class="btn btn-kingdom btn-wiki d-inline-flex align-items-center justify-content-center gap-3 fw-bold py-2 px-3" href={SITE.wiki} target="_blank" rel="noopener noreferrer" aria-label="Read the Wiki">
-                <span class="header-action-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span><span class="header-action-label"><span>Wiki</span></span>
+              <a class="btn btn-kingdom btn-wiki d-inline-flex align-items-center justify-content-center gap-2 gap-xl-0 fw-bold py-2 px-3 overflow-hidden flex-xl-shrink-0" href={SITE.wiki} target="_blank" rel="noopener noreferrer" aria-label="Read the Wiki">
+                <span class="header-action-icon d-inline-flex align-items-center justify-content-center flex-shrink-0" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span>
+                <span class="header-action-label d-xl-inline-grid overflow-hidden text-nowrap"><span>Wiki</span></span>
               </a>
-              <a class="btn btn-kingdom btn-download d-inline-flex align-items-center justify-content-center gap-3 fw-bold py-2 px-3" href={SITE.download} target="_blank" rel="noopener noreferrer" aria-label="Download KingdomsX">
-                <span class="header-action-icon" aria-hidden="true"><i class="fa-solid fa-download"></i></span><span class="header-action-label"><span>Download</span></span>
+              <a class="btn btn-kingdom btn-download d-inline-flex align-items-center justify-content-center gap-2 gap-xl-0 fw-bold py-2 px-3 overflow-hidden flex-xl-shrink-0" href={SITE.download} target="_blank" rel="noopener noreferrer" aria-label="Download KingdomsX">
+                <span class="header-action-icon d-inline-flex align-items-center justify-content-center flex-shrink-0" aria-hidden="true"><i class="fa-solid fa-download"></i></span>
+                <span class="header-action-label d-xl-inline-grid overflow-hidden text-nowrap"><span>Download</span></span>
               </a>
             </div>
             <div class="header-action-sizer d-none d-xl-flex align-items-center justify-content-end gap-2 invisible pe-none" aria-hidden="true">
-              <span class="btn btn-kingdom btn-discord d-inline-flex align-items-center justify-content-center gap-3 fw-bold py-2 px-3">
-                <span class="header-action-icon"><i class="fa-brands fa-discord"></i></span>
+              <span class="btn btn-kingdom btn-discord d-inline-flex align-items-center justify-content-center fw-bold py-2 px-3 flex-xl-shrink-0">
+                <span class="header-action-icon d-inline-flex align-items-center justify-content-center flex-shrink-0"><i class="fa-brands fa-discord"></i></span>
               </span>
-              <span class="btn btn-kingdom btn-wiki d-inline-flex align-items-center justify-content-center gap-3 fw-bold py-2 px-3">
-                <span class="header-action-icon"><i class="fa-solid fa-book-open"></i></span>
+              <span class="btn btn-kingdom btn-wiki d-inline-flex align-items-center justify-content-center fw-bold py-2 px-3 flex-xl-shrink-0">
+                <span class="header-action-icon d-inline-flex align-items-center justify-content-center flex-shrink-0"><i class="fa-solid fa-book-open"></i></span>
               </span>
-              <span class="btn btn-kingdom btn-download d-inline-flex align-items-center justify-content-center gap-3 fw-bold py-2 px-3">
-                <span class="header-action-icon"><i class="fa-solid fa-download"></i></span>
+              <span class="btn btn-kingdom btn-download d-inline-flex align-items-center justify-content-center fw-bold py-2 px-3 flex-xl-shrink-0">
+                <span class="header-action-icon d-inline-flex align-items-center justify-content-center flex-shrink-0"><i class="fa-solid fa-download"></i></span>
               </span>
             </div>
           </div>

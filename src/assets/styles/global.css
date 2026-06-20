@@ -284,59 +284,19 @@ img {
   transform: none;
 }
 
-.header-action-label {
-  white-space: nowrap;
-}
-
-.header-action-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
 @media (min-width: 1200px) {
-  .header-actions {
-    flex: 0 0 auto;
-    width: auto;
-    max-width: none;
-  }
-
   .header-action-buttons {
     position: absolute;
-    inset: 0;
-    justify-content: flex-end !important;
-  }
-
-  .header-action-buttons .btn-kingdom {
-    width: auto;
-    flex: 0 0 auto;
-    gap: 0 !important;
-    justify-content: center !important;
-    overflow: hidden;
-    transition: color 180ms ease, background 180ms ease, border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease, filter 180ms ease;
-  }
-
-  .header-action-icon {
-    align-items: center;
-    justify-content: center;
-    flex: 0 0 auto;
-    text-align: center;
-  }
-
-  .header-action-buttons .btn-kingdom:hover,
-  .header-action-buttons .btn-kingdom:focus-visible {
-    justify-content: center !important;
   }
 
   .header-action-buttons .btn-kingdom:hover .header-action-label,
   .header-action-buttons .btn-kingdom:focus-visible .header-action-label {
     grid-template-columns: 1fr;
-    margin-left: 1rem;
+    margin-left: 0.5rem;
     opacity: 1;
   }
 
   .header-action-buttons .header-action-label {
-    display: inline-grid;
     grid-template-columns: 0fr;
     margin-left: 0;
     opacity: 0;
@@ -345,7 +305,6 @@ img {
 
   .header-action-buttons .header-action-label > span {
     min-width: 0;
-    overflow: hidden;
   }
 }
 
