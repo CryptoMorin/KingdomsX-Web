@@ -46,7 +46,7 @@ jobs:
         run: |
           ! grep -R -I -q 'https://servers.kingdomsx.com' dist --include='*.html' --include='*.js'
           grep -q 'challenges.cloudflare.com/turnstile' dist/servers/submit.html
-          grep -q 'Checking Discord session' dist/servers/submit.html
+          grep -q 'server-submit-loading' dist/servers/submit.html
           grep -q 'data-local-build="true"' dist/servers/submit.html
           grep -q 'href="/servers/all"' dist/servers.html
           grep -q 'href="/servers/offline"' dist/servers.html
