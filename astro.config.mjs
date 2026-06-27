@@ -31,7 +31,10 @@ export default defineConfig({
     ...(siteUrl
       ? [
           sitemap({
-            filter: (page) => !["/403.html", "/404.html"].some((path) => new URL(page).pathname === path)
+            filter: (page) => {
+              const pathname = new URL(page).pathname;
+              return !["/403", "/403.html", "/404", "/404.html"].includes(pathname) && !pathname.startsWith("/servers");
+            }
           })
         ]
       : [])

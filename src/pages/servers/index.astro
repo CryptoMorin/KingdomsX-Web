@@ -1,0 +1,69 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import SectionOrnament from "../../components/SectionOrnament.astro";
+import ServerCardSkeletons from "../../components/ServerCardSkeletons.astro";
+import { SITE } from "../../config";
+
+const homeUrl = SITE.url ? `${SITE.url}/` : "/";
+const canonicalUrl = SITE.serverDirectoryUrl ? `${SITE.serverDirectoryUrl}/` : undefined;
+const filterUrl = (status: "all" | "online" | "offline") => status === "online" ? SITE.servers : `${SITE.servers}/${status}`;
+const pageDescription = "Browse public servers running KingdomsX, whether you want to test the plugin or find a community already using it.";
+---
+<BaseLayout
+  title="Servers | KingdomsX"
+  description={pageDescription}
+  canonicalPath="/servers"
+  canonicalUrl={canonicalUrl}
+  preloadHeroImage={false}
+>
+  <div class="page position-relative min-vh-100">
+    <Header homeUrl={homeUrl} />
+    <main>
+      <section class="servers servers-page position-relative" aria-labelledby="servers-directory-title">
+        <div class="container position-relative z-1">
+          <div class="servers-page-head text-center mx-auto">
+            <h1 class="section-title mb-0" id="servers-directory-title">KingdomsX Servers</h1>
+            <SectionOrnament />
+            <p class="section-kicker mx-auto">{pageDescription}</p>
+          </div>
+
+          <div class="servers-toolbar d-flex flex-column flex-lg-row align-items-lg-center justify-content-between gap-3">
+            <div class="servers-browser-controls d-flex flex-wrap align-items-stretch justify-content-start gap-2">
+              <div class="servers-filter btn-group" role="group" aria-label="Filter servers by status" data-server-filters>
+                <a class="btn btn-site" href={filterUrl("all")} data-server-filter="all">All</a>
+                <a class="btn btn-site is-active" href={filterUrl("online")} data-server-filter="online" aria-current="page">Online</a>
+                <a class="btn btn-site" href={filterUrl("offline")} data-server-filter="offline">Offline</a>
+              </div>
+              <div class="servers-sort-control d-inline-flex align-items-center position-relative overflow-hidden flex-grow-1" data-server-sort-control>
+                <span class="servers-sort-icon d-inline-flex align-items-center justify-content-center flex-shrink-0" aria-hidden="true">
+                  <i class="fa-solid fa-arrow-down-wide-short"></i>
+                </span>
+                <label class="visually-hidden" for="servers-sort">Sort servers</label>
+                <select class="form-select servers-sort-select" id="servers-sort" data-server-sort aria-label="Sort servers">
+                  <option value="newest" selected>Newest</option>
+                  <option value="players">Most players</option>
+                  <option value="name">Name A-Z</option>
+                </select>
+              </div>
+            </div>
+            <a class="btn btn-site btn-site-primary d-inline-flex align-items-center justify-content-center gap-2 fw-bold" href={SITE.serverSubmit}>
+              <i class="fa-solid fa-plus" aria-hidden="true"></i> Submit Your Server
+            </a>
+          </div>
+
+          <div class="servers-list" data-server-list data-server-mode="paged" data-server-limit="8" data-server-api-base={SITE.serverDirectoryUrl} aria-live="polite">
+            <ServerCardSkeletons count={8} />
+          </div>
+          <nav class="servers-pagination d-flex justify-content-center gap-2" aria-label="Servers pagination" data-server-pagination></nav>
+
+          <noscript>
+            <p class="servers-state">JavaScript is required to load the server listings.</p>
+          </noscript>
+        </div>
+      </section>
+    </main>
+    <Footer />
+  </div>
+</BaseLayout>

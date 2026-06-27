@@ -1,10 +1,10 @@
 {
-  "id": "https://kingdomsx.com/",
+  "id": "/",
   "name": "KingdomsX",
   "short_name": "KingdomsX",
   "description": "KingdomsX is a plugin similar to Factions which provides more advanced core features and introduces new mechanics such as turrets, structures, and invasions to make the game more fun.",
-  "start_url": "https://kingdomsx.com/",
-  "scope": "https://kingdomsx.com/",
+  "start_url": "/",
+  "scope": "/",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",

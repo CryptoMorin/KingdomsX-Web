@@ -8,18 +8,48 @@ permissions:
   contents: read
 
 jobs:
-  astro:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: actions/setup-node@v6
         with:
           node-version: "24"
           cache: npm
       - run: npm ci
-      - run: npm run build
+      - run: cp .dev.vars.example .dev.vars
+
+      - name: Build production site
+        run: npm run build
         env:
           PUBLIC_SITE_URL: https://kingdomsx.com
           PUBLIC_ASSETS_BASE: https://assets.kingdomsx.com
+          PUBLIC_SERVERS_SITE_URL: https://servers.kingdomsx.com
+          PUBLIC_TURNSTILE_SITE_KEY: 1x00000000000000000000AA
           WORKERS_CI_COMMIT_SHA: ${{ github.sha }}
           PUBLIC_GIT_COMMIT_SHA: ${{ github.sha }}
+      - name: Verify production output
+        shell: bash
+        run: |
+          grep -q 'https://servers.kingdomsx.com' dist/index.html
+          grep -q 'https://assets.kingdomsx.com' dist/index.html
+          grep -q 'challenges.cloudflare.com/turnstile' dist/servers/submit.html
+          grep -q 'Sitemap: https://kingdomsx.com/sitemap-index.xml' dist/robots.txt
+      - run: npm run worker:types:check
+      - run: npm run worker:typecheck
+      - run: npm run worker:deploy:check
+
+      - name: Build local site
+        run: npm run build
+      - name: Verify local output
+        shell: bash
+        run: |
+          ! grep -R -I -q 'https://servers.kingdomsx.com' dist --include='*.html' --include='*.js'
+          grep -q 'challenges.cloudflare.com/turnstile' dist/servers/submit.html
+          grep -q 'Checking Discord session' dist/servers/submit.html
+          grep -q 'data-local-build="true"' dist/servers/submit.html
+          grep -q 'href="/servers/all"' dist/servers.html
+          grep -q 'href="/servers/offline"' dist/servers.html
+      - run: npm run worker:setup:local
+      - name: Verify repeatable local seed
+        run: npm run worker:seed:local

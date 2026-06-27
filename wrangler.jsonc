@@ -1,16 +1,74 @@
 {
-  "$schema": "./node_modules/wrangler/config-schema.json",
-  "name": "kingdomsx-web",
-  "main": "./worker/index.ts",
-  "compatibility_date": "2026-06-19",
-  "compatibility_flags": ["global_fetch_strictly_public"],
-  "assets": {
-    "directory": "./dist",
-    "binding": "ASSETS",
-    "not_found_handling": "404-page",
-    "run_worker_first": true
-  },
-  "observability": {
-    "enabled": true
-  }
+	"$schema": "./node_modules/wrangler/config-schema.json",
+	"name": "kingdomsx-web",
+	"main": "./worker/index.ts",
+	"compatibility_date": "2026-06-19",
+	"compatibility_flags": [
+		"global_fetch_strictly_public"
+	],
+	"workers_dev": false,
+	"preview_urls": false,
+	"upload_source_maps": true,
+	"routes": [
+		{
+			"pattern": "kingdomsx.com",
+			"custom_domain": true
+		},
+		{
+			"pattern": "www.kingdomsx.com",
+			"custom_domain": true
+		},
+		{
+			"pattern": "assets.kingdomsx.com",
+			"custom_domain": true
+		},
+		{
+			"pattern": "servers.kingdomsx.com",
+			"custom_domain": true
+		}
+	],
+	"triggers": {
+		"crons": [
+			"*/5 * * * *"
+		]
+	},
+	"assets": {
+		"directory": "./dist",
+		"binding": "ASSETS",
+		"not_found_handling": "404-page",
+		"run_worker_first": [
+			"/",
+			"/api/*",
+			"/servers",
+			"/servers/*"
+		]
+	},
+	"observability": {
+		"enabled": true
+	},
+	"vars": {
+		"APP_ENVIRONMENT": "production"
+	},
+	"secrets": {
+		"required": [
+			"TURNSTILE_SECRET",
+			"RATE_LIMIT_SALT",
+			"SESSION_SECRET",
+			"DISCORD_CLIENT_ID",
+			"DISCORD_CLIENT_SECRET",
+			"DISCORD_GUILD_ID",
+			"DISCORD_REDIRECT_URI",
+			"ADMIN_EMAILS",
+			"CF_ACCESS_TEAM_DOMAIN",
+			"CF_ACCESS_AUD"
+		]
+	},
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "kingdomsx-server-directory",
+			"database_id": "0bb5b150-cf1e-45ad-a39e-18876112ca05",
+			"migrations_dir": "worker/migrations"
+		}
+	]
 }

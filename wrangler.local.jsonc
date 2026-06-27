@@ -1,0 +1,48 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "kingdomsx-web-local",
+  "main": "./worker/index.ts",
+  "compatibility_date": "2026-06-19",
+  "compatibility_flags": ["global_fetch_strictly_public"],
+  "workers_dev": false,
+  "preview_urls": false,
+  "send_metrics": false,
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "not_found_handling": "404-page",
+    "run_worker_first": [
+      "/",
+      "/api/*",
+      "/servers",
+      "/servers/*"
+    ]
+  },
+  "observability": {
+    "enabled": false
+  },
+  "vars": {
+    "APP_ENVIRONMENT": "local"
+  },
+  "secrets": {
+    "required": [
+      "RATE_LIMIT_SALT",
+      "SESSION_SECRET",
+      "LOCAL_ADMIN_TOKEN",
+      "TURNSTILE_SECRET",
+      "DISCORD_CLIENT_ID",
+      "DISCORD_CLIENT_SECRET",
+      "DISCORD_GUILD_ID",
+      "DISCORD_REDIRECT_URI"
+    ]
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "kingdomsx-server-directory-local",
+      "database_id": "kingdomsx-server-directory-local",
+      "migrations_dir": "worker/migrations",
+      "remote": false
+    }
+  ]
+}

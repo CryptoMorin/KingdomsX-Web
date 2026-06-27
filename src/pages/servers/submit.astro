@@ -1,0 +1,49 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import SectionOrnament from "../../components/SectionOrnament.astro";
+import ServerSubmitSkeleton from "../../components/ServerSubmitSkeleton.astro";
+import { SITE } from "../../config";
+
+const turnstileSiteKey = SITE.turnstileSiteKey;
+const isLocalBuild = SITE.isLocalBuild;
+const homeUrl = SITE.url ? `${SITE.url}/` : "/";
+const canonicalUrl = SITE.serverDirectoryUrl ? `${SITE.serverDirectoryUrl}/submit` : undefined;
+---
+<BaseLayout
+  title="Submit a KingdomsX Server | KingdomsX"
+  description="List your KingdomsX server for people who want to see the plugin in action and discover active communities using it."
+  canonicalPath="/servers/submit"
+  canonicalUrl={canonicalUrl}
+  robots="noindex, follow"
+  preloadHeroImage={false}
+>
+  <div class="page position-relative min-vh-100">
+    <Header homeUrl={homeUrl} />
+    <main>
+      <section class="servers servers-submit position-relative" aria-labelledby="server-submit-title">
+        <div class="container position-relative z-1">
+          <div class="servers-page-head text-center mx-auto">
+            <h1 class="section-title mb-0" id="server-submit-title">Submit Your Server</h1>
+            <SectionOrnament />
+            <p class="section-kicker mx-auto">List your KingdomsX server for people who want to see the plugin in action and discover active communities using it.</p>
+          </div>
+
+          <div
+            class="server-submit-dashboard"
+            data-server-submit-dashboard
+            data-server-api-base={SITE.serverDirectoryUrl}
+            data-turnstile-site-key={turnstileSiteKey}
+            data-local-build={String(isLocalBuild)}
+            data-servers-url={SITE.servers}
+          >
+            <ServerSubmitSkeleton />
+          </div>
+        </div>
+      </section>
+    </main>
+    <Footer />
+    {turnstileSiteKey && <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer data-cfasync="false"></script>}
+  </div>
+</BaseLayout>

@@ -6,6 +6,8 @@ import "./dev-builds-link.js";
 import "./copy-command.js";
 import "./comparison.js";
 import "./hero-particles.js";
+import "./servers.js";
+import "./server-admin.js";
 
 const compactNavigationQuery = window.matchMedia("(max-width: 1199.98px)");
 

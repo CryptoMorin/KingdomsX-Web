@@ -10,6 +10,7 @@ interface Props {
   title?: string;
   description?: string;
   canonicalPath?: string;
+  canonicalUrl?: string;
   robots?: string;
   preloadHeroImage?: boolean;
   includeStructuredData?: boolean;
@@ -21,6 +22,7 @@ const {
   title = defaultTitle,
   description = defaultDescription,
   canonicalPath = "/",
+  canonicalUrl: canonicalUrlOverride = "",
   robots = "index, follow, max-image-preview:large",
   preloadHeroImage = true,
   includeStructuredData = true
@@ -28,7 +30,7 @@ const {
 const normalizedCanonicalPath = canonicalPath === "/" ? "/" : `/${canonicalPath.replace(/^\/+|\/+$/g, "")}`;
 const siteUrl = SITE.url || "";
 const shouldIncludeStructuredData = includeStructuredData && siteUrl;
-const canonicalUrl = siteUrl ? `${siteUrl}${normalizedCanonicalPath}` : normalizedCanonicalPath;
+const canonicalUrl = canonicalUrlOverride || (siteUrl ? `${siteUrl}${normalizedCanonicalPath}` : normalizedCanonicalPath);
 const publicUrl = (path: string) => {
   const normalizedPath = `/${path.replace(/^\/+/, "")}`;
   return siteUrl ? `${siteUrl}${normalizedPath}` : normalizedPath;

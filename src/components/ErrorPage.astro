@@ -17,11 +17,11 @@ const homeUrl = SITE.url || "/";
       <h1 class="mw-100 mb-0" id={`error-${status}-title`}>{title}</h1>
       <p class="error-message mx-auto mb-0">{message}</p>
       <div class="error-actions d-flex flex-wrap justify-content-center gap-3 mt-4">
-        <a class="btn btn-kingdom btn-kingdom-primary d-inline-flex align-items-center justify-content-center gap-2 fw-bold" href={homeUrl}>
+        <a class="btn btn-site btn-site-primary d-inline-flex align-items-center justify-content-center gap-2 fw-bold" href={homeUrl}>
           <i class="fa-solid fa-house-chimney" aria-hidden="true"></i>
           Return Home
         </a>
-        <a class="btn btn-kingdom d-inline-flex align-items-center justify-content-center gap-2 fw-bold" href={`${SITE.wiki}/search`} target="_blank" rel="noopener noreferrer">
+        <a class="btn btn-site d-inline-flex align-items-center justify-content-center gap-2 fw-bold" href={`${SITE.wiki}/search`} target="_blank" rel="noopener noreferrer">
           <i class="fa-solid fa-book-open" aria-hidden="true"></i>
           Search the Wiki
         </a>

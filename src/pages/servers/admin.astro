@@ -1,0 +1,93 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import SectionOrnament from "../../components/SectionOrnament.astro";
+import ServerCardSkeletons from "../../components/ServerCardSkeletons.astro";
+import { SITE } from "../../config";
+
+const homeUrl = SITE.url ? `${SITE.url}/` : "/";
+const canonicalUrl = SITE.serverDirectoryUrl ? `${SITE.serverDirectoryUrl}/admin` : undefined;
+const pageDescription = "Review submitted server listings, check their current status, and manage which entries appear on the public server list.";
+---
+<BaseLayout
+  title="Server Review | KingdomsX"
+  description={pageDescription}
+  canonicalPath="/servers/admin"
+  canonicalUrl={canonicalUrl}
+  robots="noindex, nofollow"
+  preloadHeroImage={false}
+  includeStructuredData={false}
+>
+  <div class="page position-relative min-vh-100">
+    <Header homeUrl={homeUrl} />
+    <main>
+      <section class="servers servers-admin position-relative" aria-labelledby="server-admin-title" data-server-admin data-local-build={String(SITE.isLocalBuild)}>
+        <div class="container position-relative z-1">
+          <div class="servers-page-head text-center mx-auto">
+            <h1 class="section-title mb-0" id="server-admin-title">Server Review</h1>
+            <SectionOrnament />
+            <p class="section-kicker mx-auto">{pageDescription}</p>
+          </div>
+
+          <div class="servers-toolbar server-admin-toolbar d-flex flex-wrap align-items-stretch align-items-xl-center justify-content-between gap-3">
+            <div class="server-admin-controls d-flex flex-wrap align-items-stretch justify-content-start gap-2">
+              <div class="server-admin-status-filter form-floating d-xl-none">
+                <select class="form-select" id="server-admin-status-filter" data-admin-status-select aria-label="Filter submissions by review state">
+                  <option value="pending" selected>Pending</option>
+                  <option value="approved">Approved</option>
+                  <option value="rejected">Rejected</option>
+                  <option value="suspended">Suspended</option>
+                  <option value="hidden_offline">Hidden Offline</option>
+                </select>
+                <label for="server-admin-status-filter">Status</label>
+              </div>
+
+              <div class="servers-filter btn-group flex-wrap d-none d-xl-flex" role="group" aria-label="Filter submissions by review state" data-admin-status-filters>
+                <button class="btn btn-site is-active" type="button" data-admin-status="pending" data-admin-status-label="Pending" aria-pressed="true">Pending</button>
+                <button class="btn btn-site" type="button" data-admin-status="approved" data-admin-status-label="Approved" aria-pressed="false">Approved</button>
+                <button class="btn btn-site" type="button" data-admin-status="rejected" data-admin-status-label="Rejected" aria-pressed="false">Rejected</button>
+                <button class="btn btn-site" type="button" data-admin-status="suspended" data-admin-status-label="Suspended" aria-pressed="false">Suspended</button>
+                <button class="btn btn-site" type="button" data-admin-status="hidden_offline" data-admin-status-label="Hidden Offline" aria-pressed="false" title="Approved servers automatically hidden after staying offline for 14 days.">Hidden Offline</button>
+              </div>
+
+              <div class="server-admin-sort form-floating">
+                <select class="form-select" id="server-admin-sort" data-admin-sort>
+                  <option value="newest" selected>Newest submitted</option>
+                  <option value="oldest">Oldest submitted</option>
+                  <option value="name">Name A-Z</option>
+                  <option value="online">Online first</option>
+                  <option value="updated">Recently checked</option>
+                </select>
+                <label for="server-admin-sort">Sort</label>
+              </div>
+              <button class="btn btn-site d-inline-flex align-items-center justify-content-center gap-2 fw-bold" type="button" data-admin-refresh>
+                <i class="fa-solid fa-rotate" aria-hidden="true"></i> Refresh
+              </button>
+            </div>
+          </div>
+
+          <p class="server-admin-status mb-0" data-admin-status-message role="status" aria-live="polite"></p>
+          <div class="servers-list server-admin-list" data-admin-list aria-live="polite">
+            <ServerCardSkeletons count={8} />
+          </div>
+          <nav class="servers-pagination d-flex justify-content-center gap-2" aria-label="Admin server pagination" data-admin-pagination></nav>
+
+        </div>
+      </section>
+    </main>
+    <Footer />
+  </div>
+  <div class="modal fade server-admin-modal" tabindex="-1" aria-labelledby="server-admin-modal-title" aria-hidden="true" data-admin-modal>
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="server-admin-modal-title" data-admin-modal-title>Manage Server</h2>
+          <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body d-flex flex-column gap-3" data-admin-modal-body></div>
+        <div class="modal-footer justify-content-between gap-2" data-admin-modal-footer></div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

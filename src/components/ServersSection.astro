@@ -1,0 +1,31 @@
+---
+import { SITE } from "../config";
+import SectionOrnament from "./SectionOrnament.astro";
+import ServerCardSkeletons from "./ServerCardSkeletons.astro";
+---
+<section class="servers position-relative" id="servers" aria-labelledby="servers-title">
+  <div class="container position-relative z-1">
+    <div class="servers-heading text-center mx-auto">
+      <h2 class="section-title mb-0" id="servers-title">KingdomsX Servers</h2>
+      <SectionOrnament />
+      <p class="section-kicker mx-auto">Browse public KingdomsX servers and get a look at how different communities put the plugin to use.</p>
+    </div>
+
+    <div class="servers-list" data-server-list data-server-mode="recent" data-server-limit="4" data-server-api-base={SITE.serverDirectoryUrl} aria-live="polite">
+      <ServerCardSkeletons count={4} />
+    </div>
+
+    <div class="servers-actions d-flex flex-column flex-sm-row justify-content-center gap-2">
+      <a class="btn btn-site btn-site-primary d-inline-flex align-items-center justify-content-center gap-2 fw-bold" href={SITE.servers}>
+        <i class="fa-solid fa-list" aria-hidden="true"></i> View Servers
+      </a>
+      <a class="btn btn-site d-inline-flex align-items-center justify-content-center gap-2 fw-bold" href={SITE.serverSubmit}>
+        <i class="fa-solid fa-plus" aria-hidden="true"></i> Submit Server
+      </a>
+    </div>
+
+    <noscript>
+      <p class="servers-state">JavaScript is required to load the server listings.</p>
+    </noscript>
+  </div>
+</section>
