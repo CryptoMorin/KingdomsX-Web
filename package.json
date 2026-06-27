@@ -13,7 +13,7 @@
     "worker:migrate:remote": "wrangler d1 migrations apply DB --config wrangler.jsonc --remote",
     "worker:seed:local": "wrangler d1 execute DB --config wrangler.local.jsonc --local --file worker/seeds/local-server-directory.sql",
     "worker:deploy:check": "wrangler deploy --config wrangler.jsonc --dry-run",
-    "worker:types:check": "wrangler types .wrangler/production-bindings.d.ts --include-runtime=false --config wrangler.jsonc && wrangler types .wrangler/local-bindings.d.ts --include-runtime=false --config wrangler.local.jsonc",
+    "worker:types:check": "mkdir -p .wrangler && wrangler types .wrangler/production-bindings.d.ts --include-runtime=false --config wrangler.jsonc && wrangler types .wrangler/local-bindings.d.ts --include-runtime=false --config wrangler.local.jsonc",
     "worker:typecheck": "tsc --noEmit -p worker/tsconfig.json"
   },
   "dependencies": {
