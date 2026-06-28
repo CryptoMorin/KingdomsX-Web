@@ -2323,11 +2323,7 @@ function normalizeWebsiteInput(value: string): string | null {
     return direct;
   }
 
-  if (/^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?(?:\.[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?)+(?::\d{1,5})?(?:\/[^\s]*)?$/i.test(trimmed)) {
-    return optionalUrl(`https://${trimmed}`);
-  }
-
-  return null;
+  return normalizePublicDomainInput(trimmed);
 }
 
 function normalizeSocialInput(key: (typeof SOCIAL_KEYS)[number], value: string): string | null {
@@ -2341,6 +2337,12 @@ function normalizeSocialInput(key: (typeof SOCIAL_KEYS)[number], value: string):
 
   if (direct) {
     return direct;
+  }
+
+  const publicDomainUrl = normalizePublicDomainInput(trimmed);
+
+  if (publicDomainUrl) {
+    return publicDomainUrl;
   }
 
   if (key === "discord") {
@@ -2380,6 +2382,12 @@ function normalizeSocialInput(key: (typeof SOCIAL_KEYS)[number], value: string):
   }
 
   return null;
+}
+
+function normalizePublicDomainInput(value: string): string | null {
+  return /^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?(?:\.[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?)+(?::\d{1,5})?(?:\/[^\s]*)?$/i.test(value)
+    ? optionalUrl(`https://${value}`)
+    : null;
 }
 
 function looksLikeKingdomsProof(value: string): boolean {
