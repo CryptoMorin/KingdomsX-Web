@@ -156,6 +156,8 @@ const TURNSTILE_TIMEOUT_MS = 8_000;
 const D1_WRITE_RETRY_ATTEMPTS = 3;
 const D1_WRITE_RETRY_BASE_DELAY_MS = 50;
 const TURNSTILE_ACTION = "server-submit";
+const KINGDOMS_PROOF_MAX_AGE_MS = 48 * 60 * 60 * 1000;
+const KINGDOMS_PROOF_FUTURE_TOLERANCE_MS = 15 * 60 * 1000;
 const TURNSTILE_HOSTNAME = "servers.kingdomsx.com";
 const LOCAL_TURNSTILE_TEST_SECRET = "1x0000000000000000000000000000000AA";
 const SUBMISSION_DESCRIPTION_MAX_LENGTH = 120;
@@ -625,7 +627,7 @@ async function submitServer(request: Request, env: ServerDirectoryEnv): Promise<
     env.DB.prepare(`
       INSERT INTO submissions (id, server_id, owner_account_id, contact, proof_type, proof_redacted, submitter_ip_hash, user_agent_hash, turnstile_result, created_at)
       VALUES (?, ?, ?, ?, 'staff_reviewed', ?, ?, ?, ?, ?)
-    `).bind(submissionId, id, session.account.id, contact, redactProof(input.proof), input.ipHash, input.userAgentHash, JSON.stringify(input.turnstile), createdAt),
+    `).bind(submissionId, id, session.account.id, contact, storedProof(input.proof), input.ipHash, input.userAgentHash, JSON.stringify(input.turnstile), createdAt),
     env.DB.prepare(`
       INSERT INTO moderation_events (id, server_id, actor, action, notes, created_at)
       VALUES (?, ?, 'system', 'submitted', ?, ?)
@@ -724,7 +726,7 @@ async function resubmitMyServer(request: Request, env: ServerDirectoryEnv): Prom
     env.DB.prepare(`
       INSERT INTO submissions (id, server_id, owner_account_id, contact, proof_type, proof_redacted, submitter_ip_hash, user_agent_hash, turnstile_result, created_at)
       VALUES (?, ?, ?, ?, 'staff_reviewed', ?, ?, ?, ?, ?)
-    `).bind(submissionId, owned.id, session.account.id, submitterContact(session.account), redactProof(input.proof), input.ipHash, input.userAgentHash, JSON.stringify(input.turnstile), timestamp),
+    `).bind(submissionId, owned.id, session.account.id, submitterContact(session.account), storedProof(input.proof), input.ipHash, input.userAgentHash, JSON.stringify(input.turnstile), timestamp),
     env.DB.prepare(`
       INSERT INTO moderation_events (id, server_id, actor, action, notes, created_at)
       VALUES (?, ?, 'system', 'submitted', 'Resubmitted through public website form.', ?)
@@ -829,8 +831,10 @@ async function parseSubmissionInput(request: Request, env: ServerDirectoryEnv, b
     throw new ApiError(400, normalized.error);
   }
 
-  if (!looksLikeKingdomsProof(proof)) {
-    throw new ApiError(400, "Proof must include the relevant /k about all output.");
+  const proofError = kingdomsProofError(proof);
+
+  if (proofError) {
+    throw new ApiError(400, proofError);
   }
 
   if (websiteValue && !websiteUrl) {
@@ -1017,7 +1021,7 @@ async function autoSuspendSubmission(
     env.DB.prepare(`
       INSERT INTO submissions (id, server_id, owner_account_id, contact, proof_type, proof_redacted, submitter_ip_hash, user_agent_hash, turnstile_result, moderation_notes, created_at)
       VALUES (?, ?, ?, ?, 'staff_reviewed', ?, ?, ?, ?, ?, ?)
-    `).bind(submissionId, id, account.id, submitterContact(account), redactProof(input.proof), input.ipHash, input.userAgentHash, JSON.stringify(input.turnstile), notes, timestamp),
+    `).bind(submissionId, id, account.id, submitterContact(account), storedProof(input.proof), input.ipHash, input.userAgentHash, JSON.stringify(input.turnstile), notes, timestamp),
     env.DB.prepare(`
       INSERT INTO moderation_events (id, server_id, actor, action, notes, created_at)
       VALUES (?, ?, 'system', 'suspend', ?, ?)
@@ -1050,7 +1054,7 @@ async function autoSuspendOwnedSubmission(
     env.DB.prepare(`
       INSERT INTO submissions (id, server_id, owner_account_id, contact, proof_type, proof_redacted, submitter_ip_hash, user_agent_hash, turnstile_result, moderation_notes, created_at)
       VALUES (?, ?, ?, ?, 'staff_reviewed', ?, ?, ?, ?, ?, ?)
-    `).bind(submissionId, owned.id, account.id, submitterContact(account), redactProof(input.proof), input.ipHash, input.userAgentHash, JSON.stringify(input.turnstile), notes, timestamp),
+    `).bind(submissionId, owned.id, account.id, submitterContact(account), storedProof(input.proof), input.ipHash, input.userAgentHash, JSON.stringify(input.turnstile), notes, timestamp),
     env.DB.prepare(`
       INSERT INTO moderation_events (id, server_id, actor, action, notes, created_at)
       VALUES (?, ?, 'system', 'suspend', ?, ?)
@@ -2390,17 +2394,69 @@ function normalizePublicDomainInput(value: string): string | null {
     : null;
 }
 
-function looksLikeKingdomsProof(value: string): boolean {
+function kingdomsProofError(value: string): string | null {
   const proof = value.toLowerCase();
-  return proof.includes("kingdoms") && proof.includes("version:") && proof.includes("platform:");
+  const proofTime = parseKingdomsProofTime(value);
+
+  if (!value.includes("♚ Ｋingdoms ♚") || !proof.includes("version:") || !proof.includes("platform:") || !proofTime) {
+    return 'Paste the full "/k about all" output from your server console.';
+  }
+
+  const ageMs = Date.now() - proofTime.getTime();
+
+  if (ageMs > KINGDOMS_PROOF_MAX_AGE_MS) {
+    return 'The "/k about all" output must be from the last 48 hours. Run it again and paste the fresh output.';
+  }
+
+  if (ageMs < -KINGDOMS_PROOF_FUTURE_TOLERANCE_MS) {
+    return 'The "/k about all" output time is too far in the future. Check the server clock and paste fresh output.';
+  }
+
+  return null;
 }
 
-function redactProof(value: string): string {
-  return value
-    .replace(/\| Key:.*$/gim, "| Key: [redacted]")
-    .replace(/\b([a-f0-9]{32,}|[A-Za-z0-9_-]{36,})\b/g, "[redacted-token]")
-    .trim()
-    .slice(0, 12000);
+function parseKingdomsProofTime(value: string): Date | null {
+  const match = value.match(/\|\s*Time:\s*\d+\s*-\s*(\d{4})\/(\d{2})\/(\d{2})\s+(\d{2}):(\d{2}):(\d{2})\b[^\r\n]*?\|\s*([+-])(\d{2}):(\d{2})\b/i);
+
+  if (!match) {
+    return null;
+  }
+
+  const [, yearValue, monthValue, dayValue, hourValue, minuteValue, secondValue, offsetSign, offsetHourValue, offsetMinuteValue] = match;
+  const year = Number(yearValue);
+  const month = Number(monthValue);
+  const day = Number(dayValue);
+  const hour = Number(hourValue);
+  const minute = Number(minuteValue);
+  const second = Number(secondValue);
+  const offsetHour = Number(offsetHourValue);
+  const offsetMinute = Number(offsetMinuteValue);
+
+  if (month < 1 || month > 12 || day < 1 || day > 31 || hour > 23 || minute > 59 || second > 59 || offsetHour > 23 || offsetMinute > 59) {
+    return null;
+  }
+
+  const wallTimeMs = Date.UTC(year, month - 1, day, hour, minute, second);
+  const wallTime = new Date(wallTimeMs);
+
+  if (
+    wallTime.getUTCFullYear() !== year ||
+    wallTime.getUTCMonth() !== month - 1 ||
+    wallTime.getUTCDate() !== day ||
+    wallTime.getUTCHours() !== hour ||
+    wallTime.getUTCMinutes() !== minute ||
+    wallTime.getUTCSeconds() !== second
+  ) {
+    return null;
+  }
+
+  const offsetDirection = offsetSign === "-" ? -1 : 1;
+  const offsetMs = offsetDirection * ((offsetHour * 60) + offsetMinute) * 60 * 1000;
+  return new Date(wallTimeMs - offsetMs);
+}
+
+function storedProof(value: string): string {
+  return value.trim().slice(0, 12000);
 }
 
 function slugify(value: string): string {
