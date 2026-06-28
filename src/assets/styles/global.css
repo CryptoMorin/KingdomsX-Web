@@ -66,6 +66,11 @@ img {
 }
 
 .page {
+  --page-glow-x: 0%;
+  --page-glow-y: 0%;
+  --page-glow-alt-x: 0%;
+  --page-glow-alt-y: 0%;
+  --page-glow-spread: 0rem;
   --page-bg-top: #08131d;
   --page-bg-mid: #071019;
   --page-bg-low: #050b12;
@@ -86,12 +91,14 @@ img {
 
 .page::before {
   background:
-    radial-gradient(circle at 78% 6%, rgba(255, 116, 23, 0.2), transparent 26rem),
-    radial-gradient(circle at 15% 24%, rgba(45, 64, 83, 0.45), transparent 36rem),
-    radial-gradient(circle at 86% 48%, rgba(251, 176, 59, 0.1), transparent 30rem),
-    radial-gradient(circle at 22% 68%, rgba(35, 57, 74, 0.35), transparent 34rem),
-    radial-gradient(circle at 72% 88%, rgba(255, 116, 23, 0.1), transparent 28rem);
+    radial-gradient(circle at calc(78% + var(--page-glow-x)) calc(6% + var(--page-glow-y)), rgba(255, 116, 23, 0.2), transparent calc(26rem + var(--page-glow-spread))),
+    radial-gradient(circle at calc(15% + var(--page-glow-alt-x)) calc(24% + var(--page-glow-alt-y)), rgba(45, 64, 83, 0.45), transparent calc(36rem + var(--page-glow-spread))),
+    radial-gradient(circle at calc(86% + var(--page-glow-alt-x)) calc(48% + var(--page-glow-y)), rgba(251, 176, 59, 0.1), transparent 30rem),
+    radial-gradient(circle at calc(22% + var(--page-glow-x)) calc(68% + var(--page-glow-alt-y)), rgba(35, 57, 74, 0.35), transparent 34rem),
+    radial-gradient(circle at calc(72% + var(--page-glow-x)) calc(88% + var(--page-glow-alt-y)), rgba(255, 116, 23, 0.11), transparent 28rem);
   opacity: 0.95;
+  animation: pageGlowBreathe 10s ease-in-out infinite;
+  will-change: opacity, filter;
 }
 
 .page::after {
@@ -102,6 +109,19 @@ img {
     repeating-linear-gradient(90deg, transparent 0 3.625rem, rgba(251, 176, 59, 0.035) 3.625rem 3.75rem);
   background-size: 5rem 5rem;
   mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.8) 58%, rgba(0, 0, 0, 0.3) 100%);
+}
+
+@keyframes pageGlowBreathe {
+  0%,
+  100% {
+    opacity: 0.9;
+    filter: saturate(1) brightness(1);
+  }
+
+  50% {
+    opacity: 1;
+    filter: saturate(1.15) brightness(1.15);
+  }
 }
 
 .site-header {
@@ -3646,13 +3666,15 @@ h1 span:nth-child(2) {
   padding-inline: clamp(1.25rem, 5vw, 4rem);
 }
 
-
 .error-code {
   color: rgba(251, 176, 59, 0.3);
   font-family: var(--display-font-family);
   font-size: clamp(4.5rem, 18vw, 10rem);
   line-height: 0.8;
   text-shadow: 0 1rem 2.75rem rgba(0, 0, 0, 0.35);
+  transform: perspective(900px) rotateX(0deg) rotateY(0deg);
+  transform-style: preserve-3d;
+  will-change: transform;
 }
 
 .error-page h1 {

@@ -13,7 +13,7 @@ const homeUrl = SITE.url || "/";
 <section class="error-page d-flex align-items-center justify-content-center text-center" aria-labelledby={`error-${status}-title`}>
   <div class="container position-relative z-1">
     <div class="error-content d-flex flex-column align-items-center mx-auto">
-      <p class="error-code mb-2 fw-bold" aria-hidden="true">{status}</p>
+      <p class="error-code d-inline-block mb-2 fw-bold" aria-hidden="true" data-cursor-tilt>{status}</p>
       <h1 class="mw-100 mb-0" id={`error-${status}-title`}>{title}</h1>
       <p class="error-message mx-auto mb-0">{message}</p>
       <div class="error-actions d-flex flex-wrap justify-content-center gap-3 mt-4">
