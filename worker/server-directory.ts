@@ -65,6 +65,7 @@ interface AdminServerRow extends ServerRow {
   owner_avatar_hash: string | null;
   review_event_action: string | null;
   review_event_created_at: string | null;
+  review_event_reason_code: string | null;
 }
 
 interface StatusSnapshot {
@@ -104,7 +105,7 @@ interface SubmissionInput {
   websiteUrl: string | null;
   socialLinks: SocialLink[];
   normalized: { host: string; port: number; address: string };
-  verification: VerifiedChallenge;
+  verification: VerifiedChallenge | null;
   turnstile: Record<string, unknown> & { success: boolean };
   ipHash: string;
   userAgentHash: string;
@@ -146,6 +147,7 @@ interface SocialLink {
 
 type ServerState = "pending" | "approved" | "rejected" | "suspended" | "hidden_offline";
 type VerificationChallengeStatus = "pending" | "verified" | "consumed" | "expired";
+type RejectionReasonCode = "server_unreachable" | "kingdomsx_not_verified" | "public_details_incomplete" | "inappropriate_or_unsafe";
 type PublicStatusFilter = "all" | "online" | "offline";
 type PublicSort = "newest" | "players" | "name";
 type AdminSort = "newest" | "oldest" | "name" | "online" | "updated";
@@ -205,6 +207,16 @@ const LOCAL_TURNSTILE_TEST_SECRET = "1x0000000000000000000000000000000AA";
 const SUBMISSION_DESCRIPTION_MAX_LENGTH = 240;
 const VERIFICATION_CHALLENGE_TTL_MS = 15 * 60 * 1000;
 const VERIFICATION_PROOF_TTL_MS = 48 * 60 * 60 * 1000;
+const REJECTION_REASON_CODES: RejectionReasonCode[] = [
+  "server_unreachable",
+  "kingdomsx_not_verified",
+  "public_details_incomplete",
+  "inappropriate_or_unsafe"
+];
+const REJECTION_REVERIFICATION_EXEMPT_REASON_CODES = new Set<RejectionReasonCode>([
+  "public_details_incomplete",
+  "inappropriate_or_unsafe"
+]);
 const VERIFICATION_CODE_ALPHABET = "abcdefghijklmnopqrstuvwxyz0123456789";
 const VERIFICATION_CODE_LENGTH = 8;
 const VERIFICATION_CODE_GROUP_LENGTH = 4;
@@ -742,8 +754,8 @@ async function submitServer(request: Request, env: ServerDirectoryEnv): Promise<
     env.DB.prepare(`
       INSERT INTO submissions (id, server_id, owner_account_id, contact, verification_method, verification_evidence, submitter_ip_hash, user_agent_hash, turnstile_result, verification_challenge_id, created_at)
       VALUES (?, ?, ?, ?, 'plugin_callback', ?, ?, ?, ?, ?, ?)
-    `).bind(submissionId, id, session.account.id, contact, storedPluginVerificationEvidence(input.verification, input.name), input.ipHash, input.userAgentHash, JSON.stringify(input.turnstile), input.verification.id, createdAt),
-    consumeVerificationChallengeStatement(env, input.verification.id, createdAt),
+    `).bind(submissionId, id, session.account.id, contact, storedSubmissionVerificationEvidence(input.verification, input.name), input.ipHash, input.userAgentHash, JSON.stringify(input.turnstile), input.verification?.id ?? null, createdAt),
+    ...(input.verification ? [consumeVerificationChallengeStatement(env, input.verification.id, createdAt)] : []),
     env.DB.prepare(`
       INSERT INTO moderation_events (id, server_id, actor, action, notes, created_at)
       VALUES (?, ?, 'system', 'submitted', ?, ?)
@@ -847,6 +859,24 @@ async function createVerificationChallenge(request: Request, env: ServerDirector
   }
 
   const timestamp = nowIso();
+  const ownedServer = await env.DB.prepare(`
+    SELECT s.status, s.updated_at, rejection.created_at AS rejected_at, rejection.reason_code AS rejection_reason_code
+    FROM servers s
+    LEFT JOIN moderation_events rejection ON rejection.id = (
+      SELECT me.id
+      FROM moderation_events me
+      WHERE me.server_id = s.id AND me.action IN ('reject', 'rejected')
+      ORDER BY me.created_at DESC
+      LIMIT 1
+    )
+    WHERE s.owner_account_id = ?
+    LIMIT 1
+  `).bind(session.account.id).first<{
+    status: ServerState;
+    updated_at: string;
+    rejected_at: string | null;
+    rejection_reason_code: string | null;
+  }>();
   const pendingChallenge = await env.DB.prepare(`
     SELECT id, owner_account_id, server_name, normalized_host, port, code_hash, status, expires_at, verified_at, consumed_at,
            plugin_version, server_software, minecraft_version, callback_ip,
@@ -879,7 +909,13 @@ async function createVerificationChallenge(request: Request, env: ServerDirector
     await expirePendingVerificationChallenge(env, pendingChallenge.id, timestamp);
   }
 
-  const reusableVerifiedAfter = msAgoIso(VERIFICATION_PROOF_TTL_MS);
+  const proofLifetimeCutoff = msAgoIso(VERIFICATION_PROOF_TTL_MS);
+  const latestRejectionAt = ownedServer?.status === "rejected" && rejectionRequiresReverification(ownedServer.rejection_reason_code)
+    ? ownedServer.rejected_at ?? ownedServer.updated_at
+    : null;
+  const reusableVerifiedAfter = latestRejectionAt && latestRejectionAt > proofLifetimeCutoff
+    ? latestRejectionAt
+    : proofLifetimeCutoff;
   const existingVerifiedChallenge = await env.DB.prepare(`
     SELECT id, owner_account_id, server_name, normalized_host, port, status, expires_at, verified_at, consumed_at,
            plugin_version, server_software, minecraft_version, callback_ip,
@@ -1121,7 +1157,25 @@ async function resubmitMyServer(request: Request, env: ServerDirectoryEnv): Prom
 
   const keepsApproval = owned.status === "approved";
   const body = await readJsonObject(request);
-  const input = await parseSubmissionInput(request, env, body, session.account.id);
+  const requestedAddress = normalizeAddress(stringField(body, "address", 255), parsePortField(body.port));
+  const addressChanged = !requestedAddress.ok
+    || requestedAddress.host !== owned.normalized_host
+    || requestedAddress.port !== owned.port;
+  const rejectionRequiresFreshVerification = owned.status === "rejected"
+    && (rejectionRequiresReverification(owned.review_event_reason_code) || !owned.submission_verification_evidence);
+  const verificationRequired = owned.status === "rejected"
+    ? rejectionRequiresFreshVerification || addressChanged
+    : true;
+  const input = await parseSubmissionInput(
+    request,
+    env,
+    body,
+    session.account.id,
+    {
+      verificationRequired,
+      verifiedAfter: rejectionRequiresFreshVerification ? owned.review_event_created_at ?? owned.updated_at : null
+    }
+  );
   const existingAddress = await env.DB.prepare("SELECT id, status FROM servers WHERE normalized_host = ? AND port = ? AND id <> ?")
     .bind(input.normalized.host, input.normalized.port, owned.id)
     .first<{ id: string; status: ServerState }>();
@@ -1177,8 +1231,8 @@ async function resubmitMyServer(request: Request, env: ServerDirectoryEnv): Prom
     env.DB.prepare(`
       INSERT INTO submissions (id, server_id, owner_account_id, contact, verification_method, verification_evidence, submitter_ip_hash, user_agent_hash, turnstile_result, verification_challenge_id, created_at)
       VALUES (?, ?, ?, ?, 'plugin_callback', ?, ?, ?, ?, ?, ?)
-    `).bind(submissionId, owned.id, session.account.id, submitterContact(session.account), storedPluginVerificationEvidence(input.verification, input.name), input.ipHash, input.userAgentHash, JSON.stringify(input.turnstile), input.verification.id, timestamp),
-    consumeVerificationChallengeStatement(env, input.verification.id, timestamp),
+    `).bind(submissionId, owned.id, session.account.id, submitterContact(session.account), storedSubmissionVerificationEvidence(input.verification, input.name, owned.submission_verification_evidence), input.ipHash, input.userAgentHash, JSON.stringify(input.turnstile), input.verification?.id ?? null, timestamp),
+    ...(input.verification ? [consumeVerificationChallengeStatement(env, input.verification.id, timestamp)] : []),
     env.DB.prepare(`
       INSERT INTO moderation_events (id, server_id, actor, action, notes, created_at)
       VALUES (?, ?, ?, ?, ?, ?)
@@ -1276,7 +1330,13 @@ async function deleteMyServer(request: Request, env: ServerDirectoryEnv): Promis
   return json({ ok: true, id: owned.id, deleted: true }, 200, NO_STORE_JSON_HEADERS);
 }
 
-async function parseSubmissionInput(request: Request, env: ServerDirectoryEnv, body: Record<string, unknown>, ownerAccountId: string): Promise<SubmissionInput> {
+async function parseSubmissionInput(
+  request: Request,
+  env: ServerDirectoryEnv,
+  body: Record<string, unknown>,
+  ownerAccountId: string,
+  verificationPolicy: { verificationRequired?: boolean; verifiedAfter?: string | null } = {}
+): Promise<SubmissionInput> {
   if (!isLocalEnvironment(env) && (!env.TURNSTILE_SECRET || !env.RATE_LIMIT_SALT)) {
     logError("submission.missing_required_secrets");
     throw new ApiError(503, "Server submissions are temporarily unavailable.");
@@ -1327,7 +1387,16 @@ async function parseSubmissionInput(request: Request, env: ServerDirectoryEnv, b
     throw new ApiError(400, "Turnstile verification failed.");
   }
 
-  const verification = await requireVerifiedChallenge(env, verificationChallengeId, ownerAccountId, normalized.host, normalized.port);
+  const verification = verificationPolicy.verificationRequired === false
+    ? null
+    : await requireVerifiedChallenge(
+      env,
+      verificationChallengeId,
+      ownerAccountId,
+      normalized.host,
+      normalized.port,
+      verificationPolicy.verifiedAfter ?? null
+    );
 
   return {
     name: name.trim(),
@@ -1348,7 +1417,8 @@ async function requireVerifiedChallenge(
   id: string,
   ownerAccountId: string,
   host: string,
-  port: number
+  port: number,
+  verifiedAfter: string | null = null
 ): Promise<VerifiedChallenge> {
   if (!isUuidLike(id)) {
     throw new ApiError(400, "Run the in-game verification command before submitting.");
@@ -1376,6 +1446,10 @@ async function requireVerifiedChallenge(
 
   if (status !== "verified" || !row.verified_at) {
     throw new ApiError(400, "Run the in-game verification command before submitting.");
+  }
+
+  if (verifiedAfter && row.verified_at <= verifiedAfter) {
+    throw new ApiError(400, "Verify your server again after the latest staff rejection before resubmitting.");
   }
 
   return {
@@ -1572,8 +1646,8 @@ async function autoSuspendSubmission(
     env.DB.prepare(`
       INSERT INTO submissions (id, server_id, owner_account_id, contact, verification_method, verification_evidence, submitter_ip_hash, user_agent_hash, turnstile_result, verification_challenge_id, moderation_notes, created_at)
       VALUES (?, ?, ?, ?, 'plugin_callback', ?, ?, ?, ?, ?, ?, ?)
-    `).bind(submissionId, id, account.id, submitterContact(account), storedPluginVerificationEvidence(input.verification, input.name), input.ipHash, input.userAgentHash, JSON.stringify(input.turnstile), input.verification.id, notes, timestamp),
-    consumeVerificationChallengeStatement(env, input.verification.id, timestamp),
+    `).bind(submissionId, id, account.id, submitterContact(account), storedSubmissionVerificationEvidence(input.verification, input.name), input.ipHash, input.userAgentHash, JSON.stringify(input.turnstile), input.verification?.id ?? null, notes, timestamp),
+    ...(input.verification ? [consumeVerificationChallengeStatement(env, input.verification.id, timestamp)] : []),
     env.DB.prepare(`
       INSERT INTO moderation_events (id, server_id, actor, action, notes, created_at)
       VALUES (?, ?, 'system', 'suspend', ?, ?)
@@ -1606,8 +1680,8 @@ async function autoSuspendOwnedSubmission(
     env.DB.prepare(`
       INSERT INTO submissions (id, server_id, owner_account_id, contact, verification_method, verification_evidence, submitter_ip_hash, user_agent_hash, turnstile_result, verification_challenge_id, moderation_notes, created_at)
       VALUES (?, ?, ?, ?, 'plugin_callback', ?, ?, ?, ?, ?, ?, ?)
-    `).bind(submissionId, owned.id, account.id, submitterContact(account), storedPluginVerificationEvidence(input.verification, input.name), input.ipHash, input.userAgentHash, JSON.stringify(input.turnstile), input.verification.id, notes, timestamp),
-    consumeVerificationChallengeStatement(env, input.verification.id, timestamp),
+    `).bind(submissionId, owned.id, account.id, submitterContact(account), storedSubmissionVerificationEvidence(input.verification, input.name, owned.submission_verification_evidence), input.ipHash, input.userAgentHash, JSON.stringify(input.turnstile), input.verification?.id ?? null, notes, timestamp),
+    ...(input.verification ? [consumeVerificationChallengeStatement(env, input.verification.id, timestamp)] : []),
     env.DB.prepare(`
       INSERT INTO moderation_events (id, server_id, actor, action, notes, created_at)
       VALUES (?, ?, 'system', 'suspend', ?, ?)
@@ -1664,9 +1738,14 @@ async function handleAdmin(request: Request, url: URL, env: ServerDirectoryEnv, 
   const [, id, action] = match;
   const body = await readJsonObject(request, true);
   const notes = stringField(body, "notes", 1000, false);
+  const reasonCode = stringField(body, "reasonCode", 64, false);
 
   if ((action === "reject" || action === "suspend") && notes.length < 3) {
     return json({ error: "A feedback reason is required and will be shown to the submitter." }, 400, NO_STORE_JSON_HEADERS);
+  }
+
+  if (action === "reject" && !isRejectionReasonCode(reasonCode)) {
+    return json({ error: "Choose a valid rejection reason before continuing." }, 400, NO_STORE_JSON_HEADERS);
   }
 
   if (action === "refresh-status") {
@@ -1691,8 +1770,8 @@ async function handleAdmin(request: Request, url: URL, env: ServerDirectoryEnv, 
           updated_at = ?
       WHERE id = ?
     `).bind(status, status, timestamp, status, timestamp, timestamp, id),
-    env.DB.prepare("INSERT INTO moderation_events (id, server_id, actor, action, notes, created_at) VALUES (?, ?, ?, ?, ?, ?)")
-      .bind(crypto.randomUUID(), id, actor, action, notes, timestamp),
+    env.DB.prepare("INSERT INTO moderation_events (id, server_id, actor, action, notes, reason_code, created_at) VALUES (?, ?, ?, ?, ?, ?, ?)")
+      .bind(crypto.randomUUID(), id, actor, action, notes, action === "reject" ? reasonCode : null, timestamp),
     env.DB.prepare(`
       UPDATE submissions
       SET moderation_notes = CASE WHEN ? <> '' THEN ? ELSE moderation_notes END
@@ -2124,11 +2203,15 @@ function toSubmitterUser(account: SubmitterAccount) {
 
 function toOwnerServer(row: AdminServerRow) {
   const latestReviewReason = row.status !== "pending" && row.status !== "approved" ? row.submission_moderation_notes : null;
+  const reverificationRequired = row.status === "rejected"
+    ? rejectionRequiresReverification(row.review_event_reason_code) || !row.submission_verification_evidence
+    : row.status === "hidden_offline";
   return {
     ...toAdminServer(row),
     host: row.normalized_host,
     port: row.port,
     rejectionReason: latestReviewReason,
+    reverificationRequired,
     editable: row.status !== "pending" && row.status !== "suspended",
     canEditPublicDetails: row.status === "approved",
     canRequestReview: row.status === "rejected" || row.status === "hidden_offline"
@@ -2591,7 +2674,8 @@ function adminSelectSql(whereSql: string, orderBySql: string, tail: string): str
       owner.global_name AS owner_global_name,
       owner.avatar_hash AS owner_avatar_hash,
       event.action AS review_event_action,
-      event.created_at AS review_event_created_at
+      event.created_at AS review_event_created_at,
+      event.reason_code AS review_event_reason_code
     FROM servers s
     LEFT JOIN server_status ss ON ss.server_id = s.id
     LEFT JOIN submitter_accounts owner ON owner.id = s.owner_account_id
@@ -2736,7 +2820,8 @@ function toAdminServer(row: AdminServerRow) {
     } : null,
     review: {
       action: row.review_event_action,
-      createdAt: row.review_event_created_at
+      createdAt: row.review_event_created_at,
+      reasonCode: row.review_event_reason_code
     }
   };
 }
@@ -2763,6 +2848,14 @@ function parsePublicSort(value: string | null): PublicSort {
 function parseServerState(value: string): ServerState {
   const states: ServerState[] = ["pending", "approved", "rejected", "suspended", "hidden_offline"];
   return states.includes(value as ServerState) ? (value as ServerState) : "pending";
+}
+
+function isRejectionReasonCode(value: string | null): value is RejectionReasonCode {
+  return REJECTION_REASON_CODES.includes(value as RejectionReasonCode);
+}
+
+function rejectionRequiresReverification(value: string | null): boolean {
+  return !isRejectionReasonCode(value) || !REJECTION_REVERIFICATION_EXEMPT_REASON_CODES.has(value);
 }
 
 function parseAdminSort(value: string | null): AdminSort {
@@ -3018,7 +3111,19 @@ function normalizePublicDomainInput(value: string): string | null {
     : null;
 }
 
-function storedPluginVerificationEvidence(challenge: VerifiedChallenge, serverName: string): string {
+function storedSubmissionVerificationEvidence(
+  challenge: VerifiedChallenge | null,
+  serverName: string,
+  previousEvidence: string | null = null
+): string {
+  if (!challenge) {
+    if (previousEvidence) {
+      return previousEvidence;
+    }
+
+    throw new ApiError(409, "Previous verification evidence is unavailable. Verify your server again before resubmitting.");
+  }
+
   return [
     `Verified: ${challenge.verified_at}`,
     `Verification IP: ${challenge.callback_ip || "not available"}`,

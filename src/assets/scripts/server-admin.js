@@ -41,18 +41,22 @@ const ADMIN_MESSAGES = {
   feedbackReasons: {
     reject: [
       {
+        code: "server_unreachable",
         title: "Server could not be reached",
         text: "Staff could not connect to this server. Make sure the address is correct, the server is online, and the port is open before resubmitting."
       },
       {
+        code: "kingdomsx_not_verified",
         title: "KingdomsX not verified",
         text: 'Staff could not verify that your server is running KingdomsX. Generate a new verification code and then run "/k admin verify <code>" on your server before resubmitting.'
       },
       {
+        code: "public_details_incomplete",
         title: "Public details incomplete",
         text: "The server name, description, website, or social links need more complete and accurate public details before this listing can be approved."
       },
       {
+        code: "inappropriate_or_unsafe",
         title: "Inappropriate or unsafe listing",
         text: "This listing contains inappropriate, misleading, unsafe, or policy-violating content. Remove the problematic content before resubmitting."
       }
@@ -420,6 +424,7 @@ const createReasonChoice = (action, reason, index) => {
   input.name = "server-admin-moderation-reason";
   input.id = inputId;
   input.value = reason.text;
+  input.dataset.reasonCode = reason.code ?? "";
   input.checked = index === 0;
 
   const content = document.createElement("span");
@@ -715,6 +720,35 @@ const createOverview = (server) => {
   return overview;
 };
 
+const createCurrentModerationReason = (server) => {
+  if (server.reviewStatus !== "rejected" && server.reviewStatus !== "suspended") {
+    return null;
+  }
+
+  const action = server.reviewStatus === "rejected" ? "reject" : "suspend";
+  const reasonText = textOrFallback(server.submission?.moderationNotes, "No moderation reason was stored.");
+  const preset = (ADMIN_MESSAGES.feedbackReasons[action] ?? []).find((reason) => (
+    (reason.code && server.review?.reasonCode && reason.code === server.review.reasonCode)
+      || reason.text === reasonText
+  ));
+  const notice = document.createElement("div");
+  notice.className = "server-submit-notice is-error d-flex align-items-center gap-3 p-3 rounded-3";
+
+  const icon = document.createElement("i");
+  icon.className = "fa-solid fa-circle-exclamation d-inline-flex align-items-center justify-content-center flex-shrink-0";
+  icon.setAttribute("aria-hidden", "true");
+
+  const content = document.createElement("div");
+  content.className = "d-grid gap-1";
+
+  const reasonTitle = document.createElement("strong");
+  reasonTitle.textContent = `Current ${server.reviewStatus === "rejected" ? "rejection" : "suspension"} reason${preset?.title ? `: ${preset.title}` : ""}`;
+
+  content.append(reasonTitle, createTextBlock(reasonText));
+  notice.append(icon, content);
+  return notice;
+};
+
 const fillManageModal = (modal, server) => {
   const title = modal.querySelector("[data-admin-modal-title]");
   const body = modal.querySelector("[data-admin-modal-body]");
@@ -783,13 +817,15 @@ const fillManageModal = (modal, server) => {
       : createTextBlock("No public website or social links were submitted.")
   );
 
-  body.append(
+  const sections = [
+    createCurrentModerationReason(server),
     createModalSection("Overview", createOverview(server)),
     createModalSection("Description", description),
     createModalSection(`Server Status (${providerName(server.provider)})`, stats),
     createModalSection("Website & Socials", socialsContent),
     createModalSection("Submission", submissionContent)
-  );
+  ].filter(Boolean);
+  body.append(...sections);
 
   const refreshGroup = document.createElement("div");
   refreshGroup.className = "server-admin-footer-group d-flex flex-wrap gap-2";
@@ -1109,7 +1145,7 @@ const initServerAdmin = () => {
     modalController?.show();
   });
 
-  const runAdminAction = async (button, id, action, notes = "") => {
+  const runAdminAction = async (button, id, action, notes = "", reasonCode = "") => {
     if (action === "delete") {
       const server = servers.get(id);
       const name = server?.name || "this server";
@@ -1130,7 +1166,7 @@ const initServerAdmin = () => {
             ...adminHeaders(),
             "content-type": "application/json"
           },
-          ...(action === "delete" ? {} : { body: JSON.stringify({ notes }) })
+          ...(action === "delete" ? {} : { body: JSON.stringify({ notes, reasonCode }) })
         }).then(async (response) => {
           const payload = await response.json().catch(() => ({}));
 
@@ -1173,13 +1209,14 @@ const initServerAdmin = () => {
       const action = confirm.dataset.adminActionConfirm ?? "";
       const checked = modal.querySelector('input[name="server-admin-moderation-reason"]:checked');
       const notes = checked instanceof HTMLInputElement ? checked.value.trim() : "";
+      const reasonCode = checked instanceof HTMLInputElement ? checked.dataset.reasonCode ?? "" : "";
 
       if (!id || !action || notes.length < 3) {
         setMessage(ADMIN_MESSAGES.errors.chooseFeedback, "is-error");
         return;
       }
 
-      await runAdminAction(confirm, id, action, notes);
+      await runAdminAction(confirm, id, action, notes, reasonCode);
       return;
     }
 

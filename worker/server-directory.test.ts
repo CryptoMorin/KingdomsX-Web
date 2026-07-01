@@ -87,7 +87,7 @@ async function workerRoute(url: string, requestedAssets: string[]): Promise<Resp
   return worker.fetch(new Request(url), routeEnv, ctx);
 }
 
-async function seedOwnedServer(accountSuffix = "one", status: "approved" | "pending" = "approved"): Promise<void> {
+async function seedOwnedServer(accountSuffix = "one", status: "approved" | "pending" | "rejected" = "approved"): Promise<void> {
   const timestamp = "2026-01-01T00:00:00.000Z";
   await testEnv.DB.prepare(`
     INSERT INTO servers (
@@ -367,6 +367,143 @@ describe("server verification", () => {
       port: 25565,
       status: "approved",
       approved_at: "2026-01-01T00:00:00.000Z"
+    });
+  });
+
+  it("requires rejected listings to verify again after the rejection", async () => {
+    const cookie = await seedSubmitter("rejected-cutoff");
+    await seedOwnedServer("rejected-cutoff", "rejected");
+    const challengeId = crypto.randomUUID();
+    const now = Date.now();
+    const verifiedAt = new Date(now - 60_000).toISOString();
+    const rejectedAt = new Date(now).toISOString();
+    const expiresAt = new Date(now + 15 * 60_000).toISOString();
+    const address = "play-rejected-cutoff.kingdomsx.com";
+
+    await testEnv.DB.batch([
+      testEnv.DB.prepare("UPDATE servers SET updated_at = ? WHERE id = 'server-rejected-cutoff'").bind(rejectedAt),
+      testEnv.DB.prepare(`
+        INSERT INTO moderation_events (id, server_id, actor, action, notes, created_at)
+        VALUES ('rejected-cutoff-event', 'server-rejected-cutoff', 'staff@example.com', 'reject', 'Test rejection.', ?)
+      `).bind(rejectedAt),
+      testEnv.DB.prepare(`
+        INSERT INTO server_verification_challenges (
+          id, owner_account_id, server_name, normalized_host, port, code_hash, status,
+          expires_at, verified_at, created_at, updated_at
+        )
+        VALUES (?, 'account-rejected-cutoff', 'Rejected Server', ?, 25565, 'rejected-cutoff-code', 'verified', ?, ?, ?, ?)
+      `).bind(challengeId, address, expiresAt, verifiedAt, verifiedAt, verifiedAt)
+    ]);
+
+    const replacement = await requestChallenge(cookie, address, "198.51.100.182");
+    expect(replacement.status).toBe(201);
+    expect(await replacement.json<Record<string, unknown>>()).toMatchObject({ status: "pending" });
+
+    vi.stubGlobal("fetch", async (input: RequestInfo | URL) => {
+      const url = new URL(input instanceof Request ? input.url : String(input));
+      return url.hostname === "challenges.cloudflare.com"
+        ? Response.json({ success: true, action: "test" })
+        : new Response("Not mocked", { status: 500 });
+    });
+
+    const response = await api("/api/servers/me/resubmit", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        "cf-connecting-ip": "198.51.100.183",
+        cookie
+      },
+      body: JSON.stringify({
+        name: "Rejected Server",
+        address,
+        port: 25565,
+        description: "This rejected server description is long enough for another staff review.",
+        verificationChallengeId: challengeId,
+        turnstileToken: "test-token",
+        websiteUrl: "",
+        socialLinks: {}
+      })
+    });
+    expect(response.status).toBe(400);
+    expect((await response.json<{ error: string }>()).error).toContain("after the latest staff rejection");
+  });
+
+  it("retains verification for content-only rejections unless the address changes", async () => {
+    const cookie = await seedSubmitter("content-rejection");
+    await seedOwnedServer("content-rejection", "rejected");
+    const timestamp = new Date().toISOString();
+    const address = "play-content-rejection.kingdomsx.com";
+    const verificationEvidence = "Verified plugin callback evidence";
+
+    await testEnv.DB.batch([
+      testEnv.DB.prepare("UPDATE servers SET updated_at = ? WHERE id = 'server-content-rejection'").bind(timestamp),
+      testEnv.DB.prepare(`
+        INSERT INTO submissions (
+          id, server_id, owner_account_id, contact, verification_method, verification_evidence,
+          submitter_ip_hash, user_agent_hash, turnstile_result, created_at
+        )
+        VALUES ('content-rejection-submission', 'server-content-rejection', 'account-content-rejection',
+                'Tester', 'plugin_callback', ?, 'ip', 'ua', '{}', ?)
+      `).bind(verificationEvidence, timestamp),
+      testEnv.DB.prepare(`
+        INSERT INTO moderation_events (id, server_id, actor, action, notes, reason_code, created_at)
+        VALUES ('content-rejection-event', 'server-content-rejection', 'staff@example.com', 'reject',
+                'Fix the public details.', 'public_details_incomplete', ?)
+      `).bind(timestamp)
+    ]);
+
+    const ownerState = await api("/api/servers/me", { headers: { cookie } });
+    expect((await ownerState.json<{ item: { reverificationRequired: boolean } }>()).item.reverificationRequired).toBe(false);
+
+    vi.stubGlobal("fetch", async (input: RequestInfo | URL) => {
+      const url = new URL(input instanceof Request ? input.url : String(input));
+
+      if (url.hostname === "challenges.cloudflare.com") {
+        return Response.json({ success: true, action: "test" });
+      }
+
+      if (url.hostname === "api.mcsrvstat.us") {
+        return Response.json({ online: true, players: { online: 1, max: 20 }, version: "26.2" });
+      }
+
+      return new Response("Not mocked", { status: 500 });
+    });
+
+    const requestBody = (serverAddress: string) => JSON.stringify({
+      name: "Content Rejection Server",
+      address: serverAddress,
+      port: 25565,
+      description: "The corrected public description is complete and accurate for another review.",
+      verificationChallengeId: "",
+      turnstileToken: "test-token",
+      websiteUrl: "",
+      socialLinks: {}
+    });
+
+    const changedAddress = await api("/api/servers/me/resubmit", {
+      method: "POST",
+      headers: { "content-type": "application/json", "cf-connecting-ip": "198.51.100.184", cookie },
+      body: requestBody("new-content-rejection.kingdomsx.com")
+    });
+    expect(changedAddress.status).toBe(400);
+
+    const unchangedAddress = await api("/api/servers/me/resubmit", {
+      method: "POST",
+      headers: { "content-type": "application/json", "cf-connecting-ip": "198.51.100.185", cookie },
+      body: requestBody(address)
+    });
+    expect(unchangedAddress.status).toBe(202);
+
+    const latestSubmission = await testEnv.DB.prepare(`
+      SELECT verification_evidence, verification_challenge_id
+      FROM submissions
+      WHERE server_id = 'server-content-rejection'
+      ORDER BY created_at DESC, id DESC
+      LIMIT 1
+    `).first<{ verification_evidence: string; verification_challenge_id: string | null }>();
+    expect(latestSubmission).toEqual({
+      verification_evidence: verificationEvidence,
+      verification_challenge_id: null
     });
   });
 

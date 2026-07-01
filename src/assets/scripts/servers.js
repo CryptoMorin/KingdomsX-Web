@@ -1114,7 +1114,7 @@ const initServerSubmit = () => {
 
     const notice = document.createElement("small");
     notice.className = "d-block mx-auto mt-4 text-secondary-emphasis";
-    notice.textContent = "Signing in with Discord doesn't give us access to your messages or other private account activity. It only lets us see your user ID, name, and avatar, and confirm that you're a member of the KingdomsX Discord server. We use this information only to create and secure your server submission account.";
+    notice.textContent = "Signing in with Discord doesn't give us access to your messages or other private account activity. It only lets us see your user ID, name, and avatar, and confirm that you're a member of the KingdomsX Discord server. We use this information only to create your account on the KingdomsX website and keep it secure.";
 
     actions.append(login, back);
     panel.append(process, actions, notice);
@@ -1628,7 +1628,8 @@ const initServerSubmit = () => {
       reviewHeader.append(reviewIntro, reviewAction);
     }
 
-    const canKeepPreviousVerification = mode === "edit" && item?.reviewStatus === "approved";
+    const canKeepPreviousVerification = (mode === "edit" && item?.reviewStatus === "approved")
+      || (mode === "resubmit" && item?.reviewStatus === "rejected" && item?.reverificationRequired === false);
     let verificationRequired = !canKeepPreviousVerification;
     let activeVerification = null;
     let activeVerificationIdentity = null;
@@ -1956,7 +1957,8 @@ const initServerSubmit = () => {
           command: data.command,
           status: data.status,
           createdAt: data.createdAt,
-          expiresAt: data.expiresAt
+          expiresAt: data.expiresAt,
+          previouslyVerified: data.reused === true && data.status === "verified"
         };
         activeVerificationIdentity = currentVerificationTarget();
         verificationPollCount = 0;
@@ -2113,7 +2115,9 @@ const initServerSubmit = () => {
         const message = document.createElement("p");
         message.className = "mb-0";
         message.textContent = status === "verified"
-          ? canKeepPreviousVerification
+          ? activeVerification.previouslyVerified
+            ? SERVER_MESSAGES.submit.verificationComplete.message
+            : canKeepPreviousVerification
             ? SERVER_MESSAGES.submit.verification.verifiedUpdateMessage
             : SERVER_MESSAGES.submit.verification.verifiedMessage
           : status === "expired"
@@ -2348,9 +2352,8 @@ const initServerSubmit = () => {
         return;
       }
 
-      const currentIdentity = currentIdentitySnapshot();
       const needsStaffReview = mode !== "edit";
-      const requiresVerification = needsStaffReview || !baselineIdentity || currentIdentity.address !== baselineIdentity.address || currentIdentity.port !== baselineIdentity.port;
+      const requiresVerification = verificationRequired;
 
       if (requiresVerification && !verificationIsComplete()) {
         showToast({
