@@ -1112,8 +1112,12 @@ const initServerSubmit = () => {
     back.href = serversUrl;
     back.innerHTML = '<i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Back to Servers';
 
+    const notice = document.createElement("small");
+    notice.className = "d-block mx-auto mt-4 text-secondary-emphasis";
+    notice.textContent = "Signing in with Discord doesn't give us access to your messages or other private account activity. It only lets us see your user ID, name, and avatar, and confirm that you're a member of the KingdomsX Discord server. We use this information only to create and secure your server submission account.";
+
     actions.append(login, back);
-    panel.append(process, actions);
+    panel.append(process, actions, notice);
     replaceRoot(panel);
   };
 
