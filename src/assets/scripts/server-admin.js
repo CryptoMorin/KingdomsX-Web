@@ -123,9 +123,9 @@ const formatVerificationDate = (value) => {
   ].join(" ");
 };
 
-const formatSubmissionProof = (value) => {
-  const proof = textOrFallback(value, "No proof stored.");
-  return proof
+const formatVerificationEvidence = (value) => {
+  const evidence = textOrFallback(value, "No verification evidence stored.");
+  return evidence
     .split("\n")
     .map((line) => line.startsWith("Verified: ") ? `Verified: ${formatVerificationDate(line.slice(10))}` : line)
     .join("\n");
@@ -754,13 +754,13 @@ const fillManageModal = (modal, server) => {
     createStat("Submitted", formatDate(server.submission?.createdAt ?? server.createdAt), "fa-solid fa-clock")
   );
 
-  const proof = document.createElement("pre");
-  proof.className = "mb-0";
-  proof.textContent = formatSubmissionProof(server.submission?.proofRedacted);
+  const evidence = document.createElement("pre");
+  evidence.className = "mb-0";
+  evidence.textContent = formatVerificationEvidence(server.submission?.verificationEvidence);
 
   const submissionContent = document.createElement("div");
   submissionContent.className = "d-flex flex-column gap-3";
-  submissionContent.append(submissionStats, proof);
+  submissionContent.append(submissionStats, evidence);
 
   const links = document.createElement("div");
   links.className = "server-links d-flex flex-wrap gap-2";

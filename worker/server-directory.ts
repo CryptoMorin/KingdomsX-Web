@@ -56,7 +56,7 @@ interface ServerRow {
 
 interface AdminServerRow extends ServerRow {
   submission_contact: string | null;
-  submission_proof_redacted: string | null;
+  submission_verification_evidence: string | null;
   submission_moderation_notes: string | null;
   submission_created_at: string | null;
   owner_discord_user_id: string | null;
@@ -124,7 +124,6 @@ interface VerificationChallengeRow {
   server_software: string | null;
   minecraft_version: string | null;
   callback_ip: string | null;
-  callback_payload_json: string | null;
   created_at: string;
   updated_at: string;
 }
@@ -741,9 +740,9 @@ async function submitServer(request: Request, env: ServerDirectoryEnv): Promise<
     serverMutation,
     ...statusSnapshotStatements(env, id, snapshot, createdAt),
     env.DB.prepare(`
-      INSERT INTO submissions (id, server_id, owner_account_id, contact, proof_type, proof_redacted, submitter_ip_hash, user_agent_hash, turnstile_result, verification_challenge_id, created_at)
-      VALUES (?, ?, ?, ?, 'plugin_callback_verified', ?, ?, ?, ?, ?, ?)
-    `).bind(submissionId, id, session.account.id, contact, storedPluginProof(input.verification, input.name), input.ipHash, input.userAgentHash, JSON.stringify(input.turnstile), input.verification.id, createdAt),
+      INSERT INTO submissions (id, server_id, owner_account_id, contact, verification_method, verification_evidence, submitter_ip_hash, user_agent_hash, turnstile_result, verification_challenge_id, created_at)
+      VALUES (?, ?, ?, ?, 'plugin_callback', ?, ?, ?, ?, ?, ?)
+    `).bind(submissionId, id, session.account.id, contact, storedPluginVerificationEvidence(input.verification, input.name), input.ipHash, input.userAgentHash, JSON.stringify(input.turnstile), input.verification.id, createdAt),
     consumeVerificationChallengeStatement(env, input.verification.id, createdAt),
     env.DB.prepare(`
       INSERT INTO moderation_events (id, server_id, actor, action, notes, created_at)
@@ -850,7 +849,7 @@ async function createVerificationChallenge(request: Request, env: ServerDirector
   const timestamp = nowIso();
   const pendingChallenge = await env.DB.prepare(`
     SELECT id, owner_account_id, server_name, normalized_host, port, code_hash, status, expires_at, verified_at, consumed_at,
-           plugin_version, server_software, minecraft_version, callback_ip, callback_payload_json,
+           plugin_version, server_software, minecraft_version, callback_ip,
            created_at, updated_at
     FROM server_verification_challenges
     WHERE owner_account_id = ? AND status = 'pending'
@@ -883,7 +882,7 @@ async function createVerificationChallenge(request: Request, env: ServerDirector
   const reusableVerifiedAfter = msAgoIso(VERIFICATION_PROOF_TTL_MS);
   const existingVerifiedChallenge = await env.DB.prepare(`
     SELECT id, owner_account_id, server_name, normalized_host, port, status, expires_at, verified_at, consumed_at,
-           plugin_version, server_software, minecraft_version, callback_ip, callback_payload_json,
+           plugin_version, server_software, minecraft_version, callback_ip,
            created_at, updated_at
     FROM server_verification_challenges
     WHERE owner_account_id = ?
@@ -982,7 +981,7 @@ async function getVerificationChallenge(request: Request, url: URL, env: ServerD
 
   const row = await env.DB.prepare(`
     SELECT id, owner_account_id, server_name, normalized_host, port, status, expires_at, verified_at, consumed_at,
-           plugin_version, server_software, minecraft_version, callback_ip, callback_payload_json,
+           plugin_version, server_software, minecraft_version, callback_ip,
            created_at, updated_at
     FROM server_verification_challenges
     WHERE id = ? AND owner_account_id = ?
@@ -1025,7 +1024,7 @@ async function verifyPluginChallenge(request: Request, env: ServerDirectoryEnv):
   const timestamp = nowIso();
   const row = await env.DB.prepare(`
     SELECT id, owner_account_id, server_name, normalized_host, port, status, expires_at, verified_at, consumed_at,
-           plugin_version, server_software, minecraft_version, callback_ip, callback_payload_json,
+           plugin_version, server_software, minecraft_version, callback_ip,
            created_at, updated_at
     FROM server_verification_challenges
     WHERE code_hash = ?
@@ -1066,7 +1065,6 @@ async function verifyPluginChallenge(request: Request, env: ServerDirectoryEnv):
         callback_ip = ?,
         callback_ip_hash = ?,
         callback_user_agent_hash = ?,
-        callback_payload_json = ?,
         updated_at = ?
     WHERE id = ? AND status = 'pending' AND expires_at > ?
   `).bind(
@@ -1077,7 +1075,6 @@ async function verifyPluginChallenge(request: Request, env: ServerDirectoryEnv):
     ip,
     ipHash,
     userAgentHash,
-    JSON.stringify(callbackPayload),
     timestamp,
     row.id,
     timestamp
@@ -1178,9 +1175,9 @@ async function resubmitMyServer(request: Request, env: ServerDirectoryEnv): Prom
     serverMutation,
     ...statusSnapshotStatements(env, owned.id, snapshot, timestamp),
     env.DB.prepare(`
-      INSERT INTO submissions (id, server_id, owner_account_id, contact, proof_type, proof_redacted, submitter_ip_hash, user_agent_hash, turnstile_result, verification_challenge_id, created_at)
-      VALUES (?, ?, ?, ?, 'plugin_callback_verified', ?, ?, ?, ?, ?, ?)
-    `).bind(submissionId, owned.id, session.account.id, submitterContact(session.account), storedPluginProof(input.verification, input.name), input.ipHash, input.userAgentHash, JSON.stringify(input.turnstile), input.verification.id, timestamp),
+      INSERT INTO submissions (id, server_id, owner_account_id, contact, verification_method, verification_evidence, submitter_ip_hash, user_agent_hash, turnstile_result, verification_challenge_id, created_at)
+      VALUES (?, ?, ?, ?, 'plugin_callback', ?, ?, ?, ?, ?, ?)
+    `).bind(submissionId, owned.id, session.account.id, submitterContact(session.account), storedPluginVerificationEvidence(input.verification, input.name), input.ipHash, input.userAgentHash, JSON.stringify(input.turnstile), input.verification.id, timestamp),
     consumeVerificationChallengeStatement(env, input.verification.id, timestamp),
     env.DB.prepare(`
       INSERT INTO moderation_events (id, server_id, actor, action, notes, created_at)
@@ -1359,7 +1356,7 @@ async function requireVerifiedChallenge(
 
   const row = await env.DB.prepare(`
     SELECT id, owner_account_id, server_name, normalized_host, port, status, expires_at, verified_at, consumed_at,
-           plugin_version, server_software, minecraft_version, callback_ip, callback_payload_json,
+           plugin_version, server_software, minecraft_version, callback_ip,
            created_at, updated_at
     FROM server_verification_challenges
     WHERE id = ? AND owner_account_id = ?
@@ -1573,9 +1570,9 @@ async function autoSuspendSubmission(
   await runD1Batch(env, [
     serverMutation,
     env.DB.prepare(`
-      INSERT INTO submissions (id, server_id, owner_account_id, contact, proof_type, proof_redacted, submitter_ip_hash, user_agent_hash, turnstile_result, verification_challenge_id, moderation_notes, created_at)
-      VALUES (?, ?, ?, ?, 'plugin_callback_verified', ?, ?, ?, ?, ?, ?, ?)
-    `).bind(submissionId, id, account.id, submitterContact(account), storedPluginProof(input.verification, input.name), input.ipHash, input.userAgentHash, JSON.stringify(input.turnstile), input.verification.id, notes, timestamp),
+      INSERT INTO submissions (id, server_id, owner_account_id, contact, verification_method, verification_evidence, submitter_ip_hash, user_agent_hash, turnstile_result, verification_challenge_id, moderation_notes, created_at)
+      VALUES (?, ?, ?, ?, 'plugin_callback', ?, ?, ?, ?, ?, ?, ?)
+    `).bind(submissionId, id, account.id, submitterContact(account), storedPluginVerificationEvidence(input.verification, input.name), input.ipHash, input.userAgentHash, JSON.stringify(input.turnstile), input.verification.id, notes, timestamp),
     consumeVerificationChallengeStatement(env, input.verification.id, timestamp),
     env.DB.prepare(`
       INSERT INTO moderation_events (id, server_id, actor, action, notes, created_at)
@@ -1607,9 +1604,9 @@ async function autoSuspendOwnedSubmission(
       WHERE id = ? AND owner_account_id = ?
     `).bind(input.name, input.description, input.normalized.host, input.normalized.port, input.websiteUrl, JSON.stringify(input.socialLinks), timestamp, timestamp, owned.id, account.id),
     env.DB.prepare(`
-      INSERT INTO submissions (id, server_id, owner_account_id, contact, proof_type, proof_redacted, submitter_ip_hash, user_agent_hash, turnstile_result, verification_challenge_id, moderation_notes, created_at)
-      VALUES (?, ?, ?, ?, 'plugin_callback_verified', ?, ?, ?, ?, ?, ?, ?)
-    `).bind(submissionId, owned.id, account.id, submitterContact(account), storedPluginProof(input.verification, input.name), input.ipHash, input.userAgentHash, JSON.stringify(input.turnstile), input.verification.id, notes, timestamp),
+      INSERT INTO submissions (id, server_id, owner_account_id, contact, verification_method, verification_evidence, submitter_ip_hash, user_agent_hash, turnstile_result, verification_challenge_id, moderation_notes, created_at)
+      VALUES (?, ?, ?, ?, 'plugin_callback', ?, ?, ?, ?, ?, ?, ?)
+    `).bind(submissionId, owned.id, account.id, submitterContact(account), storedPluginVerificationEvidence(input.verification, input.name), input.ipHash, input.userAgentHash, JSON.stringify(input.turnstile), input.verification.id, notes, timestamp),
     consumeVerificationChallengeStatement(env, input.verification.id, timestamp),
     env.DB.prepare(`
       INSERT INTO moderation_events (id, server_id, actor, action, notes, created_at)
@@ -2586,7 +2583,7 @@ function adminSelectSql(whereSql: string, orderBySql: string, tail: string): str
       ss.refresh_attempted_at,
       ss.refresh_error,
       sub.contact AS submission_contact,
-      sub.proof_redacted AS submission_proof_redacted,
+      sub.verification_evidence AS submission_verification_evidence,
       sub.moderation_notes AS submission_moderation_notes,
       sub.created_at AS submission_created_at,
       owner.discord_user_id AS owner_discord_user_id,
@@ -2721,7 +2718,7 @@ function toAdminServer(row: AdminServerRow) {
     refreshError: row.refresh_error,
     submission: {
       contact: row.submission_contact,
-      proofRedacted: row.submission_proof_redacted,
+      verificationEvidence: row.submission_verification_evidence,
       moderationNotes: row.submission_moderation_notes,
       createdAt: row.submission_created_at
     },
@@ -3021,7 +3018,7 @@ function normalizePublicDomainInput(value: string): string | null {
     : null;
 }
 
-function storedPluginProof(challenge: VerifiedChallenge, serverName: string): string {
+function storedPluginVerificationEvidence(challenge: VerifiedChallenge, serverName: string): string {
   return [
     `Verified: ${challenge.verified_at}`,
     `Verification IP: ${challenge.callback_ip || "not available"}`,
@@ -3116,7 +3113,7 @@ async function insertVerificationChallenge(
 
       const existing = await env.DB.prepare(`
         SELECT id, owner_account_id, server_name, normalized_host, port, code_hash, status, expires_at, verified_at, consumed_at,
-               plugin_version, server_software, minecraft_version, callback_ip, callback_payload_json,
+               plugin_version, server_software, minecraft_version, callback_ip,
                created_at, updated_at
         FROM server_verification_challenges
         WHERE owner_account_id = ? AND status = 'pending'

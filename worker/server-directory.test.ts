@@ -620,11 +620,11 @@ describe("server verification", () => {
       `).bind(timestamp, timestamp, timestamp, timestamp, timestamp),
       testEnv.DB.prepare(`
         INSERT INTO submissions (
-          id, server_id, owner_account_id, contact, proof_type, proof_redacted,
+          id, server_id, owner_account_id, contact, verification_method, verification_evidence,
           submitter_ip_hash, user_agent_hash, turnstile_result, verification_challenge_id, created_at
         )
         VALUES ('delete-proof-submission', 'server-delete-proof', 'account-delete-proof', 'Tester',
-                'plugin_callback_verified', 'proof', 'ip', 'ua', '{}', 'delete-proof-challenge', ?)
+                'plugin_callback', 'proof', 'ip', 'ua', '{}', 'delete-proof-challenge', ?)
       `).bind(timestamp)
     ]);
 
@@ -672,8 +672,8 @@ describe("server verification", () => {
         VALUES ('verified-past-ttl', 'account-one', 'Server One', 'verified-expired.kingdomsx.com', 25565, 'verified-expired-code', 'verified', ?, ?, ?, ?)
       `).bind(old, verifiedPastTtl, verifiedPastTtl, verifiedPastTtl),
       testEnv.DB.prepare(`
-        INSERT INTO submissions (id, server_id, owner_account_id, contact, proof_type, proof_redacted, submitter_ip_hash, user_agent_hash, turnstile_result, verification_challenge_id, created_at)
-        VALUES ('submission-one', 'server-one', 'account-one', 'Tester', 'plugin_callback_verified', 'proof', 'ip', 'ua', '{}', 'linked-challenge', ?)
+        INSERT INTO submissions (id, server_id, owner_account_id, contact, verification_method, verification_evidence, submitter_ip_hash, user_agent_hash, turnstile_result, verification_challenge_id, created_at)
+        VALUES ('submission-one', 'server-one', 'account-one', 'Tester', 'plugin_callback', 'proof', 'ip', 'ua', '{}', 'linked-challenge', ?)
       `).bind(old)
     ]);
 
