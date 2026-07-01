@@ -845,11 +845,13 @@ const initServerSubmit = () => {
   let verificationPollTimer = 0;
   let verificationCountdownTimer = 0;
   let verificationExpiryTimer = 0;
+  let disposeTooltips = () => {};
 
   const apiUrl = (path) => new URL(path, apiBase);
   const currentReturnPath = () => `${window.location.pathname}${window.location.search}`;
 
   const replaceRoot = (...nodes) => {
+    disposeTooltips();
     window.clearTimeout(verificationPollTimer);
     window.clearTimeout(verificationExpiryTimer);
     window.clearInterval(verificationCountdownTimer);
@@ -862,13 +864,19 @@ const initServerSubmit = () => {
   };
 
   const initTooltips = (container) => {
-    container.querySelectorAll('[data-bs-toggle="tooltip"]').forEach((element) => {
+    disposeTooltips();
+    const tooltips = Array.from(container.querySelectorAll('[data-bs-toggle="tooltip"]')).map((element) => (
       Tooltip.getOrCreateInstance(element, {
         container: "body",
         customClass: "comparison-tooltip",
-        trigger: "hover focus click"
-      });
-    });
+        trigger: "hover focus"
+      })
+    ));
+
+    disposeTooltips = () => {
+      tooltips.forEach((instance) => instance.dispose());
+      disposeTooltips = () => {};
+    };
   };
 
   const ensureToastContainer = () => {

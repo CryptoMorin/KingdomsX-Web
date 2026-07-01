@@ -11,7 +11,7 @@ import { Tooltip } from "bootstrap";
       new Tooltip(element, {
         container: "body",
         customClass: "comparison-tooltip",
-        trigger: "hover focus click",
+        trigger: "hover focus",
       });
     });
   } else {
