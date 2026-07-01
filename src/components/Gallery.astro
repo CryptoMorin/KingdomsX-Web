@@ -63,7 +63,7 @@ const previewItems = galleryItems.slice(0, previewLimit);
 const [featuredItem, ...secondaryItems] = previewItems;
 const sideItems = secondaryItems.slice(0, 2);
 const bottomItems = secondaryItems.slice(2);
-const galleryCardBaseClass = "gallery-card position-relative d-flex overflow-hidden p-0 text-start";
+const galleryCardBaseClass = "gallery-card surface-panel surface-lift position-relative d-flex overflow-hidden p-0 text-start";
 const galleryCardMediaClass = "gallery-card-media position-absolute top-0 end-0 bottom-0 start-0";
 const getPswpType = (type: string) => (type === "video" ? "html" : undefined);
 ---

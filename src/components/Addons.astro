@@ -39,7 +39,7 @@ const addons = [
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-5 g-3 feature-band addons-grid">
       {addons.map((addon) => (
         <article class="col">
-          <div class="feature addon-module text-center h-100 rounded-3">
+          <div class="feature surface-panel surface-lift addon-module text-center h-100 rounded-3">
             <i class={`feature-icon fa-solid ${addon.icon}`} aria-hidden="true"></i>
             <h3 class="mb-0">{addon.title}</h3>
             <p>{addon.description}</p>
@@ -51,9 +51,9 @@ const addons = [
     <div class="addons-footer d-flex flex-column flex-md-row align-items-center justify-content-center gap-3">
       <a class="btn btn-site w-auto d-inline-flex align-items-center justify-content-center gap-2 fw-bold" href={`${SITE.wiki}/Addons`} target="_blank" rel="noopener noreferrer">Learn More</a>
       <div class="addons-command-wrap d-flex flex-column align-items-center">
-        <button class="btn btn-site addons-command d-inline-flex align-items-center justify-content-center gap-2 fw-bold mb-0 position-relative overflow-hidden" type="button" data-copy-command="/k admin addons" aria-label="Copy in-game command /k admin addons">
+        <button class="btn btn-site copy-action addons-command d-inline-flex align-items-center justify-content-center gap-2 fw-bold mb-0 position-relative overflow-hidden" type="button" data-copy-command="/k admin addons" data-copy-success-label="Copied command!" aria-label="Copy in-game command /k admin addons">
           <code class="cmd position-relative z-1 text-nowrap">/k admin addons</code>
-          <i class="addons-command-copy fa-regular fa-copy flex-shrink-0 position-relative z-1" aria-hidden="true"></i>
+          <i class="copy-action-icon fa-regular fa-copy flex-shrink-0 position-relative z-1" aria-hidden="true"></i>
           <span class="visually-hidden" data-copy-status aria-live="polite"></span>
         </button>
       </div>

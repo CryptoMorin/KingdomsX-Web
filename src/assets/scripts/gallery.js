@@ -137,6 +137,8 @@ if (gallery) {
           button.setAttribute("aria-label", `Show gallery item ${index + 1}`);
 
           if (thumbnail) {
+            thumbnail.classList.add("w-100", "h-100", "object-fit-cover");
+
             if (thumbnail.tagName === "IMG") {
               thumbnail.alt = "";
               thumbnail.loading = "lazy";

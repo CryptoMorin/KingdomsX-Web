@@ -1,4 +1,9 @@
-import { handleServerDirectoryRequest, scheduleServerDirectoryRefresh, type ServerDirectoryEnv } from "./server-directory";
+import {
+  handleServerDirectoryRequest,
+  PUBLIC_DIRECTORY_MAX_PAGE,
+  scheduleServerDirectoryRefresh,
+  type ServerDirectoryEnv
+} from "./server-directory";
 
 interface StaticAssetsBinding {
   fetch(input: RequestInfo | URL, init?: RequestInit): Promise<Response>;
@@ -67,8 +72,8 @@ export default {
     return env.ASSETS.fetch(request);
   },
 
-  async scheduled(_controller: ScheduledController, env: Env, ctx: ExecutionContext): Promise<void> {
-    scheduleServerDirectoryRefresh(env, ctx);
+  async scheduled(controller: ScheduledController, env: Env, ctx: ExecutionContext): Promise<void> {
+    scheduleServerDirectoryRefresh(env, ctx, controller.scheduledTime);
   }
 } satisfies ExportedHandler<Env>;
 
@@ -160,7 +165,7 @@ function parseDirectoryRoute(pathname: string, basePath = ""): DirectoryRoute | 
   }
 
   const page = Number(segments[1]);
-  return page <= 10_000
+  return page <= PUBLIC_DIRECTORY_MAX_PAGE
     ? { status, sort, page, canonicalPath: directoryPath(status, sort, page, basePath) }
     : null;
 }

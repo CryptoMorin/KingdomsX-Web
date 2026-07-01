@@ -33,7 +33,7 @@ const pageDescription = "Review submitted server listings, check their current s
           <div class="servers-toolbar server-admin-toolbar d-flex flex-wrap align-items-stretch align-items-xl-center justify-content-between gap-3">
             <div class="server-admin-controls d-flex flex-wrap align-items-stretch justify-content-start gap-2">
               <div class="server-admin-status-filter form-floating d-xl-none">
-                <select class="form-select" id="server-admin-status-filter" data-admin-status-select aria-label="Filter submissions by review state">
+                <select class="form-select dark-select" id="server-admin-status-filter" data-admin-status-select aria-label="Filter submissions by review state">
                   <option value="pending" selected>Pending</option>
                   <option value="approved">Approved</option>
                   <option value="rejected">Rejected</option>
@@ -52,7 +52,7 @@ const pageDescription = "Review submitted server listings, check their current s
               </div>
 
               <div class="server-admin-sort form-floating">
-                <select class="form-select" id="server-admin-sort" data-admin-sort>
+                <select class="form-select dark-select" id="server-admin-sort" data-admin-sort>
                   <option value="newest" selected>Newest submitted</option>
                   <option value="oldest">Oldest submitted</option>
                   <option value="name">Name A-Z</option>
@@ -80,7 +80,7 @@ const pageDescription = "Review submitted server listings, check their current s
   </div>
   <div class="modal fade server-admin-modal" tabindex="-1" aria-labelledby="server-admin-modal-title" aria-hidden="true" data-admin-modal>
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
-      <div class="modal-content">
+      <div class="modal-content surface-panel">
         <div class="modal-header">
           <h2 class="modal-title" id="server-admin-modal-title" data-admin-modal-title>Manage Server</h2>
           <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>

@@ -1,8 +1,20 @@
 export interface ServerDirectoryEnv {
   DB: D1Database;
   APP_ENVIRONMENT: "local" | "production";
+  PLUGIN_VERIFY_RATE_LIMIT?: RateLimit;
+  PLUGIN_VERIFY_GLOBAL_RATE_LIMIT?: RateLimit;
+  VERIFICATION_CREATE_RATE_LIMIT?: RateLimit;
+  PUBLIC_API_RATE_LIMIT?: RateLimit;
+  PUBLIC_API_LOCATION_RATE_LIMIT?: RateLimit;
+  VERIFICATION_CREATE_ACCOUNT_RATE_LIMIT?: RateLimit;
+  SUBMITTER_READ_RATE_LIMIT?: RateLimit;
+  VERIFICATION_STATUS_RATE_LIMIT?: RateLimit;
+  VERIFICATION_STATUS_ACCOUNT_RATE_LIMIT?: RateLimit;
+  PUBLIC_DETAILS_MUTATION_RATE_LIMIT?: RateLimit;
+  SUBMISSION_MUTATION_RATE_LIMIT?: RateLimit;
   TURNSTILE_SECRET?: string;
   RATE_LIMIT_SALT?: string;
+  VERIFICATION_CODE_SECRET?: string;
   SESSION_SECRET?: string;
   DISCORD_CLIENT_ID?: string;
   DISCORD_CLIENT_SECRET?: string;
@@ -89,13 +101,41 @@ interface SubmissionInput {
   name: string;
   address: string;
   description: string;
-  proof: string;
   websiteUrl: string | null;
   socialLinks: SocialLink[];
   normalized: { host: string; port: number; address: string };
+  verification: VerifiedChallenge;
   turnstile: Record<string, unknown> & { success: boolean };
   ipHash: string;
   userAgentHash: string;
+}
+
+interface VerificationChallengeRow {
+  id: string;
+  owner_account_id: string;
+  server_name: string;
+  normalized_host: string;
+  port: number;
+  status: VerificationChallengeStatus;
+  expires_at: string;
+  verified_at: string | null;
+  consumed_at: string | null;
+  plugin_version: string | null;
+  server_software: string | null;
+  minecraft_version: string | null;
+  callback_ip: string | null;
+  callback_payload_json: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+interface PendingVerificationChallengeRow extends VerificationChallengeRow {
+  code_hash: string;
+}
+
+interface VerifiedChallenge extends VerificationChallengeRow {
+  status: "verified";
+  verified_at: string;
 }
 
 interface SocialLink {
@@ -106,6 +146,7 @@ interface SocialLink {
 }
 
 type ServerState = "pending" | "approved" | "rejected" | "suspended" | "hidden_offline";
+type VerificationChallengeStatus = "pending" | "verified" | "consumed" | "expired";
 type PublicStatusFilter = "all" | "online" | "offline";
 type PublicSort = "newest" | "players" | "name";
 type AdminSort = "newest" | "oldest" | "name" | "online" | "updated";
@@ -138,6 +179,9 @@ const NO_STORE_JSON_HEADERS = {
   "cache-control": "no-store"
 };
 const PUBLIC_JSON_CACHE_SECONDS = 120;
+export const PUBLIC_DIRECTORY_MAX_PAGE = 100;
+const PUBLIC_DIRECTORY_LIMITS = [8, 16, 32] as const;
+const RECENT_SERVER_LIMITS = [4, 8, 12] as const;
 const PUBLIC_JSON_HEADERS = {
   ...JSON_HEADERS,
   "cache-control": `public, max-age=${PUBLIC_JSON_CACHE_SECONDS}, stale-while-revalidate=300`,
@@ -146,6 +190,7 @@ const PUBLIC_JSON_HEADERS = {
 
 const SOCIAL_KEYS = ["discord", "facebook", "instagram", "x", "youtube"] as const;
 const MAX_JSON_BODY_BYTES = 20_000;
+const PLUGIN_VERIFY_MAX_JSON_BODY_BYTES = 4_096;
 const STATUS_PROVIDER_TIMEOUT_MS = 8_000;
 const STATUS_ICON_MAX_BYTES = 64 * 1024;
 const STATUS_REFRESH_BATCH_LIMIT = 16;
@@ -156,15 +201,29 @@ const TURNSTILE_TIMEOUT_MS = 8_000;
 const D1_WRITE_RETRY_ATTEMPTS = 3;
 const D1_WRITE_RETRY_BASE_DELAY_MS = 50;
 const TURNSTILE_ACTION = "server-submit";
-const KINGDOMS_PROOF_MAX_AGE_MS = 48 * 60 * 60 * 1000;
-const KINGDOMS_PROOF_FUTURE_TOLERANCE_MS = 15 * 60 * 1000;
 const TURNSTILE_HOSTNAME = "servers.kingdomsx.com";
 const LOCAL_TURNSTILE_TEST_SECRET = "1x0000000000000000000000000000000AA";
-const SUBMISSION_DESCRIPTION_MAX_LENGTH = 120;
+const SUBMISSION_DESCRIPTION_MAX_LENGTH = 240;
+const VERIFICATION_CHALLENGE_TTL_MS = 15 * 60 * 1000;
+const VERIFICATION_PROOF_TTL_MS = 48 * 60 * 60 * 1000;
+const VERIFICATION_CODE_ALPHABET = "abcdefghijklmnopqrstuvwxyz0123456789";
+const VERIFICATION_CODE_LENGTH = 8;
+const VERIFICATION_CODE_GROUP_LENGTH = 4;
+const VERIFICATION_CODE_RANDOM_BUCKET = Math.floor(256 / VERIFICATION_CODE_ALPHABET.length) * VERIFICATION_CODE_ALPHABET.length;
+const VERIFICATION_GENERATION_ACCOUNT_LIMIT_PER_HOUR = 5;
+const VERIFICATION_GENERATION_IP_LIMIT_PER_HOUR = 20;
+const VERIFICATION_CLEANUP_BATCH_LIMIT = 50;
+const VERIFICATION_STALE_RETENTION_MS = 24 * 60 * 60 * 1000;
+const VERIFICATION_CONSUMED_RETENTION_MS = 30 * 24 * 60 * 60 * 1000;
+const VERIFICATION_RATE_LIMIT_RETRY_SECONDS = 60;
+const SUBMISSION_ACCOUNT_LIMIT_PER_DAY = 3;
+const SUBMISSION_IP_LIMIT_PER_DAY = 3;
+const SUBMITTER_SESSION_CLEANUP_BATCH_LIMIT = 50;
+const SUBMITTER_SESSION_MAX_ACTIVE_PER_ACCOUNT = 5;
 const DISCORD_API_BASE = "https://discord.com/api/v10";
 const DISCORD_AUTHORIZE_URL = "https://discord.com/oauth2/authorize";
 const DISCORD_TOKEN_URL = "https://discord.com/api/oauth2/token";
-const DISCORD_OAUTH_SCOPE = "identify guilds guilds.members.read";
+const DISCORD_OAUTH_SCOPE = "identify guilds.members.read";
 const OAUTH_STATE_COOKIE = "kx_oauth_state";
 const OAUTH_VERIFIER_COOKIE = "kx_oauth_verifier";
 const OAUTH_RETURN_COOKIE = "kx_oauth_return";
@@ -173,6 +232,7 @@ const LOCAL_SUBMITTER_RETURN_PATH = "/servers/submit";
 const SERVER_SUBDOMAIN_SUBMITTER_RETURN_PATH = "/submit";
 const OAUTH_COOKIE_MAX_AGE_SECONDS = 10 * 60;
 const SUBMITTER_SESSION_MAX_AGE_SECONDS = 30 * 24 * 60 * 60;
+const SUBMITTER_SESSION_TOUCH_INTERVAL_MS = 60 * 60 * 1000;
 const PUBLIC_DIRECTORY_ORDER = "s.approved_at DESC, s.created_at DESC, s.id ASC";
 const HOMEPAGE_DIRECTORY_ORDER = "COALESCE(ss.players_online, 0) DESC, COALESCE(ss.online, 0) DESC, s.approved_at DESC, s.created_at DESC, s.id ASC";
 const PRIVATE_IPV4_RANGES = [
@@ -210,8 +270,14 @@ export async function handleServerDirectoryRequest(request: Request, env: Server
   }
 }
 
-export function scheduleServerDirectoryRefresh(env: ServerDirectoryEnv, ctx: ExecutionContext): void {
+export function scheduleServerDirectoryRefresh(env: ServerDirectoryEnv, ctx: ExecutionContext, scheduledTime = Date.now()): void {
   ctx.waitUntil(refreshApprovedServers(env));
+
+  const scheduledDate = new Date(scheduledTime);
+
+  if (scheduledDate.getUTCMinutes() === 0) {
+    ctx.waitUntil(cleanupDirectoryData(env, scheduledDate.getUTCHours() === 0));
+  }
 }
 
 async function handleRequest(request: Request, env: ServerDirectoryEnv, ctx?: ExecutionContext): Promise<Response> {
@@ -231,15 +297,23 @@ async function handleRequest(request: Request, env: ServerDirectoryEnv, ctx?: Ex
   }
 
   if (request.method === "GET" && url.pathname === "/api/servers") {
-    return cachedPublicJson(request, publicServersCacheKey(url), ctx, () => listPublicServers(url, env));
+    return cachedPublicJson(request, publicServersCacheKey(url), env, ctx, () => listPublicServers(url, env));
   }
 
   if (request.method === "GET" && url.pathname === "/api/servers/recent") {
-    return cachedPublicJson(request, recentServersCacheKey(url), ctx, () => recentPublicServers(url, env));
+    return cachedPublicJson(request, recentServersCacheKey(url), env, ctx, () => recentPublicServers(url, env));
   }
 
   if (request.method === "GET" && url.pathname === "/api/servers/me") {
     return getMySubmission(request, env);
+  }
+
+  if (request.method === "POST" && url.pathname === "/api/servers/verification-challenges") {
+    return createVerificationChallenge(request, env);
+  }
+
+  if (request.method === "GET" && url.pathname.startsWith("/api/servers/verification-challenges/")) {
+    return getVerificationChallenge(request, url, env);
   }
 
   if (request.method === "POST" && url.pathname === "/api/servers/me/resubmit") {
@@ -256,11 +330,15 @@ async function handleRequest(request: Request, env: ServerDirectoryEnv, ctx?: Ex
 
   if (request.method === "GET" && url.pathname.startsWith("/api/servers/")) {
     const slug = url.pathname.replace("/api/servers/", "").replace(/\/+$/, "");
-    return cachedPublicJson(request, publicServerCacheKey(url, slug), ctx, () => getPublicServer(slug, env));
+    return cachedPublicJson(request, publicServerCacheKey(url, slug), env, ctx, () => getPublicServer(slug, env));
   }
 
   if (request.method === "POST" && url.pathname === "/api/servers/submit") {
     return submitServer(request, env);
+  }
+
+  if (request.method === "POST" && url.pathname === "/api/plugin/verify") {
+    return verifyPluginChallenge(request, env);
   }
 
   if (url.pathname.startsWith("/api/admin/")) {
@@ -363,10 +441,23 @@ async function finishDiscordLogin(request: Request, url: URL, env: ServerDirecto
   const sessionHash = await hashSessionToken(sessionToken, env);
   const createdAt = nowIso();
   const expiresAt = new Date(Date.now() + SUBMITTER_SESSION_MAX_AGE_SECONDS * 1000).toISOString();
-  await runD1Statement(env.DB.prepare(`
-    INSERT INTO submitter_sessions (id, account_id, session_hash, expires_at, created_at, last_seen_at)
-    VALUES (?, ?, ?, ?, ?, ?)
-  `).bind(crypto.randomUUID(), account.id, sessionHash, expiresAt, createdAt, createdAt));
+  await runD1Batch(env, [
+    env.DB.prepare(`
+      INSERT INTO submitter_sessions (id, account_id, session_hash, expires_at, created_at, last_seen_at)
+      VALUES (?, ?, ?, ?, ?, ?)
+    `).bind(crypto.randomUUID(), account.id, sessionHash, expiresAt, createdAt, createdAt),
+    env.DB.prepare(`
+      DELETE FROM submitter_sessions
+      WHERE account_id = ?
+        AND id NOT IN (
+          SELECT id
+          FROM submitter_sessions
+          WHERE account_id = ?
+          ORDER BY last_seen_at DESC, created_at DESC, id DESC
+          LIMIT ?
+        )
+    `).bind(account.id, account.id, SUBMITTER_SESSION_MAX_ACTIVE_PER_ACCOUNT)
+  ]);
 
   const redirect = new URL(returnTo, url.origin);
   redirect.searchParams.set("auth", "ok");
@@ -382,7 +473,7 @@ async function logoutSubmitter(request: Request, env: ServerDirectoryEnv): Promi
   const cookies = parseCookies(request.headers.get("cookie") ?? "");
   const token = cookies[SUBMITTER_SESSION_COOKIE] ?? "";
 
-  if (token && env.SESSION_SECRET) {
+  if (isValidSessionToken(token) && env.SESSION_SECRET) {
     const sessionHash = await hashSessionToken(token, env);
     await runD1Statement(env.DB.prepare("DELETE FROM submitter_sessions WHERE session_hash = ?").bind(sessionHash));
   }
@@ -409,33 +500,46 @@ function authRedirectPath(returnTo: string, status: string): string {
 async function listPublicServers(url: URL, env: ServerDirectoryEnv): Promise<Response> {
   await refreshLocalApprovedStatuses(env);
 
-  const page = clampInt(Number(url.searchParams.get("page") ?? "1"), 1, 10000, 1);
-  const limit = clampInt(Number(url.searchParams.get("limit") ?? "9"), 1, 50, 9);
+  const page = clampInt(Number(url.searchParams.get("page") ?? "1"), 1, PUBLIC_DIRECTORY_MAX_PAGE, 1);
+  const limit = parsePublicDirectoryLimit(url.searchParams.get("limit"));
   const status = parseStatusFilter(url.searchParams.get("status"));
   const sort = parsePublicSort(url.searchParams.get("sort"));
-  const offset = (page - 1) * limit;
-  const where = publicWhere(status);
-  const rows = await env.DB.prepare(publicSelectSql(where.sql, publicOrderBy(sort), "LIMIT ? OFFSET ?"))
-    .bind(...where.bindings, limit, offset)
-    .all<ServerRow>();
   const counts = await publicStatusCounts(env);
   const total = counts[status];
+  const totalPages = Math.max(1, Math.ceil(total / limit));
+  const items = page > totalPages
+    ? []
+    : await listPublicServerRows(env, status, sort, limit, (page - 1) * limit);
 
   return publicJson({
-    items: rows.results.map(toPublicServer),
+    items,
     page,
     limit,
     sort,
     total,
-    totalPages: Math.max(1, Math.ceil(total / limit)),
+    totalPages,
     counts
   });
+}
+
+async function listPublicServerRows(
+  env: ServerDirectoryEnv,
+  status: PublicStatusFilter,
+  sort: PublicSort,
+  limit: number,
+  offset: number
+): Promise<ReturnType<typeof toPublicServer>[]> {
+  const where = publicWhere(status);
+  const rows = await env.DB.prepare(publicSelectSql(where.sql, publicOrderBy(sort), "LIMIT ? OFFSET ?"))
+    .bind(...where.bindings, limit, offset)
+    .all<ServerRow>();
+  return rows.results.map(toPublicServer);
 }
 
 async function recentPublicServers(url: URL, env: ServerDirectoryEnv): Promise<Response> {
   await refreshLocalApprovedStatuses(env);
 
-  const limit = clampInt(Number(url.searchParams.get("limit") ?? "6"), 1, 12, 6);
+  const limit = parseRecentServerLimit(url.searchParams.get("limit"));
   const where = publicWhere("all");
   const rows = await env.DB.prepare(publicSelectSql(where.sql, HOMEPAGE_DIRECTORY_ORDER, "LIMIT ?"))
     .bind(...where.bindings, limit)
@@ -462,24 +566,38 @@ async function getPublicServer(slug: string, env: ServerDirectoryEnv): Promise<R
   return publicJson({ item: toPublicServer(row) });
 }
 
-async function cachedPublicJson(request: Request, cacheKey: Request, ctx: ExecutionContext | undefined, load: () => Promise<Response>): Promise<Response> {
-  if (request.method !== "GET" || !ctx) {
+async function cachedPublicJson(
+  request: Request,
+  cacheKey: Request,
+  env: ServerDirectoryEnv,
+  ctx: ExecutionContext | undefined,
+  load: () => Promise<Response>
+): Promise<Response> {
+  if (request.method !== "GET") {
     return withCacheDiagnostic(await load(), "MISS");
   }
 
-  try {
-    const cached = await caches.default.match(cacheKey);
+  if (ctx) {
+    try {
+      const cached = await caches.default.match(cacheKey);
 
-    if (cached) {
-      return withCacheDiagnostic(cached, "HIT");
+      if (cached) {
+        return withCacheDiagnostic(cached, "HIT");
+      }
+    } catch (error) {
+      logWarn("public_json_cache.match_failed", error, { pathname: new URL(request.url).pathname });
     }
-  } catch (error) {
-    logWarn("public_json_cache.match_failed", error, { pathname: new URL(request.url).pathname });
+  }
+
+  const rateLimit = await publicApiRateLimit(request, env);
+
+  if (!rateLimit.ok) {
+    return rateLimitResponse(rateLimit.error);
   }
 
   const response = await load();
 
-  if (response.status === 200) {
+  if (ctx && (response.status === 200 || response.status === 404)) {
     const cachedResponse = new Response(response.clone().body, response);
     cachedResponse.headers.set("cache-control", `public, max-age=${PUBLIC_JSON_CACHE_SECONDS}`);
     cachedResponse.headers.delete("x-kingdomsx-cache");
@@ -503,8 +621,8 @@ function withCacheDiagnostic(response: Response, value: "HIT" | "MISS"): Respons
 function publicServersCacheKey(url: URL): Request {
   const normalized = new URL(url.origin);
   normalized.pathname = "/api/servers";
-  normalized.searchParams.set("limit", String(clampInt(Number(url.searchParams.get("limit") ?? "9"), 1, 50, 9)));
-  normalized.searchParams.set("page", String(clampInt(Number(url.searchParams.get("page") ?? "1"), 1, 10000, 1)));
+  normalized.searchParams.set("limit", String(parsePublicDirectoryLimit(url.searchParams.get("limit"))));
+  normalized.searchParams.set("page", String(clampInt(Number(url.searchParams.get("page") ?? "1"), 1, PUBLIC_DIRECTORY_MAX_PAGE, 1)));
   normalized.searchParams.set("sort", parsePublicSort(url.searchParams.get("sort")));
   normalized.searchParams.set("status", parseStatusFilter(url.searchParams.get("status")));
   return new Request(normalized.toString(), { method: "GET" });
@@ -513,7 +631,7 @@ function publicServersCacheKey(url: URL): Request {
 function recentServersCacheKey(url: URL): Request {
   const normalized = new URL(url.origin);
   normalized.pathname = "/api/servers/recent";
-  normalized.searchParams.set("limit", String(clampInt(Number(url.searchParams.get("limit") ?? "6"), 1, 12, 6)));
+  normalized.searchParams.set("limit", String(parseRecentServerLimit(url.searchParams.get("limit"))));
   return new Request(normalized.toString(), { method: "GET" });
 }
 
@@ -530,16 +648,10 @@ async function submitServer(request: Request, env: ServerDirectoryEnv): Promise<
     return json({ error: session.error }, session.status, NO_STORE_JSON_HEADERS);
   }
 
-  const body = await readJsonObject(request);
-  const input = await parseSubmissionInput(request, env, body);
-  const oneDayAgo = daysAgoIso(1);
-  const sevenDaysAgo = daysAgoIso(7);
-  const recentSubmissions = await env.DB.prepare("SELECT COUNT(*) AS total FROM submissions WHERE submitter_ip_hash = ? AND created_at > ?")
-    .bind(input.ipHash, oneDayAgo)
-    .first<{ total: number }>();
+  const mutationRateLimit = await submissionMutationRateLimit(session.account.id, env);
 
-  if ((recentSubmissions?.total ?? 0) >= 3) {
-    return json({ error: "Too many submissions today. Try again later." }, 429);
+  if (!mutationRateLimit.ok) {
+    return rateLimitResponse(mutationRateLimit.error);
   }
 
   const owned = await getOwnedServerRow(env, session.account.id);
@@ -564,6 +676,10 @@ async function submitServer(request: Request, env: ServerDirectoryEnv): Promise<
       item: toOwnerServer(owned)
     }, 409, NO_STORE_JSON_HEADERS);
   }
+
+  const body = await readJsonObject(request);
+  const input = await parseSubmissionInput(request, env, body, session.account.id);
+  const sevenDaysAgo = daysAgoIso(7);
 
   const existing = await env.DB.prepare("SELECT id, slug, status, updated_at FROM servers WHERE normalized_host = ? AND port = ?")
     .bind(input.normalized.host, input.normalized.port)
@@ -625,9 +741,10 @@ async function submitServer(request: Request, env: ServerDirectoryEnv): Promise<
     serverMutation,
     ...statusSnapshotStatements(env, id, snapshot, createdAt),
     env.DB.prepare(`
-      INSERT INTO submissions (id, server_id, owner_account_id, contact, proof_type, proof_redacted, submitter_ip_hash, user_agent_hash, turnstile_result, created_at)
-      VALUES (?, ?, ?, ?, 'staff_reviewed', ?, ?, ?, ?, ?)
-    `).bind(submissionId, id, session.account.id, contact, storedProof(input.proof), input.ipHash, input.userAgentHash, JSON.stringify(input.turnstile), createdAt),
+      INSERT INTO submissions (id, server_id, owner_account_id, contact, proof_type, proof_redacted, submitter_ip_hash, user_agent_hash, turnstile_result, verification_challenge_id, created_at)
+      VALUES (?, ?, ?, ?, 'plugin_callback_verified', ?, ?, ?, ?, ?, ?)
+    `).bind(submissionId, id, session.account.id, contact, storedPluginProof(input.verification, input.name), input.ipHash, input.userAgentHash, JSON.stringify(input.turnstile), input.verification.id, createdAt),
+    consumeVerificationChallengeStatement(env, input.verification.id, createdAt),
     env.DB.prepare(`
       INSERT INTO moderation_events (id, server_id, actor, action, notes, created_at)
       VALUES (?, ?, 'system', 'submitted', ?, ?)
@@ -637,7 +754,39 @@ async function submitServer(request: Request, env: ServerDirectoryEnv): Promise<
   return json({ ok: true, id, slug, status: "pending" }, 202);
 }
 
+async function enforceSubmissionQuota(
+  env: ServerDirectoryEnv,
+  ownerAccountId: string,
+  ipHash: string
+): Promise<void> {
+  const oneDayAgo = daysAgoIso(1);
+  const [accountResult, ipResult] = await env.DB.batch([
+    env.DB.prepare(`
+      SELECT COUNT(*) AS total
+      FROM server_verification_challenges
+      WHERE owner_account_id = ? AND status = 'consumed' AND created_at > ?
+    `).bind(ownerAccountId, oneDayAgo),
+    env.DB.prepare(`
+      SELECT COUNT(*) AS total
+      FROM server_verification_challenges
+      WHERE created_ip_hash = ? AND status = 'consumed' AND created_at > ?
+    `).bind(ipHash, oneDayAgo)
+  ]);
+  const accountTotal = Number((accountResult.results[0] as { total?: unknown } | undefined)?.total ?? 0);
+  const ipTotal = Number((ipResult.results[0] as { total?: unknown } | undefined)?.total ?? 0);
+
+  if (accountTotal >= SUBMISSION_ACCOUNT_LIMIT_PER_DAY || ipTotal >= SUBMISSION_IP_LIMIT_PER_DAY) {
+    throw new ApiError(429, "Too many submissions today. Try again later.");
+  }
+}
+
 async function getMySubmission(request: Request, env: ServerDirectoryEnv): Promise<Response> {
+  const readRateLimit = await submitterReadRateLimit(request, env);
+
+  if (!readRateLimit.ok) {
+    return rateLimitResponse(readRateLimit.error);
+  }
+
   const session = await getSubmitterSession(request, env);
 
   if (!session) {
@@ -655,6 +804,297 @@ async function getMySubmission(request: Request, env: ServerDirectoryEnv): Promi
   }, 200, NO_STORE_JSON_HEADERS);
 }
 
+async function createVerificationChallenge(request: Request, env: ServerDirectoryEnv): Promise<Response> {
+  if (!env.VERIFICATION_CODE_SECRET || (!isLocalEnvironment(env) && (!env.RATE_LIMIT_SALT || !env.VERIFICATION_CREATE_RATE_LIMIT))) {
+    logError("verification.missing_secrets");
+    return json({ error: "Server verification is temporarily unavailable." }, 503, NO_STORE_JSON_HEADERS);
+  }
+
+  const generationRateLimit = await verificationCreateRateLimit(request, env);
+
+  if (!generationRateLimit.ok) {
+    return verificationRateLimitResponse(generationRateLimit.error);
+  }
+
+  const session = await requireSubmitter(request, env);
+
+  if (!session.ok) {
+    return json({ error: session.error }, session.status, NO_STORE_JSON_HEADERS);
+  }
+
+  const accountRateLimit = await verificationCreateAccountRateLimit(session.account.id, env);
+
+  if (!accountRateLimit.ok) {
+    return rateLimitResponse(accountRateLimit.error);
+  }
+
+  const body = await readJsonObject(request);
+  const name = stringField(body, "name", 80);
+  const address = stringField(body, "address", 255);
+  const description = stringField(body, "description", SUBMISSION_DESCRIPTION_MAX_LENGTH);
+  const port = parsePortField(body.port);
+  const normalized = normalizeAddress(address, port);
+
+  if (!name || name.length < 3) {
+    throw new ApiError(400, "Server name must be at least 3 characters.");
+  }
+
+  if (!description || description.length < 40) {
+    throw new ApiError(400, "Description must be at least 40 characters.");
+  }
+
+  if (!normalized.ok) {
+    throw new ApiError(400, normalized.error);
+  }
+
+  const timestamp = nowIso();
+  const pendingChallenge = await env.DB.prepare(`
+    SELECT id, owner_account_id, server_name, normalized_host, port, code_hash, status, expires_at, verified_at, consumed_at,
+           plugin_version, server_software, minecraft_version, callback_ip, callback_payload_json,
+           created_at, updated_at
+    FROM server_verification_challenges
+    WHERE owner_account_id = ? AND status = 'pending'
+    ORDER BY created_at DESC
+    LIMIT 1
+  `).bind(session.account.id).first<PendingVerificationChallengeRow>();
+
+  if (pendingChallenge) {
+    const pendingStatus = verificationChallengeStatus(pendingChallenge, timestamp);
+    const sameTarget = pendingChallenge.normalized_host === normalized.host && pendingChallenge.port === normalized.port;
+
+    if (pendingStatus === "pending" && sameTarget) {
+      const code = await verificationCodeForChallenge(pendingChallenge.id, env);
+
+      if (await verificationCodeHash(code, env) === pendingChallenge.code_hash) {
+        return verificationChallengeCreatedResponse({
+          id: pendingChallenge.id,
+          code,
+          createdAt: pendingChallenge.created_at,
+          expiresAt: pendingChallenge.expires_at,
+          address: normalized.address,
+          reused: true
+        });
+      }
+    }
+
+    await expirePendingVerificationChallenge(env, pendingChallenge.id, timestamp);
+  }
+
+  const reusableVerifiedAfter = msAgoIso(VERIFICATION_PROOF_TTL_MS);
+  const existingVerifiedChallenge = await env.DB.prepare(`
+    SELECT id, owner_account_id, server_name, normalized_host, port, status, expires_at, verified_at, consumed_at,
+           plugin_version, server_software, minecraft_version, callback_ip, callback_payload_json,
+           created_at, updated_at
+    FROM server_verification_challenges
+    WHERE owner_account_id = ?
+      AND normalized_host = ?
+      AND port = ?
+      AND status = 'verified'
+      AND consumed_at IS NULL
+      AND verified_at > ?
+    ORDER BY created_at DESC
+    LIMIT 1
+  `).bind(session.account.id, normalized.host, normalized.port, reusableVerifiedAfter).first<VerificationChallengeRow>();
+
+  if (existingVerifiedChallenge) {
+    const expiresAt = verificationProofExpiresAt(existingVerifiedChallenge);
+
+    return json({
+      ok: true,
+      reused: true,
+      id: existingVerifiedChallenge.id,
+      status: "verified",
+      expiresAt,
+      address: normalized.address
+    }, 200, NO_STORE_JSON_HEADERS);
+  }
+
+  const oneHourAgo = msAgoIso(60 * 60 * 1000);
+  const { ipHash, userAgentHash } = await clientHashes(request, env);
+  const recentByAccount = await env.DB.prepare(`
+    SELECT COUNT(*) AS total
+    FROM server_verification_challenges
+    WHERE owner_account_id = ? AND created_at > ?
+  `).bind(session.account.id, oneHourAgo).first<{ total: number }>();
+
+  if ((recentByAccount?.total ?? 0) >= VERIFICATION_GENERATION_ACCOUNT_LIMIT_PER_HOUR) {
+    return json({ error: "Too many verification codes. Try again later." }, 429, NO_STORE_JSON_HEADERS);
+  }
+
+  const recentByIp = await env.DB.prepare(`
+    SELECT COUNT(*) AS total
+    FROM server_verification_challenges
+    WHERE created_ip_hash = ? AND created_at > ?
+  `).bind(ipHash, oneHourAgo).first<{ total: number }>();
+
+  if ((recentByIp?.total ?? 0) >= VERIFICATION_GENERATION_IP_LIMIT_PER_HOUR) {
+    return json({ error: "Too many verification codes. Try again later." }, 429, NO_STORE_JSON_HEADERS);
+  }
+
+  const createdAt = timestamp;
+  const expiresAt = new Date(Date.now() + VERIFICATION_CHALLENGE_TTL_MS).toISOString();
+
+  const challenge = await insertVerificationChallenge(env, {
+    ownerAccountId: session.account.id,
+    serverName: name,
+    host: normalized.host,
+    port: normalized.port,
+    expiresAt,
+    ipHash,
+    userAgentHash,
+    createdAt
+  });
+
+  return verificationChallengeCreatedResponse({
+    id: challenge.id,
+    code: challenge.code,
+    createdAt: challenge.createdAt,
+    expiresAt: challenge.expiresAt,
+    address: normalized.address,
+    reused: challenge.reused
+  });
+}
+
+async function getVerificationChallenge(request: Request, url: URL, env: ServerDirectoryEnv): Promise<Response> {
+  const readRateLimit = await verificationStatusRateLimit(request, env);
+
+  if (!readRateLimit.ok) {
+    return rateLimitResponse(readRateLimit.error);
+  }
+
+  const session = await requireSubmitter(request, env);
+
+  if (!session.ok) {
+    return json({ error: session.error }, session.status, NO_STORE_JSON_HEADERS);
+  }
+
+  const id = url.pathname.replace("/api/servers/verification-challenges/", "").replace(/\/+$/, "");
+
+  if (!isUuidLike(id)) {
+    return json({ error: "Verification code not found." }, 404, NO_STORE_JSON_HEADERS);
+  }
+
+  const accountRateLimit = await verificationStatusAccountRateLimit(session.account.id, env);
+
+  if (!accountRateLimit.ok) {
+    return rateLimitResponse(accountRateLimit.error);
+  }
+
+  const row = await env.DB.prepare(`
+    SELECT id, owner_account_id, server_name, normalized_host, port, status, expires_at, verified_at, consumed_at,
+           plugin_version, server_software, minecraft_version, callback_ip, callback_payload_json,
+           created_at, updated_at
+    FROM server_verification_challenges
+    WHERE id = ? AND owner_account_id = ?
+    LIMIT 1
+  `).bind(id, session.account.id).first<VerificationChallengeRow>();
+
+  if (!row) {
+    return json({ error: "Verification code not found." }, 404, NO_STORE_JSON_HEADERS);
+  }
+
+  return json({ ok: true, challenge: publicVerificationChallenge(row) }, 200, NO_STORE_JSON_HEADERS);
+}
+
+async function verifyPluginChallenge(request: Request, env: ServerDirectoryEnv): Promise<Response> {
+  if (!env.VERIFICATION_CODE_SECRET || (!isLocalEnvironment(env) && (!env.RATE_LIMIT_SALT || !env.PLUGIN_VERIFY_RATE_LIMIT || !env.PLUGIN_VERIFY_GLOBAL_RATE_LIMIT))) {
+    logError("verification.missing_secrets");
+    return json({ error: "Server verification is temporarily unavailable." }, 503, NO_STORE_JSON_HEADERS);
+  }
+
+  const body = await readJsonObject(request, false, PLUGIN_VERIFY_MAX_JSON_BODY_BYTES);
+  const code = normalizeVerificationCode(stringField(body, "code", 64));
+
+  if (!code) {
+    return json({ error: "Verification code is invalid." }, 400, NO_STORE_JSON_HEADERS);
+  }
+
+  const callbackPayload = pluginCallbackPayload(body);
+
+  if (!callbackPayload.pluginVersion || !callbackPayload.serverSoftware || !callbackPayload.minecraftVersion) {
+    return json({ error: "Plugin version, server software, and Minecraft version are required." }, 400, NO_STORE_JSON_HEADERS);
+  }
+
+  const rateLimit = await pluginVerifyRateLimit(request, env);
+
+  if (!rateLimit.ok) {
+    return verificationRateLimitResponse(rateLimit.error);
+  }
+
+  const codeHash = await verificationCodeHash(code, env);
+  const timestamp = nowIso();
+  const row = await env.DB.prepare(`
+    SELECT id, owner_account_id, server_name, normalized_host, port, status, expires_at, verified_at, consumed_at,
+           plugin_version, server_software, minecraft_version, callback_ip, callback_payload_json,
+           created_at, updated_at
+    FROM server_verification_challenges
+    WHERE code_hash = ?
+    LIMIT 1
+  `).bind(codeHash).first<VerificationChallengeRow>();
+
+  if (!row) {
+    return invalidVerificationCodeResponse();
+  }
+
+  const visibleStatus = verificationChallengeStatus(row, timestamp);
+
+  if (visibleStatus === "expired" || visibleStatus === "consumed") {
+    return invalidVerificationCodeResponse();
+  }
+
+  if (visibleStatus === "verified") {
+    return json({
+      ok: true,
+      status: "verified",
+      expiresAt: verificationProofExpiresAt(row),
+      message: "Server verification is already complete. Return to the submission page."
+    }, 200, NO_STORE_JSON_HEADERS);
+  }
+
+  const { ip, ipHash, userAgentHash } = await clientHashes(request, env);
+  const pluginVersion = callbackPayload.pluginVersion;
+  const serverSoftware = callbackPayload.serverSoftware;
+  const minecraftVersion = callbackPayload.minecraftVersion;
+
+  const result = await runD1Statement(env.DB.prepare(`
+    UPDATE server_verification_challenges
+    SET status = 'verified',
+        verified_at = ?,
+        plugin_version = ?,
+        server_software = ?,
+        minecraft_version = ?,
+        callback_ip = ?,
+        callback_ip_hash = ?,
+        callback_user_agent_hash = ?,
+        callback_payload_json = ?,
+        updated_at = ?
+    WHERE id = ? AND status = 'pending' AND expires_at > ?
+  `).bind(
+    timestamp,
+    pluginVersion || null,
+    serverSoftware || null,
+    minecraftVersion || null,
+    ip,
+    ipHash,
+    userAgentHash,
+    JSON.stringify(callbackPayload),
+    timestamp,
+    row.id,
+    timestamp
+  ));
+
+  if (result.meta.changes !== 1) {
+    return invalidVerificationCodeResponse();
+  }
+
+  return json({
+    ok: true,
+    status: "verified",
+    expiresAt: verificationProofExpiresAt(timestamp),
+    message: "Server verification complete. Return to the submission page."
+  }, 200, NO_STORE_JSON_HEADERS);
+}
+
 async function resubmitMyServer(request: Request, env: ServerDirectoryEnv): Promise<Response> {
   const session = await requireSubmitter(request, env);
 
@@ -662,10 +1102,16 @@ async function resubmitMyServer(request: Request, env: ServerDirectoryEnv): Prom
     return json({ error: session.error }, session.status, NO_STORE_JSON_HEADERS);
   }
 
+  const mutationRateLimit = await submissionMutationRateLimit(session.account.id, env);
+
+  if (!mutationRateLimit.ok) {
+    return rateLimitResponse(mutationRateLimit.error);
+  }
+
   const owned = await getOwnedServerRow(env, session.account.id);
 
   if (!owned) {
-    return json({ error: "You do not have a rejected submission to update." }, 404, NO_STORE_JSON_HEADERS);
+    return json({ error: "You do not have a server listing or submission to update." }, 404, NO_STORE_JSON_HEADERS);
   }
 
   if (owned.status === "pending") {
@@ -676,8 +1122,9 @@ async function resubmitMyServer(request: Request, env: ServerDirectoryEnv): Prom
     return json({ error: "Suspended submissions cannot be edited or resubmitted. Contact staff for help." }, 409, NO_STORE_JSON_HEADERS);
   }
 
+  const keepsApproval = owned.status === "approved";
   const body = await readJsonObject(request);
-  const input = await parseSubmissionInput(request, env, body);
+  const input = await parseSubmissionInput(request, env, body, session.account.id);
   const existingAddress = await env.DB.prepare("SELECT id, status FROM servers WHERE normalized_host = ? AND port = ? AND id <> ?")
     .bind(input.normalized.host, input.normalized.port, owned.id)
     .first<{ id: string; status: ServerState }>();
@@ -710,31 +1157,51 @@ async function resubmitMyServer(request: Request, env: ServerDirectoryEnv): Prom
   }
 
   if (!snapshot.online) {
-    return json({ error: "The server must be online and reachable before staff can review it." }, 400);
+    return json({ error: "The server must be online and reachable before these changes can be saved." }, 400);
   }
 
   const timestamp = nowIso();
   const submissionId = crypto.randomUUID();
+  const serverMutation = keepsApproval
+    ? env.DB.prepare(`
+        UPDATE servers
+        SET name = ?, description = ?, normalized_host = ?, port = ?, website_url = ?, social_links_json = ?, updated_at = ?
+        WHERE id = ? AND owner_account_id = ? AND status = 'approved'
+      `).bind(input.name, input.description, input.normalized.host, input.normalized.port, input.websiteUrl, JSON.stringify(input.socialLinks), timestamp, owned.id, session.account.id)
+    : env.DB.prepare(`
+        UPDATE servers
+        SET name = ?, description = ?, normalized_host = ?, port = ?, website_url = ?, social_links_json = ?,
+            status = 'pending', approved_at = NULL, suspended_at = NULL, updated_at = ?
+        WHERE id = ? AND owner_account_id = ?
+      `).bind(input.name, input.description, input.normalized.host, input.normalized.port, input.websiteUrl, JSON.stringify(input.socialLinks), timestamp, owned.id, session.account.id);
   await runD1Batch(env, [
-    env.DB.prepare(`
-      UPDATE servers
-      SET name = ?, description = ?, normalized_host = ?, port = ?, website_url = ?, social_links_json = ?,
-          status = 'pending', approved_at = NULL, suspended_at = NULL, updated_at = ?
-      WHERE id = ? AND owner_account_id = ?
-    `).bind(input.name, input.description, input.normalized.host, input.normalized.port, input.websiteUrl, JSON.stringify(input.socialLinks), timestamp, owned.id, session.account.id),
+    serverMutation,
     ...statusSnapshotStatements(env, owned.id, snapshot, timestamp),
     env.DB.prepare(`
-      INSERT INTO submissions (id, server_id, owner_account_id, contact, proof_type, proof_redacted, submitter_ip_hash, user_agent_hash, turnstile_result, created_at)
-      VALUES (?, ?, ?, ?, 'staff_reviewed', ?, ?, ?, ?, ?)
-    `).bind(submissionId, owned.id, session.account.id, submitterContact(session.account), storedProof(input.proof), input.ipHash, input.userAgentHash, JSON.stringify(input.turnstile), timestamp),
+      INSERT INTO submissions (id, server_id, owner_account_id, contact, proof_type, proof_redacted, submitter_ip_hash, user_agent_hash, turnstile_result, verification_challenge_id, created_at)
+      VALUES (?, ?, ?, ?, 'plugin_callback_verified', ?, ?, ?, ?, ?, ?)
+    `).bind(submissionId, owned.id, session.account.id, submitterContact(session.account), storedPluginProof(input.verification, input.name), input.ipHash, input.userAgentHash, JSON.stringify(input.turnstile), input.verification.id, timestamp),
+    consumeVerificationChallengeStatement(env, input.verification.id, timestamp),
     env.DB.prepare(`
       INSERT INTO moderation_events (id, server_id, actor, action, notes, created_at)
-      VALUES (?, ?, 'system', 'submitted', 'Resubmitted through public website form.', ?)
-    `).bind(crypto.randomUUID(), owned.id, timestamp)
+      VALUES (?, ?, ?, ?, ?, ?)
+    `).bind(
+      crypto.randomUUID(),
+      owned.id,
+      keepsApproval ? "owner" : "system",
+      keepsApproval ? "verified-address-updated" : "submitted",
+      keepsApproval ? "Owner updated the address of an approved listing after plugin verification." : "Resubmitted through public website form.",
+      timestamp
+    )
   ]);
 
   const refreshed = await getOwnedServerRow(env, session.account.id);
-  return json({ ok: true, id: owned.id, status: "pending", item: refreshed ? toOwnerServer(refreshed) : null }, 202, NO_STORE_JSON_HEADERS);
+  return json({
+    ok: true,
+    id: owned.id,
+    status: keepsApproval ? "approved" : "pending",
+    item: refreshed ? toOwnerServer(refreshed) : null
+  }, keepsApproval ? 200 : 202, NO_STORE_JSON_HEADERS);
 }
 
 async function updateMyPublicDetails(request: Request, env: ServerDirectoryEnv): Promise<Response> {
@@ -755,15 +1222,27 @@ async function updateMyPublicDetails(request: Request, env: ServerDirectoryEnv):
   }
 
   const body = await readJsonObject(request);
-  const details = parsePublicDetailsInput(body);
+  const details = parsePublicDetailsInput(body, owned.name);
+  const socialLinksJson = JSON.stringify(details.socialLinks);
+
+  if (publicDetailsMatch(owned, details)) {
+    return json({ ok: true, unchanged: true, item: toOwnerServer(owned) }, 200, NO_STORE_JSON_HEADERS);
+  }
+
+  const mutationRateLimit = await publicDetailsMutationRateLimit(session.account.id, env);
+
+  if (!mutationRateLimit.ok) {
+    return rateLimitResponse(mutationRateLimit.error);
+  }
+
   const timestamp = nowIso();
   await runD1Batch(env, [
     env.DB.prepare(`
       UPDATE servers
-      SET description = ?, website_url = ?, social_links_json = ?, updated_at = ?
+      SET name = ?, description = ?, website_url = ?, social_links_json = ?, updated_at = ?
       WHERE id = ? AND owner_account_id = ? AND status = 'approved'
-    `).bind(details.description, details.websiteUrl, JSON.stringify(details.socialLinks), timestamp, owned.id, session.account.id),
-    env.DB.prepare("INSERT INTO moderation_events (id, server_id, actor, action, notes, created_at) VALUES (?, ?, 'owner', 'public-details-updated', 'Owner updated public description and links.', ?)")
+    `).bind(details.name, details.description, details.websiteUrl, socialLinksJson, timestamp, owned.id, session.account.id),
+    env.DB.prepare("INSERT INTO moderation_events (id, server_id, actor, action, notes, created_at) VALUES (?, ?, 'owner', 'public-details-updated', 'Owner updated approved listing details.', ?)")
       .bind(crypto.randomUUID(), owned.id, timestamp)
   ]);
 
@@ -800,7 +1279,7 @@ async function deleteMyServer(request: Request, env: ServerDirectoryEnv): Promis
   return json({ ok: true, id: owned.id, deleted: true }, 200, NO_STORE_JSON_HEADERS);
 }
 
-async function parseSubmissionInput(request: Request, env: ServerDirectoryEnv, body: Record<string, unknown>): Promise<SubmissionInput> {
+async function parseSubmissionInput(request: Request, env: ServerDirectoryEnv, body: Record<string, unknown>, ownerAccountId: string): Promise<SubmissionInput> {
   if (!isLocalEnvironment(env) && (!env.TURNSTILE_SECRET || !env.RATE_LIMIT_SALT)) {
     logError("submission.missing_required_secrets");
     throw new ApiError(503, "Server submissions are temporarily unavailable.");
@@ -813,7 +1292,7 @@ async function parseSubmissionInput(request: Request, env: ServerDirectoryEnv, b
   const address = stringField(body, "address", 255);
   const port = parsePortField(body.port);
   const description = stringField(body, "description", SUBMISSION_DESCRIPTION_MAX_LENGTH);
-  const proof = stringField(body, "proof", 12000);
+  const verificationChallengeId = stringField(body, "verificationChallengeId", 64);
   const websiteValue = stringField(body, "websiteUrl", 255, false);
   const websiteUrl = normalizeWebsiteInput(websiteValue);
   const socialLinks = parseSocialLinks(body.socialLinks);
@@ -831,12 +1310,6 @@ async function parseSubmissionInput(request: Request, env: ServerDirectoryEnv, b
     throw new ApiError(400, normalized.error);
   }
 
-  const proofError = kingdomsProofError(proof);
-
-  if (proofError) {
-    throw new ApiError(400, proofError);
-  }
-
   if (websiteValue && !websiteUrl) {
     throw new ApiError(400, "Website must be a public domain or HTTP/HTTPS URL.");
   }
@@ -846,35 +1319,85 @@ async function parseSubmissionInput(request: Request, env: ServerDirectoryEnv, b
     throw new ApiError(503, "Server submissions are temporarily unavailable.");
   }
 
+  const rateLimitSalt = env.RATE_LIMIT_SALT ?? "local-development-rate-limit-salt";
+  const ipHash = await sha256(`${rateLimitSalt}:${ip}`);
+  const userAgentHash = await sha256(`${rateLimitSalt}:${userAgent}`);
+  await enforceSubmissionQuota(env, ownerAccountId, ipHash);
+
   const turnstile = await validateTurnstile(turnstileToken, ip, env);
 
   if (!turnstile.success) {
     throw new ApiError(400, "Turnstile verification failed.");
   }
 
-  const rateLimitSalt = env.RATE_LIMIT_SALT ?? "local-development-rate-limit-salt";
-  const ipHash = await sha256(`${rateLimitSalt}:${ip}`);
-  const userAgentHash = await sha256(`${rateLimitSalt}:${userAgent}`);
+  const verification = await requireVerifiedChallenge(env, verificationChallengeId, ownerAccountId, normalized.host, normalized.port);
 
   return {
     name: name.trim(),
     address,
     description: description.trim(),
-    proof,
     websiteUrl,
     socialLinks,
     normalized,
+    verification,
     turnstile,
     ipHash,
     userAgentHash
   };
 }
 
-function parsePublicDetailsInput(body: Record<string, unknown>): { description: string; websiteUrl: string | null; socialLinks: SocialLink[] } {
+async function requireVerifiedChallenge(
+  env: ServerDirectoryEnv,
+  id: string,
+  ownerAccountId: string,
+  host: string,
+  port: number
+): Promise<VerifiedChallenge> {
+  if (!isUuidLike(id)) {
+    throw new ApiError(400, "Run the in-game verification command before submitting.");
+  }
+
+  const row = await env.DB.prepare(`
+    SELECT id, owner_account_id, server_name, normalized_host, port, status, expires_at, verified_at, consumed_at,
+           plugin_version, server_software, minecraft_version, callback_ip, callback_payload_json,
+           created_at, updated_at
+    FROM server_verification_challenges
+    WHERE id = ? AND owner_account_id = ?
+    LIMIT 1
+  `).bind(id, ownerAccountId).first<VerificationChallengeRow>();
+
+  if (!row) {
+    throw new ApiError(400, "Run the in-game verification command before submitting.");
+  }
+
+  if (row.normalized_host !== host || row.port !== port) {
+    throw new ApiError(400, "Verification does not match this server address or port. Generate a new code.");
+  }
+
+  const timestamp = nowIso();
+  const status = verificationChallengeStatus(row, timestamp);
+
+  if (status !== "verified" || !row.verified_at) {
+    throw new ApiError(400, "Run the in-game verification command before submitting.");
+  }
+
+  return {
+    ...row,
+    status: "verified",
+    verified_at: row.verified_at
+  };
+}
+
+function parsePublicDetailsInput(body: Record<string, unknown>, currentName: string): { name: string; description: string; websiteUrl: string | null; socialLinks: SocialLink[] } {
+  const name = Object.hasOwn(body, "name") ? stringField(body, "name", 80) : currentName;
   const description = stringField(body, "description", SUBMISSION_DESCRIPTION_MAX_LENGTH);
   const websiteValue = stringField(body, "websiteUrl", 255, false);
   const websiteUrl = normalizeWebsiteInput(websiteValue);
   const socialLinks = parseSocialLinks(body.socialLinks);
+
+  if (!name || name.length < 3) {
+    throw new ApiError(400, "Server name must be at least 3 characters.");
+  }
 
   if (!description || description.length < 40) {
     throw new ApiError(400, "Description must be at least 40 characters.");
@@ -885,10 +1408,27 @@ function parsePublicDetailsInput(body: Record<string, unknown>): { description: 
   }
 
   return {
+    name,
     description: description.trim(),
     websiteUrl,
     socialLinks
   };
+}
+
+function publicDetailsMatch(
+  owned: AdminServerRow,
+  details: { name: string; description: string; websiteUrl: string | null; socialLinks: SocialLink[] }
+): boolean {
+  return owned.name === details.name &&
+    owned.description === details.description &&
+    owned.website_url === details.websiteUrl &&
+    comparableSocialLinks(safeParseSocialLinks(owned.social_links_json)) === comparableSocialLinks(details.socialLinks);
+}
+
+function comparableSocialLinks(links: Array<{ key?: string; url: string }>): string {
+  return JSON.stringify(links
+    .map((link) => ({ key: link.key ?? "", url: link.url }))
+    .sort((left, right) => left.key.localeCompare(right.key) || left.url.localeCompare(right.url)));
 }
 
 async function requireSubmitter(request: Request, env: ServerDirectoryEnv): Promise<{ ok: true; account: SubmitterAccount } | { ok: false; status: number; error: string }> {
@@ -912,7 +1452,7 @@ async function getSubmitterSession(request: Request, env: ServerDirectoryEnv): P
   const cookies = parseCookies(request.headers.get("cookie") ?? "");
   const token = cookies[SUBMITTER_SESSION_COOKIE] ?? "";
 
-  if (!token) {
+  if (!isValidSessionToken(token)) {
     return null;
   }
 
@@ -920,6 +1460,7 @@ async function getSubmitterSession(request: Request, env: ServerDirectoryEnv): P
   const row = await env.DB.prepare(`
     SELECT
       sess.session_hash,
+      sess.last_seen_at,
       acc.id,
       acc.discord_user_id,
       acc.username,
@@ -931,6 +1472,7 @@ async function getSubmitterSession(request: Request, env: ServerDirectoryEnv): P
     LIMIT 1
   `).bind(sessionHash, nowIso()).first<{
     session_hash: string;
+    last_seen_at: string;
     id: string;
     discord_user_id: string;
     username: string;
@@ -942,8 +1484,12 @@ async function getSubmitterSession(request: Request, env: ServerDirectoryEnv): P
     return null;
   }
 
-  await runD1Statement(env.DB.prepare("UPDATE submitter_sessions SET last_seen_at = ? WHERE session_hash = ?")
-    .bind(nowIso(), sessionHash));
+  const lastSeenAt = new Date(row.last_seen_at).getTime();
+
+  if (!Number.isFinite(lastSeenAt) || Date.now() - lastSeenAt > SUBMITTER_SESSION_TOUCH_INTERVAL_MS) {
+    await runD1Statement(env.DB.prepare("UPDATE submitter_sessions SET last_seen_at = ? WHERE session_hash = ?")
+      .bind(nowIso(), sessionHash));
+  }
 
   return {
     sessionHash,
@@ -992,6 +1538,14 @@ function suspendedAddressStatement(
   `).bind(host, port, serverId, reason || "Suspended by staff.", suspendedAt, updatedAt, updatedAt);
 }
 
+function consumeVerificationChallengeStatement(env: ServerDirectoryEnv, id: string, timestamp: string): D1PreparedStatement {
+  return env.DB.prepare(`
+    UPDATE server_verification_challenges
+    SET status = 'consumed', consumed_at = ?, updated_at = ?
+    WHERE id = ? AND status = 'verified' AND consumed_at IS NULL
+  `).bind(timestamp, timestamp, id);
+}
+
 async function autoSuspendSubmission(
   env: ServerDirectoryEnv,
   account: SubmitterAccount,
@@ -1019,9 +1573,10 @@ async function autoSuspendSubmission(
   await runD1Batch(env, [
     serverMutation,
     env.DB.prepare(`
-      INSERT INTO submissions (id, server_id, owner_account_id, contact, proof_type, proof_redacted, submitter_ip_hash, user_agent_hash, turnstile_result, moderation_notes, created_at)
-      VALUES (?, ?, ?, ?, 'staff_reviewed', ?, ?, ?, ?, ?, ?)
-    `).bind(submissionId, id, account.id, submitterContact(account), storedProof(input.proof), input.ipHash, input.userAgentHash, JSON.stringify(input.turnstile), notes, timestamp),
+      INSERT INTO submissions (id, server_id, owner_account_id, contact, proof_type, proof_redacted, submitter_ip_hash, user_agent_hash, turnstile_result, verification_challenge_id, moderation_notes, created_at)
+      VALUES (?, ?, ?, ?, 'plugin_callback_verified', ?, ?, ?, ?, ?, ?, ?)
+    `).bind(submissionId, id, account.id, submitterContact(account), storedPluginProof(input.verification, input.name), input.ipHash, input.userAgentHash, JSON.stringify(input.turnstile), input.verification.id, notes, timestamp),
+    consumeVerificationChallengeStatement(env, input.verification.id, timestamp),
     env.DB.prepare(`
       INSERT INTO moderation_events (id, server_id, actor, action, notes, created_at)
       VALUES (?, ?, 'system', 'suspend', ?, ?)
@@ -1052,9 +1607,10 @@ async function autoSuspendOwnedSubmission(
       WHERE id = ? AND owner_account_id = ?
     `).bind(input.name, input.description, input.normalized.host, input.normalized.port, input.websiteUrl, JSON.stringify(input.socialLinks), timestamp, timestamp, owned.id, account.id),
     env.DB.prepare(`
-      INSERT INTO submissions (id, server_id, owner_account_id, contact, proof_type, proof_redacted, submitter_ip_hash, user_agent_hash, turnstile_result, moderation_notes, created_at)
-      VALUES (?, ?, ?, ?, 'staff_reviewed', ?, ?, ?, ?, ?, ?)
-    `).bind(submissionId, owned.id, account.id, submitterContact(account), storedProof(input.proof), input.ipHash, input.userAgentHash, JSON.stringify(input.turnstile), notes, timestamp),
+      INSERT INTO submissions (id, server_id, owner_account_id, contact, proof_type, proof_redacted, submitter_ip_hash, user_agent_hash, turnstile_result, verification_challenge_id, moderation_notes, created_at)
+      VALUES (?, ?, ?, ?, 'plugin_callback_verified', ?, ?, ?, ?, ?, ?, ?)
+    `).bind(submissionId, owned.id, account.id, submitterContact(account), storedPluginProof(input.verification, input.name), input.ipHash, input.userAgentHash, JSON.stringify(input.turnstile), input.verification.id, notes, timestamp),
+    consumeVerificationChallengeStatement(env, input.verification.id, timestamp),
     env.DB.prepare(`
       INSERT INTO moderation_events (id, server_id, actor, action, notes, created_at)
       VALUES (?, ?, 'system', 'suspend', ?, ?)
@@ -1249,6 +1805,63 @@ async function refreshApprovedServers(env: ServerDirectoryEnv): Promise<void> {
       await runD1Batch(env, statusRefreshFailureStatements(env, row.id, timestamp, errorMessage(error)));
     }
   });
+}
+
+async function cleanupDirectoryData(env: ServerDirectoryEnv, includeOrphanedProofs: boolean): Promise<void> {
+  const staleCutoff = msAgoIso(VERIFICATION_STALE_RETENTION_MS);
+  const verifiedProofCutoff = msAgoIso(VERIFICATION_PROOF_TTL_MS);
+  const statements = [
+    env.DB.prepare(`
+      DELETE FROM server_verification_challenges
+      WHERE id IN (
+        SELECT challenge.id
+        FROM server_verification_challenges challenge
+        WHERE (challenge.status = 'pending' AND challenge.expires_at <= ?)
+           OR (challenge.status = 'expired' AND challenge.updated_at <= ?)
+           OR (
+             challenge.status = 'verified'
+             AND challenge.consumed_at IS NULL
+             AND challenge.verified_at IS NOT NULL
+             AND challenge.verified_at <= ?
+           )
+        ORDER BY challenge.updated_at ASC
+        LIMIT ?
+      )
+    `).bind(staleCutoff, staleCutoff, verifiedProofCutoff, VERIFICATION_CLEANUP_BATCH_LIMIT),
+    env.DB.prepare(`
+      DELETE FROM submitter_sessions
+      WHERE id IN (
+        SELECT id
+        FROM submitter_sessions
+        WHERE expires_at <= ?
+        ORDER BY expires_at ASC
+        LIMIT ?
+      )
+    `).bind(nowIso(), SUBMITTER_SESSION_CLEANUP_BATCH_LIMIT)
+  ];
+
+  if (includeOrphanedProofs) {
+    const consumedCutoff = msAgoIso(VERIFICATION_CONSUMED_RETENTION_MS);
+    statements.push(env.DB.prepare(`
+      DELETE FROM server_verification_challenges
+      WHERE id IN (
+        SELECT challenge.id
+        FROM server_verification_challenges challenge
+        WHERE challenge.status = 'consumed'
+          AND challenge.consumed_at IS NOT NULL
+          AND challenge.consumed_at <= ?
+          AND NOT EXISTS (
+            SELECT 1
+            FROM submissions submission
+            WHERE submission.verification_challenge_id = challenge.id
+          )
+        ORDER BY challenge.consumed_at ASC
+        LIMIT ?
+      )
+    `).bind(consumedCutoff, VERIFICATION_CLEANUP_BATCH_LIMIT));
+  }
+
+  await runD1Batch(env, statements);
 }
 
 async function refreshLocalApprovedStatuses(env: ServerDirectoryEnv): Promise<void> {
@@ -1559,6 +2172,10 @@ function randomToken(byteLength: number): string {
   const bytes = new Uint8Array(byteLength);
   crypto.getRandomValues(bytes);
   return base64Url(bytes);
+}
+
+function isValidSessionToken(value: string): boolean {
+  return /^[A-Za-z0-9_-]{64}$/.test(value);
 }
 
 function base64Url(bytes: Uint8Array): string {
@@ -2131,6 +2748,16 @@ function parseStatusFilter(value: string | null): PublicStatusFilter {
   return value === "online" || value === "offline" ? value : "all";
 }
 
+function parsePublicDirectoryLimit(value: string | null): number {
+  const limit = Number(value);
+  return PUBLIC_DIRECTORY_LIMITS.includes(limit as (typeof PUBLIC_DIRECTORY_LIMITS)[number]) ? limit : 8;
+}
+
+function parseRecentServerLimit(value: string | null): number {
+  const limit = Number(value);
+  return RECENT_SERVER_LIMITS.includes(limit as (typeof RECENT_SERVER_LIMITS)[number]) ? limit : 4;
+}
+
 function parsePublicSort(value: string | null): PublicSort {
   const sorts: PublicSort[] = ["newest", "players", "name"];
   return sorts.includes(value as PublicSort) ? (value as PublicSort) : "newest";
@@ -2394,69 +3021,369 @@ function normalizePublicDomainInput(value: string): string | null {
     : null;
 }
 
-function kingdomsProofError(value: string): string | null {
-  const proof = value.toLowerCase();
-  const proofTime = parseKingdomsProofTime(value);
-
-  if (!value.includes("♚ Ｋingdoms ♚") || !proof.includes("version:") || !proof.includes("platform:") || !proofTime) {
-    return 'Paste the full "/k about all" output from your server console.';
-  }
-
-  const ageMs = Date.now() - proofTime.getTime();
-
-  if (ageMs > KINGDOMS_PROOF_MAX_AGE_MS) {
-    return 'The "/k about all" output must be from the last 48 hours. Run it again and paste the fresh output.';
-  }
-
-  if (ageMs < -KINGDOMS_PROOF_FUTURE_TOLERANCE_MS) {
-    return 'The "/k about all" output time is too far in the future. Check the server clock and paste fresh output.';
-  }
-
-  return null;
+function storedPluginProof(challenge: VerifiedChallenge, serverName: string): string {
+  return [
+    `Verified: ${challenge.verified_at}`,
+    `Verification IP: ${challenge.callback_ip || "not available"}`,
+    `Server name: ${serverName}`,
+    `Address: ${challenge.normalized_host}:${challenge.port}`,
+    `Plugin version: ${challenge.plugin_version || "not provided"}`,
+    `Server software: ${challenge.server_software || "not provided"}`,
+    `Minecraft version: ${challenge.minecraft_version || "not provided"}`
+  ].join("\n").slice(0, 12000);
 }
 
-function parseKingdomsProofTime(value: string): Date | null {
-  const match = value.match(/\|\s*Time:\s*\d+\s*-\s*(\d{4})\/(\d{2})\/(\d{2})\s+(\d{2}):(\d{2}):(\d{2})\b[^\r\n]*?\|\s*([+-])(\d{2}):(\d{2})\b/i);
+function normalizeVerificationCode(value: string): string | null {
+  const normalized = value.trim().toLowerCase();
 
-  if (!match) {
-    return null;
-  }
-
-  const [, yearValue, monthValue, dayValue, hourValue, minuteValue, secondValue, offsetSign, offsetHourValue, offsetMinuteValue] = match;
-  const year = Number(yearValue);
-  const month = Number(monthValue);
-  const day = Number(dayValue);
-  const hour = Number(hourValue);
-  const minute = Number(minuteValue);
-  const second = Number(secondValue);
-  const offsetHour = Number(offsetHourValue);
-  const offsetMinute = Number(offsetMinuteValue);
-
-  if (month < 1 || month > 12 || day < 1 || day > 31 || hour > 23 || minute > 59 || second > 59 || offsetHour > 23 || offsetMinute > 59) {
-    return null;
-  }
-
-  const wallTimeMs = Date.UTC(year, month - 1, day, hour, minute, second);
-  const wallTime = new Date(wallTimeMs);
-
-  if (
-    wallTime.getUTCFullYear() !== year ||
-    wallTime.getUTCMonth() !== month - 1 ||
-    wallTime.getUTCDate() !== day ||
-    wallTime.getUTCHours() !== hour ||
-    wallTime.getUTCMinutes() !== minute ||
-    wallTime.getUTCSeconds() !== second
-  ) {
-    return null;
-  }
-
-  const offsetDirection = offsetSign === "-" ? -1 : 1;
-  const offsetMs = offsetDirection * ((offsetHour * 60) + offsetMinute) * 60 * 1000;
-  return new Date(wallTimeMs - offsetMs);
+  return /^[a-z0-9]{4}-[a-z0-9]{4}$/.test(normalized) ? normalized : null;
 }
 
-function storedProof(value: string): string {
-  return value.trim().slice(0, 12000);
+async function verificationCodeForChallenge(challengeId: string, env: ServerDirectoryEnv): Promise<string> {
+  const secret = requiredVerificationCodeSecret(env);
+  let characters = "";
+  let counter = 0;
+
+  while (characters.length < VERIFICATION_CODE_LENGTH) {
+    const bytes = await hmacSha256(secret, `server-verification-code:${challengeId}:${counter}`);
+    counter += 1;
+
+    for (const byte of bytes) {
+      if (byte >= VERIFICATION_CODE_RANDOM_BUCKET) {
+        continue;
+      }
+
+      characters += VERIFICATION_CODE_ALPHABET[byte % VERIFICATION_CODE_ALPHABET.length];
+
+      if (characters.length === VERIFICATION_CODE_LENGTH) {
+        break;
+      }
+    }
+  }
+
+  return `${characters.slice(0, VERIFICATION_CODE_GROUP_LENGTH)}-${characters.slice(VERIFICATION_CODE_GROUP_LENGTH)}`;
+}
+
+async function verificationCodeHash(code: string, env: ServerDirectoryEnv): Promise<string> {
+  const normalizedCode = normalizeVerificationCode(code) ?? code;
+  const hash = await hmacSha256(requiredVerificationCodeSecret(env), `server-verification-hash:${normalizedCode}`);
+  return bytesToHex(hash);
+}
+
+async function insertVerificationChallenge(
+  env: ServerDirectoryEnv,
+  challenge: {
+    ownerAccountId: string;
+    serverName: string;
+    host: string;
+    port: number;
+    expiresAt: string;
+    ipHash: string;
+    userAgentHash: string;
+    createdAt: string;
+  }
+): Promise<{ id: string; code: string; createdAt: string; expiresAt: string; reused: boolean }> {
+  for (let attempt = 0; attempt < 3; attempt += 1) {
+    const id = crypto.randomUUID();
+    const code = await verificationCodeForChallenge(id, env);
+    const codeHash = await verificationCodeHash(code, env);
+
+    try {
+      await runD1Statement(env.DB.prepare(`
+        INSERT INTO server_verification_challenges (
+          id, owner_account_id, server_name, normalized_host, port, code_hash, status,
+          expires_at, created_ip_hash, created_user_agent_hash, created_at, updated_at
+        )
+        VALUES (?, ?, ?, ?, ?, ?, 'pending', ?, ?, ?, ?, ?)
+      `).bind(
+        id,
+        challenge.ownerAccountId,
+        challenge.serverName,
+        challenge.host,
+        challenge.port,
+        codeHash,
+        challenge.expiresAt,
+        challenge.ipHash,
+        challenge.userAgentHash,
+        challenge.createdAt,
+        challenge.createdAt
+      ));
+      return { id, code, createdAt: challenge.createdAt, expiresAt: challenge.expiresAt, reused: false };
+    } catch (error) {
+      if (attempt >= 2 || !isD1UniqueConstraintError(error)) {
+        throw error;
+      }
+
+      const existing = await env.DB.prepare(`
+        SELECT id, owner_account_id, server_name, normalized_host, port, code_hash, status, expires_at, verified_at, consumed_at,
+               plugin_version, server_software, minecraft_version, callback_ip, callback_payload_json,
+               created_at, updated_at
+        FROM server_verification_challenges
+        WHERE owner_account_id = ? AND status = 'pending'
+        ORDER BY created_at DESC
+        LIMIT 1
+      `).bind(challenge.ownerAccountId).first<PendingVerificationChallengeRow>();
+
+      if (!existing) {
+        continue;
+      }
+
+      const sameTarget = existing.normalized_host === challenge.host && existing.port === challenge.port;
+
+      if (verificationChallengeStatus(existing, nowIso()) === "pending" && sameTarget) {
+        const existingCode = await verificationCodeForChallenge(existing.id, env);
+
+        if (await verificationCodeHash(existingCode, env) === existing.code_hash) {
+          return {
+            id: existing.id,
+            code: existingCode,
+            createdAt: existing.created_at,
+            expiresAt: existing.expires_at,
+            reused: true
+          };
+        }
+      }
+
+      await expirePendingVerificationChallenge(env, existing.id, nowIso());
+    }
+  }
+
+  throw new ApiError(503, "Server verification is temporarily unavailable.");
+}
+
+async function expirePendingVerificationChallenge(env: ServerDirectoryEnv, id: string, timestamp: string): Promise<void> {
+  await runD1Statement(env.DB.prepare(`
+    UPDATE server_verification_challenges
+    SET status = 'expired', updated_at = ?
+    WHERE id = ? AND status = 'pending'
+  `).bind(timestamp, id));
+}
+
+function verificationChallengeCreatedResponse(input: {
+  id: string;
+  code: string;
+  createdAt: string;
+  expiresAt: string;
+  address: string;
+  reused: boolean;
+}): Response {
+  return json({
+    ok: true,
+    reused: input.reused,
+    id: input.id,
+    code: input.code,
+    command: `/k admin verify ${input.code}`,
+    status: "pending",
+    createdAt: input.createdAt,
+    expiresAt: input.expiresAt,
+    address: input.address
+  }, input.reused ? 200 : 201, NO_STORE_JSON_HEADERS);
+}
+
+function requiredVerificationCodeSecret(env: ServerDirectoryEnv): string {
+  if (!env.VERIFICATION_CODE_SECRET) {
+    throw new ApiError(503, "Server verification is temporarily unavailable.");
+  }
+
+  return env.VERIFICATION_CODE_SECRET;
+}
+
+async function clientHashes(request: Request, env: ServerDirectoryEnv): Promise<{ ip: string; ipHash: string; userAgentHash: string }> {
+  const salt = env.RATE_LIMIT_SALT ?? "local-development-rate-limit-salt";
+  const ip = (request.headers.get("cf-connecting-ip") ?? (isLocalEnvironment(env) ? "127.0.0.1" : "unknown")).trim().slice(0, 64) || "unknown";
+  const userAgent = request.headers.get("user-agent") ?? "";
+  return {
+    ip,
+    ipHash: await clientIpHash(ip, env),
+    userAgentHash: await sha256(`${salt}:${userAgent}`)
+  };
+}
+
+async function clientIpHash(ip: string, env: ServerDirectoryEnv): Promise<string> {
+  const salt = env.RATE_LIMIT_SALT ?? "local-development-rate-limit-salt";
+  return sha256(`${salt}:${ip}`);
+}
+
+async function pluginVerifyRateLimit(request: Request, env: ServerDirectoryEnv): Promise<{ ok: true } | { ok: false; error: string }> {
+  const ip = request.headers.get("cf-connecting-ip") ?? (isLocalEnvironment(env) ? "127.0.0.1" : "unknown");
+  const key = await clientIpHash(ip, env);
+  const [perIp, perLocation] = await Promise.all([
+    env.PLUGIN_VERIFY_RATE_LIMIT?.limit({ key }),
+    env.PLUGIN_VERIFY_GLOBAL_RATE_LIMIT?.limit({ key: "plugin-verification" })
+  ]);
+
+  return (perIp?.success ?? true) && (perLocation?.success ?? true)
+    ? { ok: true }
+    : { ok: false, error: "Too many verification attempts. Try again later." };
+}
+
+async function verificationCreateRateLimit(request: Request, env: ServerDirectoryEnv): Promise<{ ok: true } | { ok: false; error: string }> {
+  if (!env.VERIFICATION_CREATE_RATE_LIMIT) {
+    return { ok: true };
+  }
+
+  const ip = request.headers.get("cf-connecting-ip") ?? (isLocalEnvironment(env) ? "127.0.0.1" : "unknown");
+  const key = await clientIpHash(ip, env);
+  const outcome = await env.VERIFICATION_CREATE_RATE_LIMIT.limit({ key });
+
+  return outcome.success
+    ? { ok: true }
+    : { ok: false, error: "Too many verification requests. Try again later." };
+}
+
+async function publicApiRateLimit(request: Request, env: ServerDirectoryEnv): Promise<{ ok: true } | { ok: false; error: string }> {
+  const ip = request.headers.get("cf-connecting-ip") ?? (isLocalEnvironment(env) ? "127.0.0.1" : "unknown");
+  const key = await clientIpHash(ip, env);
+  const [perIp, perLocation] = await Promise.all([
+    env.PUBLIC_API_RATE_LIMIT?.limit({ key }),
+    env.PUBLIC_API_LOCATION_RATE_LIMIT?.limit({ key: "public-server-api" })
+  ]);
+
+  return (perIp?.success ?? true) && (perLocation?.success ?? true)
+    ? { ok: true }
+    : { ok: false, error: "Too many server directory requests. Try again later." };
+}
+
+async function verificationCreateAccountRateLimit(accountId: string, env: ServerDirectoryEnv): Promise<{ ok: true } | { ok: false; error: string }> {
+  const outcome = await env.VERIFICATION_CREATE_ACCOUNT_RATE_LIMIT?.limit({ key: accountId });
+  return (outcome?.success ?? true)
+    ? { ok: true }
+    : { ok: false, error: "Too many verification requests. Try again later." };
+}
+
+async function submitterReadRateLimit(request: Request, env: ServerDirectoryEnv): Promise<{ ok: true } | { ok: false; error: string }> {
+  if (!env.SUBMITTER_READ_RATE_LIMIT) {
+    return { ok: true };
+  }
+
+  const ip = request.headers.get("cf-connecting-ip") ?? (isLocalEnvironment(env) ? "127.0.0.1" : "unknown");
+  const key = await clientIpHash(ip, env);
+  const outcome = await env.SUBMITTER_READ_RATE_LIMIT.limit({ key });
+  return outcome.success
+    ? { ok: true }
+    : { ok: false, error: "Too many account requests. Try again later." };
+}
+
+async function verificationStatusRateLimit(request: Request, env: ServerDirectoryEnv): Promise<{ ok: true } | { ok: false; error: string }> {
+  if (!env.VERIFICATION_STATUS_RATE_LIMIT) {
+    return { ok: true };
+  }
+
+  const ip = request.headers.get("cf-connecting-ip") ?? (isLocalEnvironment(env) ? "127.0.0.1" : "unknown");
+  const key = await clientIpHash(ip, env);
+  const outcome = await env.VERIFICATION_STATUS_RATE_LIMIT.limit({ key });
+  return outcome.success
+    ? { ok: true }
+    : { ok: false, error: "Too many verification checks. Try again later." };
+}
+
+async function verificationStatusAccountRateLimit(accountId: string, env: ServerDirectoryEnv): Promise<{ ok: true } | { ok: false; error: string }> {
+  const outcome = await env.VERIFICATION_STATUS_ACCOUNT_RATE_LIMIT?.limit({ key: accountId });
+  return (outcome?.success ?? true)
+    ? { ok: true }
+    : { ok: false, error: "Too many verification checks. Try again later." };
+}
+
+async function publicDetailsMutationRateLimit(accountId: string, env: ServerDirectoryEnv): Promise<{ ok: true } | { ok: false; error: string }> {
+  const outcome = await env.PUBLIC_DETAILS_MUTATION_RATE_LIMIT?.limit({ key: accountId });
+  return (outcome?.success ?? true)
+    ? { ok: true }
+    : { ok: false, error: "Too many detail updates. Try again later." };
+}
+
+async function submissionMutationRateLimit(accountId: string, env: ServerDirectoryEnv): Promise<{ ok: true } | { ok: false; error: string }> {
+  const outcome = await env.SUBMISSION_MUTATION_RATE_LIMIT?.limit({ key: accountId });
+  return (outcome?.success ?? true)
+    ? { ok: true }
+    : { ok: false, error: "Too many submission attempts. Try again later." };
+}
+
+function rateLimitResponse(error: string): Response {
+  const headers = new Headers(NO_STORE_JSON_HEADERS);
+  headers.set("retry-after", String(VERIFICATION_RATE_LIMIT_RETRY_SECONDS));
+  return json({ error }, 429, headers);
+}
+
+function verificationRateLimitResponse(error: string): Response {
+  return rateLimitResponse(error);
+}
+
+function invalidVerificationCodeResponse(): Response {
+  return json({ error: "Verification code is invalid or expired." }, 404, NO_STORE_JSON_HEADERS);
+}
+
+function verificationProofExpiresAt(value: VerificationChallengeRow | string): string | null {
+  const verifiedAt = typeof value === "string" ? value : value.verified_at;
+  const verifiedAtMs = verifiedAt ? new Date(verifiedAt).getTime() : Number.NaN;
+  return Number.isFinite(verifiedAtMs) ? new Date(verifiedAtMs + VERIFICATION_PROOF_TTL_MS).toISOString() : null;
+}
+
+function verificationChallengeStatus(row: VerificationChallengeRow, timestamp = nowIso()): VerificationChallengeStatus {
+  if (row.status === "pending" && row.expires_at <= timestamp) {
+    return "expired";
+  }
+
+  if (row.status === "verified") {
+    const expiresAt = verificationProofExpiresAt(row);
+
+    if (!expiresAt || expiresAt <= timestamp) {
+      return "expired";
+    }
+  }
+
+  return row.status;
+}
+
+function publicVerificationChallenge(row: VerificationChallengeRow) {
+  const status = verificationChallengeStatus(row);
+  const expiresAt = row.status === "verified" ? verificationProofExpiresAt(row) : row.expires_at;
+  return {
+    id: row.id,
+    status,
+    name: row.server_name,
+    address: row.port === 25565 ? row.normalized_host : `${row.normalized_host}:${row.port}`,
+    host: row.normalized_host,
+    port: row.port,
+    createdAt: row.created_at,
+    expiresAt,
+    verifiedAt: row.verified_at,
+    consumedAt: row.consumed_at,
+    plugin: row.verified_at ? {
+      version: row.plugin_version,
+      serverSoftware: row.server_software,
+      minecraftVersion: row.minecraft_version
+    } : null
+  };
+}
+
+function pluginCallbackPayload(body: Record<string, unknown>): {
+  pluginVersion: string | null;
+  serverSoftware: string | null;
+  minecraftVersion: string | null;
+} {
+  return {
+    pluginVersion: callbackTextField(body, "pluginVersion", 80),
+    serverSoftware: callbackTextField(body, "serverSoftware", 80),
+    minecraftVersion: callbackTextField(body, "minecraftVersion", 80)
+  };
+}
+
+function callbackTextField(body: Record<string, unknown>, key: string, maxLength: number): string | null {
+  if (typeof body[key] !== "string") {
+    return null;
+  }
+
+  const value = body[key].replace(/[\u0000-\u001f\u007f]+/g, " ").replace(/\s+/g, " ").trim();
+
+  if (value.length > maxLength) {
+    throw new ApiError(400, `${key} is too long.`);
+  }
+
+  return value || null;
+}
+
+function isUuidLike(value: string): boolean {
+  return /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(value);
 }
 
 function slugify(value: string): string {
@@ -2499,11 +3426,11 @@ function stringField(source: Record<string, unknown>, key: string, maxLength: nu
   return value;
 }
 
-async function readJsonObject(request: Request, optional = false): Promise<Record<string, unknown>> {
+async function readJsonObject(request: Request, optional = false, maxBytes = MAX_JSON_BODY_BYTES): Promise<Record<string, unknown>> {
   const contentLengthHeader = request.headers.get("content-length");
   const contentLength = Number(contentLengthHeader ?? "0");
 
-  if (Number.isFinite(contentLength) && contentLength > MAX_JSON_BODY_BYTES) {
+  if (Number.isFinite(contentLength) && contentLength > maxBytes) {
     throw new ApiError(413, "Request body is too large.");
   }
 
@@ -2511,17 +3438,17 @@ async function readJsonObject(request: Request, optional = false): Promise<Recor
     return {};
   }
 
-  const text = await request.text();
+  const contentType = request.headers.get("content-type")?.toLowerCase() ?? "";
 
-  if (new TextEncoder().encode(text).byteLength > MAX_JSON_BODY_BYTES) {
-    throw new ApiError(413, "Request body is too large.");
+  if ((!optional || (contentLengthHeader && contentLength > 0)) && !contentType.startsWith("application/json")) {
+    throw new ApiError(415, "Content-Type must be application/json.");
   }
+
+  const text = await readBoundedRequestText(request, maxBytes);
 
   if (!text && optional) {
     return {};
   }
-
-  const contentType = request.headers.get("content-type")?.toLowerCase() ?? "";
 
   if (!contentType.startsWith("application/json")) {
     throw new ApiError(415, "Content-Type must be application/json.");
@@ -2540,6 +3467,47 @@ async function readJsonObject(request: Request, optional = false): Promise<Recor
   }
 
   return data;
+}
+
+async function readBoundedRequestText(request: Request, maxBytes: number): Promise<string> {
+  if (!request.body) {
+    return "";
+  }
+
+  const reader = request.body.getReader();
+  const chunks: Uint8Array[] = [];
+  let totalBytes = 0;
+
+  try {
+    while (true) {
+      const { done, value } = await reader.read();
+
+      if (done) {
+        break;
+      }
+
+      totalBytes += value.byteLength;
+
+      if (totalBytes > maxBytes) {
+        await reader.cancel("Request body is too large.");
+        throw new ApiError(413, "Request body is too large.");
+      }
+
+      chunks.push(value);
+    }
+  } finally {
+    reader.releaseLock();
+  }
+
+  const bytes = new Uint8Array(totalBytes);
+  let offset = 0;
+
+  for (const chunk of chunks) {
+    bytes.set(chunk, offset);
+    offset += chunk.byteLength;
+  }
+
+  return new TextDecoder().decode(bytes);
 }
 
 function isLocalEnvironment(env: ServerDirectoryEnv): boolean {
@@ -2592,6 +3560,11 @@ function isRetryableD1Error(error: unknown): boolean {
   return message.includes("network connection lost") ||
     message.includes("storage caused object to be reset") ||
     message.includes("reset because its code was updated");
+}
+
+function isD1UniqueConstraintError(error: unknown): boolean {
+  const message = errorMessage(error).toLowerCase();
+  return message.includes("unique constraint failed") || message.includes("constraint failed: unique");
 }
 
 function jitterDelay(): number {
@@ -2732,6 +3705,23 @@ async function sha256(value: string): Promise<string> {
   const bytes = new TextEncoder().encode(value);
   const hash = await crypto.subtle.digest("SHA-256", bytes);
   return [...new Uint8Array(hash)].map((byte) => byte.toString(16).padStart(2, "0")).join("");
+}
+
+async function hmacSha256(secret: string, value: string): Promise<Uint8Array> {
+  const encoder = new TextEncoder();
+  const key = await crypto.subtle.importKey(
+    "raw",
+    encoder.encode(secret),
+    { name: "HMAC", hash: "SHA-256" },
+    false,
+    ["sign"]
+  );
+  const signature = await crypto.subtle.sign("HMAC", key, encoder.encode(value));
+  return new Uint8Array(signature);
+}
+
+function bytesToHex(bytes: Uint8Array): string {
+  return [...bytes].map((byte) => byte.toString(16).padStart(2, "0")).join("");
 }
 
 function json(data: unknown, status = 200, headers: HeadersInit = JSON_HEADERS): Response {

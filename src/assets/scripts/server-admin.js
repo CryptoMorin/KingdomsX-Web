@@ -46,7 +46,7 @@ const ADMIN_MESSAGES = {
       },
       {
         title: "KingdomsX not verified",
-        text: 'Staff could not verify that your server is running KingdomsX. Run "/k about all" from your server console and paste the full output in your submission before resubmitting.'
+        text: 'Staff could not verify that your server is running KingdomsX. Generate a new verification code and then run "/k admin verify <code>" on your server before resubmitting.'
       },
       {
         title: "Public details incomplete",
@@ -109,6 +109,26 @@ const formatDate = (value) => {
     `${twoDigit(date.getDate())}/${twoDigit(date.getMonth() + 1)}/${date.getFullYear()}`,
     `${twoDigit(date.getHours())}:${twoDigit(date.getMinutes())}:${twoDigit(date.getSeconds())}`
   ].join(", ");
+};
+
+const formatVerificationDate = (value) => {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) {
+    return value;
+  }
+
+  return [
+    `${twoDigit(date.getDate())}/${twoDigit(date.getMonth() + 1)}/${date.getFullYear()}`,
+    `${twoDigit(date.getHours())}:${twoDigit(date.getMinutes())}:${twoDigit(date.getSeconds())}`
+  ].join(" ");
+};
+
+const formatSubmissionProof = (value) => {
+  const proof = textOrFallback(value, "No proof stored.");
+  return proof
+    .split("\n")
+    .map((line) => line.startsWith("Verified: ") ? `Verified: ${formatVerificationDate(line.slice(10))}` : line)
+    .join("\n");
 };
 
 const titleCase = (value) => String(value ?? "unknown")
@@ -199,7 +219,7 @@ const createAdminSkeletonCard = () => {
   column.className = "col d-flex";
 
   const card = document.createElement("article");
-  card.className = "server-card server-card-skeleton d-flex flex-column gap-3 w-100 h-100 p-3 overflow-hidden rounded-3";
+  card.className = "server-card surface-panel server-card-skeleton d-flex flex-column gap-3 w-100 h-100 p-3 overflow-hidden rounded-3";
 
   const top = document.createElement("div");
   top.className = "server-card-top d-flex align-items-center gap-3";
@@ -304,9 +324,10 @@ const createServerIcon = (server) => {
 
 const createAddressButton = (server) => {
   const address = document.createElement("button");
-  address.className = "btn btn-site server-address d-inline-flex align-items-center gap-2 overflow-hidden text-start text-nowrap";
+  address.className = "btn btn-site copy-action server-address d-inline-flex align-items-center gap-2 overflow-hidden text-start text-nowrap";
   address.type = "button";
   address.dataset.copyServerAddress = server.address ?? "";
+  address.dataset.copySuccessLabel = "Copied!";
   address.setAttribute("aria-label", `Copy server address ${server.address ?? "unavailable"}`);
 
   const label = document.createElement("span");
@@ -318,7 +339,7 @@ const createAddressButton = (server) => {
   value.textContent = server.address ?? "Address unavailable";
 
   const icon = document.createElement("i");
-  icon.className = "fa-regular fa-copy";
+  icon.className = "copy-action-icon fa-regular fa-copy";
   icon.setAttribute("aria-hidden", "true");
 
   address.append(label, value, icon);
@@ -479,7 +500,7 @@ const createOnlineStatus = (server) => {
 
 const createAdminCard = (server) => {
   const card = document.createElement("article");
-  card.className = "server-card d-flex flex-column gap-3 w-100 h-100 p-3 overflow-hidden rounded-3";
+  card.className = "server-card surface-panel surface-lift d-flex flex-column gap-3 w-100 h-100 p-3 overflow-hidden rounded-3";
   card.dataset.serverId = server.id;
 
   const top = document.createElement("div");
@@ -513,12 +534,12 @@ const createAdminCard = (server) => {
   description.textContent = server.description;
 
   const stats = document.createElement("div");
-  stats.className = "server-stats row g-2";
+  stats.className = "server-stats row row-cols-1 row-cols-sm-2 g-2";
   stats.append(
-    createStat("Players", playerCountLabel(server.status), "fa-solid fa-user-group", "col-6"),
-    createStat("Version", versionLabel(server.status), "fa-solid fa-code-branch", "col-6"),
-    createStat("Submitted", formatDate(server.submission?.createdAt ?? server.createdAt), "fa-solid fa-clock", "col-6"),
-    reviewDateStat(server, "col-6")
+    createStat("Players", playerCountLabel(server.status), "fa-solid fa-user-group"),
+    createStat("Version", versionLabel(server.status), "fa-solid fa-code-branch"),
+    createStat("Submitted", formatDate(server.submission?.createdAt ?? server.createdAt), "fa-solid fa-clock"),
+    reviewDateStat(server)
   );
 
   const footer = document.createElement("div");
@@ -735,7 +756,7 @@ const fillManageModal = (modal, server) => {
 
   const proof = document.createElement("pre");
   proof.className = "mb-0";
-  proof.textContent = textOrFallback(server.submission?.proofRedacted, "No proof stored.");
+  proof.textContent = formatSubmissionProof(server.submission?.proofRedacted);
 
   const submissionContent = document.createElement("div");
   submissionContent.className = "d-flex flex-column gap-3";
@@ -780,7 +801,7 @@ const fillManageModal = (modal, server) => {
     createActionButton("approve", "Approve", "fa-check", "btn-site-sm"),
     createActionButton("suspend", "Suspend", "fa-ban", "btn-site-sm"),
     createActionButton("reject", "Reject", "fa-xmark", "btn-site-sm"),
-    createActionButton("delete", "Delete", "fa-trash", "btn-site-sm server-admin-delete")
+    createActionButton("delete", "Delete", "fa-trash", "btn-site-sm action-danger")
   );
 
   footer.append(refreshGroup, moderationGroup);
@@ -827,7 +848,7 @@ const fillReasonModal = (modal, server, action) => {
   back.innerHTML = '<i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Back';
 
   const confirm = document.createElement("button");
-  confirm.className = `btn btn-site d-inline-flex align-items-center justify-content-center gap-2 btn-site-sm ${action === "reject" ? "server-admin-delete" : ""}`.trim();
+  confirm.className = `btn btn-site d-inline-flex align-items-center justify-content-center gap-2 btn-site-sm ${action === "reject" ? "action-danger" : ""}`.trim();
   confirm.type = "button";
   confirm.dataset.adminActionConfirm = action;
   confirm.innerHTML = `<i class="fa-solid ${action === "suspend" ? "fa-ban" : "fa-xmark"}" aria-hidden="true"></i> ${action === "suspend" ? "Suspend" : "Reject"}`;

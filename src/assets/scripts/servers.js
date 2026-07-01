@@ -9,8 +9,10 @@ const SOCIAL_ICON_CLASSES = {
   youtube: "fa-brands fa-youtube"
 };
 
-const SUBMISSION_DESCRIPTION_LIMIT = 120;
+const SUBMISSION_DESCRIPTION_LIMIT = 240;
 const PAGE_SIZE_DEFAULT = 8;
+const VERIFICATION_POLL_DELAYS = [30_000, 30_000, 45_000, 60_000];
+const VERIFICATION_STORAGE_KEY = "server-submission-verification";
 const FALLBACK_SERVER_ICON = "/apple-touch-icon.png";
 const STATUS_FILTERS = new Set(["all", "online", "offline"]);
 const SORT_OPTIONS = new Set(["newest", "players", "name"]);
@@ -55,26 +57,50 @@ const SERVER_MESSAGES = {
       { icon: "fa-solid fa-stamp", title: "Wait for review", text: "Staff checks the listing before it appears. If it is rejected, you can update it and resubmit." }
     ],
     protectionMissing: "Submission protection is not configured for this build. Set PUBLIC_TURNSTILE_SITE_KEY before enabling production submissions.",
-    proofHelp: {
-      beforeCommand: "Run ",
-      command: "/k about all",
-      afterCommand: " from your ",
-      emphasis: "console",
-      afterEmphasis: " and paste the output below. Staff uses this to confirm that your server is online and really running the KingdomsX plugin before approving your server."
+    verification: {
+      help: "Confirm that your server is running KingdomsX.",
+      generate: "Start Verification",
+      generating: "Starting Verification",
+      pendingTitle: "Waiting for your server",
+      pendingMessage: "Run the command below in-game or from your server console. This page will update automatically once your server responds and verification is complete.",
+      verifiedTitle: "Server verified",
+      verifiedMessage: "Your server responded successfully, confirming that you are running KingdomsX. You can now submit your listing for review.",
+      verifiedUpdateMessage: "Your server responded successfully, confirming that you are running KingdomsX. You can now save your changes.",
+      expiredTitle: "Verification failed",
+      expiredMessage: "Your server did not respond before the verification code expired, so we couldn't confirm that you are running KingdomsX. Start verification again to try once more.",
+      unavailableTitle: "Couldn't start verification",
+      unavailableMessage: "Verification could not be started.",
+      staleMessage: "This verification session is no longer available. Start verification again.",
+      incompleteTitle: "Complete your server details",
+      copy: "Copy Command",
+      copied: "Copied!",
+      copiedTitle: "Command Copied",
+      copiedMessage: "Paste the command into your Minecraft server to continue verification.",
+      copyFailureTitle: "Couldn't Copy Command",
+      copyFailureMessage: "Unable to copy the command.",
+      nextCheck: "Next check",
+      requiredMessage: "Complete the plugin verification before submitting.",
+      requirements: {
+        name: "Enter a server name with at least 3 characters.",
+        address: "Enter a valid public Minecraft server address.",
+        port: "The port must be between 1 and 65535.",
+        descriptionMinimum: (length) => `Write at least 40 characters in the description (${length}/40).`,
+        descriptionMaximum: `Keep the description within ${SUBMISSION_DESCRIPTION_LIMIT} characters.`
+      }
     },
     verificationExpired: {
       title: "Verification expired",
-      message: "Since you changed your server name, address, or port, staff will need to review the listing again before it goes public. This helps confirm that your server is still running KingdomsX."
+      message: "Since you changed your server address or port, you will need to verify your server again. This is used to confirm that your server is still running KingdomsX."
     },
     verificationComplete: {
       title: "Verification complete",
-      message: "Your previous verification is still valid. Since you didn't change your server name, address, or port, you can save changes without your server listing needing to go through staff review again."
+      message: "Your previous verification is still valid. Your server is confirmed to be running KingdomsX."
     },
     unchangedResubmit: "Please correct the issues mentioned in the staff review feedback before resubmitting for new review.",
     reviewFeedback: {
       title: "Review feedback",
-      suspended: "Staff suspended this listing. It cannot be edited or resubmitted from this page.",
-      hiddenOffline: "This listing was hidden after extended downtime. Update the details once the server is reachable, then resubmit for review.",
+      suspended: "Staff suspended this listing. It cannot be edited or resubmitted again. You need to contact staff on Discord.",
+      hiddenOffline: "Your server listing was hidden after extended downtime. Update the details once the server is reachable, then resubmit for review.",
       fallback: "Staff needs changes before this listing can be approved."
     },
     status: {
@@ -82,7 +108,7 @@ const SERVER_MESSAGES = {
       approved: "Your server is approved and visible on the public server list.",
       rejected: "This listing needs changes before staff can approve it.",
       suspended: "This listing is suspended. Contact staff if you believe it should be reviewed again.",
-      hidden_offline: "This approved listing is hidden because it has been offline for an extended period. You can submit corrected details for staff review.",
+      hidden_offline: "This approved listing is hidden because it has been offline for an extended period. You can submit corrected details for a new staff review.",
       fallback: "This listing is tied to your Discord account."
     },
     notifications: {
@@ -93,7 +119,7 @@ const SERVER_MESSAGES = {
     toasts: {
       noChangesMade: {
         title: "No Changes Made",
-        message: "Please correct the issues mentioned in the staff review feedback before resubmitting for new review."
+        message: "Please correct the issues mentioned in the staff review feedback before resubmitting for a new review."
       },
       noChangesToSave: {
         title: "No Changes to Save",
@@ -106,8 +132,8 @@ const SERVER_MESSAGES = {
       submitting: {
         reviewTitle: "Submitting for Review",
         saveTitle: "Saving Changes",
-        reviewMessage: "Sending your server listing to staff review.",
-        saveMessage: "Saving your public server details."
+        reviewMessage: "Sending your server listing to staff review...",
+        saveMessage: "Saving your public server details..."
       },
       success: {
         suspendedTitle: "Submission Suspended",
@@ -250,7 +276,7 @@ const reviewStatusPill = (server) => {
 
 const serverCardTemplate = (server) => {
   const card = document.createElement("article");
-  card.className = "server-card d-flex flex-column gap-3 w-100 h-100 p-3 overflow-hidden rounded-3";
+  card.className = "server-card surface-panel surface-lift d-flex flex-column gap-3 w-100 h-100 p-3 overflow-hidden rounded-3";
 
   const top = document.createElement("div");
   top.className = "server-card-top d-flex align-items-center gap-3";
@@ -285,13 +311,14 @@ const serverCardTemplate = (server) => {
   title.textContent = server.name;
 
   const address = document.createElement("button");
-  address.className = "btn btn-site server-address d-inline-flex align-items-center gap-2 overflow-hidden text-start text-nowrap";
+  address.className = "btn btn-site copy-action server-address d-inline-flex align-items-center gap-2 overflow-hidden text-start text-nowrap";
   address.type = "button";
   address.dataset.copyServerAddress = server.address;
+  address.dataset.copySuccessLabel = "Copied!";
   address.setAttribute("aria-label", `Copy server address ${server.address}`);
 
   const addressIcon = document.createElement("i");
-  addressIcon.className = "fa-regular fa-copy";
+  addressIcon.className = "copy-action-icon fa-regular fa-copy";
   addressIcon.setAttribute("aria-hidden", "true");
 
   const addressLabel = document.createElement("span");
@@ -317,7 +344,7 @@ const serverCardTemplate = (server) => {
   }
 
   const meta = document.createElement("div");
-  meta.className = "server-stats row g-2";
+  meta.className = "server-stats row row-cols-1 row-cols-sm-2 g-2";
   const players = playerCountLabel(server.status);
   const version = versionLabel(server.status);
   meta.append(
@@ -361,7 +388,7 @@ const playerCountLabel = (status) => {
 
 const versionLabel = (status) => status?.online === false ? "-" : status?.version || "Version unknown";
 
-const serverStatTemplate = (label, value, iconClass, columnClass = "col-6") => {
+const serverStatTemplate = (label, value, iconClass, columnClass = "col") => {
   const column = document.createElement("div");
   column.className = columnClass;
 
@@ -400,7 +427,7 @@ const copyText = async (value) => {
       await navigator.clipboard.writeText(value);
       return true;
     } catch {
-      // Fall through to the selection-based copy path.
+      // Fall through to the selection-based copy path
     }
   }
 
@@ -467,7 +494,7 @@ const serverCardSkeleton = () => {
   column.className = "col d-flex";
 
   const card = document.createElement("article");
-  card.className = "server-card server-card-skeleton d-flex flex-column gap-3 w-100 h-100 p-3 overflow-hidden rounded-3";
+  card.className = "server-card surface-panel server-card-skeleton d-flex flex-column gap-3 w-100 h-100 p-3 overflow-hidden rounded-3";
 
   const top = document.createElement("div");
   top.className = "server-card-top d-flex align-items-center gap-3";
@@ -815,11 +842,17 @@ const initServerSubmit = () => {
   const serversUrl = root.dataset.serversUrl || "/servers";
   const submitSection = root.closest(".servers-submit");
   let currentState = null;
+  let verificationPollTimer = 0;
+  let verificationCountdownTimer = 0;
+  let verificationExpiryTimer = 0;
 
   const apiUrl = (path) => new URL(path, apiBase);
   const currentReturnPath = () => `${window.location.pathname}${window.location.search}`;
 
   const replaceRoot = (...nodes) => {
+    window.clearTimeout(verificationPollTimer);
+    window.clearTimeout(verificationExpiryTimer);
+    window.clearInterval(verificationCountdownTimer);
     root.removeAttribute("aria-busy");
     root.replaceChildren(...nodes);
   };
@@ -954,7 +987,7 @@ const initServerSubmit = () => {
     shell.setAttribute("aria-hidden", "true");
 
     const account = document.createElement("section");
-    account.className = "server-submit-account d-flex align-items-center gap-3 rounded-3";
+    account.className = "server-submit-account surface-lift d-flex align-items-center gap-3 rounded-3";
 
     const accountText = document.createElement("span");
     accountText.className = "server-skeleton-stack d-grid gap-2 flex-grow-1 min-w-0";
@@ -962,7 +995,7 @@ const initServerSubmit = () => {
     account.append(skeletonBlock("server-skeleton-avatar flex-shrink-0"), accountText);
 
     const section = document.createElement("section");
-    section.className = "server-submit-section d-flex flex-column gap-3 p-3 p-md-4 rounded-3";
+    section.className = "server-submit-section surface-lift d-flex flex-column gap-3 p-3 p-md-4 rounded-3";
     section.append(
       skeletonBlock("server-skeleton-line server-skeleton-heading"),
       skeletonBlock("server-skeleton-line"),
@@ -982,7 +1015,7 @@ const initServerSubmit = () => {
 
   const createAccountBar = (user) => {
     const bar = document.createElement("div");
-    bar.className = "server-submit-account d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-3 rounded-3";
+    bar.className = "server-submit-account surface-lift d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-3 rounded-3";
 
     const identity = document.createElement("div");
     identity.className = "d-flex align-items-center gap-3 min-w-0";
@@ -992,6 +1025,7 @@ const initServerSubmit = () => {
 
     if (user?.avatarUrl) {
       const image = document.createElement("img");
+      image.className = "w-100 h-100 object-fit-cover";
       image.src = user.avatarUrl;
       image.alt = "";
       image.loading = "lazy";
@@ -1044,7 +1078,7 @@ const initServerSubmit = () => {
       column.className = "server-submit-process-column";
 
       const card = document.createElement("div");
-      card.className = "feature server-submit-process-step text-center h-100 rounded-3";
+      card.className = "feature surface-panel surface-lift server-submit-process-step text-center h-100 rounded-3";
       card.style.minHeight = "auto";
 
       const icon = document.createElement("i");
@@ -1221,6 +1255,41 @@ const initServerSubmit = () => {
     return { host: match[1], port: String(port) };
   };
 
+  const isValidPublicServerAddress = (value) => {
+    const host = String(value ?? "").trim().toLowerCase().replace(/\.$/, "");
+    const blockedSuffixes = [".localhost", ".local", ".internal", ".invalid", ".test", ".example"];
+    const blockedIpv4Ranges = [
+      /^10\./,
+      /^127\./,
+      /^169\.254\./,
+      /^172\.(1[6-9]|2\d|3[01])\./,
+      /^192\.168\./,
+      /^0\./,
+      /^100\.(6[4-9]|[7-9]\d|1[01]\d|12[0-7])\./,
+      /^192\.0\.(0|2)\./,
+      /^198\.(18|19|51\.100)\./,
+      /^203\.0\.113\./,
+      /^22[4-9]\./,
+      /^23\d\./,
+      /^24\d\./,
+      /^25[0-5]\./
+    ];
+
+    if (!host || host.length > 253 || /[\s/:@?#\[\]]/.test(host)) {
+      return false;
+    }
+
+    if (["localhost", "localhost.localdomain", "internal", "invalid", "test", "example"].includes(host) || blockedSuffixes.some((suffix) => host.endsWith(suffix))) {
+      return false;
+    }
+
+    if (/^\d{1,3}(?:\.\d{1,3}){3}$/.test(host)) {
+      return host.split(".").every((part) => Number(part) >= 0 && Number(part) <= 255) && !blockedIpv4Ranges.some((pattern) => pattern.test(host));
+    }
+
+    return host.includes(".") && /^(?!-)[a-z0-9-]{1,63}(?<!-)(?:\.(?!-)[a-z0-9-]{1,63}(?<!-))*$/.test(host);
+  };
+
   const createAddressPortGroup = (item = null) => {
     const wrap = document.createElement("div");
     wrap.className = "col-md-6";
@@ -1288,7 +1357,7 @@ const initServerSubmit = () => {
 
   const createSubmitSection = (title, ...children) => {
     const section = document.createElement("section");
-    section.className = "server-submit-section d-flex flex-column gap-3 p-3 p-md-4 rounded-3";
+    section.className = "server-submit-section surface-lift d-flex flex-column gap-3 p-3 p-md-4 rounded-3";
 
     const heading = document.createElement("h2");
     heading.className = "server-submit-section-title mb-0";
@@ -1330,7 +1399,15 @@ const initServerSubmit = () => {
     };
   };
 
-  const submissionPayload = (form) => {
+  const approvedDetailsPayload = (form) => {
+    const formData = new FormData(form);
+    return {
+      name: String(formData.get("name") ?? ""),
+      ...publicDetailsPayload(form)
+    };
+  };
+
+  const submissionPayload = (form, verificationChallengeId) => {
     const formData = new FormData(form);
 
     return {
@@ -1338,7 +1415,7 @@ const initServerSubmit = () => {
       address: String(formData.get("address") ?? ""),
       port: String(formData.get("port") ?? ""),
       ...publicDetailsPayload(form),
-      proof: String(formData.get("proof") ?? ""),
+      verificationChallengeId,
       turnstileToken: String(formData.get("cf-turnstile-response") ?? "")
     };
   };
@@ -1382,7 +1459,7 @@ const initServerSubmit = () => {
     return wrap;
   };
 
-  const submitButtonLabel = (mode, needsReview = mode !== "edit") => {
+  const submitButtonLabel = (mode) => {
     if (mode === "new") {
       return "Submit for Review";
     }
@@ -1391,7 +1468,7 @@ const initServerSubmit = () => {
       return "Resubmit for Review";
     }
 
-    return needsReview ? "Submit for Review" : "Save Changes";
+    return "Save Changes";
   };
 
   const renderForm = (mode, item = null) => {
@@ -1412,7 +1489,6 @@ const initServerSubmit = () => {
     form.noValidate = false;
     const baselineIdentity = item ? identitySnapshot(item) : null;
     const baselinePublic = item ? publicSnapshot(item) : null;
-    const baselineProof = mode === "edit" ? "" : comparableValue(item?.submission?.proofRedacted);
 
     const identity = createSubmitSection(
       "Server Information",
@@ -1426,7 +1502,7 @@ const initServerSubmit = () => {
         minLength: 40,
         maxLength: SUBMISSION_DESCRIPTION_LIMIT,
         value: item?.description,
-        placeholder: "Describe the server experience in 120 characters or less.",
+        placeholder: `Describe the server experience in ${SUBMISSION_DESCRIPTION_LIMIT} characters or less.`,
         counter: true
       })
     );
@@ -1436,32 +1512,11 @@ const initServerSubmit = () => {
     appendPublicFields(publicFields, item);
 
     const publicSection = document.createElement("section");
-    publicSection.className = "server-submit-section d-flex flex-column gap-3 p-3 p-md-4 rounded-3";
+    publicSection.className = "server-submit-section surface-lift d-flex flex-column gap-3 p-3 p-md-4 rounded-3";
     const publicTitle = document.createElement("h2");
     publicTitle.className = "server-submit-section-title mb-0";
     publicTitle.textContent = "Website & Socials";
     publicSection.append(publicTitle, publicFields);
-
-    const createProofHelp = () => {
-      const proofHelp = document.createElement("p");
-      proofHelp.className = "server-submit-proof-help mb-0";
-      proofHelp.append(
-        SERVER_MESSAGES.submit.proofHelp.beforeCommand,
-        (() => {
-          const code = document.createElement("code");
-          code.textContent = SERVER_MESSAGES.submit.proofHelp.command;
-          return code;
-        })(),
-        SERVER_MESSAGES.submit.proofHelp.afterCommand,
-        (() => {
-          const strong = document.createElement("strong");
-          strong.textContent = SERVER_MESSAGES.submit.proofHelp.emphasis;
-          return strong;
-        })(),
-        SERVER_MESSAGES.submit.proofHelp.afterEmphasis
-      );
-      return proofHelp;
-    };
 
     const createIdentityChangedNotice = () => {
       const column = document.createElement("div");
@@ -1490,24 +1545,6 @@ const initServerSubmit = () => {
       return column;
     };
 
-    const createProofHelpColumn = () => {
-      const column = document.createElement("div");
-      column.className = "col-12";
-      column.append(createProofHelp());
-      return column;
-    };
-
-    const createProofField = () => field("proof", '"/k about all" output', {
-      column: "col-12",
-      textarea: true,
-      rows: 9,
-      required: true,
-      maxLength: 12000,
-      className: "server-proof",
-      value: mode === "edit" ? "" : item?.submission?.proofRedacted,
-      placeholder: "Paste the complete /k about all console output here."
-    });
-
     const createVerificationComplete = () => {
       const column = document.createElement("div");
       column.className = "col-12";
@@ -1535,28 +1572,651 @@ const initServerSubmit = () => {
       return column;
     };
 
+    const currentIdentitySnapshot = () => {
+      const formData = new FormData(form);
+      return {
+        name: comparableValue(formData.get("name")),
+        address: comparableValue(formData.get("address")).toLowerCase(),
+        port: comparableValue(formData.get("port") || "25565") || "25565"
+      };
+    };
+
+    const currentVerificationTarget = () => {
+      const formData = new FormData(form);
+      return {
+        address: comparableValue(formData.get("address")).toLowerCase(),
+        port: comparableValue(formData.get("port") || "25565") || "25565"
+      };
+    };
+
+    const currentPublicSnapshot = () => {
+      const formData = new FormData(form);
+      return {
+        description: comparableValue(formData.get("description")),
+        websiteUrl: comparableValue(formData.get("websiteUrl")),
+        discord: comparableValue(formData.get("discord")),
+        facebook: comparableValue(formData.get("facebook")),
+        instagram: comparableValue(formData.get("instagram")),
+        x: comparableValue(formData.get("x")),
+        youtube: comparableValue(formData.get("youtube"))
+      };
+    };
+
     const review = createSubmitSection("Server Verification");
     const reviewRow = review.querySelector(".row");
-    const canKeepPreviousVerification = mode === "edit" && item?.reviewStatus === "approved";
-    let verificationNeedsReview = !canKeepPreviousVerification;
+    const reviewHeading = review.querySelector(".server-submit-section-title");
+    const reviewHeader = document.createElement("div");
+    reviewHeader.className = "d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3";
 
-    const renderVerification = (needsReview) => {
+    const reviewIntro = document.createElement("div");
+    reviewIntro.className = "d-grid gap-1 min-w-0";
+
+    const reviewHelp = document.createElement("p");
+    reviewHelp.className = "server-submit-proof-help mb-0";
+    reviewHelp.textContent = SERVER_MESSAGES.submit.verification.help;
+
+    const reviewAction = document.createElement("div");
+    reviewAction.className = "d-flex flex-shrink-0";
+
+    if (reviewHeading instanceof HTMLElement) {
+      reviewHeading.replaceWith(reviewHeader);
+      reviewIntro.append(reviewHeading, reviewHelp);
+      reviewHeader.append(reviewIntro, reviewAction);
+    }
+
+    const canKeepPreviousVerification = mode === "edit" && item?.reviewStatus === "approved";
+    let verificationRequired = !canKeepPreviousVerification;
+    let activeVerification = null;
+    let activeVerificationIdentity = null;
+    let verificationPollCount = 0;
+    let verificationPollScheduledAt = 0;
+    let verificationNextPollAt = 0;
+    let verificationCheckInFlightId = "";
+    const verificationOwnerId = String(currentState?.user?.id ?? "");
+    const verificationStorageKey = verificationOwnerId ? `${VERIFICATION_STORAGE_KEY}:${verificationOwnerId}` : VERIFICATION_STORAGE_KEY;
+
+    const verificationIdentityMatches = () => {
+      const current = currentVerificationTarget();
+      return Boolean(activeVerificationIdentity) && Object.keys(current).every((key) => current[key] === activeVerificationIdentity[key]);
+    };
+
+    const verificationHasExpired = () => {
+      const expiresAt = activeVerification?.expiresAt ? new Date(activeVerification.expiresAt).getTime() : Number.NaN;
+      return Number.isFinite(expiresAt) && expiresAt <= Date.now();
+    };
+
+    const verificationIsComplete = () => activeVerification?.status === "verified" && !verificationHasExpired() && verificationIdentityMatches();
+
+    const saveActiveVerification = () => {
+      if (!activeVerification || !activeVerificationIdentity || !verificationIdentityMatches()) {
+        return;
+      }
+
+      try {
+        window.sessionStorage?.setItem(verificationStorageKey, JSON.stringify({
+          ownerId: verificationOwnerId,
+          verification: activeVerification,
+          identity: activeVerificationIdentity,
+          pollCount: verificationPollCount,
+          nextPollAt: verificationNextPollAt
+        }));
+      } catch {
+        // Session storage is essentially only a convenience for preserving the copyable command
+      }
+    };
+
+    const clearStoredVerification = () => {
+      try {
+        window.sessionStorage?.removeItem(verificationStorageKey);
+        window.sessionStorage?.removeItem(VERIFICATION_STORAGE_KEY);
+      } catch {
+        // Ignore storage cleanup failures
+      }
+    };
+
+    const restoreActiveVerification = () => {
+      try {
+        window.sessionStorage?.removeItem(VERIFICATION_STORAGE_KEY);
+        const stored = window.sessionStorage?.getItem(verificationStorageKey);
+
+        if (!stored) {
+          return;
+        }
+
+        const parsed = JSON.parse(stored);
+
+        if (!parsed?.verification?.id || !parsed?.identity || parsed.ownerId !== verificationOwnerId) {
+          clearStoredVerification();
+          return;
+        }
+
+        activeVerification = parsed.verification;
+        activeVerificationIdentity = parsed.identity;
+        verificationPollCount = Number.isInteger(parsed.pollCount) ? Math.max(0, parsed.pollCount) : 0;
+        verificationNextPollAt = Number.isFinite(parsed.nextPollAt) ? Math.max(0, parsed.nextPollAt) : 0;
+
+        const currentTarget = currentVerificationTarget();
+        const address = form.elements.namedItem("address");
+        const port = form.elements.namedItem("port");
+
+        if (!currentTarget.address && address instanceof HTMLInputElement) {
+          address.value = activeVerificationIdentity.address;
+          if (port instanceof HTMLInputElement) {
+            port.value = activeVerificationIdentity.port;
+          }
+        }
+
+        if (!verificationIdentityMatches()) {
+          activeVerification = null;
+          activeVerificationIdentity = null;
+          verificationPollCount = 0;
+          verificationNextPollAt = 0;
+          clearStoredVerification();
+          return;
+        }
+
+        if (activeVerification?.expiresAt && ["pending", "verified"].includes(activeVerification.status) && verificationHasExpired()) {
+          activeVerification = {
+            ...activeVerification,
+            status: "expired"
+          };
+          clearStoredVerification();
+        }
+      } catch {
+        activeVerification = null;
+        activeVerificationIdentity = null;
+        verificationPollCount = 0;
+        verificationNextPollAt = 0;
+        clearStoredVerification();
+      }
+    };
+
+    const updateExpiredVerification = () => {
+      if (!activeVerification?.expiresAt || !["pending", "verified"].includes(activeVerification.status)) {
+        return false;
+      }
+
+      if (new Date(activeVerification.expiresAt).getTime() > Date.now()) {
+        return false;
+      }
+
+      activeVerification = {
+        ...activeVerification,
+        status: "expired"
+      };
+      clearStoredVerification();
+      renderVerification(verificationRequired);
+      updateSubmitState();
+      return true;
+    };
+
+    const scheduleVerificationExpiry = () => {
+      window.clearTimeout(verificationExpiryTimer);
+
+      if (!activeVerification?.expiresAt || !["pending", "verified"].includes(activeVerification.status)) {
+        return;
+      }
+
+      const expiresAt = new Date(activeVerification.expiresAt).getTime();
+
+      if (!Number.isFinite(expiresAt)) {
+        return;
+      }
+
+      const delay = Math.max(0, expiresAt - Date.now() + 50);
+      verificationExpiryTimer = window.setTimeout(updateExpiredVerification, Math.min(delay, 2_147_483_647));
+    };
+
+    const scheduleVerificationPoll = (delayOverride = null) => {
+      window.clearTimeout(verificationPollTimer);
+
+      if (!activeVerification?.id || activeVerification.status !== "pending") {
+        return;
+      }
+
+      if (updateExpiredVerification()) {
+        return;
+      }
+
+      const expiresAt = activeVerification.expiresAt ? new Date(activeVerification.expiresAt).getTime() : 0;
+      const remainingMs = Number.isFinite(expiresAt) && expiresAt > 0 ? expiresAt - Date.now() : VERIFICATION_POLL_DELAYS[VERIFICATION_POLL_DELAYS.length - 1];
+      const defaultDelay = document.hidden
+        ? 30_000
+        : VERIFICATION_POLL_DELAYS[Math.min(verificationPollCount, VERIFICATION_POLL_DELAYS.length - 1)];
+      const baseDelay = Number.isFinite(delayOverride) ? Math.max(0, delayOverride) : defaultDelay;
+      const delay = Math.max(1000, Math.min(baseDelay, remainingMs + 250));
+      verificationPollScheduledAt = Date.now();
+      verificationNextPollAt = verificationPollScheduledAt + delay;
+      saveActiveVerification();
+      verificationPollTimer = window.setTimeout(pollVerification, delay);
+    };
+
+    const pollVerification = async () => {
+      if (!activeVerification?.id || verificationCheckInFlightId === activeVerification.id) {
+        return;
+      }
+
+      if (document.hidden) {
+        scheduleVerificationPoll();
+        return;
+      }
+
+      if (updateExpiredVerification()) {
+        return;
+      }
+
+      const challengeId = activeVerification.id;
+      verificationCheckInFlightId = challengeId;
+      verificationPollCount += 1;
+      verificationPollScheduledAt = 0;
+      verificationNextPollAt = 0;
+      saveActiveVerification();
+      renderVerification(verificationRequired);
+
+      try {
+        const response = await fetch(apiUrl(`/api/servers/verification-challenges/${encodeURIComponent(challengeId)}`), {
+          credentials: "include",
+          headers: { accept: "application/json" }
+        });
+        const data = await response.json().catch(() => ({}));
+
+        if (response.status === 401 || response.status === 404) {
+          activeVerification = null;
+          activeVerificationIdentity = null;
+          verificationPollCount = 0;
+          verificationNextPollAt = 0;
+          clearStoredVerification();
+          renderVerification(verificationRequired);
+          updateSubmitState();
+          showToast({
+            title: SERVER_MESSAGES.submit.verification.expiredTitle,
+            message: SERVER_MESSAGES.submit.verification.staleMessage,
+            kind: "is-error"
+          });
+          return;
+        }
+
+        if (!response.ok) {
+          throw new Error(data.error || SERVER_MESSAGES.submit.verification.unavailableMessage);
+        }
+
+        if (activeVerification?.id !== challengeId) {
+          return;
+        }
+
+        activeVerification = {
+          ...activeVerification,
+          ...data.challenge
+        };
+        if (activeVerification.status === "expired" || activeVerification.status === "consumed") {
+          clearStoredVerification();
+        } else {
+          saveActiveVerification();
+        }
+      } catch {
+        // A transient status failure shouldn't stop the polling cycle
+      } finally {
+        if (verificationCheckInFlightId === challengeId) {
+          verificationCheckInFlightId = "";
+        }
+        if (activeVerification?.id === challengeId) {
+          renderVerification(verificationRequired);
+          updateSubmitState();
+          scheduleVerificationPoll();
+        }
+      }
+    };
+
+    const generateVerification = async () => {
+      const address = form.elements.namedItem("address");
+      const port = form.elements.namedItem("port");
+      const name = form.elements.namedItem("name");
+      const description = form.elements.namedItem("description");
+      const issues = [];
+      let firstInvalidControl = null;
+
+      const addIssue = (control, message) => {
+        issues.push(message);
+        firstInvalidControl ||= control instanceof HTMLElement ? control : null;
+      };
+
+      const nameValue = name instanceof HTMLInputElement ? name.value.trim() : "";
+      const addressValue = address instanceof HTMLInputElement ? address.value.trim() : "";
+      const descriptionValue = description instanceof HTMLTextAreaElement ? description.value.trim() : "";
+
+      if (nameValue.length < 3) {
+        addIssue(name, SERVER_MESSAGES.submit.verification.requirements.name);
+      }
+
+      if (!isValidPublicServerAddress(addressValue)) {
+        addIssue(address, SERVER_MESSAGES.submit.verification.requirements.address);
+      }
+
+      if (port instanceof HTMLInputElement && port.value && !port.checkValidity()) {
+        addIssue(port, SERVER_MESSAGES.submit.verification.requirements.port);
+      }
+
+      if (descriptionValue.length < 40) {
+        addIssue(description, SERVER_MESSAGES.submit.verification.requirements.descriptionMinimum(descriptionValue.length));
+      } else if (descriptionValue.length > SUBMISSION_DESCRIPTION_LIMIT) {
+        addIssue(description, SERVER_MESSAGES.submit.verification.requirements.descriptionMaximum);
+      }
+
+      if (issues.length > 0) {
+        showToast({
+          title: SERVER_MESSAGES.submit.verification.incompleteTitle,
+          message: issues.join(" "),
+          kind: "is-warning",
+          delay: 6500
+        });
+        firstInvalidControl?.focus();
+        return;
+      }
+
+      clearStoredVerification();
+      window.clearTimeout(verificationPollTimer);
+      activeVerification = null;
+      activeVerificationIdentity = currentVerificationTarget();
+      verificationPollCount = 0;
+      verificationPollScheduledAt = 0;
+      verificationNextPollAt = 0;
+      verificationBusy = true;
+      renderVerification(verificationRequired);
+      updateSubmitState();
+
+      try {
+        const formData = new FormData(form);
+        const response = await fetch(apiUrl("/api/servers/verification-challenges"), {
+          method: "POST",
+          credentials: "include",
+          headers: {
+            "content-type": "application/json",
+            accept: "application/json"
+          },
+          body: JSON.stringify({
+            name: String(formData.get("name") ?? ""),
+            address: String(formData.get("address") ?? ""),
+            port: String(formData.get("port") ?? ""),
+            description: String(formData.get("description") ?? "")
+          })
+        });
+        const data = await response.json().catch(() => ({}));
+
+        if (!response.ok) {
+          throw new Error(data.error || SERVER_MESSAGES.submit.verification.unavailableMessage);
+        }
+
+        activeVerification = {
+          id: data.id,
+          code: data.code,
+          command: data.command,
+          status: data.status,
+          createdAt: data.createdAt,
+          expiresAt: data.expiresAt
+        };
+        activeVerificationIdentity = currentVerificationTarget();
+        verificationPollCount = 0;
+        verificationPollScheduledAt = 0;
+        verificationNextPollAt = 0;
+        saveActiveVerification();
+
+        if (activeVerification.status === "pending") {
+          const createdAt = new Date(activeVerification.createdAt).getTime();
+          const firstCheckDelay = Number.isFinite(createdAt)
+            ? Math.max(0, createdAt + VERIFICATION_POLL_DELAYS[0] - Date.now())
+            : VERIFICATION_POLL_DELAYS[0];
+          scheduleVerificationPoll(firstCheckDelay);
+        }
+      } catch (error) {
+        activeVerification = null;
+        activeVerificationIdentity = null;
+        showToast({
+          title: SERVER_MESSAGES.submit.verification.unavailableTitle,
+          message: error instanceof Error ? error.message : SERVER_MESSAGES.submit.verification.unavailableMessage,
+          kind: "is-error"
+        });
+      } finally {
+        verificationBusy = false;
+        renderVerification(verificationRequired);
+        updateSubmitState();
+      }
+    };
+
+    let verificationBusy = false;
+
+    const fallbackCopyText = (text) => {
+      const textarea = document.createElement("textarea");
+      textarea.value = text;
+      textarea.setAttribute("readonly", "");
+      textarea.style.position = "fixed";
+      textarea.style.top = "-1000px";
+      textarea.style.opacity = "0";
+      document.body.append(textarea);
+      textarea.select();
+      textarea.setSelectionRange(0, textarea.value.length);
+
+      try {
+        return document.execCommand("copy");
+      } finally {
+        textarea.remove();
+      }
+    };
+
+    const copyVerificationCommand = async (button, command) => {
+      try {
+        if (navigator.clipboard?.writeText && window.isSecureContext) {
+          await navigator.clipboard.writeText(command).catch(() => {
+            if (!fallbackCopyText(command)) {
+              throw new Error("Clipboard fallback failed.");
+            }
+          });
+        } else if (!fallbackCopyText(command)) {
+          throw new Error("Clipboard fallback failed.");
+        }
+
+        window.clearTimeout(Number(button.dataset.copyResetTimer || 0));
+        button.classList.add("is-copied");
+        button.setAttribute("aria-label", `Copied verification command ${command}`);
+        const status = button.querySelector("[data-copy-status]");
+        if (status) {
+          status.textContent = SERVER_MESSAGES.submit.verification.copied;
+        }
+        showToast({
+          title: SERVER_MESSAGES.submit.verification.copiedTitle,
+          message: SERVER_MESSAGES.submit.verification.copiedMessage,
+          kind: "is-success",
+          delay: 3600
+        });
+        const resetTimer = window.setTimeout(() => {
+          button.classList.remove("is-copied");
+          button.setAttribute("aria-label", `Copy verification command ${command}`);
+          if (status) {
+            status.textContent = "";
+          }
+          delete button.dataset.copyResetTimer;
+        }, 1800);
+        button.dataset.copyResetTimer = String(resetTimer);
+      } catch {
+        showToast({
+          title: SERVER_MESSAGES.submit.verification.copyFailureTitle,
+          message: SERVER_MESSAGES.submit.verification.copyFailureMessage,
+          kind: "is-error"
+        });
+      }
+    };
+
+    const startVerificationCountdown = (indicator, value) => {
+      window.clearInterval(verificationCountdownTimer);
+
+      const update = () => {
+        if (!activeVerification?.id || activeVerification.status !== "pending" || !verificationNextPollAt) {
+          indicator.classList.add("is-paused");
+          value.textContent = "0s";
+          indicator.style.setProperty("--poll-progress", "0deg");
+          return;
+        }
+
+        if (document.hidden) {
+          indicator.classList.add("is-paused");
+          value.textContent = "-";
+          indicator.style.setProperty("--poll-progress", "0deg");
+          return;
+        }
+
+        indicator.classList.remove("is-paused");
+        const remainingMs = Math.max(0, verificationNextPollAt - Date.now());
+        const totalMs = Math.max(1000, verificationNextPollAt - (verificationPollScheduledAt || Date.now()));
+        const progress = Math.max(0, Math.min(1, remainingMs / totalMs));
+        value.textContent = `${Math.ceil(remainingMs / 1000)}s`;
+        indicator.style.setProperty("--poll-progress", `${Math.round(progress * 360)}deg`);
+      };
+
+      update();
+      verificationCountdownTimer = window.setInterval(update, 250);
+    };
+
+    const createVerificationPanel = () => {
+      if (!activeVerification) {
+        return null;
+      }
+
+      const column = document.createElement("div");
+      column.className = "col-12";
+
+      const panel = document.createElement("div");
+      panel.className = "server-submit-verification-panel d-grid gap-3";
+
+      if (activeVerification) {
+        const status = activeVerification.status;
+        const notice = document.createElement("div");
+        notice.className = `server-submit-notice d-flex flex-column flex-md-row align-items-md-center gap-3 p-3 rounded-3 ${status === "verified" ? "is-success" : status === "expired" ? "is-error" : "is-warning"}`.trim();
+
+        const noticeMain = document.createElement("div");
+        noticeMain.className = "d-flex align-items-start align-items-md-center gap-3 flex-grow-1 min-w-0";
+
+        const icon = document.createElement("i");
+        icon.className = `${status === "verified" ? "fa-solid fa-circle-check" : status === "expired" ? "fa-solid fa-triangle-exclamation" : "fa-solid fa-clock"} align-self-center`;
+        icon.setAttribute("aria-hidden", "true");
+
+        const content = document.createElement("div");
+        content.className = "d-grid gap-1 min-w-0 flex-grow-1";
+        const title = document.createElement("strong");
+        title.textContent = status === "verified"
+          ? SERVER_MESSAGES.submit.verification.verifiedTitle
+          : status === "expired"
+            ? SERVER_MESSAGES.submit.verification.expiredTitle
+            : SERVER_MESSAGES.submit.verification.pendingTitle;
+        const message = document.createElement("p");
+        message.className = "mb-0";
+        message.textContent = status === "verified"
+          ? canKeepPreviousVerification
+            ? SERVER_MESSAGES.submit.verification.verifiedUpdateMessage
+            : SERVER_MESSAGES.submit.verification.verifiedMessage
+          : status === "expired"
+            ? SERVER_MESSAGES.submit.verification.expiredMessage
+            : SERVER_MESSAGES.submit.verification.pendingMessage;
+        content.append(title, message);
+        noticeMain.append(icon, content);
+        notice.append(noticeMain);
+
+        if (status === "pending") {
+          const pollStatus = document.createElement("div");
+          pollStatus.className = "server-verification-poll d-flex flex-row flex-md-column align-items-center justify-content-end justify-content-md-center gap-2 ms-md-auto flex-shrink-0 text-center";
+
+          const label = document.createElement("span");
+          label.className = "server-verification-poll-label text-uppercase text-nowrap";
+          label.textContent = SERVER_MESSAGES.submit.verification.nextCheck;
+
+          const indicator = document.createElement("span");
+          indicator.className = "server-verification-poll-ring d-inline-flex align-items-center justify-content-center rounded-circle";
+          indicator.setAttribute("aria-hidden", "true");
+
+          const value = document.createElement("span");
+          value.className = "server-verification-poll-value";
+          indicator.append(value);
+
+          pollStatus.append(label, indicator);
+          notice.append(pollStatus);
+          startVerificationCountdown(indicator, value);
+        }
+
+        panel.append(notice);
+
+        if (activeVerification.command && status === "pending") {
+          const command = document.createElement("div");
+          command.className = "server-verification-command d-flex flex-column flex-md-row align-items-md-center gap-2 p-3 border rounded-3";
+
+          const commandText = document.createElement("button");
+          commandText.className = "server-verification-command-text flex-grow-1 text-start p-3 border rounded-2";
+          commandText.type = "button";
+          commandText.setAttribute("aria-label", `Copy verification command ${activeVerification.command}`);
+          const code = document.createElement("code");
+          code.textContent = activeVerification.command;
+          commandText.append(code);
+
+          const copy = document.createElement("button");
+          copy.className = "btn btn-site copy-action server-verification-copy d-inline-flex align-items-center justify-content-center gap-2 fw-bold position-relative overflow-hidden";
+          copy.type = "button";
+          copy.dataset.copySuccessLabel = "Copied!";
+          copy.setAttribute("aria-label", `Copy verification command ${activeVerification.command}`);
+          copy.innerHTML = `<span class="position-relative z-1">${SERVER_MESSAGES.submit.verification.copy}</span><i class="copy-action-icon fa-regular fa-copy flex-shrink-0 position-relative z-1" aria-hidden="true"></i><span class="visually-hidden" data-copy-status aria-live="polite"></span>`;
+          copy.addEventListener("click", () => copyVerificationCommand(copy, activeVerification.command));
+          commandText.addEventListener("click", () => copyVerificationCommand(copy, activeVerification.command));
+
+          command.append(commandText, copy);
+          panel.append(command);
+        }
+
+      }
+
+      column.append(panel);
+      return column;
+    };
+
+    const renderVerificationHeader = (requiresVerification) => {
+      reviewAction.replaceChildren();
+      const canGenerate = requiresVerification && (!activeVerification || activeVerification.status === "expired" || !verificationIdentityMatches());
+
+      if (!canGenerate) {
+        return;
+      }
+
+      const generate = document.createElement("button");
+      generate.className = "btn btn-site server-verification-start d-inline-flex align-items-center justify-content-center gap-2 fw-bold mx-auto mx-md-0 mw-100";
+      generate.type = "button";
+      generate.disabled = verificationBusy;
+      generate.innerHTML = verificationBusy
+        ? `<i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i> ${SERVER_MESSAGES.submit.verification.generating}`
+        : `<i class="fa-solid fa-key" aria-hidden="true"></i> ${SERVER_MESSAGES.submit.verification.generate}`;
+      generate.addEventListener("click", generateVerification);
+      reviewAction.append(generate);
+    };
+
+    const renderVerification = (requiresVerification) => {
       if (!(reviewRow instanceof HTMLElement)) {
         return;
       }
 
-      verificationNeedsReview = needsReview;
+      window.clearInterval(verificationCountdownTimer);
+      verificationRequired = requiresVerification;
+      scheduleVerificationExpiry();
+      renderVerificationHeader(requiresVerification);
       reviewRow.replaceChildren();
 
-      if (canKeepPreviousVerification && !needsReview) {
+      if (canKeepPreviousVerification && !requiresVerification) {
         reviewRow.append(createVerificationComplete());
         return;
       }
 
-      reviewRow.append(...(canKeepPreviousVerification ? [createIdentityChangedNotice()] : []), createProofHelpColumn(), createProofField());
+      const verificationPanel = createVerificationPanel();
+      reviewRow.append(
+        ...(canKeepPreviousVerification ? [createIdentityChangedNotice()] : []),
+        ...(verificationPanel ? [verificationPanel] : [])
+      );
     };
 
-    renderVerification(verificationNeedsReview);
+    restoreActiveVerification();
+    renderVerification(verificationRequired);
 
     const actions = document.createElement("div");
     actions.className = "server-submit-actions d-flex flex-column flex-sm-row align-items-center justify-content-center gap-3";
@@ -1590,34 +2250,11 @@ const initServerSubmit = () => {
       renderTurnstile(form);
     }
 
-    const currentIdentitySnapshot = () => {
-      const formData = new FormData(form);
-      return {
-        name: comparableValue(formData.get("name")),
-        address: comparableValue(formData.get("address")).toLowerCase(),
-        port: comparableValue(formData.get("port") || "25565") || "25565"
-      };
-    };
-
-    const currentPublicSnapshot = () => {
-      const formData = new FormData(form);
-      return {
-        description: comparableValue(formData.get("description")),
-        websiteUrl: comparableValue(formData.get("websiteUrl")),
-        discord: comparableValue(formData.get("discord")),
-        facebook: comparableValue(formData.get("facebook")),
-        instagram: comparableValue(formData.get("instagram")),
-        x: comparableValue(formData.get("x")),
-        youtube: comparableValue(formData.get("youtube"))
-      };
-    };
-
     const hasObjectChanges = (current, baseline) => Boolean(baseline) && Object.keys(current).some((key) => current[key] !== baseline[key]);
 
     const formHasChanges = () => {
-      const proof = form.elements.namedItem("proof");
-      const proofChanged = proof instanceof HTMLTextAreaElement && comparableValue(proof.value) !== baselineProof;
-      return hasObjectChanges(currentIdentitySnapshot(), baselineIdentity) || hasObjectChanges(currentPublicSnapshot(), baselinePublic) || proofChanged;
+      const verificationChanged = verificationRequired && verificationIsComplete();
+      return hasObjectChanges(currentIdentitySnapshot(), baselineIdentity) || hasObjectChanges(currentPublicSnapshot(), baselinePublic) || verificationChanged;
     };
 
     const hasResubmitChanges = () => mode !== "resubmit" || formHasChanges();
@@ -1625,28 +2262,44 @@ const initServerSubmit = () => {
     const updateSubmitState = () => {
       const blockedByProtection = !turnstileSiteKey && !isLocalBuild;
       const blockedByUnchangedResubmit = mode === "resubmit" && !hasResubmitChanges();
-      submit.disabled = blockedByProtection;
+      const blockedByVerification = verificationRequired && !verificationIsComplete();
+      submit.disabled = blockedByProtection || blockedByVerification;
       submit.title = blockedByUnchangedResubmit
         ? SERVER_MESSAGES.submit.unchangedResubmit
-        : "";
+        : blockedByVerification
+          ? SERVER_MESSAGES.submit.verification.requiredMessage
+          : "";
     };
 
     const updateProofRequirement = () => {
+      if (activeVerification && !verificationIdentityMatches()) {
+        clearStoredVerification();
+        activeVerification = null;
+        activeVerificationIdentity = null;
+        verificationPollCount = 0;
+        verificationNextPollAt = 0;
+        window.clearTimeout(verificationPollTimer);
+        renderVerification(verificationRequired);
+      }
+
       if (!baselineIdentity || !canKeepPreviousVerification) {
+        updateSubmitState();
         return;
       }
 
       const currentIdentity = currentIdentitySnapshot();
-      const needsReview = currentIdentity.name !== baselineIdentity.name || currentIdentity.address !== baselineIdentity.address || currentIdentity.port !== baselineIdentity.port;
-      if (needsReview !== verificationNeedsReview) {
-        renderVerification(needsReview);
+      const requiresVerification = currentIdentity.address !== baselineIdentity.address || currentIdentity.port !== baselineIdentity.port;
+      if (requiresVerification !== verificationRequired) {
+        renderVerification(requiresVerification);
+      } else if (requiresVerification) {
+        renderVerification(requiresVerification);
       }
 
-      submit.innerHTML = `<i class="fa-solid fa-paper-plane" aria-hidden="true"></i> ${submitButtonLabel(mode, needsReview)}`;
+      submit.innerHTML = `<i class="fa-solid fa-paper-plane" aria-hidden="true"></i> ${submitButtonLabel(mode)}`;
       updateSubmitState();
     };
 
-    ["name", "address", "port"].forEach((fieldName) => {
+    ["address", "port"].forEach((fieldName) => {
       const control = form.elements.namedItem(fieldName);
       if (control instanceof HTMLElement) {
         control.addEventListener("input", updateProofRequirement);
@@ -1656,6 +2309,13 @@ const initServerSubmit = () => {
     form.addEventListener("input", updateSubmitState);
     form.addEventListener("change", updateSubmitState);
     updateSubmitState();
+    if (activeVerification?.status === "pending") {
+      const createdAt = new Date(activeVerification.createdAt).getTime();
+      const fallbackFirstCheckAt = Number.isFinite(createdAt) ? createdAt + VERIFICATION_POLL_DELAYS[0] : Date.now() + VERIFICATION_POLL_DELAYS[0];
+      const scheduledAt = verificationNextPollAt || fallbackFirstCheckAt;
+      scheduleVerificationPoll(Math.max(0, scheduledAt - Date.now()));
+      renderVerification(verificationRequired);
+    }
 
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
@@ -1684,42 +2344,63 @@ const initServerSubmit = () => {
         return;
       }
 
-      const payload = submissionPayload(form);
       const currentIdentity = currentIdentitySnapshot();
-      const needsReview = mode !== "edit" || !baselineIdentity || currentIdentity.name !== baselineIdentity.name || currentIdentity.address !== baselineIdentity.address || currentIdentity.port !== baselineIdentity.port;
+      const needsStaffReview = mode !== "edit";
+      const requiresVerification = needsStaffReview || !baselineIdentity || currentIdentity.address !== baselineIdentity.address || currentIdentity.port !== baselineIdentity.port;
+
+      if (requiresVerification && !verificationIsComplete()) {
+        showToast({
+          title: SERVER_MESSAGES.submit.verification.pendingTitle,
+          message: SERVER_MESSAGES.submit.verification.requiredMessage,
+          kind: "is-warning"
+        });
+        updateSubmitState();
+        return;
+      }
+
+      const payload = submissionPayload(form, activeVerification?.id ?? "");
 
       submit.disabled = true;
       const progressToast = showToast({
-        title: needsReview ? SERVER_MESSAGES.submit.toasts.submitting.reviewTitle : SERVER_MESSAGES.submit.toasts.submitting.saveTitle,
-        message: needsReview ? SERVER_MESSAGES.submit.toasts.submitting.reviewMessage : SERVER_MESSAGES.submit.toasts.submitting.saveMessage,
+        title: needsStaffReview ? SERVER_MESSAGES.submit.toasts.submitting.reviewTitle : SERVER_MESSAGES.submit.toasts.submitting.saveTitle,
+        message: needsStaffReview ? SERVER_MESSAGES.submit.toasts.submitting.reviewMessage : SERVER_MESSAGES.submit.toasts.submitting.saveMessage,
         kind: "is-warning",
         autohide: false
       });
 
       try {
-        const response = await fetch(apiUrl(needsReview ? (mode === "new" ? "/api/servers/submit" : "/api/servers/me/resubmit") : "/api/servers/me/details"), {
-          method: needsReview ? "POST" : "PATCH",
+        const endpoint = needsStaffReview
+          ? mode === "new" ? "/api/servers/submit" : "/api/servers/me/resubmit"
+          : requiresVerification ? "/api/servers/me/resubmit" : "/api/servers/me/details";
+        const response = await fetch(apiUrl(endpoint), {
+          method: needsStaffReview || requiresVerification ? "POST" : "PATCH",
           credentials: "include",
           headers: {
             "content-type": "application/json",
             accept: "application/json"
           },
-          body: JSON.stringify(needsReview ? payload : publicDetailsPayload(form))
+          body: JSON.stringify(needsStaffReview || requiresVerification ? payload : approvedDetailsPayload(form))
         });
         const data = await response.json().catch(() => ({}));
 
         if (!response.ok) {
-          throw new Error(data.error || SERVER_MESSAGES.submit.toasts.failure.submissionMessage);
+          throw new Error(data.error || (needsStaffReview
+            ? SERVER_MESSAGES.submit.toasts.failure.submissionMessage
+            : SERVER_MESSAGES.submit.toasts.failure.saveMessage));
+        }
+
+        if (requiresVerification) {
+          clearStoredVerification();
         }
 
         window.turnstile?.reset?.();
         dismissToast(progressToast);
         const autoSuspended = data.status === "suspended" || data.item?.reviewStatus === "suspended";
         showToast({
-          title: autoSuspended ? SERVER_MESSAGES.submit.toasts.success.suspendedTitle : needsReview ? SERVER_MESSAGES.submit.toasts.success.submittedTitle : SERVER_MESSAGES.submit.toasts.success.savedTitle,
+          title: autoSuspended ? SERVER_MESSAGES.submit.toasts.success.suspendedTitle : needsStaffReview ? SERVER_MESSAGES.submit.toasts.success.submittedTitle : SERVER_MESSAGES.submit.toasts.success.savedTitle,
           message: autoSuspended
             ? SERVER_MESSAGES.submit.toasts.success.suspendedMessage
-            : needsReview
+            : needsStaffReview
               ? SERVER_MESSAGES.submit.toasts.success.submittedMessage
               : SERVER_MESSAGES.submit.toasts.success.savedMessage,
           kind: autoSuspended ? "is-error" : "is-success"
@@ -1729,8 +2410,12 @@ const initServerSubmit = () => {
         window.turnstile?.reset?.();
         dismissToast(progressToast);
         showToast({
-          title: needsReview ? SERVER_MESSAGES.submit.toasts.failure.submissionTitle : SERVER_MESSAGES.submit.toasts.failure.saveTitle,
-          message: error instanceof Error ? error.message : SERVER_MESSAGES.submit.toasts.failure.submissionMessage,
+          title: needsStaffReview ? SERVER_MESSAGES.submit.toasts.failure.submissionTitle : SERVER_MESSAGES.submit.toasts.failure.saveTitle,
+          message: error instanceof Error
+            ? error.message
+            : needsStaffReview
+              ? SERVER_MESSAGES.submit.toasts.failure.submissionMessage
+              : SERVER_MESSAGES.submit.toasts.failure.saveMessage,
           kind: "is-error",
           delay: 6200
         });
@@ -1742,7 +2427,7 @@ const initServerSubmit = () => {
 
   const createReviewFeedback = (item) => {
     const reason = document.createElement("section");
-    reason.className = "server-submit-reason d-flex gap-3 p-3 rounded-3";
+    reason.className = "server-submit-reason surface-lift d-flex gap-3 p-3 rounded-3";
     reason.innerHTML = '<i class="fa-solid fa-circle-exclamation flex-shrink-0" aria-hidden="true"></i>';
 
     const content = document.createElement("div");
@@ -1773,7 +2458,7 @@ const initServerSubmit = () => {
 
     items.filter(Boolean).forEach((item) => {
       const notice = document.createElement("section");
-      notice.className = `server-submit-notice d-flex align-items-center gap-3 p-3 rounded-3 ${item.kind || ""}`.trim();
+      notice.className = `server-submit-notice surface-lift d-flex align-items-center gap-3 p-3 rounded-3 ${item.kind || ""}`.trim();
 
       const icon = document.createElement("i");
       icon.className = `${item.icon || "fa-solid fa-circle-info"} d-inline-flex align-items-center justify-content-center flex-shrink-0`;
@@ -1796,7 +2481,7 @@ const initServerSubmit = () => {
 
   const createServerSummary = (item, actions = null) => {
     const summary = document.createElement("article");
-    summary.className = "server-card server-submit-summary d-flex flex-column gap-3 w-100 p-3 overflow-hidden rounded-3";
+    summary.className = "server-card surface-panel surface-lift server-submit-summary d-flex flex-column gap-3 w-100 p-3 overflow-hidden rounded-3";
 
     const top = document.createElement("div");
     top.className = "server-card-top d-flex align-items-center gap-3";
@@ -1825,9 +2510,10 @@ const initServerSubmit = () => {
     title.textContent = item.name;
 
     const address = document.createElement("button");
-    address.className = "btn btn-site server-address d-inline-flex align-items-center gap-2 overflow-hidden text-start text-nowrap";
+    address.className = "btn btn-site copy-action server-address d-inline-flex align-items-center gap-2 overflow-hidden text-start text-nowrap";
     address.type = "button";
     address.dataset.copyServerAddress = item.address;
+    address.dataset.copySuccessLabel = "Copied!";
     address.setAttribute("aria-label", `Copy server address ${item.address}`);
     const addressLabel = document.createElement("span");
     addressLabel.className = "server-address-label flex-shrink-0";
@@ -1836,7 +2522,7 @@ const initServerSubmit = () => {
     addressValue.className = "server-address-value text-truncate";
     addressValue.textContent = item.address;
     const addressIcon = document.createElement("i");
-    addressIcon.className = "fa-regular fa-copy";
+    addressIcon.className = "copy-action-icon fa-regular fa-copy";
     addressIcon.setAttribute("aria-hidden", "true");
     address.append(addressLabel, addressValue, addressIcon);
 
@@ -1854,7 +2540,7 @@ const initServerSubmit = () => {
     description.textContent = item.description;
 
     const stats = document.createElement("div");
-    stats.className = "server-stats row g-2";
+    stats.className = "server-stats row row-cols-1 row-cols-sm-2 g-2";
     stats.append(
       serverStatTemplate("Players", playerCountLabel(item.status), "fa-solid fa-user-group"),
       serverStatTemplate("Version", versionLabel(item.status), "fa-solid fa-code-branch"),
@@ -1910,7 +2596,7 @@ const initServerSubmit = () => {
     appendPublicFields(publicFields, item);
 
     const section = document.createElement("section");
-    section.className = "server-submit-section d-flex flex-column gap-3 p-3 p-md-4 rounded-3";
+    section.className = "server-submit-section surface-lift d-flex flex-column gap-3 p-3 p-md-4 rounded-3";
     const title = document.createElement("h2");
     title.className = "server-submit-section-title mb-0";
     title.textContent = "Public Details";
@@ -2078,7 +2764,7 @@ const initServerSubmit = () => {
     }
 
     const deleteButton = document.createElement("button");
-    deleteButton.className = "btn btn-site btn-site-sm server-submit-delete d-inline-flex align-items-center justify-content-center gap-2 fw-bold";
+    deleteButton.className = "btn btn-site btn-site-sm action-danger d-inline-flex align-items-center justify-content-center gap-2 fw-bold";
     deleteButton.type = "button";
     deleteButton.innerHTML = '<i class="fa-solid fa-trash" aria-hidden="true"></i> Delete Submission';
     deleteButton.addEventListener("click", async () => {

@@ -265,6 +265,121 @@ img {
   --bs-btn-border-radius: 0.375rem;
 }
 
+.surface-panel {
+  border: 0.0625rem solid var(--line-cool);
+  background:
+    linear-gradient(180deg, rgba(22, 36, 52, 0.8), rgba(16, 29, 41, 0.8)),
+    rgba(16, 27, 39, 0.7);
+  box-shadow: 0 1.125rem 2.75rem rgba(0, 0, 0, 0.25), inset 0 0.0625rem 0 rgba(255, 255, 255, 0.05);
+}
+
+.surface-lift {
+  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease, filter 180ms ease;
+}
+
+.surface-lift:hover,
+.surface-lift:focus-within {
+  transform: translateY(-0.25rem);
+  border-color: rgba(251, 176, 59, 0.4);
+  box-shadow: 0 1.375rem 3rem rgba(0, 0, 0, 0.3), 0 0 0 0.0625rem rgba(251, 176, 59, 0.1), inset 0 0.0625rem 0 rgba(255, 255, 255, 0.05);
+  filter: brightness(var(--surface-lift-brightness, 1.04));
+}
+
+.copy-action {
+  --copy-success-font-size: 0.8rem;
+  --copy-success-letter-spacing: 0;
+  --copy-icon-margin-left: 0.375rem;
+  --copy-icon-min-width: auto;
+  --copy-icon-padding-left: 0.75rem;
+  --copy-icon-padding-right: 0;
+  --copy-icon-font-size: 0.95rem;
+  --copy-icon-opacity: 1;
+  isolation: isolate;
+}
+
+.copy-action > :not(.visually-hidden) {
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.copy-action-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+  min-width: var(--copy-icon-min-width);
+  margin-left: var(--copy-icon-margin-left);
+  padding-left: var(--copy-icon-padding-left);
+  padding-right: var(--copy-icon-padding-right);
+  border-left: 0.0625rem solid rgba(251, 176, 59, 0.25);
+  color: #d5dbe0;
+  font-size: var(--copy-icon-font-size);
+  opacity: var(--copy-icon-opacity);
+}
+
+.copy-action::before,
+.copy-action::after {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.copy-action::before {
+  content: "";
+  background:
+    linear-gradient(135deg, rgba(39, 225, 100, 0.95), rgba(39, 225, 100, 0.65)),
+    rgba(12, 93, 43, 0.9);
+  transform: translateY(100%) scale(0.98);
+}
+
+.copy-action::after {
+  content: attr(data-copy-success-label);
+  color: #eaffef;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: var(--copy-success-font-size);
+  font-weight: 900;
+  letter-spacing: var(--copy-success-letter-spacing);
+  text-transform: uppercase;
+  transform: translateY(0.625rem);
+}
+
+.copy-action.is-copied {
+  border-color: rgba(39, 225, 100, 0.8);
+}
+
+.copy-action.is-copied > :not(.visually-hidden) {
+  opacity: 0;
+  transform: translateY(-0.375rem);
+}
+
+.copy-action.is-copied::before {
+  animation: commandCopiedFill 1800ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.copy-action.is-copied::after {
+  animation: commandCopiedText 1800ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.action-danger {
+  border-color: rgba(248, 113, 113, 0.4);
+  color: #fecaca;
+}
+
+.action-danger:hover,
+.action-danger:focus-visible {
+  border-color: rgba(248, 113, 113, 0.7);
+  background: rgba(127, 29, 29, 0.35);
+  color: #fff1f1;
+}
+
+.dark-select option {
+  background-color: #101b27;
+  color: #fff8ea;
+}
+
 .btn-site-primary {
   border-color: #ffb43a;
   background: linear-gradient(135deg, var(--orange-deep), var(--orange) 58%, var(--amber));
@@ -583,22 +698,9 @@ h1 span:nth-child(2) {
 }
 
 .feature {
+  --surface-lift-brightness: 1.05;
   min-height: 15.3125rem;
   padding: 2.125rem 1.625rem;
-  border: 0.0625rem solid var(--line-cool);
-  background:
-    linear-gradient(180deg, rgba(22, 36, 52, 0.8), rgba(16, 29, 41, 0.8)),
-    rgba(16, 27, 39, 0.7);
-  box-shadow: 0 1.125rem 2.75rem rgba(0, 0, 0, 0.25), inset 0 0.0625rem 0 rgba(255, 255, 255, 0.05);
-  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease, filter 180ms ease;
-}
-
-.feature:hover,
-.feature:focus-within {
-  transform: translateY(-0.25rem);
-  border-color: rgba(251, 176, 59, 0.4);
-  box-shadow: 0 1.375rem 3rem rgba(0, 0, 0, 0.3), 0 0 0 0.0625rem rgba(251, 176, 59, 0.1), inset 0 0.0625rem 0 rgba(255, 255, 255, 0.05);
-  filter: brightness(1.05);
 }
 
 .feature .feature-icon {
@@ -903,24 +1005,11 @@ h1 span:nth-child(2) {
 }
 
 .gallery-card {
+  --surface-lift-brightness: 1.05;
   aspect-ratio: 16 / 9;
-  border: 0.0625rem solid var(--line-cool);
   border-radius: 0.5rem;
-  background:
-    linear-gradient(180deg, rgba(22, 36, 52, 0.8), rgba(16, 29, 41, 0.8)),
-    rgba(16, 27, 39, 0.7);
   color: var(--text);
-  box-shadow: 0 1.125rem 2.75rem rgba(0, 0, 0, 0.25), inset 0 0.0625rem 0 rgba(255, 255, 255, 0.05);
   cursor: zoom-in;
-  transition: border-color 180ms ease, box-shadow 180ms ease, filter 180ms ease, transform 180ms ease;
-}
-
-.gallery-card:hover,
-.gallery-card:focus-visible {
-  transform: translateY(-0.25rem);
-  border-color: rgba(251, 176, 59, 0.4);
-  box-shadow: 0 1.375rem 3rem rgba(0, 0, 0, 0.3), 0 0 0 0.0625rem rgba(251, 176, 59, 0.1), inset 0 0.0625rem 0 rgba(255, 255, 255, 0.05);
-  filter: brightness(1.05);
 }
 
 .gallery-card:focus-visible {
@@ -1112,13 +1201,6 @@ h1 span:nth-child(2) {
   transform: translateY(-0.0625rem);
 }
 
-.gallery-viewer-thumb img,
-.gallery-viewer-thumb video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
 @media (max-width: 991.98px) {
   .gallery-side-column,
   .gallery-side-row {
@@ -1158,11 +1240,6 @@ h1 span:nth-child(2) {
 }
 
 .comparison-panel {
-  border: 0.0625rem solid var(--line-cool);
-  background:
-    linear-gradient(180deg, rgba(22, 36, 52, 0.8), rgba(16, 29, 41, 0.8)),
-    rgba(16, 27, 39, 0.7);
-  box-shadow: 0 1.125rem 2.75rem rgba(0, 0, 0, 0.25), inset 0 0.0625rem 0 rgba(255, 255, 255, 0.05);
   transition: border-color 220ms ease, box-shadow 220ms ease, transform 220ms ease, filter 220ms ease;
 }
 
@@ -1607,39 +1684,13 @@ h1 span:nth-child(2) {
   margin-top: 1.75rem;
 }
 
-.server-card,
-.server-admin-modal .modal-content {
-  border: 0.0625rem solid var(--line-cool);
-  background:
-    linear-gradient(180deg, rgba(22, 36, 52, 0.8), rgba(16, 29, 41, 0.8)),
-    rgba(16, 27, 39, 0.7);
-  box-shadow: 0 1.125rem 2.75rem rgba(0, 0, 0, 0.25), inset 0 0.0625rem 0 rgba(255, 255, 255, 0.05);
-}
-
 .server-card {
   min-width: 0;
   min-height: 18rem;
-  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease, filter 180ms ease;
-}
-
-.server-card:hover,
-.server-card:focus-within {
-  transform: translateY(-0.25rem);
-  border-color: rgba(251, 176, 59, 0.4);
-  box-shadow: 0 1.375rem 3rem rgba(0, 0, 0, 0.3), 0 0 0 0.0625rem rgba(251, 176, 59, 0.1), inset 0 0.0625rem 0 rgba(255, 255, 255, 0.05);
-  filter: brightness(1.04);
 }
 
 .server-card-skeleton {
   pointer-events: none;
-}
-
-.server-card-skeleton:hover,
-.server-card-skeleton:focus-within {
-  transform: none;
-  border-color: var(--line-cool);
-  box-shadow: 0 1.125rem 2.75rem rgba(0, 0, 0, 0.25), inset 0 0.0625rem 0 rgba(255, 255, 255, 0.05);
-  filter: none;
 }
 
 .server-skeleton {
@@ -1744,8 +1795,13 @@ h1 span:nth-child(2) {
   --bs-btn-padding-x: 0.75rem;
   --bs-btn-font-size: 0.75rem;
   --bs-btn-border-radius: 0.375rem;
+  --copy-icon-margin-left: 0.25rem;
+  --copy-icon-min-width: 1.375rem;
+  --copy-icon-padding-left: 0.625rem;
+  --copy-icon-padding-right: 0.125rem;
+  --copy-icon-font-size: 0.75rem;
+  --copy-icon-opacity: 0.85;
   position: relative;
-  isolation: isolate;
   align-self: flex-start;
   width: fit-content;
   max-width: 100%;
@@ -1764,7 +1820,6 @@ h1 span:nth-child(2) {
   position: relative;
   z-index: 1;
   min-width: 0;
-  transition: opacity 180ms ease, transform 180ms ease;
 }
 
 .server-address-label {
@@ -1772,76 +1827,10 @@ h1 span:nth-child(2) {
   color: #fff1dc;
 }
 
-.server-address i {
-  position: relative;
-  z-index: 1;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  align-self: stretch;
-  min-width: 1.375rem;
-  margin-left: 0.25rem;
-  padding-left: 0.625rem;
-  padding-right: 0.125rem;
-  border-left: 0.0625rem solid rgba(251, 176, 59, 0.25);
-  color: #d5dbe0;
-  font-size: 0.75rem;
-  opacity: 0.85;
-  transition: opacity 180ms ease, transform 180ms ease;
-}
-
-.server-address::before,
-.server-address::after {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  display: grid;
-  place-items: center;
-  pointer-events: none;
-  opacity: 0;
-}
-
-.server-address::before {
-  content: "";
-  background:
-    linear-gradient(135deg, rgba(39, 225, 100, 0.95), rgba(39, 225, 100, 0.65)),
-    rgba(12, 93, 43, 0.9);
-  transform: translateY(100%) scale(0.98);
-}
-
-.server-address::after {
-  content: "Copied!";
-  color: #eaffef;
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-size: 0.8rem;
-  font-weight: 900;
-  letter-spacing: 0;
-  text-transform: uppercase;
-  transform: translateY(0.625rem);
-}
-
 .server-address:hover,
 .server-address:focus-visible,
 .server-address.is-copied {
   color: var(--orange-light);
-}
-
-.server-address.is-copied {
-  border-color: rgba(39, 225, 100, 0.8);
-}
-
-.server-address.is-copied span,
-.server-address.is-copied i {
-  opacity: 0;
-  transform: translateY(-0.375rem);
-}
-
-.server-address.is-copied::before {
-  animation: commandCopiedFill 1800ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
-}
-
-.server-address.is-copied::after {
-  animation: commandCopiedText 1800ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
 
 .server-status,
@@ -2003,8 +1992,7 @@ h1 span:nth-child(2) {
   filter: drop-shadow(0 0.5rem 1.25rem rgba(255, 116, 23, 0.25));
 }
 
-.servers-state-error,
-.server-submit-status.is-error {
+.servers-state-error {
   color: #fecaca;
 }
 
@@ -2281,7 +2269,6 @@ h1 span:nth-child(2) {
 }
 
 .server-submit-account,
-.server-submit-check,
 .server-submit-section,
 .server-submit-notice,
 .server-submit-reason {
@@ -2289,23 +2276,6 @@ h1 span:nth-child(2) {
   background:
     linear-gradient(180deg, rgba(22, 36, 52, 0.8), rgba(16, 29, 41, 0.8)),
     rgba(16, 27, 39, 0.7);
-  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease, filter 180ms ease;
-}
-
-.server-submit-account:hover,
-.server-submit-account:focus-within,
-.server-submit-check:hover,
-.server-submit-check:focus-within,
-.server-submit-section:hover,
-.server-submit-section:focus-within,
-.server-submit-notice:hover,
-.server-submit-notice:focus-within,
-.server-submit-reason:hover,
-.server-submit-reason:focus-within {
-  transform: translateY(-0.25rem);
-  border-color: rgba(251, 176, 59, 0.4);
-  box-shadow: 0 1.375rem 3rem rgba(0, 0, 0, 0.3), 0 0 0 0.0625rem rgba(251, 176, 59, 0.1), inset 0 0.0625rem 0 rgba(255, 255, 255, 0.05);
-  filter: brightness(1.04);
 }
 
 .server-submit-account {
@@ -2323,38 +2293,23 @@ h1 span:nth-child(2) {
   font-size: 1.25rem;
 }
 
-.server-submit-avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
 .server-submit-account-name {
   color: #fff1dc;
   font-size: 1rem;
   line-height: 1.2;
 }
 
-.server-submit-check {
-  display: grid;
-  gap: 0.75rem;
-  color: #d5dbe0;
-}
-
-.server-submit-check i,
 .server-submit-notice > i,
 .server-submit-reason > i {
   color: var(--amber);
   font-size: 1.25rem;
 }
 
-.server-submit-check strong,
 .server-submit-notice strong,
 .server-submit-reason strong {
   color: #fff1dc;
 }
 
-.server-submit-check p,
 .server-submit-notice p,
 .server-submit-reason p,
 .server-submit-owned-message {
@@ -2486,11 +2441,6 @@ h1 span:nth-child(2) {
   box-shadow: none;
 }
 
-.servers-sort-select option {
-  background-color: #101b27;
-  color: #fff8ea;
-}
-
 .servers-sort-control:hover .servers-sort-select,
 .servers-sort-control:focus-within .servers-sort-select {
   opacity: 1;
@@ -2604,12 +2554,6 @@ h1 span:nth-child(2) {
   border-color: rgba(251, 176, 59, 0.8);
   background-color: rgba(16, 27, 39, 0.7);
   box-shadow: inset 0 0 0 0.0625rem rgba(255, 255, 255, 0.05);
-  color: #fff8ea;
-}
-
-.server-admin-status-filter .form-select option,
-.server-admin-sort .form-select option {
-  background-color: #101b27;
   color: #fff8ea;
 }
 
@@ -2742,18 +2686,6 @@ h1 span:nth-child(2) {
 
 .server-admin-modal .btn-close {
   filter: invert(1) grayscale(1);
-}
-
-.server-admin-delete {
-  border-color: rgba(248, 113, 113, 0.4);
-  color: #fecaca;
-}
-
-.server-admin-delete:hover,
-.server-admin-delete:focus-visible {
-  border-color: rgba(248, 113, 113, 0.7);
-  background: rgba(127, 29, 29, 0.35);
-  color: #fff1f1;
 }
 
 .server-admin-modal {
@@ -2928,59 +2860,88 @@ h1 span:nth-child(2) {
   font-weight: 900;
 }
 
-.server-submit-address-group .form-control {
-  border-color: rgba(251, 176, 59, 0.2);
-  background: rgba(7, 16, 25, 0.7);
-  color: var(--text);
+.server-verification-command {
+  --bs-border-color: rgba(251, 176, 59, 0.25);
+  background: rgba(7, 16, 25, 0.72);
 }
 
-.server-submit-address-group .form-control:focus {
-  border-color: rgba(251, 176, 59, 0.6);
-  background: rgba(7, 16, 25, 0.9);
-  color: var(--text);
+.server-verification-command-text {
+  --bs-border-color: transparent;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  color: #fff1dc;
+  background: rgba(3, 9, 15, 0.66);
+  cursor: pointer;
+  transition: border-color 180ms ease, background 180ms ease, box-shadow 180ms ease;
+}
+
+.server-verification-command-text code {
+  color: inherit;
+}
+
+.server-verification-command-text:hover,
+.server-verification-command-text:focus-visible {
+  --bs-border-color: rgba(251, 176, 59, 0.45);
+  background: rgba(7, 16, 25, 0.92);
+}
+
+.server-verification-command-text:focus-visible {
+  outline: 0.125rem solid var(--amber);
+  outline-offset: 0.125rem;
   box-shadow: 0 0 0 0.25rem rgba(251, 176, 59, 0.1);
 }
 
-.server-proof {
-  font-family: "Cascadia Mono", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
-  font-size: 0.875rem;
+.server-verification-copy {
+  min-width: 9.75rem;
+}
+
+.server-verification-poll {
+  color: #aeb9c4;
+  font-size: 0.6875rem;
+  line-height: 1.15;
+}
+
+.servers-submit .server-verification-start {
+  width: fit-content;
+}
+
+.server-verification-poll-ring {
+  --poll-progress: 360deg;
+  width: 2rem;
+  height: 2rem;
+  background:
+    radial-gradient(circle at center, rgba(0, 0, 0, 0.08) 58%, transparent 60%),
+    conic-gradient(rgba(174, 185, 196, 0.72) var(--poll-progress), rgba(174, 185, 196, 0.16) 0deg);
+  color: #d5dbe0;
+  font-size: 0.625rem;
+  font-weight: 900;
+  font-variant-numeric: tabular-nums;
+}
+
+.server-verification-poll-ring.is-paused {
+  background:
+    radial-gradient(circle at center, rgba(7, 16, 25, 0.96) 58%, transparent 60%),
+    conic-gradient(rgba(148, 163, 184, 0.6) var(--poll-progress), rgba(148, 163, 184, 0.16) 0deg);
+}
+
+.server-verification-poll-label {
+  color: #aeb9c4;
+  letter-spacing: 0;
 }
 
 .server-submit-verification {
   margin-top: -0.25rem;
 }
 
-.server-submit-delete {
-  border-color: rgba(248, 113, 113, 0.4);
-  color: #fecaca;
-}
-
-.server-submit-delete:hover,
-.server-submit-delete:focus-visible {
-  border-color: rgba(248, 113, 113, 0.7);
-  background: rgba(127, 29, 29, 0.35);
-  color: #fff1f1;
-}
-
 .server-submit-disabled-action .btn {
   pointer-events: none;
 }
 
-.servers-alert,
-.server-submit-status {
+.servers-alert {
   padding: 0.875rem 1rem;
   border: 0.0625rem solid rgba(251, 176, 59, 0.2);
   border-radius: 0.5rem;
   background: rgba(7, 16, 25, 0.45);
-}
-
-.server-submit-status:empty {
-  display: none;
-}
-
-.server-submit-status.is-success {
-  border-color: rgba(39, 225, 100, 0.3);
-  color: #a7f3d0;
 }
 
 .addons-grid {
@@ -2988,7 +2949,8 @@ h1 span:nth-child(2) {
 }
 
 .addons-command {
-  isolation: isolate;
+  --copy-success-font-size: 0.9rem;
+  --copy-success-letter-spacing: 0.08em;
   min-width: min(100%, 17rem);
 }
 
@@ -2996,64 +2958,6 @@ h1 span:nth-child(2) {
   color: inherit;
   font-family: "Cascadia Mono", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
   font-size: 0.95rem;
-  transition: opacity 180ms ease, transform 180ms ease;
-}
-
-.addons-command-copy {
-  margin-left: 0.375rem;
-  padding-left: 0.75rem;
-  border-left: 0.0625rem solid rgba(251, 176, 59, 0.25);
-  color: #d5dbe0;
-  font-size: 0.95rem;
-  transition: opacity 180ms ease, transform 180ms ease;
-}
-
-.addons-command::before,
-.addons-command::after {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  display: grid;
-  place-items: center;
-  pointer-events: none;
-  opacity: 0;
-}
-
-.addons-command::before {
-  content: "";
-  background:
-    linear-gradient(135deg, rgba(39, 225, 100, 0.95), rgba(39, 225, 100, 0.65)),
-    rgba(12, 93, 43, 0.9);
-  transform: translateY(100%) scale(0.98);
-}
-
-.addons-command::after {
-  content: "Copied command!";
-  color: #eaffef;
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-size: 0.9rem;
-  font-weight: 900;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  transform: translateY(0.625rem);
-}
-
-.addons-command.is-copied {
-  border-color: rgba(39, 225, 100, 0.8);
-}
-
-.addons-command.is-copied code,
-.addons-command.is-copied .addons-command-copy {
-  opacity: 0;
-  transform: translateY(-0.375rem);
-}
-
-.addons-command.is-copied::before {
-  animation: commandCopiedFill 1800ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
-}
-
-.addons-command.is-copied::after {
-  animation: commandCopiedText 1800ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
 
 .addon-module {

@@ -2,6 +2,7 @@
 # Copy this file to .dev.vars. These values never belong in production.
 
 RATE_LIMIT_SALT=local-development-rate-limit-salt
+VERIFICATION_CODE_SECRET=local-development-verification-code-secret
 SESSION_SECRET=local-development-session-secret
 LOCAL_ADMIN_TOKEN=local-admin-token
 TURNSTILE_SECRET=1x0000000000000000000000000000000AA

@@ -62,7 +62,7 @@ npm run dev
 #### 2. Full Worker preview
 Use this when working on routing, API handlers, D1 queries, or server listings. It builds the Astro site and serves it through the local Cloudflare Worker on port `8787`, backed by local D1 data and secrets from `.dev.vars`.
 
-Run the one-time local setup before the first preview, or whenever you need to refresh local preview data:
+Run the local setup before the first preview, after pulling or adding D1 migrations, or whenever you need to refresh local preview data:
 
 ```bash
 npm run worker:setup:local
@@ -76,6 +76,12 @@ npm run preview
 
 ## Checks
 Please run these before opening a pull request.
+
+Run the Cloudflare Worker and D1 test suite after changing Worker behavior, API handlers, migrations, or server-directory logic:
+
+```bash
+npm run worker:test
+```
 
 Type-check Worker code after changing anything under `worker/`:
 

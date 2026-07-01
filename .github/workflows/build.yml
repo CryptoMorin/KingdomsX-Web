@@ -19,6 +19,9 @@ jobs:
       - run: npm ci
       - run: cp .dev.vars.example .dev.vars
 
+      - name: Test Cloudflare Worker
+        run: npm run worker:test
+
       - name: Build production site
         run: npm run build
         env:
