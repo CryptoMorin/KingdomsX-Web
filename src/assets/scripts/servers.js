@@ -1180,7 +1180,10 @@ const initServerSubmit = () => {
     control.className = `form-control ${options.className || ""}`.trim();
     control.id = `server-${name}`;
     control.name = name;
-    control.maxLength = options.maxLength || 255;
+    const maxLength = Number(options.maxLength || 255);
+    if (!options.allowOverLimit) {
+      control.maxLength = maxLength;
+    }
     control.required = Boolean(options.required);
     control.value = options.value || "";
 
@@ -1214,10 +1217,14 @@ const initServerSubmit = () => {
 
     if (options.counter) {
       const counter = document.createElement("span");
-      counter.className = "server-submit-counter";
-      const maxLength = Number(control.maxLength || options.maxLength || 0);
+      counter.className = "server-submit-counter pe-none";
+      counter.id = `${control.id}-counter`;
+      control.setAttribute("aria-describedby", counter.id);
       const updateCounter = () => {
         counter.textContent = `${control.value.length}/${maxLength}`;
+        const overLimit = control.value.length > maxLength;
+        counter.classList.toggle("danger", overLimit);
+        control.setAttribute("aria-invalid", String(overLimit));
       };
       control.addEventListener("input", updateCounter);
       updateCounter();
@@ -1513,6 +1520,7 @@ const initServerSubmit = () => {
         required: true,
         minLength: 40,
         maxLength: SUBMISSION_DESCRIPTION_LIMIT,
+        allowOverLimit: true,
         value: item?.description,
         placeholder: `Describe the server experience in ${SUBMISSION_DESCRIPTION_LIMIT} characters or less.`,
         counter: true
@@ -1895,7 +1903,8 @@ const initServerSubmit = () => {
 
       const nameValue = name instanceof HTMLInputElement ? name.value.trim() : "";
       const addressValue = address instanceof HTMLInputElement ? address.value.trim() : "";
-      const descriptionValue = description instanceof HTMLTextAreaElement ? description.value.trim() : "";
+      const descriptionRawValue = description instanceof HTMLTextAreaElement ? description.value : "";
+      const descriptionValue = descriptionRawValue.trim();
 
       if (nameValue.length < 3) {
         addIssue(name, SERVER_MESSAGES.submit.verification.requirements.name);
@@ -1911,7 +1920,7 @@ const initServerSubmit = () => {
 
       if (descriptionValue.length < 40) {
         addIssue(description, SERVER_MESSAGES.submit.verification.requirements.descriptionMinimum(descriptionValue.length));
-      } else if (descriptionValue.length > SUBMISSION_DESCRIPTION_LIMIT) {
+      } else if (descriptionRawValue.length > SUBMISSION_DESCRIPTION_LIMIT) {
         addIssue(description, SERVER_MESSAGES.submit.verification.requirements.descriptionMaximum);
       }
 
@@ -2335,6 +2344,18 @@ const initServerSubmit = () => {
 
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
+
+      const description = form.elements.namedItem("description");
+      if (description instanceof HTMLTextAreaElement && description.value.length > SUBMISSION_DESCRIPTION_LIMIT) {
+        showToast({
+          title: SERVER_MESSAGES.submit.verification.incompleteTitle,
+          message: SERVER_MESSAGES.submit.verification.requirements.descriptionMaximum,
+          kind: "is-warning",
+          delay: 6500
+        });
+        description.focus();
+        return;
+      }
 
       if (!form.reportValidity()) {
         return;

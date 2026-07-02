@@ -2821,6 +2821,9 @@ h1 span:nth-child(2) {
   right: 0.875rem;
   bottom: 0.625rem;
   z-index: 3;
+  padding: 0.2rem 0.3rem;
+  border-radius: 0.25rem;
+  background: rgba(7, 16, 25, 0.9);
   color: var(--dim);
   font-size: 0.75rem;
   font-weight: 900;
