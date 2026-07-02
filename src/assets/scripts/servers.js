@@ -1223,7 +1223,7 @@ const initServerSubmit = () => {
       const updateCounter = () => {
         counter.textContent = `${control.value.length}/${maxLength}`;
         const overLimit = control.value.length > maxLength;
-        counter.classList.toggle("danger", overLimit);
+        counter.style.color = overLimit ? "#ff463d" : "";
         control.setAttribute("aria-invalid", String(overLimit));
       };
       control.addEventListener("input", updateCounter);
