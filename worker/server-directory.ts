@@ -2050,7 +2050,7 @@ async function maybeHideOffline(env: ServerDirectoryEnv, serverId: string): Prom
 }
 
 async function fetchServerStatus(address: string): Promise<StatusSnapshot> {
-  const providers = [fetchMcsrvstatStatus, fetchMcstatusStatus, fetchMcapiStatus];
+  const providers = [fetchMcsrvstatStatus, fetchMcstatusStatus, fetchMinecraftPingerStatus, fetchMcapiStatus];
   let lastError: unknown;
 
   for (const provider of providers) {
@@ -2418,6 +2418,41 @@ async function fetchMcstatusStatus(address: string): Promise<StatusSnapshot> {
     versionName: cleanStatusText(version.name_clean, 100) ?? cleanStatusText(version.name_raw, 100),
     favicon: validatedStatusIcon(data.icon),
     provider: "mcstatus.io"
+  };
+}
+
+async function fetchMinecraftPingerStatus(address: string): Promise<StatusSnapshot> {
+  const data = await fetchStatusJson(
+    `https://www.minecraftpinger.com/api/v1/${encodeURIComponent(address)}`,
+    "minecraftpinger.com"
+  );
+
+  if (data.server === null) {
+    return {
+      online: false,
+      playersOnline: null,
+      playersMax: null,
+      motdText: null,
+      versionName: null,
+      favicon: null,
+      provider: "minecraftpinger.com"
+    };
+  }
+
+  if (!isRecord(data.server)) {
+    throw new Error("minecraftpinger.com returned an uncertain status");
+  }
+
+  const players = isRecord(data.server.players) ? data.server.players : {};
+
+  return {
+    online: true,
+    playersOnline: numberOrNull(players.online),
+    playersMax: numberOrNull(players.max),
+    motdText: cleanStatusText(data.server.motd, 500),
+    versionName: cleanStatusText(data.server.version, 100),
+    favicon: validatedStatusIcon(data.server.favicon),
+    provider: "minecraftpinger.com"
   };
 }
 

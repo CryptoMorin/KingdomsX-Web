@@ -445,6 +445,7 @@ const providerName = (value) => ({
   mcsrvstat: "mcsrvstat.us",
   "mcsrvstat.us": "mcsrvstat.us",
   "mcstatus.io": "mcstatus.io",
+  "minecraftpinger.com": "minecraftpinger.com",
   "mcapi.us": "mcapi.us"
 })[value] ?? (value || "No provider");
 
