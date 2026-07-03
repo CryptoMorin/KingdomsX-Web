@@ -29,7 +29,8 @@
 	],
 	"triggers": {
 		"crons": [
-			"*/5 * * * *"
+			"*/5 * * * *",
+			"1-56/5 * * * *"
 		]
 	},
 	"assets": {
@@ -149,7 +150,8 @@
 			"DISCORD_REDIRECT_URI",
 			"ADMIN_EMAILS",
 			"CF_ACCESS_TEAM_DOMAIN",
-			"CF_ACCESS_AUD"
+			"CF_ACCESS_AUD",
+			"DISCORD_SERVER_DIRECTORY_WEBHOOK_URL"
 		]
 	},
 	"d1_databases": [

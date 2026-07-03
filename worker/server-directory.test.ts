@@ -2,7 +2,10 @@ import { env } from "cloudflare:test";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import worker from "./index";
 import {
+  buildDiscordServerMessage,
+  DISCORD_EMBED_CRON,
   handleServerDirectoryRequest,
+  processDiscordEmbedJobs,
   scheduleServerDirectoryRefresh,
   type ServerDirectoryEnv
 } from "./server-directory";
@@ -109,6 +112,111 @@ async function seedOwnedServer(accountSuffix = "one", status: "approved" | "pend
   ).run();
 }
 
+describe("Discord embed payload", () => {
+  it("contains listing fields, disables mentions, and excludes runtime status", () => {
+    const payload = buildDiscordServerMessage({
+      id: "server-discord",
+      slug: "server-discord",
+      name: "@everyone *Example*",
+      description: "A public server description with @here and markdown.",
+      normalized_host: "play.kingdomsx.com",
+      port: 25566,
+      website_url: "https://kingdomsx.com/",
+      social_links_json: JSON.stringify([{ key: "discord", label: "Discord", url: "https://discord.gg/cKsSwtt", host: "discord.gg" }]),
+      status: "approved",
+      approved_at: "2026-01-01T00:00:00.000Z",
+      suspended_at: null,
+      created_at: "2026-01-01T00:00:00.000Z",
+      updated_at: "2026-01-01T00:00:00.000Z",
+      online: 1,
+      players_online: 123,
+      players_max: 500,
+      motd_text: "Runtime MOTD",
+      version_name: "Runtime version",
+      favicon_url_or_hash: null,
+      checked_at: "2026-01-01T00:00:00.000Z",
+      provider: "provider",
+      failure_count: 0,
+      offline_since: null,
+      refresh_attempted_at: null,
+      refresh_error: null,
+      owner_discord_user_id: "123456789012345678"
+    }, { updated: false, timestamp: "2026-07-02T20:15:00.000Z" });
+    expect(payload.allowed_mentions).toEqual({ parse: [], users: ["123456789012345678"] });
+    const serialized = JSON.stringify(payload);
+    expect(serialized).toContain("play.kingdomsx.com:25566");
+    expect(serialized).toContain("```\\nplay.kingdomsx.com:25566\\n```");
+    expect(serialized).toContain("https://api.mcstatus.io/v2/icon/play.kingdomsx.com%3A25566?timeout=5");
+    expect(serialized).toContain("<@123456789012345678>");
+    expect(payload).toMatchObject({
+      embeds: [{
+        fields: expect.arrayContaining([{
+          name: "Website",
+          value: "<https://kingdomsx.com/>",
+          inline: true
+        }, {
+          name: "Owner",
+          value: "<@123456789012345678>",
+          inline: true
+        }, {
+          name: "Socials",
+          value: expect.stringContaining("[Discord](https://discord.gg/cKsSwtt)")
+        }]),
+        author: {
+          name: "KingdomsX Servers",
+          url: "https://servers.kingdomsx.com/",
+          icon_url: "https://i.imgur.com/yJI3kra.png"
+        },
+        footer: { text: "Listed" },
+        timestamp: "2026-07-02T20:15:00.000Z"
+      }]
+    });
+    expect(serialized).not.toContain("players");
+    expect(serialized).not.toContain("Runtime MOTD");
+    expect(serialized).not.toContain("Runtime version");
+  });
+
+  it("omits unset website and social fields while retaining the sync timestamp", () => {
+    const payload = buildDiscordServerMessage({
+      id: "server-no-website",
+      slug: "server-no-website",
+      name: "No Website",
+      description: "A public description without a website.",
+      normalized_host: "play.kingdomsx.com",
+      port: 25565,
+      website_url: null,
+      social_links_json: "[]",
+      status: "approved",
+      approved_at: "2026-01-01T00:00:00.000Z",
+      suspended_at: null,
+      created_at: "2026-01-01T00:00:00.000Z",
+      updated_at: "2026-01-01T00:00:00.000Z",
+      online: null,
+      players_online: null,
+      players_max: null,
+      motd_text: null,
+      version_name: null,
+      favicon_url_or_hash: null,
+      checked_at: null,
+      provider: null,
+      failure_count: null,
+      offline_since: null,
+      refresh_attempted_at: null,
+      refresh_error: null,
+      owner_discord_user_id: "123456789012345678"
+    }, { updated: true, timestamp: "2026-07-02T20:30:00.000Z" });
+    const serialized = JSON.stringify(payload);
+    expect(serialized).not.toContain('"name":"Website"');
+    expect(serialized).not.toContain('"name":"Socials"');
+    expect(payload).toMatchObject({
+      embeds: [{
+        footer: { text: "Updated" },
+        timestamp: "2026-07-02T20:30:00.000Z"
+      }]
+    });
+  });
+});
+
 describe("server verification", () => {
   afterEach(() => {
     vi.unstubAllGlobals();
@@ -116,6 +224,8 @@ describe("server verification", () => {
 
   beforeEach(async () => {
     await testEnv.DB.batch([
+      testEnv.DB.prepare("DELETE FROM discord_embed_jobs"),
+      testEnv.DB.prepare("DELETE FROM discord_embeds"),
       testEnv.DB.prepare("DELETE FROM submissions"),
       testEnv.DB.prepare("DELETE FROM server_verification_challenges"),
       testEnv.DB.prepare("DELETE FROM server_status"),
@@ -304,6 +414,164 @@ describe("server verification", () => {
       approved_at: "2026-01-01T00:00:00.000Z"
     });
     expect(changedEvents?.total).toBe(1);
+    expect(await testEnv.DB.prepare("SELECT desired_action FROM discord_embed_jobs WHERE server_id = 'server-details'")
+      .first<{ desired_action: string }>()).toEqual({ desired_action: "upsert" });
+  });
+
+  it("approves independently of Discord and atomically queues an embed", async () => {
+    await seedSubmitter("approval");
+    await seedOwnedServer("approval", "pending");
+    const response = await api("/api/admin/servers/server-approval/approve", {
+      method: "POST",
+      headers: { "content-type": "application/json", "x-admin-token": "local-admin-token" },
+      body: "{}"
+    });
+    expect(response.status).toBe(200);
+    expect(await testEnv.DB.prepare("SELECT status FROM servers WHERE id = 'server-approval'").first()).toEqual({ status: "approved" });
+    expect(await testEnv.DB.prepare("SELECT desired_action FROM discord_embed_jobs WHERE server_id = 'server-approval'").first())
+      .toEqual({ desired_action: "upsert" });
+  });
+
+  it("creates, edits, and deletes one Discord message across the listing lifecycle", async () => {
+    const cookie = await seedSubmitter("discord-lifecycle");
+    await seedOwnedServer("discord-lifecycle");
+    const requests: Array<{ url: string; method: string; body: string }> = [];
+    vi.stubGlobal("fetch", async (input: RequestInfo | URL, init?: RequestInit) => {
+      const url = input instanceof Request ? input.url : String(input);
+      const method = init?.method ?? (input instanceof Request ? input.method : "GET");
+      requests.push({ url, method, body: typeof init?.body === "string" ? init.body : "" });
+      if (method === "DELETE") return new Response(null, { status: 204 });
+      return Response.json({ id: "123456789012345678" });
+    });
+    const discordEnv: ServerDirectoryEnv = {
+      DB: testEnv.DB,
+      APP_ENVIRONMENT: "local",
+      DISCORD_SERVER_DIRECTORY_WEBHOOK_URL: "https://discord.com/api/webhooks/123456789/test-token"
+    };
+
+    const firstEdit = await api("/api/servers/me/details", {
+      method: "PATCH",
+      headers: { "content-type": "application/json", cookie },
+      body: JSON.stringify({
+        name: "Discord Lifecycle",
+        description: "A public description for Discord lifecycle testing.",
+        websiteUrl: "https://kingdomsx.com",
+        socialLinks: { discord: "https://discord.gg/example" }
+      })
+    });
+    expect(firstEdit.status).toBe(200);
+    await processDiscordEmbedJobs(discordEnv);
+    expect(requests[0].method).toBe("POST");
+    expect(requests[0].url).toContain("?wait=true");
+    expect(JSON.parse(requests[0].body).allowed_mentions).toEqual({ parse: [] });
+    expect(await testEnv.DB.prepare("SELECT message_id FROM discord_embeds WHERE server_id = 'server-discord-lifecycle'").first())
+      .toEqual({ message_id: "123456789012345678" });
+
+    const secondEdit = await api("/api/servers/me/details", {
+      method: "PATCH",
+      headers: { "content-type": "application/json", cookie },
+      body: JSON.stringify({
+        name: "Discord Lifecycle Renamed",
+        description: "A second public description for Discord lifecycle testing.",
+        websiteUrl: "https://kingdomsx.com",
+        socialLinks: {}
+      })
+    });
+    expect(secondEdit.status).toBe(200);
+    await processDiscordEmbedJobs(discordEnv);
+    expect(requests[1]).toMatchObject({ method: "PATCH" });
+    expect(requests[1].url).toContain("/messages/123456789012345678");
+
+    const suspend = await api("/api/admin/servers/server-discord-lifecycle/suspend", {
+      method: "POST",
+      headers: { "content-type": "application/json", "x-admin-token": "local-admin-token" },
+      body: JSON.stringify({ notes: "Lifecycle test suspension." })
+    });
+    expect(suspend.status).toBe(200);
+    await processDiscordEmbedJobs(discordEnv);
+    expect(requests[2]).toMatchObject({ method: "DELETE" });
+    expect(await testEnv.DB.prepare("SELECT server_id FROM discord_embeds WHERE server_id = 'server-discord-lifecycle'").first()).toBeNull();
+    expect(await testEnv.DB.prepare("SELECT server_id FROM discord_embed_jobs WHERE server_id = 'server-discord-lifecycle'").first()).toBeNull();
+  });
+
+  it("preserves an active Discord embed lease when a newer edit coalesces into the same job", async () => {
+    const cookie = await seedSubmitter("discord-lease");
+    await seedOwnedServer("discord-lease");
+    const leaseExpiresAt = new Date(Date.now() + 60_000).toISOString();
+    await testEnv.DB.prepare(`
+      INSERT INTO discord_embed_jobs (
+        server_id, desired_action, desired_version, attempt_count, next_attempt_at,
+        lease_token, lease_expires_at, created_at, updated_at
+      ) VALUES ('server-discord-lease', 'upsert', '2026-01-01T00:00:00.000Z', 0, ?, 'active-lease', ?, ?, ?)
+    `).bind(new Date().toISOString(), leaseExpiresAt, new Date().toISOString(), new Date().toISOString()).run();
+
+    const response = await api("/api/servers/me/details", {
+      method: "PATCH",
+      headers: { "content-type": "application/json", cookie },
+      body: JSON.stringify({
+        name: "Discord Lease",
+        description: "A public description for Discord lease coalescing.",
+        websiteUrl: "",
+        socialLinks: {}
+      })
+    });
+
+    expect(response.status).toBe(200);
+    const job = await testEnv.DB.prepare(`
+      SELECT desired_version, attempt_count, last_error_code, lease_token, lease_expires_at
+      FROM discord_embed_jobs
+      WHERE server_id = 'server-discord-lease'
+    `).first<{
+      desired_version: string;
+      attempt_count: number;
+      last_error_code: string | null;
+      lease_token: string | null;
+      lease_expires_at: string | null;
+    }>();
+    expect(job?.desired_version).not.toBe("2026-01-01T00:00:00.000Z");
+    expect(job).toMatchObject({
+      attempt_count: 0,
+      last_error_code: null,
+      lease_token: "active-lease",
+      lease_expires_at: leaseExpiresAt
+    });
+  });
+
+  it("retains rate-limited and ambiguous creation failures for safe recovery", async () => {
+    const cookie = await seedSubmitter("discord-failure");
+    await seedOwnedServer("discord-failure");
+    const queueEdit = () => api("/api/servers/me/details", {
+      method: "PATCH",
+      headers: { "content-type": "application/json", cookie },
+      body: JSON.stringify({
+        name: "Discord Failure",
+        description: `A Discord failure description ${crypto.randomUUID()}.`,
+        websiteUrl: "",
+        socialLinks: {}
+      })
+    });
+    const discordEnv: ServerDirectoryEnv = {
+      DB: testEnv.DB,
+      APP_ENVIRONMENT: "local",
+      DISCORD_SERVER_DIRECTORY_WEBHOOK_URL: "https://discord.com/api/webhooks/123456789/test-token"
+    };
+
+    expect((await queueEdit()).status).toBe(200);
+    vi.stubGlobal("fetch", async () => Response.json(
+      { message: "rate limited", retry_after: 1.5 },
+      { status: 429, headers: { "retry-after": "1.5" } }
+    ));
+    await processDiscordEmbedJobs(discordEnv);
+    expect(await testEnv.DB.prepare("SELECT attempt_count, last_error_code FROM discord_embed_jobs WHERE server_id = 'server-discord-failure'").first())
+      .toEqual({ attempt_count: 1, last_error_code: "rate_limited" });
+
+    expect((await queueEdit()).status).toBe(200);
+    vi.stubGlobal("fetch", async () => { throw new Error("network failed for a redacted endpoint"); });
+    await processDiscordEmbedJobs(discordEnv);
+    const ambiguous = await testEnv.DB.prepare("SELECT last_error_code, next_attempt_at FROM discord_embed_jobs WHERE server_id = 'server-discord-failure'")
+      .first<{ last_error_code: string; next_attempt_at: string }>();
+    expect(ambiguous?.last_error_code).toBe("ambiguous_create");
+    expect(ambiguous?.next_attempt_at).toBe("9999-12-31T23:59:59.999Z");
   });
 
   it("keeps an approved listing approved after a verified address change", async () => {
@@ -835,5 +1103,15 @@ describe("server verification", () => {
 
     const dailyRows = await testEnv.DB.prepare("SELECT id FROM server_verification_challenges ORDER BY id").all<{ id: string }>();
     expect(dailyRows.results.map((row) => row.id)).toEqual(["linked-challenge", "verified-within-ttl"]);
+
+    const discordTasks: Promise<unknown>[] = [];
+    scheduleServerDirectoryRefresh(
+      testEnv,
+      { waitUntil: (promise) => discordTasks.push(promise) } as ExecutionContext,
+      Date.UTC(2026, 6, 1, 0, 1),
+      DISCORD_EMBED_CRON
+    );
+    expect(discordTasks).toHaveLength(1);
+    await Promise.all(discordTasks);
   });
 });

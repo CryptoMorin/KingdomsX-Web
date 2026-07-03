@@ -24,6 +24,7 @@ export interface ServerDirectoryEnv {
   ADMIN_EMAILS?: string;
   CF_ACCESS_TEAM_DOMAIN?: string;
   CF_ACCESS_AUD?: string;
+  DISCORD_SERVER_DIRECTORY_WEBHOOK_URL?: string;
 }
 
 interface ServerRow {
@@ -66,6 +67,24 @@ interface AdminServerRow extends ServerRow {
   review_event_action: string | null;
   review_event_created_at: string | null;
   review_event_reason_code: string | null;
+  discord_message_id: string | null;
+  discord_synced_version: string | null;
+  discord_synced_at: string | null;
+  discord_job_action: "upsert" | "delete" | null;
+  discord_job_attempt_count: number | null;
+  discord_job_last_error_code: string | null;
+  discord_job_last_error: string | null;
+}
+
+interface DiscordServerRow extends ServerRow {
+  owner_discord_user_id: string | null;
+}
+
+interface DiscordEmbedJob {
+  server_id: string;
+  desired_action: "upsert" | "delete";
+  desired_version: string;
+  attempt_count: number;
 }
 
 interface StatusSnapshot {
@@ -194,7 +213,7 @@ const MAX_JSON_BODY_BYTES = 20_000;
 const PLUGIN_VERIFY_MAX_JSON_BODY_BYTES = 4_096;
 const STATUS_PROVIDER_TIMEOUT_MS = 8_000;
 const STATUS_ICON_MAX_BYTES = 64 * 1024;
-const STATUS_REFRESH_BATCH_LIMIT = 16;
+const STATUS_REFRESH_BATCH_LIMIT = 12;
 const STATUS_REFRESH_CONCURRENCY = 5;
 const STATUS_REFRESH_INTERVAL_MS = 15 * 60 * 1000;
 const STATUS_STALE_AFTER_MS = 30 * 60 * 1000;
@@ -205,6 +224,11 @@ const TURNSTILE_ACTION = "server-submit";
 const TURNSTILE_HOSTNAME = "servers.kingdomsx.com";
 const LOCAL_TURNSTILE_TEST_SECRET = "1x0000000000000000000000000000000AA";
 const SUBMISSION_DESCRIPTION_MAX_LENGTH = 240;
+const DISCORD_API_TIMEOUT_MS = 8_000;
+const DISCORD_JOB_BATCH_LIMIT = 4;
+const DISCORD_JOB_MAX_ATTEMPTS = 8;
+const DISCORD_LEASE_MS = 60_000;
+export const DISCORD_EMBED_CRON = "1-56/5 * * * *";
 const VERIFICATION_CHALLENGE_TTL_MS = 15 * 60 * 1000;
 const VERIFICATION_PROOF_TTL_MS = 48 * 60 * 60 * 1000;
 const REJECTION_REASON_CODES: RejectionReasonCode[] = [
@@ -281,7 +305,17 @@ export async function handleServerDirectoryRequest(request: Request, env: Server
   }
 }
 
-export function scheduleServerDirectoryRefresh(env: ServerDirectoryEnv, ctx: ExecutionContext, scheduledTime = Date.now()): void {
+export function scheduleServerDirectoryRefresh(
+  env: ServerDirectoryEnv,
+  ctx: ExecutionContext,
+  scheduledTime = Date.now(),
+  cron = "*/5 * * * *"
+): void {
+  if (cron === DISCORD_EMBED_CRON) {
+    ctx.waitUntil(processDiscordEmbedJobs(env));
+    return;
+  }
+
   ctx.waitUntil(refreshApprovedServers(env));
 
   const scheduledDate = new Date(scheduledTime);
@@ -328,15 +362,15 @@ async function handleRequest(request: Request, env: ServerDirectoryEnv, ctx?: Ex
   }
 
   if (request.method === "POST" && url.pathname === "/api/servers/me/resubmit") {
-    return resubmitMyServer(request, env);
+    return resubmitMyServer(request, env, ctx);
   }
 
   if (request.method === "PATCH" && url.pathname === "/api/servers/me/details") {
-    return updateMyPublicDetails(request, env);
+    return updateMyPublicDetails(request, env, ctx);
   }
 
   if (request.method === "DELETE" && url.pathname === "/api/servers/me") {
-    return deleteMyServer(request, env);
+    return deleteMyServer(request, env, ctx);
   }
 
   if (request.method === "GET" && url.pathname.startsWith("/api/servers/")) {
@@ -357,7 +391,7 @@ async function handleRequest(request: Request, env: ServerDirectoryEnv, ctx?: Ex
     if (!admin.ok) {
       return json({ error: admin.error }, 403, NO_STORE_JSON_HEADERS);
     }
-    return handleAdmin(request, url, env, admin.actor);
+    return handleAdmin(request, url, env, admin.actor, ctx);
   }
 
   return json({ error: "Not found." }, 404);
@@ -1128,7 +1162,7 @@ async function verifyPluginChallenge(request: Request, env: ServerDirectoryEnv):
   }, 200, NO_STORE_JSON_HEADERS);
 }
 
-async function resubmitMyServer(request: Request, env: ServerDirectoryEnv): Promise<Response> {
+async function resubmitMyServer(request: Request, env: ServerDirectoryEnv, ctx?: ExecutionContext): Promise<Response> {
   const session = await requireSubmitter(request, env);
 
   if (!session.ok) {
@@ -1243,8 +1277,13 @@ async function resubmitMyServer(request: Request, env: ServerDirectoryEnv): Prom
       keepsApproval ? "verified-address-updated" : "submitted",
       keepsApproval ? "Owner updated the address of an approved listing after plugin verification." : "Resubmitted through public website form.",
       timestamp
-    )
+    ),
+    ...(keepsApproval ? [discordEmbedJobStatement(env, owned.id, "upsert", timestamp)] : [])
   ]);
+
+  if (keepsApproval) {
+    scheduleDiscordEmbedProcessing(env, ctx);
+  }
 
   const refreshed = await getOwnedServerRow(env, session.account.id);
   return json({
@@ -1255,7 +1294,7 @@ async function resubmitMyServer(request: Request, env: ServerDirectoryEnv): Prom
   }, keepsApproval ? 200 : 202, NO_STORE_JSON_HEADERS);
 }
 
-async function updateMyPublicDetails(request: Request, env: ServerDirectoryEnv): Promise<Response> {
+async function updateMyPublicDetails(request: Request, env: ServerDirectoryEnv, ctx?: ExecutionContext): Promise<Response> {
   const session = await requireSubmitter(request, env);
 
   if (!session.ok) {
@@ -1294,14 +1333,17 @@ async function updateMyPublicDetails(request: Request, env: ServerDirectoryEnv):
       WHERE id = ? AND owner_account_id = ? AND status = 'approved'
     `).bind(details.name, details.description, details.websiteUrl, socialLinksJson, timestamp, owned.id, session.account.id),
     env.DB.prepare("INSERT INTO moderation_events (id, server_id, actor, action, notes, created_at) VALUES (?, ?, 'owner', 'public-details-updated', 'Owner updated approved listing details.', ?)")
-      .bind(crypto.randomUUID(), owned.id, timestamp)
+      .bind(crypto.randomUUID(), owned.id, timestamp),
+    discordEmbedJobStatement(env, owned.id, "upsert", timestamp)
   ]);
+
+  scheduleDiscordEmbedProcessing(env, ctx);
 
   const refreshed = await getOwnedServerRow(env, session.account.id);
   return json({ ok: true, item: refreshed ? toOwnerServer(refreshed) : null }, 200, NO_STORE_JSON_HEADERS);
 }
 
-async function deleteMyServer(request: Request, env: ServerDirectoryEnv): Promise<Response> {
+async function deleteMyServer(request: Request, env: ServerDirectoryEnv, ctx?: ExecutionContext): Promise<Response> {
   const session = await requireSubmitter(request, env);
 
   if (!session.ok) {
@@ -1319,6 +1361,7 @@ async function deleteMyServer(request: Request, env: ServerDirectoryEnv): Promis
     ...(owned.status === "suspended" ? [
       suspendedAddressStatement(env, owned.normalized_host, owned.port, owned.id, owned.submission_moderation_notes, owned.suspended_at ?? timestamp, timestamp)
     ] : []),
+    discordEmbedJobStatement(env, owned.id, "delete", timestamp),
     env.DB.prepare("DELETE FROM submissions WHERE server_id = ?").bind(owned.id),
     env.DB.prepare("DELETE FROM server_status WHERE server_id = ?").bind(owned.id),
     env.DB.prepare("DELETE FROM moderation_events WHERE server_id = ?").bind(owned.id),
@@ -1326,6 +1369,7 @@ async function deleteMyServer(request: Request, env: ServerDirectoryEnv): Promis
   ];
 
   await runD1Batch(env, statements);
+  scheduleDiscordEmbedProcessing(env, ctx);
 
   return json({ ok: true, id: owned.id, deleted: true }, 200, NO_STORE_JSON_HEADERS);
 }
@@ -1652,7 +1696,8 @@ async function autoSuspendSubmission(
       INSERT INTO moderation_events (id, server_id, actor, action, notes, created_at)
       VALUES (?, ?, 'system', 'suspend', ?, ?)
     `).bind(crypto.randomUUID(), id, `Auto-suspended fresh submission for a suspended address. ${notes}`, timestamp),
-    suspendedAddressStatement(env, input.normalized.host, input.normalized.port, id, notes, timestamp, timestamp)
+    suspendedAddressStatement(env, input.normalized.host, input.normalized.port, id, notes, timestamp, timestamp),
+    discordEmbedJobStatement(env, id, "delete", timestamp)
   ]);
 
   const refreshed = await getOwnedServerRow(env, account.id);
@@ -1686,14 +1731,15 @@ async function autoSuspendOwnedSubmission(
       INSERT INTO moderation_events (id, server_id, actor, action, notes, created_at)
       VALUES (?, ?, 'system', 'suspend', ?, ?)
     `).bind(crypto.randomUUID(), owned.id, `Auto-suspended resubmission for a suspended address. ${notes}`, timestamp),
-    suspendedAddressStatement(env, input.normalized.host, input.normalized.port, owned.id, notes, timestamp, timestamp)
+    suspendedAddressStatement(env, input.normalized.host, input.normalized.port, owned.id, notes, timestamp, timestamp),
+    discordEmbedJobStatement(env, owned.id, "delete", timestamp)
   ]);
 
   const refreshed = await getOwnedServerRow(env, account.id);
   return json({ ok: true, id: owned.id, status: "suspended", item: refreshed ? toOwnerServer(refreshed) : null }, 202, NO_STORE_JSON_HEADERS);
 }
 
-async function handleAdmin(request: Request, url: URL, env: ServerDirectoryEnv, actor: string): Promise<Response> {
+async function handleAdmin(request: Request, url: URL, env: ServerDirectoryEnv, actor: string, ctx?: ExecutionContext): Promise<Response> {
   if (request.method === "GET" && url.pathname === "/api/admin/servers") {
     await refreshLocalApprovedStatuses(env);
 
@@ -1726,7 +1772,12 @@ async function handleAdmin(request: Request, url: URL, env: ServerDirectoryEnv, 
   const deleteMatch = url.pathname.match(/^\/api\/admin\/servers\/([^/]+)$/);
 
   if (deleteMatch && request.method === "DELETE") {
-    return deleteServer(deleteMatch[1], env, actor);
+    return deleteServer(deleteMatch[1], env, actor, ctx);
+  }
+
+  const discordMatch = url.pathname.match(/^\/api\/admin\/servers\/([^/]+)\/discord\/sync$/);
+  if (discordMatch && request.method === "POST") {
+    return handleAdminDiscordAction(discordMatch[1], env, actor, ctx);
   }
 
   const match = url.pathname.match(/^\/api\/admin\/servers\/([^/]+)\/(approve|reject|suspend|refresh-status)$/);
@@ -1787,12 +1838,15 @@ async function handleAdmin(request: Request, url: URL, env: ServerDirectoryEnv, 
     statements.push(env.DB.prepare("DELETE FROM suspended_server_addresses WHERE normalized_host = ? AND port = ?").bind(existing.normalized_host, existing.port));
   }
 
+  statements.push(discordEmbedJobStatement(env, id, status === "approved" ? "upsert" : "delete", timestamp));
+
   await runD1Batch(env, statements);
+  scheduleDiscordEmbedProcessing(env, ctx);
 
   return json({ ok: true, id, status }, 200, NO_STORE_JSON_HEADERS);
 }
 
-async function deleteServer(id: string, env: ServerDirectoryEnv, actor: string): Promise<Response> {
+async function deleteServer(id: string, env: ServerDirectoryEnv, actor: string, ctx?: ExecutionContext): Promise<Response> {
   const existing = await env.DB.prepare("SELECT id, name, status, normalized_host, port, suspended_at FROM servers WHERE id = ?")
     .bind(id)
     .first<{ id: string; name: string; status: ServerState; normalized_host: string; port: number; suspended_at: string | null }>();
@@ -1806,6 +1860,7 @@ async function deleteServer(id: string, env: ServerDirectoryEnv, actor: string):
     ...(existing.status === "suspended" ? [
       suspendedAddressStatement(env, existing.normalized_host, existing.port, existing.id, `Deleted suspended server listing: ${existing.name}`, existing.suspended_at ?? timestamp, timestamp)
     ] : []),
+    discordEmbedJobStatement(env, id, "delete", timestamp),
     env.DB.prepare("INSERT INTO moderation_events (id, server_id, actor, action, notes, created_at) VALUES (?, ?, ?, 'delete', ?, ?)")
       .bind(crypto.randomUUID(), id, actor, `Deleted server listing: ${existing.name}`, timestamp),
     env.DB.prepare("DELETE FROM submissions WHERE server_id = ?").bind(id),
@@ -1815,6 +1870,7 @@ async function deleteServer(id: string, env: ServerDirectoryEnv, actor: string):
   ];
 
   await runD1Batch(env, statements);
+  scheduleDiscordEmbedProcessing(env, ctx);
 
   return json({ ok: true, id, deleted: true }, 200, NO_STORE_JSON_HEADERS);
 }
@@ -2045,8 +2101,465 @@ async function maybeHideOffline(env: ServerDirectoryEnv, serverId: string): Prom
     env.DB.prepare("UPDATE servers SET status = 'hidden_offline', updated_at = ? WHERE id = ? AND status = 'approved'")
       .bind(timestamp, serverId),
     env.DB.prepare("INSERT INTO moderation_events (id, server_id, actor, action, notes, created_at) VALUES (?, ?, 'system', 'hidden-offline', 'Auto-hidden after 14 days offline.', ?)")
-      .bind(crypto.randomUUID(), serverId, timestamp)
+      .bind(crypto.randomUUID(), serverId, timestamp),
+    discordEmbedJobStatement(env, serverId, "delete", timestamp)
   ]);
+}
+
+function discordEmbedJobStatement(
+  env: ServerDirectoryEnv,
+  serverId: string,
+  action: "upsert" | "delete",
+  version: string
+): D1PreparedStatement {
+  return env.DB.prepare(`
+    INSERT INTO discord_embed_jobs (
+      server_id, desired_action, desired_version, attempt_count, next_attempt_at,
+      last_attempt_at, last_error_code, last_error, lease_token, lease_expires_at,
+      created_at, updated_at
+    ) VALUES (?, ?, ?, 0, ?, NULL, NULL, NULL, NULL, NULL, ?, ?)
+    ON CONFLICT(server_id) DO UPDATE SET
+      desired_action = excluded.desired_action,
+      desired_version = excluded.desired_version,
+      attempt_count = 0,
+      next_attempt_at = excluded.next_attempt_at,
+      last_attempt_at = NULL,
+      last_error_code = NULL,
+      last_error = NULL,
+      updated_at = excluded.updated_at
+  `).bind(serverId, action, version, version, version, version);
+}
+
+function scheduleDiscordEmbedProcessing(env: ServerDirectoryEnv, ctx?: ExecutionContext): void {
+  if (ctx) {
+    ctx.waitUntil(processDiscordEmbedJobs(env));
+  }
+}
+
+async function handleAdminDiscordAction(
+  serverId: string,
+  env: ServerDirectoryEnv,
+  actor: string,
+  ctx?: ExecutionContext
+): Promise<Response> {
+  const server = await env.DB.prepare("SELECT status, updated_at FROM servers WHERE id = ?")
+    .bind(serverId)
+    .first<{ status: ServerState; updated_at: string }>();
+  if (!server) {
+    return json({ error: "Server not found." }, 404, NO_STORE_JSON_HEADERS);
+  }
+
+  const timestamp = nowIso();
+  const desiredAction = server.status === "approved" ? "upsert" : "delete";
+  await runD1Batch(env, [
+    discordEmbedJobStatement(env, serverId, desiredAction, server.updated_at),
+    env.DB.prepare("INSERT INTO moderation_events (id, server_id, actor, action, notes, created_at) VALUES (?, ?, ?, ?, ?, ?)")
+      .bind(
+        crypto.randomUUID(),
+        serverId,
+        actor,
+        "discord-embed-sync",
+        desiredAction === "upsert" ? "Staff requested Discord embed update." : "Staff requested Discord embed removal.",
+        timestamp
+      )
+  ]);
+  scheduleDiscordEmbedProcessing(env, ctx);
+  return json({ ok: true, id: serverId, discordEmbed: "pending" }, 202, NO_STORE_JSON_HEADERS);
+}
+
+export async function processDiscordEmbedJobs(env: ServerDirectoryEnv): Promise<void> {
+  const now = nowIso();
+  const candidates = await env.DB.prepare(`
+    SELECT server_id
+    FROM discord_embed_jobs
+    WHERE next_attempt_at <= ?
+      AND attempt_count < ?
+      AND (lease_expires_at IS NULL OR lease_expires_at <= ?)
+    ORDER BY next_attempt_at, created_at
+    LIMIT ?
+  `).bind(now, DISCORD_JOB_MAX_ATTEMPTS, now, DISCORD_JOB_BATCH_LIMIT).all<{ server_id: string }>();
+
+  await Promise.all(candidates.results.map(async ({ server_id: serverId }) => {
+    try {
+      const leaseToken = crypto.randomUUID();
+      const leaseExpiresAt = new Date(Date.now() + DISCORD_LEASE_MS).toISOString();
+      await runD1Statement(env.DB.prepare(`
+        UPDATE discord_embed_jobs
+        SET lease_token = ?, lease_expires_at = ?
+        WHERE server_id = ? AND (lease_expires_at IS NULL OR lease_expires_at <= ?)
+      `).bind(leaseToken, leaseExpiresAt, serverId, now));
+      const job = await env.DB.prepare(`
+        SELECT server_id, desired_action, desired_version, attempt_count
+        FROM discord_embed_jobs WHERE server_id = ? AND lease_token = ?
+      `).bind(serverId, leaseToken).first<DiscordEmbedJob>();
+      if (job) {
+        await processDiscordEmbedJob(env, job, leaseToken);
+      }
+    } catch (error) {
+      logError("discord.embed_processing_failed", error, { serverId });
+    }
+  }));
+}
+
+async function processDiscordEmbedJob(
+  env: ServerDirectoryEnv,
+  job: DiscordEmbedJob,
+  leaseToken: string
+): Promise<void> {
+  try {
+    const server = await env.DB.prepare(`
+      SELECT s.*, owner.discord_user_id AS owner_discord_user_id
+      FROM servers s
+      LEFT JOIN submitter_accounts owner ON owner.id = s.owner_account_id
+      WHERE s.id = ?
+    `)
+      .bind(job.server_id)
+      .first<DiscordServerRow>();
+    const desiredAction = server?.status === "approved" ? "upsert" : "delete";
+    const desiredVersion = server?.updated_at ?? job.desired_version;
+
+    if (desiredAction !== job.desired_action || desiredVersion !== job.desired_version) {
+      await runD1Statement(discordEmbedJobStatement(env, job.server_id, desiredAction, desiredVersion));
+      await releaseDiscordEmbedLease(env, job.server_id, leaseToken);
+      return;
+    }
+
+    if (!await discordEmbedJobStillCurrent(env, job, leaseToken)) {
+      await releaseDiscordEmbedLease(env, job.server_id, leaseToken);
+      return;
+    }
+
+    let delivered = false;
+    if (desiredAction === "upsert" && server) {
+      delivered = await upsertDiscordEmbed(env, server, job, leaseToken);
+    } else {
+      delivered = await deleteDiscordEmbed(env, job.server_id, job, leaseToken);
+    }
+
+    if (!delivered) {
+      await releaseDiscordEmbedLease(env, job.server_id, leaseToken);
+      return;
+    }
+
+    await runD1Statement(env.DB.prepare("DELETE FROM discord_embed_jobs WHERE server_id = ? AND desired_version = ? AND lease_token = ?")
+      .bind(job.server_id, job.desired_version, leaseToken));
+  } catch (error) {
+    await recordDiscordFailure(env, job, leaseToken, error);
+    await releaseDiscordEmbedLease(env, job.server_id, leaseToken);
+  }
+}
+
+async function discordEmbedJobStillCurrent(env: ServerDirectoryEnv, job: DiscordEmbedJob, leaseToken: string): Promise<boolean> {
+  const row = await env.DB.prepare(`
+    SELECT server_id
+    FROM discord_embed_jobs
+    WHERE server_id = ? AND desired_action = ? AND desired_version = ? AND lease_token = ?
+  `).bind(job.server_id, job.desired_action, job.desired_version, leaseToken).first<{ server_id: string }>();
+  return Boolean(row);
+}
+
+async function releaseDiscordEmbedLease(env: ServerDirectoryEnv, serverId: string, leaseToken: string): Promise<void> {
+  await runD1Statement(env.DB.prepare(`
+    UPDATE discord_embed_jobs
+    SET lease_token = NULL, lease_expires_at = NULL
+    WHERE server_id = ? AND lease_token = ?
+  `).bind(serverId, leaseToken));
+}
+
+async function upsertDiscordEmbed(
+  env: ServerDirectoryEnv,
+  server: DiscordServerRow,
+  job: DiscordEmbedJob,
+  leaseToken: string
+): Promise<boolean> {
+  const webhook = parseDiscordWebhookUrl(env.DISCORD_SERVER_DIRECTORY_WEBHOOK_URL);
+  const embed = await env.DB.prepare("SELECT message_id FROM discord_embeds WHERE server_id = ?")
+    .bind(server.id).first<{ message_id: string }>();
+  const timestamp = nowIso();
+  let messageId = embed?.message_id ?? null;
+  let createdMessage = false;
+
+  if (messageId) {
+    if (!await discordEmbedJobStillCurrent(env, job, leaseToken)) return false;
+    const payload = buildDiscordServerMessage(server, { updated: true, timestamp });
+    const response = await discordFetch(`${webhook}/messages/${encodeURIComponent(messageId)}`, "PATCH", payload, false);
+    if (response.status === 404) {
+      await cancelResponseBody(response);
+      messageId = null;
+    } else {
+      await requireDiscordSuccess(response, "edit");
+      await cancelResponseBody(response);
+    }
+  }
+
+  if (!messageId) {
+    if (!await discordEmbedJobStillCurrent(env, job, leaseToken)) return false;
+    const payload = buildDiscordServerMessage(server, { updated: false, timestamp });
+    let response: Response;
+    try {
+      response = await discordFetch(`${webhook}?wait=true`, "POST", payload, true);
+    } catch (error) {
+      throw new DiscordDeliveryError("ambiguous_create", "Discord message creation had an ambiguous network result.", false, error);
+    }
+    await requireDiscordSuccess(response, "create");
+    const body = await readBoundedDiscordJson(response);
+    if (typeof body.id !== "string" || !/^\d+$/.test(body.id)) {
+      throw new DiscordDeliveryError("invalid_response", "Discord returned an invalid message response.", false);
+    }
+    messageId = body.id;
+    createdMessage = true;
+    logInfo("discord.embed_created", { serverId: server.id });
+  } else {
+    logInfo("discord.embed_updated", { serverId: server.id });
+  }
+
+  if (!await discordEmbedJobStillCurrent(env, job, leaseToken)) {
+    if (createdMessage) {
+      await storeDiscordEmbed(env, server.id, messageId, server.updated_at, timestamp);
+    }
+    return false;
+  }
+
+  await storeDiscordEmbed(env, server.id, messageId, server.updated_at, timestamp);
+  return true;
+}
+
+async function storeDiscordEmbed(
+  env: ServerDirectoryEnv,
+  serverId: string,
+  messageId: string,
+  syncedVersion: string,
+  timestamp: string
+): Promise<void> {
+  await runD1Statement(env.DB.prepare(`
+    INSERT INTO discord_embeds (server_id, message_id, synced_version, synced_at, updated_at, last_verified_at)
+    VALUES (?, ?, ?, ?, ?, ?)
+    ON CONFLICT(server_id) DO UPDATE SET
+      message_id = excluded.message_id,
+      synced_version = excluded.synced_version,
+      synced_at = excluded.synced_at,
+      updated_at = excluded.updated_at,
+      last_verified_at = excluded.last_verified_at
+  `).bind(serverId, messageId, syncedVersion, timestamp, timestamp, timestamp));
+}
+
+async function deleteDiscordEmbed(
+  env: ServerDirectoryEnv,
+  serverId: string,
+  job: DiscordEmbedJob,
+  leaseToken: string
+): Promise<boolean> {
+  const embed = await env.DB.prepare("SELECT message_id FROM discord_embeds WHERE server_id = ?")
+    .bind(serverId).first<{ message_id: string }>();
+  if (!embed) return true;
+  if (!await discordEmbedJobStillCurrent(env, job, leaseToken)) return false;
+
+  const webhook = parseDiscordWebhookUrl(env.DISCORD_SERVER_DIRECTORY_WEBHOOK_URL);
+  const response = await discordFetch(`${webhook}/messages/${encodeURIComponent(embed.message_id)}`, "DELETE", null, false);
+  if (response.status !== 404) {
+    await requireDiscordSuccess(response, "delete");
+  }
+  await cancelResponseBody(response);
+
+  if (!await discordEmbedJobStillCurrent(env, job, leaseToken)) return false;
+  await runD1Statement(env.DB.prepare("DELETE FROM discord_embeds WHERE server_id = ?").bind(serverId));
+  logInfo("discord.embed_deleted", { serverId });
+  return true;
+}
+
+export function buildDiscordServerMessage(
+  server: DiscordServerRow,
+  embed: { updated: boolean; timestamp: string }
+): Record<string, unknown> {
+  const canonicalUrl = "https://servers.kingdomsx.com/";
+  const address = server.port === 25565 ? server.normalized_host : `${server.normalized_host}:${server.port}`;
+  const iconUrl = `https://api.mcstatus.io/v2/icon/${encodeURIComponent(address)}?timeout=5`;
+  const ownerId = server.owner_discord_user_id && /^\d{10,32}$/.test(server.owner_discord_user_id)
+    ? server.owner_discord_user_id
+    : null;
+  const ownerMention = ownerId ? `<@${ownerId}>` : "Not available";
+  const fields: Array<{ name: string; value: string; inline?: boolean }> = [
+    { name: "Server address", value: `\`\`\`\n${address.replace(/[\\`]/g, "\\$&").slice(0, 1000)}\n\`\`\`` },
+    { name: "Owner", value: ownerMention, inline: true }
+  ];
+  if (server.website_url) {
+    fields.push({
+      name: "Website",
+      value: `<${server.website_url}>`,
+      inline: true
+    });
+  }
+  const socials = safeParseSocialLinks(server.social_links_json);
+  const links: string[] = [];
+  for (const link of socials) {
+    const candidate = discordMarkdownLink(link.label, link.url);
+    if ([...links, candidate].join(" • ").length > 1024) break;
+    links.push(candidate);
+  }
+  if (links.length) {
+    fields.push({ name: "Socials", value: links.join(" • ") });
+  }
+  const embedTimestamp = discordEmbedTimestamp(embed.timestamp);
+
+  return {
+    allowed_mentions: ownerId
+      ? { parse: [], users: [ownerId] }
+      : { parse: [] },
+    embeds: [{
+      author: {
+        name: "KingdomsX Servers",
+        url: canonicalUrl,
+        icon_url: "https://i.imgur.com/yJI3kra.png"
+      },
+      title: escapeDiscordMarkdown(server.name).slice(0, 256),
+      description: escapeDiscordMarkdown(server.description).slice(0, 4096),
+      color: 0xfbb03b,
+      fields,
+      thumbnail: {
+        url: iconUrl,
+        description: `${server.name.slice(0, 200)} server icon`
+      },
+      footer: {
+        text: embed.updated ? "Updated" : "Listed"
+      },
+      ...(embedTimestamp ? { timestamp: embedTimestamp } : {})
+    }]
+  };
+}
+
+function discordEmbedTimestamp(value: string): string | null {
+  const date = new Date(value);
+  return Number.isNaN(date.getTime()) ? null : date.toISOString();
+}
+
+function escapeDiscordMarkdown(value: string): string {
+  return value.replace(/([\\`*_{}\[\]()<>#+\-.!|~])/g, "\\$1");
+}
+
+function discordMarkdownLink(label: string, url: string): string {
+  const safeUrl = url.replace(/\(/g, "%28").replace(/\)/g, "%29");
+  return `[${escapeDiscordMarkdown(label)}](${safeUrl})`;
+}
+
+function parseDiscordWebhookUrl(value: string | undefined): string {
+  const candidate = value?.trim();
+  if (!candidate) {
+    throw new DiscordDeliveryError("not_configured", "Discord embed is not configured.", false);
+  }
+  let url: URL;
+  try {
+    url = new URL(candidate);
+  } catch {
+    throw new DiscordDeliveryError("invalid_configuration", "Discord webhook configuration is invalid.", false);
+  }
+  if (url.protocol !== "https:" || url.hostname !== "discord.com" || !/^\/api(?:\/v\d+)?\/webhooks\/\d+\/[^/]+\/?$/.test(url.pathname)) {
+    throw new DiscordDeliveryError("invalid_configuration", "Discord webhook configuration is invalid.", false);
+  }
+  const match = url.pathname.match(/\/webhooks\/(\d+)\/([^/]+)/);
+  if (!match) {
+    throw new DiscordDeliveryError("invalid_configuration", "Discord webhook configuration is invalid.", false);
+  }
+  return `https://discord.com/api/v10/webhooks/${match[1]}/${match[2]}`;
+}
+
+async function discordFetch(url: string, method: string, payload: Record<string, unknown> | null, creation: boolean): Promise<Response> {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), DISCORD_API_TIMEOUT_MS);
+  try {
+    return await fetch(url, {
+      method,
+      headers: payload ? { "content-type": "application/json" } : undefined,
+      body: payload ? JSON.stringify(payload) : undefined,
+      signal: controller.signal
+    });
+  } catch (error) {
+    if (creation) throw error;
+    throw new DiscordDeliveryError("network_error", "Discord request failed.", true, error);
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
+async function requireDiscordSuccess(response: Response, operation: string): Promise<void> {
+  if (response.ok) return;
+  if (response.status === 429) {
+    const body = await readBoundedDiscordJson(response);
+    const retryAfter = Number(response.headers.get("retry-after") ?? body.retry_after ?? "0");
+    throw new DiscordDeliveryError("rate_limited", "Discord rate limited the embed request.", true, undefined, retryAfter);
+  }
+  if (response.status >= 500) {
+    await cancelResponseBody(response);
+    throw new DiscordDeliveryError("discord_unavailable", "Discord is temporarily unavailable.", true);
+  }
+  const configurationFailure = response.status === 401 || response.status === 403 || response.status === 404;
+  await cancelResponseBody(response);
+  throw new DiscordDeliveryError(
+    configurationFailure ? "invalid_webhook" : "invalid_payload",
+    configurationFailure ? "Discord webhook access failed." : `Discord rejected the ${operation} payload.`,
+    false
+  );
+}
+
+async function readBoundedDiscordJson(response: Response): Promise<Record<string, unknown>> {
+  const contentLength = Number(response.headers.get("content-length") ?? "0");
+  if (contentLength > 32_768) return {};
+  try {
+    const value: unknown = await response.json();
+    return isRecord(value) ? value : {};
+  } catch {
+    return {};
+  }
+}
+
+async function cancelResponseBody(response: Response): Promise<void> {
+  try {
+    await response.body?.cancel();
+  } catch {
+    // The response outcome is already known
+    // Means that cancellation failure must not change delivery state
+  }
+}
+
+class DiscordDeliveryError extends Error {
+  constructor(
+    readonly code: string,
+    message: string,
+    readonly retryable: boolean,
+    readonly cause?: unknown,
+    readonly retryAfterSeconds = 0
+  ) {
+    super(message);
+    this.name = "DiscordDeliveryError";
+  }
+}
+
+async function recordDiscordFailure(
+  env: ServerDirectoryEnv,
+  job: DiscordEmbedJob,
+  leaseToken: string,
+  error: unknown
+): Promise<void> {
+  const failure = error instanceof DiscordDeliveryError
+    ? error
+    : new DiscordDeliveryError("unexpected_error", "Unexpected Discord embed failure.", true, error);
+  const attempts = job.attempt_count + 1;
+  const permanent = !failure.retryable || attempts >= DISCORD_JOB_MAX_ATTEMPTS;
+  const baseSeconds = failure.retryAfterSeconds > 0
+    ? failure.retryAfterSeconds
+    : Math.min(3600, 30 * (2 ** Math.min(attempts - 1, 7)));
+  const jitter = crypto.getRandomValues(new Uint16Array(1))[0] % 11;
+  const nextAttemptAt = permanent ? "9999-12-31T23:59:59.999Z" : new Date(Date.now() + (baseSeconds + jitter) * 1000).toISOString();
+  await runD1Statement(env.DB.prepare(`
+    UPDATE discord_embed_jobs
+    SET attempt_count = ?, next_attempt_at = ?, last_attempt_at = ?,
+        last_error_code = ?, last_error = ?, lease_token = NULL, lease_expires_at = NULL
+    WHERE server_id = ? AND desired_version = ? AND lease_token = ?
+  `).bind(attempts, nextAttemptAt, nowIso(), failure.code, failure.message.slice(0, 500), job.server_id, job.desired_version, leaseToken));
+  logWarn(permanent ? "discord.embed_failed" : "discord.embed_retry_scheduled", failure, {
+    serverId: job.server_id,
+    code: failure.code,
+    attempts
+  });
 }
 
 async function fetchServerStatus(address: string): Promise<StatusSnapshot> {
@@ -2711,6 +3224,13 @@ function adminSelectSql(whereSql: string, orderBySql: string, tail: string): str
       event.action AS review_event_action,
       event.created_at AS review_event_created_at,
       event.reason_code AS review_event_reason_code
+      ,embed.message_id AS discord_message_id
+      ,embed.synced_version AS discord_synced_version
+      ,embed.synced_at AS discord_synced_at
+      ,discord_job.desired_action AS discord_job_action
+      ,discord_job.attempt_count AS discord_job_attempt_count
+      ,discord_job.last_error_code AS discord_job_last_error_code
+      ,discord_job.last_error AS discord_job_last_error
     FROM servers s
     LEFT JOIN server_status ss ON ss.server_id = s.id
     LEFT JOIN submitter_accounts owner ON owner.id = s.owner_account_id
@@ -2735,6 +3255,8 @@ function adminSelectSql(whereSql: string, orderBySql: string, tail: string): str
       ORDER BY latest_event.created_at DESC
       LIMIT 1
     )
+    LEFT JOIN discord_embeds embed ON embed.server_id = s.id
+    LEFT JOIN discord_embed_jobs discord_job ON discord_job.server_id = s.id
     WHERE ${whereSql}
     ORDER BY ${orderBySql}
     ${tail}
@@ -2823,6 +3345,15 @@ function toPublicServer(row: ServerRow) {
 }
 
 function toAdminServer(row: AdminServerRow) {
+  const discordEmbedState = row.discord_job_last_error_code
+    ? "failed"
+    : row.discord_job_action === "delete"
+      ? "deleting"
+      : row.discord_job_action
+        ? "pending"
+        : row.status === "approved" && row.discord_message_id
+          ? "synced"
+          : "not_applicable";
   return {
     ...toPublicServer(row),
     id: row.id,
@@ -2857,6 +3388,12 @@ function toAdminServer(row: AdminServerRow) {
       action: row.review_event_action,
       createdAt: row.review_event_created_at,
       reasonCode: row.review_event_reason_code
+    },
+    discordEmbed: {
+      state: discordEmbedState,
+      syncedAt: row.discord_synced_at,
+      attemptCount: row.discord_job_attempt_count ?? 0,
+      lastError: row.discord_job_last_error
     }
   };
 }
@@ -3734,6 +4271,10 @@ function logError(event: string, error?: unknown, fields: Record<string, unknown
 
 function logWarn(event: string, error?: unknown, fields: Record<string, unknown> = {}): void {
   console.warn(JSON.stringify(logPayload(event, error, fields)));
+}
+
+function logInfo(event: string, fields: Record<string, unknown> = {}): void {
+  console.log(JSON.stringify(logPayload(event, undefined, fields)));
 }
 
 function logPayload(event: string, error?: unknown, fields: Record<string, unknown> = {}): Record<string, unknown> {

@@ -26,8 +26,8 @@ const ADMIN_MESSAGES = {
   status: {
     refreshingVisible: "Refreshing visible server statuses...",
     refreshedVisible: (count) => `${numberFormatter.format(count)} visible server status${count === 1 ? "" : "es"} refreshed.`,
-    runningAction: (action) => `Running ${action.replace("-", " ")}...`,
-    completedAction: (action) => `${action.replace("-", " ")} completed.`
+    runningAction: (action) => action === "discord-sync" ? "Queueing Discord embed update..." : `Running ${action.replace("-", " ")}...`,
+    completedAction: (action) => action === "discord-sync" ? "Discord embed update queued." : `${action.replace("-", " ")} completed.`
   },
   errors: {
     statusRefreshFailed: "Status refresh failed.",
@@ -36,7 +36,7 @@ const ADMIN_MESSAGES = {
     moderationFailed: "Moderation action failed."
   },
   confirmations: {
-    deleteServer: (name) => `Are you sure you want to permanently delete ${name}? This removes the listing, submissions, status history, and review data.`
+    deleteServer: (name) => `Are you sure you want to permanently delete ${name}? This removes the listing, submissions, status history, Discord embed, and review data.`
   },
   feedbackReasons: {
     reject: [
@@ -721,6 +721,75 @@ const createOverview = (server) => {
   return overview;
 };
 
+const createDiscordEmbed = (server) => {
+  const embed = server.discordEmbed ?? {};
+  const state = embed.state ?? "not_applicable";
+  const stateLabels = {
+    not_applicable: "Not applicable",
+    pending: "Queued",
+    synced: "Synced",
+    deleting: "Removing",
+    failed: "Failed"
+  };
+  const stateIcons = {
+    not_applicable: "fa-solid fa-minus",
+    pending: "fa-solid fa-clock",
+    synced: "fa-solid fa-circle-check",
+    deleting: "fa-solid fa-trash-can",
+    failed: "fa-solid fa-triangle-exclamation"
+  };
+  const content = document.createElement("div");
+  content.className = "d-flex flex-column gap-3";
+
+  const stats = document.createElement("div");
+  stats.className = "server-stats row row-cols-1 row-cols-sm-3 g-2";
+  stats.append(
+    createStat("State", stateLabels[state] ?? String(state).replaceAll("_", " "), stateIcons[state] ?? "fa-solid fa-circle-info"),
+    createStat("Last Synced", formatDate(embed.syncedAt), "fa-solid fa-clock"),
+    createStat("Attempts", String(embed.attemptCount ?? 0), "fa-solid fa-rotate")
+  );
+  content.append(stats);
+
+  if (embed.lastError) {
+    const error = createTextBlock(`Last error: ${embed.lastError}`, "server-submit-notice is-error mb-0 p-3 rounded-3");
+    content.append(error);
+  }
+  return content;
+};
+
+const createDiscordEmbedAction = (server) => {
+  const state = server.discordEmbed?.state ?? "not_applicable";
+  const approved = server.reviewStatus === "approved";
+  let label;
+  let icon = "fa-paper-plane";
+  let disabled = false;
+
+  if (state === "pending") {
+    label = "Discord Embed Update Queued";
+    icon = "fa-clock";
+    disabled = true;
+  } else if (state === "deleting") {
+    label = "Discord Embed Removal Queued";
+    icon = "fa-clock";
+    disabled = true;
+  } else if (state === "failed") {
+    label = approved ? "Retry Discord Embed Update" : "Retry Discord Embed Removal";
+    icon = "fa-rotate";
+  } else if (approved && state === "synced") {
+    label = "Update Discord Embed";
+    icon = "fa-arrows-rotate";
+  } else if (approved) {
+    label = "Post Embed to Discord";
+  } else {
+    return null;
+  }
+
+  const button = createActionButton("discord-sync", label, icon, "btn-site-sm");
+  button.disabled = disabled;
+  if (disabled) button.setAttribute("aria-disabled", "true");
+  return button;
+};
+
 const createCurrentModerationReason = (server) => {
   if (server.reviewStatus !== "rejected" && server.reviewStatus !== "suspended") {
     return null;
@@ -824,6 +893,7 @@ const fillManageModal = (modal, server) => {
     createModalSection("Description", description),
     createModalSection(`Server Status (${providerName(server.provider)})`, stats),
     createModalSection("Website & Socials", socialsContent),
+    createModalSection("Discord Embed", createDiscordEmbed(server)),
     createModalSection("Submission", submissionContent)
   ].filter(Boolean);
   body.append(...sections);
@@ -831,6 +901,8 @@ const fillManageModal = (modal, server) => {
   const refreshGroup = document.createElement("div");
   refreshGroup.className = "server-admin-footer-group d-flex flex-wrap gap-2";
   refreshGroup.append(createActionButton("refresh-status", "Refresh Status", "fa-rotate", "btn-site-sm"));
+  const discordAction = createDiscordEmbedAction(server);
+  if (discordAction) refreshGroup.append(discordAction);
 
   const moderationGroup = document.createElement("div");
   moderationGroup.className = "server-admin-footer-group d-flex flex-wrap gap-2";
@@ -1161,7 +1233,11 @@ const initServerAdmin = () => {
     try {
       const data = action === "refresh-status"
         ? { item: await refreshServerStatus({ id }) }
-        : await fetch(action === "delete" ? `/api/admin/servers/${encodeURIComponent(id)}` : `/api/admin/servers/${encodeURIComponent(id)}/${action}`, {
+        : await fetch(action === "delete"
+          ? `/api/admin/servers/${encodeURIComponent(id)}`
+          : action.startsWith("discord-")
+            ? `/api/admin/servers/${encodeURIComponent(id)}/discord/${action.replace("discord-", "")}`
+            : `/api/admin/servers/${encodeURIComponent(id)}/${action}`, {
           method: action === "delete" ? "DELETE" : "POST",
           headers: {
             ...adminHeaders(),

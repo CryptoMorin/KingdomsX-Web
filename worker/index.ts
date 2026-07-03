@@ -73,7 +73,7 @@ export default {
   },
 
   async scheduled(controller: ScheduledController, env: Env, ctx: ExecutionContext): Promise<void> {
-    scheduleServerDirectoryRefresh(env, ctx, controller.scheduledTime);
+    scheduleServerDirectoryRefresh(env, ctx, controller.scheduledTime, controller.cron);
   }
 } satisfies ExportedHandler<Env>;
 
