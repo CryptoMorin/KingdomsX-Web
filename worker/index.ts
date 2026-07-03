@@ -17,7 +17,9 @@ const APEX_HOST = "kingdomsx.com";
 const WWW_HOST = "www.kingdomsx.com";
 const ASSETS_HOST = "assets.kingdomsx.com";
 const SERVERS_HOST = "servers.kingdomsx.com";
+const SERVERS_ORIGIN = `https://${SERVERS_HOST}`;
 const SERVER_DIRECTORY_DESCRIPTION = "Browse public servers running KingdomsX, whether you want to test the plugin or find a community already using it.";
+const SERVER_DIRECTORY_SITEMAP_PATHS = ["/", "/all", "/offline"] as const;
 type DirectoryStatus = "all" | "online" | "offline";
 type DirectorySort = "newest" | "players" | "name";
 
@@ -65,6 +67,12 @@ export default {
         return handleServerDirectoryRequest(request, env, ctx);
       }
 
+      const seoResponse = serverSeoAsset(request, url);
+
+      if (seoResponse) {
+        return seoResponse;
+      }
+
       const serverResponse = await serveServerSurface(request, url, env);
       return serverResponse ?? renderErrorPage(request, env, 404);
     }
@@ -78,13 +86,14 @@ export default {
 } satisfies ExportedHandler<Env>;
 
 function isLegacyServersPath(pathname: string): boolean {
-  return pathname === "/servers" || pathname === "/servers/" || pathname.startsWith("/servers/");
+  return pathname === "/servers" || pathname === "/servers/" || pathname === "/servers.html" || pathname.startsWith("/servers/");
 }
 
 function serverDirectoryRedirect(url: URL): string {
   const redirect = new URL(url);
   redirect.hostname = SERVERS_HOST;
   redirect.pathname = redirect.pathname.replace(/^\/servers/, "") || "/";
+  redirect.pathname = normalizeServerHtmlPath(redirect.pathname);
   return redirect.toString();
 }
 
@@ -108,7 +117,7 @@ async function serveServerSurface(request: Request, url: URL, env: Env, basePath
 }
 
 function serverUtilityAsset(pathname: string, basePath: string): { publicPath: string; assetPath: string } | null {
-  const normalized = pathname.replace(/\/+$/, "") || "/";
+  const normalized = normalizeServerHtmlPath(pathname.replace(/\/+$/, "") || "/");
 
   if (normalized === `${basePath}/submit`) {
     return { publicPath: "/submit", assetPath: "/servers/submit.html" };
@@ -119,6 +128,87 @@ function serverUtilityAsset(pathname: string, basePath: string): { publicPath: s
   }
 
   return null;
+}
+
+function normalizeServerHtmlPath(pathname: string): string {
+  const withoutTrailingSlash = pathname.replace(/\/+$/, "") || "/";
+
+  if (withoutTrailingSlash === "/servers.html") {
+    return "/";
+  }
+
+  if (withoutTrailingSlash.endsWith(".html")) {
+    return withoutTrailingSlash.slice(0, -".html".length) || "/";
+  }
+
+  return withoutTrailingSlash;
+}
+
+function serverSeoAsset(request: Request, url: URL): Response | null {
+  if (request.method !== "GET" && request.method !== "HEAD") {
+    return null;
+  }
+
+  const pathname = url.pathname.replace(/\/+$/, "") || "/";
+
+  if (pathname === "/robots.txt") {
+    return textResponse(request, serverRobotsTxt(), "text/plain; charset=utf-8");
+  }
+
+  if (pathname === "/sitemap-index.xml") {
+    return textResponse(request, serverSitemapIndexXml(), "application/xml; charset=utf-8");
+  }
+
+  if (pathname === "/sitemap-0.xml") {
+    return textResponse(request, serverSitemapXml(), "application/xml; charset=utf-8");
+  }
+
+  return null;
+}
+
+function textResponse(request: Request, body: string, contentType: string): Response {
+  return new Response(request.method === "HEAD" ? null : body, {
+    headers: {
+      "Content-Type": contentType,
+      "Cache-Control": "public, max-age=3600",
+      "X-Content-Type-Options": "nosniff"
+    }
+  });
+}
+
+function serverRobotsTxt(): string {
+  return [
+    "User-agent: *",
+    "Allow: /",
+    "Disallow: /api/",
+    "Disallow: /admin",
+    "",
+    `Sitemap: ${SERVERS_ORIGIN}/sitemap-index.xml`,
+    ""
+  ].join("\n");
+}
+
+function serverSitemapIndexXml(): string {
+  return [
+    "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
+    "<sitemapindex xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">",
+    `<sitemap><loc>${SERVERS_ORIGIN}/sitemap-0.xml</loc></sitemap>`,
+    "</sitemapindex>"
+  ].join("");
+}
+
+function serverSitemapXml(): string {
+  const urls = SERVER_DIRECTORY_SITEMAP_PATHS.map((pathname) => {
+    const loc = pathname === "/" ? `${SERVERS_ORIGIN}/` : `${SERVERS_ORIGIN}${pathname}`;
+    return `<url><loc>${loc}</loc></url>`;
+  }).join("");
+
+  return [
+    "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
+    "<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">",
+    urls,
+    "</urlset>"
+  ].join("");
 }
 
 function parseDirectoryRoute(pathname: string, basePath = ""): DirectoryRoute | null {

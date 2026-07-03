@@ -98,9 +98,19 @@ const ogImageUrl = publicUrl("og-img.png");
           "@id": `${siteUrl}/#website`,
           "name": SITE.name,
           "url": `${siteUrl}/`,
-          "description": description,
+          "description": defaultDescription,
           "inLanguage": "en",
           "publisher": { "@id": `${siteUrl}/#organization` }
+        },
+        {
+          "@type": "WebPage",
+          "@id": `${canonicalUrl}#webpage`,
+          "url": canonicalUrl,
+          "name": title,
+          "description": description,
+          "isPartOf": { "@id": `${siteUrl}/#website` },
+          "about": { "@id": `${siteUrl}/#software` },
+          "inLanguage": "en"
         },
         {
           "@type": "Organization",
@@ -125,7 +135,7 @@ const ogImageUrl = publicUrl("og-img.png");
           "downloadUrl": SITE.spigot,
           "softwareHelp": SITE.wiki,
           "image": ogImageUrl,
-          "description": description,
+          "description": defaultDescription,
           "author": { "@type": "Person", "name": "Crypto Morin", "url": SITE.author },
           "publisher": { "@id": `${siteUrl}/#organization` },
           "offers": { "@type": "Offer", "url": SITE.spigot, "availability": "https://schema.org/InStock" }

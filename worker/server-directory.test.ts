@@ -342,13 +342,46 @@ describe("server verification", () => {
     expect(legacy.status).toBe(301);
     expect(legacy.headers.get("location")).toBe("https://servers.kingdomsx.com/all");
 
+    const legacyHtml = await workerRoute("https://kingdomsx.com/servers/submit.html", requestedAssets);
+    expect(legacyHtml.status).toBe(301);
+    expect(legacyHtml.headers.get("location")).toBe("https://servers.kingdomsx.com/submit");
+
     const directory = await workerRoute("https://servers.kingdomsx.com/all/sort/name/page/2", requestedAssets);
     expect(directory.status).toBe(200);
     expect(requestedAssets.at(-1)).toBe("/servers.html");
 
+    const robots = await workerRoute("https://servers.kingdomsx.com/robots.txt", requestedAssets);
+    expect(robots.status).toBe(200);
+    expect(robots.headers.get("content-type")).toContain("text/plain");
+    const robotsTxt = await robots.text();
+    expect(robotsTxt).toContain("Sitemap: https://servers.kingdomsx.com/sitemap-index.xml");
+    expect(robotsTxt).toContain("Disallow: /admin");
+    expect(robotsTxt).not.toContain("Disallow: /submit");
+
+    const sitemapIndex = await workerRoute("https://servers.kingdomsx.com/sitemap-index.xml", requestedAssets);
+    expect(sitemapIndex.status).toBe(200);
+    await expect(sitemapIndex.text()).resolves.toContain("https://servers.kingdomsx.com/sitemap-0.xml");
+
+    const sitemap = await workerRoute("https://servers.kingdomsx.com/sitemap-0.xml", requestedAssets);
+    expect(sitemap.status).toBe(200);
+    const sitemapXml = await sitemap.text();
+    expect(sitemapXml).toContain("<loc>https://servers.kingdomsx.com/</loc>");
+    expect(sitemapXml).toContain("<loc>https://servers.kingdomsx.com/all</loc>");
+    expect(sitemapXml).toContain("<loc>https://servers.kingdomsx.com/offline</loc>");
+    expect(sitemapXml).not.toContain("/submit");
+    expect(sitemapXml).not.toContain("/admin");
+
     const submit = await workerRoute("https://servers.kingdomsx.com/submit", requestedAssets);
     expect(submit.status).toBe(200);
     expect(requestedAssets.at(-1)).toBe("/servers/submit.html");
+
+    const submitHtml = await workerRoute("https://servers.kingdomsx.com/submit.html", requestedAssets);
+    expect(submitHtml.status).toBe(301);
+    expect(submitHtml.headers.get("location")).toBe("https://servers.kingdomsx.com/submit");
+
+    const adminHtml = await workerRoute("https://servers.kingdomsx.com/admin.html", requestedAssets);
+    expect(adminHtml.status).toBe(301);
+    expect(adminHtml.headers.get("location")).toBe("https://servers.kingdomsx.com/admin");
 
     const invalidPage = await workerRoute("https://servers.kingdomsx.com/page/101", requestedAssets);
     expect(invalidPage.status).toBe(404);
