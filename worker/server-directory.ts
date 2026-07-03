@@ -170,6 +170,15 @@ type RejectionReasonCode = "server_unreachable" | "kingdomsx_not_verified" | "pu
 type PublicStatusFilter = "all" | "online" | "offline";
 type PublicSort = "newest" | "players" | "name";
 type AdminSort = "newest" | "oldest" | "name" | "online" | "updated";
+type PluginVerifyStatus =
+  | "verified"
+  | "already_verified"
+  | "invalid_request"
+  | "unknown_code"
+  | "payload_too_large"
+  | "rate_limited"
+  | "service_unavailable"
+  | "internal_error";
 
 class ApiError extends Error {
   constructor(readonly status: number, message: string) {
@@ -1066,100 +1075,114 @@ async function getVerificationChallenge(request: Request, url: URL, env: ServerD
 }
 
 async function verifyPluginChallenge(request: Request, env: ServerDirectoryEnv): Promise<Response> {
-  if (!env.VERIFICATION_CODE_SECRET || (!isLocalEnvironment(env) && (!env.RATE_LIMIT_SALT || !env.PLUGIN_VERIFY_RATE_LIMIT || !env.PLUGIN_VERIFY_GLOBAL_RATE_LIMIT))) {
-    logError("verification.missing_secrets");
-    return json({ error: "Server verification is temporarily unavailable." }, 503, NO_STORE_JSON_HEADERS);
-  }
+  try {
+    if (!env.VERIFICATION_CODE_SECRET || (!isLocalEnvironment(env) && (!env.RATE_LIMIT_SALT || !env.PLUGIN_VERIFY_RATE_LIMIT || !env.PLUGIN_VERIFY_GLOBAL_RATE_LIMIT))) {
+      logError("verification.missing_secrets");
+      return pluginVerifyErrorResponse("service_unavailable", "Server verification is temporarily unavailable.", 503);
+    }
 
-  const body = await readJsonObject(request, false, PLUGIN_VERIFY_MAX_JSON_BODY_BYTES);
-  const code = normalizeVerificationCode(stringField(body, "code", 64));
+    const body = await readJsonObject(request, false, PLUGIN_VERIFY_MAX_JSON_BODY_BYTES);
+    const code = normalizeVerificationCode(stringField(body, "code", 64));
 
-  if (!code) {
-    return json({ error: "Verification code is invalid." }, 400, NO_STORE_JSON_HEADERS);
-  }
+    if (!code) {
+      return pluginVerifyErrorResponse("invalid_request", "Invalid request.", 400);
+    }
 
-  const callbackPayload = pluginCallbackPayload(body);
+    const callbackPayload = pluginCallbackPayload(body);
 
-  if (!callbackPayload.pluginVersion || !callbackPayload.serverSoftware || !callbackPayload.minecraftVersion) {
-    return json({ error: "Plugin version, server software, and Minecraft version are required." }, 400, NO_STORE_JSON_HEADERS);
-  }
+    if (!callbackPayload.pluginVersion || !callbackPayload.serverSoftware || !callbackPayload.minecraftVersion) {
+      return pluginVerifyErrorResponse("invalid_request", "Invalid request.", 400);
+    }
 
-  const rateLimit = await pluginVerifyRateLimit(request, env);
+    const rateLimit = await pluginVerifyRateLimit(request, env);
 
-  if (!rateLimit.ok) {
-    return verificationRateLimitResponse(rateLimit.error);
-  }
+    if (!rateLimit.ok) {
+      return pluginVerifyErrorResponse("rate_limited", rateLimit.error, 429, { "retry-after": String(VERIFICATION_RATE_LIMIT_RETRY_SECONDS) });
+    }
 
-  const codeHash = await verificationCodeHash(code, env);
-  const timestamp = nowIso();
-  const row = await env.DB.prepare(`
-    SELECT id, owner_account_id, server_name, normalized_host, port, status, expires_at, verified_at, consumed_at,
-           plugin_version, server_software, minecraft_version, callback_ip,
-           created_at, updated_at
-    FROM server_verification_challenges
-    WHERE code_hash = ?
-    LIMIT 1
-  `).bind(codeHash).first<VerificationChallengeRow>();
+    const codeHash = await verificationCodeHash(code, env);
+    const timestamp = nowIso();
+    const row = await env.DB.prepare(`
+      SELECT id, owner_account_id, server_name, normalized_host, port, status, expires_at, verified_at, consumed_at,
+             plugin_version, server_software, minecraft_version, callback_ip,
+             created_at, updated_at
+      FROM server_verification_challenges
+      WHERE code_hash = ?
+      LIMIT 1
+    `).bind(codeHash).first<VerificationChallengeRow>();
 
-  if (!row) {
-    return invalidVerificationCodeResponse();
-  }
+    if (!row) {
+      return invalidVerificationCodeResponse();
+    }
 
-  const visibleStatus = verificationChallengeStatus(row, timestamp);
+    const visibleStatus = verificationChallengeStatus(row, timestamp);
 
-  if (visibleStatus === "expired" || visibleStatus === "consumed") {
-    return invalidVerificationCodeResponse();
-  }
+    if (visibleStatus === "expired" || visibleStatus === "consumed") {
+      return invalidVerificationCodeResponse();
+    }
 
-  if (visibleStatus === "verified") {
+    if (visibleStatus === "verified") {
+      const message = "Server verification is already complete. Return to the submission page.";
+      return json({
+        ok: false,
+        status: "already_verified",
+        expiresAt: verificationProofExpiresAt(row),
+        message
+      }, 409, NO_STORE_JSON_HEADERS);
+    }
+
+    const { ip, ipHash, userAgentHash } = await clientHashes(request, env);
+    const pluginVersion = callbackPayload.pluginVersion;
+    const serverSoftware = callbackPayload.serverSoftware;
+    const minecraftVersion = callbackPayload.minecraftVersion;
+
+    const result = await runD1Statement(env.DB.prepare(`
+      UPDATE server_verification_challenges
+      SET status = 'verified',
+          verified_at = ?,
+          plugin_version = ?,
+          server_software = ?,
+          minecraft_version = ?,
+          callback_ip = ?,
+          callback_ip_hash = ?,
+          callback_user_agent_hash = ?,
+          updated_at = ?
+      WHERE id = ? AND status = 'pending' AND expires_at > ?
+    `).bind(
+      timestamp,
+      pluginVersion || null,
+      serverSoftware || null,
+      minecraftVersion || null,
+      ip,
+      ipHash,
+      userAgentHash,
+      timestamp,
+      row.id,
+      timestamp
+    ));
+
+    if (result.meta.changes !== 1) {
+      return invalidVerificationCodeResponse();
+    }
+
     return json({
       ok: true,
       status: "verified",
-      expiresAt: verificationProofExpiresAt(row),
-      message: "Server verification is already complete. Return to the submission page."
+      expiresAt: verificationProofExpiresAt(timestamp),
+      message: "Server verification complete. Return to the submission page."
     }, 200, NO_STORE_JSON_HEADERS);
+  } catch (error) {
+    if (error instanceof ApiError) {
+      return pluginVerifyErrorResponse(
+        error.status === 413 ? "payload_too_large" : "invalid_request",
+        error.status === 413 ? error.message : "Invalid request.",
+        error.status === 413 ? 413 : 400
+      );
+    }
+
+    logError("verification.plugin_unhandled", error);
+    return pluginVerifyErrorResponse("internal_error", "Server verification failed unexpectedly.", 500);
   }
-
-  const { ip, ipHash, userAgentHash } = await clientHashes(request, env);
-  const pluginVersion = callbackPayload.pluginVersion;
-  const serverSoftware = callbackPayload.serverSoftware;
-  const minecraftVersion = callbackPayload.minecraftVersion;
-
-  const result = await runD1Statement(env.DB.prepare(`
-    UPDATE server_verification_challenges
-    SET status = 'verified',
-        verified_at = ?,
-        plugin_version = ?,
-        server_software = ?,
-        minecraft_version = ?,
-        callback_ip = ?,
-        callback_ip_hash = ?,
-        callback_user_agent_hash = ?,
-        updated_at = ?
-    WHERE id = ? AND status = 'pending' AND expires_at > ?
-  `).bind(
-    timestamp,
-    pluginVersion || null,
-    serverSoftware || null,
-    minecraftVersion || null,
-    ip,
-    ipHash,
-    userAgentHash,
-    timestamp,
-    row.id,
-    timestamp
-  ));
-
-  if (result.meta.changes !== 1) {
-    return invalidVerificationCodeResponse();
-  }
-
-  return json({
-    ok: true,
-    status: "verified",
-    expiresAt: verificationProofExpiresAt(timestamp),
-    message: "Server verification complete. Return to the submission page."
-  }, 200, NO_STORE_JSON_HEADERS);
 }
 
 async function resubmitMyServer(request: Request, env: ServerDirectoryEnv, ctx?: ExecutionContext): Promise<Response> {
@@ -3983,7 +4006,18 @@ function verificationRateLimitResponse(error: string): Response {
 }
 
 function invalidVerificationCodeResponse(): Response {
-  return json({ error: "Verification code is invalid or expired." }, 404, NO_STORE_JSON_HEADERS);
+  return pluginVerifyErrorResponse("unknown_code", "Verification code is invalid or expired.", 404);
+}
+
+function pluginVerifyErrorResponse(
+  statusValue: Exclude<PluginVerifyStatus, "verified">,
+  message: string,
+  status: number,
+  extraHeaders: HeadersInit = {}
+): Response {
+  const headers = new Headers(NO_STORE_JSON_HEADERS);
+  new Headers(extraHeaders).forEach((value, key) => headers.set(key, value));
+  return json({ ok: false, status: statusValue, message }, status, headers);
 }
 
 function verificationProofExpiresAt(value: VerificationChallengeRow | string): string | null {

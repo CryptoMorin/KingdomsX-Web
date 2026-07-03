@@ -243,6 +243,11 @@ describe("server verification", () => {
       body: JSON.stringify({ code: "invalid" })
     });
     expect(malformed.status).toBe(400);
+    await expect(malformed.json()).resolves.toMatchObject({
+      ok: false,
+      status: "invalid_request",
+      message: "Invalid request."
+    });
 
     const incomplete = await api("/api/plugin/verify", {
       method: "POST",
@@ -250,6 +255,23 @@ describe("server verification", () => {
       body: JSON.stringify({ code: "abcd-1234" })
     });
     expect(incomplete.status).toBe(400);
+    await expect(incomplete.json()).resolves.toMatchObject({
+      ok: false,
+      status: "invalid_request",
+      message: "Invalid request."
+    });
+
+    const wrongContentType = await api("/api/plugin/verify", {
+      method: "POST",
+      headers: { "content-type": "text/plain" },
+      body: JSON.stringify(pluginPayload("abcd-1234"))
+    });
+    expect(wrongContentType.status).toBe(400);
+    await expect(wrongContentType.json()).resolves.toMatchObject({
+      ok: false,
+      status: "invalid_request",
+      message: "Invalid request."
+    });
 
     const legacyFieldNames = await api("/api/plugin/verify", {
       method: "POST",
@@ -262,6 +284,10 @@ describe("server verification", () => {
       })
     });
     expect(legacyFieldNames.status).toBe(400);
+    await expect(legacyFieldNames.json()).resolves.toMatchObject({
+      ok: false,
+      status: "invalid_request"
+    });
 
     const oversized = await api("/api/plugin/verify", {
       method: "POST",
@@ -269,6 +295,11 @@ describe("server verification", () => {
       body: JSON.stringify({ ...pluginPayload("abcd-1234"), padding: "x".repeat(4_096) })
     });
     expect(oversized.status).toBe(413);
+    await expect(oversized.json()).resolves.toMatchObject({
+      ok: false,
+      status: "payload_too_large",
+      message: "Request body is too large."
+    });
   });
 
   it("accepts server descriptions up to 240 characters", async () => {
@@ -796,6 +827,11 @@ describe("server verification", () => {
       .first<{ callback_ip: string | null }>();
     expect(callback?.callback_ip).toBe("203.0.113.42");
     const verified = await verify.json<{ expiresAt: string }>();
+    expect(verified).toMatchObject({
+      ok: true,
+      status: "verified",
+      message: "Server verification complete. Return to the submission page."
+    });
     expect(new Date(verified.expiresAt).getTime()).toBeGreaterThan(Date.now() + 47 * 60 * 60 * 1000);
 
     const duplicate = await api("/api/plugin/verify", {
@@ -803,7 +839,12 @@ describe("server verification", () => {
       headers: { "content-type": "application/json" },
       body: JSON.stringify(pluginPayload(String(created.code)))
     });
-    expect(duplicate.status).toBe(200);
+    expect(duplicate.status).toBe(409);
+    await expect(duplicate.json()).resolves.toMatchObject({
+      ok: false,
+      status: "already_verified",
+      message: "Server verification is already complete. Return to the submission page."
+    });
 
     const status = await api(`/api/servers/verification-challenges/${created.id}`, {
       headers: { cookie }
@@ -828,6 +869,11 @@ describe("server verification", () => {
       body: JSON.stringify(pluginPayload(String(created.code)))
     });
     expect(expiredCallback.status).toBe(404);
+    await expect(expiredCallback.json()).resolves.toMatchObject({
+      ok: false,
+      status: "unknown_code",
+      message: "Verification code is invalid or expired."
+    });
 
     const replacement = await createChallenge(cookie);
     expect(replacement.id).not.toBe(created.id);
