@@ -406,13 +406,13 @@ const createOwnerStat = (owner, columnClass = "col") => {
   );
 };
 
-const createAdminLink = (url, label, key = "") => {
+const createAdminLink = (url, label, key = "", visibleLabel = label) => {
   if (!url) {
     return null;
   }
 
   const link = document.createElement("a");
-  link.className = "server-link server-social-link d-inline-flex align-items-center justify-content-center text-decoration-none";
+  link.className = "server-link server-social-link d-inline-flex align-items-center justify-content-center overflow-hidden text-nowrap text-decoration-none px-2";
   link.href = url;
   link.target = "_blank";
   link.rel = "ugc nofollow noopener noreferrer";
@@ -420,9 +420,17 @@ const createAdminLink = (url, label, key = "") => {
   link.title = label;
 
   const icon = document.createElement("i");
-  icon.className = SOCIAL_ICON_CLASSES[key] ?? "fa-solid fa-link";
+  icon.className = `${SOCIAL_ICON_CLASSES[key] ?? "fa-solid fa-link"} flex-shrink-0`;
   icon.setAttribute("aria-hidden", "true");
-  link.append(icon);
+
+  const text = document.createElement("span");
+  text.className = "server-social-label d-inline-grid overflow-hidden text-nowrap";
+  const textValue = document.createElement("span");
+  textValue.className = "fw-bolder";
+  textValue.textContent = key === "x" ? "Twitter/X" : visibleLabel;
+  text.append(textValue);
+
+  link.append(icon, text);
   return link;
 };
 
@@ -582,7 +590,7 @@ const createAdminCard = (server) => {
     links.append(website);
   }
   (server.socialLinks ?? []).forEach((item) => {
-    const link = createAdminLink(item.url, item.host ? `${item.label}: ${item.host}` : item.label, item.key);
+    const link = createAdminLink(item.url, item.host ? `${item.label}: ${item.host}` : item.label, item.key, item.label);
     if (link) {
       links.append(link);
     }
@@ -897,7 +905,7 @@ const fillManageModal = (modal, server) => {
     links.append(website);
   }
   (server.socialLinks ?? []).forEach((item) => {
-    const link = createAdminLink(item.url, item.host ? `${item.label}: ${item.host}` : item.label, item.key);
+    const link = createAdminLink(item.url, item.host ? `${item.label}: ${item.host}` : item.label, item.key, item.label);
     if (link) {
       links.append(link);
     }

@@ -487,13 +487,13 @@ const resetCopiedAddress = (button, value) => {
   button.setAttribute("aria-label", `Copy server address ${value}`);
 };
 
-const appendServerLink = (container, url, label, key = "") => {
+const appendServerLink = (container, url, label, key = "", visibleLabel = label) => {
   if (!url) {
     return;
   }
 
   const link = document.createElement("a");
-  link.className = "server-link server-social-link d-inline-flex align-items-center justify-content-center text-decoration-none";
+  link.className = "server-link server-social-link d-inline-flex align-items-center justify-content-center overflow-hidden text-nowrap text-decoration-none px-2";
   link.href = url;
   link.target = "_blank";
   link.rel = "ugc nofollow noopener noreferrer";
@@ -501,9 +501,17 @@ const appendServerLink = (container, url, label, key = "") => {
   link.title = label;
 
   const icon = document.createElement("i");
-  icon.className = SOCIAL_ICON_CLASSES[key] ?? "fa-solid fa-link";
+  icon.className = `${SOCIAL_ICON_CLASSES[key] ?? "fa-solid fa-link"} flex-shrink-0`;
   icon.setAttribute("aria-hidden", "true");
-  link.append(icon);
+
+  const text = document.createElement("span");
+  text.className = "server-social-label d-inline-grid overflow-hidden text-nowrap";
+  const textValue = document.createElement("span");
+  textValue.className = "fw-bolder";
+  textValue.textContent = key === "x" ? "Twitter/X" : visibleLabel;
+  text.append(textValue);
+
+  link.append(icon, text);
   container.append(link);
 };
 
@@ -2613,7 +2621,7 @@ const initServerSubmit = () => {
     links.className = "server-links d-flex flex-wrap gap-2";
     appendServerLink(links, item.websiteUrl, "Website", "website");
     (item.socialLinks ?? []).forEach((link) => {
-      appendServerLink(links, link.url, link.host ? `${link.label}: ${link.host}` : link.label, link.key);
+      appendServerLink(links, link.url, link.host ? `${link.label}: ${link.host}` : link.label, link.key, link.label);
     });
 
     const footer = document.createElement("div");

@@ -1843,8 +1843,12 @@ h1 span:nth-child(2) {
   background: rgba(7, 16, 25, 0.45);
   color: #d5dbe0;
   font-size: 0.8rem;
-  font-weight: 800;
   line-height: 1.2;
+}
+
+.server-status,
+.server-pill {
+  font-weight: 800;
 }
 
 .server-status {
@@ -1952,10 +1956,29 @@ h1 span:nth-child(2) {
 }
 
 .server-social-link {
-  width: 2.375rem;
+  min-width: 2.375rem;
   height: 2.375rem;
-  padding: 0;
   font-size: 0.95rem;
+}
+
+.server-social-label {
+  grid-template-columns: 0fr;
+  margin-left: 0;
+  opacity: 0;
+  transition: grid-template-columns 220ms ease, margin-left 220ms ease, opacity 160ms ease;
+}
+
+.server-social-label > span {
+  min-width: 0;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .server-social-link:hover .server-social-label,
+  .server-social-link:focus-visible .server-social-label {
+    grid-template-columns: 1fr;
+    margin-left: 0.5rem;
+    opacity: 1;
+  }
 }
 
 .server-link:hover,
