@@ -434,8 +434,8 @@ describe("server verification", () => {
     await expect(response.json()).resolves.toMatchObject({
       item: {
         owner: {
-          displayName: "Tester",
-          username: "tester123"
+          displayName: "Tester public-owner",
+          username: "Testerpublic-owner"
         }
       }
     });
