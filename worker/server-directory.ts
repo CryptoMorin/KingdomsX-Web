@@ -1,3 +1,9 @@
+import {
+  buildDiscordReviewEmbedPayload,
+  buildDiscordServerEmbedPayload,
+  type ServerDirectoryReviewDisplayStatus
+} from "./server-directory-embeds";
+
 export interface ServerDirectoryEnv {
   DB: D1Database;
   APP_ENVIRONMENT: "local" | "production";
@@ -130,8 +136,6 @@ interface DiscordReviewDeletionSnapshot extends DiscordReviewSubmissionRow {
   review_notification_type: "submitted" | "resubmitted";
   review_synced_at: string;
 }
-
-type DiscordReviewDisplayStatus = ServerState | "deleted";
 
 interface DiscordEmbedRecord {
   message_id: string;
@@ -3041,205 +3045,44 @@ export function buildDiscordServerMessage(
   server: DiscordServerRow,
   embed: { updated: boolean; timestamp: string }
 ): Record<string, unknown> {
-  const canonicalUrl = "https://servers.kingdomsx.com/";
-  const address = server.port === 25565 ? server.normalized_host : `${server.normalized_host}:${server.port}`;
-  const iconUrl = `https://api.mcstatus.io/v2/icon/${encodeURIComponent(address)}?timeout=5`;
-  const ownerId = server.owner_discord_user_id && /^\d{10,32}$/.test(server.owner_discord_user_id)
-    ? server.owner_discord_user_id
-    : null;
-  const ownerMention = ownerId ? `<@${ownerId}>` : "Not available";
-  const fields: Array<{ name: string; value: string; inline?: boolean }> = [
-    { name: "Server address", value: `\`\`\`\n${address.replace(/[\\`]/g, "\\$&").slice(0, 1000)}\n\`\`\`` },
-    { name: "Owner", value: ownerMention, inline: true }
-  ];
-  if (server.website_url) {
-    fields.push({
-      name: "Website",
-      value: `<${server.website_url}>`,
-      inline: true
-    });
-  }
-  const socials = safeParseSocialLinks(server.social_links_json);
-  const links: string[] = [];
-  for (const link of socials) {
-    const candidate = discordMarkdownLink(link.label, link.url);
-    if ([...links, candidate].join(" • ").length > 1024) break;
-    links.push(candidate);
-  }
-  if (links.length) {
-    fields.push({ name: "Socials", value: links.join(" • ") });
-  }
-  const embedTimestamp = discordEmbedTimestamp(embed.timestamp);
-
-  return {
-    allowed_mentions: ownerId
-      ? { parse: [], users: [ownerId] }
-      : { parse: [] },
-    embeds: [{
-      author: {
-        name: "KingdomsX Servers",
-        url: canonicalUrl,
-        icon_url: "https://i.imgur.com/yJI3kra.png"
-      },
-      title: escapeDiscordMarkdown(server.name).slice(0, 256),
-      description: escapeDiscordMarkdown(server.description).slice(0, 4096),
-      color: 0xfbb03b,
-      fields,
-      thumbnail: {
-        url: iconUrl,
-        description: `${server.name.slice(0, 200)} server icon`
-      },
-      footer: {
-        text: embed.updated ? "Updated" : "Listed"
-      },
-      ...(embedTimestamp ? { timestamp: embedTimestamp } : {})
-    }]
-  };
+  return buildDiscordServerEmbedPayload({
+    name: server.name,
+    description: server.description,
+    normalizedHost: server.normalized_host,
+    port: server.port,
+    websiteUrl: server.website_url,
+    socialLinks: safeParseSocialLinks(server.social_links_json),
+    ownerDiscordUserId: server.owner_discord_user_id
+  }, embed);
 }
 
 export function buildDiscordReviewNotificationMessage(
   server: DiscordReviewSubmissionRow,
   notificationType: "submitted" | "resubmitted",
-  displayStatus: DiscordReviewDisplayStatus = server.status
+  displayStatus: ServerDirectoryReviewDisplayStatus = server.status
 ): Record<string, unknown> {
-  const adminUrl = "https://servers.kingdomsx.com/admin";
-  const address = server.port === 25565 ? server.normalized_host : `${server.normalized_host}:${server.port}`;
-  const iconUrl = `https://api.mcstatus.io/v2/icon/${encodeURIComponent(address)}?timeout=5`;
-  const ownerId = server.owner_discord_user_id && /^\d{10,32}$/.test(server.owner_discord_user_id)
-    ? server.owner_discord_user_id
-    : null;
-  const fields: Array<{ name: string; value: string; inline?: boolean }> = [
-    { name: "Server address", value: `\`\`\`\n${address.replace(/[\\`]/g, "\\$&").slice(0, 1000)}\n\`\`\`` },
-    { name: "Owner", value: ownerId ? `<@${ownerId}>` : "Not available", inline: true }
-  ];
-  if (server.website_url) {
-    fields.push({ name: "Website", value: `<${server.website_url}>`, inline: true });
-  }
-  const socialLinks: string[] = [];
-  for (const link of safeParseSocialLinks(server.social_links_json)) {
-    const candidate = discordMarkdownLink(link.label, link.url);
-    if ([...socialLinks, candidate].join(" • ").length > 1024) break;
-    socialLinks.push(candidate);
-  }
-  if (socialLinks.length) {
-    fields.push({ name: "Socials", value: socialLinks.join(" • ") });
-  }
-  if (server.submission_verification_evidence) {
-    const verification = formatDiscordVerificationEvidence(server.submission_verification_evidence)
-      .replace(/`/g, "ˋ")
-      .slice(0, 1000);
-    fields.push({
-      name: "Verification",
-      value: `\`\`\`\n${verification}\n\`\`\``
-    });
-  }
-  const moderationReason = server.submission_moderation_notes?.trim();
-  if ((displayStatus === "rejected" || displayStatus === "suspended") && moderationReason) {
-    fields.push({
-      name: displayStatus === "rejected" ? "Rejection reason" : "Suspension reason",
-      value: escapeDiscordMarkdown(moderationReason).slice(0, 1024)
-    });
-  }
-  const publicMessageUrl = discordPublicMessageUrl(server);
-  const actionButtons: Array<{ type: number; style: number; label: string; url: string }> = [{
-    type: 2,
-    style: 5,
-    label: "Open admin dashboard",
-    url: adminUrl
-  }];
-  if (displayStatus === "approved" && publicMessageUrl) {
-    actionButtons.push({
-      type: 2,
-      style: 5,
-      label: "View public embed",
-      url: publicMessageUrl
-    });
-  }
-  const reviewState = discordReviewState(displayStatus, notificationType);
-  const timestamp = discordEmbedTimestamp(displayStatus === "pending" ? server.submission_created_at : server.updated_at);
-
-  return {
-    allowed_mentions: ownerId
-      ? { parse: [], users: [ownerId] }
-      : { parse: [] },
-    components: [{
-      type: 1,
-      components: actionButtons
-    }],
-    embeds: [{
-      author: {
-        name: "KingdomsX Server Review",
-        url: adminUrl,
-        icon_url: "https://i.imgur.com/yJI3kra.png"
-      },
-      title: escapeDiscordMarkdown(server.name).slice(0, 256),
-      description: escapeDiscordMarkdown(server.description).slice(0, 4096),
-      color: reviewState.color,
-      fields,
-      thumbnail: {
-        url: iconUrl,
-        description: `${server.name.slice(0, 200)} server icon`
-      },
-      footer: { text: reviewState.label },
-      ...(timestamp ? { timestamp } : {})
-    }]
-  };
-}
-
-function discordPublicMessageUrl(server: DiscordReviewSubmissionRow): string | null {
-  const ids = [
-    server.public_discord_guild_id,
-    server.public_discord_channel_id,
-    server.public_discord_message_id
-  ];
-  return ids.every((id) => typeof id === "string" && /^\d{10,32}$/.test(id))
-    ? `https://discord.com/channels/${ids.join("/")}`
-    : null;
-}
-
-function discordReviewState(
-  status: DiscordReviewDisplayStatus,
-  notificationType: "submitted" | "resubmitted"
-): { label: string; color: number } {
-  if (status === "approved") return { label: "Approved", color: 0x57f287 };
-  if (status === "rejected") return { label: "Rejected", color: 0xed4245 };
-  if (status === "suspended") return { label: "Suspended", color: 0xc53030 };
-  if (status === "deleted") return { label: "Deleted", color: 0xb22222 };
-  if (status === "hidden_offline") return { label: "Hidden offline", color: 0x95a5a6 };
-  return {
-    label: notificationType === "resubmitted" ? "Resubmitted for review" : "Submitted for review",
-    color: 0xfbb03b
-  };
-}
-
-function formatDiscordVerificationEvidence(value: string): string {
-  return value.split("\n").map((line) => {
-    const match = line.match(/^Verified:\s*(.+)$/);
-    if (!match) return line;
-    const date = new Date(match[1]);
-    if (Number.isNaN(date.getTime())) return line;
-    const pad = (part: number) => String(part).padStart(2, "0");
-    return `Verified (UTC): ${pad(date.getUTCDate())}/${pad(date.getUTCMonth() + 1)}/${date.getUTCFullYear()} ${pad(date.getUTCHours())}:${pad(date.getUTCMinutes())}:${pad(date.getUTCSeconds())}`;
-  }).join("\n");
-}
-
-function discordEmbedTimestamp(value: string): string | null {
-  const date = new Date(value);
-  return Number.isNaN(date.getTime()) ? null : date.toISOString();
+  return buildDiscordReviewEmbedPayload({
+    name: server.name,
+    description: server.description,
+    normalizedHost: server.normalized_host,
+    port: server.port,
+    websiteUrl: server.website_url,
+    socialLinks: safeParseSocialLinks(server.social_links_json),
+    ownerDiscordUserId: server.owner_discord_user_id,
+    status: server.status,
+    updatedAt: server.updated_at,
+    submissionCreatedAt: server.submission_created_at,
+    submissionVerificationEvidence: server.submission_verification_evidence,
+    submissionModerationNotes: server.submission_moderation_notes,
+    publicDiscordMessageId: server.public_discord_message_id,
+    publicDiscordGuildId: server.public_discord_guild_id,
+    publicDiscordChannelId: server.public_discord_channel_id
+  }, notificationType, displayStatus);
 }
 
 function discordMessageShouldBeReposted(lastSyncedAt: string, thresholdMs: number): boolean {
   const timestamp = Date.parse(lastSyncedAt);
   return Number.isFinite(timestamp) && Date.now() - timestamp >= thresholdMs;
-}
-
-function escapeDiscordMarkdown(value: string): string {
-  return value.replace(/([\\`*_{}\[\]()<>#+\-.!|~])/g, "\\$1");
-}
-
-function discordMarkdownLink(label: string, url: string): string {
-  const safeUrl = url.replace(/\(/g, "%28").replace(/\)/g, "%29");
-  return `[${escapeDiscordMarkdown(label)}](${safeUrl})`;
 }
 
 function parseDiscordWebhookUrl(value: string | undefined, purpose = "embed"): string {
