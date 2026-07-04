@@ -6,6 +6,8 @@ import {
   DISCORD_EMBED_CRON,
   handleServerDirectoryRequest,
   processDiscordEmbedJobs,
+  processDiscordReviewDeletionJobs,
+  processDiscordReviewNotificationJobs,
   scheduleServerDirectoryRefresh,
   type ServerDirectoryEnv
 } from "./server-directory";
@@ -224,6 +226,9 @@ describe("server verification", () => {
 
   beforeEach(async () => {
     await testEnv.DB.batch([
+      testEnv.DB.prepare("DELETE FROM discord_review_deletion_jobs"),
+      testEnv.DB.prepare("DELETE FROM discord_review_notification_jobs"),
+      testEnv.DB.prepare("DELETE FROM discord_review_notifications"),
       testEnv.DB.prepare("DELETE FROM discord_embed_jobs"),
       testEnv.DB.prepare("DELETE FROM discord_embeds"),
       testEnv.DB.prepare("DELETE FROM submissions"),
@@ -428,6 +433,11 @@ describe("server verification", () => {
   it("returns the owner's Discord display name and username in public listings", async () => {
     await seedSubmitter("public-owner");
     await seedOwnedServer("public-owner");
+    vi.stubGlobal("fetch", async () => Response.json({
+      online: true,
+      players: { online: 1, max: 20 },
+      version: "26.2"
+    }));
 
     const response = await api("/api/servers/server-public-owner");
     expect(response.status).toBe(200);
@@ -512,6 +522,254 @@ describe("server verification", () => {
       .toEqual({ desired_action: "upsert" });
   });
 
+  it("atomically queues a review notification for a new public submission", async () => {
+    const cookie = await seedSubmitter("new-review");
+    const challenge = await createChallenge(cookie);
+    const verification = await api("/api/plugin/verify", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(pluginPayload(String(challenge.code)))
+    });
+    expect(verification.status).toBe(200);
+    vi.stubGlobal("fetch", async (input: RequestInfo | URL) => {
+      const url = new URL(input instanceof Request ? input.url : String(input));
+      if (url.hostname === "challenges.cloudflare.com") {
+        return Response.json({ success: true, action: "server-submit" });
+      }
+      if (url.hostname === "api.mcsrvstat.us") {
+        return Response.json({ online: true, players: { online: 4, max: 100 }, version: "26.2" });
+      }
+      return new Response("Not mocked", { status: 500 });
+    });
+
+    const response = await api("/api/servers/submit", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        "cf-connecting-ip": "198.51.100.220",
+        cookie
+      },
+      body: JSON.stringify({
+        name: "New Review Server",
+        address: "mc.hypixel.net",
+        port: 25565,
+        description: "A complete public server description ready for staff review.",
+        verificationChallengeId: challenge.id,
+        turnstileToken: "test-token",
+        websiteUrl: "https://kingdomsx.com",
+        socialLinks: {}
+      })
+    });
+
+    expect(response.status).toBe(202);
+    const body = await response.json<{ id: string }>();
+    expect(await testEnv.DB.prepare(`
+      SELECT notification_type
+      FROM discord_review_notification_jobs
+      WHERE server_id = ?
+    `).bind(body.id).first()).toEqual({ notification_type: "submitted" });
+  });
+
+  it("creates a review notification and updates it across moderation and deletion", async () => {
+    await seedSubmitter("review-notification");
+    await seedOwnedServer("review-notification", "pending");
+    const timestamp = new Date().toISOString();
+    await testEnv.DB.batch([
+      testEnv.DB.prepare(`
+        UPDATE submitter_accounts
+        SET discord_user_id = '123456789012345678'
+        WHERE id = 'account-review-notification'
+      `),
+      testEnv.DB.prepare(`
+        UPDATE servers
+        SET website_url = 'https://kingdomsx.com/',
+            social_links_json = '[{"key":"discord","label":"Discord","url":"https://discord.gg/example","host":"discord.gg"}]',
+            updated_at = ?
+        WHERE id = 'server-review-notification'
+      `).bind(timestamp),
+      testEnv.DB.prepare(`
+        INSERT INTO submissions (
+          id, server_id, owner_account_id, contact, verification_method, verification_evidence,
+          submitter_ip_hash, user_agent_hash, turnstile_result, created_at
+        ) VALUES (
+          'submission-review-notification', 'server-review-notification', 'account-review-notification',
+          'Tester', 'plugin_callback', 'Verified: 2026-07-04T14:15:16.000Z\nPlugin version: 1.2.3',
+          'ip', 'ua', '{}', ?
+        )
+      `).bind(timestamp),
+      testEnv.DB.prepare(`
+        INSERT INTO discord_review_notification_jobs (
+          server_id, submission_id, notification_type, desired_status, desired_version,
+          next_attempt_at, created_at, updated_at
+        ) VALUES (
+          'server-review-notification', 'submission-review-notification', 'submitted', 'pending', ?, ?, ?, ?
+        )
+      `).bind(timestamp, timestamp, timestamp, timestamp)
+    ]);
+    const requests: Array<{ url: string; method: string; body: Record<string, unknown> }> = [];
+    vi.stubGlobal("fetch", async (input: RequestInfo | URL, init?: RequestInit) => {
+      requests.push({
+        url: input instanceof Request ? input.url : String(input),
+        method: init?.method ?? "GET",
+        body: JSON.parse(typeof init?.body === "string" ? init.body : "{}") as Record<string, unknown>
+      });
+      return Response.json({ id: "123456789012345678" });
+    });
+
+    await processDiscordReviewNotificationJobs({
+      DB: testEnv.DB,
+      APP_ENVIRONMENT: "local",
+      DISCORD_SERVER_REVIEW_WEBHOOK_URL: "https://discord.com/api/webhooks/987654321/review-token"
+    });
+
+    expect(requests).toHaveLength(1);
+    expect(requests[0]).toMatchObject({ method: "POST" });
+    expect(requests[0].url).toContain("/api/v10/webhooks/987654321/review-token?wait=true");
+    expect(requests[0].body).toMatchObject({
+      allowed_mentions: { parse: [], users: ["123456789012345678"] },
+      embeds: [{
+        title: "Server review\\-notification",
+        footer: { text: "Submitted for review" },
+        fields: expect.arrayContaining([{
+          name: "Owner",
+          value: "<@123456789012345678>",
+          inline: true
+        }, {
+          name: "Website",
+          value: "<https://kingdomsx.com/>",
+          inline: true
+        }, {
+          name: "Socials",
+          value: "[Discord](https://discord.gg/example)"
+        }, {
+          name: "Verification",
+          value: "```\nVerified (UTC): 04/07/2026 14:15:16\nPlugin version: 1.2.3\n```"
+        }])
+      }]
+    });
+    const serialized = JSON.stringify(requests[0].body);
+    expect(serialized).toContain("https://servers.kingdomsx.com/admin");
+    expect(await testEnv.DB.prepare("SELECT server_id FROM discord_review_notification_jobs").first()).toBeNull();
+    expect(await testEnv.DB.prepare(`
+      SELECT message_id, synced_status
+      FROM discord_review_notifications
+      WHERE server_id = 'server-review-notification'
+    `).first()).toEqual({ message_id: "123456789012345678", synced_status: "pending" });
+    await testEnv.DB.prepare(`
+      INSERT INTO discord_embeds (
+        server_id, message_id, guild_id, channel_id, synced_version, synced_at, updated_at
+      ) VALUES (
+        'server-review-notification', '222222222222222222', '333333333333333333',
+        '444444444444444444', ?, ?, ?
+      )
+    `).bind(timestamp, timestamp, timestamp).run();
+
+    const approval = await api("/api/admin/servers/server-review-notification/approve", {
+      method: "POST",
+      headers: { "content-type": "application/json", "x-admin-token": "local-admin-token" },
+      body: "{}"
+    });
+    expect(approval.status).toBe(200);
+    await processDiscordReviewNotificationJobs({
+      DB: testEnv.DB,
+      APP_ENVIRONMENT: "local",
+      DISCORD_SERVER_REVIEW_WEBHOOK_URL: "https://discord.com/api/webhooks/987654321/review-token"
+    });
+
+    expect(requests[1]).toMatchObject({ method: "PATCH" });
+    expect(requests[1].url).toContain("/messages/123456789012345678");
+    expect(requests[1].body).toMatchObject({
+      embeds: [{
+        title: "Server review\\-notification",
+        color: 0x57f287,
+        footer: { text: "Approved" },
+        fields: expect.arrayContaining([{
+          name: "Review",
+          value: "[Open admin dashboard](https://servers.kingdomsx.com/admin)",
+          inline: true
+        }, {
+          name: "Public Embed",
+          value: "https://discord.com/channels/333333333333333333/444444444444444444/222222222222222222",
+          inline: true
+        }])
+      }]
+    });
+    expect(await testEnv.DB.prepare(`
+      SELECT message_id, synced_status
+      FROM discord_review_notifications
+      WHERE server_id = 'server-review-notification'
+    `).first()).toEqual({ message_id: "123456789012345678", synced_status: "approved" });
+
+    const rejection = await api("/api/admin/servers/server-review-notification/reject", {
+      method: "POST",
+      headers: { "content-type": "application/json", "x-admin-token": "local-admin-token" },
+      body: JSON.stringify({
+        reasonCode: "public_details_incomplete",
+        notes: "Public details need correction."
+      })
+    });
+    expect(rejection.status).toBe(200);
+    await processDiscordReviewNotificationJobs({
+      DB: testEnv.DB,
+      APP_ENVIRONMENT: "local",
+      DISCORD_SERVER_REVIEW_WEBHOOK_URL: "https://discord.com/api/webhooks/987654321/review-token"
+    });
+    expect(requests[2].body).toMatchObject({
+      embeds: [{
+        color: 0xed4245,
+        footer: { text: "Rejected" },
+        fields: expect.arrayContaining([{
+          name: "Rejection reason",
+          value: "Public details need correction\\."
+        }])
+      }]
+    });
+
+    const suspension = await api("/api/admin/servers/server-review-notification/suspend", {
+      method: "POST",
+      headers: { "content-type": "application/json", "x-admin-token": "local-admin-token" },
+      body: JSON.stringify({ notes: "Listing suspended pending owner contact." })
+    });
+    expect(suspension.status).toBe(200);
+    await processDiscordReviewNotificationJobs({
+      DB: testEnv.DB,
+      APP_ENVIRONMENT: "local",
+      DISCORD_SERVER_REVIEW_WEBHOOK_URL: "https://discord.com/api/webhooks/987654321/review-token"
+    });
+    expect(requests[3].body).toMatchObject({
+      embeds: [{
+        color: 0xc53030,
+        footer: { text: "Suspended" },
+        fields: expect.arrayContaining([{
+          name: "Suspension reason",
+          value: "Listing suspended pending owner contact\\."
+        }])
+      }]
+    });
+
+    const deletion = await api("/api/admin/servers/server-review-notification", {
+      method: "DELETE",
+      headers: { "x-admin-token": "local-admin-token" }
+    });
+    expect(deletion.status).toBe(200);
+    expect(await testEnv.DB.prepare("SELECT id FROM servers WHERE id = 'server-review-notification'").first()).toBeNull();
+    await processDiscordReviewDeletionJobs({
+      DB: testEnv.DB,
+      APP_ENVIRONMENT: "local",
+      DISCORD_SERVER_REVIEW_WEBHOOK_URL: "https://discord.com/api/webhooks/987654321/review-token"
+    });
+    expect(requests[4]).toMatchObject({ method: "PATCH" });
+    expect(requests[4].url).toContain("/messages/123456789012345678");
+    expect(requests[4].body).toMatchObject({
+      embeds: [{
+        color: 0xb22222,
+        footer: { text: "Deleted" }
+      }]
+    });
+    expect(JSON.stringify(requests[4].body)).not.toContain("Public Embed");
+    expect(await testEnv.DB.prepare("SELECT server_id FROM discord_review_deletion_jobs").first()).toBeNull();
+  });
+
   it("creates, edits, and deletes one Discord message across the listing lifecycle", async () => {
     const cookie = await seedSubmitter("discord-lifecycle");
     await seedOwnedServer("discord-lifecycle");
@@ -521,7 +779,11 @@ describe("server verification", () => {
       const method = init?.method ?? (input instanceof Request ? input.method : "GET");
       requests.push({ url, method, body: typeof init?.body === "string" ? init.body : "" });
       if (method === "DELETE") return new Response(null, { status: 204 });
-      return Response.json({ id: "123456789012345678" });
+      return Response.json({
+        id: "123456789012345678",
+        guild_id: "333333333333333333",
+        channel_id: "444444444444444444"
+      });
     });
     const discordEnv: ServerDirectoryEnv = {
       DB: testEnv.DB,
@@ -544,8 +806,15 @@ describe("server verification", () => {
     expect(requests[0].method).toBe("POST");
     expect(requests[0].url).toContain("?wait=true");
     expect(JSON.parse(requests[0].body).allowed_mentions).toEqual({ parse: [] });
-    expect(await testEnv.DB.prepare("SELECT message_id FROM discord_embeds WHERE server_id = 'server-discord-lifecycle'").first())
-      .toEqual({ message_id: "123456789012345678" });
+    expect(await testEnv.DB.prepare(`
+      SELECT message_id, guild_id, channel_id
+      FROM discord_embeds
+      WHERE server_id = 'server-discord-lifecycle'
+    `).first()).toEqual({
+      message_id: "123456789012345678",
+      guild_id: "333333333333333333",
+      channel_id: "444444444444444444"
+    });
 
     const secondEdit = await api("/api/servers/me/details", {
       method: "PATCH",
@@ -852,6 +1121,14 @@ describe("server verification", () => {
     expect(latestSubmission).toEqual({
       verification_evidence: verificationEvidence,
       verification_challenge_id: null
+    });
+    expect(await testEnv.DB.prepare(`
+      SELECT submission_id, notification_type
+      FROM discord_review_notification_jobs
+      WHERE server_id = 'server-content-rejection'
+    `).first()).toEqual({
+      submission_id: expect.any(String),
+      notification_type: "resubmitted"
     });
   });
 

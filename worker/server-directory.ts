@@ -25,6 +25,7 @@ export interface ServerDirectoryEnv {
   CF_ACCESS_TEAM_DOMAIN?: string;
   CF_ACCESS_AUD?: string;
   DISCORD_SERVER_DIRECTORY_WEBHOOK_URL?: string;
+  DISCORD_SERVER_REVIEW_WEBHOOK_URL?: string;
 }
 
 interface ServerRow {
@@ -88,6 +89,49 @@ interface DiscordEmbedJob {
   desired_action: "upsert" | "delete";
   desired_version: string;
   attempt_count: number;
+}
+
+interface DiscordReviewNotificationJob {
+  server_id: string;
+  submission_id: string;
+  notification_type: "submitted" | "resubmitted";
+  desired_status: ServerState;
+  desired_version: string;
+  attempt_count: number;
+}
+
+interface DiscordReviewNotification {
+  message_id: string;
+}
+
+interface DiscordReviewDeletionJob {
+  server_id: string;
+  message_id: string;
+  payload_json: string;
+  attempt_count: number;
+}
+
+interface DiscordReviewSubmissionRow extends DiscordServerRow {
+  submission_id: string;
+  submission_created_at: string;
+  submission_verification_evidence: string | null;
+  submission_moderation_notes: string | null;
+  public_discord_message_id: string | null;
+  public_discord_guild_id: string | null;
+  public_discord_channel_id: string | null;
+}
+
+interface DiscordReviewDeletionSnapshot extends DiscordReviewSubmissionRow {
+  review_message_id: string;
+  review_notification_type: "submitted" | "resubmitted";
+}
+
+type DiscordReviewDisplayStatus = ServerState | "deleted";
+
+interface DiscordEmbedRecord {
+  message_id: string;
+  guild_id: string | null;
+  channel_id: string | null;
 }
 
 interface StatusSnapshot {
@@ -324,7 +368,7 @@ export function scheduleServerDirectoryRefresh(
   cron = "*/5 * * * *"
 ): void {
   if (cron === DISCORD_EMBED_CRON) {
-    ctx.waitUntil(processDiscordEmbedJobs(env));
+    ctx.waitUntil(processDiscordDeliveryJobs(env));
     return;
   }
 
@@ -391,7 +435,7 @@ async function handleRequest(request: Request, env: ServerDirectoryEnv, ctx?: Ex
   }
 
   if (request.method === "POST" && url.pathname === "/api/servers/submit") {
-    return submitServer(request, env);
+    return submitServer(request, env, ctx);
   }
 
   if (request.method === "POST" && url.pathname === "/api/plugin/verify") {
@@ -698,7 +742,7 @@ function publicServerCacheKey(url: URL, slug: string): Request {
   return new Request(normalized.toString(), { method: "GET" });
 }
 
-async function submitServer(request: Request, env: ServerDirectoryEnv): Promise<Response> {
+async function submitServer(request: Request, env: ServerDirectoryEnv, ctx?: ExecutionContext): Promise<Response> {
   const session = await requireSubmitter(request, env);
 
   if (!session.ok) {
@@ -805,8 +849,11 @@ async function submitServer(request: Request, env: ServerDirectoryEnv): Promise<
     env.DB.prepare(`
       INSERT INTO moderation_events (id, server_id, actor, action, notes, created_at)
       VALUES (?, ?, 'system', 'submitted', ?, ?)
-    `).bind(crypto.randomUUID(), id, existing ? "Resubmitted through public website form." : "Submitted through public website form.", createdAt)
+    `).bind(crypto.randomUUID(), id, existing ? "Resubmitted through public website form." : "Submitted through public website form.", createdAt),
+    discordReviewNotificationJobStatement(env, id, submissionId, existing ? "resubmitted" : "submitted", createdAt)
   ]);
+
+  scheduleDiscordReviewNotificationProcessing(env, ctx);
 
   return json({ ok: true, id, slug, status: "pending" }, 202);
 }
@@ -1304,11 +1351,15 @@ async function resubmitMyServer(request: Request, env: ServerDirectoryEnv, ctx?:
       keepsApproval ? "Owner updated the address of an approved listing after plugin verification." : "Resubmitted through public website form.",
       timestamp
     ),
-    ...(keepsApproval ? [discordEmbedJobStatement(env, owned.id, "upsert", timestamp)] : [])
+    ...(keepsApproval
+      ? [discordEmbedJobStatement(env, owned.id, "upsert", timestamp)]
+      : [discordReviewNotificationJobStatement(env, owned.id, submissionId, "resubmitted", timestamp)])
   ]);
 
   if (keepsApproval) {
     scheduleDiscordEmbedProcessing(env, ctx);
+  } else {
+    scheduleDiscordReviewNotificationProcessing(env, ctx);
   }
 
   const refreshed = await getOwnedServerRow(env, session.account.id);
@@ -1383,11 +1434,13 @@ async function deleteMyServer(request: Request, env: ServerDirectoryEnv, ctx?: E
   }
 
   const timestamp = nowIso();
+  const reviewSnapshot = await getDiscordReviewDeletionSnapshot(env, owned.id);
   const statements: D1PreparedStatement[] = [
     ...(owned.status === "suspended" ? [
       suspendedAddressStatement(env, owned.normalized_host, owned.port, owned.id, owned.submission_moderation_notes, owned.suspended_at ?? timestamp, timestamp)
     ] : []),
     discordEmbedJobStatement(env, owned.id, "delete", timestamp),
+    ...(reviewSnapshot ? [discordReviewDeletionJobStatement(env, reviewSnapshot, timestamp)] : []),
     env.DB.prepare("DELETE FROM submissions WHERE server_id = ?").bind(owned.id),
     env.DB.prepare("DELETE FROM server_status WHERE server_id = ?").bind(owned.id),
     env.DB.prepare("DELETE FROM moderation_events WHERE server_id = ?").bind(owned.id),
@@ -1395,7 +1448,7 @@ async function deleteMyServer(request: Request, env: ServerDirectoryEnv, ctx?: E
   ];
 
   await runD1Batch(env, statements);
-  scheduleDiscordEmbedProcessing(env, ctx);
+  scheduleDiscordDeliveryProcessing(env, ctx);
 
   return json({ ok: true, id: owned.id, deleted: true }, 200, NO_STORE_JSON_HEADERS);
 }
@@ -1865,9 +1918,10 @@ async function handleAdmin(request: Request, url: URL, env: ServerDirectoryEnv, 
   }
 
   statements.push(discordEmbedJobStatement(env, id, status === "approved" ? "upsert" : "delete", timestamp));
+  statements.push(discordReviewStatusJobStatement(env, id, status, timestamp));
 
   await runD1Batch(env, statements);
-  scheduleDiscordEmbedProcessing(env, ctx);
+  scheduleDiscordDeliveryProcessing(env, ctx);
 
   return json({ ok: true, id, status }, 200, NO_STORE_JSON_HEADERS);
 }
@@ -1882,11 +1936,13 @@ async function deleteServer(id: string, env: ServerDirectoryEnv, actor: string, 
   }
 
   const timestamp = nowIso();
+  const reviewSnapshot = await getDiscordReviewDeletionSnapshot(env, id);
   const statements: D1PreparedStatement[] = [
     ...(existing.status === "suspended" ? [
       suspendedAddressStatement(env, existing.normalized_host, existing.port, existing.id, `Deleted suspended server listing: ${existing.name}`, existing.suspended_at ?? timestamp, timestamp)
     ] : []),
     discordEmbedJobStatement(env, id, "delete", timestamp),
+    ...(reviewSnapshot ? [discordReviewDeletionJobStatement(env, reviewSnapshot, timestamp)] : []),
     env.DB.prepare("INSERT INTO moderation_events (id, server_id, actor, action, notes, created_at) VALUES (?, ?, ?, 'delete', ?, ?)")
       .bind(crypto.randomUUID(), id, actor, `Deleted server listing: ${existing.name}`, timestamp),
     env.DB.prepare("DELETE FROM submissions WHERE server_id = ?").bind(id),
@@ -1896,7 +1952,7 @@ async function deleteServer(id: string, env: ServerDirectoryEnv, actor: string, 
   ];
 
   await runD1Batch(env, statements);
-  scheduleDiscordEmbedProcessing(env, ctx);
+  scheduleDiscordDeliveryProcessing(env, ctx);
 
   return json({ ok: true, id, deleted: true }, 200, NO_STORE_JSON_HEADERS);
 }
@@ -2128,7 +2184,8 @@ async function maybeHideOffline(env: ServerDirectoryEnv, serverId: string): Prom
       .bind(timestamp, serverId),
     env.DB.prepare("INSERT INTO moderation_events (id, server_id, actor, action, notes, created_at) VALUES (?, ?, 'system', 'hidden-offline', 'Auto-hidden after 14 days offline.', ?)")
       .bind(crypto.randomUUID(), serverId, timestamp),
-    discordEmbedJobStatement(env, serverId, "delete", timestamp)
+    discordEmbedJobStatement(env, serverId, "delete", timestamp),
+    discordReviewStatusJobStatement(env, serverId, "hidden_offline", timestamp)
   ]);
 }
 
@@ -2156,10 +2213,158 @@ function discordEmbedJobStatement(
   `).bind(serverId, action, version, version, version, version);
 }
 
+function discordReviewNotificationJobStatement(
+  env: ServerDirectoryEnv,
+  serverId: string,
+  submissionId: string,
+  notificationType: "submitted" | "resubmitted",
+  timestamp: string,
+  desiredStatus: ServerState = "pending"
+): D1PreparedStatement {
+  return env.DB.prepare(`
+    INSERT INTO discord_review_notification_jobs (
+      server_id, submission_id, notification_type, desired_status, desired_version, attempt_count, next_attempt_at,
+      last_attempt_at, last_error_code, last_error, lease_token, lease_expires_at,
+      created_at, updated_at
+    ) VALUES (?, ?, ?, ?, ?, 0, ?, NULL, NULL, NULL, NULL, NULL, ?, ?)
+    ON CONFLICT(server_id) DO UPDATE SET
+      submission_id = excluded.submission_id,
+      notification_type = excluded.notification_type,
+      desired_status = excluded.desired_status,
+      desired_version = excluded.desired_version,
+      attempt_count = 0,
+      next_attempt_at = excluded.next_attempt_at,
+      last_attempt_at = NULL,
+      last_error_code = NULL,
+      last_error = NULL,
+      updated_at = excluded.updated_at
+  `).bind(serverId, submissionId, notificationType, desiredStatus, timestamp, timestamp, timestamp, timestamp);
+}
+
+function discordReviewStatusJobStatement(
+  env: ServerDirectoryEnv,
+  serverId: string,
+  desiredStatus: ServerState,
+  desiredVersion: string
+): D1PreparedStatement {
+  return env.DB.prepare(`
+    INSERT INTO discord_review_notification_jobs (
+      server_id, submission_id, notification_type, desired_status, desired_version,
+      attempt_count, next_attempt_at, last_attempt_at, last_error_code, last_error,
+      lease_token, lease_expires_at, created_at, updated_at
+    )
+    SELECT
+      ?, latest.id,
+      COALESCE(
+        (SELECT notification_type FROM discord_review_notifications WHERE server_id = ?),
+        CASE WHEN (SELECT COUNT(*) FROM submissions WHERE server_id = ?) > 1 THEN 'resubmitted' ELSE 'submitted' END
+      ),
+      ?, ?, 0, ?, NULL, NULL, NULL, NULL, NULL, ?, ?
+    FROM submissions latest
+    WHERE latest.server_id = ?
+    ORDER BY latest.created_at DESC, latest.id DESC
+    LIMIT 1
+    ON CONFLICT(server_id) DO UPDATE SET
+      submission_id = excluded.submission_id,
+      desired_status = excluded.desired_status,
+      desired_version = excluded.desired_version,
+      attempt_count = 0,
+      next_attempt_at = excluded.next_attempt_at,
+      last_attempt_at = NULL,
+      last_error_code = NULL,
+      last_error = NULL,
+      updated_at = excluded.updated_at
+  `).bind(
+    serverId,
+    serverId,
+    serverId,
+    desiredStatus,
+    desiredVersion,
+    desiredVersion,
+    desiredVersion,
+    desiredVersion,
+    serverId
+  );
+}
+
+async function getDiscordReviewDeletionSnapshot(
+  env: ServerDirectoryEnv,
+  serverId: string
+): Promise<DiscordReviewDeletionSnapshot | null> {
+  return env.DB.prepare(`
+    SELECT
+      s.*,
+      submission.id AS submission_id,
+      submission.created_at AS submission_created_at,
+      submission.verification_evidence AS submission_verification_evidence,
+      submission.moderation_notes AS submission_moderation_notes,
+      owner.discord_user_id AS owner_discord_user_id,
+      public_embed.message_id AS public_discord_message_id,
+      public_embed.guild_id AS public_discord_guild_id,
+      public_embed.channel_id AS public_discord_channel_id,
+      review.message_id AS review_message_id,
+      review.notification_type AS review_notification_type
+    FROM servers s
+    JOIN discord_review_notifications review ON review.server_id = s.id
+    JOIN submissions submission ON submission.id = review.submission_id
+    LEFT JOIN submitter_accounts owner ON owner.id = s.owner_account_id
+    LEFT JOIN discord_embeds public_embed ON public_embed.server_id = s.id
+    WHERE s.id = ?
+  `).bind(serverId).first<DiscordReviewDeletionSnapshot>();
+}
+
+function discordReviewDeletionJobStatement(
+  env: ServerDirectoryEnv,
+  snapshot: DiscordReviewDeletionSnapshot,
+  timestamp: string
+): D1PreparedStatement {
+  const payload = buildDiscordReviewNotificationMessage(
+    { ...snapshot, updated_at: timestamp },
+    snapshot.review_notification_type,
+    "deleted"
+  );
+  return env.DB.prepare(`
+    INSERT INTO discord_review_deletion_jobs (
+      server_id, message_id, payload_json, attempt_count, next_attempt_at,
+      last_attempt_at, last_error_code, last_error, lease_token, lease_expires_at,
+      created_at, updated_at
+    ) VALUES (?, ?, ?, 0, ?, NULL, NULL, NULL, NULL, NULL, ?, ?)
+    ON CONFLICT(server_id) DO UPDATE SET
+      message_id = excluded.message_id,
+      payload_json = excluded.payload_json,
+      attempt_count = 0,
+      next_attempt_at = excluded.next_attempt_at,
+      last_attempt_at = NULL,
+      last_error_code = NULL,
+      last_error = NULL,
+      lease_token = NULL,
+      lease_expires_at = NULL,
+      updated_at = excluded.updated_at
+  `).bind(snapshot.id, snapshot.review_message_id, JSON.stringify(payload), timestamp, timestamp, timestamp);
+}
+
 function scheduleDiscordEmbedProcessing(env: ServerDirectoryEnv, ctx?: ExecutionContext): void {
   if (ctx) {
     ctx.waitUntil(processDiscordEmbedJobs(env));
   }
+}
+
+function scheduleDiscordReviewNotificationProcessing(env: ServerDirectoryEnv, ctx?: ExecutionContext): void {
+  if (ctx) {
+    ctx.waitUntil(processDiscordReviewNotificationJobs(env));
+  }
+}
+
+function scheduleDiscordDeliveryProcessing(env: ServerDirectoryEnv, ctx?: ExecutionContext): void {
+  if (ctx) {
+    ctx.waitUntil(processDiscordDeliveryJobs(env));
+  }
+}
+
+async function processDiscordDeliveryJobs(env: ServerDirectoryEnv): Promise<void> {
+  await processDiscordEmbedJobs(env);
+  await processDiscordReviewNotificationJobs(env);
+  await processDiscordReviewDeletionJobs(env);
 }
 
 async function handleAdminDiscordAction(
@@ -2225,6 +2430,269 @@ export async function processDiscordEmbedJobs(env: ServerDirectoryEnv): Promise<
       logError("discord.embed_processing_failed", error, { serverId });
     }
   }));
+}
+
+export async function processDiscordReviewNotificationJobs(env: ServerDirectoryEnv): Promise<void> {
+  const now = nowIso();
+  const candidates = await env.DB.prepare(`
+    SELECT server_id
+    FROM discord_review_notification_jobs
+    WHERE next_attempt_at <= ?
+      AND attempt_count < ?
+      AND (lease_expires_at IS NULL OR lease_expires_at <= ?)
+    ORDER BY next_attempt_at, created_at
+    LIMIT ?
+  `).bind(now, DISCORD_JOB_MAX_ATTEMPTS, now, DISCORD_JOB_BATCH_LIMIT).all<{ server_id: string }>();
+
+  await Promise.all(candidates.results.map(async ({ server_id: serverId }) => {
+    try {
+      const leaseToken = crypto.randomUUID();
+      const leaseExpiresAt = new Date(Date.now() + DISCORD_LEASE_MS).toISOString();
+      await runD1Statement(env.DB.prepare(`
+        UPDATE discord_review_notification_jobs
+        SET lease_token = ?, lease_expires_at = ?
+        WHERE server_id = ? AND (lease_expires_at IS NULL OR lease_expires_at <= ?)
+      `).bind(leaseToken, leaseExpiresAt, serverId, now));
+      const job = await env.DB.prepare(`
+        SELECT server_id, submission_id, notification_type, desired_status, desired_version, attempt_count
+        FROM discord_review_notification_jobs WHERE server_id = ? AND lease_token = ?
+      `).bind(serverId, leaseToken).first<DiscordReviewNotificationJob>();
+      if (job) {
+        await processDiscordReviewNotificationJob(env, job, leaseToken);
+      }
+    } catch (error) {
+      logError("discord.review_notification_processing_failed", error, { serverId });
+    }
+  }));
+}
+
+export async function processDiscordReviewDeletionJobs(env: ServerDirectoryEnv): Promise<void> {
+  const now = nowIso();
+  const candidates = await env.DB.prepare(`
+    SELECT server_id
+    FROM discord_review_deletion_jobs
+    WHERE next_attempt_at <= ?
+      AND attempt_count < ?
+      AND (lease_expires_at IS NULL OR lease_expires_at <= ?)
+    ORDER BY next_attempt_at, created_at
+    LIMIT ?
+  `).bind(now, DISCORD_JOB_MAX_ATTEMPTS, now, DISCORD_JOB_BATCH_LIMIT).all<{ server_id: string }>();
+
+  await Promise.all(candidates.results.map(async ({ server_id: serverId }) => {
+    try {
+      const leaseToken = crypto.randomUUID();
+      const leaseExpiresAt = new Date(Date.now() + DISCORD_LEASE_MS).toISOString();
+      await runD1Statement(env.DB.prepare(`
+        UPDATE discord_review_deletion_jobs
+        SET lease_token = ?, lease_expires_at = ?
+        WHERE server_id = ? AND (lease_expires_at IS NULL OR lease_expires_at <= ?)
+      `).bind(leaseToken, leaseExpiresAt, serverId, now));
+      const job = await env.DB.prepare(`
+        SELECT server_id, message_id, payload_json, attempt_count
+        FROM discord_review_deletion_jobs WHERE server_id = ? AND lease_token = ?
+      `).bind(serverId, leaseToken).first<DiscordReviewDeletionJob>();
+      if (job) {
+        await processDiscordReviewDeletionJob(env, job, leaseToken);
+      }
+    } catch (error) {
+      logError("discord.review_deletion_processing_failed", error, { serverId });
+    }
+  }));
+}
+
+async function processDiscordReviewDeletionJob(
+  env: ServerDirectoryEnv,
+  job: DiscordReviewDeletionJob,
+  leaseToken: string
+): Promise<void> {
+  try {
+    const parsed: unknown = JSON.parse(job.payload_json);
+    if (!isRecord(parsed)) {
+      throw new DiscordDeliveryError("invalid_payload", "Stored Discord deletion payload is invalid.", false);
+    }
+    const webhook = parseDiscordWebhookUrl(env.DISCORD_SERVER_REVIEW_WEBHOOK_URL, "review notification");
+    const response = await discordFetch(`${webhook}/messages/${encodeURIComponent(job.message_id)}`, "PATCH", parsed, false);
+    if (response.status !== 404) {
+      await requireDiscordSuccess(response, "update deleted review notification");
+    }
+    await cancelResponseBody(response);
+    await runD1Statement(env.DB.prepare(`
+      DELETE FROM discord_review_deletion_jobs
+      WHERE server_id = ? AND message_id = ? AND lease_token = ?
+    `).bind(job.server_id, job.message_id, leaseToken));
+    logInfo("discord.review_deletion_updated", { serverId: job.server_id });
+  } catch (error) {
+    await recordDiscordReviewDeletionFailure(env, job, leaseToken, error);
+  }
+}
+
+async function processDiscordReviewNotificationJob(
+  env: ServerDirectoryEnv,
+  job: DiscordReviewNotificationJob,
+  leaseToken: string
+): Promise<void> {
+  try {
+    const submission = await env.DB.prepare(`
+      SELECT
+        s.*,
+        submission.id AS submission_id,
+        submission.created_at AS submission_created_at,
+        submission.verification_evidence AS submission_verification_evidence,
+        submission.moderation_notes AS submission_moderation_notes,
+        owner.discord_user_id AS owner_discord_user_id,
+        public_embed.message_id AS public_discord_message_id,
+        public_embed.guild_id AS public_discord_guild_id,
+        public_embed.channel_id AS public_discord_channel_id
+      FROM servers s
+      JOIN submissions submission ON submission.id = ? AND submission.server_id = s.id
+      LEFT JOIN submitter_accounts owner ON owner.id = s.owner_account_id
+      LEFT JOIN discord_embeds public_embed ON public_embed.server_id = s.id
+      WHERE s.id = ?
+    `).bind(job.submission_id, job.server_id).first<DiscordReviewSubmissionRow>();
+
+    if (!submission) {
+      await deleteDiscordReviewNotificationJob(env, job, leaseToken);
+      return;
+    }
+
+    if (submission.status !== job.desired_status || submission.updated_at !== job.desired_version) {
+      await runD1Statement(discordReviewStatusJobStatement(env, job.server_id, submission.status, submission.updated_at));
+      await releaseDiscordReviewNotificationLease(env, job.server_id, leaseToken);
+      return;
+    }
+
+    if (!await discordReviewNotificationJobStillCurrent(env, job, leaseToken)) {
+      await releaseDiscordReviewNotificationLease(env, job.server_id, leaseToken);
+      return;
+    }
+
+    const webhook = parseDiscordWebhookUrl(env.DISCORD_SERVER_REVIEW_WEBHOOK_URL, "review notification");
+    const notification = await env.DB.prepare("SELECT message_id FROM discord_review_notifications WHERE server_id = ?")
+      .bind(job.server_id).first<DiscordReviewNotification>();
+    const payload = buildDiscordReviewNotificationMessage(submission, job.notification_type);
+    let messageId = notification?.message_id ?? null;
+    let createdMessage = false;
+
+    if (messageId) {
+      const response = await discordFetch(`${webhook}/messages/${encodeURIComponent(messageId)}`, "PATCH", payload, false);
+      if (response.status === 404) {
+        await cancelResponseBody(response);
+        messageId = null;
+      } else {
+        await requireDiscordSuccess(response, "update review notification");
+        await cancelResponseBody(response);
+      }
+    }
+
+    if (!messageId) {
+      let response: Response;
+      try {
+        response = await discordFetch(`${webhook}?wait=true`, "POST", payload, true);
+      } catch (error) {
+        throw new DiscordDeliveryError("ambiguous_create", "Discord review notification had an ambiguous network result.", false, error);
+      }
+      await requireDiscordSuccess(response, "create review notification");
+      const body = await readBoundedDiscordJson(response);
+      if (typeof body.id !== "string" || !/^\d+$/.test(body.id)) {
+        throw new DiscordDeliveryError("invalid_response", "Discord returned an invalid review notification response.", false);
+      }
+      messageId = body.id;
+      createdMessage = true;
+    }
+
+    await storeDiscordReviewNotification(env, submission, job, messageId);
+    await deleteDiscordReviewNotificationJob(env, job, leaseToken);
+    logInfo(createdMessage ? "discord.review_notification_created" : "discord.review_notification_updated", {
+      serverId: job.server_id,
+      submissionId: job.submission_id,
+      notificationType: job.notification_type,
+      status: job.desired_status
+    });
+  } catch (error) {
+    await recordDiscordReviewNotificationFailure(env, job, leaseToken, error);
+    await releaseDiscordReviewNotificationLease(env, job.server_id, leaseToken);
+  }
+}
+
+async function discordReviewNotificationJobStillCurrent(
+  env: ServerDirectoryEnv,
+  job: DiscordReviewNotificationJob,
+  leaseToken: string
+): Promise<boolean> {
+  const row = await env.DB.prepare(`
+    SELECT server_id
+    FROM discord_review_notification_jobs
+    WHERE server_id = ? AND submission_id = ? AND notification_type = ?
+      AND desired_status = ? AND desired_version = ? AND lease_token = ?
+  `).bind(
+    job.server_id,
+    job.submission_id,
+    job.notification_type,
+    job.desired_status,
+    job.desired_version,
+    leaseToken
+  ).first<{ server_id: string }>();
+  return Boolean(row);
+}
+
+async function storeDiscordReviewNotification(
+  env: ServerDirectoryEnv,
+  submission: DiscordReviewSubmissionRow,
+  job: DiscordReviewNotificationJob,
+  messageId: string
+): Promise<void> {
+  const timestamp = nowIso();
+  await runD1Statement(env.DB.prepare(`
+    INSERT INTO discord_review_notifications (
+      server_id, submission_id, message_id, notification_type, synced_status,
+      synced_version, synced_at, created_at, updated_at
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+    ON CONFLICT(server_id) DO UPDATE SET
+      submission_id = excluded.submission_id,
+      message_id = excluded.message_id,
+      notification_type = excluded.notification_type,
+      synced_status = excluded.synced_status,
+      synced_version = excluded.synced_version,
+      synced_at = excluded.synced_at,
+      updated_at = excluded.updated_at
+  `).bind(
+    job.server_id,
+    job.submission_id,
+    messageId,
+    job.notification_type,
+    submission.status,
+    submission.updated_at,
+    timestamp,
+    timestamp,
+    timestamp
+  ));
+}
+
+async function deleteDiscordReviewNotificationJob(
+  env: ServerDirectoryEnv,
+  job: DiscordReviewNotificationJob,
+  leaseToken: string
+): Promise<void> {
+  await runD1Statement(env.DB.prepare(`
+    DELETE FROM discord_review_notification_jobs
+    WHERE server_id = ? AND submission_id = ? AND notification_type = ?
+      AND desired_status = ? AND desired_version = ? AND lease_token = ?
+  `).bind(
+    job.server_id,
+    job.submission_id,
+    job.notification_type,
+    job.desired_status,
+    job.desired_version,
+    leaseToken
+  ));
+}
+
+async function releaseDiscordReviewNotificationLease(env: ServerDirectoryEnv, serverId: string, leaseToken: string): Promise<void> {
+  await runD1Statement(env.DB.prepare(`
+    UPDATE discord_review_notification_jobs
+    SET lease_token = NULL, lease_expires_at = NULL
+    WHERE server_id = ? AND lease_token = ?
+  `).bind(serverId, leaseToken));
 }
 
 async function processDiscordEmbedJob(
@@ -2299,10 +2767,12 @@ async function upsertDiscordEmbed(
   leaseToken: string
 ): Promise<boolean> {
   const webhook = parseDiscordWebhookUrl(env.DISCORD_SERVER_DIRECTORY_WEBHOOK_URL);
-  const embed = await env.DB.prepare("SELECT message_id FROM discord_embeds WHERE server_id = ?")
-    .bind(server.id).first<{ message_id: string }>();
+  const embed = await env.DB.prepare("SELECT message_id, guild_id, channel_id FROM discord_embeds WHERE server_id = ?")
+    .bind(server.id).first<DiscordEmbedRecord>();
   const timestamp = nowIso();
   let messageId = embed?.message_id ?? null;
+  let guildId = embed?.guild_id ?? null;
+  let channelId = embed?.channel_id ?? null;
   let createdMessage = false;
 
   if (messageId) {
@@ -2314,7 +2784,10 @@ async function upsertDiscordEmbed(
       messageId = null;
     } else {
       await requireDiscordSuccess(response, "edit");
-      await cancelResponseBody(response);
+      const body = await readBoundedDiscordJson(response);
+      const location = discordMessageLocation(body, env.DISCORD_GUILD_ID);
+      guildId = location.guildId ?? guildId;
+      channelId = location.channelId ?? channelId;
     }
   }
 
@@ -2333,6 +2806,9 @@ async function upsertDiscordEmbed(
       throw new DiscordDeliveryError("invalid_response", "Discord returned an invalid message response.", false);
     }
     messageId = body.id;
+    const location = discordMessageLocation(body, env.DISCORD_GUILD_ID);
+    guildId = location.guildId;
+    channelId = location.channelId;
     createdMessage = true;
     logInfo("discord.embed_created", { serverId: server.id });
   } else {
@@ -2341,32 +2817,54 @@ async function upsertDiscordEmbed(
 
   if (!await discordEmbedJobStillCurrent(env, job, leaseToken)) {
     if (createdMessage) {
-      await storeDiscordEmbed(env, server.id, messageId, server.updated_at, timestamp);
+      await storeDiscordEmbed(env, server.id, messageId, guildId, channelId, server.updated_at, timestamp);
     }
     return false;
   }
 
-  await storeDiscordEmbed(env, server.id, messageId, server.updated_at, timestamp);
+  await storeDiscordEmbed(env, server.id, messageId, guildId, channelId, server.updated_at, timestamp);
   return true;
+}
+
+function discordMessageLocation(
+  body: Record<string, unknown>,
+  fallbackGuildId: string | undefined
+): { guildId: string | null; channelId: string | null } {
+  const responseGuildId = typeof body.guild_id === "string" && /^\d{10,32}$/.test(body.guild_id)
+    ? body.guild_id
+    : null;
+  const configuredGuildId = fallbackGuildId?.trim();
+  const guildId = responseGuildId
+    ?? (configuredGuildId && /^\d{10,32}$/.test(configuredGuildId) ? configuredGuildId : null);
+  const channelId = typeof body.channel_id === "string" && /^\d{10,32}$/.test(body.channel_id)
+    ? body.channel_id
+    : null;
+  return { guildId, channelId };
 }
 
 async function storeDiscordEmbed(
   env: ServerDirectoryEnv,
   serverId: string,
   messageId: string,
+  guildId: string | null,
+  channelId: string | null,
   syncedVersion: string,
   timestamp: string
 ): Promise<void> {
   await runD1Statement(env.DB.prepare(`
-    INSERT INTO discord_embeds (server_id, message_id, synced_version, synced_at, updated_at, last_verified_at)
-    VALUES (?, ?, ?, ?, ?, ?)
+    INSERT INTO discord_embeds (
+      server_id, message_id, guild_id, channel_id, synced_version, synced_at, updated_at, last_verified_at
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
     ON CONFLICT(server_id) DO UPDATE SET
       message_id = excluded.message_id,
+      guild_id = COALESCE(excluded.guild_id, discord_embeds.guild_id),
+      channel_id = COALESCE(excluded.channel_id, discord_embeds.channel_id),
       synced_version = excluded.synced_version,
       synced_at = excluded.synced_at,
       updated_at = excluded.updated_at,
       last_verified_at = excluded.last_verified_at
-  `).bind(serverId, messageId, syncedVersion, timestamp, timestamp, timestamp));
+  `).bind(serverId, messageId, guildId, channelId, syncedVersion, timestamp, timestamp, timestamp));
+  await runD1Statement(discordReviewStatusJobStatement(env, serverId, "approved", syncedVersion));
 }
 
 async function deleteDiscordEmbed(
@@ -2453,6 +2951,118 @@ export function buildDiscordServerMessage(
   };
 }
 
+export function buildDiscordReviewNotificationMessage(
+  server: DiscordReviewSubmissionRow,
+  notificationType: "submitted" | "resubmitted",
+  displayStatus: DiscordReviewDisplayStatus = server.status
+): Record<string, unknown> {
+  const adminUrl = "https://servers.kingdomsx.com/admin";
+  const address = server.port === 25565 ? server.normalized_host : `${server.normalized_host}:${server.port}`;
+  const iconUrl = `https://api.mcstatus.io/v2/icon/${encodeURIComponent(address)}?timeout=5`;
+  const ownerId = server.owner_discord_user_id && /^\d{10,32}$/.test(server.owner_discord_user_id)
+    ? server.owner_discord_user_id
+    : null;
+  const fields: Array<{ name: string; value: string; inline?: boolean }> = [
+    { name: "Server address", value: `\`\`\`\n${address.replace(/[\\`]/g, "\\$&").slice(0, 1000)}\n\`\`\`` },
+    { name: "Owner", value: ownerId ? `<@${ownerId}>` : "Not available", inline: true }
+  ];
+  if (server.website_url) {
+    fields.push({ name: "Website", value: `<${server.website_url}>`, inline: true });
+  }
+  const socialLinks: string[] = [];
+  for (const link of safeParseSocialLinks(server.social_links_json)) {
+    const candidate = discordMarkdownLink(link.label, link.url);
+    if ([...socialLinks, candidate].join(" • ").length > 1024) break;
+    socialLinks.push(candidate);
+  }
+  if (socialLinks.length) {
+    fields.push({ name: "Socials", value: socialLinks.join(" • ") });
+  }
+  if (server.submission_verification_evidence) {
+    const verification = formatDiscordVerificationEvidence(server.submission_verification_evidence)
+      .replace(/`/g, "ˋ")
+      .slice(0, 1000);
+    fields.push({
+      name: "Verification",
+      value: `\`\`\`\n${verification}\n\`\`\``
+    });
+  }
+  const moderationReason = server.submission_moderation_notes?.trim();
+  if ((displayStatus === "rejected" || displayStatus === "suspended") && moderationReason) {
+    fields.push({
+      name: displayStatus === "rejected" ? "Rejection reason" : "Suspension reason",
+      value: escapeDiscordMarkdown(moderationReason).slice(0, 1024)
+    });
+  }
+  fields.push({ name: "Review", value: `[Open admin dashboard](${adminUrl})`, inline: true });
+  const publicMessageUrl = discordPublicMessageUrl(server);
+  if (displayStatus === "approved" && publicMessageUrl) {
+    fields.push({ name: "Public Embed", value: publicMessageUrl, inline: true });
+  }
+  const reviewState = discordReviewState(displayStatus, notificationType);
+  const timestamp = discordEmbedTimestamp(displayStatus === "pending" ? server.submission_created_at : server.updated_at);
+
+  return {
+    allowed_mentions: ownerId
+      ? { parse: [], users: [ownerId] }
+      : { parse: [] },
+    embeds: [{
+      author: {
+        name: "KingdomsX Server Review",
+        url: adminUrl,
+        icon_url: "https://i.imgur.com/yJI3kra.png"
+      },
+      title: escapeDiscordMarkdown(server.name).slice(0, 256),
+      description: escapeDiscordMarkdown(server.description).slice(0, 4096),
+      color: reviewState.color,
+      fields,
+      thumbnail: {
+        url: iconUrl,
+        description: `${server.name.slice(0, 200)} server icon`
+      },
+      footer: { text: reviewState.label },
+      ...(timestamp ? { timestamp } : {})
+    }]
+  };
+}
+
+function discordPublicMessageUrl(server: DiscordReviewSubmissionRow): string | null {
+  const ids = [
+    server.public_discord_guild_id,
+    server.public_discord_channel_id,
+    server.public_discord_message_id
+  ];
+  return ids.every((id) => typeof id === "string" && /^\d{10,32}$/.test(id))
+    ? `https://discord.com/channels/${ids.join("/")}`
+    : null;
+}
+
+function discordReviewState(
+  status: DiscordReviewDisplayStatus,
+  notificationType: "submitted" | "resubmitted"
+): { label: string; color: number } {
+  if (status === "approved") return { label: "Approved", color: 0x57f287 };
+  if (status === "rejected") return { label: "Rejected", color: 0xed4245 };
+  if (status === "suspended") return { label: "Suspended", color: 0xc53030 };
+  if (status === "deleted") return { label: "Deleted", color: 0xb22222 };
+  if (status === "hidden_offline") return { label: "Hidden offline", color: 0x95a5a6 };
+  return {
+    label: notificationType === "resubmitted" ? "Resubmitted for review" : "Submitted for review",
+    color: 0xfbb03b
+  };
+}
+
+function formatDiscordVerificationEvidence(value: string): string {
+  return value.split("\n").map((line) => {
+    const match = line.match(/^Verified:\s*(.+)$/);
+    if (!match) return line;
+    const date = new Date(match[1]);
+    if (Number.isNaN(date.getTime())) return line;
+    const pad = (part: number) => String(part).padStart(2, "0");
+    return `Verified (UTC): ${pad(date.getUTCDate())}/${pad(date.getUTCMonth() + 1)}/${date.getUTCFullYear()} ${pad(date.getUTCHours())}:${pad(date.getUTCMinutes())}:${pad(date.getUTCSeconds())}`;
+  }).join("\n");
+}
+
 function discordEmbedTimestamp(value: string): string | null {
   const date = new Date(value);
   return Number.isNaN(date.getTime()) ? null : date.toISOString();
@@ -2467,23 +3077,23 @@ function discordMarkdownLink(label: string, url: string): string {
   return `[${escapeDiscordMarkdown(label)}](${safeUrl})`;
 }
 
-function parseDiscordWebhookUrl(value: string | undefined): string {
+function parseDiscordWebhookUrl(value: string | undefined, purpose = "embed"): string {
   const candidate = value?.trim();
   if (!candidate) {
-    throw new DiscordDeliveryError("not_configured", "Discord embed is not configured.", false);
+    throw new DiscordDeliveryError("not_configured", `Discord ${purpose} is not configured.`, false);
   }
   let url: URL;
   try {
     url = new URL(candidate);
   } catch {
-    throw new DiscordDeliveryError("invalid_configuration", "Discord webhook configuration is invalid.", false);
+    throw new DiscordDeliveryError("invalid_configuration", `Discord ${purpose} webhook configuration is invalid.`, false);
   }
   if (url.protocol !== "https:" || url.hostname !== "discord.com" || !/^\/api(?:\/v\d+)?\/webhooks\/\d+\/[^/]+\/?$/.test(url.pathname)) {
-    throw new DiscordDeliveryError("invalid_configuration", "Discord webhook configuration is invalid.", false);
+    throw new DiscordDeliveryError("invalid_configuration", `Discord ${purpose} webhook configuration is invalid.`, false);
   }
   const match = url.pathname.match(/\/webhooks\/(\d+)\/([^/]+)/);
   if (!match) {
-    throw new DiscordDeliveryError("invalid_configuration", "Discord webhook configuration is invalid.", false);
+    throw new DiscordDeliveryError("invalid_configuration", `Discord ${purpose} webhook configuration is invalid.`, false);
   }
   return `https://discord.com/api/v10/webhooks/${match[1]}/${match[2]}`;
 }
@@ -2582,6 +3192,88 @@ async function recordDiscordFailure(
     WHERE server_id = ? AND desired_version = ? AND lease_token = ?
   `).bind(attempts, nextAttemptAt, nowIso(), failure.code, failure.message.slice(0, 500), job.server_id, job.desired_version, leaseToken));
   logWarn(permanent ? "discord.embed_failed" : "discord.embed_retry_scheduled", failure, {
+    serverId: job.server_id,
+    code: failure.code,
+    attempts
+  });
+}
+
+async function recordDiscordReviewNotificationFailure(
+  env: ServerDirectoryEnv,
+  job: DiscordReviewNotificationJob,
+  leaseToken: string,
+  error: unknown
+): Promise<void> {
+  const failure = error instanceof DiscordDeliveryError
+    ? error
+    : new DiscordDeliveryError("unexpected_error", "Unexpected Discord review notification failure.", true, error);
+  const attempts = job.attempt_count + 1;
+  const permanent = !failure.retryable || attempts >= DISCORD_JOB_MAX_ATTEMPTS;
+  const baseSeconds = failure.retryAfterSeconds > 0
+    ? failure.retryAfterSeconds
+    : Math.min(3600, 30 * (2 ** Math.min(attempts - 1, 7)));
+  const jitter = crypto.getRandomValues(new Uint16Array(1))[0] % 11;
+  const nextAttemptAt = permanent ? "9999-12-31T23:59:59.999Z" : new Date(Date.now() + (baseSeconds + jitter) * 1000).toISOString();
+  await runD1Statement(env.DB.prepare(`
+    UPDATE discord_review_notification_jobs
+    SET attempt_count = ?, next_attempt_at = ?, last_attempt_at = ?,
+        last_error_code = ?, last_error = ?, lease_token = NULL, lease_expires_at = NULL
+    WHERE server_id = ? AND submission_id = ? AND notification_type = ?
+      AND desired_status = ? AND desired_version = ? AND lease_token = ?
+  `).bind(
+    attempts,
+    nextAttemptAt,
+    nowIso(),
+    failure.code,
+    failure.message.slice(0, 500),
+    job.server_id,
+    job.submission_id,
+    job.notification_type,
+    job.desired_status,
+    job.desired_version,
+    leaseToken
+  ));
+  logWarn(permanent ? "discord.review_notification_failed" : "discord.review_notification_retry_scheduled", failure, {
+    serverId: job.server_id,
+    submissionId: job.submission_id,
+    code: failure.code,
+    attempts,
+    status: job.desired_status
+  });
+}
+
+async function recordDiscordReviewDeletionFailure(
+  env: ServerDirectoryEnv,
+  job: DiscordReviewDeletionJob,
+  leaseToken: string,
+  error: unknown
+): Promise<void> {
+  const failure = error instanceof DiscordDeliveryError
+    ? error
+    : new DiscordDeliveryError("unexpected_error", "Unexpected Discord review deletion failure.", true, error);
+  const attempts = job.attempt_count + 1;
+  const permanent = !failure.retryable || attempts >= DISCORD_JOB_MAX_ATTEMPTS;
+  const baseSeconds = failure.retryAfterSeconds > 0
+    ? failure.retryAfterSeconds
+    : Math.min(3600, 30 * (2 ** Math.min(attempts - 1, 7)));
+  const jitter = crypto.getRandomValues(new Uint16Array(1))[0] % 11;
+  const nextAttemptAt = permanent ? "9999-12-31T23:59:59.999Z" : new Date(Date.now() + (baseSeconds + jitter) * 1000).toISOString();
+  await runD1Statement(env.DB.prepare(`
+    UPDATE discord_review_deletion_jobs
+    SET attempt_count = ?, next_attempt_at = ?, last_attempt_at = ?,
+        last_error_code = ?, last_error = ?, lease_token = NULL, lease_expires_at = NULL
+    WHERE server_id = ? AND message_id = ? AND lease_token = ?
+  `).bind(
+    attempts,
+    nextAttemptAt,
+    nowIso(),
+    failure.code,
+    failure.message.slice(0, 500),
+    job.server_id,
+    job.message_id,
+    leaseToken
+  ));
+  logWarn(permanent ? "discord.review_deletion_failed" : "discord.review_deletion_retry_scheduled", failure, {
     serverId: job.server_id,
     code: failure.code,
     attempts
