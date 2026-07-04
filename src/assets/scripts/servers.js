@@ -435,7 +435,7 @@ const ownerStatTemplate = (owner, columnClass = "col") => {
     return serverStatTemplate("Owner", "Not available", "fa-brands fa-discord", columnClass);
   }
 
-  const username = String(owner.username).replace(/^@/, "");
+  const username = String(owner.username);
   return serverStatTemplate(
     "Owner",
     owner.displayName || username,
@@ -1087,7 +1087,16 @@ const initServerSubmit = () => {
 
     const name = document.createElement("strong");
     name.className = "server-submit-account-name text-truncate";
-    name.textContent = user?.displayName || user?.username || "Discord member";
+    const username = user?.username ? String(user.username) : "";
+    const displayName = user?.displayName || username || "Discord member";
+    name.textContent = username ? `${displayName} \u00B7 ` : displayName;
+    name.title = username ? `${displayName} \u00B7 @${username}` : displayName;
+    if (username) {
+      const usernameNode = document.createElement("small");
+      usernameNode.className = "text-body-secondary fw-bold";
+      usernameNode.textContent = `@${username}`;
+      name.append(usernameNode);
+    }
 
     text.append(label, name);
     identity.append(avatar, text);

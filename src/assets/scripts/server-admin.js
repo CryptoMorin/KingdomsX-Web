@@ -396,7 +396,7 @@ const createOwnerStat = (owner, columnClass = "col") => {
     return createStat("Owner", "Not available", "fa-brands fa-discord", columnClass);
   }
 
-  const username = String(owner.username).replace(/^@/, "");
+  const username = String(owner.username);
   return createStat(
     "Owner",
     owner.displayName || username,
