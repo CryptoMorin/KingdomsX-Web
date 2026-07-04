@@ -574,6 +574,7 @@ describe("server verification", () => {
     await seedSubmitter("review-notification");
     await seedOwnedServer("review-notification", "pending");
     const timestamp = new Date().toISOString();
+    const twoDaysAgo = new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString();
     await testEnv.DB.batch([
       testEnv.DB.prepare(`
         UPDATE submitter_accounts
@@ -607,13 +608,17 @@ describe("server verification", () => {
       `).bind(timestamp, timestamp, timestamp, timestamp)
     ]);
     const requests: Array<{ url: string; method: string; body: Record<string, unknown> }> = [];
+    const createdMessageIds = ["123456789012345678", "555555555555555555", "666666666666666666"];
     vi.stubGlobal("fetch", async (input: RequestInfo | URL, init?: RequestInit) => {
+      const method = init?.method ?? "GET";
       requests.push({
         url: input instanceof Request ? input.url : String(input),
-        method: init?.method ?? "GET",
+        method,
         body: JSON.parse(typeof init?.body === "string" ? init.body : "{}") as Record<string, unknown>
       });
-      return Response.json({ id: "123456789012345678" });
+      if (method === "DELETE") return new Response(null, { status: 204 });
+      if (method === "POST") return Response.json({ id: createdMessageIds.shift() });
+      return Response.json({ id: "555555555555555555" });
     });
 
     await processDiscordReviewNotificationJobs({
@@ -625,8 +630,18 @@ describe("server verification", () => {
     expect(requests).toHaveLength(1);
     expect(requests[0]).toMatchObject({ method: "POST" });
     expect(requests[0].url).toContain("/api/v10/webhooks/987654321/review-token?wait=true");
+    expect(requests[0].url).toContain("with_components=true");
     expect(requests[0].body).toMatchObject({
       allowed_mentions: { parse: [], users: ["123456789012345678"] },
+      components: [{
+        type: 1,
+        components: [{
+          type: 2,
+          style: 5,
+          label: "Open admin dashboard",
+          url: "https://servers.kingdomsx.com/admin"
+        }]
+      }],
       embeds: [{
         title: "Server review\\-notification",
         footer: { text: "Submitted for review" },
@@ -649,6 +664,7 @@ describe("server verification", () => {
     });
     const serialized = JSON.stringify(requests[0].body);
     expect(serialized).toContain("https://servers.kingdomsx.com/admin");
+    expect(serialized).not.toContain('"name":"Review"');
     expect(await testEnv.DB.prepare("SELECT server_id FROM discord_review_notification_jobs").first()).toBeNull();
     expect(await testEnv.DB.prepare(`
       SELECT message_id, synced_status
@@ -663,6 +679,11 @@ describe("server verification", () => {
         '444444444444444444', ?, ?, ?
       )
     `).bind(timestamp, timestamp, timestamp).run();
+    await testEnv.DB.prepare(`
+      UPDATE discord_review_notifications
+      SET synced_at = ?
+      WHERE server_id = 'server-review-notification'
+    `).bind(twoDaysAgo).run();
 
     const approval = await api("/api/admin/servers/server-review-notification/approve", {
       method: "POST",
@@ -676,29 +697,38 @@ describe("server verification", () => {
       DISCORD_SERVER_REVIEW_WEBHOOK_URL: "https://discord.com/api/webhooks/987654321/review-token"
     });
 
-    expect(requests[1]).toMatchObject({ method: "PATCH" });
-    expect(requests[1].url).toContain("/messages/123456789012345678");
+    expect(requests[1]).toMatchObject({ method: "POST" });
+    expect(requests[1].url).toContain("?wait=true");
+    expect(requests[1].url).toContain("with_components=true");
     expect(requests[1].body).toMatchObject({
+      components: [{
+        type: 1,
+        components: [{
+          type: 2,
+          style: 5,
+          label: "Open admin dashboard",
+          url: "https://servers.kingdomsx.com/admin"
+        }, {
+          type: 2,
+          style: 5,
+          label: "View public embed",
+          url: "https://discord.com/channels/333333333333333333/444444444444444444/222222222222222222"
+        }]
+      }],
       embeds: [{
         title: "Server review\\-notification",
         color: 0x57f287,
-        footer: { text: "Approved" },
-        fields: expect.arrayContaining([{
-          name: "Review",
-          value: "[Open admin dashboard](https://servers.kingdomsx.com/admin)",
-          inline: true
-        }, {
-          name: "Public Embed",
-          value: "https://discord.com/channels/333333333333333333/444444444444444444/222222222222222222",
-          inline: true
-        }])
+        footer: { text: "Approved" }
       }]
     });
+    expect(JSON.stringify(requests[1].body)).not.toContain('"name":"Public Embed"');
+    expect(requests[2]).toMatchObject({ method: "DELETE" });
+    expect(requests[2].url).toContain("/messages/123456789012345678");
     expect(await testEnv.DB.prepare(`
       SELECT message_id, synced_status
       FROM discord_review_notifications
       WHERE server_id = 'server-review-notification'
-    `).first()).toEqual({ message_id: "123456789012345678", synced_status: "approved" });
+    `).first()).toEqual({ message_id: "555555555555555555", synced_status: "approved" });
 
     const rejection = await api("/api/admin/servers/server-review-notification/reject", {
       method: "POST",
@@ -714,7 +744,10 @@ describe("server verification", () => {
       APP_ENVIRONMENT: "local",
       DISCORD_SERVER_REVIEW_WEBHOOK_URL: "https://discord.com/api/webhooks/987654321/review-token"
     });
-    expect(requests[2].body).toMatchObject({
+    expect(requests[3]).toMatchObject({ method: "PATCH" });
+    expect(requests[3].url).toContain("/messages/555555555555555555");
+    expect(requests[3].url).toContain("with_components=true");
+    expect(requests[3].body).toMatchObject({
       embeds: [{
         color: 0xed4245,
         footer: { text: "Rejected" },
@@ -724,6 +757,7 @@ describe("server verification", () => {
         }])
       }]
     });
+    expect(JSON.stringify(requests[3].body)).not.toContain("View public embed");
 
     const suspension = await api("/api/admin/servers/server-review-notification/suspend", {
       method: "POST",
@@ -736,7 +770,7 @@ describe("server verification", () => {
       APP_ENVIRONMENT: "local",
       DISCORD_SERVER_REVIEW_WEBHOOK_URL: "https://discord.com/api/webhooks/987654321/review-token"
     });
-    expect(requests[3].body).toMatchObject({
+    expect(requests[4].body).toMatchObject({
       embeds: [{
         color: 0xc53030,
         footer: { text: "Suspended" },
@@ -746,6 +780,11 @@ describe("server verification", () => {
         }])
       }]
     });
+    await testEnv.DB.prepare(`
+      UPDATE discord_review_notifications
+      SET synced_at = ?
+      WHERE server_id = 'server-review-notification'
+    `).bind(twoDaysAgo).run();
 
     const deletion = await api("/api/admin/servers/server-review-notification", {
       method: "DELETE",
@@ -758,15 +797,18 @@ describe("server verification", () => {
       APP_ENVIRONMENT: "local",
       DISCORD_SERVER_REVIEW_WEBHOOK_URL: "https://discord.com/api/webhooks/987654321/review-token"
     });
-    expect(requests[4]).toMatchObject({ method: "PATCH" });
-    expect(requests[4].url).toContain("/messages/123456789012345678");
-    expect(requests[4].body).toMatchObject({
+    expect(requests[5]).toMatchObject({ method: "POST" });
+    expect(requests[5].url).toContain("?wait=true");
+    expect(requests[5].url).toContain("with_components=true");
+    expect(requests[5].body).toMatchObject({
       embeds: [{
         color: 0xb22222,
         footer: { text: "Deleted" }
       }]
     });
-    expect(JSON.stringify(requests[4].body)).not.toContain("Public Embed");
+    expect(requests[6]).toMatchObject({ method: "DELETE" });
+    expect(requests[6].url).toContain("/messages/555555555555555555");
+    expect(JSON.stringify(requests[5].body)).not.toContain("View public embed");
     expect(await testEnv.DB.prepare("SELECT server_id FROM discord_review_deletion_jobs").first()).toBeNull();
   });
 
@@ -774,13 +816,16 @@ describe("server verification", () => {
     const cookie = await seedSubmitter("discord-lifecycle");
     await seedOwnedServer("discord-lifecycle");
     const requests: Array<{ url: string; method: string; body: string }> = [];
+    const createdMessageIds = ["123456789012345678", "222222222222222222"];
+    const twoDaysAgo = new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString();
+    const eightDaysAgo = new Date(Date.now() - 8 * 24 * 60 * 60 * 1000).toISOString();
     vi.stubGlobal("fetch", async (input: RequestInfo | URL, init?: RequestInit) => {
       const url = input instanceof Request ? input.url : String(input);
       const method = init?.method ?? (input instanceof Request ? input.method : "GET");
       requests.push({ url, method, body: typeof init?.body === "string" ? init.body : "" });
       if (method === "DELETE") return new Response(null, { status: 204 });
       return Response.json({
-        id: "123456789012345678",
+        id: method === "POST" ? createdMessageIds.shift() : "222222222222222222",
         guild_id: "333333333333333333",
         channel_id: "444444444444444444"
       });
@@ -815,6 +860,11 @@ describe("server verification", () => {
       guild_id: "333333333333333333",
       channel_id: "444444444444444444"
     });
+    await testEnv.DB.prepare(`
+      UPDATE discord_embeds
+      SET synced_at = ?
+      WHERE server_id = 'server-discord-lifecycle'
+    `).bind(twoDaysAgo).run();
 
     const secondEdit = await api("/api/servers/me/details", {
       method: "PATCH",
@@ -831,6 +881,45 @@ describe("server verification", () => {
     expect(requests[1]).toMatchObject({ method: "PATCH" });
     expect(requests[1].url).toContain("/messages/123456789012345678");
 
+    await testEnv.DB.prepare(`
+      UPDATE discord_embeds
+      SET synced_at = ?
+      WHERE server_id = 'server-discord-lifecycle'
+    `).bind(eightDaysAgo).run();
+    const staleEdit = await api("/api/servers/me/details", {
+      method: "PATCH",
+      headers: { "content-type": "application/json", cookie },
+      body: JSON.stringify({
+        name: "Discord Lifecycle Reposted",
+        description: "An old public message should be reposted at the bottom of the channel.",
+        websiteUrl: "https://kingdomsx.com",
+        socialLinks: {}
+      })
+    });
+    expect(staleEdit.status).toBe(200);
+    await processDiscordEmbedJobs(discordEnv);
+    expect(requests[2]).toMatchObject({ method: "POST" });
+    expect(requests[2].url).toContain("?wait=true");
+    expect(requests[3]).toMatchObject({ method: "DELETE" });
+    expect(requests[3].url).toContain("/messages/123456789012345678");
+    expect(await testEnv.DB.prepare("SELECT message_id FROM discord_embeds WHERE server_id = 'server-discord-lifecycle'").first())
+      .toEqual({ message_id: "222222222222222222" });
+
+    const recentEdit = await api("/api/servers/me/details", {
+      method: "PATCH",
+      headers: { "content-type": "application/json", cookie },
+      body: JSON.stringify({
+        name: "Discord Lifecycle Recent Edit",
+        description: "A recent public description should edit the replacement message in place.",
+        websiteUrl: "https://kingdomsx.com",
+        socialLinks: {}
+      })
+    });
+    expect(recentEdit.status).toBe(200);
+    await processDiscordEmbedJobs(discordEnv);
+    expect(requests[4]).toMatchObject({ method: "PATCH" });
+    expect(requests[4].url).toContain("/messages/222222222222222222");
+
     const suspend = await api("/api/admin/servers/server-discord-lifecycle/suspend", {
       method: "POST",
       headers: { "content-type": "application/json", "x-admin-token": "local-admin-token" },
@@ -838,7 +927,8 @@ describe("server verification", () => {
     });
     expect(suspend.status).toBe(200);
     await processDiscordEmbedJobs(discordEnv);
-    expect(requests[2]).toMatchObject({ method: "DELETE" });
+    expect(requests[5]).toMatchObject({ method: "DELETE" });
+    expect(requests[5].url).toContain("/messages/222222222222222222");
     expect(await testEnv.DB.prepare("SELECT server_id FROM discord_embeds WHERE server_id = 'server-discord-lifecycle'").first()).toBeNull();
     expect(await testEnv.DB.prepare("SELECT server_id FROM discord_embed_jobs WHERE server_id = 'server-discord-lifecycle'").first()).toBeNull();
   });

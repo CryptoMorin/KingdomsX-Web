@@ -102,12 +102,16 @@ interface DiscordReviewNotificationJob {
 
 interface DiscordReviewNotification {
   message_id: string;
+  superseded_message_id: string | null;
+  synced_at: string;
 }
 
 interface DiscordReviewDeletionJob {
   server_id: string;
   message_id: string;
   payload_json: string;
+  replace_message: number;
+  superseded_message_id: string | null;
   attempt_count: number;
 }
 
@@ -124,6 +128,7 @@ interface DiscordReviewSubmissionRow extends DiscordServerRow {
 interface DiscordReviewDeletionSnapshot extends DiscordReviewSubmissionRow {
   review_message_id: string;
   review_notification_type: "submitted" | "resubmitted";
+  review_synced_at: string;
 }
 
 type DiscordReviewDisplayStatus = ServerState | "deleted";
@@ -132,6 +137,8 @@ interface DiscordEmbedRecord {
   message_id: string;
   guild_id: string | null;
   channel_id: string | null;
+  superseded_message_id: string | null;
+  synced_at: string;
 }
 
 interface StatusSnapshot {
@@ -284,6 +291,8 @@ const DISCORD_API_TIMEOUT_MS = 8_000;
 const DISCORD_JOB_BATCH_LIMIT = 4;
 const DISCORD_JOB_MAX_ATTEMPTS = 8;
 const DISCORD_LEASE_MS = 60_000;
+const DISCORD_ADMIN_MESSAGE_REPOST_AFTER_MS = 24 * 60 * 60 * 1000;
+const DISCORD_PUBLIC_MESSAGE_REPOST_AFTER_MS = 7 * 24 * 60 * 60 * 1000;
 export const DISCORD_EMBED_CRON = "1-56/5 * * * *";
 const VERIFICATION_CHALLENGE_TTL_MS = 15 * 60 * 1000;
 const VERIFICATION_PROOF_TTL_MS = 48 * 60 * 60 * 1000;
@@ -2303,7 +2312,8 @@ async function getDiscordReviewDeletionSnapshot(
       public_embed.guild_id AS public_discord_guild_id,
       public_embed.channel_id AS public_discord_channel_id,
       review.message_id AS review_message_id,
-      review.notification_type AS review_notification_type
+      review.notification_type AS review_notification_type,
+      review.synced_at AS review_synced_at
     FROM servers s
     JOIN discord_review_notifications review ON review.server_id = s.id
     JOIN submissions submission ON submission.id = review.submission_id
@@ -2325,13 +2335,16 @@ function discordReviewDeletionJobStatement(
   );
   return env.DB.prepare(`
     INSERT INTO discord_review_deletion_jobs (
-      server_id, message_id, payload_json, attempt_count, next_attempt_at,
+      server_id, message_id, payload_json, replace_message, superseded_message_id,
+      attempt_count, next_attempt_at,
       last_attempt_at, last_error_code, last_error, lease_token, lease_expires_at,
       created_at, updated_at
-    ) VALUES (?, ?, ?, 0, ?, NULL, NULL, NULL, NULL, NULL, ?, ?)
+    ) VALUES (?, ?, ?, ?, NULL, 0, ?, NULL, NULL, NULL, NULL, NULL, ?, ?)
     ON CONFLICT(server_id) DO UPDATE SET
       message_id = excluded.message_id,
       payload_json = excluded.payload_json,
+      replace_message = excluded.replace_message,
+      superseded_message_id = NULL,
       attempt_count = 0,
       next_attempt_at = excluded.next_attempt_at,
       last_attempt_at = NULL,
@@ -2340,7 +2353,15 @@ function discordReviewDeletionJobStatement(
       lease_token = NULL,
       lease_expires_at = NULL,
       updated_at = excluded.updated_at
-  `).bind(snapshot.id, snapshot.review_message_id, JSON.stringify(payload), timestamp, timestamp, timestamp);
+  `).bind(
+    snapshot.id,
+    snapshot.review_message_id,
+    JSON.stringify(payload),
+    discordMessageShouldBeReposted(snapshot.review_synced_at, DISCORD_ADMIN_MESSAGE_REPOST_AFTER_MS) ? 1 : 0,
+    timestamp,
+    timestamp,
+    timestamp
+  );
 }
 
 function scheduleDiscordEmbedProcessing(env: ServerDirectoryEnv, ctx?: ExecutionContext): void {
@@ -2488,7 +2509,7 @@ export async function processDiscordReviewDeletionJobs(env: ServerDirectoryEnv):
         WHERE server_id = ? AND (lease_expires_at IS NULL OR lease_expires_at <= ?)
       `).bind(leaseToken, leaseExpiresAt, serverId, now));
       const job = await env.DB.prepare(`
-        SELECT server_id, message_id, payload_json, attempt_count
+        SELECT server_id, message_id, payload_json, replace_message, superseded_message_id, attempt_count
         FROM discord_review_deletion_jobs WHERE server_id = ? AND lease_token = ?
       `).bind(serverId, leaseToken).first<DiscordReviewDeletionJob>();
       if (job) {
@@ -2511,16 +2532,54 @@ async function processDiscordReviewDeletionJob(
       throw new DiscordDeliveryError("invalid_payload", "Stored Discord deletion payload is invalid.", false);
     }
     const webhook = parseDiscordWebhookUrl(env.DISCORD_SERVER_REVIEW_WEBHOOK_URL, "review notification");
-    const response = await discordFetch(`${webhook}/messages/${encodeURIComponent(job.message_id)}`, "PATCH", parsed, false);
-    if (response.status !== 404) {
-      await requireDiscordSuccess(response, "update deleted review notification");
+    let newlyCreated = false;
+
+    if (job.replace_message === 1) {
+      let response: Response;
+      try {
+        response = await discordFetch(`${webhook}?wait=true&with_components=true`, "POST", parsed, true);
+      } catch (error) {
+        throw new DiscordDeliveryError("ambiguous_create", "Discord deleted review notification had an ambiguous network result.", false, error);
+      }
+      await requireDiscordSuccess(response, "repost deleted review notification");
+      const body = await readBoundedDiscordJson(response);
+      if (typeof body.id !== "string" || !/^\d+$/.test(body.id)) {
+        throw new DiscordDeliveryError("invalid_response", "Discord returned an invalid deleted review notification response.", false);
+      }
+      const previousMessageId = job.message_id;
+      await runD1Statement(env.DB.prepare(`
+        UPDATE discord_review_deletion_jobs
+        SET message_id = ?, superseded_message_id = ?, replace_message = 0, updated_at = ?
+        WHERE server_id = ? AND message_id = ? AND lease_token = ?
+      `).bind(body.id, previousMessageId, nowIso(), job.server_id, previousMessageId, leaseToken));
+      job.message_id = body.id;
+      job.superseded_message_id = previousMessageId;
+      job.replace_message = 0;
+      newlyCreated = true;
     }
-    await cancelResponseBody(response);
+
+    if (!newlyCreated) {
+      const response = await discordFetch(`${webhook}/messages/${encodeURIComponent(job.message_id)}?with_components=true`, "PATCH", parsed, false);
+      if (response.status !== 404) {
+        await requireDiscordSuccess(response, "update deleted review notification");
+      }
+      await cancelResponseBody(response);
+    }
+
+    if (job.superseded_message_id) {
+      await deleteDiscordWebhookMessage(webhook, job.superseded_message_id, "delete superseded review notification");
+      await runD1Statement(env.DB.prepare(`
+        UPDATE discord_review_deletion_jobs
+        SET superseded_message_id = NULL, updated_at = ?
+        WHERE server_id = ? AND message_id = ? AND superseded_message_id = ? AND lease_token = ?
+      `).bind(nowIso(), job.server_id, job.message_id, job.superseded_message_id, leaseToken));
+      job.superseded_message_id = null;
+    }
     await runD1Statement(env.DB.prepare(`
       DELETE FROM discord_review_deletion_jobs
       WHERE server_id = ? AND message_id = ? AND lease_token = ?
     `).bind(job.server_id, job.message_id, leaseToken));
-    logInfo("discord.review_deletion_updated", { serverId: job.server_id });
+    logInfo(newlyCreated ? "discord.review_deletion_reposted" : "discord.review_deletion_updated", { serverId: job.server_id });
   } catch (error) {
     await recordDiscordReviewDeletionFailure(env, job, leaseToken, error);
   }
@@ -2567,14 +2626,34 @@ async function processDiscordReviewNotificationJob(
     }
 
     const webhook = parseDiscordWebhookUrl(env.DISCORD_SERVER_REVIEW_WEBHOOK_URL, "review notification");
-    const notification = await env.DB.prepare("SELECT message_id FROM discord_review_notifications WHERE server_id = ?")
+    const notification = await env.DB.prepare(`
+      SELECT message_id, superseded_message_id, synced_at
+      FROM discord_review_notifications
+      WHERE server_id = ?
+    `)
       .bind(job.server_id).first<DiscordReviewNotification>();
     const payload = buildDiscordReviewNotificationMessage(submission, job.notification_type);
     let messageId = notification?.message_id ?? null;
+    let supersededMessageId = notification?.superseded_message_id ?? null;
+    const repostMessage = Boolean(messageId && notification && discordMessageShouldBeReposted(
+      notification.synced_at,
+      DISCORD_ADMIN_MESSAGE_REPOST_AFTER_MS
+    ));
     let createdMessage = false;
+    let repostedMessage = false;
 
-    if (messageId) {
-      const response = await discordFetch(`${webhook}/messages/${encodeURIComponent(messageId)}`, "PATCH", payload, false);
+    if (supersededMessageId) {
+      await deleteDiscordWebhookMessage(webhook, supersededMessageId, "delete superseded review notification");
+      await runD1Statement(env.DB.prepare(`
+        UPDATE discord_review_notifications
+        SET superseded_message_id = NULL, updated_at = ?
+        WHERE server_id = ? AND message_id = ? AND superseded_message_id = ?
+      `).bind(nowIso(), job.server_id, messageId, supersededMessageId));
+      supersededMessageId = null;
+    }
+
+    if (messageId && !repostMessage) {
+      const response = await discordFetch(`${webhook}/messages/${encodeURIComponent(messageId)}?with_components=true`, "PATCH", payload, false);
       if (response.status === 404) {
         await cancelResponseBody(response);
         messageId = null;
@@ -2584,10 +2663,11 @@ async function processDiscordReviewNotificationJob(
       }
     }
 
-    if (!messageId) {
+    if (!messageId || repostMessage) {
+      const previousMessageId = repostMessage ? messageId : null;
       let response: Response;
       try {
-        response = await discordFetch(`${webhook}?wait=true`, "POST", payload, true);
+        response = await discordFetch(`${webhook}?wait=true&with_components=true`, "POST", payload, true);
       } catch (error) {
         throw new DiscordDeliveryError("ambiguous_create", "Discord review notification had an ambiguous network result.", false, error);
       }
@@ -2597,17 +2677,34 @@ async function processDiscordReviewNotificationJob(
         throw new DiscordDeliveryError("invalid_response", "Discord returned an invalid review notification response.", false);
       }
       messageId = body.id;
-      createdMessage = true;
+      supersededMessageId = previousMessageId;
+      createdMessage = !previousMessageId;
+      repostedMessage = Boolean(previousMessageId);
     }
 
-    await storeDiscordReviewNotification(env, submission, job, messageId);
+    await storeDiscordReviewNotification(env, submission, job, messageId, supersededMessageId);
+    if (supersededMessageId) {
+      await deleteDiscordWebhookMessage(webhook, supersededMessageId, "delete superseded review notification");
+      await runD1Statement(env.DB.prepare(`
+        UPDATE discord_review_notifications
+        SET superseded_message_id = NULL, updated_at = ?
+        WHERE server_id = ? AND message_id = ? AND superseded_message_id = ?
+      `).bind(nowIso(), job.server_id, messageId, supersededMessageId));
+    }
     await deleteDiscordReviewNotificationJob(env, job, leaseToken);
-    logInfo(createdMessage ? "discord.review_notification_created" : "discord.review_notification_updated", {
-      serverId: job.server_id,
-      submissionId: job.submission_id,
-      notificationType: job.notification_type,
-      status: job.desired_status
-    });
+    logInfo(
+      createdMessage
+        ? "discord.review_notification_created"
+        : repostedMessage
+          ? "discord.review_notification_reposted"
+          : "discord.review_notification_updated",
+      {
+        serverId: job.server_id,
+        submissionId: job.submission_id,
+        notificationType: job.notification_type,
+        status: job.desired_status
+      }
+    );
   } catch (error) {
     await recordDiscordReviewNotificationFailure(env, job, leaseToken, error);
     await releaseDiscordReviewNotificationLease(env, job.server_id, leaseToken);
@@ -2639,17 +2736,19 @@ async function storeDiscordReviewNotification(
   env: ServerDirectoryEnv,
   submission: DiscordReviewSubmissionRow,
   job: DiscordReviewNotificationJob,
-  messageId: string
+  messageId: string,
+  supersededMessageId: string | null
 ): Promise<void> {
   const timestamp = nowIso();
   await runD1Statement(env.DB.prepare(`
     INSERT INTO discord_review_notifications (
-      server_id, submission_id, message_id, notification_type, synced_status,
+      server_id, submission_id, message_id, superseded_message_id, notification_type, synced_status,
       synced_version, synced_at, created_at, updated_at
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     ON CONFLICT(server_id) DO UPDATE SET
       submission_id = excluded.submission_id,
       message_id = excluded.message_id,
+      superseded_message_id = excluded.superseded_message_id,
       notification_type = excluded.notification_type,
       synced_status = excluded.synced_status,
       synced_version = excluded.synced_version,
@@ -2659,6 +2758,7 @@ async function storeDiscordReviewNotification(
     job.server_id,
     job.submission_id,
     messageId,
+    supersededMessageId,
     job.notification_type,
     submission.status,
     submission.updated_at,
@@ -2767,15 +2867,35 @@ async function upsertDiscordEmbed(
   leaseToken: string
 ): Promise<boolean> {
   const webhook = parseDiscordWebhookUrl(env.DISCORD_SERVER_DIRECTORY_WEBHOOK_URL);
-  const embed = await env.DB.prepare("SELECT message_id, guild_id, channel_id FROM discord_embeds WHERE server_id = ?")
+  const embed = await env.DB.prepare(`
+    SELECT message_id, guild_id, channel_id, superseded_message_id, synced_at
+    FROM discord_embeds
+    WHERE server_id = ?
+  `)
     .bind(server.id).first<DiscordEmbedRecord>();
   const timestamp = nowIso();
   let messageId = embed?.message_id ?? null;
   let guildId = embed?.guild_id ?? null;
   let channelId = embed?.channel_id ?? null;
+  let supersededMessageId = embed?.superseded_message_id ?? null;
+  const repostMessage = Boolean(messageId && embed && discordMessageShouldBeReposted(
+    embed.synced_at,
+    DISCORD_PUBLIC_MESSAGE_REPOST_AFTER_MS
+  ));
   let createdMessage = false;
+  let repostedMessage = false;
 
-  if (messageId) {
+  if (supersededMessageId) {
+    await deleteDiscordWebhookMessage(webhook, supersededMessageId, "delete superseded public embed");
+    await runD1Statement(env.DB.prepare(`
+      UPDATE discord_embeds
+      SET superseded_message_id = NULL, updated_at = ?
+      WHERE server_id = ? AND message_id = ? AND superseded_message_id = ?
+    `).bind(nowIso(), server.id, messageId, supersededMessageId));
+    supersededMessageId = null;
+  }
+
+  if (messageId && !repostMessage) {
     if (!await discordEmbedJobStillCurrent(env, job, leaseToken)) return false;
     const payload = buildDiscordServerMessage(server, { updated: true, timestamp });
     const response = await discordFetch(`${webhook}/messages/${encodeURIComponent(messageId)}`, "PATCH", payload, false);
@@ -2791,8 +2911,9 @@ async function upsertDiscordEmbed(
     }
   }
 
-  if (!messageId) {
+  if (!messageId || repostMessage) {
     if (!await discordEmbedJobStillCurrent(env, job, leaseToken)) return false;
+    const previousMessageId = repostMessage ? messageId : null;
     const payload = buildDiscordServerMessage(server, { updated: false, timestamp });
     let response: Response;
     try {
@@ -2809,21 +2930,44 @@ async function upsertDiscordEmbed(
     const location = discordMessageLocation(body, env.DISCORD_GUILD_ID);
     guildId = location.guildId;
     channelId = location.channelId;
-    createdMessage = true;
-    logInfo("discord.embed_created", { serverId: server.id });
+    supersededMessageId = previousMessageId;
+    createdMessage = !previousMessageId;
+    repostedMessage = Boolean(previousMessageId);
+    logInfo(repostedMessage ? "discord.embed_reposted" : "discord.embed_created", { serverId: server.id });
   } else {
     logInfo("discord.embed_updated", { serverId: server.id });
   }
 
   if (!await discordEmbedJobStillCurrent(env, job, leaseToken)) {
-    if (createdMessage) {
-      await storeDiscordEmbed(env, server.id, messageId, guildId, channelId, server.updated_at, timestamp);
+    if (createdMessage || repostedMessage) {
+      await storeDiscordEmbed(env, server.id, messageId, guildId, channelId, supersededMessageId, server.updated_at, timestamp);
+      if (supersededMessageId) {
+        await deleteDiscordWebhookMessage(webhook, supersededMessageId, "delete superseded public embed");
+        await clearSupersededDiscordEmbed(env, server.id, messageId, supersededMessageId);
+      }
     }
     return false;
   }
 
-  await storeDiscordEmbed(env, server.id, messageId, guildId, channelId, server.updated_at, timestamp);
+  await storeDiscordEmbed(env, server.id, messageId, guildId, channelId, supersededMessageId, server.updated_at, timestamp);
+  if (supersededMessageId) {
+    await deleteDiscordWebhookMessage(webhook, supersededMessageId, "delete superseded public embed");
+    await clearSupersededDiscordEmbed(env, server.id, messageId, supersededMessageId);
+  }
   return true;
+}
+
+async function clearSupersededDiscordEmbed(
+  env: ServerDirectoryEnv,
+  serverId: string,
+  messageId: string,
+  supersededMessageId: string
+): Promise<void> {
+  await runD1Statement(env.DB.prepare(`
+    UPDATE discord_embeds
+    SET superseded_message_id = NULL, updated_at = ?
+    WHERE server_id = ? AND message_id = ? AND superseded_message_id = ?
+  `).bind(nowIso(), serverId, messageId, supersededMessageId));
 }
 
 function discordMessageLocation(
@@ -2848,22 +2992,25 @@ async function storeDiscordEmbed(
   messageId: string,
   guildId: string | null,
   channelId: string | null,
+  supersededMessageId: string | null,
   syncedVersion: string,
   timestamp: string
 ): Promise<void> {
   await runD1Statement(env.DB.prepare(`
     INSERT INTO discord_embeds (
-      server_id, message_id, guild_id, channel_id, synced_version, synced_at, updated_at, last_verified_at
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+      server_id, message_id, guild_id, channel_id, superseded_message_id,
+      synced_version, synced_at, updated_at, last_verified_at
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
     ON CONFLICT(server_id) DO UPDATE SET
       message_id = excluded.message_id,
       guild_id = COALESCE(excluded.guild_id, discord_embeds.guild_id),
       channel_id = COALESCE(excluded.channel_id, discord_embeds.channel_id),
+      superseded_message_id = excluded.superseded_message_id,
       synced_version = excluded.synced_version,
       synced_at = excluded.synced_at,
       updated_at = excluded.updated_at,
       last_verified_at = excluded.last_verified_at
-  `).bind(serverId, messageId, guildId, channelId, syncedVersion, timestamp, timestamp, timestamp));
+  `).bind(serverId, messageId, guildId, channelId, supersededMessageId, syncedVersion, timestamp, timestamp, timestamp));
   await runD1Statement(discordReviewStatusJobStatement(env, serverId, "approved", syncedVersion));
 }
 
@@ -2873,17 +3020,16 @@ async function deleteDiscordEmbed(
   job: DiscordEmbedJob,
   leaseToken: string
 ): Promise<boolean> {
-  const embed = await env.DB.prepare("SELECT message_id FROM discord_embeds WHERE server_id = ?")
-    .bind(serverId).first<{ message_id: string }>();
+  const embed = await env.DB.prepare("SELECT message_id, superseded_message_id FROM discord_embeds WHERE server_id = ?")
+    .bind(serverId).first<{ message_id: string; superseded_message_id: string | null }>();
   if (!embed) return true;
   if (!await discordEmbedJobStillCurrent(env, job, leaseToken)) return false;
 
   const webhook = parseDiscordWebhookUrl(env.DISCORD_SERVER_DIRECTORY_WEBHOOK_URL);
-  const response = await discordFetch(`${webhook}/messages/${encodeURIComponent(embed.message_id)}`, "DELETE", null, false);
-  if (response.status !== 404) {
-    await requireDiscordSuccess(response, "delete");
+  await deleteDiscordWebhookMessage(webhook, embed.message_id, "delete public embed");
+  if (embed.superseded_message_id && embed.superseded_message_id !== embed.message_id) {
+    await deleteDiscordWebhookMessage(webhook, embed.superseded_message_id, "delete superseded public embed");
   }
-  await cancelResponseBody(response);
 
   if (!await discordEmbedJobStillCurrent(env, job, leaseToken)) return false;
   await runD1Statement(env.DB.prepare("DELETE FROM discord_embeds WHERE server_id = ?").bind(serverId));
@@ -2994,10 +3140,20 @@ export function buildDiscordReviewNotificationMessage(
       value: escapeDiscordMarkdown(moderationReason).slice(0, 1024)
     });
   }
-  fields.push({ name: "Review", value: `[Open admin dashboard](${adminUrl})`, inline: true });
   const publicMessageUrl = discordPublicMessageUrl(server);
+  const actionButtons: Array<{ type: number; style: number; label: string; url: string }> = [{
+    type: 2,
+    style: 5,
+    label: "Open admin dashboard",
+    url: adminUrl
+  }];
   if (displayStatus === "approved" && publicMessageUrl) {
-    fields.push({ name: "Public Embed", value: publicMessageUrl, inline: true });
+    actionButtons.push({
+      type: 2,
+      style: 5,
+      label: "View public embed",
+      url: publicMessageUrl
+    });
   }
   const reviewState = discordReviewState(displayStatus, notificationType);
   const timestamp = discordEmbedTimestamp(displayStatus === "pending" ? server.submission_created_at : server.updated_at);
@@ -3006,6 +3162,10 @@ export function buildDiscordReviewNotificationMessage(
     allowed_mentions: ownerId
       ? { parse: [], users: [ownerId] }
       : { parse: [] },
+    components: [{
+      type: 1,
+      components: actionButtons
+    }],
     embeds: [{
       author: {
         name: "KingdomsX Server Review",
@@ -3068,6 +3228,11 @@ function discordEmbedTimestamp(value: string): string | null {
   return Number.isNaN(date.getTime()) ? null : date.toISOString();
 }
 
+function discordMessageShouldBeReposted(lastSyncedAt: string, thresholdMs: number): boolean {
+  const timestamp = Date.parse(lastSyncedAt);
+  return Number.isFinite(timestamp) && Date.now() - timestamp >= thresholdMs;
+}
+
 function escapeDiscordMarkdown(value: string): string {
   return value.replace(/([\\`*_{}\[\]()<>#+\-.!|~])/g, "\\$1");
 }
@@ -3114,6 +3279,14 @@ async function discordFetch(url: string, method: string, payload: Record<string,
   } finally {
     clearTimeout(timeout);
   }
+}
+
+async function deleteDiscordWebhookMessage(webhook: string, messageId: string, operation: string): Promise<void> {
+  const response = await discordFetch(`${webhook}/messages/${encodeURIComponent(messageId)}`, "DELETE", null, false);
+  if (response.status !== 404) {
+    await requireDiscordSuccess(response, operation);
+  }
+  await cancelResponseBody(response);
 }
 
 async function requireDiscordSuccess(response: Response, operation: string): Promise<void> {
