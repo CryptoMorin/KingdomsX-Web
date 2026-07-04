@@ -348,6 +348,7 @@ const serverCardTemplate = (server) => {
   const players = playerCountLabel(server.status);
   const version = versionLabel(server.status);
   meta.append(
+    ownerStatTemplate(server.owner, "col-12 w-100"),
     serverStatTemplate("Players", players, "fa-solid fa-user-group"),
     serverStatTemplate("Version", version, "fa-solid fa-code-branch")
   );
@@ -388,7 +389,7 @@ const playerCountLabel = (status) => {
 
 const versionLabel = (status) => status?.online === false ? "-" : status?.version || "Version unknown";
 
-const serverStatTemplate = (label, value, iconClass, columnClass = "col") => {
+const serverStatTemplate = (label, value, iconClass, columnClass = "col", secondaryValue = "") => {
   const column = document.createElement("div");
   column.className = columnClass;
 
@@ -415,10 +416,33 @@ const serverStatTemplate = (label, value, iconClass, columnClass = "col") => {
   valueNode.textContent = value;
   valueNode.title = value;
 
+  if (secondaryValue) {
+    valueNode.textContent = `${value} \u00B7 `;
+    valueNode.title = `${value} \u00B7 ${secondaryValue}`;
+    const secondaryNode = document.createElement("small");
+    secondaryNode.className = "text-body-secondary fw-bold";
+    secondaryNode.textContent = secondaryValue;
+    valueNode.append(secondaryNode);
+  }
   text.append(labelNode, valueNode);
   stat.append(iconWrap, text);
   column.append(stat);
   return column;
+};
+
+const ownerStatTemplate = (owner, columnClass = "col") => {
+  if (!owner?.username) {
+    return serverStatTemplate("Owner", "Not available", "fa-brands fa-discord", columnClass);
+  }
+
+  const username = String(owner.username).replace(/^@/, "");
+  return serverStatTemplate(
+    "Owner",
+    owner.displayName || username,
+    "fa-brands fa-discord",
+    columnClass,
+    `@${username}`
+  );
 };
 
 const copyText = async (value) => {
@@ -2578,6 +2602,7 @@ const initServerSubmit = () => {
     const stats = document.createElement("div");
     stats.className = "server-stats row row-cols-1 row-cols-sm-2 g-2";
     stats.append(
+      ownerStatTemplate(item.owner, "col-12 w-100"),
       serverStatTemplate("Players", playerCountLabel(item.status), "fa-solid fa-user-group"),
       serverStatTemplate("Version", versionLabel(item.status), "fa-solid fa-code-branch"),
       serverStatTemplate("Submitted", formatDate(item.submission?.createdAt ?? item.createdAt), "fa-solid fa-clock"),

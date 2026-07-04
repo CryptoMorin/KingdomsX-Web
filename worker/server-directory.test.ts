@@ -425,6 +425,22 @@ describe("server verification", () => {
     expect(second.headers.get("x-kingdomsx-cache")).toBe("HIT");
   });
 
+  it("returns the owner's Discord display name and username in public listings", async () => {
+    await seedSubmitter("public-owner");
+    await seedOwnedServer("public-owner");
+
+    const response = await api("/api/servers/server-public-owner");
+    expect(response.status).toBe(200);
+    await expect(response.json()).resolves.toMatchObject({
+      item: {
+        owner: {
+          displayName: "Tester",
+          username: "tester123"
+        }
+      }
+    });
+  });
+
   it("rejects malformed session cookies before authenticated reads", async () => {
     const response = await api("/api/servers/me", {
       headers: { cookie: "kx_submit_session=short" }

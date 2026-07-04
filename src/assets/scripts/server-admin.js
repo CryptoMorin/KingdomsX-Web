@@ -350,7 +350,7 @@ const createAddressButton = (server) => {
   return address;
 };
 
-const createStat = (label, value, iconClass, columnClass = "col") => {
+const createStat = (label, value, iconClass, columnClass = "col", secondaryValue = "") => {
   const column = document.createElement("div");
   column.className = columnClass;
 
@@ -377,10 +377,33 @@ const createStat = (label, value, iconClass, columnClass = "col") => {
   valueNode.textContent = value;
   valueNode.title = value;
 
+  if (secondaryValue) {
+    valueNode.textContent = `${value} \u00B7 `;
+    valueNode.title = `${value} \u00B7 ${secondaryValue}`;
+    const secondaryNode = document.createElement("small");
+    secondaryNode.className = "text-body-secondary fw-bold";
+    secondaryNode.textContent = secondaryValue;
+    valueNode.append(secondaryNode);
+  }
   text.append(labelNode, valueNode);
   stat.append(iconWrap, text);
   column.append(stat);
   return column;
+};
+
+const createOwnerStat = (owner, columnClass = "col") => {
+  if (!owner?.username) {
+    return createStat("Owner", "Not available", "fa-brands fa-discord", columnClass);
+  }
+
+  const username = String(owner.username).replace(/^@/, "");
+  return createStat(
+    "Owner",
+    owner.displayName || username,
+    "fa-brands fa-discord",
+    columnClass,
+    `@${username}`
+  );
 };
 
 const createAdminLink = (url, label, key = "") => {
@@ -542,6 +565,7 @@ const createAdminCard = (server) => {
   const stats = document.createElement("div");
   stats.className = "server-stats row row-cols-1 row-cols-sm-2 g-2";
   stats.append(
+    createOwnerStat(server.owner, "col-12 w-100"),
     createStat("Players", playerCountLabel(server.status), "fa-solid fa-user-group"),
     createStat("Version", versionLabel(server.status), "fa-solid fa-code-branch"),
     createStat("Submitted", formatDate(server.submission?.createdAt ?? server.createdAt), "fa-solid fa-clock"),
@@ -854,7 +878,7 @@ const fillManageModal = (modal, server) => {
   const submissionStats = document.createElement("div");
   submissionStats.className = "server-stats row row-cols-1 row-cols-md-2 g-2";
   submissionStats.append(
-    createStat("Owner", textOrFallback(server.submission?.contact), "fa-solid fa-user"),
+    createOwnerStat(server.owner),
     createStat("Submitted", formatDate(server.submission?.createdAt ?? server.createdAt), "fa-solid fa-clock")
   );
 

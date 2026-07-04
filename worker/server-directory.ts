@@ -55,14 +55,17 @@ interface ServerRow {
   refresh_error: string | null;
 }
 
-interface AdminServerRow extends ServerRow {
+interface PublicServerRow extends ServerRow {
+  owner_username: string | null;
+  owner_global_name: string | null;
+}
+
+interface AdminServerRow extends PublicServerRow {
   submission_contact: string | null;
   submission_verification_evidence: string | null;
   submission_moderation_notes: string | null;
   submission_created_at: string | null;
   owner_discord_user_id: string | null;
-  owner_username: string | null;
-  owner_global_name: string | null;
   owner_avatar_hash: string | null;
   review_event_action: string | null;
   review_event_created_at: string | null;
@@ -586,7 +589,7 @@ async function listPublicServerRows(
   const where = publicWhere(status);
   const rows = await env.DB.prepare(publicSelectSql(where.sql, publicOrderBy(sort), "LIMIT ? OFFSET ?"))
     .bind(...where.bindings, limit, offset)
-    .all<ServerRow>();
+    .all<PublicServerRow>();
   return rows.results.map(toPublicServer);
 }
 
@@ -597,7 +600,7 @@ async function recentPublicServers(url: URL, env: ServerDirectoryEnv): Promise<R
   const where = publicWhere("all");
   const rows = await env.DB.prepare(publicSelectSql(where.sql, HOMEPAGE_DIRECTORY_ORDER, "LIMIT ?"))
     .bind(...where.bindings, limit)
-    .all<ServerRow>();
+    .all<PublicServerRow>();
 
   return publicJson({ items: rows.results.map(toPublicServer) });
 }
@@ -611,7 +614,7 @@ async function getPublicServer(slug: string, env: ServerDirectoryEnv): Promise<R
 
   const row = await env.DB.prepare(`${publicSelectSql("s.status = 'approved' AND s.slug = ?", PUBLIC_DIRECTORY_ORDER, "LIMIT 1")}`)
     .bind(slug)
-    .first<ServerRow>();
+    .first<PublicServerRow>();
 
   if (!row) {
     return publicJson({ error: "Server not found." }, 404);
@@ -3211,9 +3214,25 @@ function decodeBase64Url(value: string): Uint8Array {
 
 function publicSelectSql(whereSql: string, orderBySql: string, tail: string): string {
   return `
-    SELECT s.*, ss.online, ss.players_online, ss.players_max, ss.motd_text, ss.version_name, ss.favicon_url_or_hash, ss.checked_at, ss.provider, ss.failure_count, ss.offline_since, ss.refresh_attempted_at, ss.refresh_error
+    SELECT
+      s.*,
+      ss.online,
+      ss.players_online,
+      ss.players_max,
+      ss.motd_text,
+      ss.version_name,
+      ss.favicon_url_or_hash,
+      ss.checked_at,
+      ss.provider,
+      ss.failure_count,
+      ss.offline_since,
+      ss.refresh_attempted_at,
+      ss.refresh_error,
+      owner.username AS owner_username,
+      owner.global_name AS owner_global_name
     FROM servers s
     LEFT JOIN server_status ss ON ss.server_id = s.id
+    LEFT JOIN submitter_accounts owner ON owner.id = s.owner_account_id
     WHERE ${whereSql}
     ORDER BY ${orderBySql}
     ${tail}
@@ -3344,7 +3363,7 @@ async function publicStatusCounts(env: ServerDirectoryEnv): Promise<Record<Publi
   };
 }
 
-function toPublicServer(row: ServerRow) {
+function toPublicServer(row: PublicServerRow) {
   return {
     slug: row.slug,
     name: row.name,
@@ -3353,6 +3372,10 @@ function toPublicServer(row: ServerRow) {
     websiteUrl: optionalUrl(row.website_url ?? ""),
     socialLinks: safeParseSocialLinks(row.social_links_json),
     approvedAt: row.approved_at,
+    owner: row.owner_username ? {
+      username: row.owner_username,
+      displayName: row.owner_global_name || row.owner_username
+    } : null,
     status: {
       online: row.online === 1,
       playersOnline: row.players_online,
