@@ -1,9 +1,9 @@
-import { env } from "cloudflare:test";
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { createExecutionContext, waitOnExecutionContext } from "cloudflare:test";
+import { env } from "cloudflare:workers";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import worker from "./index";
 import {
   buildDiscordServerMessage,
-  DISCORD_EMBED_CRON,
   handleServerDirectoryRequest,
   processDiscordEmbedJobs,
   processDiscordReviewDeletionJobs,
@@ -16,6 +16,44 @@ const testEnv = env as ServerDirectoryEnv;
 const origin = "https://servers.kingdomsx.com";
 let challengeIpCounter = 1;
 
+interface ApiOptions {
+  cookie?: string;
+  clientIp?: string;
+  headers?: HeadersInit;
+}
+
+interface CapturedRequest {
+  url: string;
+  method: string;
+  body: Record<string, unknown>;
+}
+
+interface PublicDetailsInput {
+  name?: string;
+  description: string;
+  websiteUrl?: string;
+  socialLinks?: Record<string, string>;
+}
+
+async function resetDatabase(): Promise<void> {
+  await testEnv.DB.batch([
+    testEnv.DB.prepare("DELETE FROM discord_review_deletion_jobs"),
+    testEnv.DB.prepare("DELETE FROM discord_review_notification_jobs"),
+    testEnv.DB.prepare("DELETE FROM discord_review_notifications"),
+    testEnv.DB.prepare("DELETE FROM discord_embed_jobs"),
+    testEnv.DB.prepare("DELETE FROM discord_embeds"),
+    testEnv.DB.prepare("DELETE FROM submissions"),
+    testEnv.DB.prepare("DELETE FROM server_verification_challenges"),
+    testEnv.DB.prepare("DELETE FROM server_status"),
+    testEnv.DB.prepare("DELETE FROM moderation_events"),
+    testEnv.DB.prepare("DELETE FROM servers"),
+    testEnv.DB.prepare("DELETE FROM submitter_sessions"),
+    testEnv.DB.prepare("DELETE FROM submitter_accounts")
+  ]);
+}
+
+beforeEach(resetDatabase);
+
 async function sha256(value: string): Promise<string> {
   const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(value));
   return [...new Uint8Array(digest)].map((byte) => byte.toString(16).padStart(2, "0")).join("");
@@ -27,7 +65,9 @@ async function seedSubmitter(suffix = "one"): Promise<string> {
   const timestamp = new Date().toISOString();
   await testEnv.DB.batch([
     testEnv.DB.prepare(`
-      INSERT INTO submitter_accounts (id, discord_user_id, username, global_name, guild_member_checked_at, created_at, updated_at)
+      INSERT INTO submitter_accounts (
+        id, discord_user_id, username, global_name, guild_member_checked_at, created_at, updated_at
+      )
       VALUES (?, ?, ?, ?, ?, ?, ?)
     `).bind(`account-${suffix}`, `discord-${suffix}`, `Tester${suffix}`, `Tester ${suffix}`, timestamp, timestamp, timestamp),
     testEnv.DB.prepare(`
@@ -40,6 +80,33 @@ async function seedSubmitter(suffix = "one"): Promise<string> {
 
 async function api(pathname: string, init: RequestInit = {}, ctx?: ExecutionContext): Promise<Response> {
   return handleServerDirectoryRequest(new Request(`${origin}${pathname}`, init), testEnv, ctx);
+}
+
+async function jsonApi(
+  pathname: string,
+  method: "POST" | "PATCH",
+  body: unknown,
+  options: ApiOptions = {}
+): Promise<Response> {
+  const headers = new Headers(options.headers);
+  headers.set("content-type", "application/json");
+  if (options.cookie) headers.set("cookie", options.cookie);
+  if (options.clientIp) headers.set("cf-connecting-ip", options.clientIp);
+  return api(pathname, { method, headers, body: JSON.stringify(body) });
+}
+
+async function adminApi(pathname: string, body: unknown = {}): Promise<Response> {
+  return jsonApi(pathname, "POST", body, {
+    headers: { "x-admin-token": "local-admin-token" }
+  });
+}
+
+async function updatePublicDetails(cookie: string, details: PublicDetailsInput): Promise<Response> {
+  return jsonApi("/api/servers/me/details", "PATCH", {
+    websiteUrl: "",
+    socialLinks: {},
+    ...details
+  }, { cookie });
 }
 
 async function createChallenge(
@@ -74,6 +141,65 @@ function pluginPayload(code: string) {
   };
 }
 
+async function verifyPlugin(code: string, clientIp?: string): Promise<Response> {
+  return jsonApi("/api/v1/plugin/verify", "POST", pluginPayload(code), { clientIp });
+}
+
+function localDiscordEnv(): ServerDirectoryEnv {
+  return {
+    DB: testEnv.DB,
+    APP_ENVIRONMENT: "local",
+    DISCORD_SERVER_DIRECTORY_WEBHOOK_URL: "https://discord.com/api/webhooks/123456789/test-token"
+  };
+}
+
+function localReviewDiscordEnv(): ServerDirectoryEnv {
+  return {
+    DB: testEnv.DB,
+    APP_ENVIRONMENT: "local",
+    DISCORD_SERVER_REVIEW_WEBHOOK_URL: "https://discord.com/api/webhooks/987654321/review-token"
+  };
+}
+
+function stubFetch(handler: (request: Request) => Response | Promise<Response>): void {
+  vi.stubGlobal("fetch", async (input: RequestInfo | URL, init?: RequestInit) => {
+    return handler(new Request(input, init));
+  });
+}
+
+function stubSubmissionServices(includeStatusProvider = true): void {
+  stubFetch(async (request) => {
+    const hostname = new URL(request.url).hostname;
+    if (hostname === "challenges.cloudflare.com") {
+      return Response.json({ success: true, action: "server-submit" });
+    }
+    if (includeStatusProvider && hostname === "api.mcsrvstat.us") {
+      return Response.json({
+        online: true,
+        players: { online: 1, max: 20 },
+        version: "26.2"
+      });
+    }
+    throw new Error(`Unexpected external request: ${request.method} ${request.url}`);
+  });
+}
+
+function captureDiscordRequests(messageIds: string[]): CapturedRequest[] {
+  const requests: CapturedRequest[] = [];
+  stubFetch(async (request) => {
+    const method = request.method;
+    const body = request.body ? await request.clone().json<Record<string, unknown>>() : {};
+    requests.push({ url: request.url, method, body });
+    if (method === "DELETE") return new Response(null, { status: 204 });
+    return Response.json({
+      id: method === "POST" ? messageIds.shift() : messageIds[0] ?? "555555555555555555",
+      guild_id: "333333333333333333",
+      channel_id: "444444444444444444"
+    });
+  });
+  return requests;
+}
+
 async function workerRoute(url: string, requestedAssets: string[]): Promise<Response> {
   const routeEnv = {
     APP_ENVIRONMENT: "production",
@@ -88,7 +214,7 @@ async function workerRoute(url: string, requestedAssets: string[]): Promise<Resp
       }
     }
   } as Parameters<typeof worker.fetch>[1];
-  const ctx = { waitUntil: () => undefined } as unknown as ExecutionContext;
+  const ctx = createExecutionContext();
   return worker.fetch(new Request(url), routeEnv, ctx);
 }
 
@@ -112,6 +238,15 @@ async function seedOwnedServer(accountSuffix = "one", status: "approved" | "pend
     timestamp,
     timestamp
   ).run();
+}
+
+async function seedDiscordEmbed(serverId: string, messageId: string, syncedAt: string): Promise<void> {
+  await testEnv.DB.prepare(`
+    INSERT INTO discord_embeds (
+      server_id, message_id, guild_id, channel_id, synced_version, synced_at, updated_at
+    )
+    VALUES (?, ?, '333333333333333333', '444444444444444444', ?, ?, ?)
+  `).bind(serverId, messageId, syncedAt, syncedAt, syncedAt).run();
 }
 
 describe("Discord embed payload", () => {
@@ -219,96 +354,63 @@ describe("Discord embed payload", () => {
   });
 });
 
-describe("server verification", () => {
-  afterEach(() => {
-    vi.unstubAllGlobals();
-  });
-
-  beforeEach(async () => {
-    await testEnv.DB.batch([
-      testEnv.DB.prepare("DELETE FROM discord_review_deletion_jobs"),
-      testEnv.DB.prepare("DELETE FROM discord_review_notification_jobs"),
-      testEnv.DB.prepare("DELETE FROM discord_review_notifications"),
-      testEnv.DB.prepare("DELETE FROM discord_embed_jobs"),
-      testEnv.DB.prepare("DELETE FROM discord_embeds"),
-      testEnv.DB.prepare("DELETE FROM submissions"),
-      testEnv.DB.prepare("DELETE FROM server_verification_challenges"),
-      testEnv.DB.prepare("DELETE FROM server_status"),
-      testEnv.DB.prepare("DELETE FROM moderation_events"),
-      testEnv.DB.prepare("DELETE FROM servers"),
-      testEnv.DB.prepare("DELETE FROM submitter_sessions"),
-      testEnv.DB.prepare("DELETE FROM submitter_accounts")
-    ]);
-  });
-
-  it("rejects malformed and incomplete callbacks before verification", async () => {
-    const malformed = await api("/api/v1/plugin/verify", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({ code: "invalid" })
-    });
-    expect(malformed.status).toBe(400);
-    await expect(malformed.json()).resolves.toMatchObject({
-      ok: false,
-      status: "invalid_request",
-      message: "Invalid request."
-    });
-
-    const incomplete = await api("/api/v1/plugin/verify", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({ code: "abcd-1234" })
-    });
-    expect(incomplete.status).toBe(400);
-    await expect(incomplete.json()).resolves.toMatchObject({
-      ok: false,
-      status: "invalid_request",
-      message: "Invalid request."
-    });
-
-    const wrongContentType = await api("/api/v1/plugin/verify", {
-      method: "POST",
-      headers: { "content-type": "text/plain" },
-      body: JSON.stringify(pluginPayload("abcd-1234"))
-    });
-    expect(wrongContentType.status).toBe(400);
-    await expect(wrongContentType.json()).resolves.toMatchObject({
-      ok: false,
-      status: "invalid_request",
-      message: "Invalid request."
-    });
-
-    const legacyFieldNames = await api("/api/v1/plugin/verify", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({
+describe("Plugin verification API", () => {
+  it.each([
+    {
+      name: "malformed code",
+      contentType: "application/json",
+      body: { code: "invalid" },
+      expectedStatus: 400,
+      expectedApiStatus: "invalid_request"
+    },
+    {
+      name: "incomplete metadata",
+      contentType: "application/json",
+      body: { code: "abcd-1234" },
+      expectedStatus: 400,
+      expectedApiStatus: "invalid_request"
+    },
+    {
+      name: "wrong content type",
+      contentType: "text/plain",
+      body: pluginPayload("abcd-1234"),
+      expectedStatus: 400,
+      expectedApiStatus: "invalid_request"
+    },
+    {
+      name: "legacy metadata fields",
+      contentType: "application/json",
+      body: {
         code: "abcd-1234",
         version: "1.17.27.1.1",
         software: "Paper",
         serverVersion: "26.1.2"
-      })
-    });
-    expect(legacyFieldNames.status).toBe(400);
-    await expect(legacyFieldNames.json()).resolves.toMatchObject({
-      ok: false,
-      status: "invalid_request"
-    });
-
-    const oversized = await api("/api/v1/plugin/verify", {
+      },
+      expectedStatus: 400,
+      expectedApiStatus: "invalid_request"
+    },
+    {
+      name: "oversized body",
+      contentType: "application/json",
+      body: { ...pluginPayload("abcd-1234"), padding: "x".repeat(4_096) },
+      expectedStatus: 413,
+      expectedApiStatus: "payload_too_large"
+    }
+  ])("rejects $name", async ({ contentType, body, expectedStatus, expectedApiStatus }) => {
+    const response = await api("/api/v1/plugin/verify", {
       method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({ ...pluginPayload("abcd-1234"), padding: "x".repeat(4_096) })
+      headers: { "content-type": contentType },
+      body: JSON.stringify(body)
     });
-    expect(oversized.status).toBe(413);
-    await expect(oversized.json()).resolves.toMatchObject({
+    expect(response.status).toBe(expectedStatus);
+    await expect(response.json()).resolves.toMatchObject({
       ok: false,
-      status: "payload_too_large",
-      message: "Request body is too large."
+      status: expectedApiStatus
     });
   });
 
-  it("redirects the unversioned plugin callback to the latest API version", async () => {
-    const response = await api("/api/plugin/verify", {
+  it.each(["/api/plugin/verify", "/api/v0/plugin/verify"])("redirects outdated endpoint %s", async (pathname) => {
+    const response = await api(pathname, {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(pluginPayload("abcd-1234"))
@@ -323,6 +425,17 @@ describe("server verification", () => {
     });
   });
 
+  it("does not route unknown future API versions", async () => {
+    const response = await api("/api/v2/plugin/verify", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(pluginPayload("abcd-1234"))
+    });
+    expect(response.status).toBe(404);
+  });
+});
+
+describe("Verification challenge input", () => {
   it("accepts server descriptions up to 240 characters", async () => {
     const cookie = await seedSubmitter("description-limit");
     const headers = {
@@ -351,26 +464,24 @@ describe("server verification", () => {
     });
     expect(rejected.status).toBe(400);
   });
+});
 
-  it("preserves canonical routing on every production hostname", async () => {
+describe("Worker routing", () => {
+  it.each([
+    ["https://www.kingdomsx.com/", "https://kingdomsx.com/"],
+    ["https://kingdomsx.com/servers/all", "https://servers.kingdomsx.com/all"],
+    ["https://kingdomsx.com/servers/submit.html", "https://servers.kingdomsx.com/submit"],
+    ["https://servers.kingdomsx.com/submit.html", "https://servers.kingdomsx.com/submit"],
+    ["https://servers.kingdomsx.com/admin.html", "https://servers.kingdomsx.com/admin"]
+  ])("redirects %s to its canonical URL", async (url, location) => {
     const requestedAssets: string[] = [];
+    const response = await workerRoute(url, requestedAssets);
+    expect(response.status).toBe(301);
+    expect(response.headers.get("location")).toBe(location);
+  });
 
-    const www = await workerRoute("https://www.kingdomsx.com/", requestedAssets);
-    expect(www.status).toBe(301);
-    expect(www.headers.get("location")).toBe("https://kingdomsx.com/");
-
-    const legacy = await workerRoute("https://kingdomsx.com/servers/all", requestedAssets);
-    expect(legacy.status).toBe(301);
-    expect(legacy.headers.get("location")).toBe("https://servers.kingdomsx.com/all");
-
-    const legacyHtml = await workerRoute("https://kingdomsx.com/servers/submit.html", requestedAssets);
-    expect(legacyHtml.status).toBe(301);
-    expect(legacyHtml.headers.get("location")).toBe("https://servers.kingdomsx.com/submit");
-
-    const directory = await workerRoute("https://servers.kingdomsx.com/all/sort/name/page/2", requestedAssets);
-    expect(directory.status).toBe(200);
-    expect(requestedAssets.at(-1)).toBe("/servers.html");
-
+  it("serves server-directory discovery documents", async () => {
+    const requestedAssets: string[] = [];
     const robots = await workerRoute("https://servers.kingdomsx.com/robots.txt", requestedAssets);
     expect(robots.status).toBe(200);
     expect(robots.headers.get("content-type")).toContain("text/plain");
@@ -391,32 +502,23 @@ describe("server verification", () => {
     expect(sitemapXml).toContain("<loc>https://servers.kingdomsx.com/offline</loc>");
     expect(sitemapXml).not.toContain("/submit");
     expect(sitemapXml).not.toContain("/admin");
-
-    const submit = await workerRoute("https://servers.kingdomsx.com/submit", requestedAssets);
-    expect(submit.status).toBe(200);
-    expect(requestedAssets.at(-1)).toBe("/servers/submit.html");
-
-    const submitHtml = await workerRoute("https://servers.kingdomsx.com/submit.html", requestedAssets);
-    expect(submitHtml.status).toBe(301);
-    expect(submitHtml.headers.get("location")).toBe("https://servers.kingdomsx.com/submit");
-
-    const adminHtml = await workerRoute("https://servers.kingdomsx.com/admin.html", requestedAssets);
-    expect(adminHtml.status).toBe(301);
-    expect(adminHtml.headers.get("location")).toBe("https://servers.kingdomsx.com/admin");
-
-    const invalidPage = await workerRoute("https://servers.kingdomsx.com/page/101", requestedAssets);
-    expect(invalidPage.status).toBe(404);
-    expect(requestedAssets.at(-1)).toBe("/404");
-
-    const assetHostBuild = await workerRoute("https://assets.kingdomsx.com/build/example.js", requestedAssets);
-    expect(assetHostBuild.status).toBe(200);
-    expect(requestedAssets.at(-1)).toBe("/build/example.js");
-
-    const assetHostOther = await workerRoute("https://assets.kingdomsx.com/favicon.ico", requestedAssets);
-    expect(assetHostOther.status).toBe(404);
-    expect(requestedAssets.at(-1)).toBe("/404");
   });
 
+  it.each([
+    ["https://servers.kingdomsx.com/all/sort/name/page/2", 200, "/servers.html"],
+    ["https://servers.kingdomsx.com/submit", 200, "/servers/submit.html"],
+    ["https://servers.kingdomsx.com/page/101", 404, "/404"],
+    ["https://assets.kingdomsx.com/build/example.js", 200, "/build/example.js"],
+    ["https://assets.kingdomsx.com/favicon.ico", 404, "/404"]
+  ])("routes %s with status %i", async (url, status, assetPath) => {
+    const requestedAssets: string[] = [];
+    const response = await workerRoute(url, requestedAssets);
+    expect(response.status).toBe(status);
+    expect(requestedAssets.at(-1)).toBe(assetPath);
+  });
+});
+
+describe("Public server APIs", () => {
   it("bounds public pagination and negatively caches missing server slugs", async () => {
     const page = await api("/api/servers?page=10000&limit=8");
     expect(page.status).toBe(200);
@@ -427,21 +529,13 @@ describe("server verification", () => {
     const unsupportedLimit = await api("/api/servers?limit=50");
     expect((await unsupportedLimit.json<{ limit: number }>()).limit).toBe(8);
 
-    const firstTasks: Promise<unknown>[] = [];
-    const first = await api(
-      "/api/servers/missing-server",
-      {},
-      { waitUntil: (promise) => firstTasks.push(promise) } as ExecutionContext
-    );
+    const firstContext = createExecutionContext();
+    const first = await api("/api/servers/missing-server", {}, firstContext);
     expect(first.status).toBe(404);
     expect(first.headers.get("x-kingdomsx-cache")).toBe("MISS");
-    await Promise.all(firstTasks);
+    await waitOnExecutionContext(firstContext);
 
-    const second = await api(
-      "/api/servers/missing-server",
-      {},
-      { waitUntil: () => undefined } as unknown as ExecutionContext
-    );
+    const second = await api("/api/servers/missing-server", {}, createExecutionContext());
     expect(second.status).toBe(404);
     expect(second.headers.get("x-kingdomsx-cache")).toBe("HIT");
   });
@@ -449,7 +543,7 @@ describe("server verification", () => {
   it("returns the owner's Discord display name and username in public listings", async () => {
     await seedSubmitter("public-owner");
     await seedOwnedServer("public-owner");
-    vi.stubGlobal("fetch", async () => Response.json({
+    stubFetch(async () => Response.json({
       online: true,
       players: { online: 1, max: 20 },
       version: "26.2"
@@ -479,14 +573,9 @@ describe("server verification", () => {
     const cookie = await seedSubmitter("details");
     await seedOwnedServer("details");
 
-    const unchanged = await api("/api/servers/me/details", {
-      method: "PATCH",
-      headers: { "content-type": "application/json", cookie },
-      body: JSON.stringify({
-        description: "A sufficiently long server description for testing.",
-        websiteUrl: "",
-        socialLinks: {}
-      })
+    const unchanged = await updatePublicDetails(cookie, {
+      description: "A sufficiently long server description for testing.",
+      websiteUrl: ""
     });
     expect(unchanged.status).toBe(200);
     expect((await unchanged.json<{ unchanged?: boolean }>()).unchanged).toBe(true);
@@ -498,15 +587,10 @@ describe("server verification", () => {
     expect(unchangedRow?.updated_at).toBe("2026-01-01T00:00:00.000Z");
     expect(unchangedEvents?.total).toBe(0);
 
-    const changed = await api("/api/servers/me/details", {
-      method: "PATCH",
-      headers: { "content-type": "application/json", cookie },
-      body: JSON.stringify({
-        name: "Renamed Server",
-        description: "This changed description remains long enough for validation.",
-        websiteUrl: "https://kingdomsx.com",
-        socialLinks: {}
-      })
+    const changed = await updatePublicDetails(cookie, {
+      name: "Renamed Server",
+      description: "This changed description remains long enough for validation.",
+      websiteUrl: "https://kingdomsx.com"
     });
     expect(changed.status).toBe(200);
 
@@ -523,15 +607,13 @@ describe("server verification", () => {
     expect(await testEnv.DB.prepare("SELECT desired_action FROM discord_embed_jobs WHERE server_id = 'server-details'")
       .first<{ desired_action: string }>()).toEqual({ desired_action: "upsert" });
   });
+});
 
+describe("Moderation and submission jobs", () => {
   it("approves independently of Discord and atomically queues an embed", async () => {
     await seedSubmitter("approval");
     await seedOwnedServer("approval", "pending");
-    const response = await api("/api/admin/servers/server-approval/approve", {
-      method: "POST",
-      headers: { "content-type": "application/json", "x-admin-token": "local-admin-token" },
-      body: "{}"
-    });
+    const response = await adminApi("/api/admin/servers/server-approval/approve");
     expect(response.status).toBe(200);
     expect(await testEnv.DB.prepare("SELECT status FROM servers WHERE id = 'server-approval'").first()).toEqual({ status: "approved" });
     expect(await testEnv.DB.prepare("SELECT desired_action FROM discord_embed_jobs WHERE server_id = 'server-approval'").first())
@@ -541,41 +623,20 @@ describe("server verification", () => {
   it("atomically queues a review notification for a new public submission", async () => {
     const cookie = await seedSubmitter("new-review");
     const challenge = await createChallenge(cookie);
-    const verification = await api("/api/v1/plugin/verify", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify(pluginPayload(String(challenge.code)))
-    });
+    const verification = await verifyPlugin(String(challenge.code));
     expect(verification.status).toBe(200);
-    vi.stubGlobal("fetch", async (input: RequestInfo | URL) => {
-      const url = new URL(input instanceof Request ? input.url : String(input));
-      if (url.hostname === "challenges.cloudflare.com") {
-        return Response.json({ success: true, action: "server-submit" });
-      }
-      if (url.hostname === "api.mcsrvstat.us") {
-        return Response.json({ online: true, players: { online: 4, max: 100 }, version: "26.2" });
-      }
-      return new Response("Not mocked", { status: 500 });
-    });
+    stubSubmissionServices();
 
-    const response = await api("/api/servers/submit", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-        "cf-connecting-ip": "198.51.100.220",
-        cookie
-      },
-      body: JSON.stringify({
-        name: "New Review Server",
-        address: "mc.hypixel.net",
-        port: 25565,
-        description: "A complete public server description ready for staff review.",
-        verificationChallengeId: challenge.id,
-        turnstileToken: "test-token",
-        websiteUrl: "https://kingdomsx.com",
-        socialLinks: {}
-      })
-    });
+    const response = await jsonApi("/api/servers/submit", "POST", {
+      name: "New Review Server",
+      address: "mc.hypixel.net",
+      port: 25565,
+      description: "A public server description ready for staff review.",
+      verificationChallengeId: challenge.id,
+      turnstileToken: "test-token",
+      websiteUrl: "https://kingdomsx.com",
+      socialLinks: {}
+    }, { cookie, clientIp: "198.51.100.220" });
 
     expect(response.status).toBe(202);
     const body = await response.json<{ id: string }>();
@@ -585,7 +646,9 @@ describe("server verification", () => {
       WHERE server_id = ?
     `).bind(body.id).first()).toEqual({ notification_type: "submitted" });
   });
+});
 
+describe("Discord delivery", () => {
   it("creates a review notification and updates it across moderation and deletion", async () => {
     await seedSubmitter("review-notification");
     await seedOwnedServer("review-notification", "pending");
@@ -608,7 +671,8 @@ describe("server verification", () => {
         INSERT INTO submissions (
           id, server_id, owner_account_id, contact, verification_method, verification_evidence,
           submitter_ip_hash, user_agent_hash, turnstile_result, created_at
-        ) VALUES (
+        )
+        VALUES (
           'submission-review-notification', 'server-review-notification', 'account-review-notification',
           'Tester', 'plugin_callback', 'Verified: 2026-07-04T14:15:16.000Z\nPlugin version: 1.2.3',
           'ip', 'ua', '{}', ?
@@ -618,30 +682,16 @@ describe("server verification", () => {
         INSERT INTO discord_review_notification_jobs (
           server_id, submission_id, notification_type, desired_status, desired_version,
           next_attempt_at, created_at, updated_at
-        ) VALUES (
+        )
+        VALUES (
           'server-review-notification', 'submission-review-notification', 'submitted', 'pending', ?, ?, ?, ?
         )
       `).bind(timestamp, timestamp, timestamp, timestamp)
     ]);
-    const requests: Array<{ url: string; method: string; body: Record<string, unknown> }> = [];
     const createdMessageIds = ["123456789012345678", "555555555555555555", "666666666666666666"];
-    vi.stubGlobal("fetch", async (input: RequestInfo | URL, init?: RequestInit) => {
-      const method = init?.method ?? "GET";
-      requests.push({
-        url: input instanceof Request ? input.url : String(input),
-        method,
-        body: JSON.parse(typeof init?.body === "string" ? init.body : "{}") as Record<string, unknown>
-      });
-      if (method === "DELETE") return new Response(null, { status: 204 });
-      if (method === "POST") return Response.json({ id: createdMessageIds.shift() });
-      return Response.json({ id: "555555555555555555" });
-    });
+    const requests = captureDiscordRequests(createdMessageIds);
 
-    await processDiscordReviewNotificationJobs({
-      DB: testEnv.DB,
-      APP_ENVIRONMENT: "local",
-      DISCORD_SERVER_REVIEW_WEBHOOK_URL: "https://discord.com/api/webhooks/987654321/review-token"
-    });
+    await processDiscordReviewNotificationJobs(localReviewDiscordEnv());
 
     expect(requests).toHaveLength(1);
     expect(requests[0]).toMatchObject({ method: "POST" });
@@ -690,7 +740,8 @@ describe("server verification", () => {
     await testEnv.DB.prepare(`
       INSERT INTO discord_embeds (
         server_id, message_id, guild_id, channel_id, synced_version, synced_at, updated_at
-      ) VALUES (
+      )
+      VALUES (
         'server-review-notification', '222222222222222222', '333333333333333333',
         '444444444444444444', ?, ?, ?
       )
@@ -701,17 +752,9 @@ describe("server verification", () => {
       WHERE server_id = 'server-review-notification'
     `).bind(twoDaysAgo).run();
 
-    const approval = await api("/api/admin/servers/server-review-notification/approve", {
-      method: "POST",
-      headers: { "content-type": "application/json", "x-admin-token": "local-admin-token" },
-      body: "{}"
-    });
+    const approval = await adminApi("/api/admin/servers/server-review-notification/approve");
     expect(approval.status).toBe(200);
-    await processDiscordReviewNotificationJobs({
-      DB: testEnv.DB,
-      APP_ENVIRONMENT: "local",
-      DISCORD_SERVER_REVIEW_WEBHOOK_URL: "https://discord.com/api/webhooks/987654321/review-token"
-    });
+    await processDiscordReviewNotificationJobs(localReviewDiscordEnv());
 
     expect(requests[1]).toMatchObject({ method: "POST" });
     expect(requests[1].url).toContain("?wait=true");
@@ -746,20 +789,12 @@ describe("server verification", () => {
       WHERE server_id = 'server-review-notification'
     `).first()).toEqual({ message_id: "555555555555555555", synced_status: "approved" });
 
-    const rejection = await api("/api/admin/servers/server-review-notification/reject", {
-      method: "POST",
-      headers: { "content-type": "application/json", "x-admin-token": "local-admin-token" },
-      body: JSON.stringify({
+    const rejection = await adminApi("/api/admin/servers/server-review-notification/reject", {
         reasonCode: "public_details_incomplete",
         notes: "Public details need correction."
-      })
     });
     expect(rejection.status).toBe(200);
-    await processDiscordReviewNotificationJobs({
-      DB: testEnv.DB,
-      APP_ENVIRONMENT: "local",
-      DISCORD_SERVER_REVIEW_WEBHOOK_URL: "https://discord.com/api/webhooks/987654321/review-token"
-    });
+    await processDiscordReviewNotificationJobs(localReviewDiscordEnv());
     expect(requests[3]).toMatchObject({ method: "PATCH" });
     expect(requests[3].url).toContain("/messages/555555555555555555");
     expect(requests[3].url).toContain("with_components=true");
@@ -775,17 +810,11 @@ describe("server verification", () => {
     });
     expect(JSON.stringify(requests[3].body)).not.toContain("View public embed");
 
-    const suspension = await api("/api/admin/servers/server-review-notification/suspend", {
-      method: "POST",
-      headers: { "content-type": "application/json", "x-admin-token": "local-admin-token" },
-      body: JSON.stringify({ notes: "Listing suspended pending owner contact." })
+    const suspension = await adminApi("/api/admin/servers/server-review-notification/suspend", {
+      notes: "Listing suspended pending owner contact."
     });
     expect(suspension.status).toBe(200);
-    await processDiscordReviewNotificationJobs({
-      DB: testEnv.DB,
-      APP_ENVIRONMENT: "local",
-      DISCORD_SERVER_REVIEW_WEBHOOK_URL: "https://discord.com/api/webhooks/987654321/review-token"
-    });
+    await processDiscordReviewNotificationJobs(localReviewDiscordEnv());
     expect(requests[4].body).toMatchObject({
       embeds: [{
         color: 0xc53030,
@@ -808,11 +837,7 @@ describe("server verification", () => {
     });
     expect(deletion.status).toBe(200);
     expect(await testEnv.DB.prepare("SELECT id FROM servers WHERE id = 'server-review-notification'").first()).toBeNull();
-    await processDiscordReviewDeletionJobs({
-      DB: testEnv.DB,
-      APP_ENVIRONMENT: "local",
-      DISCORD_SERVER_REVIEW_WEBHOOK_URL: "https://discord.com/api/webhooks/987654321/review-token"
-    });
+    await processDiscordReviewDeletionJobs(localReviewDiscordEnv());
     expect(requests[5]).toMatchObject({ method: "POST" });
     expect(requests[5].url).toContain("?wait=true");
     expect(requests[5].url).toContain("with_components=true");
@@ -828,45 +853,23 @@ describe("server verification", () => {
     expect(await testEnv.DB.prepare("SELECT server_id FROM discord_review_deletion_jobs").first()).toBeNull();
   });
 
-  it("creates, edits, and deletes one Discord message across the listing lifecycle", async () => {
+  it("creates and edits one Discord message for recent listing changes", async () => {
     const cookie = await seedSubmitter("discord-lifecycle");
     await seedOwnedServer("discord-lifecycle");
-    const requests: Array<{ url: string; method: string; body: string }> = [];
-    const createdMessageIds = ["123456789012345678", "222222222222222222"];
-    const twoDaysAgo = new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString();
-    const eightDaysAgo = new Date(Date.now() - 8 * 24 * 60 * 60 * 1000).toISOString();
-    vi.stubGlobal("fetch", async (input: RequestInfo | URL, init?: RequestInit) => {
-      const url = input instanceof Request ? input.url : String(input);
-      const method = init?.method ?? (input instanceof Request ? input.method : "GET");
-      requests.push({ url, method, body: typeof init?.body === "string" ? init.body : "" });
-      if (method === "DELETE") return new Response(null, { status: 204 });
-      return Response.json({
-        id: method === "POST" ? createdMessageIds.shift() : "222222222222222222",
-        guild_id: "333333333333333333",
-        channel_id: "444444444444444444"
-      });
-    });
-    const discordEnv: ServerDirectoryEnv = {
-      DB: testEnv.DB,
-      APP_ENVIRONMENT: "local",
-      DISCORD_SERVER_DIRECTORY_WEBHOOK_URL: "https://discord.com/api/webhooks/123456789/test-token"
-    };
+    const requests = captureDiscordRequests(["123456789012345678"]);
+    const discordEnv = localDiscordEnv();
 
-    const firstEdit = await api("/api/servers/me/details", {
-      method: "PATCH",
-      headers: { "content-type": "application/json", cookie },
-      body: JSON.stringify({
-        name: "Discord Lifecycle",
-        description: "A public description for Discord lifecycle testing.",
-        websiteUrl: "https://kingdomsx.com",
-        socialLinks: { discord: "https://discord.gg/example" }
-      })
+    const firstEdit = await updatePublicDetails(cookie, {
+      name: "Discord Lifecycle",
+      description: "A public description for Discord lifecycle testing.",
+      websiteUrl: "https://kingdomsx.com",
+      socialLinks: { discord: "https://discord.gg/example" }
     });
     expect(firstEdit.status).toBe(200);
     await processDiscordEmbedJobs(discordEnv);
     expect(requests[0].method).toBe("POST");
     expect(requests[0].url).toContain("?wait=true");
-    expect(JSON.parse(requests[0].body).allowed_mentions).toEqual({ parse: [] });
+    expect(requests[0].body.allowed_mentions).toEqual({ parse: [] });
     expect(await testEnv.DB.prepare(`
       SELECT message_id, guild_id, channel_id
       FROM discord_embeds
@@ -876,75 +879,60 @@ describe("server verification", () => {
       guild_id: "333333333333333333",
       channel_id: "444444444444444444"
     });
-    await testEnv.DB.prepare(`
-      UPDATE discord_embeds
-      SET synced_at = ?
-      WHERE server_id = 'server-discord-lifecycle'
-    `).bind(twoDaysAgo).run();
 
-    const secondEdit = await api("/api/servers/me/details", {
-      method: "PATCH",
-      headers: { "content-type": "application/json", cookie },
-      body: JSON.stringify({
-        name: "Discord Lifecycle Renamed",
-        description: "A second public description for Discord lifecycle testing.",
-        websiteUrl: "https://kingdomsx.com",
-        socialLinks: {}
-      })
+    const secondEdit = await updatePublicDetails(cookie, {
+      name: "Discord Lifecycle Renamed",
+      description: "A second public description for Discord lifecycle testing.",
+      websiteUrl: "https://kingdomsx.com"
     });
     expect(secondEdit.status).toBe(200);
     await processDiscordEmbedJobs(discordEnv);
     expect(requests[1]).toMatchObject({ method: "PATCH" });
     expect(requests[1].url).toContain("/messages/123456789012345678");
+  });
 
-    await testEnv.DB.prepare(`
-      UPDATE discord_embeds
-      SET synced_at = ?
-      WHERE server_id = 'server-discord-lifecycle'
-    `).bind(eightDaysAgo).run();
-    const staleEdit = await api("/api/servers/me/details", {
-      method: "PATCH",
-      headers: { "content-type": "application/json", cookie },
-      body: JSON.stringify({
-        name: "Discord Lifecycle Reposted",
-        description: "An old public message should be reposted at the bottom of the channel.",
-        websiteUrl: "https://kingdomsx.com",
-        socialLinks: {}
-      })
+  it("reposts stale Discord messages and removes them when the listing is suspended", async () => {
+    const cookie = await seedSubmitter("discord-lifecycle");
+    await seedOwnedServer("discord-lifecycle");
+    await seedDiscordEmbed(
+      "server-discord-lifecycle",
+      "123456789012345678",
+      new Date(Date.now() - 8 * 24 * 60 * 60 * 1000).toISOString()
+    );
+    const requests = captureDiscordRequests(["222222222222222222"]);
+    const discordEnv = localDiscordEnv();
+
+    const staleEdit = await updatePublicDetails(cookie, {
+      name: "Discord Lifecycle Reposted",
+      description: "An old public message should be reposted at the bottom of the channel.",
+      websiteUrl: "https://kingdomsx.com"
     });
     expect(staleEdit.status).toBe(200);
     await processDiscordEmbedJobs(discordEnv);
-    expect(requests[2]).toMatchObject({ method: "POST" });
-    expect(requests[2].url).toContain("?wait=true");
-    expect(requests[3]).toMatchObject({ method: "DELETE" });
-    expect(requests[3].url).toContain("/messages/123456789012345678");
+    expect(requests[0]).toMatchObject({ method: "POST" });
+    expect(requests[0].url).toContain("?wait=true");
+    expect(requests[1]).toMatchObject({ method: "DELETE" });
+    expect(requests[1].url).toContain("/messages/123456789012345678");
     expect(await testEnv.DB.prepare("SELECT message_id FROM discord_embeds WHERE server_id = 'server-discord-lifecycle'").first())
       .toEqual({ message_id: "222222222222222222" });
 
-    const recentEdit = await api("/api/servers/me/details", {
-      method: "PATCH",
-      headers: { "content-type": "application/json", cookie },
-      body: JSON.stringify({
-        name: "Discord Lifecycle Recent Edit",
-        description: "A recent public description should edit the replacement message in place.",
-        websiteUrl: "https://kingdomsx.com",
-        socialLinks: {}
-      })
+    const recentEdit = await updatePublicDetails(cookie, {
+      name: "Discord Lifecycle Recent Edit",
+      description: "A recent public description should edit the replacement message in place.",
+      websiteUrl: "https://kingdomsx.com"
     });
     expect(recentEdit.status).toBe(200);
     await processDiscordEmbedJobs(discordEnv);
-    expect(requests[4]).toMatchObject({ method: "PATCH" });
-    expect(requests[4].url).toContain("/messages/222222222222222222");
+    expect(requests[2]).toMatchObject({ method: "PATCH" });
+    expect(requests[2].url).toContain("/messages/222222222222222222");
 
-    const suspend = await api("/api/admin/servers/server-discord-lifecycle/suspend", {
-      method: "POST",
-      headers: { "content-type": "application/json", "x-admin-token": "local-admin-token" },
-      body: JSON.stringify({ notes: "Lifecycle test suspension." })
+    const suspend = await adminApi("/api/admin/servers/server-discord-lifecycle/suspend", {
+      notes: "Lifecycle test suspension."
     });
     expect(suspend.status).toBe(200);
     await processDiscordEmbedJobs(discordEnv);
-    expect(requests[5]).toMatchObject({ method: "DELETE" });
-    expect(requests[5].url).toContain("/messages/222222222222222222");
+    expect(requests[3]).toMatchObject({ method: "DELETE" });
+    expect(requests[3].url).toContain("/messages/222222222222222222");
     expect(await testEnv.DB.prepare("SELECT server_id FROM discord_embeds WHERE server_id = 'server-discord-lifecycle'").first()).toBeNull();
     expect(await testEnv.DB.prepare("SELECT server_id FROM discord_embed_jobs WHERE server_id = 'server-discord-lifecycle'").first()).toBeNull();
   });
@@ -957,18 +945,13 @@ describe("server verification", () => {
       INSERT INTO discord_embed_jobs (
         server_id, desired_action, desired_version, attempt_count, next_attempt_at,
         lease_token, lease_expires_at, created_at, updated_at
-      ) VALUES ('server-discord-lease', 'upsert', '2026-01-01T00:00:00.000Z', 0, ?, 'active-lease', ?, ?, ?)
+      )
+      VALUES ('server-discord-lease', 'upsert', '2026-01-01T00:00:00.000Z', 0, ?, 'active-lease', ?, ?, ?)
     `).bind(new Date().toISOString(), leaseExpiresAt, new Date().toISOString(), new Date().toISOString()).run();
 
-    const response = await api("/api/servers/me/details", {
-      method: "PATCH",
-      headers: { "content-type": "application/json", cookie },
-      body: JSON.stringify({
-        name: "Discord Lease",
-        description: "A public description for Discord lease coalescing.",
-        websiteUrl: "",
-        socialLinks: {}
-      })
+    const response = await updatePublicDetails(cookie, {
+      name: "Discord Lease",
+      description: "A public description for Discord lease coalescing."
     });
 
     expect(response.status).toBe(200);
@@ -995,24 +978,15 @@ describe("server verification", () => {
   it("retains rate-limited and ambiguous creation failures for safe recovery", async () => {
     const cookie = await seedSubmitter("discord-failure");
     await seedOwnedServer("discord-failure");
-    const queueEdit = () => api("/api/servers/me/details", {
-      method: "PATCH",
-      headers: { "content-type": "application/json", cookie },
-      body: JSON.stringify({
-        name: "Discord Failure",
-        description: `A Discord failure description ${crypto.randomUUID()}.`,
-        websiteUrl: "",
-        socialLinks: {}
-      })
+    let editNumber = 0;
+    const queueEdit = () => updatePublicDetails(cookie, {
+      name: "Discord Failure",
+      description: `A sufficiently long Discord failure description for attempt ${editNumber += 1}.`
     });
-    const discordEnv: ServerDirectoryEnv = {
-      DB: testEnv.DB,
-      APP_ENVIRONMENT: "local",
-      DISCORD_SERVER_DIRECTORY_WEBHOOK_URL: "https://discord.com/api/webhooks/123456789/test-token"
-    };
+    const discordEnv = localDiscordEnv();
 
     expect((await queueEdit()).status).toBe(200);
-    vi.stubGlobal("fetch", async () => Response.json(
+    stubFetch(async () => Response.json(
       { message: "rate limited", retry_after: 1.5 },
       { status: 429, headers: { "retry-after": "1.5" } }
     ));
@@ -1021,61 +995,35 @@ describe("server verification", () => {
       .toEqual({ attempt_count: 1, last_error_code: "rate_limited" });
 
     expect((await queueEdit()).status).toBe(200);
-    vi.stubGlobal("fetch", async () => { throw new Error("network failed for a redacted endpoint"); });
+    stubFetch(async () => { throw new Error("network failed for a redacted endpoint"); });
     await processDiscordEmbedJobs(discordEnv);
     const ambiguous = await testEnv.DB.prepare("SELECT last_error_code, next_attempt_at FROM discord_embed_jobs WHERE server_id = 'server-discord-failure'")
       .first<{ last_error_code: string; next_attempt_at: string }>();
     expect(ambiguous?.last_error_code).toBe("ambiguous_create");
     expect(ambiguous?.next_attempt_at).toBe("9999-12-31T23:59:59.999Z");
   });
+});
 
+describe("Resubmission policy", () => {
   it("keeps an approved listing approved after a verified address change", async () => {
     const cookie = await seedSubmitter("approved-address");
     await seedOwnedServer("approved-address");
     const created = await createChallenge(cookie, "mc.hypixel.net", "198.51.100.180");
-    const verify = await api("/api/v1/plugin/verify", {
-      method: "POST",
-      headers: { "content-type": "application/json", "cf-connecting-ip": "203.0.113.180" },
-      body: JSON.stringify(pluginPayload(String(created.code)))
-    });
+    const verify = await verifyPlugin(String(created.code), "203.0.113.180");
     expect(verify.status).toBe(200);
 
-    vi.stubGlobal("fetch", async (input: RequestInfo | URL) => {
-      const url = new URL(input instanceof Request ? input.url : String(input));
+    stubSubmissionServices();
 
-      if (url.hostname === "challenges.cloudflare.com") {
-        return Response.json({ success: true, action: "test" });
-      }
-
-      if (url.hostname === "api.mcsrvstat.us") {
-        return Response.json({
-          online: true,
-          players: { online: 1, max: 20 },
-          version: "26.2"
-        });
-      }
-
-      return new Response("Not mocked", { status: 500 });
-    });
-
-    const response = await api("/api/servers/me/resubmit", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-        "cf-connecting-ip": "198.51.100.181",
-        cookie
-      },
-      body: JSON.stringify({
-        name: "Renamed Approved Server",
-        address: "mc.hypixel.net",
-        port: 25565,
-        description: "This approved server description remains valid after its address changes.",
-        verificationChallengeId: created.id,
-        turnstileToken: "test-token",
-        websiteUrl: "",
-        socialLinks: {}
-      })
-    });
+    const response = await jsonApi("/api/servers/me/resubmit", "POST", {
+      name: "Renamed Approved Server",
+      address: "mc.hypixel.net",
+      port: 25565,
+      description: "This approved server description remains valid after its address changes.",
+      verificationChallengeId: created.id,
+      turnstileToken: "test-token",
+      websiteUrl: "",
+      socialLinks: {}
+    }, { cookie, clientIp: "198.51.100.181" });
     expect(response.status).toBe(200);
     expect((await response.json<{ status: string }>()).status).toBe("approved");
 
@@ -1114,7 +1062,10 @@ describe("server verification", () => {
           id, owner_account_id, server_name, normalized_host, port, code_hash, status,
           expires_at, verified_at, created_at, updated_at
         )
-        VALUES (?, 'account-rejected-cutoff', 'Rejected Server', ?, 25565, 'rejected-cutoff-code', 'verified', ?, ?, ?, ?)
+        VALUES (
+          ?, 'account-rejected-cutoff', 'Rejected Server', ?, 25565,
+          'rejected-cutoff-code', 'verified', ?, ?, ?, ?
+        )
       `).bind(challengeId, address, expiresAt, verifiedAt, verifiedAt, verifiedAt)
     ]);
 
@@ -1122,122 +1073,102 @@ describe("server verification", () => {
     expect(replacement.status).toBe(201);
     expect(await replacement.json<Record<string, unknown>>()).toMatchObject({ status: "pending" });
 
-    vi.stubGlobal("fetch", async (input: RequestInfo | URL) => {
-      const url = new URL(input instanceof Request ? input.url : String(input));
-      return url.hostname === "challenges.cloudflare.com"
-        ? Response.json({ success: true, action: "test" })
-        : new Response("Not mocked", { status: 500 });
-    });
+    stubSubmissionServices(false);
 
-    const response = await api("/api/servers/me/resubmit", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-        "cf-connecting-ip": "198.51.100.183",
-        cookie
-      },
-      body: JSON.stringify({
-        name: "Rejected Server",
-        address,
-        port: 25565,
-        description: "This rejected server description is long enough for another staff review.",
-        verificationChallengeId: challengeId,
-        turnstileToken: "test-token",
-        websiteUrl: "",
-        socialLinks: {}
-      })
-    });
+    const response = await jsonApi("/api/servers/me/resubmit", "POST", {
+      name: "Rejected Server",
+      address,
+      port: 25565,
+      description: "This rejected server description is long enough for another staff review.",
+      verificationChallengeId: challengeId,
+      turnstileToken: "test-token",
+      websiteUrl: "",
+      socialLinks: {}
+    }, { cookie, clientIp: "198.51.100.183" });
     expect(response.status).toBe(400);
     expect((await response.json<{ error: string }>()).error).toContain("after the latest staff rejection");
   });
 
-  it("retains verification for content-only rejections unless the address changes", async () => {
-    const cookie = await seedSubmitter("content-rejection");
-    await seedOwnedServer("content-rejection", "rejected");
-    const timestamp = new Date().toISOString();
-    const address = "play-content-rejection.kingdomsx.com";
-    const verificationEvidence = "Verified plugin callback evidence";
+  it.each(["public_details_incomplete", "inappropriate_or_unsafe"])(
+    "retains verification for %s rejections unless the address changes",
+    async (reasonCode) => {
+      const cookie = await seedSubmitter("content-rejection");
+      await seedOwnedServer("content-rejection", "rejected");
+      const timestamp = new Date().toISOString();
+      const address = "play-content-rejection.kingdomsx.com";
+      const verificationEvidence = "Verified plugin callback evidence";
 
-    await testEnv.DB.batch([
-      testEnv.DB.prepare("UPDATE servers SET updated_at = ? WHERE id = 'server-content-rejection'").bind(timestamp),
-      testEnv.DB.prepare(`
-        INSERT INTO submissions (
-          id, server_id, owner_account_id, contact, verification_method, verification_evidence,
-          submitter_ip_hash, user_agent_hash, turnstile_result, created_at
-        )
-        VALUES ('content-rejection-submission', 'server-content-rejection', 'account-content-rejection',
-                'Tester', 'plugin_callback', ?, 'ip', 'ua', '{}', ?)
-      `).bind(verificationEvidence, timestamp),
-      testEnv.DB.prepare(`
-        INSERT INTO moderation_events (id, server_id, actor, action, notes, reason_code, created_at)
-        VALUES ('content-rejection-event', 'server-content-rejection', 'staff@example.com', 'reject',
-                'Fix the public details.', 'public_details_incomplete', ?)
-      `).bind(timestamp)
-    ]);
+      await testEnv.DB.batch([
+        testEnv.DB.prepare("UPDATE servers SET updated_at = ? WHERE id = 'server-content-rejection'").bind(timestamp),
+        testEnv.DB.prepare(`
+          INSERT INTO submissions (
+            id, server_id, owner_account_id, contact, verification_method, verification_evidence,
+            submitter_ip_hash, user_agent_hash, turnstile_result, created_at
+          )
+          VALUES ('content-rejection-submission', 'server-content-rejection', 'account-content-rejection',
+                  'Tester', 'plugin_callback', ?, 'ip', 'ua', '{}', ?)
+        `).bind(verificationEvidence, timestamp),
+        testEnv.DB.prepare(`
+          INSERT INTO moderation_events (id, server_id, actor, action, notes, reason_code, created_at)
+          VALUES ('content-rejection-event', 'server-content-rejection', 'staff@example.com', 'reject',
+                  'Fix the public details.', ?, ?)
+        `).bind(reasonCode, timestamp)
+      ]);
 
-    const ownerState = await api("/api/servers/me", { headers: { cookie } });
-    expect((await ownerState.json<{ item: { reverificationRequired: boolean } }>()).item.reverificationRequired).toBe(false);
+      const ownerState = await api("/api/servers/me", { headers: { cookie } });
+      expect((await ownerState.json<{ item: { reverificationRequired: boolean } }>()).item.reverificationRequired).toBe(false);
 
-    vi.stubGlobal("fetch", async (input: RequestInfo | URL) => {
-      const url = new URL(input instanceof Request ? input.url : String(input));
+      stubSubmissionServices();
 
-      if (url.hostname === "challenges.cloudflare.com") {
-        return Response.json({ success: true, action: "test" });
-      }
+      const requestBody = (serverAddress: string) => ({
+        name: "Content Rejection Server",
+        address: serverAddress,
+        port: 25565,
+        description: "The corrected public description is complete and accurate for another review.",
+        verificationChallengeId: "",
+        turnstileToken: "test-token",
+        websiteUrl: "",
+        socialLinks: {}
+      });
 
-      if (url.hostname === "api.mcsrvstat.us") {
-        return Response.json({ online: true, players: { online: 1, max: 20 }, version: "26.2" });
-      }
+      const changedAddress = await jsonApi(
+        "/api/servers/me/resubmit",
+        "POST",
+        requestBody("new-content-rejection.kingdomsx.com"),
+        { cookie, clientIp: "198.51.100.184" }
+      );
+      expect(changedAddress.status).toBe(400);
 
-      return new Response("Not mocked", { status: 500 });
-    });
+      const unchangedAddress = await jsonApi("/api/servers/me/resubmit", "POST", requestBody(address), {
+        cookie,
+        clientIp: "198.51.100.185"
+      });
+      expect(unchangedAddress.status).toBe(202);
 
-    const requestBody = (serverAddress: string) => JSON.stringify({
-      name: "Content Rejection Server",
-      address: serverAddress,
-      port: 25565,
-      description: "The corrected public description is complete and accurate for another review.",
-      verificationChallengeId: "",
-      turnstileToken: "test-token",
-      websiteUrl: "",
-      socialLinks: {}
-    });
+      const latestSubmission = await testEnv.DB.prepare(`
+        SELECT verification_evidence, verification_challenge_id
+        FROM submissions
+        WHERE server_id = 'server-content-rejection'
+        ORDER BY created_at DESC, id DESC
+        LIMIT 1
+      `).first<{ verification_evidence: string; verification_challenge_id: string | null }>();
+      expect(latestSubmission).toEqual({
+        verification_evidence: verificationEvidence,
+        verification_challenge_id: null
+      });
+      expect(await testEnv.DB.prepare(`
+        SELECT submission_id, notification_type
+        FROM discord_review_notification_jobs
+        WHERE server_id = 'server-content-rejection'
+      `).first()).toEqual({
+        submission_id: expect.any(String),
+        notification_type: "resubmitted"
+      });
+    }
+  );
+});
 
-    const changedAddress = await api("/api/servers/me/resubmit", {
-      method: "POST",
-      headers: { "content-type": "application/json", "cf-connecting-ip": "198.51.100.184", cookie },
-      body: requestBody("new-content-rejection.kingdomsx.com")
-    });
-    expect(changedAddress.status).toBe(400);
-
-    const unchangedAddress = await api("/api/servers/me/resubmit", {
-      method: "POST",
-      headers: { "content-type": "application/json", "cf-connecting-ip": "198.51.100.185", cookie },
-      body: requestBody(address)
-    });
-    expect(unchangedAddress.status).toBe(202);
-
-    const latestSubmission = await testEnv.DB.prepare(`
-      SELECT verification_evidence, verification_challenge_id
-      FROM submissions
-      WHERE server_id = 'server-content-rejection'
-      ORDER BY created_at DESC, id DESC
-      LIMIT 1
-    `).first<{ verification_evidence: string; verification_challenge_id: string | null }>();
-    expect(latestSubmission).toEqual({
-      verification_evidence: verificationEvidence,
-      verification_challenge_id: null
-    });
-    expect(await testEnv.DB.prepare(`
-      SELECT submission_id, notification_type
-      FROM discord_review_notification_jobs
-      WHERE server_id = 'server-content-rejection'
-    `).first()).toEqual({
-      submission_id: expect.any(String),
-      notification_type: "resubmitted"
-    });
-  });
-
+describe("Verification challenges and quotas", () => {
   it("reuses, verifies, and expires a challenge consistently", async () => {
     const cookie = await seedSubmitter();
     const created = await createChallenge(cookie, "mc.hypixel.net", "127.0.0.1");
@@ -1245,14 +1176,7 @@ describe("server verification", () => {
     expect(reusedPending.id).toBe(created.id);
     expect(reusedPending.code).toBe(created.code);
 
-    const verify = await api("/api/v1/plugin/verify", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-        "cf-connecting-ip": "203.0.113.42"
-      },
-      body: JSON.stringify(pluginPayload(String(created.code).toUpperCase()))
-    });
+    const verify = await verifyPlugin(String(created.code).toUpperCase(), "203.0.113.42");
     expect(verify.status).toBe(200);
     const callback = await testEnv.DB.prepare("SELECT callback_ip FROM server_verification_challenges WHERE id = ?")
       .bind(created.id)
@@ -1266,11 +1190,7 @@ describe("server verification", () => {
     });
     expect(new Date(verified.expiresAt).getTime()).toBeGreaterThan(Date.now() + 47 * 60 * 60 * 1000);
 
-    const duplicate = await api("/api/v1/plugin/verify", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify(pluginPayload(String(created.code)))
-    });
+    const duplicate = await verifyPlugin(String(created.code));
     expect(duplicate.status).toBe(409);
     await expect(duplicate.json()).resolves.toMatchObject({
       ok: false,
@@ -1295,11 +1215,7 @@ describe("server verification", () => {
     });
     expect((await expiredStatus.json<{ challenge: { status: string } }>()).challenge.status).toBe("expired");
 
-    const expiredCallback = await api("/api/v1/plugin/verify", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify(pluginPayload(String(created.code)))
-    });
+    const expiredCallback = await verifyPlugin(String(created.code));
     expect(expiredCallback.status).toBe(404);
     await expect(expiredCallback.json()).resolves.toMatchObject({
       ok: false,
@@ -1375,35 +1291,19 @@ describe("server verification", () => {
     });
     expect(crossAccount.status).toBe(404);
 
-    await api("/api/v1/plugin/verify", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify(pluginPayload(String(created.code)))
-    });
+    await verifyPlugin(String(created.code));
 
-    vi.stubGlobal("fetch", async (input: RequestInfo | URL) => {
-      const url = new URL(input instanceof Request ? input.url : String(input));
+    stubSubmissionServices(false);
 
-      if (url.hostname === "challenges.cloudflare.com") {
-        return Response.json({ success: true, action: "test" });
-      }
-
-      return new Response("Not mocked", { status: 500 });
-    });
-
-    const mismatch = await api("/api/servers/submit", {
-      method: "POST",
-      headers: { "content-type": "application/json", cookie: ownerCookie },
-      body: JSON.stringify({
-        name: "Verification Test",
-        address: "play.cubecraft.net",
-        port: 25565,
-        description: "This test description is long enough for server verification.",
-        verificationChallengeId: created.id,
-        turnstileToken: "test-token",
-        socialLinks: []
-      })
-    });
+    const mismatch = await jsonApi("/api/servers/submit", "POST", {
+      name: "Verification Test",
+      address: "play.cubecraft.net",
+      port: 25565,
+      description: "This test description is long enough for server verification.",
+      verificationChallengeId: created.id,
+      turnstileToken: "test-token",
+      socialLinks: []
+    }, { cookie: ownerCookie });
     expect(mismatch.status).toBe(400);
     expect((await mismatch.json<{ error: string }>()).error).toContain("does not match");
   });
@@ -1411,11 +1311,7 @@ describe("server verification", () => {
   it("does not accept or reuse a consumed challenge", async () => {
     const cookie = await seedSubmitter();
     const created = await createChallenge(cookie);
-    await api("/api/v1/plugin/verify", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify(pluginPayload(String(created.code)))
-    });
+    await verifyPlugin(String(created.code));
 
     const consumedAt = new Date().toISOString();
     await testEnv.DB.prepare(`
@@ -1424,11 +1320,7 @@ describe("server verification", () => {
       WHERE id = ?
     `).bind(consumedAt, consumedAt, created.id).run();
 
-    const duplicate = await api("/api/v1/plugin/verify", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify(pluginPayload(String(created.code)))
-    });
+    const duplicate = await verifyPlugin(String(created.code));
     expect(duplicate.status).toBe(404);
 
     const replacement = await createChallenge(cookie);
@@ -1459,26 +1351,18 @@ describe("server verification", () => {
     )));
 
     const created = await createChallenge(cookie, "mc.hypixel.net", "127.0.0.1");
-    const verify = await api("/api/v1/plugin/verify", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify(pluginPayload(String(created.code)))
-    });
+    const verify = await verifyPlugin(String(created.code));
     expect(verify.status).toBe(200);
 
-    const submit = await api("/api/servers/submit", {
-      method: "POST",
-      headers: { "content-type": "application/json", cookie },
-      body: JSON.stringify({
-        name: "Verification Test",
-        address: "mc.hypixel.net",
-        port: 25565,
-        description: "This test description is long enough for server verification.",
-        verificationChallengeId: created.id,
-        turnstileToken: "test-token",
-        socialLinks: {}
-      })
-    });
+    const submit = await jsonApi("/api/servers/submit", "POST", {
+      name: "Verification Test",
+      address: "mc.hypixel.net",
+      port: 25565,
+      description: "This test description is long enough for server verification.",
+      verificationChallengeId: created.id,
+      turnstileToken: "test-token",
+      socialLinks: {}
+    }, { cookie });
     expect(submit.status).toBe(429);
     expect((await submit.json<{ error: string }>()).error).toContain("Too many submissions");
 
@@ -1498,8 +1382,11 @@ describe("server verification", () => {
           id, owner_account_id, server_name, normalized_host, port, code_hash, status,
           expires_at, verified_at, consumed_at, created_at, updated_at
         )
-        VALUES ('delete-proof-challenge', 'account-delete-proof', 'Delete Proof', 'play-delete-proof.kingdomsx.com', 25565,
-                'delete-proof-code', 'consumed', ?, ?, ?, ?, ?)
+        VALUES (
+          'delete-proof-challenge', 'account-delete-proof', 'Delete Proof',
+          'play-delete-proof.kingdomsx.com', 25565, 'delete-proof-code',
+          'consumed', ?, ?, ?, ?, ?
+        )
       `).bind(timestamp, timestamp, timestamp, timestamp, timestamp),
       testEnv.DB.prepare(`
         INSERT INTO submissions (
@@ -1519,7 +1406,9 @@ describe("server verification", () => {
     expect(await testEnv.DB.prepare("SELECT id FROM server_verification_challenges WHERE id = 'delete-proof-challenge'").first()).not.toBeNull();
     expect(await testEnv.DB.prepare("SELECT id FROM submissions WHERE id = 'delete-proof-submission'").first()).toBeNull();
   });
+});
 
+describe("Scheduled maintenance", () => {
   it("runs bounded hourly cleanup and scans orphaned consumed proofs only daily", async () => {
     await seedSubmitter();
     const old = "2000-01-01T00:00:00.000Z";
@@ -1531,65 +1420,95 @@ describe("server verification", () => {
         VALUES ('expired-session', 'account-one', 'expired-session-hash', ?, ?, ?)
       `).bind(old, old, old),
       testEnv.DB.prepare(`
-        INSERT INTO servers (id, slug, name, description, normalized_host, port, social_links_json, status, owner_account_id, created_at, updated_at)
-        VALUES ('server-one', 'server-one', 'Server One', 'A sufficiently long server description for testing.', 'mc.hypixel.net', 25565, '[]', 'pending', 'account-one', ?, ?)
+        INSERT INTO servers (
+          id, slug, name, description, normalized_host, port, social_links_json,
+          status, owner_account_id, created_at, updated_at
+        )
+        VALUES (
+          'server-one', 'server-one', 'Server One', 'A sufficiently long server description for testing.',
+          'mc.hypixel.net', 25565, '[]', 'pending', 'account-one', ?, ?
+        )
       `).bind(old, old),
       testEnv.DB.prepare(`
-        INSERT INTO server_verification_challenges (id, owner_account_id, server_name, normalized_host, port, code_hash, status, expires_at, verified_at, consumed_at, created_at, updated_at)
-        VALUES ('linked-challenge', 'account-one', 'Server One', 'mc.hypixel.net', 25565, 'linked-code', 'consumed', ?, ?, ?, ?, ?)
+        INSERT INTO server_verification_challenges (
+          id, owner_account_id, server_name, normalized_host, port, code_hash,
+          status, expires_at, verified_at, consumed_at, created_at, updated_at
+        )
+        VALUES (
+          'linked-challenge', 'account-one', 'Server One', 'mc.hypixel.net', 25565,
+          'linked-code', 'consumed', ?, ?, ?, ?, ?
+        )
       `).bind(old, old, old, old, old),
       testEnv.DB.prepare(`
-        INSERT INTO server_verification_challenges (id, owner_account_id, server_name, normalized_host, port, code_hash, status, expires_at, consumed_at, created_at, updated_at)
-        VALUES ('orphan-challenge', 'account-one', 'Server One', 'play.cubecraft.net', 25565, 'orphan-code', 'consumed', ?, ?, ?, ?)
+        INSERT INTO server_verification_challenges (
+          id, owner_account_id, server_name, normalized_host, port, code_hash,
+          status, expires_at, consumed_at, created_at, updated_at
+        )
+        VALUES (
+          'orphan-challenge', 'account-one', 'Server One', 'play.cubecraft.net', 25565,
+          'orphan-code', 'consumed', ?, ?, ?, ?
+        )
       `).bind(old, old, old, old),
       testEnv.DB.prepare(`
-        INSERT INTO server_verification_challenges (id, owner_account_id, server_name, normalized_host, port, code_hash, status, expires_at, created_at, updated_at)
-        VALUES ('stale-pending-challenge', 'account-one', 'Server One', 'stale.kingdomsx.com', 25565, 'stale-code', 'pending', ?, ?, ?)
+        INSERT INTO server_verification_challenges (
+          id, owner_account_id, server_name, normalized_host, port, code_hash,
+          status, expires_at, created_at, updated_at
+        )
+        VALUES (
+          'stale-pending-challenge', 'account-one', 'Server One', 'stale.kingdomsx.com',
+          25565, 'stale-code', 'pending', ?, ?, ?
+        )
       `).bind(old, old, old),
       testEnv.DB.prepare(`
-        INSERT INTO server_verification_challenges (id, owner_account_id, server_name, normalized_host, port, code_hash, status, expires_at, verified_at, created_at, updated_at)
-        VALUES ('verified-within-ttl', 'account-one', 'Server One', 'verified-valid.kingdomsx.com', 25565, 'verified-valid-code', 'verified', ?, ?, ?, ?)
+        INSERT INTO server_verification_challenges (
+          id, owner_account_id, server_name, normalized_host, port, code_hash,
+          status, expires_at, verified_at, created_at, updated_at
+        )
+        VALUES (
+          'verified-within-ttl', 'account-one', 'Server One', 'verified-valid.kingdomsx.com',
+          25565, 'verified-valid-code', 'verified', ?, ?, ?, ?
+        )
       `).bind(old, verifiedWithinTtl, verifiedWithinTtl, verifiedWithinTtl),
       testEnv.DB.prepare(`
-        INSERT INTO server_verification_challenges (id, owner_account_id, server_name, normalized_host, port, code_hash, status, expires_at, verified_at, created_at, updated_at)
-        VALUES ('verified-past-ttl', 'account-one', 'Server One', 'verified-expired.kingdomsx.com', 25565, 'verified-expired-code', 'verified', ?, ?, ?, ?)
+        INSERT INTO server_verification_challenges (
+          id, owner_account_id, server_name, normalized_host, port, code_hash,
+          status, expires_at, verified_at, created_at, updated_at
+        )
+        VALUES (
+          'verified-past-ttl', 'account-one', 'Server One', 'verified-expired.kingdomsx.com',
+          25565, 'verified-expired-code', 'verified', ?, ?, ?, ?
+        )
       `).bind(old, verifiedPastTtl, verifiedPastTtl, verifiedPastTtl),
       testEnv.DB.prepare(`
-        INSERT INTO submissions (id, server_id, owner_account_id, contact, verification_method, verification_evidence, submitter_ip_hash, user_agent_hash, turnstile_result, verification_challenge_id, created_at)
-        VALUES ('submission-one', 'server-one', 'account-one', 'Tester', 'plugin_callback', 'proof', 'ip', 'ua', '{}', 'linked-challenge', ?)
+        INSERT INTO submissions (
+          id, server_id, owner_account_id, contact, verification_method, verification_evidence,
+          submitter_ip_hash, user_agent_hash, turnstile_result, verification_challenge_id, created_at
+        )
+        VALUES (
+          'submission-one', 'server-one', 'account-one', 'Tester', 'plugin_callback',
+          'proof', 'ip', 'ua', '{}', 'linked-challenge', ?
+        )
       `).bind(old)
     ]);
 
-    const offHourTasks: Promise<unknown>[] = [];
-    scheduleServerDirectoryRefresh(testEnv, { waitUntil: (promise) => offHourTasks.push(promise) } as ExecutionContext, Date.UTC(2026, 5, 30, 12, 5));
-    expect(offHourTasks).toHaveLength(1);
-    await Promise.all(offHourTasks);
+    const offHourContext = createExecutionContext();
+    scheduleServerDirectoryRefresh(testEnv, offHourContext, Date.UTC(2026, 5, 30, 12, 5));
+    await waitOnExecutionContext(offHourContext);
 
-    const hourlyTasks: Promise<unknown>[] = [];
-    scheduleServerDirectoryRefresh(testEnv, { waitUntil: (promise) => hourlyTasks.push(promise) } as ExecutionContext, Date.UTC(2026, 5, 30, 13, 0));
-    expect(hourlyTasks).toHaveLength(2);
-    await Promise.all(hourlyTasks);
+    const hourlyContext = createExecutionContext();
+    scheduleServerDirectoryRefresh(testEnv, hourlyContext, Date.UTC(2026, 5, 30, 13, 0));
+    await waitOnExecutionContext(hourlyContext);
 
     const hourlyRows = await testEnv.DB.prepare("SELECT id FROM server_verification_challenges ORDER BY id").all<{ id: string }>();
     expect(hourlyRows.results.map((row) => row.id)).toEqual(["linked-challenge", "orphan-challenge", "verified-within-ttl"]);
     expect(await testEnv.DB.prepare("SELECT id FROM submitter_sessions WHERE id = 'expired-session'").first()).toBeNull();
 
-    const dailyTasks: Promise<unknown>[] = [];
-    scheduleServerDirectoryRefresh(testEnv, { waitUntil: (promise) => dailyTasks.push(promise) } as ExecutionContext, Date.UTC(2026, 6, 1, 0, 0));
-    expect(dailyTasks).toHaveLength(2);
-    await Promise.all(dailyTasks);
+    const dailyContext = createExecutionContext();
+    scheduleServerDirectoryRefresh(testEnv, dailyContext, Date.UTC(2026, 6, 1, 0, 0));
+    await waitOnExecutionContext(dailyContext);
 
     const dailyRows = await testEnv.DB.prepare("SELECT id FROM server_verification_challenges ORDER BY id").all<{ id: string }>();
     expect(dailyRows.results.map((row) => row.id)).toEqual(["linked-challenge", "verified-within-ttl"]);
 
-    const discordTasks: Promise<unknown>[] = [];
-    scheduleServerDirectoryRefresh(
-      testEnv,
-      { waitUntil: (promise) => discordTasks.push(promise) } as ExecutionContext,
-      Date.UTC(2026, 6, 1, 0, 1),
-      DISCORD_EMBED_CRON
-    );
-    expect(discordTasks).toHaveLength(1);
-    await Promise.all(discordTasks);
   });
 });

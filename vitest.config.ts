@@ -19,6 +19,7 @@ export default defineConfig({
   ],
   test: {
     setupFiles: ["./worker/test-setup.ts"],
-    include: ["worker/**/*.test.ts"]
+    include: ["worker/**/*.test.ts"],
+    unstubGlobals: true
   }
 });
