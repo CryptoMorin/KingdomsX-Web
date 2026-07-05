@@ -242,7 +242,7 @@ describe("server verification", () => {
   });
 
   it("rejects malformed and incomplete callbacks before verification", async () => {
-    const malformed = await api("/api/plugin/verify", {
+    const malformed = await api("/api/v1/plugin/verify", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({ code: "invalid" })
@@ -254,7 +254,7 @@ describe("server verification", () => {
       message: "Invalid request."
     });
 
-    const incomplete = await api("/api/plugin/verify", {
+    const incomplete = await api("/api/v1/plugin/verify", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({ code: "abcd-1234" })
@@ -266,7 +266,7 @@ describe("server verification", () => {
       message: "Invalid request."
     });
 
-    const wrongContentType = await api("/api/plugin/verify", {
+    const wrongContentType = await api("/api/v1/plugin/verify", {
       method: "POST",
       headers: { "content-type": "text/plain" },
       body: JSON.stringify(pluginPayload("abcd-1234"))
@@ -278,7 +278,7 @@ describe("server verification", () => {
       message: "Invalid request."
     });
 
-    const legacyFieldNames = await api("/api/plugin/verify", {
+    const legacyFieldNames = await api("/api/v1/plugin/verify", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
@@ -294,7 +294,7 @@ describe("server verification", () => {
       status: "invalid_request"
     });
 
-    const oversized = await api("/api/plugin/verify", {
+    const oversized = await api("/api/v1/plugin/verify", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({ ...pluginPayload("abcd-1234"), padding: "x".repeat(4_096) })
@@ -304,6 +304,22 @@ describe("server verification", () => {
       ok: false,
       status: "payload_too_large",
       message: "Request body is too large."
+    });
+  });
+
+  it("redirects the unversioned plugin callback to the latest API version", async () => {
+    const response = await api("/api/plugin/verify", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(pluginPayload("abcd-1234"))
+    });
+
+    expect(response.status).toBe(301);
+    expect(response.headers.get("location")).toBe(`${origin}/api/v1/plugin/verify`);
+    await expect(response.json()).resolves.toEqual({
+      ok: false,
+      status: "outdated_api",
+      message: "Latest API version is now v1"
     });
   });
 
@@ -525,7 +541,7 @@ describe("server verification", () => {
   it("atomically queues a review notification for a new public submission", async () => {
     const cookie = await seedSubmitter("new-review");
     const challenge = await createChallenge(cookie);
-    const verification = await api("/api/plugin/verify", {
+    const verification = await api("/api/v1/plugin/verify", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(pluginPayload(String(challenge.code)))
@@ -1017,7 +1033,7 @@ describe("server verification", () => {
     const cookie = await seedSubmitter("approved-address");
     await seedOwnedServer("approved-address");
     const created = await createChallenge(cookie, "mc.hypixel.net", "198.51.100.180");
-    const verify = await api("/api/plugin/verify", {
+    const verify = await api("/api/v1/plugin/verify", {
       method: "POST",
       headers: { "content-type": "application/json", "cf-connecting-ip": "203.0.113.180" },
       body: JSON.stringify(pluginPayload(String(created.code)))
@@ -1229,7 +1245,7 @@ describe("server verification", () => {
     expect(reusedPending.id).toBe(created.id);
     expect(reusedPending.code).toBe(created.code);
 
-    const verify = await api("/api/plugin/verify", {
+    const verify = await api("/api/v1/plugin/verify", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -1250,7 +1266,7 @@ describe("server verification", () => {
     });
     expect(new Date(verified.expiresAt).getTime()).toBeGreaterThan(Date.now() + 47 * 60 * 60 * 1000);
 
-    const duplicate = await api("/api/plugin/verify", {
+    const duplicate = await api("/api/v1/plugin/verify", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(pluginPayload(String(created.code)))
@@ -1279,7 +1295,7 @@ describe("server verification", () => {
     });
     expect((await expiredStatus.json<{ challenge: { status: string } }>()).challenge.status).toBe("expired");
 
-    const expiredCallback = await api("/api/plugin/verify", {
+    const expiredCallback = await api("/api/v1/plugin/verify", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(pluginPayload(String(created.code)))
@@ -1359,7 +1375,7 @@ describe("server verification", () => {
     });
     expect(crossAccount.status).toBe(404);
 
-    await api("/api/plugin/verify", {
+    await api("/api/v1/plugin/verify", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(pluginPayload(String(created.code)))
@@ -1395,7 +1411,7 @@ describe("server verification", () => {
   it("does not accept or reuse a consumed challenge", async () => {
     const cookie = await seedSubmitter();
     const created = await createChallenge(cookie);
-    await api("/api/plugin/verify", {
+    await api("/api/v1/plugin/verify", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(pluginPayload(String(created.code)))
@@ -1408,7 +1424,7 @@ describe("server verification", () => {
       WHERE id = ?
     `).bind(consumedAt, consumedAt, created.id).run();
 
-    const duplicate = await api("/api/plugin/verify", {
+    const duplicate = await api("/api/v1/plugin/verify", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(pluginPayload(String(created.code)))
@@ -1443,7 +1459,7 @@ describe("server verification", () => {
     )));
 
     const created = await createChallenge(cookie, "mc.hypixel.net", "127.0.0.1");
-    const verify = await api("/api/plugin/verify", {
+    const verify = await api("/api/v1/plugin/verify", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(pluginPayload(String(created.code)))

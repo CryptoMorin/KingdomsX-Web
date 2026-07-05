@@ -278,6 +278,8 @@ const PUBLIC_JSON_HEADERS = {
 const SOCIAL_KEYS = ["discord", "facebook", "instagram", "x", "youtube"] as const;
 const MAX_JSON_BODY_BYTES = 20_000;
 const PLUGIN_VERIFY_MAX_JSON_BODY_BYTES = 4_096;
+const PLUGIN_API_VERSION = 1;
+const PLUGIN_VERIFY_PATH = `/api/v${PLUGIN_API_VERSION}/plugin/verify`;
 const STATUS_PROVIDER_TIMEOUT_MS = 8_000;
 const STATUS_ICON_MAX_BYTES = 64 * 1024;
 const STATUS_REFRESH_BATCH_LIMIT = 12;
@@ -451,8 +453,15 @@ async function handleRequest(request: Request, env: ServerDirectoryEnv, ctx?: Ex
     return submitServer(request, env, ctx);
   }
 
-  if (request.method === "POST" && url.pathname === "/api/plugin/verify") {
-    return verifyPluginChallenge(request, env);
+  if (request.method === "POST") {
+    if (url.pathname === PLUGIN_VERIFY_PATH) {
+      return verifyPluginChallenge(request, env);
+    }
+
+    const requestedPluginApiVersion = pluginApiVersion(url.pathname);
+    if (requestedPluginApiVersion !== null && requestedPluginApiVersion < PLUGIN_API_VERSION) {
+      return outdatedPluginApiResponse(url);
+    }
   }
 
   if (url.pathname.startsWith("/api/admin/")) {
@@ -464,6 +473,27 @@ async function handleRequest(request: Request, env: ServerDirectoryEnv, ctx?: Ex
   }
 
   return json({ error: "Not found." }, 404);
+}
+
+function pluginApiVersion(pathname: string): number | null {
+  if (pathname === "/api/plugin/verify") {
+    return 0;
+  }
+
+  const match = pathname.match(/^\/api\/v(\d+)\/plugin\/verify$/);
+  return match ? Number(match[1]) : null;
+}
+
+function outdatedPluginApiResponse(url: URL): Response {
+  const location = new URL(PLUGIN_VERIFY_PATH, url.origin).toString();
+  return json({
+    ok: false,
+    status: "outdated_api",
+    message: `Latest API version is now v${PLUGIN_API_VERSION}`
+  }, 301, {
+    ...JSON_HEADERS,
+    location
+  });
 }
 
 async function handleAuth(request: Request, url: URL, env: ServerDirectoryEnv): Promise<Response> {
