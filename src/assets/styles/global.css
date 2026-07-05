@@ -744,40 +744,15 @@ h1 span:nth-child(2) {
 
 .preview-shell {
   margin-top: 2.125rem;
-  border: 0.0625rem solid rgba(251, 176, 59, 0.45);
-  background: linear-gradient(135deg, rgba(10, 17, 25, 0.95), rgba(22, 36, 52, 0.95));
   box-shadow: var(--shadow);
-  clip-path: polygon(0 0, calc(100% - 1.75rem) 0, 100% 1.75rem, 100% 100%, 1.75rem 100%, 0 calc(100% - 1.75rem));
 }
 
 .terminal {
   min-height: 0;
-  padding: 0 1.75rem 1.875rem;
   border-right: 0.0625rem solid rgba(251, 176, 59, 0.2);
   font-family: "Cascadia Mono", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
   font-size: 0.95rem;
   color: #e9eef3;
-}
-
-.terminal-bar {
-  flex: 0 0 auto;
-  margin: 1.125rem -0.625rem 1.5rem;
-  padding: 0.75rem 0.625rem;
-  border-bottom: 0.0625rem solid rgba(255, 255, 255, 0.1);
-}
-
-.dot {
-  width: 0.6875rem;
-  height: 0.6875rem;
-  background: var(--orange);
-}
-
-.dot:nth-child(2) {
-  background: var(--amber);
-}
-
-.dot:nth-child(3) {
-  background: var(--green);
 }
 
 .line {
@@ -3359,12 +3334,7 @@ h1 span:nth-child(2) {
     width: auto;
   }
 
-  .preview-shell {
-    clip-path: polygon(0 0, calc(100% - 1.125rem) 0, 100% 1.125rem, 100% 100%, 1.125rem 100%, 0 calc(100% - 1.125rem));
-  }
-
   .terminal {
-    padding: 0 1.125rem 1.5rem;
     font-size: 0.85rem;
   }
 
