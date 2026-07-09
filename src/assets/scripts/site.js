@@ -7,8 +7,19 @@ import "./dev-builds-link.js";
 import "./copy-command.js";
 import "./comparison.js";
 import "./hero-particles.js";
-import "./servers.js";
-import "./server-admin.js";
+import { initServerAddressCopy } from "./server-directory/ui.js";
+
+if (document.querySelector("[data-server-list]")) {
+  import("./server-directory/listings.js");
+}
+
+if (document.querySelector("[data-server-submit-dashboard]")) {
+  import("./server-directory/submit.js");
+}
+
+if (document.querySelector("[data-server-admin]")) {
+  import("./server-directory/admin.js");
+}
 
 const compactNavigationQuery = window.matchMedia("(max-width: 1199.98px)");
 const ambientPointerQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
@@ -143,3 +154,4 @@ const initCursorTilt = () => {
 
 initAmbientPointer();
 initCursorTilt();
+initServerAddressCopy();

@@ -14,7 +14,8 @@
     "worker:migrate:remote": "wrangler d1 migrations apply DB --config wrangler.jsonc --remote",
     "worker:seed:local": "wrangler d1 execute DB --config wrangler.local.jsonc --local --file worker/seeds/local-server-directory.sql",
     "worker:deploy:check": "wrangler deploy --config wrangler.jsonc --dry-run",
-    "worker:types:check": "mkdir -p .wrangler && wrangler types .wrangler/production-bindings.d.ts --include-runtime=false --config wrangler.jsonc && wrangler types .wrangler/local-bindings.d.ts --include-runtime=false --config wrangler.local.jsonc",
+    "worker:types": "wrangler types worker/bindings.production.d.ts --env-interface ProductionEnv --include-runtime=false --config wrangler.jsonc && wrangler types worker/bindings.local.d.ts --env-interface LocalEnv --include-runtime=false --config wrangler.local.jsonc",
+    "worker:types:check": "wrangler types worker/bindings.production.d.ts --env-interface ProductionEnv --include-runtime=false --config wrangler.jsonc --check && wrangler types worker/bindings.local.d.ts --env-interface LocalEnv --include-runtime=false --config wrangler.local.jsonc --check",
     "worker:typecheck": "tsc --noEmit -p worker/tsconfig.json && tsc --noEmit -p worker/tsconfig.test.json"
   },
   "dependencies": {
@@ -33,9 +34,9 @@
   },
   "devDependencies": {
     "@cloudflare/vitest-pool-workers": "^0.17.0",
-    "@cloudflare/workers-types": "4.20260630.1",
+    "@cloudflare/workers-types": "^5.20260708.1",
     "typescript": "6.0.3",
     "vitest": "^4.1.9",
-    "wrangler": "4.106.0"
+    "wrangler": "^4.110.0"
   }
 }

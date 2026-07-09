@@ -105,7 +105,7 @@ INSERT OR REPLACE INTO servers (
     'hub.mc-complex.com',
     25565,
     'https://mc-complex.com/',
-    '[{"key":"discord","label":"Discord","url":"https://discord.com/","host":"discord.com"},{"key":"facebook","label":"Facebook","url":"https://facebook.com/","host":"facebook.com"},{"key":"instagram","label":"Instagram","url":"https://instagram.com/","host":"instagram.com"},{"key":"x","label":"X","url":"https://x.com/","host":"x.com"},{"key":"youtube","label":"YouTube","url":"https://youtube.com/","host":"youtube.com"}]',
+    '[{"key":"discord","label":"Discord","url":"https://discord.com/","host":"discord.com"},{"key":"facebook","label":"Facebook","url":"https://facebook.com/","host":"facebook.com"},{"key":"instagram","label":"Instagram","url":"https://instagram.com/","host":"instagram.com"},{"key":"x","label":"X","url":"https://x.com/","host":"x.com"},{"key":"youtube","label":"YouTube","url":"https://youtube.com/","host":"youtube.com"},{"key":"tiktok","label":"TikTok","url":"https://tiktok.com/","host":"tiktok.com"},{"key":"twitch","label":"Twitch","url":"https://twitch.tv/","host":"twitch.tv"}]',
     'approved',
     70,
     strftime('%Y-%m-%dT%H:%M:%fZ', 'now'),

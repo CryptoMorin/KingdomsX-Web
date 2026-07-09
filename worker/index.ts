@@ -1,17 +1,11 @@
 import {
   handleServerDirectoryRequest,
   PUBLIC_DIRECTORY_MAX_PAGE,
-  scheduleServerDirectoryRefresh,
-  type ServerDirectoryEnv
+  scheduleServerDirectoryRefresh
 } from "./server-directory";
+import type { DirectoryEnv } from "./server-directory/contracts";
 
-interface StaticAssetsBinding {
-  fetch(input: RequestInfo | URL, init?: RequestInit): Promise<Response>;
-}
-
-interface Env extends ServerDirectoryEnv {
-  ASSETS: StaticAssetsBinding;
-}
+type WorkerEnv = Omit<ProductionEnv, "APP_ENVIRONMENT"> & DirectoryEnv;
 
 const APEX_HOST = "kingdomsx.com";
 const WWW_HOST = "www.kingdomsx.com";
@@ -20,6 +14,7 @@ const SERVERS_HOST = "servers.kingdomsx.com";
 const SERVERS_ORIGIN = `https://${SERVERS_HOST}`;
 const SERVER_DIRECTORY_DESCRIPTION = "Browse public servers running KingdomsX, whether you want to test the plugin or find a community already using it.";
 const SERVER_DIRECTORY_SITEMAP_PATHS = ["/", "/all", "/offline"] as const;
+
 type DirectoryStatus = "all" | "online" | "offline";
 type DirectorySort = "newest" | "players" | "name";
 
@@ -36,7 +31,7 @@ const ERROR_STATUS_TEXT: Record<number, string> = {
 };
 
 export default {
-  async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
+  async fetch(request: Request, env: WorkerEnv, ctx: ExecutionContext): Promise<Response> {
     const url = new URL(request.url);
     const localRequest = env.APP_ENVIRONMENT === "local";
 
@@ -80,13 +75,22 @@ export default {
     return env.ASSETS.fetch(request);
   },
 
-  async scheduled(controller: ScheduledController, env: Env, ctx: ExecutionContext): Promise<void> {
+  async scheduled(
+    controller: ScheduledController,
+    env: WorkerEnv,
+    ctx: ExecutionContext
+  ): Promise<void> {
     scheduleServerDirectoryRefresh(env, ctx, controller.scheduledTime, controller.cron);
   }
-} satisfies ExportedHandler<Env>;
+} satisfies ExportedHandler<ProductionEnv>;
 
 function isLegacyServersPath(pathname: string): boolean {
-  return pathname === "/servers" || pathname === "/servers/" || pathname === "/servers.html" || pathname.startsWith("/servers/");
+  return (
+    pathname === "/servers" ||
+    pathname === "/servers/" ||
+    pathname === "/servers.html" ||
+    pathname.startsWith("/servers/")
+  );
 }
 
 function serverDirectoryRedirect(url: URL): string {
@@ -97,7 +101,12 @@ function serverDirectoryRedirect(url: URL): string {
   return redirect.toString();
 }
 
-async function serveServerSurface(request: Request, url: URL, env: Env, basePath = ""): Promise<Response | null> {
+async function serveServerSurface(
+  request: Request,
+  url: URL,
+  env: WorkerEnv,
+  basePath = ""
+): Promise<Response | null> {
   const utilityAsset = serverUtilityAsset(url.pathname, basePath);
 
   if (utilityAsset) {
@@ -116,7 +125,10 @@ async function serveServerSurface(request: Request, url: URL, env: Env, basePath
   return route ? serveDirectoryPage(request, url, env, route) : null;
 }
 
-function serverUtilityAsset(pathname: string, basePath: string): { publicPath: string; assetPath: string } | null {
+function serverUtilityAsset(
+  pathname: string,
+  basePath: string
+): { publicPath: string; assetPath: string } | null {
   const normalized = normalizeServerHtmlPath(pathname.replace(/\/+$/, "") || "/");
 
   if (normalized === `${basePath}/submit`) {
@@ -190,8 +202,8 @@ function serverRobotsTxt(): string {
 
 function serverSitemapIndexXml(): string {
   return [
-    "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
-    "<sitemapindex xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">",
+    '<?xml version="1.0" encoding="UTF-8"?>',
+    '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
     `<sitemap><loc>${SERVERS_ORIGIN}/sitemap-0.xml</loc></sitemap>`,
     "</sitemapindex>"
   ].join("");
@@ -204,8 +216,8 @@ function serverSitemapXml(): string {
   }).join("");
 
   return [
-    "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
-    "<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">",
+    '<?xml version="1.0" encoding="UTF-8"?>',
+    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
     urls,
     "</urlset>"
   ].join("");
@@ -260,7 +272,12 @@ function parseDirectoryRoute(pathname: string, basePath = ""): DirectoryRoute | 
     : null;
 }
 
-function directoryPath(status: DirectoryStatus, sort: DirectorySort, page: number, basePath = ""): string {
+function directoryPath(
+  status: DirectoryStatus,
+  sort: DirectorySort,
+  page: number,
+  basePath = ""
+): string {
   const segments: string[] = status === "online" ? [] : [status];
 
   if (sort !== "newest") {
@@ -275,12 +292,17 @@ function directoryPath(status: DirectoryStatus, sort: DirectorySort, page: numbe
   return `${basePath}${suffix}` || "/";
 }
 
-async function serveDirectoryPage(request: Request, url: URL, env: Env, route: DirectoryRoute): Promise<Response> {
+async function serveDirectoryPage(
+  request: Request,
+  url: URL,
+  env: WorkerEnv,
+  route: DirectoryRoute
+): Promise<Response> {
   if (request.method !== "GET" && request.method !== "HEAD") {
     return new Response("Method not allowed", {
       status: 405,
       headers: {
-        "Allow": "GET, HEAD",
+        Allow: "GET, HEAD",
         "Content-Type": "text/plain; charset=utf-8",
         "X-Content-Type-Options": "nosniff"
       }
@@ -290,7 +312,12 @@ async function serveDirectoryPage(request: Request, url: URL, env: Env, route: D
   if (url.searchParams.has("sort")) {
     const querySort = parseDirectorySort(url.searchParams.get("sort"));
     const redirect = new URL(url);
-    redirect.pathname = directoryPath(route.status, querySort, route.page, url.pathname.startsWith("/servers") ? "/servers" : "");
+    redirect.pathname = directoryPath(
+      route.status,
+      querySort,
+      route.page,
+      url.pathname.startsWith("/servers") ? "/servers" : ""
+    );
     redirect.searchParams.delete("sort");
     return Response.redirect(redirect.toString(), 301);
   }
@@ -309,7 +336,12 @@ async function serveDirectoryPage(request: Request, url: URL, env: Env, route: D
   if (request.method === "HEAD") {
     const headers = new Headers(response.headers);
     headers.set("Link", `<${canonical.toString()}>; rel="canonical"`);
-    return new Response(null, { status: response.status, statusText: response.statusText, headers });
+
+    return new Response(null, {
+      status: response.status,
+      statusText: response.statusText,
+      headers
+    });
   }
 
   if (!response.ok || !response.headers.get("content-type")?.includes("text/html")) {
@@ -323,24 +355,39 @@ function parseDirectorySort(value: string | null): DirectorySort {
   return value === "players" || value === "name" ? value : "newest";
 }
 
-function fetchAsset(request: Request, url: URL, env: Env, pathname: string): Promise<Response> {
+function fetchAsset(
+  request: Request,
+  url: URL,
+  env: WorkerEnv,
+  pathname: string
+): Promise<Response> {
   const assetUrl = new URL(url);
   assetUrl.pathname = pathname;
   assetUrl.search = "";
   const headers = new Headers(request.headers);
+  // Drop validators that belong to the public URL before rewriting the asset path
   headers.delete("If-Modified-Since");
   headers.delete("If-None-Match");
   headers.delete("Range");
   return env.ASSETS.fetch(new Request(assetUrl, { method: request.method, headers }));
 }
 
-function rewriteDirectoryMetadata(response: Response, canonicalUrl: string, route: DirectoryRoute): Response {
+function rewriteDirectoryMetadata(
+  response: Response,
+  canonicalUrl: string,
+  route: DirectoryRoute
+): Response {
   const statusLabel = route.status === "all" ? "All" : route.status === "offline" ? "Offline" : "Online";
   const pageLabel = route.page > 1 ? ` - Page ${route.page}` : "";
   const titlePrefix = route.status === "online" ? "Servers" : `${statusLabel} Servers`;
   const title = `${titlePrefix}${pageLabel} | KingdomsX`;
-  const description = route.page > 1 ? `${SERVER_DIRECTORY_DESCRIPTION} Page ${route.page}.` : SERVER_DIRECTORY_DESCRIPTION;
+  const description =
+    route.page > 1
+      ? `${SERVER_DIRECTORY_DESCRIPTION} Page ${route.page}.`
+      : SERVER_DIRECTORY_DESCRIPTION;
   const headers = new Headers(response.headers);
+  // HTMLRewriter changes the body, meaning that the original length and
+  // validator are no longer valid after that
   headers.delete("Content-Length");
   headers.delete("ETag");
   headers.set("Link", `<${canonicalUrl}>; rel="canonical"`);
@@ -355,15 +402,20 @@ function rewriteDirectoryMetadata(response: Response, canonicalUrl: string, rout
     .on('meta[name="description"]', new AttributeHandler("content", description))
     .on('meta[property="og:description"]', new AttributeHandler("content", description))
     .on('meta[name="twitter:description"]', new AttributeHandler("content", description))
-    .transform(new Response(response.body, {
-      status: response.status,
-      statusText: response.statusText,
-      headers
-    }));
+    .transform(
+      new Response(response.body, {
+        status: response.status,
+        statusText: response.statusText,
+        headers
+      })
+    );
 }
 
 class AttributeHandler implements HTMLRewriterElementContentHandlers {
-  constructor(private readonly attribute: string, private readonly value: string) {}
+  constructor(
+    private readonly attribute: string,
+    private readonly value: string
+  ) {}
 
   element(element: Element): void {
     element.setAttribute(this.attribute, this.value);
@@ -378,7 +430,11 @@ class TextContentHandler implements HTMLRewriterElementContentHandlers {
   }
 }
 
-async function renderErrorPage(request: Request, env: Env, status: number): Promise<Response> {
+async function renderErrorPage(
+  request: Request,
+  env: WorkerEnv,
+  status: number
+): Promise<Response> {
   const url = new URL(request.url);
   url.hostname = APEX_HOST;
   url.pathname = `/${status}`;
