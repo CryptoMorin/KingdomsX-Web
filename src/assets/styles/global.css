@@ -20,6 +20,16 @@
   color-scheme: dark;
 }
 
+::selection {
+  background: var(--orange);
+  color: var(--bg);
+  text-shadow: none;
+}
+
+a::selection {
+  color: var(--text);
+}
+
 html {
   scroll-behavior: smooth;
   scrollbar-width: thin;

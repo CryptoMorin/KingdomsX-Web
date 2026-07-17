@@ -10,7 +10,7 @@ const { homeUrl = "" } = Astro.props;
 const sectionHref = (id: string) => `${homeUrl}#${id}`;
 ---
 <header class="site-header sticky-top">
-  <nav class="navbar navbar-expand-xl" aria-label="Main navigation">
+  <nav class="navbar navbar-expand-xl user-select-none" aria-label="Main navigation">
     <div class="container">
       <a class="navbar-brand brand d-inline-flex align-items-center gap-3 mb-0 fw-bold" href={sectionHref("home")} aria-label="KingdomsX home">
         <img src={siteImages.logo} alt="" width="256" height="256" draggable="false" />
