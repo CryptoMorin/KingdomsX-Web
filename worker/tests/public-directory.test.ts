@@ -32,12 +32,32 @@ describe("Public server APIs", () => {
 
     expect(first.status).toBe(404);
     expect(first.headers.get("x-kingdomsx-cache")).toBe("MISS");
+    expect(first.headers.get("cache-control")).toBe("public, max-age=120, stale-while-revalidate=300");
     await waitOnExecutionContext(firstContext);
 
     const second = await api("/api/servers/missing-server", {}, createExecutionContext());
 
     expect(second.status).toBe(404);
     expect(second.headers.get("x-kingdomsx-cache")).toBe("HIT");
+    expect(second.headers.get("cache-control")).toBe(first.headers.get("cache-control"));
+  });
+
+  it("restores the public cache policy when Cloudflare changes cached response headers", async () => {
+    const cacheKey = new Request("https://servers.kingdomsx.com/api/servers/cached-policy");
+    const cachedResponse = Response.json({ item: null }, {
+      status: 404,
+      headers: { "cache-control": "public, max-age=14400", "access-control-allow-origin": "*" }
+    });
+
+    await caches.default.put(cacheKey, cachedResponse);
+
+    const response = await api("/api/servers/cached-policy", {}, createExecutionContext());
+
+    expect(response.status).toBe(404);
+    expect(response.headers.get("x-kingdomsx-cache")).toBe("HIT");
+    expect(response.headers.get("cache-control")).toBe("public, max-age=120, stale-while-revalidate=300");
+    expect(response.headers.get("access-control-allow-origin")).toBe("*");
+    await expect(response.json()).resolves.toEqual({ item: null });
   });
 
   it("returns the owner's Discord display name and username in public listings", async () => {

@@ -2,6 +2,7 @@ import {
   PUBLIC_DIRECTORY_LIMITS,
   PUBLIC_DIRECTORY_MAX_PAGE,
   PUBLIC_JSON_CACHE_SECONDS,
+  PUBLIC_JSON_HEADERS,
   RECENT_SERVER_LIMITS
 } from "../config";
 import type {
@@ -160,8 +161,14 @@ async function cachedPublicJson(
     try {
       const cached = await caches.default.match(cacheKey);
 
-      if (cached)
-        return withCacheDiagnostic(cached, "HIT");
+      if (cached) {
+        const response = withCacheDiagnostic(cached, "HIT");
+
+        // Restore the browser policy after cache storage and zone TTL adjustments.
+        response.headers.set("cache-control", PUBLIC_JSON_HEADERS["cache-control"]);
+
+        return response;
+      }
     } catch (error) {
       logWarn("public_json_cache.match_failed", error, { pathname: new URL(request.url).pathname });
     }
