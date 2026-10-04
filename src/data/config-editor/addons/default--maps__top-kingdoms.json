@@ -1,0 +1,81 @@
+{
+  "formatVersion": 1,
+  "source": {
+    "addonId": "map-viewers",
+    "artifactPath": "addons/Kingdoms-Addon-Map-Viewers-3.2.2.jar",
+    "artifactBlobSha": "29aaabc3ae8f20ecc1fe6ff4ea14652e4f5e96ac",
+    "artifactSha256": "b169a040912e6c578a6092569ea0e64e092b530f846bbb40b9f56f11104dcf4e",
+    "addonVersion": "3.2.2"
+  },
+  "resourceName": "maps/top-kingdoms.yml",
+  "schemaId": "addons/maps/marker",
+  "sha256": "2a88b85a2a43dcbc949916bdec5022e7e20b3d8d23c9b8227a27c383dbcaad01",
+  "options": [
+    {
+      "path": [
+        "label"
+      ],
+      "source": "\"Top Kingdoms\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "priority"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "z-index"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "special-flag"
+      ],
+      "source": "false",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "hide-by-default"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "show-controls"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

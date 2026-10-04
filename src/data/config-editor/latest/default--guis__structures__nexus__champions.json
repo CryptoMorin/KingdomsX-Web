@@ -1,0 +1,224 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "guis/structures/nexus/champions.yml",
+  "schemaId": "guis/schema",
+  "options": [
+    {
+      "path": [
+        "title"
+      ],
+      "source": "\"{$sep}-=( {$p}Champions {$sep})=-\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "type"
+      ],
+      "source": "HOPPER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sound"
+      ],
+      "source": "ITEM_ARMOR_EQUIP_DIAMOND",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options"
+      ],
+      "source": "\r\n  zombie:\r\n    name: \"{$p}Zombie\"\r\n    material: ZOMBIE_HEAD\r\n    slot: 0\r\n  skeleton:\r\n    name: \"{$s}Skeleton\"\r\n    material: SKELETON_SKULL\r\n    slot: 1\r\n\r\n  back:\r\n    name: \"{$p}Back\"\r\n    material: BARRIER\r\n    lore:\r\n      - \"{$s}Go back to champion settings.\"\r\n    slot: 4\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "zombie"
+      ],
+      "source": "\r\n    name: \"{$p}Zombie\"\r\n    material: ZOMBIE_HEAD\r\n    slot: 0\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "zombie",
+        "name"
+      ],
+      "source": "\"{$p}Zombie\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "zombie",
+        "material"
+      ],
+      "source": "ZOMBIE_HEAD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "zombie",
+        "slot"
+      ],
+      "source": "0",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "skeleton"
+      ],
+      "source": "\r\n    name: \"{$s}Skeleton\"\r\n    material: SKELETON_SKULL\r\n    slot: 1\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "skeleton",
+        "name"
+      ],
+      "source": "\"{$s}Skeleton\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "skeleton",
+        "material"
+      ],
+      "source": "SKELETON_SKULL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "skeleton",
+        "slot"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back"
+      ],
+      "source": "\r\n    name: \"{$p}Back\"\r\n    material: BARRIER\r\n    lore:\r\n      - \"{$s}Go back to champion settings.\"\r\n    slot: 4\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "name"
+      ],
+      "source": "\"{$p}Back\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "material"
+      ],
+      "source": "BARRIER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "lore"
+      ],
+      "source": "\r\n      - \"{$s}Go back to champion settings.\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$s}Go back to champion settings.\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "slot"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

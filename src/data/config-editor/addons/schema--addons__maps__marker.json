@@ -1,0 +1,230 @@
+{
+  "formatVersion": 1,
+  "source": {
+    "addonId": "map-viewers",
+    "artifactPath": "addons/Kingdoms-Addon-Map-Viewers-3.2.2.jar",
+    "artifactBlobSha": "29aaabc3ae8f20ecc1fe6ff4ea14652e4f5e96ac",
+    "artifactSha256": "b169a040912e6c578a6092569ea0e64e092b530f846bbb40b9f56f11104dcf4e",
+    "addonVersion": "3.2.2"
+  },
+  "id": "addons/maps/marker",
+  "resourceName": "schemas/maps/marker.yml",
+  "reason": null,
+  "schema": {
+    "kind": "object",
+    "fields": [
+      {
+        "key": "persistent-data",
+        "type": {
+          "kind": "boolean"
+        }
+      },
+      {
+        "key": "label",
+        "type": {
+          "kind": "string",
+          "typeName": "str"
+        }
+      },
+      {
+        "key": "priority",
+        "type": {
+          "kind": "integer"
+        }
+      },
+      {
+        "key": "z-index",
+        "type": {
+          "kind": "integer"
+        }
+      },
+      {
+        "key": "special-flag",
+        "type": {
+          "kind": "boolean"
+        }
+      },
+      {
+        "key": "hide-by-default",
+        "type": {
+          "kind": "boolean"
+        }
+      },
+      {
+        "key": "zoom",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "max",
+              "type": {
+                "kind": "integer"
+              }
+            },
+            {
+              "key": "min",
+              "type": {
+                "kind": "integer"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "fill",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "opacity",
+              "type": {
+                "kind": "integer"
+              }
+            },
+            {
+              "key": "color",
+              "type": {
+                "kind": "string",
+                "typeName": "str"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "line",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "weight",
+              "type": {
+                "kind": "integer"
+              }
+            },
+            {
+              "key": "color",
+              "type": {
+                "kind": "string",
+                "typeName": "str"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "invasion",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "fill",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "opacity",
+                    "type": {
+                      "kind": "integer"
+                    }
+                  },
+                  {
+                    "key": "color",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "str"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "key": "line",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "weight",
+                    "type": {
+                      "kind": "integer"
+                    }
+                  },
+                  {
+                    "key": "opacity",
+                    "type": {
+                      "kind": "integer"
+                    }
+                  },
+                  {
+                    "key": "color",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "str"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "descriptions",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "flag",
+              "type": {
+                "kind": "string",
+                "typeName": "str"
+              }
+            },
+            {
+              "key": "click",
+              "type": {
+                "kind": "string",
+                "typeName": "str"
+              }
+            },
+            {
+              "key": "hover",
+              "type": {
+                "kind": "string",
+                "typeName": "str"
+              }
+            },
+            {
+              "key": "members",
+              "type": {
+                "kind": "string",
+                "typeName": "str"
+              }
+            },
+            {
+              "key": "allies",
+              "type": {
+                "kind": "string",
+                "typeName": "str"
+              }
+            },
+            {
+              "key": "truces",
+              "type": {
+                "kind": "string",
+                "typeName": "str"
+              }
+            },
+            {
+              "key": "enemies",
+              "type": {
+                "kind": "string",
+                "typeName": "str"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

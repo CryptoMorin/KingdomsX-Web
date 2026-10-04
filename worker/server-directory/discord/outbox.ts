@@ -28,14 +28,15 @@ export function discordEmbedJobStatement(
   action: "upsert" | "delete",
   version: string
 ): D1PreparedStatement {
-  // One row per server means newer desired state replaces stale work instead of building a queue
+  // One row per server means newer changes replace old jobs instead of piling up
   return env.DB.prepare(
     `
     INSERT INTO discord_embed_jobs (
       server_id, desired_action, desired_version, attempt_count, next_attempt_at,
       last_attempt_at, last_error_code, last_error, lease_token, lease_expires_at,
       created_at, updated_at
-    ) VALUES (?, ?, ?, 0, ?, NULL, NULL, NULL, NULL, NULL, ?, ?)
+    )
+    VALUES (?, ?, ?, 0, ?, NULL, NULL, NULL, NULL, NULL, ?, ?)
     ON CONFLICT(server_id) DO UPDATE SET
       desired_action = excluded.desired_action,
       desired_version = excluded.desired_version,
@@ -112,7 +113,8 @@ export function discordReviewNotificationJobStatement(
       server_id, submission_id, notification_type, desired_status, desired_version, attempt_count, next_attempt_at,
       last_attempt_at, last_error_code, last_error, lease_token, lease_expires_at,
       created_at, updated_at
-    ) VALUES (?, ?, ?, ?, ?, 0, ?, NULL, NULL, NULL, NULL, NULL, ?, ?)
+    )
+    VALUES (?, ?, ?, ?, ?, 0, ?, NULL, NULL, NULL, NULL, NULL, ?, ?)
     ON CONFLICT(server_id) DO UPDATE SET
       submission_id = excluded.submission_id,
       notification_type = excluded.notification_type,
@@ -156,7 +158,8 @@ export function discordReviewDeletionJobStatement(
       attempt_count, next_attempt_at,
       last_attempt_at, last_error_code, last_error, lease_token, lease_expires_at,
       created_at, updated_at
-    ) VALUES (?, ?, ?, ?, NULL, 0, ?, NULL, NULL, NULL, NULL, NULL, ?, ?)
+    )
+    VALUES (?, ?, ?, ?, NULL, 0, ?, NULL, NULL, NULL, NULL, NULL, ?, ?)
     ON CONFLICT(server_id) DO UPDATE SET
       message_id = excluded.message_id,
       payload_json = excluded.payload_json,
@@ -255,7 +258,7 @@ export function discordMessageShouldBeReposted(lastSyncedAt: string, thresholdMs
   return Number.isFinite(timestamp) && Date.now() - timestamp >= thresholdMs;
 }
 
-// Retry state is deliberately stored with each job instead of inferred from logs.
+// Retry state belongs to the job row
 export async function recordDiscordFailure(
   env: DirectoryEnv,
   job: DiscordEmbedJob,
@@ -386,7 +389,7 @@ export async function recordDiscordReviewDeletionFailure(
   );
 }
 
-// A deletion job cannot read its source rows after the same D1 batch removes them.
+// Save the source rows before the delete batch removes them
 export async function getDiscordReviewDeletionSnapshot(
   env: DirectoryEnv,
   serverId: string
@@ -461,7 +464,8 @@ export async function storeDiscordReviewNotification(
     INSERT INTO discord_review_notifications (
       server_id, submission_id, message_id, superseded_message_id, notification_type, synced_status,
       synced_version, synced_at, created_at, updated_at
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    )
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     ON CONFLICT(server_id) DO UPDATE SET
       submission_id = excluded.submission_id,
       message_id = excluded.message_id,
@@ -577,7 +581,8 @@ export async function storeDiscordEmbed(
     INSERT INTO discord_embeds (
       server_id, message_id, guild_id, channel_id, superseded_message_id,
       synced_version, synced_at, updated_at, last_verified_at
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+    )
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
     ON CONFLICT(server_id) DO UPDATE SET
       message_id = excluded.message_id,
       guild_id = COALESCE(excluded.guild_id, discord_embeds.guild_id),

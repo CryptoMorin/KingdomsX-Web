@@ -5,29 +5,36 @@
 This repository contains the public [website](https://kingdomsx.com) for the project. It is built with Astro and deployed on Cloudflare.
 
 ## Stack
+
 - **Astro** - static site framework
-- **Cloudflare Workers** - request routing, API handlers, scheduled cron
+- **Cloudflare Workers** - website, server listings and config editor deployments
 - **Cloudflare D1** - SQLite database for server listings
-- **TypeScript** - worker code under `worker/`
+- **TypeScript** - Worker code under `worker/`
 
 ## Requirements
+
 - Node.js 24
 - npm
 
 ## Project Structure
+
 - `src/pages/` - Astro page entrypoints
 - `src/components/` - reusable Astro components
-- `src/assets/` - bundled styles, scripts, and imported media
-- `src/data/` - content/data modules used by the site
+- `src/assets/` - bundled styles, scripts and imported media
+- `src/data/` - content modules and generated editor catalogs
 - `public/` - files copied directly to the site root
-- `worker/` - Cloudflare Worker source and local development assets
-- `wrangler.jsonc` - production Cloudflare configuration
-- `wrangler.local.jsonc` - local preview configuration
+- `worker/` - main website Worker, shared tests, migrations and local development assets
+- `worker/server-directory/` - server listings Worker, APIs, scheduled work and D1 logic
+- `worker/config-editor/` - config editor Worker
+- `scripts/config-editor/` - editor catalog generation and validation
+- `wrangler*.jsonc` - production, local and test configuration for the three Workers
 
 ## Development
+
 Contributions are appreciated and always welcome through [pull requests](https://github.com/CryptoMorin/KingdomsX-Web/pulls).
 
 ### Setup
+
 Clone the repository:
 
 ```bash
@@ -43,66 +50,82 @@ npm ci
 
 Copy the example local environment file:
 
-```bash
-cp .dev.vars.example .dev.vars
+```sh
+node -e "require('node:fs').copyFileSync('.dev.vars.example', '.dev.vars')"
 ```
 
-The checked-in example values are enough for the local Worker preview. Real credentials are only needed for OAuth-specific testing.
+Editor browser tests also require Playwright's Chromium build:
 
-### Workflows
-After setup, use one of these development workflows depending on what you're working on:
+```bash
+npx playwright install chromium
+```
+
+The checked-in example values are enough for local Worker previews. Real credentials are only needed for OAuth-specific testing.
+
+### Running locally
 
 #### 1. Astro dev server
-Use this for quick frontend work. It skips the Worker and serves pages directly via Astro's dev server.
+
+Use this for quick frontend work. It skips the Worker runtime and serves pages directly through Astro.
 
 ```bash
 npm run dev
 ```
 
-#### 2. Full Worker preview
-Use this when working on routing, API handlers, D1 queries, or server listings. It builds the Astro site and serves it through the local Cloudflare Worker on port `8787`, backed by local D1 data and secrets from `.dev.vars`.
+#### 2. Individual Worker previews
 
-Run the local setup before the first preview, after pulling or adding D1 migrations, or whenever you need to refresh local preview data:
+Prepare the local server listings database before the first preview, after adding migrations, or whenever the sample data needs to be reset:
 
 ```bash
 npm run worker:setup:local
 ```
 
-Then start the preview:
+Use the server-directory preview when working on listings, APIs, D1 queries or scheduled refreshes:
 
 ```bash
 npm run preview
 ```
 
-## Checks
-Please run these before opening a pull request.
+Use the editor preview when working on the standalone config editor:
 
-Run the Cloudflare Worker and D1 test suite after changing Worker behavior, API handlers, migrations, or server-directory logic:
+```bash
+npm run editor:preview
+```
+
+#### 3. Complete local website
+
+After preparing the local database as above, build and start all three Workers together:
+
+```bash
+npm run preview:all
+```
+
+The combined preview is maintained for Unix-like environments (e.g. Linux or WSL). On native Windows use the individual previews as mentioned above.
+
+## Checks
+
+Please run the checks relevant to your changes before opening a pull request.
+
+For website and server listings Worker changes:
 
 ```bash
 npm run worker:test
-```
-
-Type-check Worker code after changing anything under `worker/`:
-
-```bash
-npm run worker:typecheck
-```
-
-Regenerate Worker type bindings after changing bindings or Wrangler config:
-
-```bash
 npm run worker:types:check
-```
-
-Run a deploy dry-run after changing Worker routing, bindings, or Cloudflare configuration:
-
-```bash
+npm run worker:typecheck
+npm run build
+npm run server-directory:build
 npm run worker:deploy:check
 ```
 
-Run the production build before all pull requests:
+For editor changes:
 
 ```bash
-npm run build
+npm run editor:snapshots:check
+npm run editor:test
+npm run editor:browser:test
+npm run editor:worker:test
+npm run editor:worker:types:check
+npm run editor:worker:typecheck
+npm run editor:build:production
+npm run editor:deploy:dry-run
 ```

@@ -1,0 +1,215 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "guis/confirm/disband.yml",
+  "schemaId": "guis/schema",
+  "options": [
+    {
+      "path": [
+        "title"
+      ],
+      "source": "\"&4&lConfirm Disband\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "type"
+      ],
+      "source": "HOPPER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sound"
+      ],
+      "source": "BLOCK_LEVER_CLICK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options"
+      ],
+      "source": "\r\n  confirm:\r\n    material: GREEN_WOOL\r\n    sound: AMBIENT_CAVE\r\n    slot: 1\r\n    name: \"&4Confirm\"\r\n    lore:\r\n      - \"{$s}Your kingdom's data will be\"\r\n      - \"{$s}permanently lost.\"\r\n  cancel:\r\n    material: RED_WOOL\r\n    sound: BLOCK_NOTE_BLOCK_BASS, 1, 1\r\n    slot: 3\r\n    name: \"&cCancel\"\r\n    lore: [ \"{$s}Cancel confirmation.\" ]",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "confirm"
+      ],
+      "source": "\r\n    material: GREEN_WOOL\r\n    sound: AMBIENT_CAVE\r\n    slot: 1\r\n    name: \"&4Confirm\"\r\n    lore:\r\n      - \"{$s}Your kingdom's data will be\"\r\n      - \"{$s}permanently lost.\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "confirm",
+        "material"
+      ],
+      "source": "GREEN_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "confirm",
+        "sound"
+      ],
+      "source": "AMBIENT_CAVE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "confirm",
+        "slot"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "confirm",
+        "name"
+      ],
+      "source": "\"&4Confirm\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "confirm",
+        "lore"
+      ],
+      "source": "\r\n      - \"{$s}Your kingdom's data will be\"\r\n      - \"{$s}permanently lost.\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$s}Your kingdom's data will be\"",
+        "\"{$s}permanently lost.\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "cancel"
+      ],
+      "source": "\r\n    material: RED_WOOL\r\n    sound: BLOCK_NOTE_BLOCK_BASS, 1, 1\r\n    slot: 3\r\n    name: \"&cCancel\"\r\n    lore: [ \"{$s}Cancel confirmation.\" ]",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "cancel",
+        "material"
+      ],
+      "source": "RED_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "cancel",
+        "sound"
+      ],
+      "source": "BLOCK_NOTE_BLOCK_BASS, 1, 1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "cancel",
+        "slot"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "cancel",
+        "name"
+      ],
+      "source": "\"&cCancel\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "cancel",
+        "lore"
+      ],
+      "source": "[ \"{$s}Cancel confirmation.\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$s}Cancel confirmation.\""
+      ]
+    }
+  ]
+}

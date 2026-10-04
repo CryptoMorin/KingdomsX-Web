@@ -1,0 +1,3542 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "guis/structures/regulator/interaction-editor.yml",
+  "schemaId": "guis/schema",
+  "options": [
+    {
+      "path": [
+        "title"
+      ],
+      "source": "\"&eInteraction Editor\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "rows"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sound"
+      ],
+      "source": "BLOCK_ANVIL_USE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options"
+      ],
+      "source": "\r\n  all:\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}All{$colon} {$p}Enabled\"\r\n      material: BOOK\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n    else:\r\n      name: \"{$p}All{$colon} &cDisabled\"\r\n      material: BOOK\r\n    slot: 0\r\n  doors:\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}Doors{$colon} {$p}Enabled\"\r\n      material: OAK_DOOR\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n    else:\r\n      name: \"{$p}Doors{$colon} &cDisabled\"\r\n      material: OAK_DOOR\r\n    slot: 1\r\n  buttons-and-levers:\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}Buttons & Levers{$colon} {$p}Enabled\"\r\n      material: LEVER\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n    else:\r\n      name: \"{$p}Buttons & Levers{$colon} &cDisabled\"\r\n      material: LEVER\r\n    slot: 2\r\n  shulker-boxes:\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}Shulker Boxes{$colon} {$p}Enabled\"\r\n      material: SHULKER_BOX\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n    else:\r\n      name: \"{$p}Shulker Boxes{$colon} &cDisabled\"\r\n      material: SHULKER_BOX\r\n    slot: 3\r\n  enchantment-table:\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}Enchantment Table{$colon} {$p}Enabled\"\r\n      material: ENCHANTING_TABLE\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n    else:\r\n      name: \"{$p}Enchantment Table{$colon} &cDisabled\"\r\n      material: ENCHANTING_TABLE\r\n    slot: 4\r\n  crafting-table:\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}Crafting Table{$colon} {$p}Enabled\"\r\n      material: CRAFTING_TABLE\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n    else:\r\n      name: \"{$p}Crafting Table{$colon} &cDisabled\"\r\n      material: CRAFTING_TABLE\r\n    slot: 5\r\n  chests:\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}Chests{$colon} {$p}Enabled\"\r\n      material: CHEST\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n    else:\r\n      name: \"{$p}Chests{$colon} &cDisabled\"\r\n      material: CHEST\r\n    slot: 6\r\n  beds:\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}Beds{$colon} {$p}Enabled\"\r\n      material: RED_BED\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n    else:\r\n      name: \"{$p}Beds{$colon} &cDisabled\"\r\n      material: RED_BED\r\n    slot: 7\r\n  loom:\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}Loom{$colon} {$p}Enabled\"\r\n      material: LOOM\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n    else:\r\n      name: \"{$p}Loom{$colon} &cDisabled\"\r\n      material: LOOM\r\n    slot: 8\r\n  jigsaw:\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}Jigsaw{$colon} {$p}Enabled\"\r\n      material: JIGSAW\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n    else:\r\n      name: \"{$p}Jigsaw{$colon} &cDisabled\"\r\n      material: JIGSAW\r\n    slot: 9\r\n  hopper:\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}Hopper{$colon} {$p}Enabled\"\r\n      material: HOPPER\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n    else:\r\n      name: \"{$p}Hopper{$colon} &cDisabled\"\r\n      material: HOPPER\r\n    slot: 10\r\n  dispenser:\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}Dispenser{$colon} {$p}Enabled\"\r\n      material: DISPENSER\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n    else:\r\n      name: \"{$p}Dispenser{$colon} &cDisabled\"\r\n      material: DISPENSER\r\n    slot: 11\r\n  smoker:\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}Smoker{$colon} {$p}Enabled\"\r\n      material: SMOKER\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n    else:\r\n      name: \"{$p}Smoker{$colon} &cDisabled\"\r\n      material: SMOKER\r\n    slot: 12\r\n  furnaces:\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}Furnaces{$colon} {$p}Enabled\"\r\n      material: FURNACE\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n    else:\r\n      name: \"{$p}Furnaces{$colon} &cDisabled\"\r\n      material: FURNACE\r\n    slot: 13\r\n  dropper:\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}Dropper{$colon} {$p}Enabled\"\r\n      material: DROPPER\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n    else:\r\n      name: \"{$p}Dropper{$colon} &cDisabled\"\r\n      material: DROPPER\r\n    slot: 14\r\n  beacon:\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}Beacon{$colon} {$p}Enabled\"\r\n      material: BEACON\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n    else:\r\n      name: \"{$p}Beacon{$colon} &cDisabled\"\r\n      material: BEACON\r\n    slot: 15\r\n  anvils:\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}Anvils{$colon} {$p}Enabled\"\r\n      material: ANVIL\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n    else:\r\n      name: \"{$p}Anvils{$colon} &cDisabled\"\r\n      material: ANVIL\r\n    slot: 16\r\n  brewing-stand:\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}Brewing Stand{$colon} {$p}Enabled\"\r\n      material: BREWING_STAND\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n    else:\r\n      name: \"{$p}Brewing Stand{$colon} &cDisabled\"\r\n      material: BREWING_STAND\r\n    slot: 17\r\n  cartography-tables:\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}Cartography Tables{$colon} {$p}Enabled\"\r\n      material: CARTOGRAPHY_TABLE\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n    else:\r\n      name: \"{$p}Cartography Tables{$colon} &cDisabled\"\r\n      material: CARTOGRAPHY_TABLE\r\n    slot: 18\r\n  smithing-table:\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}Smithing Table{$colon} {$p}Enabled\"\r\n      material: SMITHING_TABLE\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n    else:\r\n      name: \"{$p}Smithing Table{$colon} &cDisabled\"\r\n      material: SMITHING_TABLE\r\n    slot: 19\r\n  plates:\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}Plates{$colon} {$p}Enabled\"\r\n      material: STONE_PRESSURE_PLATE\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n    else:\r\n      name: \"{$p}Plates{$colon} &cDisabled\"\r\n      material: STONE_PRESSURE_PLATE\r\n    slot: 20",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "all"
+      ],
+      "source": "\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}All{$colon} {$p}Enabled\"\r\n      material: BOOK\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n    else:\r\n      name: \"{$p}All{$colon} &cDisabled\"\r\n      material: BOOK\r\n    slot: 0\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "all",
+        "enabled"
+      ],
+      "source": "\r\n      condition: enabled\r\n      name: \"{$p}All{$colon} {$p}Enabled\"\r\n      material: BOOK\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "all",
+        "enabled",
+        "condition"
+      ],
+      "source": "enabled",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "all",
+        "enabled",
+        "name"
+      ],
+      "source": "\"{$p}All{$colon} {$p}Enabled\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "all",
+        "enabled",
+        "material"
+      ],
+      "source": "BOOK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "all",
+        "enabled",
+        "flags"
+      ],
+      "source": "[ HIDE_ENCHANTS ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "HIDE_ENCHANTS"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "all",
+        "enabled",
+        "enchants"
+      ],
+      "source": "\r\n        DURABILITY: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "all",
+        "enabled",
+        "enchants",
+        "DURABILITY"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "all",
+        "else"
+      ],
+      "source": "\r\n      name: \"{$p}All{$colon} &cDisabled\"\r\n      material: BOOK\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "all",
+        "else",
+        "name"
+      ],
+      "source": "\"{$p}All{$colon} &cDisabled\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "all",
+        "else",
+        "material"
+      ],
+      "source": "BOOK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "all",
+        "slot"
+      ],
+      "source": "0",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "doors"
+      ],
+      "source": "\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}Doors{$colon} {$p}Enabled\"\r\n      material: OAK_DOOR\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n    else:\r\n      name: \"{$p}Doors{$colon} &cDisabled\"\r\n      material: OAK_DOOR\r\n    slot: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "doors",
+        "enabled"
+      ],
+      "source": "\r\n      condition: enabled\r\n      name: \"{$p}Doors{$colon} {$p}Enabled\"\r\n      material: OAK_DOOR\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "doors",
+        "enabled",
+        "condition"
+      ],
+      "source": "enabled",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "doors",
+        "enabled",
+        "name"
+      ],
+      "source": "\"{$p}Doors{$colon} {$p}Enabled\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "doors",
+        "enabled",
+        "material"
+      ],
+      "source": "OAK_DOOR",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "doors",
+        "enabled",
+        "flags"
+      ],
+      "source": "[ HIDE_ENCHANTS ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "HIDE_ENCHANTS"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "doors",
+        "enabled",
+        "enchants"
+      ],
+      "source": "\r\n        DURABILITY: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "doors",
+        "enabled",
+        "enchants",
+        "DURABILITY"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "doors",
+        "else"
+      ],
+      "source": "\r\n      name: \"{$p}Doors{$colon} &cDisabled\"\r\n      material: OAK_DOOR\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "doors",
+        "else",
+        "name"
+      ],
+      "source": "\"{$p}Doors{$colon} &cDisabled\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "doors",
+        "else",
+        "material"
+      ],
+      "source": "OAK_DOOR",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "doors",
+        "slot"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "buttons-and-levers"
+      ],
+      "source": "\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}Buttons & Levers{$colon} {$p}Enabled\"\r\n      material: LEVER\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n    else:\r\n      name: \"{$p}Buttons & Levers{$colon} &cDisabled\"\r\n      material: LEVER\r\n    slot: 2\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "buttons-and-levers",
+        "enabled"
+      ],
+      "source": "\r\n      condition: enabled\r\n      name: \"{$p}Buttons & Levers{$colon} {$p}Enabled\"\r\n      material: LEVER\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "buttons-and-levers",
+        "enabled",
+        "condition"
+      ],
+      "source": "enabled",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "buttons-and-levers",
+        "enabled",
+        "name"
+      ],
+      "source": "\"{$p}Buttons & Levers{$colon} {$p}Enabled\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "buttons-and-levers",
+        "enabled",
+        "material"
+      ],
+      "source": "LEVER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "buttons-and-levers",
+        "enabled",
+        "flags"
+      ],
+      "source": "[ HIDE_ENCHANTS ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "HIDE_ENCHANTS"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "buttons-and-levers",
+        "enabled",
+        "enchants"
+      ],
+      "source": "\r\n        DURABILITY: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "buttons-and-levers",
+        "enabled",
+        "enchants",
+        "DURABILITY"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "buttons-and-levers",
+        "else"
+      ],
+      "source": "\r\n      name: \"{$p}Buttons & Levers{$colon} &cDisabled\"\r\n      material: LEVER\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "buttons-and-levers",
+        "else",
+        "name"
+      ],
+      "source": "\"{$p}Buttons & Levers{$colon} &cDisabled\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "buttons-and-levers",
+        "else",
+        "material"
+      ],
+      "source": "LEVER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "buttons-and-levers",
+        "slot"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shulker-boxes"
+      ],
+      "source": "\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}Shulker Boxes{$colon} {$p}Enabled\"\r\n      material: SHULKER_BOX\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n    else:\r\n      name: \"{$p}Shulker Boxes{$colon} &cDisabled\"\r\n      material: SHULKER_BOX\r\n    slot: 3\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shulker-boxes",
+        "enabled"
+      ],
+      "source": "\r\n      condition: enabled\r\n      name: \"{$p}Shulker Boxes{$colon} {$p}Enabled\"\r\n      material: SHULKER_BOX\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shulker-boxes",
+        "enabled",
+        "condition"
+      ],
+      "source": "enabled",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shulker-boxes",
+        "enabled",
+        "name"
+      ],
+      "source": "\"{$p}Shulker Boxes{$colon} {$p}Enabled\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shulker-boxes",
+        "enabled",
+        "material"
+      ],
+      "source": "SHULKER_BOX",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shulker-boxes",
+        "enabled",
+        "flags"
+      ],
+      "source": "[ HIDE_ENCHANTS ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "HIDE_ENCHANTS"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "shulker-boxes",
+        "enabled",
+        "enchants"
+      ],
+      "source": "\r\n        DURABILITY: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shulker-boxes",
+        "enabled",
+        "enchants",
+        "DURABILITY"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shulker-boxes",
+        "else"
+      ],
+      "source": "\r\n      name: \"{$p}Shulker Boxes{$colon} &cDisabled\"\r\n      material: SHULKER_BOX\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shulker-boxes",
+        "else",
+        "name"
+      ],
+      "source": "\"{$p}Shulker Boxes{$colon} &cDisabled\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shulker-boxes",
+        "else",
+        "material"
+      ],
+      "source": "SHULKER_BOX",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shulker-boxes",
+        "slot"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchantment-table"
+      ],
+      "source": "\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}Enchantment Table{$colon} {$p}Enabled\"\r\n      material: ENCHANTING_TABLE\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n    else:\r\n      name: \"{$p}Enchantment Table{$colon} &cDisabled\"\r\n      material: ENCHANTING_TABLE\r\n    slot: 4\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchantment-table",
+        "enabled"
+      ],
+      "source": "\r\n      condition: enabled\r\n      name: \"{$p}Enchantment Table{$colon} {$p}Enabled\"\r\n      material: ENCHANTING_TABLE\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchantment-table",
+        "enabled",
+        "condition"
+      ],
+      "source": "enabled",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchantment-table",
+        "enabled",
+        "name"
+      ],
+      "source": "\"{$p}Enchantment Table{$colon} {$p}Enabled\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchantment-table",
+        "enabled",
+        "material"
+      ],
+      "source": "ENCHANTING_TABLE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchantment-table",
+        "enabled",
+        "flags"
+      ],
+      "source": "[ HIDE_ENCHANTS ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "HIDE_ENCHANTS"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "enchantment-table",
+        "enabled",
+        "enchants"
+      ],
+      "source": "\r\n        DURABILITY: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchantment-table",
+        "enabled",
+        "enchants",
+        "DURABILITY"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchantment-table",
+        "else"
+      ],
+      "source": "\r\n      name: \"{$p}Enchantment Table{$colon} &cDisabled\"\r\n      material: ENCHANTING_TABLE\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchantment-table",
+        "else",
+        "name"
+      ],
+      "source": "\"{$p}Enchantment Table{$colon} &cDisabled\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchantment-table",
+        "else",
+        "material"
+      ],
+      "source": "ENCHANTING_TABLE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchantment-table",
+        "slot"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "crafting-table"
+      ],
+      "source": "\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}Crafting Table{$colon} {$p}Enabled\"\r\n      material: CRAFTING_TABLE\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n    else:\r\n      name: \"{$p}Crafting Table{$colon} &cDisabled\"\r\n      material: CRAFTING_TABLE\r\n    slot: 5\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "crafting-table",
+        "enabled"
+      ],
+      "source": "\r\n      condition: enabled\r\n      name: \"{$p}Crafting Table{$colon} {$p}Enabled\"\r\n      material: CRAFTING_TABLE\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "crafting-table",
+        "enabled",
+        "condition"
+      ],
+      "source": "enabled",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "crafting-table",
+        "enabled",
+        "name"
+      ],
+      "source": "\"{$p}Crafting Table{$colon} {$p}Enabled\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "crafting-table",
+        "enabled",
+        "material"
+      ],
+      "source": "CRAFTING_TABLE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "crafting-table",
+        "enabled",
+        "flags"
+      ],
+      "source": "[ HIDE_ENCHANTS ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "HIDE_ENCHANTS"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "crafting-table",
+        "enabled",
+        "enchants"
+      ],
+      "source": "\r\n        DURABILITY: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "crafting-table",
+        "enabled",
+        "enchants",
+        "DURABILITY"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "crafting-table",
+        "else"
+      ],
+      "source": "\r\n      name: \"{$p}Crafting Table{$colon} &cDisabled\"\r\n      material: CRAFTING_TABLE\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "crafting-table",
+        "else",
+        "name"
+      ],
+      "source": "\"{$p}Crafting Table{$colon} &cDisabled\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "crafting-table",
+        "else",
+        "material"
+      ],
+      "source": "CRAFTING_TABLE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "crafting-table",
+        "slot"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "chests"
+      ],
+      "source": "\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}Chests{$colon} {$p}Enabled\"\r\n      material: CHEST\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n    else:\r\n      name: \"{$p}Chests{$colon} &cDisabled\"\r\n      material: CHEST\r\n    slot: 6\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "chests",
+        "enabled"
+      ],
+      "source": "\r\n      condition: enabled\r\n      name: \"{$p}Chests{$colon} {$p}Enabled\"\r\n      material: CHEST\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "chests",
+        "enabled",
+        "condition"
+      ],
+      "source": "enabled",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "chests",
+        "enabled",
+        "name"
+      ],
+      "source": "\"{$p}Chests{$colon} {$p}Enabled\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "chests",
+        "enabled",
+        "material"
+      ],
+      "source": "CHEST",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "chests",
+        "enabled",
+        "flags"
+      ],
+      "source": "[ HIDE_ENCHANTS ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "HIDE_ENCHANTS"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "chests",
+        "enabled",
+        "enchants"
+      ],
+      "source": "\r\n        DURABILITY: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "chests",
+        "enabled",
+        "enchants",
+        "DURABILITY"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "chests",
+        "else"
+      ],
+      "source": "\r\n      name: \"{$p}Chests{$colon} &cDisabled\"\r\n      material: CHEST\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "chests",
+        "else",
+        "name"
+      ],
+      "source": "\"{$p}Chests{$colon} &cDisabled\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "chests",
+        "else",
+        "material"
+      ],
+      "source": "CHEST",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "chests",
+        "slot"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "beds"
+      ],
+      "source": "\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}Beds{$colon} {$p}Enabled\"\r\n      material: RED_BED\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n    else:\r\n      name: \"{$p}Beds{$colon} &cDisabled\"\r\n      material: RED_BED\r\n    slot: 7\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "beds",
+        "enabled"
+      ],
+      "source": "\r\n      condition: enabled\r\n      name: \"{$p}Beds{$colon} {$p}Enabled\"\r\n      material: RED_BED\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "beds",
+        "enabled",
+        "condition"
+      ],
+      "source": "enabled",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "beds",
+        "enabled",
+        "name"
+      ],
+      "source": "\"{$p}Beds{$colon} {$p}Enabled\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "beds",
+        "enabled",
+        "material"
+      ],
+      "source": "RED_BED",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "beds",
+        "enabled",
+        "flags"
+      ],
+      "source": "[ HIDE_ENCHANTS ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "HIDE_ENCHANTS"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "beds",
+        "enabled",
+        "enchants"
+      ],
+      "source": "\r\n        DURABILITY: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "beds",
+        "enabled",
+        "enchants",
+        "DURABILITY"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "beds",
+        "else"
+      ],
+      "source": "\r\n      name: \"{$p}Beds{$colon} &cDisabled\"\r\n      material: RED_BED\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "beds",
+        "else",
+        "name"
+      ],
+      "source": "\"{$p}Beds{$colon} &cDisabled\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "beds",
+        "else",
+        "material"
+      ],
+      "source": "RED_BED",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "beds",
+        "slot"
+      ],
+      "source": "7",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "loom"
+      ],
+      "source": "\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}Loom{$colon} {$p}Enabled\"\r\n      material: LOOM\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n    else:\r\n      name: \"{$p}Loom{$colon} &cDisabled\"\r\n      material: LOOM\r\n    slot: 8\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "loom",
+        "enabled"
+      ],
+      "source": "\r\n      condition: enabled\r\n      name: \"{$p}Loom{$colon} {$p}Enabled\"\r\n      material: LOOM\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "loom",
+        "enabled",
+        "condition"
+      ],
+      "source": "enabled",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "loom",
+        "enabled",
+        "name"
+      ],
+      "source": "\"{$p}Loom{$colon} {$p}Enabled\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "loom",
+        "enabled",
+        "material"
+      ],
+      "source": "LOOM",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "loom",
+        "enabled",
+        "flags"
+      ],
+      "source": "[ HIDE_ENCHANTS ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "HIDE_ENCHANTS"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "loom",
+        "enabled",
+        "enchants"
+      ],
+      "source": "\r\n        DURABILITY: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "loom",
+        "enabled",
+        "enchants",
+        "DURABILITY"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "loom",
+        "else"
+      ],
+      "source": "\r\n      name: \"{$p}Loom{$colon} &cDisabled\"\r\n      material: LOOM\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "loom",
+        "else",
+        "name"
+      ],
+      "source": "\"{$p}Loom{$colon} &cDisabled\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "loom",
+        "else",
+        "material"
+      ],
+      "source": "LOOM",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "loom",
+        "slot"
+      ],
+      "source": "8",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "jigsaw"
+      ],
+      "source": "\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}Jigsaw{$colon} {$p}Enabled\"\r\n      material: JIGSAW\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n    else:\r\n      name: \"{$p}Jigsaw{$colon} &cDisabled\"\r\n      material: JIGSAW\r\n    slot: 9\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "jigsaw",
+        "enabled"
+      ],
+      "source": "\r\n      condition: enabled\r\n      name: \"{$p}Jigsaw{$colon} {$p}Enabled\"\r\n      material: JIGSAW\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "jigsaw",
+        "enabled",
+        "condition"
+      ],
+      "source": "enabled",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "jigsaw",
+        "enabled",
+        "name"
+      ],
+      "source": "\"{$p}Jigsaw{$colon} {$p}Enabled\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "jigsaw",
+        "enabled",
+        "material"
+      ],
+      "source": "JIGSAW",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "jigsaw",
+        "enabled",
+        "flags"
+      ],
+      "source": "[ HIDE_ENCHANTS ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "HIDE_ENCHANTS"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "jigsaw",
+        "enabled",
+        "enchants"
+      ],
+      "source": "\r\n        DURABILITY: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "jigsaw",
+        "enabled",
+        "enchants",
+        "DURABILITY"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "jigsaw",
+        "else"
+      ],
+      "source": "\r\n      name: \"{$p}Jigsaw{$colon} &cDisabled\"\r\n      material: JIGSAW\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "jigsaw",
+        "else",
+        "name"
+      ],
+      "source": "\"{$p}Jigsaw{$colon} &cDisabled\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "jigsaw",
+        "else",
+        "material"
+      ],
+      "source": "JIGSAW",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "jigsaw",
+        "slot"
+      ],
+      "source": "9",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "hopper"
+      ],
+      "source": "\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}Hopper{$colon} {$p}Enabled\"\r\n      material: HOPPER\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n    else:\r\n      name: \"{$p}Hopper{$colon} &cDisabled\"\r\n      material: HOPPER\r\n    slot: 10\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "hopper",
+        "enabled"
+      ],
+      "source": "\r\n      condition: enabled\r\n      name: \"{$p}Hopper{$colon} {$p}Enabled\"\r\n      material: HOPPER\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "hopper",
+        "enabled",
+        "condition"
+      ],
+      "source": "enabled",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "hopper",
+        "enabled",
+        "name"
+      ],
+      "source": "\"{$p}Hopper{$colon} {$p}Enabled\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "hopper",
+        "enabled",
+        "material"
+      ],
+      "source": "HOPPER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "hopper",
+        "enabled",
+        "flags"
+      ],
+      "source": "[ HIDE_ENCHANTS ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "HIDE_ENCHANTS"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "hopper",
+        "enabled",
+        "enchants"
+      ],
+      "source": "\r\n        DURABILITY: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "hopper",
+        "enabled",
+        "enchants",
+        "DURABILITY"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "hopper",
+        "else"
+      ],
+      "source": "\r\n      name: \"{$p}Hopper{$colon} &cDisabled\"\r\n      material: HOPPER\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "hopper",
+        "else",
+        "name"
+      ],
+      "source": "\"{$p}Hopper{$colon} &cDisabled\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "hopper",
+        "else",
+        "material"
+      ],
+      "source": "HOPPER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "hopper",
+        "slot"
+      ],
+      "source": "10",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "dispenser"
+      ],
+      "source": "\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}Dispenser{$colon} {$p}Enabled\"\r\n      material: DISPENSER\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n    else:\r\n      name: \"{$p}Dispenser{$colon} &cDisabled\"\r\n      material: DISPENSER\r\n    slot: 11\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "dispenser",
+        "enabled"
+      ],
+      "source": "\r\n      condition: enabled\r\n      name: \"{$p}Dispenser{$colon} {$p}Enabled\"\r\n      material: DISPENSER\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "dispenser",
+        "enabled",
+        "condition"
+      ],
+      "source": "enabled",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "dispenser",
+        "enabled",
+        "name"
+      ],
+      "source": "\"{$p}Dispenser{$colon} {$p}Enabled\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "dispenser",
+        "enabled",
+        "material"
+      ],
+      "source": "DISPENSER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "dispenser",
+        "enabled",
+        "flags"
+      ],
+      "source": "[ HIDE_ENCHANTS ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "HIDE_ENCHANTS"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "dispenser",
+        "enabled",
+        "enchants"
+      ],
+      "source": "\r\n        DURABILITY: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "dispenser",
+        "enabled",
+        "enchants",
+        "DURABILITY"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "dispenser",
+        "else"
+      ],
+      "source": "\r\n      name: \"{$p}Dispenser{$colon} &cDisabled\"\r\n      material: DISPENSER\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "dispenser",
+        "else",
+        "name"
+      ],
+      "source": "\"{$p}Dispenser{$colon} &cDisabled\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "dispenser",
+        "else",
+        "material"
+      ],
+      "source": "DISPENSER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "dispenser",
+        "slot"
+      ],
+      "source": "11",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "smoker"
+      ],
+      "source": "\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}Smoker{$colon} {$p}Enabled\"\r\n      material: SMOKER\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n    else:\r\n      name: \"{$p}Smoker{$colon} &cDisabled\"\r\n      material: SMOKER\r\n    slot: 12\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "smoker",
+        "enabled"
+      ],
+      "source": "\r\n      condition: enabled\r\n      name: \"{$p}Smoker{$colon} {$p}Enabled\"\r\n      material: SMOKER\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "smoker",
+        "enabled",
+        "condition"
+      ],
+      "source": "enabled",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "smoker",
+        "enabled",
+        "name"
+      ],
+      "source": "\"{$p}Smoker{$colon} {$p}Enabled\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "smoker",
+        "enabled",
+        "material"
+      ],
+      "source": "SMOKER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "smoker",
+        "enabled",
+        "flags"
+      ],
+      "source": "[ HIDE_ENCHANTS ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "HIDE_ENCHANTS"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "smoker",
+        "enabled",
+        "enchants"
+      ],
+      "source": "\r\n        DURABILITY: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "smoker",
+        "enabled",
+        "enchants",
+        "DURABILITY"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "smoker",
+        "else"
+      ],
+      "source": "\r\n      name: \"{$p}Smoker{$colon} &cDisabled\"\r\n      material: SMOKER\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "smoker",
+        "else",
+        "name"
+      ],
+      "source": "\"{$p}Smoker{$colon} &cDisabled\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "smoker",
+        "else",
+        "material"
+      ],
+      "source": "SMOKER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "smoker",
+        "slot"
+      ],
+      "source": "12",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "furnaces"
+      ],
+      "source": "\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}Furnaces{$colon} {$p}Enabled\"\r\n      material: FURNACE\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n    else:\r\n      name: \"{$p}Furnaces{$colon} &cDisabled\"\r\n      material: FURNACE\r\n    slot: 13\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "furnaces",
+        "enabled"
+      ],
+      "source": "\r\n      condition: enabled\r\n      name: \"{$p}Furnaces{$colon} {$p}Enabled\"\r\n      material: FURNACE\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "furnaces",
+        "enabled",
+        "condition"
+      ],
+      "source": "enabled",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "furnaces",
+        "enabled",
+        "name"
+      ],
+      "source": "\"{$p}Furnaces{$colon} {$p}Enabled\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "furnaces",
+        "enabled",
+        "material"
+      ],
+      "source": "FURNACE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "furnaces",
+        "enabled",
+        "flags"
+      ],
+      "source": "[ HIDE_ENCHANTS ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "HIDE_ENCHANTS"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "furnaces",
+        "enabled",
+        "enchants"
+      ],
+      "source": "\r\n        DURABILITY: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "furnaces",
+        "enabled",
+        "enchants",
+        "DURABILITY"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "furnaces",
+        "else"
+      ],
+      "source": "\r\n      name: \"{$p}Furnaces{$colon} &cDisabled\"\r\n      material: FURNACE\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "furnaces",
+        "else",
+        "name"
+      ],
+      "source": "\"{$p}Furnaces{$colon} &cDisabled\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "furnaces",
+        "else",
+        "material"
+      ],
+      "source": "FURNACE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "furnaces",
+        "slot"
+      ],
+      "source": "13",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "dropper"
+      ],
+      "source": "\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}Dropper{$colon} {$p}Enabled\"\r\n      material: DROPPER\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n    else:\r\n      name: \"{$p}Dropper{$colon} &cDisabled\"\r\n      material: DROPPER\r\n    slot: 14\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "dropper",
+        "enabled"
+      ],
+      "source": "\r\n      condition: enabled\r\n      name: \"{$p}Dropper{$colon} {$p}Enabled\"\r\n      material: DROPPER\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "dropper",
+        "enabled",
+        "condition"
+      ],
+      "source": "enabled",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "dropper",
+        "enabled",
+        "name"
+      ],
+      "source": "\"{$p}Dropper{$colon} {$p}Enabled\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "dropper",
+        "enabled",
+        "material"
+      ],
+      "source": "DROPPER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "dropper",
+        "enabled",
+        "flags"
+      ],
+      "source": "[ HIDE_ENCHANTS ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "HIDE_ENCHANTS"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "dropper",
+        "enabled",
+        "enchants"
+      ],
+      "source": "\r\n        DURABILITY: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "dropper",
+        "enabled",
+        "enchants",
+        "DURABILITY"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "dropper",
+        "else"
+      ],
+      "source": "\r\n      name: \"{$p}Dropper{$colon} &cDisabled\"\r\n      material: DROPPER\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "dropper",
+        "else",
+        "name"
+      ],
+      "source": "\"{$p}Dropper{$colon} &cDisabled\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "dropper",
+        "else",
+        "material"
+      ],
+      "source": "DROPPER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "dropper",
+        "slot"
+      ],
+      "source": "14",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "beacon"
+      ],
+      "source": "\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}Beacon{$colon} {$p}Enabled\"\r\n      material: BEACON\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n    else:\r\n      name: \"{$p}Beacon{$colon} &cDisabled\"\r\n      material: BEACON\r\n    slot: 15\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "beacon",
+        "enabled"
+      ],
+      "source": "\r\n      condition: enabled\r\n      name: \"{$p}Beacon{$colon} {$p}Enabled\"\r\n      material: BEACON\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "beacon",
+        "enabled",
+        "condition"
+      ],
+      "source": "enabled",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "beacon",
+        "enabled",
+        "name"
+      ],
+      "source": "\"{$p}Beacon{$colon} {$p}Enabled\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "beacon",
+        "enabled",
+        "material"
+      ],
+      "source": "BEACON",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "beacon",
+        "enabled",
+        "flags"
+      ],
+      "source": "[ HIDE_ENCHANTS ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "HIDE_ENCHANTS"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "beacon",
+        "enabled",
+        "enchants"
+      ],
+      "source": "\r\n        DURABILITY: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "beacon",
+        "enabled",
+        "enchants",
+        "DURABILITY"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "beacon",
+        "else"
+      ],
+      "source": "\r\n      name: \"{$p}Beacon{$colon} &cDisabled\"\r\n      material: BEACON\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "beacon",
+        "else",
+        "name"
+      ],
+      "source": "\"{$p}Beacon{$colon} &cDisabled\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "beacon",
+        "else",
+        "material"
+      ],
+      "source": "BEACON",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "beacon",
+        "slot"
+      ],
+      "source": "15",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "anvils"
+      ],
+      "source": "\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}Anvils{$colon} {$p}Enabled\"\r\n      material: ANVIL\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n    else:\r\n      name: \"{$p}Anvils{$colon} &cDisabled\"\r\n      material: ANVIL\r\n    slot: 16\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "anvils",
+        "enabled"
+      ],
+      "source": "\r\n      condition: enabled\r\n      name: \"{$p}Anvils{$colon} {$p}Enabled\"\r\n      material: ANVIL\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "anvils",
+        "enabled",
+        "condition"
+      ],
+      "source": "enabled",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "anvils",
+        "enabled",
+        "name"
+      ],
+      "source": "\"{$p}Anvils{$colon} {$p}Enabled\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "anvils",
+        "enabled",
+        "material"
+      ],
+      "source": "ANVIL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "anvils",
+        "enabled",
+        "flags"
+      ],
+      "source": "[ HIDE_ENCHANTS ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "HIDE_ENCHANTS"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "anvils",
+        "enabled",
+        "enchants"
+      ],
+      "source": "\r\n        DURABILITY: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "anvils",
+        "enabled",
+        "enchants",
+        "DURABILITY"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "anvils",
+        "else"
+      ],
+      "source": "\r\n      name: \"{$p}Anvils{$colon} &cDisabled\"\r\n      material: ANVIL\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "anvils",
+        "else",
+        "name"
+      ],
+      "source": "\"{$p}Anvils{$colon} &cDisabled\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "anvils",
+        "else",
+        "material"
+      ],
+      "source": "ANVIL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "anvils",
+        "slot"
+      ],
+      "source": "16",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "brewing-stand"
+      ],
+      "source": "\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}Brewing Stand{$colon} {$p}Enabled\"\r\n      material: BREWING_STAND\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n    else:\r\n      name: \"{$p}Brewing Stand{$colon} &cDisabled\"\r\n      material: BREWING_STAND\r\n    slot: 17\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "brewing-stand",
+        "enabled"
+      ],
+      "source": "\r\n      condition: enabled\r\n      name: \"{$p}Brewing Stand{$colon} {$p}Enabled\"\r\n      material: BREWING_STAND\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "brewing-stand",
+        "enabled",
+        "condition"
+      ],
+      "source": "enabled",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "brewing-stand",
+        "enabled",
+        "name"
+      ],
+      "source": "\"{$p}Brewing Stand{$colon} {$p}Enabled\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "brewing-stand",
+        "enabled",
+        "material"
+      ],
+      "source": "BREWING_STAND",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "brewing-stand",
+        "enabled",
+        "flags"
+      ],
+      "source": "[ HIDE_ENCHANTS ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "HIDE_ENCHANTS"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "brewing-stand",
+        "enabled",
+        "enchants"
+      ],
+      "source": "\r\n        DURABILITY: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "brewing-stand",
+        "enabled",
+        "enchants",
+        "DURABILITY"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "brewing-stand",
+        "else"
+      ],
+      "source": "\r\n      name: \"{$p}Brewing Stand{$colon} &cDisabled\"\r\n      material: BREWING_STAND\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "brewing-stand",
+        "else",
+        "name"
+      ],
+      "source": "\"{$p}Brewing Stand{$colon} &cDisabled\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "brewing-stand",
+        "else",
+        "material"
+      ],
+      "source": "BREWING_STAND",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "brewing-stand",
+        "slot"
+      ],
+      "source": "17",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "cartography-tables"
+      ],
+      "source": "\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}Cartography Tables{$colon} {$p}Enabled\"\r\n      material: CARTOGRAPHY_TABLE\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n    else:\r\n      name: \"{$p}Cartography Tables{$colon} &cDisabled\"\r\n      material: CARTOGRAPHY_TABLE\r\n    slot: 18\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "cartography-tables",
+        "enabled"
+      ],
+      "source": "\r\n      condition: enabled\r\n      name: \"{$p}Cartography Tables{$colon} {$p}Enabled\"\r\n      material: CARTOGRAPHY_TABLE\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "cartography-tables",
+        "enabled",
+        "condition"
+      ],
+      "source": "enabled",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "cartography-tables",
+        "enabled",
+        "name"
+      ],
+      "source": "\"{$p}Cartography Tables{$colon} {$p}Enabled\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "cartography-tables",
+        "enabled",
+        "material"
+      ],
+      "source": "CARTOGRAPHY_TABLE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "cartography-tables",
+        "enabled",
+        "flags"
+      ],
+      "source": "[ HIDE_ENCHANTS ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "HIDE_ENCHANTS"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "cartography-tables",
+        "enabled",
+        "enchants"
+      ],
+      "source": "\r\n        DURABILITY: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "cartography-tables",
+        "enabled",
+        "enchants",
+        "DURABILITY"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "cartography-tables",
+        "else"
+      ],
+      "source": "\r\n      name: \"{$p}Cartography Tables{$colon} &cDisabled\"\r\n      material: CARTOGRAPHY_TABLE\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "cartography-tables",
+        "else",
+        "name"
+      ],
+      "source": "\"{$p}Cartography Tables{$colon} &cDisabled\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "cartography-tables",
+        "else",
+        "material"
+      ],
+      "source": "CARTOGRAPHY_TABLE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "cartography-tables",
+        "slot"
+      ],
+      "source": "18",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "smithing-table"
+      ],
+      "source": "\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}Smithing Table{$colon} {$p}Enabled\"\r\n      material: SMITHING_TABLE\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n    else:\r\n      name: \"{$p}Smithing Table{$colon} &cDisabled\"\r\n      material: SMITHING_TABLE\r\n    slot: 19\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "smithing-table",
+        "enabled"
+      ],
+      "source": "\r\n      condition: enabled\r\n      name: \"{$p}Smithing Table{$colon} {$p}Enabled\"\r\n      material: SMITHING_TABLE\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "smithing-table",
+        "enabled",
+        "condition"
+      ],
+      "source": "enabled",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "smithing-table",
+        "enabled",
+        "name"
+      ],
+      "source": "\"{$p}Smithing Table{$colon} {$p}Enabled\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "smithing-table",
+        "enabled",
+        "material"
+      ],
+      "source": "SMITHING_TABLE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "smithing-table",
+        "enabled",
+        "flags"
+      ],
+      "source": "[ HIDE_ENCHANTS ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "HIDE_ENCHANTS"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "smithing-table",
+        "enabled",
+        "enchants"
+      ],
+      "source": "\r\n        DURABILITY: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "smithing-table",
+        "enabled",
+        "enchants",
+        "DURABILITY"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "smithing-table",
+        "else"
+      ],
+      "source": "\r\n      name: \"{$p}Smithing Table{$colon} &cDisabled\"\r\n      material: SMITHING_TABLE\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "smithing-table",
+        "else",
+        "name"
+      ],
+      "source": "\"{$p}Smithing Table{$colon} &cDisabled\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "smithing-table",
+        "else",
+        "material"
+      ],
+      "source": "SMITHING_TABLE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "smithing-table",
+        "slot"
+      ],
+      "source": "19",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "plates"
+      ],
+      "source": "\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}Plates{$colon} {$p}Enabled\"\r\n      material: STONE_PRESSURE_PLATE\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n    else:\r\n      name: \"{$p}Plates{$colon} &cDisabled\"\r\n      material: STONE_PRESSURE_PLATE\r\n    slot: 20",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "plates",
+        "enabled"
+      ],
+      "source": "\r\n      condition: enabled\r\n      name: \"{$p}Plates{$colon} {$p}Enabled\"\r\n      material: STONE_PRESSURE_PLATE\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "plates",
+        "enabled",
+        "condition"
+      ],
+      "source": "enabled",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "plates",
+        "enabled",
+        "name"
+      ],
+      "source": "\"{$p}Plates{$colon} {$p}Enabled\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "plates",
+        "enabled",
+        "material"
+      ],
+      "source": "STONE_PRESSURE_PLATE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "plates",
+        "enabled",
+        "flags"
+      ],
+      "source": "[ HIDE_ENCHANTS ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "HIDE_ENCHANTS"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "plates",
+        "enabled",
+        "enchants"
+      ],
+      "source": "\r\n        DURABILITY: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "plates",
+        "enabled",
+        "enchants",
+        "DURABILITY"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "plates",
+        "else"
+      ],
+      "source": "\r\n      name: \"{$p}Plates{$colon} &cDisabled\"\r\n      material: STONE_PRESSURE_PLATE\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "plates",
+        "else",
+        "name"
+      ],
+      "source": "\"{$p}Plates{$colon} &cDisabled\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "plates",
+        "else",
+        "material"
+      ],
+      "source": "STONE_PRESSURE_PLATE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "plates",
+        "slot"
+      ],
+      "source": "20",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

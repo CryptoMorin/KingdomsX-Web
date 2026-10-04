@@ -1,0 +1,473 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "guis/structures/nexus/nation/ranks/king-rank-editor.yml",
+  "schemaId": "guis/schema",
+  "options": [
+    {
+      "path": [
+        "title"
+      ],
+      "source": "\"%rank_color%%rank_symbol% %rank_name%\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "rows"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sound"
+      ],
+      "source": "ITEM_BOOK_PAGE_TURN",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options"
+      ],
+      "source": "\r\n  name:\r\n    name: \"&5Name{$colon} {$p}%rank_name%\"\r\n    material: DIAMOND\r\n    lore:\r\n      - \"{$s}The name of this rank.\"\r\n      - \"Can contain any character but must be\"\r\n      - \"20 characters max.\"\r\n      - \"It can also contain color codes.\"\r\n    posx: 1\r\n    posy: 1\r\n  material:\r\n    name: \"&eMaterial{$colon} {$p}%rank_material%\"\r\n    material: GOLD_INGOT\r\n    lore:\r\n      - \"{$s}The material used to display\"\r\n      - \"this rank in the ranks GUI.\"\r\n      - \"You should use the latest material names\"\r\n      - \"even if the server is running on old versions.\"\r\n    posx: 2\r\n    posy: 1\r\n  symbol:\r\n    name: \"&dSymbol{$colon} {$p}%rank_symbol%\"\r\n    material: IRON_INGOT\r\n    lore:\r\n      - \"{$s}Symbol for this rank.\"\r\n      - \"It can only be 5 characters.\"\r\n      - \"Also supports colors.\"\r\n    posx: 3\r\n    posy: 1\r\n  color:\r\n    name: \"%rank_color%Color\"\r\n    material: COAL\r\n    lore:\r\n      - \"{$s}The chat color for this rank.\"\r\n      - \"It can only be 5 characters.\"\r\n    posx: 4\r\n    posy: 1\r\n\r\n  back:\r\n    name: \"{$p}Back\"\r\n    material: PLAYER_HEAD\r\n    skull: \"{$gui-back}\"\r\n    lore:\r\n      - \"{$s}Go back to nexus menu.\"\r\n    posx: 9\r\n    posy: 1",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "name"
+      ],
+      "source": "\r\n    name: \"&5Name{$colon} {$p}%rank_name%\"\r\n    material: DIAMOND\r\n    lore:\r\n      - \"{$s}The name of this rank.\"\r\n      - \"Can contain any character but must be\"\r\n      - \"20 characters max.\"\r\n      - \"It can also contain color codes.\"\r\n    posx: 1\r\n    posy: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "name",
+        "name"
+      ],
+      "source": "\"&5Name{$colon} {$p}%rank_name%\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "name",
+        "material"
+      ],
+      "source": "DIAMOND",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "name",
+        "lore"
+      ],
+      "source": "\r\n      - \"{$s}The name of this rank.\"\r\n      - \"Can contain any character but must be\"\r\n      - \"20 characters max.\"\r\n      - \"It can also contain color codes.\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$s}The name of this rank.\"",
+        "\"Can contain any character but must be\"",
+        "\"20 characters max.\"",
+        "\"It can also contain color codes.\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "name",
+        "posx"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "name",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "material"
+      ],
+      "source": "\r\n    name: \"&eMaterial{$colon} {$p}%rank_material%\"\r\n    material: GOLD_INGOT\r\n    lore:\r\n      - \"{$s}The material used to display\"\r\n      - \"this rank in the ranks GUI.\"\r\n      - \"You should use the latest material names\"\r\n      - \"even if the server is running on old versions.\"\r\n    posx: 2\r\n    posy: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "material",
+        "name"
+      ],
+      "source": "\"&eMaterial{$colon} {$p}%rank_material%\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "material",
+        "material"
+      ],
+      "source": "GOLD_INGOT",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "material",
+        "lore"
+      ],
+      "source": "\r\n      - \"{$s}The material used to display\"\r\n      - \"this rank in the ranks GUI.\"\r\n      - \"You should use the latest material names\"\r\n      - \"even if the server is running on old versions.\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$s}The material used to display\"",
+        "\"this rank in the ranks GUI.\"",
+        "\"You should use the latest material names\"",
+        "\"even if the server is running on old versions.\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "material",
+        "posx"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "material",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "symbol"
+      ],
+      "source": "\r\n    name: \"&dSymbol{$colon} {$p}%rank_symbol%\"\r\n    material: IRON_INGOT\r\n    lore:\r\n      - \"{$s}Symbol for this rank.\"\r\n      - \"It can only be 5 characters.\"\r\n      - \"Also supports colors.\"\r\n    posx: 3\r\n    posy: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "symbol",
+        "name"
+      ],
+      "source": "\"&dSymbol{$colon} {$p}%rank_symbol%\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "symbol",
+        "material"
+      ],
+      "source": "IRON_INGOT",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "symbol",
+        "lore"
+      ],
+      "source": "\r\n      - \"{$s}Symbol for this rank.\"\r\n      - \"It can only be 5 characters.\"\r\n      - \"Also supports colors.\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$s}Symbol for this rank.\"",
+        "\"It can only be 5 characters.\"",
+        "\"Also supports colors.\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "symbol",
+        "posx"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "symbol",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color"
+      ],
+      "source": "\r\n    name: \"%rank_color%Color\"\r\n    material: COAL\r\n    lore:\r\n      - \"{$s}The chat color for this rank.\"\r\n      - \"It can only be 5 characters.\"\r\n    posx: 4\r\n    posy: 1\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color",
+        "name"
+      ],
+      "source": "\"%rank_color%Color\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color",
+        "material"
+      ],
+      "source": "COAL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color",
+        "lore"
+      ],
+      "source": "\r\n      - \"{$s}The chat color for this rank.\"\r\n      - \"It can only be 5 characters.\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$s}The chat color for this rank.\"",
+        "\"It can only be 5 characters.\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "color",
+        "posx"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back"
+      ],
+      "source": "\r\n    name: \"{$p}Back\"\r\n    material: PLAYER_HEAD\r\n    skull: \"{$gui-back}\"\r\n    lore:\r\n      - \"{$s}Go back to nexus menu.\"\r\n    posx: 9\r\n    posy: 1",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "name"
+      ],
+      "source": "\"{$p}Back\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "material"
+      ],
+      "source": "PLAYER_HEAD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "skull"
+      ],
+      "source": "\"{$gui-back}\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "lore"
+      ],
+      "source": "\r\n      - \"{$s}Go back to nexus menu.\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$s}Go back to nexus menu.\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "posx"
+      ],
+      "source": "9",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

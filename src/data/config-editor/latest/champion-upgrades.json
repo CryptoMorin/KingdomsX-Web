@@ -1,0 +1,177 @@
+{
+  "formatVersion": 2,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "id": "champion-upgrades",
+  "resourceName": "champion-upgrades.yml",
+  "schema": {
+    "kind": "mapping",
+    "keys": {
+      "kind": "enum",
+      "values": [
+        "reinforcements",
+        "champions",
+        "focus",
+        "fangs",
+        "plow",
+        "thor",
+        "damage-cap",
+        "death-duel",
+        "drag",
+        "throw",
+        "strength",
+        "speed",
+        "resistance",
+        "health",
+        "burst"
+      ],
+      "allowCustom": false
+    },
+    "values": {
+      "kind": "object",
+      "fields": [
+        {
+          "key": "enabled",
+          "type": {
+            "kind": "boolean"
+          }
+        },
+        {
+          "key": "max-level",
+          "type": {
+            "kind": "expression",
+            "language": "math"
+          }
+        },
+        {
+          "key": "radius",
+          "type": {
+            "kind": "expression",
+            "language": "math"
+          }
+        },
+        {
+          "key": "cooldown",
+          "type": {
+            "kind": "duration",
+            "typeName": "Period"
+          }
+        },
+        {
+          "key": "chance",
+          "type": {
+            "kind": "expression",
+            "language": "math"
+          }
+        },
+        {
+          "key": "scaling",
+          "type": {
+            "kind": "expression",
+            "language": "math"
+          }
+        },
+        {
+          "key": "cost",
+          "type": {
+            "kind": "expression",
+            "language": "math"
+          }
+        },
+        {
+          "key": "default-level",
+          "type": {
+            "kind": "expression",
+            "language": "math"
+          }
+        }
+      ]
+    },
+    "fields": [
+      {
+        "key": "champions",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "string",
+            "typeName": "str"
+          },
+          "values": {
+            "kind": "object",
+            "fields": [
+              {
+                "key": "base",
+                "type": {
+                  "kind": "suggestion",
+                  "typeName": "Entity",
+                  "allowCustom": true
+                }
+              },
+              {
+                "key": "levels",
+                "type": {
+                  "kind": "mapping",
+                  "keys": {
+                    "kind": "integer"
+                  },
+                  "values": {
+                    "kind": "suggestion",
+                    "typeName": "Entity",
+                    "allowCustom": true
+                  },
+                  "fields": [],
+                  "required": [
+                    "1"
+                  ]
+                }
+              },
+              {
+                "key": "cost",
+                "type": {
+                  "kind": "expression",
+                  "language": "math"
+                }
+              },
+              {
+                "key": "max-level",
+                "type": {
+                  "kind": "integer",
+                  "minimum": 1
+                }
+              }
+            ]
+          },
+          "fields": [
+            {
+              "key": "default",
+              "type": {
+                "kind": "string",
+                "typeName": "str"
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "required": [
+      "reinforcements",
+      "champions",
+      "focus",
+      "fangs",
+      "plow",
+      "thor",
+      "damage-cap",
+      "death-duel",
+      "drag",
+      "throw",
+      "strength",
+      "speed",
+      "resistance",
+      "health",
+      "burst"
+    ]
+  }
+}

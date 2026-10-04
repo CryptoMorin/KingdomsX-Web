@@ -1,0 +1,691 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "powers.yml",
+  "schemaId": "powers",
+  "options": [
+    {
+      "path": [
+        "powerups"
+      ],
+      "source": "\r\n  damage-boost:\r\n    enabled: true\r\n    cost: \"(lvl + 1) * 100\"\r\n    scaling: \"percentOf(lvl, damage)\"\r\n    max-level: 70\r\n    own-land-only: true\r\n    conditions: &conditions\r\n      'lvl >= 20 && kingdoms_kingdom_level < 2': '{$$kingdom-levels.II}'\r\n      'lvl >= 30 && kingdoms_kingdom_level < 3': '{$$kingdom-levels.III}'\r\n      'lvl >= 40 && kingdoms_kingdom_level < 4': '{$$kingdom-levels.IV}'\r\n      'lvl >= 50 && kingdoms_kingdom_level < 5': '{$$kingdom-levels.V}'\r\n  damage-reduction:\r\n    enabled: true\r\n    cost: \"(lvl + 1) * 100\"\r\n    scaling: \"percentOf(lvl, damage)\"\r\n    max-level: 70\r\n    own-land-only: true\r\n    conditions: *conditions\r\n  arrow-boost:\r\n    enabled: true\r\n    cost: \"(lvl + 1) * 70\"\r\n    scaling: \"percentOf(lvl, damage)\"\r\n    max-level: 70\r\n    own-land-only: true\r\n    conditions: *conditions\r\n  regeneration-boost:\r\n    enabled: true\r\n    cost: \"(lvl + 1) * 70\"\r\n\r\n    # In this case, \"amount\" refers to the regeneration amount.\r\n    # This is normally a half heart every 0.5 seconds which comes\r\n    # from eating normal food. This option changes the amount, not the\r\n    # 0.5sec interval.\r\n    # https://minecraft.fandom.com/wiki/Hunger\r\n    scaling: \"percentOf(lvl, amount)\"\r\n    max-level: 100\r\n    own-land-only: true\r\n    conditions: *conditions\r\n\r\n\r\n#|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-|#\r\n#|++++++++++++++++++++++++++++++++++++++++++++++++++++++|#\r\n#|                         Power                       |#\r\n#|++++++++++++++++++++++++++++++++++++++++++++++++++++|#\r\n#|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-|#\r\n\r\n# Factions-like power system. This feature is still experimental and may not function properly.\r\n# In order to change the max claims of a kingdom, you need to change the max-claims option in claims.yml\r\n",
+      "comments": [
+        "name: The name used in messages (such as upgrading), this name is not used for any GUI.",
+        "cost: Resource points required each time you upgrade.",
+        "scaling: This depends on what the powerup does.",
+        "max-level: If you decrease the max-level, kingdoms that already",
+        "upgraded that specific upgrade beyond the new value will keep their level,",
+        "and it won't affect them. Unfortunately, you can't fix this unless you",
+        "manually edit their data file.",
+        "own-land-only: Powerups should only work in your own kingdom lands."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "powerups",
+        "damage-boost"
+      ],
+      "source": "\r\n    enabled: true\r\n    cost: \"(lvl + 1) * 100\"\r\n    scaling: \"percentOf(lvl, damage)\"\r\n    max-level: 70\r\n    own-land-only: true\r\n    conditions: &conditions\r\n      'lvl >= 20 && kingdoms_kingdom_level < 2': '{$$kingdom-levels.II}'\r\n      'lvl >= 30 && kingdoms_kingdom_level < 3': '{$$kingdom-levels.III}'\r\n      'lvl >= 40 && kingdoms_kingdom_level < 4': '{$$kingdom-levels.IV}'\r\n      'lvl >= 50 && kingdoms_kingdom_level < 5': '{$$kingdom-levels.V}'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "powerups",
+        "damage-boost",
+        "enabled"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "powerups",
+        "damage-boost",
+        "cost"
+      ],
+      "source": "\"(lvl + 1) * 100\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "powerups",
+        "damage-boost",
+        "scaling"
+      ],
+      "source": "\"percentOf(lvl, damage)\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "powerups",
+        "damage-boost",
+        "max-level"
+      ],
+      "source": "70",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "powerups",
+        "damage-boost",
+        "own-land-only"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "powerups",
+        "damage-boost",
+        "conditions"
+      ],
+      "source": "&conditions\r\n      'lvl >= 20 && kingdoms_kingdom_level < 2': '{$$kingdom-levels.II}'\r\n      'lvl >= 30 && kingdoms_kingdom_level < 3': '{$$kingdom-levels.III}'\r\n      'lvl >= 40 && kingdoms_kingdom_level < 4': '{$$kingdom-levels.IV}'\r\n      'lvl >= 50 && kingdoms_kingdom_level < 5': '{$$kingdom-levels.V}'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "powerups",
+        "damage-boost",
+        "conditions",
+        "lvl >= 20 && kingdoms_kingdom_level < 2"
+      ],
+      "source": "'{$$kingdom-levels.II}'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "powerups",
+        "damage-boost",
+        "conditions",
+        "lvl >= 30 && kingdoms_kingdom_level < 3"
+      ],
+      "source": "'{$$kingdom-levels.III}'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "powerups",
+        "damage-boost",
+        "conditions",
+        "lvl >= 40 && kingdoms_kingdom_level < 4"
+      ],
+      "source": "'{$$kingdom-levels.IV}'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "powerups",
+        "damage-boost",
+        "conditions",
+        "lvl >= 50 && kingdoms_kingdom_level < 5"
+      ],
+      "source": "'{$$kingdom-levels.V}'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "powerups",
+        "damage-reduction"
+      ],
+      "source": "\r\n    enabled: true\r\n    cost: \"(lvl + 1) * 100\"\r\n    scaling: \"percentOf(lvl, damage)\"\r\n    max-level: 70\r\n    own-land-only: true\r\n    conditions: *conditions\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "powerups",
+        "damage-reduction",
+        "enabled"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "powerups",
+        "damage-reduction",
+        "cost"
+      ],
+      "source": "\"(lvl + 1) * 100\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "powerups",
+        "damage-reduction",
+        "scaling"
+      ],
+      "source": "\"percentOf(lvl, damage)\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "powerups",
+        "damage-reduction",
+        "max-level"
+      ],
+      "source": "70",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "powerups",
+        "damage-reduction",
+        "own-land-only"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "powerups",
+        "damage-reduction",
+        "conditions"
+      ],
+      "source": "*conditions",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "powerups",
+        "arrow-boost"
+      ],
+      "source": "\r\n    enabled: true\r\n    cost: \"(lvl + 1) * 70\"\r\n    scaling: \"percentOf(lvl, damage)\"\r\n    max-level: 70\r\n    own-land-only: true\r\n    conditions: *conditions\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "powerups",
+        "arrow-boost",
+        "enabled"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "powerups",
+        "arrow-boost",
+        "cost"
+      ],
+      "source": "\"(lvl + 1) * 70\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "powerups",
+        "arrow-boost",
+        "scaling"
+      ],
+      "source": "\"percentOf(lvl, damage)\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "powerups",
+        "arrow-boost",
+        "max-level"
+      ],
+      "source": "70",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "powerups",
+        "arrow-boost",
+        "own-land-only"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "powerups",
+        "arrow-boost",
+        "conditions"
+      ],
+      "source": "*conditions",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "powerups",
+        "regeneration-boost"
+      ],
+      "source": "\r\n    enabled: true\r\n    cost: \"(lvl + 1) * 70\"\r\n\r\n    # In this case, \"amount\" refers to the regeneration amount.\r\n    # This is normally a half heart every 0.5 seconds which comes\r\n    # from eating normal food. This option changes the amount, not the\r\n    # 0.5sec interval.\r\n    # https://minecraft.fandom.com/wiki/Hunger\r\n    scaling: \"percentOf(lvl, amount)\"\r\n    max-level: 100\r\n    own-land-only: true\r\n    conditions: *conditions\r\n\r\n\r\n#|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-|#\r\n#|++++++++++++++++++++++++++++++++++++++++++++++++++++++|#\r\n#|                         Power                       |#\r\n#|++++++++++++++++++++++++++++++++++++++++++++++++++++|#\r\n#|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-|#\r\n\r\n# Factions-like power system. This feature is still experimental and may not function properly.\r\n# In order to change the max claims of a kingdom, you need to change the max-claims option in claims.yml\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "powerups",
+        "regeneration-boost",
+        "enabled"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "powerups",
+        "regeneration-boost",
+        "cost"
+      ],
+      "source": "\"(lvl + 1) * 70\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "powerups",
+        "regeneration-boost",
+        "scaling"
+      ],
+      "source": "\"percentOf(lvl, amount)\"",
+      "comments": [
+        "In this case, \"amount\" refers to the regeneration amount.",
+        "This is normally a half heart every 0.5 seconds which comes",
+        "from eating normal food. This option changes the amount, not the",
+        "0.5sec interval.",
+        "https://minecraft.fandom.com/wiki/Hunger"
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "powerups",
+        "regeneration-boost",
+        "max-level"
+      ],
+      "source": "100",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "powerups",
+        "regeneration-boost",
+        "own-land-only"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "powerups",
+        "regeneration-boost",
+        "conditions"
+      ],
+      "source": "*conditions",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "power"
+      ],
+      "source": "\r\n  enabled: false\r\n  player:\r\n    max: 10\r\n    min: -10\r\n\r\n    # When a player first joins a kingdom.\r\n    initial: 0\r\n\r\n    # When the player is online.\r\n    regeneration:\r\n      every: '5 min'\r\n      charge: 1\r\n\r\n    loss:\r\n      # Amount of power lost when the player dies in any way.\r\n      death: 4\r\n\r\n      offline:\r\n        every: '1 day'\r\n        lose: 1\r\n\r\n        # The minimum amount that the offline power loss works for.\r\n        min: 2\r\n  faction:\r\n    max: 500\r\n",
+      "comments": [
+        "Factions-like power system. This feature is still experimental and may not function properly.",
+        "In order to change the max claims of a kingdom, you need to change the max-claims option in claims.yml"
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "power",
+        "enabled"
+      ],
+      "source": "false",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "power",
+        "player"
+      ],
+      "source": "\r\n    max: 10\r\n    min: -10\r\n\r\n    # When a player first joins a kingdom.\r\n    initial: 0\r\n\r\n    # When the player is online.\r\n    regeneration:\r\n      every: '5 min'\r\n      charge: 1\r\n\r\n    loss:\r\n      # Amount of power lost when the player dies in any way.\r\n      death: 4\r\n\r\n      offline:\r\n        every: '1 day'\r\n        lose: 1\r\n\r\n        # The minimum amount that the offline power loss works for.\r\n        min: 2\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "power",
+        "player",
+        "max"
+      ],
+      "source": "10",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "power",
+        "player",
+        "min"
+      ],
+      "source": "-10",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "power",
+        "player",
+        "initial"
+      ],
+      "source": "0",
+      "comments": [
+        "When a player first joins a kingdom."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "power",
+        "player",
+        "regeneration"
+      ],
+      "source": "\r\n      every: '5 min'\r\n      charge: 1\r\n\r\n",
+      "comments": [
+        "When the player is online."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "power",
+        "player",
+        "regeneration",
+        "every"
+      ],
+      "source": "'5 min'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "power",
+        "player",
+        "regeneration",
+        "charge"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "power",
+        "player",
+        "loss"
+      ],
+      "source": "\r\n      # Amount of power lost when the player dies in any way.\r\n      death: 4\r\n\r\n      offline:\r\n        every: '1 day'\r\n        lose: 1\r\n\r\n        # The minimum amount that the offline power loss works for.\r\n        min: 2\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "power",
+        "player",
+        "loss",
+        "death"
+      ],
+      "source": "4",
+      "comments": [
+        "Amount of power lost when the player dies in any way."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "power",
+        "player",
+        "loss",
+        "offline"
+      ],
+      "source": "\r\n        every: '1 day'\r\n        lose: 1\r\n\r\n        # The minimum amount that the offline power loss works for.\r\n        min: 2\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "power",
+        "player",
+        "loss",
+        "offline",
+        "every"
+      ],
+      "source": "'1 day'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "power",
+        "player",
+        "loss",
+        "offline",
+        "lose"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "power",
+        "player",
+        "loss",
+        "offline",
+        "min"
+      ],
+      "source": "2",
+      "comments": [
+        "The minimum amount that the offline power loss works for."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "power",
+        "faction"
+      ],
+      "source": "\r\n    max: 500\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "power",
+        "faction",
+        "max"
+      ],
+      "source": "500",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

@@ -1,0 +1,1592 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "chat.yml",
+  "schemaId": "chat",
+  "options": [
+    {
+      "path": [
+        "channels"
+      ],
+      "source": "\r\n  # WARNING: DO NOT change the IDs of default channels.\r\n  global: # this is the channel's ID\r\n    # You can also use LuckPerms contextual permissions to disable these in certain worlds.\r\n    # Conditions the player must have in order to use this channel.\r\n    color: '&f'\r\n\r\n    # This is used for console and DiscordSRV.\r\n    # The colors are obviously ignored for DiscordSRV.\r\n    # This option is also used for that chat event's formatting (only used when cancel option is set to false)\r\n    admin-formats:\r\n      kingdoms_has_kingdom: &standard-admin-format '{$channel}{$sep}|{$nationPrefix}{$kingdomPrefix}%displayname% {$sep}≫ {$groupColor}%message%'\r\n      else: '{$channel} %displayname% {$sep}≫ {$groupColor}%message%'\r\n\r\n    # This is the formats used for the chat. The entries are the conditions.\r\n    # To make conditions less confusing you can also use \"placeholder formats\" check them on the Wiki.\r\n    formats:\r\n      kingdoms_has_kingdom: \"{$nationPrefix}{$kingdomPrefix}%displayname% {$sep}≫ {$groupColor}%message%\"\r\n      else: \"hover:{%displayname%;{$p}Message %player%;|/msg %player% } {$sep}≫ {$groupColor}%message%\"\r\n  kingdom:\r\n    # If the condition is not met, the message path specified will be shown to the player.\r\n    # If this option is not specified, all players will be able to use them.\r\n    use-conditions:\r\n      kingdoms_has_kingdom: 'no-kingdom.default'\r\n\r\n    # Conditions that the player must have in order to receive the messages\r\n    # If this option is not specified, all players will be able to see the messages.\r\n    recipients-condition: \"kingdoms_is_spy || kingdoms_relation == 'SELF'\"\r\n    color: '{$p}'\r\n\r\n    admin-formats: *standard-admin-format\r\n    formats: \"{$spy}{$nationPrefix}{$kingdomPrefix}%displayname% {$sep}≫ &d%message%\"\r\n  nation:\r\n    use-conditions:\r\n      kingdoms_has_nation: 'no-nation.default'\r\n\r\n    recipients-condition: \"kingdoms_is_spy || kingdoms_relation_same_nation\"\r\n    color: '{$sp}'\r\n\r\n    admin-formats: *standard-admin-format\r\n    formats: \"{$spy}{$nationPrefix}{$kingdomPrefix}%displayname% {$sep}≫ {$sp}%message%\"\r\n  truce:\r\n    use-conditions:\r\n      kingdoms_has_kingdom: 'no-kingdom.default'\r\n\r\n    recipients-condition: \"kingdoms_is_spy || kingdoms_relation == 'TRUCE' || kingdoms_relation == 'SELF'\"\r\n    color: '&e'\r\n    admin-formats: *standard-admin-format\r\n    formats: \"{$spy}{$nationPrefix}{$kingdomPrefix}%displayname% {$sep}≫ &e%message%\"\r\n  ally:\r\n    use-conditions:\r\n      kingdoms_has_kingdom: 'no-kingdom.default'\r\n\r\n    recipients-condition: \"kingdoms_is_spy || kingdoms_relation == 'ALLY' || kingdoms_relation == 'SELF'\"\r\n    color: '&a'\r\n    admin-formats: *standard-admin-format\r\n    formats: \"{$spy}{$nationPrefix}{$kingdomPrefix}%displayname% {$sep}≫ &a%message%\"\r\n  staff:\r\n    use-conditions:\r\n      perm_kingdoms_channel_staff_see: 'commands.insufficient-permission'\r\n    recipients-condition: \"perm_kingdoms_channel_staff_see\"\r\n    color: '&c'\r\n    admin-formats: *standard-admin-format\r\n    formats: \"{$spy}{$nationPrefix}{$kingdomPrefix}%displayname% {$sep}≫ &c%message%\"\r\n  help:\r\n    color: '&c'\r\n    admin-formats: *standard-admin-format\r\n    formats: \"{$spy}{$nationPrefix}{$kingdomPrefix}%displayname% {$sep}≫ &c%message%\"\r\n  ranged:\r\n    recipients-condition: \"kingdoms_is_spy || (0 <= distance <= 50)\"\r\n    color: \"&e\"\r\n    admin-formats: *standard-admin-format\r\n    formats: \"{$spy}{$nationPrefix}{$kingdomPrefix}%displayname% {$sep}≫ &e%message%\"\r\n\r\n    # The prefix to bypass this range once added at the beginning of your message.\r\n    # Of course this prefix will be removed from the message itself.\r\n    # This requires kingdoms.channel.<name>.bypass.ranged which is given by default.\r\n    # Set this to an empty text to disable.\r\n    # Players in other worlds will have the \"distance\" placeholder return -1\r\n    # Technically this will cause \"distance\" placeholder to return 0\r\n    ranged-bypass-prefix: '!'\r\n\r\n# The prefix used to send messages to individual kingdoms.\r\n# E.g. /k c @Apothicas hello how are you doing?\r\n# sends a message to all members of \"Apothicas\" kingdom.\r\n# Set to ~ (without quotes) to disable.\r\n",
+      "comments": [
+        "Kingdoms built-in chat system. Support hover messages as well.",
+        "Permissions: kingdoms.chat.colors",
+        "The channels section is only used for placeholders.",
+        "Custom channels can be defined here.",
+        "The permission for each channel is the equivalent of the command permission.",
+        "To prevent users from using the channels in certain worlds, you can use LuckPerms contextual permissions.",
+        "The mute permission for these channels are \"kingdoms.channel.<id>.mute\"",
+        "Note that the entry name of each channel is important and should not be changed",
+        "because it's the channel data name that is saved for players."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "channels",
+        "global"
+      ],
+      "source": "# this is the channel's ID\r\n    # You can also use LuckPerms contextual permissions to disable these in certain worlds.\r\n    # Conditions the player must have in order to use this channel.\r\n    color: '&f'\r\n\r\n    # This is used for console and DiscordSRV.\r\n    # The colors are obviously ignored for DiscordSRV.\r\n    # This option is also used for that chat event's formatting (only used when cancel option is set to false)\r\n    admin-formats:\r\n      kingdoms_has_kingdom: &standard-admin-format '{$channel}{$sep}|{$nationPrefix}{$kingdomPrefix}%displayname% {$sep}≫ {$groupColor}%message%'\r\n      else: '{$channel} %displayname% {$sep}≫ {$groupColor}%message%'\r\n\r\n    # This is the formats used for the chat. The entries are the conditions.\r\n    # To make conditions less confusing you can also use \"placeholder formats\" check them on the Wiki.\r\n    formats:\r\n      kingdoms_has_kingdom: \"{$nationPrefix}{$kingdomPrefix}%displayname% {$sep}≫ {$groupColor}%message%\"\r\n      else: \"hover:{%displayname%;{$p}Message %player%;|/msg %player% } {$sep}≫ {$groupColor}%message%\"\r\n",
+      "comments": [
+        "WARNING: DO NOT change the IDs of default channels."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "channels",
+        "global",
+        "color"
+      ],
+      "source": "'&f'",
+      "comments": [
+        "You can also use LuckPerms contextual permissions to disable these in certain worlds.",
+        "Conditions the player must have in order to use this channel."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "channels",
+        "global",
+        "admin-formats"
+      ],
+      "source": "\r\n      kingdoms_has_kingdom: &standard-admin-format '{$channel}{$sep}|{$nationPrefix}{$kingdomPrefix}%displayname% {$sep}≫ {$groupColor}%message%'\r\n      else: '{$channel} %displayname% {$sep}≫ {$groupColor}%message%'\r\n\r\n    # This is the formats used for the chat. The entries are the conditions.\r\n    # To make conditions less confusing you can also use \"placeholder formats\" check them on the Wiki.\r\n",
+      "comments": [
+        "This is used for console and DiscordSRV.",
+        "The colors are obviously ignored for DiscordSRV.",
+        "This option is also used for that chat event's formatting (only used when cancel option is set to false)"
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "channels",
+        "global",
+        "admin-formats",
+        "kingdoms_has_kingdom"
+      ],
+      "source": "&standard-admin-format '{$channel}{$sep}|{$nationPrefix}{$kingdomPrefix}%displayname% {$sep}≫ {$groupColor}%message%'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "channels",
+        "global",
+        "admin-formats",
+        "else"
+      ],
+      "source": "'{$channel} %displayname% {$sep}≫ {$groupColor}%message%'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "channels",
+        "global",
+        "formats"
+      ],
+      "source": "\r\n      kingdoms_has_kingdom: \"{$nationPrefix}{$kingdomPrefix}%displayname% {$sep}≫ {$groupColor}%message%\"\r\n      else: \"hover:{%displayname%;{$p}Message %player%;|/msg %player% } {$sep}≫ {$groupColor}%message%\"\r\n",
+      "comments": [
+        "This is the formats used for the chat. The entries are the conditions.",
+        "To make conditions less confusing you can also use \"placeholder formats\" check them on the Wiki."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "channels",
+        "global",
+        "formats",
+        "kingdoms_has_kingdom"
+      ],
+      "source": "\"{$nationPrefix}{$kingdomPrefix}%displayname% {$sep}≫ {$groupColor}%message%\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "channels",
+        "global",
+        "formats",
+        "else"
+      ],
+      "source": "\"hover:{%displayname%;{$p}Message %player%;|/msg %player% } {$sep}≫ {$groupColor}%message%\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "channels",
+        "kingdom"
+      ],
+      "source": "\r\n    # If the condition is not met, the message path specified will be shown to the player.\r\n    # If this option is not specified, all players will be able to use them.\r\n    use-conditions:\r\n      kingdoms_has_kingdom: 'no-kingdom.default'\r\n\r\n    # Conditions that the player must have in order to receive the messages\r\n    # If this option is not specified, all players will be able to see the messages.\r\n    recipients-condition: \"kingdoms_is_spy || kingdoms_relation == 'SELF'\"\r\n    color: '{$p}'\r\n\r\n    admin-formats: *standard-admin-format\r\n    formats: \"{$spy}{$nationPrefix}{$kingdomPrefix}%displayname% {$sep}≫ &d%message%\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "channels",
+        "kingdom",
+        "use-conditions"
+      ],
+      "source": "\r\n      kingdoms_has_kingdom: 'no-kingdom.default'\r\n\r\n    # Conditions that the player must have in order to receive the messages\r\n    # If this option is not specified, all players will be able to see the messages.\r\n",
+      "comments": [
+        "If the condition is not met, the message path specified will be shown to the player.",
+        "If this option is not specified, all players will be able to use them."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "channels",
+        "kingdom",
+        "use-conditions",
+        "kingdoms_has_kingdom"
+      ],
+      "source": "'no-kingdom.default'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "channels",
+        "kingdom",
+        "recipients-condition"
+      ],
+      "source": "\"kingdoms_is_spy || kingdoms_relation == 'SELF'\"",
+      "comments": [
+        "Conditions that the player must have in order to receive the messages",
+        "If this option is not specified, all players will be able to see the messages."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "channels",
+        "kingdom",
+        "color"
+      ],
+      "source": "'{$p}'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "channels",
+        "kingdom",
+        "admin-formats"
+      ],
+      "source": "*standard-admin-format",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "channels",
+        "kingdom",
+        "formats"
+      ],
+      "source": "\"{$spy}{$nationPrefix}{$kingdomPrefix}%displayname% {$sep}≫ &d%message%\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "channels",
+        "nation"
+      ],
+      "source": "\r\n    use-conditions:\r\n      kingdoms_has_nation: 'no-nation.default'\r\n\r\n    recipients-condition: \"kingdoms_is_spy || kingdoms_relation_same_nation\"\r\n    color: '{$sp}'\r\n\r\n    admin-formats: *standard-admin-format\r\n    formats: \"{$spy}{$nationPrefix}{$kingdomPrefix}%displayname% {$sep}≫ {$sp}%message%\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "channels",
+        "nation",
+        "use-conditions"
+      ],
+      "source": "\r\n      kingdoms_has_nation: 'no-nation.default'\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "channels",
+        "nation",
+        "use-conditions",
+        "kingdoms_has_nation"
+      ],
+      "source": "'no-nation.default'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "channels",
+        "nation",
+        "recipients-condition"
+      ],
+      "source": "\"kingdoms_is_spy || kingdoms_relation_same_nation\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "channels",
+        "nation",
+        "color"
+      ],
+      "source": "'{$sp}'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "channels",
+        "nation",
+        "admin-formats"
+      ],
+      "source": "*standard-admin-format",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "channels",
+        "nation",
+        "formats"
+      ],
+      "source": "\"{$spy}{$nationPrefix}{$kingdomPrefix}%displayname% {$sep}≫ {$sp}%message%\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "channels",
+        "truce"
+      ],
+      "source": "\r\n    use-conditions:\r\n      kingdoms_has_kingdom: 'no-kingdom.default'\r\n\r\n    recipients-condition: \"kingdoms_is_spy || kingdoms_relation == 'TRUCE' || kingdoms_relation == 'SELF'\"\r\n    color: '&e'\r\n    admin-formats: *standard-admin-format\r\n    formats: \"{$spy}{$nationPrefix}{$kingdomPrefix}%displayname% {$sep}≫ &e%message%\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "channels",
+        "truce",
+        "use-conditions"
+      ],
+      "source": "\r\n      kingdoms_has_kingdom: 'no-kingdom.default'\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "channels",
+        "truce",
+        "use-conditions",
+        "kingdoms_has_kingdom"
+      ],
+      "source": "'no-kingdom.default'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "channels",
+        "truce",
+        "recipients-condition"
+      ],
+      "source": "\"kingdoms_is_spy || kingdoms_relation == 'TRUCE' || kingdoms_relation == 'SELF'\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "channels",
+        "truce",
+        "color"
+      ],
+      "source": "'&e'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "channels",
+        "truce",
+        "admin-formats"
+      ],
+      "source": "*standard-admin-format",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "channels",
+        "truce",
+        "formats"
+      ],
+      "source": "\"{$spy}{$nationPrefix}{$kingdomPrefix}%displayname% {$sep}≫ &e%message%\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "channels",
+        "ally"
+      ],
+      "source": "\r\n    use-conditions:\r\n      kingdoms_has_kingdom: 'no-kingdom.default'\r\n\r\n    recipients-condition: \"kingdoms_is_spy || kingdoms_relation == 'ALLY' || kingdoms_relation == 'SELF'\"\r\n    color: '&a'\r\n    admin-formats: *standard-admin-format\r\n    formats: \"{$spy}{$nationPrefix}{$kingdomPrefix}%displayname% {$sep}≫ &a%message%\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "channels",
+        "ally",
+        "use-conditions"
+      ],
+      "source": "\r\n      kingdoms_has_kingdom: 'no-kingdom.default'\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "channels",
+        "ally",
+        "use-conditions",
+        "kingdoms_has_kingdom"
+      ],
+      "source": "'no-kingdom.default'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "channels",
+        "ally",
+        "recipients-condition"
+      ],
+      "source": "\"kingdoms_is_spy || kingdoms_relation == 'ALLY' || kingdoms_relation == 'SELF'\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "channels",
+        "ally",
+        "color"
+      ],
+      "source": "'&a'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "channels",
+        "ally",
+        "admin-formats"
+      ],
+      "source": "*standard-admin-format",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "channels",
+        "ally",
+        "formats"
+      ],
+      "source": "\"{$spy}{$nationPrefix}{$kingdomPrefix}%displayname% {$sep}≫ &a%message%\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "channels",
+        "staff"
+      ],
+      "source": "\r\n    use-conditions:\r\n      perm_kingdoms_channel_staff_see: 'commands.insufficient-permission'\r\n    recipients-condition: \"perm_kingdoms_channel_staff_see\"\r\n    color: '&c'\r\n    admin-formats: *standard-admin-format\r\n    formats: \"{$spy}{$nationPrefix}{$kingdomPrefix}%displayname% {$sep}≫ &c%message%\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "channels",
+        "staff",
+        "use-conditions"
+      ],
+      "source": "\r\n      perm_kingdoms_channel_staff_see: 'commands.insufficient-permission'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "channels",
+        "staff",
+        "use-conditions",
+        "perm_kingdoms_channel_staff_see"
+      ],
+      "source": "'commands.insufficient-permission'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "channels",
+        "staff",
+        "recipients-condition"
+      ],
+      "source": "\"perm_kingdoms_channel_staff_see\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "channels",
+        "staff",
+        "color"
+      ],
+      "source": "'&c'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "channels",
+        "staff",
+        "admin-formats"
+      ],
+      "source": "*standard-admin-format",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "channels",
+        "staff",
+        "formats"
+      ],
+      "source": "\"{$spy}{$nationPrefix}{$kingdomPrefix}%displayname% {$sep}≫ &c%message%\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "channels",
+        "help"
+      ],
+      "source": "\r\n    color: '&c'\r\n    admin-formats: *standard-admin-format\r\n    formats: \"{$spy}{$nationPrefix}{$kingdomPrefix}%displayname% {$sep}≫ &c%message%\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "channels",
+        "help",
+        "color"
+      ],
+      "source": "'&c'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "channels",
+        "help",
+        "admin-formats"
+      ],
+      "source": "*standard-admin-format",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "channels",
+        "help",
+        "formats"
+      ],
+      "source": "\"{$spy}{$nationPrefix}{$kingdomPrefix}%displayname% {$sep}≫ &c%message%\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "channels",
+        "ranged"
+      ],
+      "source": "\r\n    recipients-condition: \"kingdoms_is_spy || (0 <= distance <= 50)\"\r\n    color: \"&e\"\r\n    admin-formats: *standard-admin-format\r\n    formats: \"{$spy}{$nationPrefix}{$kingdomPrefix}%displayname% {$sep}≫ &e%message%\"\r\n\r\n    # The prefix to bypass this range once added at the beginning of your message.\r\n    # Of course this prefix will be removed from the message itself.\r\n    # This requires kingdoms.channel.<name>.bypass.ranged which is given by default.\r\n    # Set this to an empty text to disable.\r\n    # Players in other worlds will have the \"distance\" placeholder return -1\r\n    # Technically this will cause \"distance\" placeholder to return 0\r\n    ranged-bypass-prefix: '!'\r\n\r\n# The prefix used to send messages to individual kingdoms.\r\n# E.g. /k c @Apothicas hello how are you doing?\r\n# sends a message to all members of \"Apothicas\" kingdom.\r\n# Set to ~ (without quotes) to disable.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "channels",
+        "ranged",
+        "recipients-condition"
+      ],
+      "source": "\"kingdoms_is_spy || (0 <= distance <= 50)\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "channels",
+        "ranged",
+        "color"
+      ],
+      "source": "\"&e\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "channels",
+        "ranged",
+        "admin-formats"
+      ],
+      "source": "*standard-admin-format",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "channels",
+        "ranged",
+        "formats"
+      ],
+      "source": "\"{$spy}{$nationPrefix}{$kingdomPrefix}%displayname% {$sep}≫ &e%message%\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "channels",
+        "ranged",
+        "ranged-bypass-prefix"
+      ],
+      "source": "'!'",
+      "comments": [
+        "The prefix to bypass this range once added at the beginning of your message.",
+        "Of course this prefix will be removed from the message itself.",
+        "This requires kingdoms.channel.<name>.bypass.ranged which is given by default.",
+        "Set this to an empty text to disable.",
+        "Players in other worlds will have the \"distance\" placeholder return -1",
+        "Technically this will cause \"distance\" placeholder to return 0"
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "direct-prefix"
+      ],
+      "source": "'@'",
+      "comments": [
+        "The prefix used to send messages to individual kingdoms.",
+        "E.g. /k c @Apothicas hello how are you doing?",
+        "sends a message to all members of \"Apothicas\" kingdom.",
+        "Set to ~ (without quotes) to disable."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "show-item"
+      ],
+      "source": "\r\n  # Text shown when the player has no item in the target slot.\r\n  empty: \"{$sep}[{$$no-item}{$sep}]\"\r\n\r\n  # Currently only the main hand is supported.\r\n  main-hand:\r\n    replace:\r\n      '[i]': &show-item '{$sep}[%item_rarity_color%%item_displayname%{? item_amount == 1 ? \"\" : \" {$sp}x%item_amount%\"}{$sep}]'\r\n      '[item]': *show-item\r\n      '[show]': *show-item\r\n\r\n# The chat priority that kingdom handles. Note that changing this will not disable the chat in any way.\r\n# This is used when you're using another plugin that manages chat spams and other restrictions. You might want to increase the priorty in these cases.\r\n# This option requires a restart to work.\r\n# In Bukkit logic, lower priorities mean executed before the higher priorities.\r\n# So for example, if a plugin like Essentials or LiteBans uses NORMAL priority to format chat or mute players,\r\n# you'd have to choose HIGH priority so Kingdoms can know that the chat has been cancelled by these plugins.\r\n# Normally you shouldn't and wouldn't need to use the MONITOR priority, but if a plugin uses higher priorities for\r\n# any reason (which they shouldn't) you can use it. Using MONITOR can cause many other issues.\r\n# We will use the HIGHEST priority here just in case.\r\n# LOWEST, LOW, NORMAL, HIGH, HIGHEST, MONITOR\r\n",
+      "comments": [
+        "A way for players to show the item they're holding to other",
+        "players in the chat with a simple hover message."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "show-item",
+        "empty"
+      ],
+      "source": "\"{$sep}[{$$no-item}{$sep}]\"",
+      "comments": [
+        "Text shown when the player has no item in the target slot."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "show-item",
+        "main-hand"
+      ],
+      "source": "\r\n    replace:\r\n      '[i]': &show-item '{$sep}[%item_rarity_color%%item_displayname%{? item_amount == 1 ? \"\" : \" {$sp}x%item_amount%\"}{$sep}]'\r\n      '[item]': *show-item\r\n      '[show]': *show-item\r\n\r\n# The chat priority that kingdom handles. Note that changing this will not disable the chat in any way.\r\n# This is used when you're using another plugin that manages chat spams and other restrictions. You might want to increase the priorty in these cases.\r\n# This option requires a restart to work.\r\n# In Bukkit logic, lower priorities mean executed before the higher priorities.\r\n# So for example, if a plugin like Essentials or LiteBans uses NORMAL priority to format chat or mute players,\r\n# you'd have to choose HIGH priority so Kingdoms can know that the chat has been cancelled by these plugins.\r\n# Normally you shouldn't and wouldn't need to use the MONITOR priority, but if a plugin uses higher priorities for\r\n# any reason (which they shouldn't) you can use it. Using MONITOR can cause many other issues.\r\n# We will use the HIGHEST priority here just in case.\r\n# LOWEST, LOW, NORMAL, HIGH, HIGHEST, MONITOR\r\n",
+      "comments": [
+        "Currently only the main hand is supported."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "show-item",
+        "main-hand",
+        "replace"
+      ],
+      "source": "\r\n      '[i]': &show-item '{$sep}[%item_rarity_color%%item_displayname%{? item_amount == 1 ? \"\" : \" {$sp}x%item_amount%\"}{$sep}]'\r\n      '[item]': *show-item\r\n      '[show]': *show-item\r\n\r\n# The chat priority that kingdom handles. Note that changing this will not disable the chat in any way.\r\n# This is used when you're using another plugin that manages chat spams and other restrictions. You might want to increase the priorty in these cases.\r\n# This option requires a restart to work.\r\n# In Bukkit logic, lower priorities mean executed before the higher priorities.\r\n# So for example, if a plugin like Essentials or LiteBans uses NORMAL priority to format chat or mute players,\r\n# you'd have to choose HIGH priority so Kingdoms can know that the chat has been cancelled by these plugins.\r\n# Normally you shouldn't and wouldn't need to use the MONITOR priority, but if a plugin uses higher priorities for\r\n# any reason (which they shouldn't) you can use it. Using MONITOR can cause many other issues.\r\n# We will use the HIGHEST priority here just in case.\r\n# LOWEST, LOW, NORMAL, HIGH, HIGHEST, MONITOR\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "show-item",
+        "main-hand",
+        "replace",
+        "[i]"
+      ],
+      "source": "&show-item '{$sep}[%item_rarity_color%%item_displayname%{? item_amount == 1 ? \"\" : \" {$sp}x%item_amount%\"}{$sep}]'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "show-item",
+        "main-hand",
+        "replace",
+        "[item]"
+      ],
+      "source": "*show-item",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "show-item",
+        "main-hand",
+        "replace",
+        "[show]"
+      ],
+      "source": "*show-item",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "priority"
+      ],
+      "source": "HIGHEST",
+      "comments": [
+        "The chat priority that kingdom handles. Note that changing this will not disable the chat in any way.",
+        "This is used when you're using another plugin that manages chat spams and other restrictions. You might want to increase the priorty in these cases.",
+        "This option requires a restart to work.",
+        "In Bukkit logic, lower priorities mean executed before the higher priorities.",
+        "So for example, if a plugin like Essentials or LiteBans uses NORMAL priority to format chat or mute players,",
+        "you'd have to choose HIGH priority so Kingdoms can know that the chat has been cancelled by these plugins.",
+        "Normally you shouldn't and wouldn't need to use the MONITOR priority, but if a plugin uses higher priorities for",
+        "any reason (which they shouldn't) you can use it. Using MONITOR can cause many other issues.",
+        "We will use the HIGHEST priority here just in case.",
+        "LOWEST, LOW, NORMAL, HIGH, HIGHEST, MONITOR"
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "cancel"
+      ],
+      "source": "true",
+      "comments": [
+        "Should kingdoms plugin completely cancel the chat event?",
+        "This is useful customize some plugins such as DiscordSRV, but",
+        "it can also break other plugins like the ones that mute players.",
+        "In these cases, you usually have to set the priority to MONITOR",
+        "(even tho it's not recommended) and it might work.",
+        "Does not work for global channel if parse-as-placeholder option is enabled.",
+        "It's 1.19, again, the cursed number 9 that is, and Microsoft can't get away without making",
+        "a stupid decision once again since 1.9, the feature everyone loves. The chat reporting system",
+        "was added in 1.19. Although the reporting system shouldn't work at all in Spigot (or any forks of it),",
+        "Kingdoms plugin chat system by default, acts like an anti-reporting plugin itself if this option is kept enabled.",
+        "Another plugin that specializes in this field specifically is: https://www.spigotmc.org/resources/103782/"
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "recipients"
+      ],
+      "source": "\r\n  # Enable this option if you want to allow certain features such as\r\n  # /ignore command from other plugins to work.\r\n  # This will cause /k admin spy to stop working.\r\n  respect-others: false\r\n\r\n  # Only useful when cancel is false\r\n  clear-when-done: false\r\n\r\n# Reset the player's chat channel back to global when they leave.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "recipients",
+        "respect-others"
+      ],
+      "source": "false",
+      "comments": [
+        "Enable this option if you want to allow certain features such as",
+        "/ignore command from other plugins to work.",
+        "This will cause /k admin spy to stop working."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "recipients",
+        "clear-when-done"
+      ],
+      "source": "false",
+      "comments": [
+        "Only useful when cancel is false"
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "reset-channel-on-leave"
+      ],
+      "source": "false",
+      "comments": [
+        "Reset the player's chat channel back to global when they leave."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "tagging"
+      ],
+      "source": "\r\n  enabled: true\r\n\r\n  # The prefix used for tagging someone.\r\n  # E.g. \"Hello @Hex_26, how are you?\"\r\n  prefix: '@'\r\n\r\n",
+      "comments": [
+        "Tagging users like in Discord with a sound.",
+        "Players need kingdoms.chat.tag permission.",
+        "For tag formats refer to the language file \"tags\" section."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "tagging",
+        "enabled"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "tagging",
+        "prefix"
+      ],
+      "source": "'@'",
+      "comments": [
+        "The prefix used for tagging someone.",
+        "E.g. \"Hello @Hex_26, how are you?\""
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "global-channel"
+      ],
+      "source": "\r\n  # Should the plugin format global chat as well?\r\n  format: true\r\n\r\n  # The option above needs to be enabled for this to work.\r\n  # Parse the global chat formats as a placeholder replaced in the original format.\r\n  # This placeholder is {KINGDOMS} which you can use in your chat plugin.\r\n  # Complex messages won't work if you use another plugin.\r\n  # Note that format needs to be true.\r\n  # If you parse the formats as placeholders, you have to remove %message% from them,\r\n  # otherwise it'll throw errors in the console.\r\n  parse-as-placeholder: false\r\n\r\n  # Since there is no relation between a player and the console, these are the values\r\n  # used to replace the non-existing relational placeholders.\r\n  relational-placeholders:\r\n    # %kingdoms_relation_color%\r\n    color: '&f'\r\n    # %kingdoms_relation_name%\r\n    name: ''\r\n\r\n# You can either use the channel ID or name (case-insensitive). If your channel name changes regularly\r\n# or it has symbols in it, you should use the channel ID instead. Note that the channel name must\r\n# match the actual name shown in Discord, not the one you defined in DiscordSRV's config.\r\n# There are two special values. \"$console\" which uses the console channel from DiscordSRV\r\n# and \"$main\" that uses the main chat channel from DiscordSRV. Note that the dollar signs are\r\n# only for these two keywords, when using the channel name or ID you DO NOT need to use them.\r\n# You need to /k reload after changing this option.\r\n# Used for kingdom, allies, truces and nations channels.\r\n# Using any channel here requires you to enter that channel's information\r\n# in DiscordSRV's config.yml \"Channels\" option. This is most likely already defined for your\r\n# normal chat channel, but if you wish to see private messages as webhook messages in your console,\r\n# or any other channel, you'd need to add the channel in the config as well.\r\n# You can also set these two options to ~ to disable them.\r\n# - DiscordSRV's \"Channels\" option:\r\n#   https://github.com/DiscordSRV/DiscordSRV/blob/767828469573c2f0fa3ed5a44feb0b2f15f2c02d/src/main/resources/config/en.yml#L11-L30\r\n# - DiscordSRV's console channel option:\r\n#   https://github.com/DiscordSRV/DiscordSRV/blob/767828469573c2f0fa3ed5a44feb0b2f15f2c02d/src/main/resources/config/en.yml#L32-L33\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "global-channel",
+        "format"
+      ],
+      "source": "true",
+      "comments": [
+        "Should the plugin format global chat as well?"
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "global-channel",
+        "parse-as-placeholder"
+      ],
+      "source": "false",
+      "comments": [
+        "The option above needs to be enabled for this to work.",
+        "Parse the global chat formats as a placeholder replaced in the original format.",
+        "This placeholder is {KINGDOMS} which you can use in your chat plugin.",
+        "Complex messages won't work if you use another plugin.",
+        "Note that format needs to be true.",
+        "If you parse the formats as placeholders, you have to remove %message% from them,",
+        "otherwise it'll throw errors in the console."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "global-channel",
+        "relational-placeholders"
+      ],
+      "source": "\r\n    # %kingdoms_relation_color%\r\n    color: '&f'\r\n    # %kingdoms_relation_name%\r\n    name: ''\r\n\r\n# You can either use the channel ID or name (case-insensitive). If your channel name changes regularly\r\n# or it has symbols in it, you should use the channel ID instead. Note that the channel name must\r\n# match the actual name shown in Discord, not the one you defined in DiscordSRV's config.\r\n# There are two special values. \"$console\" which uses the console channel from DiscordSRV\r\n# and \"$main\" that uses the main chat channel from DiscordSRV. Note that the dollar signs are\r\n# only for these two keywords, when using the channel name or ID you DO NOT need to use them.\r\n# You need to /k reload after changing this option.\r\n# Used for kingdom, allies, truces and nations channels.\r\n# Using any channel here requires you to enter that channel's information\r\n# in DiscordSRV's config.yml \"Channels\" option. This is most likely already defined for your\r\n# normal chat channel, but if you wish to see private messages as webhook messages in your console,\r\n# or any other channel, you'd need to add the channel in the config as well.\r\n# You can also set these two options to ~ to disable them.\r\n# - DiscordSRV's \"Channels\" option:\r\n#   https://github.com/DiscordSRV/DiscordSRV/blob/767828469573c2f0fa3ed5a44feb0b2f15f2c02d/src/main/resources/config/en.yml#L11-L30\r\n# - DiscordSRV's console channel option:\r\n#   https://github.com/DiscordSRV/DiscordSRV/blob/767828469573c2f0fa3ed5a44feb0b2f15f2c02d/src/main/resources/config/en.yml#L32-L33\r\n",
+      "comments": [
+        "Since there is no relation between a player and the console, these are the values",
+        "used to replace the non-existing relational placeholders."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "global-channel",
+        "relational-placeholders",
+        "color"
+      ],
+      "source": "'&f'",
+      "comments": [
+        "%kingdoms_relation_color%"
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "global-channel",
+        "relational-placeholders",
+        "name"
+      ],
+      "source": "''",
+      "comments": [
+        "%kingdoms_relation_name%"
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "discordsrv"
+      ],
+      "source": "\r\n  global-channel: '$main'\r\n  private-channel: '$console' # Kingdoms, allies and truces\r\n\r\n  # message: The plain text message. If you want to use embeds. You have to put an option with the same name under this.\r\n  # title:\r\n  #   text: The title text.\r\n  #   url: The title clickable URL.\r\n  # description: This is required. The main text.\r\n  # thumbnail: The big image\r\n  # image: The big image\r\n  # color: Supports RGB & hexadecimal notations.\r\n  # author:\r\n  #   name: The name of the author of this embed.\r\n  #   url: Clickable URL of the name.\r\n  #   icon: The small circle image of the author.\r\n  # footer:\r\n  #   text: footer's text\r\n  #   icon: small circle icon of footer\r\n  # fields:\r\n  #   \"field title\": message\r\n  #   \"second field title\": second field message\r\n  # They all support placeholders.\r\n  announcements:\r\n    invasion: # In this case, the main context belongs to the attacker player, and the second belongs to the defender kingdom.\r\n      start: # This message is sent as soon as the invasion start countdown ends.\r\n        channel: '$main'\r\n        message:\r\n          description: ':crossed_swords: **%player%** from **%kingdoms_kingdom_name%** is now invading **%other*kingdoms_kingdom_name%**'\r\n          color: '#F00'\r\n          image: '%kingdoms_kingdom_flag%'\r\n\r\n      end:\r\n        success:\r\n          channel: '$main'\r\n          message: ':crossed_swords: **%player%** from **%kingdoms_kingdom_name%** has successfully invaded **%other*kingdoms_kingdom_name%**'\r\n        fail:\r\n          channel: '$main'\r\n          message: ':crossed_swords: **%player%** from **%kingdoms_kingdom_name%** failed to invade **%other*kingdoms_kingdom_name%**'\r\n\r\n    kingdom:\r\n      join:\r\n        channel: '$main'\r\n        message: ':white_check_mark: **%player%** has joined **%kingdoms_kingdom_name%** kingdom.'\r\n      leave:\r\n        channel: '$main'\r\n        message: ':x: **%player%** has left **%kingdoms_kingdom_name%** kingdom.'\r\n\r\n    nation:\r\n      join:\r\n        channel: '$main'\r\n        message: ':white_check_mark: Kingdom **%kingdoms_kingdom_name%** has joined **%kingdoms_nation_name%** nation.'\r\n      leave:\r\n        channel: '$main'\r\n        message: ':x: Kingdom **%kingdoms_kingdom_name%** has left **%kingdoms_nation_name%** nation.'\r\n",
+      "comments": [
+        "You can either use the channel ID or name (case-insensitive). If your channel name changes regularly",
+        "or it has symbols in it, you should use the channel ID instead. Note that the channel name must",
+        "match the actual name shown in Discord, not the one you defined in DiscordSRV's config.",
+        "There are two special values. \"$console\" which uses the console channel from DiscordSRV",
+        "and \"$main\" that uses the main chat channel from DiscordSRV. Note that the dollar signs are",
+        "only for these two keywords, when using the channel name or ID you DO NOT need to use them.",
+        "You need to /k reload after changing this option.",
+        "Used for kingdom, allies, truces and nations channels.",
+        "Using any channel here requires you to enter that channel's information",
+        "in DiscordSRV's config.yml \"Channels\" option. This is most likely already defined for your",
+        "normal chat channel, but if you wish to see private messages as webhook messages in your console,",
+        "or any other channel, you'd need to add the channel in the config as well.",
+        "You can also set these two options to ~ to disable them.",
+        "- DiscordSRV's \"Channels\" option:",
+        "https://github.com/DiscordSRV/DiscordSRV/blob/767828469573c2f0fa3ed5a44feb0b2f15f2c02d/src/main/resources/config/en.yml#L11-L30",
+        "- DiscordSRV's console channel option:",
+        "https://github.com/DiscordSRV/DiscordSRV/blob/767828469573c2f0fa3ed5a44feb0b2f15f2c02d/src/main/resources/config/en.yml#L32-L33"
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "discordsrv",
+        "global-channel"
+      ],
+      "source": "'$main'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "discordsrv",
+        "private-channel"
+      ],
+      "source": "'$console'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "discordsrv",
+        "announcements"
+      ],
+      "source": "\r\n    invasion: # In this case, the main context belongs to the attacker player, and the second belongs to the defender kingdom.\r\n      start: # This message is sent as soon as the invasion start countdown ends.\r\n        channel: '$main'\r\n        message:\r\n          description: ':crossed_swords: **%player%** from **%kingdoms_kingdom_name%** is now invading **%other*kingdoms_kingdom_name%**'\r\n          color: '#F00'\r\n          image: '%kingdoms_kingdom_flag%'\r\n\r\n      end:\r\n        success:\r\n          channel: '$main'\r\n          message: ':crossed_swords: **%player%** from **%kingdoms_kingdom_name%** has successfully invaded **%other*kingdoms_kingdom_name%**'\r\n        fail:\r\n          channel: '$main'\r\n          message: ':crossed_swords: **%player%** from **%kingdoms_kingdom_name%** failed to invade **%other*kingdoms_kingdom_name%**'\r\n\r\n    kingdom:\r\n      join:\r\n        channel: '$main'\r\n        message: ':white_check_mark: **%player%** has joined **%kingdoms_kingdom_name%** kingdom.'\r\n      leave:\r\n        channel: '$main'\r\n        message: ':x: **%player%** has left **%kingdoms_kingdom_name%** kingdom.'\r\n\r\n    nation:\r\n      join:\r\n        channel: '$main'\r\n        message: ':white_check_mark: Kingdom **%kingdoms_kingdom_name%** has joined **%kingdoms_nation_name%** nation.'\r\n      leave:\r\n        channel: '$main'\r\n        message: ':x: Kingdom **%kingdoms_kingdom_name%** has left **%kingdoms_nation_name%** nation.'\r\n",
+      "comments": [
+        "message: The plain text message. If you want to use embeds. You have to put an option with the same name under this.",
+        "title:",
+        "text: The title text.",
+        "url: The title clickable URL.",
+        "description: This is required. The main text.",
+        "thumbnail: The big image",
+        "image: The big image",
+        "color: Supports RGB & hexadecimal notations.",
+        "author:",
+        "name: The name of the author of this embed.",
+        "url: Clickable URL of the name.",
+        "icon: The small circle image of the author.",
+        "footer:",
+        "text: footer's text",
+        "icon: small circle icon of footer",
+        "fields:",
+        "\"field title\": message",
+        "\"second field title\": second field message",
+        "They all support placeholders."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "discordsrv",
+        "announcements",
+        "invasion"
+      ],
+      "source": "# In this case, the main context belongs to the attacker player, and the second belongs to the defender kingdom.\r\n      start: # This message is sent as soon as the invasion start countdown ends.\r\n        channel: '$main'\r\n        message:\r\n          description: ':crossed_swords: **%player%** from **%kingdoms_kingdom_name%** is now invading **%other*kingdoms_kingdom_name%**'\r\n          color: '#F00'\r\n          image: '%kingdoms_kingdom_flag%'\r\n\r\n      end:\r\n        success:\r\n          channel: '$main'\r\n          message: ':crossed_swords: **%player%** from **%kingdoms_kingdom_name%** has successfully invaded **%other*kingdoms_kingdom_name%**'\r\n        fail:\r\n          channel: '$main'\r\n          message: ':crossed_swords: **%player%** from **%kingdoms_kingdom_name%** failed to invade **%other*kingdoms_kingdom_name%**'\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "discordsrv",
+        "announcements",
+        "invasion",
+        "start"
+      ],
+      "source": "# This message is sent as soon as the invasion start countdown ends.\r\n        channel: '$main'\r\n        message:\r\n          description: ':crossed_swords: **%player%** from **%kingdoms_kingdom_name%** is now invading **%other*kingdoms_kingdom_name%**'\r\n          color: '#F00'\r\n          image: '%kingdoms_kingdom_flag%'\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "discordsrv",
+        "announcements",
+        "invasion",
+        "start",
+        "channel"
+      ],
+      "source": "'$main'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "discordsrv",
+        "announcements",
+        "invasion",
+        "start",
+        "message"
+      ],
+      "source": "\r\n          description: ':crossed_swords: **%player%** from **%kingdoms_kingdom_name%** is now invading **%other*kingdoms_kingdom_name%**'\r\n          color: '#F00'\r\n          image: '%kingdoms_kingdom_flag%'\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "discordsrv",
+        "announcements",
+        "invasion",
+        "start",
+        "message",
+        "description"
+      ],
+      "source": "':crossed_swords: **%player%** from **%kingdoms_kingdom_name%** is now invading **%other*kingdoms_kingdom_name%**'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "discordsrv",
+        "announcements",
+        "invasion",
+        "start",
+        "message",
+        "color"
+      ],
+      "source": "'#F00'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "discordsrv",
+        "announcements",
+        "invasion",
+        "start",
+        "message",
+        "image"
+      ],
+      "source": "'%kingdoms_kingdom_flag%'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "discordsrv",
+        "announcements",
+        "invasion",
+        "end"
+      ],
+      "source": "\r\n        success:\r\n          channel: '$main'\r\n          message: ':crossed_swords: **%player%** from **%kingdoms_kingdom_name%** has successfully invaded **%other*kingdoms_kingdom_name%**'\r\n        fail:\r\n          channel: '$main'\r\n          message: ':crossed_swords: **%player%** from **%kingdoms_kingdom_name%** failed to invade **%other*kingdoms_kingdom_name%**'\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "discordsrv",
+        "announcements",
+        "invasion",
+        "end",
+        "success"
+      ],
+      "source": "\r\n          channel: '$main'\r\n          message: ':crossed_swords: **%player%** from **%kingdoms_kingdom_name%** has successfully invaded **%other*kingdoms_kingdom_name%**'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "discordsrv",
+        "announcements",
+        "invasion",
+        "end",
+        "success",
+        "channel"
+      ],
+      "source": "'$main'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "discordsrv",
+        "announcements",
+        "invasion",
+        "end",
+        "success",
+        "message"
+      ],
+      "source": "':crossed_swords: **%player%** from **%kingdoms_kingdom_name%** has successfully invaded **%other*kingdoms_kingdom_name%**'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "discordsrv",
+        "announcements",
+        "invasion",
+        "end",
+        "fail"
+      ],
+      "source": "\r\n          channel: '$main'\r\n          message: ':crossed_swords: **%player%** from **%kingdoms_kingdom_name%** failed to invade **%other*kingdoms_kingdom_name%**'\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "discordsrv",
+        "announcements",
+        "invasion",
+        "end",
+        "fail",
+        "channel"
+      ],
+      "source": "'$main'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "discordsrv",
+        "announcements",
+        "invasion",
+        "end",
+        "fail",
+        "message"
+      ],
+      "source": "':crossed_swords: **%player%** from **%kingdoms_kingdom_name%** failed to invade **%other*kingdoms_kingdom_name%**'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "discordsrv",
+        "announcements",
+        "kingdom"
+      ],
+      "source": "\r\n      join:\r\n        channel: '$main'\r\n        message: ':white_check_mark: **%player%** has joined **%kingdoms_kingdom_name%** kingdom.'\r\n      leave:\r\n        channel: '$main'\r\n        message: ':x: **%player%** has left **%kingdoms_kingdom_name%** kingdom.'\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "discordsrv",
+        "announcements",
+        "kingdom",
+        "join"
+      ],
+      "source": "\r\n        channel: '$main'\r\n        message: ':white_check_mark: **%player%** has joined **%kingdoms_kingdom_name%** kingdom.'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "discordsrv",
+        "announcements",
+        "kingdom",
+        "join",
+        "channel"
+      ],
+      "source": "'$main'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "discordsrv",
+        "announcements",
+        "kingdom",
+        "join",
+        "message"
+      ],
+      "source": "':white_check_mark: **%player%** has joined **%kingdoms_kingdom_name%** kingdom.'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "discordsrv",
+        "announcements",
+        "kingdom",
+        "leave"
+      ],
+      "source": "\r\n        channel: '$main'\r\n        message: ':x: **%player%** has left **%kingdoms_kingdom_name%** kingdom.'\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "discordsrv",
+        "announcements",
+        "kingdom",
+        "leave",
+        "channel"
+      ],
+      "source": "'$main'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "discordsrv",
+        "announcements",
+        "kingdom",
+        "leave",
+        "message"
+      ],
+      "source": "':x: **%player%** has left **%kingdoms_kingdom_name%** kingdom.'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "discordsrv",
+        "announcements",
+        "nation"
+      ],
+      "source": "\r\n      join:\r\n        channel: '$main'\r\n        message: ':white_check_mark: Kingdom **%kingdoms_kingdom_name%** has joined **%kingdoms_nation_name%** nation.'\r\n      leave:\r\n        channel: '$main'\r\n        message: ':x: Kingdom **%kingdoms_kingdom_name%** has left **%kingdoms_nation_name%** nation.'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "discordsrv",
+        "announcements",
+        "nation",
+        "join"
+      ],
+      "source": "\r\n        channel: '$main'\r\n        message: ':white_check_mark: Kingdom **%kingdoms_kingdom_name%** has joined **%kingdoms_nation_name%** nation.'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "discordsrv",
+        "announcements",
+        "nation",
+        "join",
+        "channel"
+      ],
+      "source": "'$main'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "discordsrv",
+        "announcements",
+        "nation",
+        "join",
+        "message"
+      ],
+      "source": "':white_check_mark: Kingdom **%kingdoms_kingdom_name%** has joined **%kingdoms_nation_name%** nation.'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "discordsrv",
+        "announcements",
+        "nation",
+        "leave"
+      ],
+      "source": "\r\n        channel: '$main'\r\n        message: ':x: Kingdom **%kingdoms_kingdom_name%** has left **%kingdoms_nation_name%** nation.'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "discordsrv",
+        "announcements",
+        "nation",
+        "leave",
+        "channel"
+      ],
+      "source": "'$main'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "discordsrv",
+        "announcements",
+        "nation",
+        "leave",
+        "message"
+      ],
+      "source": "':x: Kingdom **%kingdoms_kingdom_name%** has left **%kingdoms_nation_name%** nation.'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

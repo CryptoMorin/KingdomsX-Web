@@ -1,0 +1,258 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "guis/structures/nexus/champion-settings.yml",
+  "schemaId": "guis/schema",
+  "options": [
+    {
+      "path": [
+        "title"
+      ],
+      "source": "\"{$sep}-=( {$p}Champion Settings {$sep})=-\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "type"
+      ],
+      "source": "HOPPER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sound"
+      ],
+      "source": "ITEM_ARMOR_EQUIP_DIAMOND",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options"
+      ],
+      "source": "\r\n  upgrade:\r\n    name: \"&bUpgrade Equipment\"\r\n    material: DIAMOND_CHESTPLATE\r\n    lore:\r\n      - \"{$sep}Improves your champion's\"\r\n      - \"armor and weapon with each upgrade.\"\r\n      - \"\"\r\n      - \"{$p}Level{$colon} {$s}%level%\"\r\n      - \"{$p}Cost{$colon} {$s}%cost%\"\r\n    slot: 0\r\n  change:\r\n    name: \"{$s}Change\"\r\n    material: DIAMOND_SWORD\r\n    lore:\r\n      - \"{$sep}Change your champion type.\"\r\n    slot: 1\r\n\r\n  back:\r\n    name: \"{$p}Back\"\r\n    material: BARRIER\r\n    lore:\r\n      - \"{$s}Go back to champion upgrades.\"\r\n    slot: 4",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "upgrade"
+      ],
+      "source": "\r\n    name: \"&bUpgrade Equipment\"\r\n    material: DIAMOND_CHESTPLATE\r\n    lore:\r\n      - \"{$sep}Improves your champion's\"\r\n      - \"armor and weapon with each upgrade.\"\r\n      - \"\"\r\n      - \"{$p}Level{$colon} {$s}%level%\"\r\n      - \"{$p}Cost{$colon} {$s}%cost%\"\r\n    slot: 0\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "upgrade",
+        "name"
+      ],
+      "source": "\"&bUpgrade Equipment\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "upgrade",
+        "material"
+      ],
+      "source": "DIAMOND_CHESTPLATE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "upgrade",
+        "lore"
+      ],
+      "source": "\r\n      - \"{$sep}Improves your champion's\"\r\n      - \"armor and weapon with each upgrade.\"\r\n      - \"\"\r\n      - \"{$p}Level{$colon} {$s}%level%\"\r\n      - \"{$p}Cost{$colon} {$s}%cost%\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$sep}Improves your champion's\"",
+        "\"armor and weapon with each upgrade.\"",
+        "\"\"",
+        "\"{$p}Level{$colon} {$s}%level%\"",
+        "\"{$p}Cost{$colon} {$s}%cost%\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "upgrade",
+        "slot"
+      ],
+      "source": "0",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "change"
+      ],
+      "source": "\r\n    name: \"{$s}Change\"\r\n    material: DIAMOND_SWORD\r\n    lore:\r\n      - \"{$sep}Change your champion type.\"\r\n    slot: 1\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "change",
+        "name"
+      ],
+      "source": "\"{$s}Change\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "change",
+        "material"
+      ],
+      "source": "DIAMOND_SWORD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "change",
+        "lore"
+      ],
+      "source": "\r\n      - \"{$sep}Change your champion type.\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$sep}Change your champion type.\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "change",
+        "slot"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back"
+      ],
+      "source": "\r\n    name: \"{$p}Back\"\r\n    material: BARRIER\r\n    lore:\r\n      - \"{$s}Go back to champion upgrades.\"\r\n    slot: 4",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "name"
+      ],
+      "source": "\"{$p}Back\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "material"
+      ],
+      "source": "BARRIER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "lore"
+      ],
+      "source": "\r\n      - \"{$s}Go back to champion upgrades.\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$s}Go back to champion upgrades.\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "slot"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

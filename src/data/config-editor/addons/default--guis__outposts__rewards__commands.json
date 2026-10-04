@@ -1,0 +1,460 @@
+{
+  "formatVersion": 1,
+  "source": {
+    "addonId": "outposts",
+    "artifactPath": "addons/Kingdoms-Addon-Outposts-3.1.2.4.jar",
+    "artifactBlobSha": "831afdbcfedd0d7574337c93a662b58e51186ee0",
+    "artifactSha256": "37567955a0194f18a5eed5b11631d4e1225cc927605e183d3a438ca9469ac633",
+    "addonVersion": "3.1.2.4"
+  },
+  "resourceName": "guis/outposts/rewards/commands.yml",
+  "schemaId": "guis/schema",
+  "sha256": "a54c8e959e98a5ec87645929bd5c885c5bf61e767dbb8c740977810a9559d590",
+  "options": [
+    {
+      "path": [
+        "title"
+      ],
+      "source": "'{$sep}-=( {$p}Command Rewards {$sep})=-'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "rows"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options"
+      ],
+      "source": "\r\n  back:\r\n    posx: 1\r\n    posy: 1\r\n    material: PLAYER_HEAD\r\n    skull: \"{$gui-back}\"\r\n    name: '{$p}Back'\r\n  decoration:\r\n    slots: [ 1, 2, 3, 5, 6, 7, 9, 17, 18, 26, 27, 35, 36, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53 ]\r\n    material: PURPLE_STAINED_GLASS_PANE\r\n    name: ''\r\n  info:\r\n    posx: 5\r\n    posy: 1\r\n    material: PLAYER_HEAD\r\n    skull: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDAxYWZlOTczYzU0ODJmZGM3MWU2YWExMDY5ODgzM2M3OWM0MzdmMjEzMDhlYTlhMWEwOTU3NDZlYzI3NGEwZiJ9fX0='\r\n    name: '{$e}Info'\r\n    lore: |\r\n      {$sep}These commands are executed\r\n      for the kingdom that won the event.\r\n\r\n      So any command that targets players\r\n      individually will not work.\r\n  add:\r\n    posx: 9\r\n    posy: 1\r\n    material: PLAYER_HEAD\r\n    name: '{$p}Add'\r\n    skull: '{$gui-add}'\r\n  commands:\r\n    slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43 ]\r\n    material: COMMAND_BLOCK\r\n    name: '%command%'\r\n    lore: |\r\n      {$p}Left-click to edit\r\n      {$s}Right-click to remove",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back"
+      ],
+      "source": "\r\n    posx: 1\r\n    posy: 1\r\n    material: PLAYER_HEAD\r\n    skull: \"{$gui-back}\"\r\n    name: '{$p}Back'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "posx"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "material"
+      ],
+      "source": "PLAYER_HEAD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "skull"
+      ],
+      "source": "\"{$gui-back}\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "name"
+      ],
+      "source": "'{$p}Back'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "decoration"
+      ],
+      "source": "\r\n    slots: [ 1, 2, 3, 5, 6, 7, 9, 17, 18, 26, 27, 35, 36, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53 ]\r\n    material: PURPLE_STAINED_GLASS_PANE\r\n    name: ''\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "decoration",
+        "slots"
+      ],
+      "source": "[ 1, 2, 3, 5, 6, 7, 9, 17, 18, 26, 27, 35, 36, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "1",
+        "2",
+        "3",
+        "5",
+        "6",
+        "7",
+        "9",
+        "17",
+        "18",
+        "26",
+        "27",
+        "35",
+        "36",
+        "44",
+        "45",
+        "46",
+        "47",
+        "48",
+        "49",
+        "50",
+        "51",
+        "52",
+        "53"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "decoration",
+        "material"
+      ],
+      "source": "PURPLE_STAINED_GLASS_PANE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "decoration",
+        "name"
+      ],
+      "source": "''",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "info"
+      ],
+      "source": "\r\n    posx: 5\r\n    posy: 1\r\n    material: PLAYER_HEAD\r\n    skull: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDAxYWZlOTczYzU0ODJmZGM3MWU2YWExMDY5ODgzM2M3OWM0MzdmMjEzMDhlYTlhMWEwOTU3NDZlYzI3NGEwZiJ9fX0='\r\n    name: '{$e}Info'\r\n    lore: |\r\n      {$sep}These commands are executed\r\n      for the kingdom that won the event.\r\n\r\n      So any command that targets players\r\n      individually will not work.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "info",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "info",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "info",
+        "material"
+      ],
+      "source": "PLAYER_HEAD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "info",
+        "skull"
+      ],
+      "source": "'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDAxYWZlOTczYzU0ODJmZGM3MWU2YWExMDY5ODgzM2M3OWM0MzdmMjEzMDhlYTlhMWEwOTU3NDZlYzI3NGEwZiJ9fX0='",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "info",
+        "name"
+      ],
+      "source": "'{$e}Info'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "info",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}These commands are executed\r\n      for the kingdom that won the event.\r\n\r\n      So any command that targets players\r\n      individually will not work.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "add"
+      ],
+      "source": "\r\n    posx: 9\r\n    posy: 1\r\n    material: PLAYER_HEAD\r\n    name: '{$p}Add'\r\n    skull: '{$gui-add}'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "add",
+        "posx"
+      ],
+      "source": "9",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "add",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "add",
+        "material"
+      ],
+      "source": "PLAYER_HEAD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "add",
+        "name"
+      ],
+      "source": "'{$p}Add'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "add",
+        "skull"
+      ],
+      "source": "'{$gui-add}'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "commands"
+      ],
+      "source": "\r\n    slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43 ]\r\n    material: COMMAND_BLOCK\r\n    name: '%command%'\r\n    lore: |\r\n      {$p}Left-click to edit\r\n      {$s}Right-click to remove",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "commands",
+        "slots"
+      ],
+      "source": "[ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "28",
+        "29",
+        "30",
+        "31",
+        "32",
+        "33",
+        "34",
+        "37",
+        "38",
+        "39",
+        "40",
+        "41",
+        "42",
+        "43"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "commands",
+        "material"
+      ],
+      "source": "COMMAND_BLOCK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "commands",
+        "name"
+      ],
+      "source": "'%command%'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "commands",
+        "lore"
+      ],
+      "source": "|\r\n      {$p}Left-click to edit\r\n      {$s}Right-click to remove",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

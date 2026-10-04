@@ -1,0 +1,819 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "Structures/extractor.yml",
+  "schemaId": "Structures/structure",
+  "options": [
+    {
+      "path": [
+        "(import)"
+      ],
+      "source": "\r\n  structure:\r\n    parameters:\r\n      <name>: extractor\r\n      <build-duration-factor>: '-45 seconds'\r\n      <extra-holograms>:\r\n        - \"{$p}{$$words.resource-points}{$colon} {$s}%fancy@extractor_collected_resource_points%\"\r\n        - '{? needs_fuel ? \"{$p}{$$words.fuel}{$colon} {$s}%fancy@fuel%{$sep}/{$s}%fancy@max_fuel%\"}'\r\n      <durability-factor>: 100\r\n      <material-1>: GOLD_BLOCK\r\n      <material-2>: DIAMOND_BLOCK\r\n      <material-3>: EMERALD_BLOCK\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "structure"
+      ],
+      "source": "\r\n    parameters:\r\n      <name>: extractor\r\n      <build-duration-factor>: '-45 seconds'\r\n      <extra-holograms>:\r\n        - \"{$p}{$$words.resource-points}{$colon} {$s}%fancy@extractor_collected_resource_points%\"\r\n        - '{? needs_fuel ? \"{$p}{$$words.fuel}{$colon} {$s}%fancy@fuel%{$sep}/{$s}%fancy@max_fuel%\"}'\r\n      <durability-factor>: 100\r\n      <material-1>: GOLD_BLOCK\r\n      <material-2>: DIAMOND_BLOCK\r\n      <material-3>: EMERALD_BLOCK\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "structure",
+        "parameters"
+      ],
+      "source": "\r\n      <name>: extractor\r\n      <build-duration-factor>: '-45 seconds'\r\n      <extra-holograms>:\r\n        - \"{$p}{$$words.resource-points}{$colon} {$s}%fancy@extractor_collected_resource_points%\"\r\n        - '{? needs_fuel ? \"{$p}{$$words.fuel}{$colon} {$s}%fancy@fuel%{$sep}/{$s}%fancy@max_fuel%\"}'\r\n      <durability-factor>: 100\r\n      <material-1>: GOLD_BLOCK\r\n      <material-2>: DIAMOND_BLOCK\r\n      <material-3>: EMERALD_BLOCK\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "structure",
+        "parameters",
+        "<name>"
+      ],
+      "source": "extractor",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "structure",
+        "parameters",
+        "<build-duration-factor>"
+      ],
+      "source": "'-45 seconds'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "structure",
+        "parameters",
+        "<extra-holograms>"
+      ],
+      "source": "\r\n        - \"{$p}{$$words.resource-points}{$colon} {$s}%fancy@extractor_collected_resource_points%\"\r\n        - '{? needs_fuel ? \"{$p}{$$words.fuel}{$colon} {$s}%fancy@fuel%{$sep}/{$s}%fancy@max_fuel%\"}'\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$p}{$$words.resource-points}{$colon} {$s}%fancy@extractor_collected_resource_points%\"",
+        "'{? needs_fuel ? \"{$p}{$$words.fuel}{$colon} {$s}%fancy@fuel%{$sep}/{$s}%fancy@max_fuel%\"}'"
+      ]
+    },
+    {
+      "path": [
+        "(import)",
+        "structure",
+        "parameters",
+        "<durability-factor>"
+      ],
+      "source": "100",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "structure",
+        "parameters",
+        "<material-1>"
+      ],
+      "source": "GOLD_BLOCK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "structure",
+        "parameters",
+        "<material-2>"
+      ],
+      "source": "DIAMOND_BLOCK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "structure",
+        "parameters",
+        "<material-3>"
+      ],
+      "source": "EMERALD_BLOCK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "name"
+      ],
+      "source": "\"{$p}Extractor\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "type"
+      ],
+      "source": "extractor",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "default-name"
+      ],
+      "source": "'Extractor'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "max-level"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "upgrade-cost"
+      ],
+      "source": "lvl * 1000",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "durability"
+      ],
+      "source": "'100 * level'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "limits"
+      ],
+      "source": "\r\n  per-land: 5\r\n  total: 50\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "limits",
+        "per-land"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "limits",
+        "total"
+      ],
+      "source": "50",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "cost"
+      ],
+      "source": "2000",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sell"
+      ],
+      "source": "1000",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "capacity"
+      ],
+      "source": "500",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "conditions"
+      ],
+      "source": "\r\n  purchase:\r\n    'kingdoms_kingdom_level < 3': '{$$kingdom-levels.III}'\r\n  upgrade:\r\n    'level == 1 && kingdoms_kingdom_level < 4': '{$$kingdom-levels.IV}'\r\n    'level == 2 && kingdoms_kingdom_level < 5': '{$$kingdom-levels.V}'\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "conditions",
+        "purchase"
+      ],
+      "source": "\r\n    'kingdoms_kingdom_level < 3': '{$$kingdom-levels.III}'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "conditions",
+        "purchase",
+        "kingdoms_kingdom_level < 3"
+      ],
+      "source": "'{$$kingdom-levels.III}'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "conditions",
+        "upgrade"
+      ],
+      "source": "\r\n    'level == 1 && kingdoms_kingdom_level < 4': '{$$kingdom-levels.IV}'\r\n    'level == 2 && kingdoms_kingdom_level < 5': '{$$kingdom-levels.V}'\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "conditions",
+        "upgrade",
+        "level == 1 && kingdoms_kingdom_level < 4"
+      ],
+      "source": "'{$$kingdom-levels.IV}'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "conditions",
+        "upgrade",
+        "level == 2 && kingdoms_kingdom_level < 5"
+      ],
+      "source": "'{$$kingdom-levels.V}'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sounds"
+      ],
+      "source": "\r\n  1:\r\n    teleport-sound: BLOCK_PORTAL_TRAVEL, 0.5, 1.0\r\n    fuel-fill: BLOCK_FIRE_EXTINGUISH\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sounds",
+        "1"
+      ],
+      "source": "\r\n    teleport-sound: BLOCK_PORTAL_TRAVEL, 0.5, 1.0\r\n    fuel-fill: BLOCK_FIRE_EXTINGUISH\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sounds",
+        "1",
+        "teleport-sound"
+      ],
+      "source": "BLOCK_PORTAL_TRAVEL, 0.5, 1.0",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sounds",
+        "1",
+        "fuel-fill"
+      ],
+      "source": "BLOCK_FIRE_EXTINGUISH",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "fuel"
+      ],
+      "source": "\r\n  enabled: true\r\n  capacity: lvl * 1000\r\n  allow-hoppers: true\r\n\r\n  # https://github.com/CryptoMorin/KingdomsX/wiki/Config#item-matchers\r\n  variants:\r\n    first:\r\n      material: COAL\r\n      fill-amount-per-item: 5\r\n    second:\r\n      material: CHARCOAL\r\n      fill-amount-per-item: 3\r\n    third:\r\n      material: BLAZE_ROD\r\n      fill-amount-per-item: 100\r\n\r\n# Note: The \"every\" option here also affect how often the\r\n# holograms update if the main hologram system is set to MANUAL.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "fuel",
+        "enabled"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "fuel",
+        "capacity"
+      ],
+      "source": "lvl * 1000",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "fuel",
+        "allow-hoppers"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "fuel",
+        "variants"
+      ],
+      "source": "\r\n    first:\r\n      material: COAL\r\n      fill-amount-per-item: 5\r\n    second:\r\n      material: CHARCOAL\r\n      fill-amount-per-item: 3\r\n    third:\r\n      material: BLAZE_ROD\r\n      fill-amount-per-item: 100\r\n\r\n# Note: The \"every\" option here also affect how often the\r\n# holograms update if the main hologram system is set to MANUAL.\r\n",
+      "comments": [
+        "https://github.com/CryptoMorin/KingdomsX/wiki/Config#item-matchers"
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "fuel",
+        "variants",
+        "first"
+      ],
+      "source": "\r\n      material: COAL\r\n      fill-amount-per-item: 5\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "fuel",
+        "variants",
+        "first",
+        "material"
+      ],
+      "source": "COAL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "fuel",
+        "variants",
+        "first",
+        "fill-amount-per-item"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "fuel",
+        "variants",
+        "second"
+      ],
+      "source": "\r\n      material: CHARCOAL\r\n      fill-amount-per-item: 3\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "fuel",
+        "variants",
+        "second",
+        "material"
+      ],
+      "source": "CHARCOAL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "fuel",
+        "variants",
+        "second",
+        "fill-amount-per-item"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "fuel",
+        "variants",
+        "third"
+      ],
+      "source": "\r\n      material: BLAZE_ROD\r\n      fill-amount-per-item: 100\r\n\r\n# Note: The \"every\" option here also affect how often the\r\n# holograms update if the main hologram system is set to MANUAL.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "fuel",
+        "variants",
+        "third",
+        "material"
+      ],
+      "source": "BLAZE_ROD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "fuel",
+        "variants",
+        "third",
+        "fill-amount-per-item"
+      ],
+      "source": "100",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "generator"
+      ],
+      "source": "\r\n  1: # Lvl 1\r\n    amount: 1\r\n    fuel: 0.5\r\n    every: 25sec\r\n  2: # Lvl 2\r\n    amount: 1\r\n    fuel: 0.4\r\n    every: 20sec\r\n  3: # Lvl 3\r\n    amount: 1\r\n    fuel: 0.3\r\n    every: 10sec\r\n\r\n",
+      "comments": [
+        "Note: The \"every\" option here also affect how often the",
+        "holograms update if the main hologram system is set to MANUAL."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "generator",
+        "1"
+      ],
+      "source": "# Lvl 1\r\n    amount: 1\r\n    fuel: 0.5\r\n    every: 25sec\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "generator",
+        "1",
+        "amount"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "generator",
+        "1",
+        "fuel"
+      ],
+      "source": "0.5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "generator",
+        "1",
+        "every"
+      ],
+      "source": "25sec",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "generator",
+        "2"
+      ],
+      "source": "# Lvl 2\r\n    amount: 1\r\n    fuel: 0.4\r\n    every: 20sec\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "generator",
+        "2",
+        "amount"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "generator",
+        "2",
+        "fuel"
+      ],
+      "source": "0.4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "generator",
+        "2",
+        "every"
+      ],
+      "source": "20sec",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "generator",
+        "3"
+      ],
+      "source": "# Lvl 3\r\n    amount: 1\r\n    fuel: 0.3\r\n    every: 10sec\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "generator",
+        "3",
+        "amount"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "generator",
+        "3",
+        "fuel"
+      ],
+      "source": "0.3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "generator",
+        "3",
+        "every"
+      ],
+      "source": "10sec",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "item"
+      ],
+      "source": "\r\n  1:\r\n    name: \"{$p}Extractors\"\r\n    material: MUSIC_DISC_CAT\r\n    lore: |\r\n      {$dot} {$p}Level{$colon} {$s}%roman@level%\r\n\r\n      {$s}Extractors will produce resource points.\r\n      {$s}You can collect the resource points\r\n      at any time.\r\n\r\n      {$dot} {$p}Fuel{$colon} {$s}%fuel%\r\n      {$dot} {$p}Every{$colon} {$s}%every%\r\n      {$dot} {$p}Resource Points{$colon} {$s}%resource-points%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "item",
+        "1"
+      ],
+      "source": "\r\n    name: \"{$p}Extractors\"\r\n    material: MUSIC_DISC_CAT\r\n    lore: |\r\n      {$dot} {$p}Level{$colon} {$s}%roman@level%\r\n\r\n      {$s}Extractors will produce resource points.\r\n      {$s}You can collect the resource points\r\n      at any time.\r\n\r\n      {$dot} {$p}Fuel{$colon} {$s}%fuel%\r\n      {$dot} {$p}Every{$colon} {$s}%every%\r\n      {$dot} {$p}Resource Points{$colon} {$s}%resource-points%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "item",
+        "1",
+        "name"
+      ],
+      "source": "\"{$p}Extractors\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "item",
+        "1",
+        "material"
+      ],
+      "source": "MUSIC_DISC_CAT",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "item",
+        "1",
+        "lore"
+      ],
+      "source": "|\r\n      {$dot} {$p}Level{$colon} {$s}%roman@level%\r\n\r\n      {$s}Extractors will produce resource points.\r\n      {$s}You can collect the resource points\r\n      at any time.\r\n\r\n      {$dot} {$p}Fuel{$colon} {$s}%fuel%\r\n      {$dot} {$p}Every{$colon} {$s}%every%\r\n      {$dot} {$p}Resource Points{$colon} {$s}%resource-points%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

@@ -1,0 +1,4518 @@
+{
+  "formatVersion": 1,
+  "id": "Turrets/turret",
+  "resourceName": "Turrets/turret.yml",
+  "sources": {
+    "schema": {
+      "kind": "kingdomsx-jar",
+      "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+      "pluginVersion": "1.17.27.3",
+      "fileName": "Turrets__turret.json"
+    },
+    "defaults": [
+      "default--declarations__mine.json",
+      "default--declarations__turret.json",
+      "default--Turrets__arrow.json",
+      "default--Turrets__chemical-mine.json",
+      "default--Turrets__explosive-mine.json",
+      "default--Turrets__flame.json",
+      "default--Turrets__healing.json",
+      "default--Turrets__heatbeam.json",
+      "default--Turrets__hellfire.json",
+      "default--Turrets__inferno.json",
+      "default--Turrets__psionic.json",
+      "default--Turrets__soldier.json",
+      "default--Turrets__spring.json"
+    ],
+    "runtime": {
+      "kind": "kingdomsx-jar",
+      "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+      "pluginVersion": "1.17.27.3"
+    }
+  },
+  "coverage": {
+    "defaultPathCount": 160,
+    "rawDefaultPathCount": 613,
+    "activeRuntimePathCount": 0,
+    "fieldCount": 307,
+    "capabilitySourceCounts": {
+      "jar-schema": 59,
+      "editor-overlay": 285,
+      "jar-default": 87
+    },
+    "commonSettingCount": 4
+  },
+  "schema": {
+    "kind": "object",
+    "fields": [
+      {
+        "key": "name",
+        "type": {
+          "kind": "string",
+          "typeName": "Message",
+          "description": "Formatted turret name shown to players.",
+          "optional": true,
+          "capability": {
+            "sources": [
+              "editor-overlay",
+              "jar-schema",
+              "jar-default"
+            ]
+          }
+        }
+      },
+      {
+        "key": "type",
+        "type": {
+          "kind": "enum",
+          "values": [
+            "arrow",
+            "healing",
+            "inferno",
+            "soldier",
+            "pressure_mine"
+          ],
+          "description": "Built-in turret behavior.",
+          "optional": true,
+          "capability": {
+            "sources": [
+              "editor-overlay",
+              "jar-schema",
+              "jar-default"
+            ]
+          }
+        }
+      },
+      {
+        "key": "cost",
+        "type": {
+          "kind": "expression",
+          "language": "math",
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ],
+            "tier": "common"
+          },
+          "description": "Resource points cost when buying this turret from the nexus.",
+          "optional": true
+        }
+      },
+      {
+        "key": "sell",
+        "type": {
+          "kind": "expression",
+          "language": "math",
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "max-level",
+        "type": {
+          "kind": "expression",
+          "language": "math",
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "dont-update-holograms",
+        "type": {
+          "kind": "boolean",
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "Useful when \"hologram-update-ticks\" in config.yml is enabled. Used for optimization purposes. It means that placeholders won't update their values used inside holograms.",
+          "optional": true
+        }
+      },
+      {
+        "key": "vertical-knockback",
+        "type": {
+          "kind": "expression",
+          "language": "math",
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "lingering",
+        "type": {
+          "kind": "boolean",
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "A lingering potion around the area where it exploded. The affects are the same as the effects specified above.",
+          "optional": true
+        }
+      },
+      {
+        "key": "sounds",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "suggestion",
+            "typeName": "BuildingSoundStage",
+            "allowCustom": true,
+            "description": "User-defined level or stage name, such as 1, first, or veteran."
+          },
+          "values": {
+            "kind": "mapping",
+            "keys": {
+              "kind": "suggestion",
+              "typeName": "BuildingSoundEvent",
+              "values": [
+                "opening",
+                "upgrading",
+                "demolition",
+                "repairing",
+                "activate",
+                "partial-repair",
+                "damaged",
+                "broken"
+              ],
+              "allowCustom": true,
+              "description": "Sound event name used by this building."
+            },
+            "values": {
+              "kind": "union",
+              "choices": [
+                {
+                  "kind": "nullable",
+                  "value": {
+                    "kind": "suggestion",
+                    "typeName": "Sound",
+                    "allowCustom": true,
+                    "capability": {
+                      "sources": [
+                        "jar-schema"
+                      ]
+                    }
+                  },
+                  "capability": {
+                    "sources": [
+                      "jar-schema"
+                    ]
+                  }
+                },
+                {
+                  "kind": "mapping",
+                  "keys": {
+                    "kind": "enum",
+                    "values": [
+                      "started",
+                      "finished",
+                      "stopped"
+                    ],
+                    "allowCustom": false,
+                    "capability": {
+                      "sources": [
+                        "jar-schema"
+                      ]
+                    }
+                  },
+                  "values": {
+                    "kind": "suggestion",
+                    "typeName": "Sound",
+                    "allowCustom": true,
+                    "capability": {
+                      "sources": [
+                        "jar-schema"
+                      ]
+                    }
+                  },
+                  "fields": [],
+                  "capability": {
+                    "sources": [
+                      "jar-schema"
+                    ]
+                  }
+                }
+              ],
+              "capability": {
+                "sources": [
+                  "jar-schema"
+                ]
+              }
+            },
+            "fields": [],
+            "capability": {
+              "sources": [
+                "jar-schema"
+              ]
+            },
+            "description": "User-defined sound event names mapped to a sound or a started/finished/stopped sound group."
+          },
+          "fields": [],
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "death-messages",
+        "type": {
+          "kind": "list",
+          "elements": {
+            "kind": "advanced",
+            "typeName": "any",
+            "capability": {
+              "sources": [
+                "jar-schema"
+              ]
+            }
+          },
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "One of these messages will be chosen randomly.",
+          "optional": true
+        }
+      },
+      {
+        "key": "dropped-exp",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "string",
+            "typeName": "str",
+            "capability": {
+              "sources": [
+                "jar-schema"
+              ]
+            }
+          },
+          "values": {
+            "kind": "expression",
+            "language": "math",
+            "capability": {
+              "sources": [
+                "jar-schema"
+              ]
+            }
+          },
+          "fields": [],
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "hologram",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "string",
+            "typeName": "str",
+            "capability": {
+              "sources": [
+                "jar-schema"
+              ]
+            }
+          },
+          "values": {
+            "kind": "object",
+            "fields": [
+              {
+                "key": "lines",
+                "type": {
+                  "kind": "list",
+                  "elements": {
+                    "kind": "advanced",
+                    "typeName": "any",
+                    "capability": {
+                      "sources": [
+                        "jar-schema"
+                      ]
+                    }
+                  },
+                  "capability": {
+                    "sources": [
+                      "jar-schema"
+                    ]
+                  },
+                  "optional": true
+                }
+              },
+              {
+                "key": "height",
+                "type": {
+                  "kind": "decimal",
+                  "capability": {
+                    "sources": [
+                      "jar-schema"
+                    ]
+                  },
+                  "optional": true
+                }
+              }
+            ],
+            "capability": {
+              "sources": [
+                "jar-schema"
+              ]
+            }
+          },
+          "fields": [],
+          "capability": {
+            "sources": [
+              "jar-schema"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "placing",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "whitelist",
+              "type": {
+                "kind": "boolean",
+                "capability": {
+                  "sources": [
+                    "jar-schema"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "blocks",
+              "type": {
+                "kind": "list",
+                "elements": {
+                  "kind": "advanced",
+                  "typeName": "any",
+                  "capability": {
+                    "sources": [
+                      "jar-schema"
+                    ]
+                  }
+                },
+                "capability": {
+                  "sources": [
+                    "jar-schema"
+                  ]
+                },
+                "optional": true
+              }
+            }
+          ],
+          "capability": {
+            "sources": [
+              "jar-schema"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "range",
+        "type": {
+          "kind": "expression",
+          "language": "math",
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ],
+            "tier": "common"
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "cooldown",
+        "type": {
+          "kind": "expression",
+          "language": "math",
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ],
+            "tier": "common"
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "max-targets",
+        "type": {
+          "kind": "expression",
+          "language": "math",
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "max-ammo",
+        "type": {
+          "kind": "expression",
+          "language": "math",
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "knockback",
+        "type": {
+          "kind": "expression",
+          "language": "math",
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "pass-through",
+        "type": {
+          "kind": "expression",
+          "language": "math",
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "upgrade-cost",
+        "type": {
+          "kind": "expression",
+          "language": "math",
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "fire",
+        "type": {
+          "kind": "expression",
+          "language": "math",
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "manual",
+        "type": {
+          "kind": "expression",
+          "language": "math",
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "From which level can this turret be controlled manually by players.",
+          "optional": true
+        }
+      },
+      {
+        "key": "explosion",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "level",
+              "type": {
+                "kind": "integer",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "From which level should explosions be enabled?",
+                "optional": true
+              }
+            },
+            {
+              "key": "fire",
+              "type": {
+                "kind": "integer",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "From which level should explosions spread fire?",
+                "optional": true
+              }
+            },
+            {
+              "key": "power",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "The level of the explosion. Usually anything under 1 doesn't cause any block damage.",
+                "optional": true
+              }
+            }
+          ],
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "effects",
+        "type": {
+          "kind": "nullable",
+          "value": {
+            "kind": "mapping",
+            "keys": {
+              "kind": "string",
+              "typeName": "str",
+              "capability": {
+                "sources": [
+                  "jar-schema",
+                  "editor-overlay"
+                ]
+              }
+            },
+            "values": {
+              "kind": "list",
+              "elements": {
+                "kind": "advanced",
+                "typeName": "any",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "editor-overlay"
+                  ]
+                }
+              },
+              "capability": {
+                "sources": [
+                  "jar-schema",
+                  "editor-overlay"
+                ]
+              }
+            },
+            "fields": [],
+            "optional": true,
+            "capability": {
+              "sources": [
+                "jar-schema",
+                "jar-default",
+                "editor-overlay"
+              ]
+            }
+          },
+          "description": "Configured effects, or ~ to disable effects for this building.",
+          "optional": true,
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default",
+              "editor-overlay"
+            ]
+          }
+        }
+      },
+      {
+        "key": "projectile",
+        "type": {
+          "kind": "nullable",
+          "value": {
+            "kind": "mapping",
+            "keys": {
+              "kind": "integer",
+              "capability": {
+                "sources": [
+                  "jar-schema",
+                  "editor-overlay"
+                ]
+              }
+            },
+            "values": {
+              "kind": "suggestion",
+              "typeName": "EntityType",
+              "capability": {
+                "sources": [
+                  "jar-schema",
+                  "editor-overlay"
+                ]
+              },
+              "allowCustom": true,
+              "description": "Projectile entity type used at this level."
+            },
+            "fields": [],
+            "optional": true,
+            "required": [
+              "1"
+            ],
+            "capability": {
+              "sources": [
+                "jar-schema",
+                "jar-default",
+                "editor-overlay"
+              ]
+            }
+          },
+          "description": "Projectile types by level, or ~ when this building has no projectile.",
+          "optional": true,
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default",
+              "editor-overlay"
+            ]
+          }
+        }
+      },
+      {
+        "key": "speed",
+        "type": {
+          "kind": "expression",
+          "language": "math",
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "damage",
+        "type": {
+          "kind": "expression",
+          "language": "math",
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ],
+            "tier": "common"
+          },
+          "description": "https://minecraft.gamepedia.com/Explosion#Typical_damage_radius https://minecraft.gamepedia.com/Damage#Explosions",
+          "optional": true
+        }
+      },
+      {
+        "key": "entities",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "whitelist",
+              "type": {
+                "kind": "boolean",
+                "description": "true = only listed entities, false = all except listed.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            },
+            {
+              "key": "list",
+              "type": {
+                "kind": "list",
+                "elements": {
+                  "kind": "suggestion",
+                  "typeName": "EntityType",
+                  "description": "Spigot EntityType.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  },
+                  "allowCustom": true
+                },
+                "description": "Entity types affected by this turret.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            }
+          ],
+          "description": "Optional entity filter. It is commented in default turret files. Add it when you need targeting limits.",
+          "optional": true,
+          "capability": {
+            "sources": [
+              "editor-overlay",
+              "jar-schema",
+              "jar-default"
+            ]
+          }
+        }
+      },
+      {
+        "key": "item",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "integer",
+            "capability": {
+              "sources": [
+                "jar-schema"
+              ]
+            }
+          },
+          "values": {
+            "kind": "reference",
+            "typeName": "ItemStack",
+            "description": ""
+          },
+          "fields": [],
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "conditions",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "suggestion",
+            "typeName": "BuildingConditionAction",
+            "values": [
+              "purchase",
+              "upgrade",
+              "interact",
+              "place",
+              "break"
+            ],
+            "allowCustom": true,
+            "description": "Building action checked by this condition group."
+          },
+          "values": {
+            "kind": "mapping",
+            "keys": {
+              "kind": "expression",
+              "language": "condition",
+              "description": "User-defined Kingdoms condition expression.",
+              "allowFallback": true
+            },
+            "values": {
+              "kind": "string",
+              "typeName": "Message",
+              "description": "User-defined denial message returned when the condition matches.",
+              "capability": {
+                "sources": [
+                  "editor-overlay"
+                ]
+              }
+            },
+            "description": "Ordered condition expressions mapped to denial messages.",
+            "capability": {
+              "sources": [
+                "editor-overlay"
+              ]
+            }
+          },
+          "description": "Optional condition chains for each building action.",
+          "capability": {
+            "sources": [
+              "editor-overlay",
+              "jar-default"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "particles",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "suggestion",
+            "typeName": "BuildingParticleStage",
+            "allowCustom": true,
+            "description": "Building level or custom particle stage name."
+          },
+          "values": {
+            "kind": "object",
+            "fields": [
+              {
+                "key": "particle",
+                "type": {
+                  "kind": "suggestion",
+                  "typeName": "Particle",
+                  "allowCustom": true,
+                  "description": "Particle name.",
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  },
+                  "optional": true
+                }
+              },
+              {
+                "key": "count",
+                "type": {
+                  "kind": "integer",
+                  "description": "Number of particles spawned.",
+                  "minimum": 0,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  },
+                  "optional": true
+                }
+              },
+              {
+                "key": "offset",
+                "type": {
+                  "kind": "string",
+                  "typeName": "str",
+                  "description": "Particle X, Y, Z spread.",
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  },
+                  "optional": true
+                }
+              },
+              {
+                "key": "color",
+                "type": {
+                  "kind": "advanced",
+                  "typeName": "Color",
+                  "description": "Particle RGB/hex color.",
+                  "optional": true
+                }
+              },
+              {
+                "key": "size",
+                "type": {
+                  "kind": "decimal",
+                  "description": "Particle size.",
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  },
+                  "optional": true
+                }
+              },
+              {
+                "key": "speed",
+                "type": {
+                  "kind": "decimal",
+                  "description": "Particle speed or extra data value.",
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  },
+                  "optional": true
+                }
+              },
+              {
+                "key": "extra",
+                "type": {
+                  "kind": "decimal",
+                  "description": "Particle-specific extra data.",
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  },
+                  "optional": true
+                }
+              },
+              {
+                "key": "force",
+                "type": {
+                  "kind": "boolean",
+                  "description": "Whether the particle is forced for distant clients.",
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  },
+                  "optional": true
+                }
+              }
+            ],
+            "description": "Particle display settings.",
+            "capability": {
+              "sources": [
+                "editor-overlay"
+              ]
+            },
+            "additionalKeyType": {
+              "kind": "string",
+              "typeName": "str",
+              "description": "User-defined particle lifecycle/event name.",
+              "capability": {
+                "sources": [
+                  "editor-overlay"
+                ]
+              }
+            },
+            "additionalProperties": {
+              "kind": "object",
+              "fields": [
+                {
+                  "key": "particle",
+                  "type": {
+                    "kind": "suggestion",
+                    "typeName": "Particle",
+                    "allowCustom": true,
+                    "description": "Particle name.",
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    },
+                    "optional": true
+                  }
+                },
+                {
+                  "key": "count",
+                  "type": {
+                    "kind": "integer",
+                    "description": "Number of particles spawned.",
+                    "minimum": 0,
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    },
+                    "optional": true
+                  }
+                },
+                {
+                  "key": "offset",
+                  "type": {
+                    "kind": "string",
+                    "typeName": "str",
+                    "description": "Particle X, Y, Z spread.",
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    },
+                    "optional": true
+                  }
+                },
+                {
+                  "key": "color",
+                  "type": {
+                    "kind": "advanced",
+                    "typeName": "Color",
+                    "description": "Particle RGB/hex color.",
+                    "optional": true
+                  }
+                },
+                {
+                  "key": "size",
+                  "type": {
+                    "kind": "decimal",
+                    "description": "Particle size.",
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    },
+                    "optional": true
+                  }
+                },
+                {
+                  "key": "speed",
+                  "type": {
+                    "kind": "decimal",
+                    "description": "Particle speed or extra data value.",
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    },
+                    "optional": true
+                  }
+                },
+                {
+                  "key": "extra",
+                  "type": {
+                    "kind": "decimal",
+                    "description": "Particle-specific extra data.",
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    },
+                    "optional": true
+                  }
+                },
+                {
+                  "key": "force",
+                  "type": {
+                    "kind": "boolean",
+                    "description": "Whether the particle is forced for distant clients.",
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    },
+                    "optional": true
+                  }
+                }
+              ],
+              "description": "Particle display settings.",
+              "capability": {
+                "sources": [
+                  "editor-overlay"
+                ]
+              },
+              "additionalKeyType": {
+                "kind": "string",
+                "typeName": "str",
+                "description": "User-defined particle lifecycle/event name.",
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              },
+              "additionalProperties": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "particle",
+                    "type": {
+                      "kind": "suggestion",
+                      "typeName": "Particle",
+                      "allowCustom": true,
+                      "description": "Particle name.",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "count",
+                    "type": {
+                      "kind": "integer",
+                      "description": "Number of particles spawned.",
+                      "minimum": 0,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "offset",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "str",
+                      "description": "Particle X, Y, Z spread.",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "color",
+                    "type": {
+                      "kind": "advanced",
+                      "typeName": "Color",
+                      "description": "Particle RGB/hex color.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "size",
+                    "type": {
+                      "kind": "decimal",
+                      "description": "Particle size.",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "speed",
+                    "type": {
+                      "kind": "decimal",
+                      "description": "Particle speed or extra data value.",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "extra",
+                    "type": {
+                      "kind": "decimal",
+                      "description": "Particle-specific extra data.",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "force",
+                    "type": {
+                      "kind": "boolean",
+                      "description": "Whether the particle is forced for distant clients.",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  }
+                ],
+                "description": "Particle display settings.",
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                },
+                "additionalKeyType": {
+                  "kind": "string",
+                  "typeName": "str",
+                  "description": "User-defined particle lifecycle/event name.",
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                },
+                "additionalProperties": {
+                  "kind": "object",
+                  "fields": [
+                    {
+                      "key": "particle",
+                      "type": {
+                        "kind": "suggestion",
+                        "typeName": "Particle",
+                        "allowCustom": true,
+                        "description": "Particle name.",
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        },
+                        "optional": true
+                      }
+                    },
+                    {
+                      "key": "count",
+                      "type": {
+                        "kind": "integer",
+                        "description": "Number of particles spawned.",
+                        "minimum": 0,
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        },
+                        "optional": true
+                      }
+                    },
+                    {
+                      "key": "offset",
+                      "type": {
+                        "kind": "string",
+                        "typeName": "str",
+                        "description": "Particle X, Y, Z spread.",
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        },
+                        "optional": true
+                      }
+                    },
+                    {
+                      "key": "color",
+                      "type": {
+                        "kind": "advanced",
+                        "typeName": "Color",
+                        "description": "Particle RGB/hex color.",
+                        "optional": true
+                      }
+                    },
+                    {
+                      "key": "size",
+                      "type": {
+                        "kind": "decimal",
+                        "description": "Particle size.",
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        },
+                        "optional": true
+                      }
+                    },
+                    {
+                      "key": "speed",
+                      "type": {
+                        "kind": "decimal",
+                        "description": "Particle speed or extra data value.",
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        },
+                        "optional": true
+                      }
+                    },
+                    {
+                      "key": "extra",
+                      "type": {
+                        "kind": "decimal",
+                        "description": "Particle-specific extra data.",
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        },
+                        "optional": true
+                      }
+                    },
+                    {
+                      "key": "force",
+                      "type": {
+                        "kind": "boolean",
+                        "description": "Whether the particle is forced for distant clients.",
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        },
+                        "optional": true
+                      }
+                    }
+                  ],
+                  "description": "Particle display settings.",
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  },
+                  "additionalKeyType": {
+                    "kind": "string",
+                    "typeName": "str",
+                    "description": "User-defined particle lifecycle/event name.",
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    }
+                  },
+                  "additionalProperties": {
+                    "kind": "object",
+                    "fields": [
+                      {
+                        "key": "particle",
+                        "type": {
+                          "kind": "suggestion",
+                          "typeName": "Particle",
+                          "allowCustom": true,
+                          "description": "Particle name.",
+                          "capability": {
+                            "sources": [
+                              "editor-overlay"
+                            ]
+                          },
+                          "optional": true
+                        }
+                      },
+                      {
+                        "key": "count",
+                        "type": {
+                          "kind": "integer",
+                          "description": "Number of particles spawned.",
+                          "minimum": 0,
+                          "capability": {
+                            "sources": [
+                              "editor-overlay"
+                            ]
+                          },
+                          "optional": true
+                        }
+                      },
+                      {
+                        "key": "offset",
+                        "type": {
+                          "kind": "string",
+                          "typeName": "str",
+                          "description": "Particle X, Y, Z spread.",
+                          "capability": {
+                            "sources": [
+                              "editor-overlay"
+                            ]
+                          },
+                          "optional": true
+                        }
+                      },
+                      {
+                        "key": "color",
+                        "type": {
+                          "kind": "advanced",
+                          "typeName": "Color",
+                          "description": "Particle RGB/hex color.",
+                          "optional": true
+                        }
+                      },
+                      {
+                        "key": "size",
+                        "type": {
+                          "kind": "decimal",
+                          "description": "Particle size.",
+                          "capability": {
+                            "sources": [
+                              "editor-overlay"
+                            ]
+                          },
+                          "optional": true
+                        }
+                      },
+                      {
+                        "key": "speed",
+                        "type": {
+                          "kind": "decimal",
+                          "description": "Particle speed or extra data value.",
+                          "capability": {
+                            "sources": [
+                              "editor-overlay"
+                            ]
+                          },
+                          "optional": true
+                        }
+                      },
+                      {
+                        "key": "extra",
+                        "type": {
+                          "kind": "decimal",
+                          "description": "Particle-specific extra data.",
+                          "capability": {
+                            "sources": [
+                              "editor-overlay"
+                            ]
+                          },
+                          "optional": true
+                        }
+                      },
+                      {
+                        "key": "force",
+                        "type": {
+                          "kind": "boolean",
+                          "description": "Whether the particle is forced for distant clients.",
+                          "capability": {
+                            "sources": [
+                              "editor-overlay"
+                            ]
+                          },
+                          "optional": true
+                        }
+                      }
+                    ],
+                    "description": "Particle display settings.",
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    },
+                    "additionalKeyType": {
+                      "kind": "string",
+                      "typeName": "str",
+                      "description": "User-defined particle lifecycle/event name.",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "description": "Optional particle displays grouped by level/stage and user-defined event path.",
+          "capability": {
+            "sources": [
+              "editor-overlay"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "(import)",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "building",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "parameters",
+                    "type": {
+                      "kind": "object",
+                      "fields": [
+                        {
+                          "key": "<type>",
+                          "type": {
+                            "kind": "string",
+                            "typeName": "str",
+                            "description": "",
+                            "capability": {
+                              "sources": [
+                                "editor-overlay",
+                                "jar-default"
+                              ]
+                            },
+                            "optional": true
+                          }
+                        },
+                        {
+                          "key": "<name>",
+                          "type": {
+                            "kind": "string",
+                            "typeName": "str",
+                            "description": "",
+                            "capability": {
+                              "sources": [
+                                "editor-overlay",
+                                "jar-default"
+                              ]
+                            },
+                            "optional": true
+                          }
+                        },
+                        {
+                          "key": "<extra-holograms>",
+                          "type": {
+                            "kind": "list",
+                            "elements": {
+                              "kind": "string",
+                              "typeName": "str",
+                              "description": "",
+                              "capability": {
+                                "sources": [
+                                  "editor-overlay"
+                                ]
+                              }
+                            },
+                            "description": "",
+                            "capability": {
+                              "sources": [
+                                "editor-overlay",
+                                "jar-default"
+                              ]
+                            },
+                            "optional": true
+                          }
+                        },
+                        {
+                          "key": "<block-1>",
+                          "type": {
+                            "kind": "object",
+                            "fields": [
+                              {
+                                "key": "material",
+                                "type": {
+                                  "kind": "suggestion",
+                                  "typeName": "Material",
+                                  "description": "Minecraft material.",
+                                  "capability": {
+                                    "sources": [
+                                      "editor-overlay",
+                                      "jar-default"
+                                    ]
+                                  },
+                                  "allowCustom": true,
+                                  "optional": true
+                                }
+                              },
+                              {
+                                "key": "skull",
+                                "type": {
+                                  "kind": "string",
+                                  "typeName": "str",
+                                  "description": "",
+                                  "capability": {
+                                    "sources": [
+                                      "editor-overlay",
+                                      "jar-default"
+                                    ]
+                                  },
+                                  "optional": true
+                                }
+                              }
+                            ],
+                            "description": "",
+                            "capability": {
+                              "sources": [
+                                "editor-overlay",
+                                "jar-default"
+                              ]
+                            },
+                            "optional": true
+                          }
+                        },
+                        {
+                          "key": "<block-2>",
+                          "type": {
+                            "kind": "object",
+                            "fields": [
+                              {
+                                "key": "material",
+                                "type": {
+                                  "kind": "suggestion",
+                                  "typeName": "Material",
+                                  "description": "Minecraft material.",
+                                  "capability": {
+                                    "sources": [
+                                      "editor-overlay",
+                                      "jar-default"
+                                    ]
+                                  },
+                                  "allowCustom": true,
+                                  "optional": true
+                                }
+                              },
+                              {
+                                "key": "skull",
+                                "type": {
+                                  "kind": "string",
+                                  "typeName": "str",
+                                  "description": "",
+                                  "capability": {
+                                    "sources": [
+                                      "editor-overlay",
+                                      "jar-default"
+                                    ]
+                                  },
+                                  "optional": true
+                                }
+                              }
+                            ],
+                            "description": "",
+                            "capability": {
+                              "sources": [
+                                "editor-overlay",
+                                "jar-default"
+                              ]
+                            },
+                            "optional": true
+                          }
+                        },
+                        {
+                          "key": "<block-3>",
+                          "type": {
+                            "kind": "object",
+                            "fields": [
+                              {
+                                "key": "material",
+                                "type": {
+                                  "kind": "suggestion",
+                                  "typeName": "Material",
+                                  "description": "Minecraft material.",
+                                  "capability": {
+                                    "sources": [
+                                      "editor-overlay",
+                                      "jar-default"
+                                    ]
+                                  },
+                                  "allowCustom": true,
+                                  "optional": true
+                                }
+                              },
+                              {
+                                "key": "skull",
+                                "type": {
+                                  "kind": "string",
+                                  "typeName": "str",
+                                  "description": "",
+                                  "capability": {
+                                    "sources": [
+                                      "editor-overlay",
+                                      "jar-default"
+                                    ]
+                                  },
+                                  "optional": true
+                                }
+                              }
+                            ],
+                            "description": "",
+                            "capability": {
+                              "sources": [
+                                "editor-overlay",
+                                "jar-default"
+                              ]
+                            },
+                            "optional": true
+                          }
+                        }
+                      ],
+                      "description": "",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  }
+                ],
+                "description": "",
+                "capability": {
+                  "sources": [
+                    "editor-overlay",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "turret",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "parameters",
+                    "type": {
+                      "kind": "object",
+                      "fields": [
+                        {
+                          "key": "<name>",
+                          "type": {
+                            "kind": "string",
+                            "typeName": "str",
+                            "description": "",
+                            "capability": {
+                              "sources": [
+                                "editor-overlay",
+                                "jar-default"
+                              ]
+                            },
+                            "optional": true
+                          }
+                        },
+                        {
+                          "key": "<build-duration-factor>",
+                          "type": {
+                            "kind": "string",
+                            "typeName": "str",
+                            "description": "",
+                            "capability": {
+                              "sources": [
+                                "editor-overlay",
+                                "jar-default"
+                              ]
+                            },
+                            "optional": true
+                          }
+                        },
+                        {
+                          "key": "<durability-factor>",
+                          "type": {
+                            "kind": "integer",
+                            "description": "",
+                            "capability": {
+                              "sources": [
+                                "editor-overlay",
+                                "jar-default"
+                              ]
+                            },
+                            "optional": true
+                          }
+                        },
+                        {
+                          "key": "<skull-1>",
+                          "type": {
+                            "kind": "string",
+                            "typeName": "str",
+                            "description": "https://minecraft-heads.com/custom-heads/humanoid/47657-volcanic-golem https://minecraft-heads.com/custom-heads/monsters/5999-lava-monster",
+                            "capability": {
+                              "sources": [
+                                "editor-overlay",
+                                "jar-default"
+                              ]
+                            },
+                            "optional": true
+                          }
+                        },
+                        {
+                          "key": "<skull-2>",
+                          "type": {
+                            "kind": "string",
+                            "typeName": "str",
+                            "description": "",
+                            "capability": {
+                              "sources": [
+                                "editor-overlay",
+                                "jar-default"
+                              ]
+                            },
+                            "optional": true
+                          }
+                        },
+                        {
+                          "key": "<skull-3>",
+                          "type": {
+                            "kind": "string",
+                            "typeName": "str",
+                            "description": "",
+                            "capability": {
+                              "sources": [
+                                "editor-overlay",
+                                "jar-default"
+                              ]
+                            },
+                            "optional": true
+                          }
+                        }
+                      ],
+                      "description": "",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  }
+                ],
+                "description": "",
+                "capability": {
+                  "sources": [
+                    "editor-overlay",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "mine",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "parameters",
+                    "type": {
+                      "kind": "object",
+                      "fields": [
+                        {
+                          "key": "<name>",
+                          "type": {
+                            "kind": "string",
+                            "typeName": "str",
+                            "description": "",
+                            "capability": {
+                              "sources": [
+                                "editor-overlay",
+                                "jar-default"
+                              ]
+                            },
+                            "optional": true
+                          }
+                        },
+                        {
+                          "key": "<build-duration-factor>",
+                          "type": {
+                            "kind": "string",
+                            "typeName": "str",
+                            "description": "",
+                            "capability": {
+                              "sources": [
+                                "editor-overlay",
+                                "jar-default"
+                              ]
+                            },
+                            "optional": true
+                          }
+                        },
+                        {
+                          "key": "<durability-factor>",
+                          "type": {
+                            "kind": "integer",
+                            "description": "",
+                            "capability": {
+                              "sources": [
+                                "editor-overlay",
+                                "jar-default"
+                              ]
+                            },
+                            "optional": true
+                          }
+                        },
+                        {
+                          "key": "<material>",
+                          "type": {
+                            "kind": "suggestion",
+                            "typeName": "Material",
+                            "description": "Minecraft material.",
+                            "capability": {
+                              "sources": [
+                                "editor-overlay",
+                                "jar-default"
+                              ]
+                            },
+                            "allowCustom": true,
+                            "optional": true
+                          }
+                        }
+                      ],
+                      "description": "",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  }
+                ],
+                "description": "",
+                "capability": {
+                  "sources": [
+                    "editor-overlay",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            }
+          ],
+          "description": "",
+          "capability": {
+            "sources": [
+              "editor-overlay",
+              "jar-default"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "(module)",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "description",
+              "type": {
+                "kind": "string",
+                "typeName": "str",
+                "description": "",
+                "capability": {
+                  "sources": [
+                    "editor-overlay",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "parameters",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "<name>",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "str",
+                      "description": "",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "<build-duration-factor>",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "str",
+                      "description": "",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "<durability-factor>",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "str",
+                      "description": "",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "<material>",
+                    "type": {
+                      "kind": "suggestion",
+                      "typeName": "Material",
+                      "description": "Minecraft material.",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-default"
+                        ]
+                      },
+                      "allowCustom": true,
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "<skull-1>",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "str",
+                      "description": "",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "<skull-2>",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "str",
+                      "description": "",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "<skull-3>",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "str",
+                      "description": "",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  }
+                ],
+                "description": "",
+                "capability": {
+                  "sources": [
+                    "editor-overlay",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            }
+          ],
+          "description": "Shared mine settings (chemical and explosive) ###",
+          "capability": {
+            "sources": [
+              "editor-overlay",
+              "jar-default"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "hide-holograms",
+        "type": {
+          "kind": "boolean",
+          "description": "Hide this building's holograms. Relation show-holograms still applies to other buildings.",
+          "optional": true,
+          "capability": {
+            "sources": [
+              "editor-overlay",
+              "jar-default"
+            ]
+          }
+        }
+      },
+      {
+        "key": "schema",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "integer",
+            "description": "Building level",
+            "optional": true,
+            "capability": {
+              "sources": [
+                "editor-overlay"
+              ]
+            }
+          },
+          "values": {
+            "kind": "object",
+            "fields": [
+              {
+                "key": "origin",
+                "type": {
+                  "kind": "list",
+                  "elements": {
+                    "kind": "integer",
+                    "description": "XZ origin coordinate",
+                    "optional": true,
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    }
+                  },
+                  "description": "XZ center of the pattern as [x, z].",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                }
+              },
+              {
+                "key": "blocks",
+                "type": {
+                  "kind": "mapping",
+                  "keys": {
+                    "kind": "string",
+                    "typeName": "str",
+                    "description": "Relative Y layer, often -1 for the layer under the click point",
+                    "optional": true,
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    }
+                  },
+                  "values": {
+                    "kind": "string",
+                    "typeName": "str",
+                    "description": "Multiline block pattern. x means any. Other symbols need mappings.",
+                    "optional": true,
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    }
+                  },
+                  "description": "Block pattern layers keyed by relative Y.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                }
+              },
+              {
+                "key": "mappings",
+                "type": {
+                  "kind": "mapping",
+                  "keys": {
+                    "kind": "string",
+                    "typeName": "str",
+                    "description": "Pattern symbol",
+                    "optional": true,
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    }
+                  },
+                  "values": {
+                    "kind": "object",
+                    "fields": [
+                      {
+                        "key": "displayname",
+                        "type": {
+                          "kind": "string",
+                          "typeName": "Message",
+                          "description": "Short name shown for schema errors.",
+                          "optional": true,
+                          "capability": {
+                            "sources": [
+                              "editor-overlay"
+                            ]
+                          }
+                        }
+                      },
+                      {
+                        "key": "mismatch-message",
+                        "type": {
+                          "kind": "string",
+                          "typeName": "Message",
+                          "description": "Message when the placed block does not match this symbol.",
+                          "optional": true,
+                          "capability": {
+                            "sources": [
+                              "editor-overlay"
+                            ]
+                          }
+                        }
+                      },
+                      {
+                        "key": "accepted-materials",
+                        "type": {
+                          "kind": "list",
+                          "elements": {
+                            "kind": "advanced",
+                            "typeName": "StringMatcher<Material>",
+                            "description": "Material or REGEX: matcher",
+                            "optional": true,
+                            "capability": {
+                              "sources": [
+                                "editor-overlay"
+                              ]
+                            }
+                          },
+                          "description": "Blocks accepted for this symbol.",
+                          "optional": true,
+                          "capability": {
+                            "sources": [
+                              "editor-overlay"
+                            ]
+                          }
+                        }
+                      }
+                    ],
+                    "description": "Symbol mapping for the placement schema.",
+                    "optional": true,
+                    "required": [],
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    }
+                  },
+                  "description": "Maps pattern symbols to accepted materials.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                }
+              }
+            ],
+            "description": "Placement schema for this level.",
+            "optional": true,
+            "required": [],
+            "capability": {
+              "sources": [
+                "editor-overlay"
+              ]
+            }
+          },
+          "description": "Interactive placement schemas. Players must match the pattern before the building can be placed.",
+          "optional": true,
+          "capability": {
+            "sources": [
+              "editor-overlay",
+              "jar-default"
+            ]
+          }
+        }
+      },
+      {
+        "key": "biomes",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "world",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "whitelist",
+                    "type": {
+                      "kind": "boolean",
+                      "description": "",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "list",
+                    "type": {
+                      "kind": "list",
+                      "elements": {
+                        "kind": "string",
+                        "typeName": "str",
+                        "description": "",
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        }
+                      },
+                      "description": "",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  }
+                ],
+                "description": "",
+                "capability": {
+                  "sources": [
+                    "editor-overlay",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            }
+          ],
+          "description": "",
+          "capability": {
+            "sources": [
+              "editor-overlay",
+              "jar-default"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "particle",
+        "type": {
+          "kind": "nullable",
+          "value": {
+            "kind": "suggestion",
+            "typeName": "Particle",
+            "description": "Spigot particle or a custom particle name.",
+            "capability": {
+              "sources": [
+                "editor-overlay",
+                "jar-default"
+              ]
+            },
+            "allowCustom": true
+          },
+          "description": "Projectile particle, or ~ to disable it.",
+          "optional": true,
+          "capability": {
+            "sources": [
+              "editor-overlay",
+              "jar-default"
+            ]
+          }
+        }
+      },
+      {
+        "key": "whitelist",
+        "type": {
+          "kind": "boolean",
+          "description": "",
+          "capability": {
+            "sources": [
+              "editor-overlay",
+              "jar-default"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "repair-armor",
+        "type": {
+          "kind": "expression",
+          "language": "math",
+          "description": "Repairs a random player armor if they're wearing one. This only works if the player needs healing so it won't work when on full health. It works exactly like mending except that if all armors are fully repaired, it doesn't give you exp.",
+          "capability": {
+            "sources": [
+              "editor-overlay",
+              "jar-default"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "armor-damage",
+        "type": {
+          "kind": "expression",
+          "language": "math",
+          "description": "Math formula.",
+          "capability": {
+            "sources": [
+              "editor-overlay",
+              "jar-default"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "limits",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "total",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "description": "Override the global total placement limit with a static number or formula. 0, -1, or omission disables it.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            },
+            {
+              "key": "per-land",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "description": "Override the global per-land limit with a static number or formula. 0, -1, or omission disables it.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            }
+          ],
+          "description": "Optional placement limits for this building type.",
+          "optional": true,
+          "capability": {
+            "sources": [
+              "editor-overlay",
+              "jar-default"
+            ]
+          }
+        }
+      },
+      {
+        "key": "damage-modifier",
+        "type": {
+          "kind": "expression",
+          "language": "math",
+          "description": "Every time the turret goes through a new phase, its damage is increased by the modifier below.",
+          "capability": {
+            "sources": [
+              "editor-overlay",
+              "jar-default"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "damage-modifier-phases",
+        "type": {
+          "kind": "integer",
+          "description": "Inferno turrets go through a new \"phase\" once they activate (shoot their target) for the followed amount of steps specified below. This phase resets if the inferno turrets loses its target or switches to another target. But Inferno turrets don't switch to another target if they're still in range, they will focus on that target until they're dead.",
+          "capability": {
+            "sources": [
+              "editor-overlay",
+              "jar-default"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "soldiers",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "integer",
+            "description": "Building level",
+            "optional": true,
+            "capability": {
+              "sources": [
+                "editor-overlay"
+              ]
+            }
+          },
+          "values": {
+            "kind": "mapping",
+            "keys": {
+              "kind": "string",
+              "typeName": "str",
+              "description": "Group id",
+              "optional": true,
+              "capability": {
+                "sources": [
+                  "editor-overlay"
+                ]
+              }
+            },
+            "values": {
+              "kind": "object",
+              "fields": [
+                {
+                  "key": "amount",
+                  "type": {
+                    "kind": "integer",
+                    "description": "How many entities spawn in this group.",
+                    "optional": true,
+                    "minimum": 0,
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    }
+                  }
+                },
+                {
+                  "key": "type",
+                  "type": {
+                    "kind": "suggestion",
+                    "typeName": "EntityType",
+                    "description": "Entity type for this spawn group.",
+                    "optional": true,
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    },
+                    "allowCustom": true
+                  }
+                },
+                {
+                  "key": "name",
+                  "type": {
+                    "kind": "string",
+                    "typeName": "Message",
+                    "description": "Display name for spawned entities.",
+                    "optional": true,
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    }
+                  }
+                },
+                {
+                  "key": "health",
+                  "type": {
+                    "kind": "decimal",
+                    "description": "Optional health override for spawned entities.",
+                    "optional": true,
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    }
+                  }
+                }
+              ],
+              "description": "Spawn group used by soldier turrets and nexus-guards.",
+              "optional": true,
+              "required": [],
+              "capability": {
+                "sources": [
+                  "editor-overlay"
+                ]
+              }
+            },
+            "description": "Named spawn groups for this level.",
+            "optional": true,
+            "capability": {
+              "sources": [
+                "editor-overlay"
+              ]
+            }
+          },
+          "description": "Soldiers spawned by soldier turrets, keyed by level then group.",
+          "optional": true,
+          "capability": {
+            "sources": [
+              "editor-overlay",
+              "jar-default"
+            ]
+          }
+        }
+      },
+      {
+        "key": "damaging-factors",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "string",
+            "typeName": "str",
+            "description": "Damage source name",
+            "optional": true,
+            "capability": {
+              "sources": [
+                "editor-overlay"
+              ]
+            }
+          },
+          "values": {
+            "kind": "mapping",
+            "keys": {
+              "kind": "string",
+              "typeName": "str",
+              "description": "Effect or nested source",
+              "optional": true,
+              "capability": {
+                "sources": [
+                  "editor-overlay"
+                ]
+              }
+            },
+            "values": {
+              "kind": "union",
+              "choices": [
+                {
+                  "kind": "object",
+                  "fields": [
+                    {
+                      "key": "damage",
+                      "type": {
+                        "kind": "expression",
+                        "language": "math",
+                        "description": "Damage applied to the building. Enter a number or formula.",
+                        "optional": true,
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "key": "paralyze",
+                      "type": {
+                        "kind": "union",
+                        "optional": true,
+                        "description": "Paralyze duration or equation.",
+                        "choices": [
+                          {
+                            "kind": "duration",
+                            "description": "Fixed Kingdoms duration.",
+                            "optional": true,
+                            "capability": {
+                              "sources": [
+                                "editor-overlay"
+                              ]
+                            }
+                          },
+                          {
+                            "kind": "expression",
+                            "language": "math",
+                            "description": "Duration equation.",
+                            "capability": {
+                              "sources": [
+                                "editor-overlay"
+                              ]
+                            }
+                          }
+                        ],
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "key": "hypnotize",
+                      "type": {
+                        "kind": "union",
+                        "optional": true,
+                        "description": "Hypnotize duration or equation.",
+                        "choices": [
+                          {
+                            "kind": "duration",
+                            "description": "Fixed Kingdoms duration.",
+                            "optional": true,
+                            "capability": {
+                              "sources": [
+                                "editor-overlay"
+                              ]
+                            }
+                          },
+                          {
+                            "kind": "expression",
+                            "language": "math",
+                            "description": "Duration equation.",
+                            "capability": {
+                              "sources": [
+                                "editor-overlay"
+                              ]
+                            }
+                          }
+                        ],
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "key": "slowness",
+                      "type": {
+                        "kind": "object",
+                        "fields": [
+                          {
+                            "key": "delay",
+                            "type": {
+                              "kind": "union",
+                              "optional": true,
+                              "description": "Delay before slowness applies.",
+                              "choices": [
+                                {
+                                  "kind": "duration",
+                                  "description": "Fixed Kingdoms duration.",
+                                  "optional": true,
+                                  "capability": {
+                                    "sources": [
+                                      "editor-overlay"
+                                    ]
+                                  }
+                                },
+                                {
+                                  "kind": "expression",
+                                  "language": "math",
+                                  "description": "Duration equation.",
+                                  "capability": {
+                                    "sources": [
+                                      "editor-overlay"
+                                    ]
+                                  }
+                                }
+                              ],
+                              "capability": {
+                                "sources": [
+                                  "editor-overlay"
+                                ]
+                              }
+                            }
+                          },
+                          {
+                            "key": "duration",
+                            "type": {
+                              "kind": "union",
+                              "optional": true,
+                              "description": "Slowness duration.",
+                              "choices": [
+                                {
+                                  "kind": "duration",
+                                  "description": "Fixed Kingdoms duration.",
+                                  "optional": true,
+                                  "capability": {
+                                    "sources": [
+                                      "editor-overlay"
+                                    ]
+                                  }
+                                },
+                                {
+                                  "kind": "expression",
+                                  "language": "math",
+                                  "description": "Duration equation.",
+                                  "capability": {
+                                    "sources": [
+                                      "editor-overlay"
+                                    ]
+                                  }
+                                }
+                              ],
+                              "capability": {
+                                "sources": [
+                                  "editor-overlay"
+                                ]
+                              }
+                            }
+                          }
+                        ],
+                        "description": "Optional slowness effect.",
+                        "optional": true,
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "key": "weakness",
+                      "type": {
+                        "kind": "object",
+                        "fields": [
+                          {
+                            "key": "damage-reduction",
+                            "type": {
+                              "kind": "expression",
+                              "language": "math",
+                              "description": "Damage reduction. Enter a number or formula.",
+                              "optional": true,
+                              "capability": {
+                                "sources": [
+                                  "editor-overlay"
+                                ]
+                              }
+                            }
+                          },
+                          {
+                            "key": "duration",
+                            "type": {
+                              "kind": "union",
+                              "optional": true,
+                              "description": "Weakness duration.",
+                              "choices": [
+                                {
+                                  "kind": "duration",
+                                  "description": "Fixed Kingdoms duration.",
+                                  "optional": true,
+                                  "capability": {
+                                    "sources": [
+                                      "editor-overlay"
+                                    ]
+                                  }
+                                },
+                                {
+                                  "kind": "expression",
+                                  "language": "math",
+                                  "description": "Duration equation.",
+                                  "capability": {
+                                    "sources": [
+                                      "editor-overlay"
+                                    ]
+                                  }
+                                }
+                              ],
+                              "capability": {
+                                "sources": [
+                                  "editor-overlay"
+                                ]
+                              }
+                            }
+                          }
+                        ],
+                        "description": "Optional weakness effect.",
+                        "optional": true,
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "key": "allowed-range",
+                      "type": {
+                        "kind": "list",
+                        "elements": {
+                          "kind": "decimal",
+                          "description": "Axis distance in blocks.",
+                          "optional": true,
+                          "capability": {
+                            "sources": [
+                              "editor-overlay"
+                            ]
+                          }
+                        },
+                        "description": "Maximum X, Y, and Z distance as [x, y, z].",
+                        "optional": true,
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "key": "distance",
+                      "type": {
+                        "kind": "decimal",
+                        "description": "Distance-related modifier.",
+                        "optional": true,
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        }
+                      }
+                    }
+                  ],
+                  "description": "Damaging-factor effects. Structures generally only honor damage. Turrets support the fuller set.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                },
+                {
+                  "kind": "expression",
+                  "language": "math",
+                  "description": "Damage, effect duration, or other numeric formula.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                }
+              ],
+              "capability": {
+                "sources": [
+                  "editor-overlay"
+                ]
+              }
+            },
+            "description": "Effect map for this damage source.",
+            "optional": true,
+            "capability": {
+              "sources": [
+                "editor-overlay"
+              ]
+            },
+            "fields": [
+              {
+                "key": "damage",
+                "type": {
+                  "kind": "expression",
+                  "language": "math",
+                  "description": "Damage applied to the building. Enter a number or formula.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                }
+              },
+              {
+                "key": "paralyze",
+                "type": {
+                  "kind": "union",
+                  "optional": true,
+                  "description": "Paralyze duration or equation.",
+                  "choices": [
+                    {
+                      "kind": "duration",
+                      "description": "Fixed Kingdoms duration.",
+                      "optional": true,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      }
+                    },
+                    {
+                      "kind": "expression",
+                      "language": "math",
+                      "description": "Duration equation.",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      }
+                    }
+                  ],
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                }
+              },
+              {
+                "key": "hypnotize",
+                "type": {
+                  "kind": "union",
+                  "optional": true,
+                  "description": "Hypnotize duration or equation.",
+                  "choices": [
+                    {
+                      "kind": "duration",
+                      "description": "Fixed Kingdoms duration.",
+                      "optional": true,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      }
+                    },
+                    {
+                      "kind": "expression",
+                      "language": "math",
+                      "description": "Duration equation.",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      }
+                    }
+                  ],
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                }
+              },
+              {
+                "key": "slowness",
+                "type": {
+                  "kind": "object",
+                  "fields": [
+                    {
+                      "key": "delay",
+                      "type": {
+                        "kind": "union",
+                        "optional": true,
+                        "description": "Delay before slowness applies.",
+                        "choices": [
+                          {
+                            "kind": "duration",
+                            "description": "Fixed Kingdoms duration.",
+                            "optional": true,
+                            "capability": {
+                              "sources": [
+                                "editor-overlay"
+                              ]
+                            }
+                          },
+                          {
+                            "kind": "expression",
+                            "language": "math",
+                            "description": "Duration equation.",
+                            "capability": {
+                              "sources": [
+                                "editor-overlay"
+                              ]
+                            }
+                          }
+                        ],
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "key": "duration",
+                      "type": {
+                        "kind": "union",
+                        "optional": true,
+                        "description": "Slowness duration.",
+                        "choices": [
+                          {
+                            "kind": "duration",
+                            "description": "Fixed Kingdoms duration.",
+                            "optional": true,
+                            "capability": {
+                              "sources": [
+                                "editor-overlay"
+                              ]
+                            }
+                          },
+                          {
+                            "kind": "expression",
+                            "language": "math",
+                            "description": "Duration equation.",
+                            "capability": {
+                              "sources": [
+                                "editor-overlay"
+                              ]
+                            }
+                          }
+                        ],
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        }
+                      }
+                    }
+                  ],
+                  "description": "Optional slowness effect.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                }
+              },
+              {
+                "key": "weakness",
+                "type": {
+                  "kind": "object",
+                  "fields": [
+                    {
+                      "key": "damage-reduction",
+                      "type": {
+                        "kind": "expression",
+                        "language": "math",
+                        "description": "Damage reduction. Enter a number or formula.",
+                        "optional": true,
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "key": "duration",
+                      "type": {
+                        "kind": "union",
+                        "optional": true,
+                        "description": "Weakness duration.",
+                        "choices": [
+                          {
+                            "kind": "duration",
+                            "description": "Fixed Kingdoms duration.",
+                            "optional": true,
+                            "capability": {
+                              "sources": [
+                                "editor-overlay"
+                              ]
+                            }
+                          },
+                          {
+                            "kind": "expression",
+                            "language": "math",
+                            "description": "Duration equation.",
+                            "capability": {
+                              "sources": [
+                                "editor-overlay"
+                              ]
+                            }
+                          }
+                        ],
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        }
+                      }
+                    }
+                  ],
+                  "description": "Optional weakness effect.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                }
+              },
+              {
+                "key": "allowed-range",
+                "type": {
+                  "kind": "list",
+                  "elements": {
+                    "kind": "decimal",
+                    "description": "Axis distance in blocks.",
+                    "optional": true,
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    }
+                  },
+                  "description": "Maximum X, Y, and Z distance as [x, y, z].",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                }
+              },
+              {
+                "key": "distance",
+                "type": {
+                  "kind": "decimal",
+                  "description": "Distance-related modifier.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                }
+              }
+            ]
+          },
+          "description": "Optional damaging-factor vocabulary documented in declarations/building.yml.",
+          "optional": true,
+          "capability": {
+            "sources": [
+              "editor-overlay"
+            ]
+          }
+        }
+      },
+      {
+        "key": "preview",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "integer",
+            "description": "Building level",
+            "optional": true,
+            "capability": {
+              "sources": [
+                "editor-overlay"
+              ]
+            }
+          },
+          "values": {
+            "kind": "mapping",
+            "keys": {
+              "kind": "string",
+              "typeName": "str",
+              "description": "Preview state such as ok, out-of-chunk, not-owned, wrong-schema, conflict",
+              "optional": true,
+              "capability": {
+                "sources": [
+                  "editor-overlay"
+                ]
+              }
+            },
+            "values": {
+              "kind": "object",
+              "fields": [
+                {
+                  "key": "type",
+                  "type": {
+                    "kind": "enum",
+                    "typeName": "BuildingPreviewType",
+                    "values": [
+                      "INFO",
+                      "ERROR"
+                    ],
+                    "description": "INFO allows placement. ERROR blocks placement while this preview state is active.",
+                    "optional": true,
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    }
+                  }
+                },
+                {
+                  "key": "message",
+                  "type": {
+                    "kind": "string",
+                    "typeName": "Message",
+                    "description": "Language key or message shown for this preview state.",
+                    "optional": true,
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    }
+                  }
+                },
+                {
+                  "key": "color",
+                  "type": {
+                    "kind": "string",
+                    "typeName": "Color",
+                    "description": "RGBA preview tint.",
+                    "optional": true,
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    }
+                  }
+                },
+                {
+                  "key": "block",
+                  "type": {
+                    "kind": "object",
+                    "fields": [
+                      {
+                        "key": "material",
+                        "type": {
+                          "kind": "suggestion",
+                          "typeName": "Material",
+                          "description": "Fake block material shown during preview.",
+                          "optional": true,
+                          "capability": {
+                            "sources": [
+                              "editor-overlay"
+                            ]
+                          },
+                          "allowCustom": true
+                        }
+                      }
+                    ],
+                    "description": "Optional preview block override.",
+                    "optional": true,
+                    "required": [],
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    }
+                  }
+                }
+              ],
+              "description": "Placement preview state (ok, out-of-chunk, not-owned, wrong-schema, conflict, …).",
+              "optional": true,
+              "required": [],
+              "capability": {
+                "sources": [
+                  "editor-overlay"
+                ]
+              }
+            },
+            "description": "Preview states for this level.",
+            "optional": true,
+            "capability": {
+              "sources": [
+                "editor-overlay"
+              ]
+            }
+          },
+          "description": "Placement preview visuals by level and state.",
+          "optional": true,
+          "capability": {
+            "sources": [
+              "editor-overlay"
+            ]
+          }
+        }
+      },
+      {
+        "key": "repair",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "cost",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "description": "Resource-point cost formula for a full repair.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            },
+            {
+              "key": "materials",
+              "type": {
+                "kind": "mapping",
+                "keys": {
+                  "kind": "string",
+                  "typeName": "str",
+                  "description": "Material repair entry id",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                },
+                "values": {
+                  "kind": "object",
+                  "fields": [
+                    {
+                      "key": "amount",
+                      "type": {
+                        "kind": "integer",
+                        "description": "Durability restored by one matching item.",
+                        "optional": true,
+                        "minimum": 0,
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "key": "item",
+                      "type": {
+                        "kind": "reference",
+                        "typeName": "ItemMatcher",
+                        "description": "Item matcher for instant repair drops."
+                      }
+                    }
+                  ],
+                  "description": "Instant repair material.",
+                  "optional": true,
+                  "required": [],
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                },
+                "description": "Items players can drop near the building for instant repairs.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            }
+          ],
+          "description": "Repair cost and instant material repairs.",
+          "optional": true,
+          "required": [],
+          "capability": {
+            "sources": [
+              "editor-overlay"
+            ]
+          }
+        }
+      },
+      {
+        "key": "build-duration",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "opening",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "description": "Construction-time formula. Bracket fixed times, for example [1min].",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            },
+            {
+              "key": "upgrading",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "description": "Upgrade-time formula. Bracket fixed times, for example [1min].",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            },
+            {
+              "key": "repairing",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "description": "Repair-time formula. Bracket fixed times, for example [1sec].",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            },
+            {
+              "key": "demolishing",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "description": "Demolition-time formula. Bracket fixed times, for example [50ms].",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            }
+          ],
+          "description": "Build times are formulas that return milliseconds. Fixed times inside them use brackets, for example [1min].",
+          "optional": true,
+          "required": [],
+          "capability": {
+            "sources": [
+              "editor-overlay"
+            ]
+          }
+        }
+      },
+      {
+        "key": "markers",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "integer",
+            "description": "Building level",
+            "optional": true,
+            "capability": {
+              "sources": [
+                "editor-overlay"
+              ]
+            }
+          },
+          "values": {
+            "kind": "mapping",
+            "keys": {
+              "kind": "string",
+              "typeName": "str",
+              "description": "Construction stage such as opening, upgrading, repairing, demolishing",
+              "optional": true,
+              "capability": {
+                "sources": [
+                  "editor-overlay"
+                ]
+              }
+            },
+            "values": {
+              "kind": "object",
+              "fields": [
+                {
+                  "key": "progress",
+                  "type": {
+                    "kind": "string",
+                    "typeName": "Color",
+                    "description": "RGBA border color while construction progresses.",
+                    "optional": true,
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    }
+                  }
+                },
+                {
+                  "key": "paused",
+                  "type": {
+                    "kind": "string",
+                    "typeName": "Color",
+                    "description": "RGBA border color while construction is paused.",
+                    "optional": true,
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    }
+                  }
+                }
+              ],
+              "description": "Marker colors for this construction stage.",
+              "optional": true,
+              "required": [],
+              "capability": {
+                "sources": [
+                  "editor-overlay"
+                ]
+              }
+            },
+            "description": "Marker colors by construction stage.",
+            "optional": true,
+            "capability": {
+              "sources": [
+                "editor-overlay"
+              ]
+            }
+          },
+          "description": "Border marker colors during construction, keyed by level then stage.",
+          "optional": true,
+          "capability": {
+            "sources": [
+              "editor-overlay"
+            ]
+          }
+        }
+      },
+      {
+        "key": "fuel",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "enabled",
+              "type": {
+                "kind": "boolean",
+                "description": "Whether this building consumes fuel.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            },
+            {
+              "key": "capacity",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "description": "Fuel capacity formula. Usually uses lvl.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            },
+            {
+              "key": "allow-hoppers",
+              "type": {
+                "kind": "boolean",
+                "description": "Whether hoppers may insert fuel.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            },
+            {
+              "key": "variants",
+              "type": {
+                "kind": "mapping",
+                "keys": {
+                  "kind": "string",
+                  "typeName": "str",
+                  "description": "Fuel variant id",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                },
+                "values": {
+                  "kind": "object",
+                  "fields": [
+                    {
+                      "key": "material",
+                      "type": {
+                        "kind": "suggestion",
+                        "typeName": "Material",
+                        "description": "Fuel item material.",
+                        "optional": true,
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        },
+                        "allowCustom": true
+                      }
+                    },
+                    {
+                      "key": "fill-amount-per-item",
+                      "type": {
+                        "kind": "decimal",
+                        "description": "Fuel added per matching item.",
+                        "optional": true,
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "key": "name",
+                      "type": {
+                        "kind": "advanced",
+                        "typeName": "StringMatcher",
+                        "description": "Optional name matcher.",
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        },
+                        "optional": true
+                      }
+                    },
+                    {
+                      "key": "lore",
+                      "type": {
+                        "kind": "advanced",
+                        "typeName": "StringMatcher",
+                        "description": "Optional lore matcher.",
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        },
+                        "optional": true
+                      }
+                    },
+                    {
+                      "key": "nbt",
+                      "type": {
+                        "kind": "mapping",
+                        "keys": {
+                          "kind": "string",
+                          "typeName": "str",
+                          "description": "",
+                          "optional": true,
+                          "capability": {
+                            "sources": [
+                              "editor-overlay"
+                            ]
+                          }
+                        },
+                        "values": {
+                          "kind": "advanced",
+                          "typeName": "StringMatcher",
+                          "capability": {
+                            "sources": [
+                              "editor-overlay"
+                            ]
+                          }
+                        },
+                        "description": "Optional NBT matchers.",
+                        "optional": true,
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        }
+                      }
+                    }
+                  ],
+                  "description": "Fuel variant. Uses ItemMatcher fields plus fill-amount-per-item.",
+                  "optional": true,
+                  "required": [],
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                },
+                "description": "Accepted fuel items and how much each fills.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            }
+          ],
+          "description": "Fuel settings shared by extractors and warp pads.",
+          "optional": true,
+          "required": [],
+          "capability": {
+            "sources": [
+              "editor-overlay"
+            ]
+          }
+        }
+      },
+      {
+        "key": "generator",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "integer",
+            "description": "Building level",
+            "optional": true,
+            "capability": {
+              "sources": [
+                "editor-overlay"
+              ]
+            }
+          },
+          "values": {
+            "kind": "object",
+            "fields": [
+              {
+                "key": "amount",
+                "type": {
+                  "kind": "decimal",
+                  "description": "Resource points generated each tick.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                }
+              },
+              {
+                "key": "fuel",
+                "type": {
+                  "kind": "decimal",
+                  "description": "Fuel consumed each tick.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                }
+              },
+              {
+                "key": "every",
+                "type": {
+                  "kind": "string",
+                  "typeName": "str",
+                  "description": "Interval between generations. Also affects MANUAL hologram updates.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                }
+              }
+            ],
+            "description": "Per-level generator settings.",
+            "optional": true,
+            "required": [],
+            "capability": {
+              "sources": [
+                "editor-overlay"
+              ]
+            }
+          },
+          "description": "Extractor-style resource generator by level.",
+          "optional": true,
+          "capability": {
+            "sources": [
+              "editor-overlay"
+            ]
+          }
+        }
+      },
+      {
+        "key": "teleport-fuel-cost",
+        "type": {
+          "kind": "expression",
+          "language": "math",
+          "description": "Warp-pad fuel cost formula. The distance variable is the block distance to the destination.",
+          "optional": true,
+          "capability": {
+            "sources": [
+              "editor-overlay"
+            ]
+          }
+        }
+      },
+      {
+        "key": "other-world-distance-factor",
+        "type": {
+          "kind": "decimal",
+          "description": "Distance value used when the warp target is in another world.",
+          "optional": true,
+          "capability": {
+            "sources": [
+              "editor-overlay"
+            ]
+          }
+        }
+      },
+      {
+        "key": "projectiles",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "string",
+            "typeName": "str",
+            "description": "Projectile id",
+            "optional": true,
+            "capability": {
+              "sources": [
+                "editor-overlay"
+              ]
+            }
+          },
+          "values": {
+            "kind": "object",
+            "fields": [
+              {
+                "key": "name",
+                "type": {
+                  "kind": "string",
+                  "typeName": "Message",
+                  "description": "Ammo tier display name.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                }
+              },
+              {
+                "key": "shield-damage",
+                "type": {
+                  "kind": "union",
+                  "optional": true,
+                  "description": "Shield time removed. Duration or equation.",
+                  "choices": [
+                    {
+                      "kind": "duration",
+                      "description": "Fixed Kingdoms duration.",
+                      "optional": true,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      }
+                    },
+                    {
+                      "kind": "expression",
+                      "language": "math",
+                      "description": "Duration equation.",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      }
+                    }
+                  ],
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                }
+              },
+              {
+                "key": "explosion-radius",
+                "type": {
+                  "kind": "decimal",
+                  "description": "Added explosion radius.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                }
+              },
+              {
+                "key": "damage",
+                "type": {
+                  "kind": "decimal",
+                  "description": "Added player damage.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                }
+              },
+              {
+                "key": "knockback",
+                "type": {
+                  "kind": "decimal",
+                  "description": "Added knockback.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                }
+              },
+              {
+                "key": "building-impact",
+                "type": {
+                  "kind": "object",
+                  "fields": [
+                    {
+                      "key": "damage",
+                      "type": {
+                        "kind": "decimal",
+                        "description": "Damage dealt to buildings.",
+                        "optional": true,
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "key": "paralyze",
+                      "type": {
+                        "kind": "union",
+                        "optional": true,
+                        "description": "Paralyze duration applied to buildings.",
+                        "choices": [
+                          {
+                            "kind": "duration",
+                            "description": "Fixed Kingdoms duration.",
+                            "optional": true,
+                            "capability": {
+                              "sources": [
+                                "editor-overlay"
+                              ]
+                            }
+                          },
+                          {
+                            "kind": "expression",
+                            "language": "math",
+                            "description": "Duration equation.",
+                            "capability": {
+                              "sources": [
+                                "editor-overlay"
+                              ]
+                            }
+                          }
+                        ],
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        }
+                      }
+                    }
+                  ],
+                  "description": "Extra building damage effects.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                }
+              },
+              {
+                "key": "item",
+                "type": {
+                  "kind": "reference",
+                  "typeName": "ItemMatcher",
+                  "description": "Item matcher for this ammo type."
+                }
+              }
+            ],
+            "description": "Siege cannon projectile. Values add to the cannon's base stats.",
+            "optional": true,
+            "required": [],
+            "capability": {
+              "sources": [
+                "editor-overlay"
+              ]
+            }
+          },
+          "description": "Siege cannon ammo definitions keyed by projectile id.",
+          "optional": true,
+          "capability": {
+            "sources": [
+              "editor-overlay"
+            ]
+          }
+        }
+      },
+      {
+        "key": "allow-damaging",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "integer",
+            "description": "Cannon level",
+            "optional": true,
+            "capability": {
+              "sources": [
+                "editor-overlay"
+              ]
+            }
+          },
+          "values": {
+            "kind": "object",
+            "fields": [
+              {
+                "key": "others",
+                "type": {
+                  "kind": "union",
+                  "optional": true,
+                  "description": "Blocks that can be damaged. * disables normal block damage.",
+                  "choices": [
+                    {
+                      "kind": "literal",
+                      "value": "*",
+                      "label": "No ordinary block damage",
+                      "description": "Disable damage to ordinary blocks.",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      }
+                    },
+                    {
+                      "kind": "list",
+                      "elements": {
+                        "kind": "string",
+                        "typeName": "Material",
+                        "description": "",
+                        "optional": true,
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        }
+                      },
+                      "description": "Whitelist of block materials.",
+                      "optional": true,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      }
+                    },
+                    {
+                      "kind": "boolean",
+                      "description": "true = damage all ordinary blocks.",
+                      "optional": true,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      }
+                    }
+                  ],
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                }
+              },
+              {
+                "key": "turrets",
+                "type": {
+                  "kind": "boolean",
+                  "description": "Whether turrets can be damaged.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                }
+              },
+              {
+                "key": "structures",
+                "type": {
+                  "kind": "union",
+                  "optional": true,
+                  "description": "Whether structures can be damaged.",
+                  "choices": [
+                    {
+                      "kind": "boolean",
+                      "description": "",
+                      "optional": true,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      }
+                    },
+                    {
+                      "kind": "list",
+                      "elements": {
+                        "kind": "string",
+                        "typeName": "str",
+                        "description": "Structure type id",
+                        "optional": true,
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        }
+                      },
+                      "description": "Specific structure types.",
+                      "optional": true,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      }
+                    }
+                  ],
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                }
+              },
+              {
+                "key": "protected-chests",
+                "type": {
+                  "kind": "boolean",
+                  "description": "Whether protected chests can be damaged.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                }
+              },
+              {
+                "key": "protected-blocks",
+                "type": {
+                  "kind": "boolean",
+                  "description": "Whether protected blocks can be damaged.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                }
+              }
+            ],
+            "description": "Per-level block damage rules for siege cannons.",
+            "optional": true,
+            "required": [],
+            "capability": {
+              "sources": [
+                "editor-overlay"
+              ]
+            }
+          },
+          "description": "Siege cannon allow-damaging rules per cannon level.",
+          "optional": true,
+          "capability": {
+            "sources": [
+              "editor-overlay"
+            ]
+          }
+        }
+      },
+      {
+        "key": "stocks",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "string",
+            "typeName": "str",
+            "description": "Stock entry id (referenced as stock-<id> in the outpost GUI)",
+            "optional": true,
+            "capability": {
+              "sources": [
+                "editor-overlay"
+              ]
+            }
+          },
+          "values": {
+            "kind": "object",
+            "fields": [
+              {
+                "key": "buy",
+                "type": {
+                  "kind": "expression",
+                  "language": "math",
+                  "description": "Buy price formula. The stock variable is the current server-wide stock.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                }
+              },
+              {
+                "key": "sell",
+                "type": {
+                  "kind": "expression",
+                  "language": "math",
+                  "description": "Sell price formula. The stock variable is the current server-wide stock.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                }
+              },
+              {
+                "key": "stock",
+                "type": {
+                  "kind": "object",
+                  "fields": [
+                    {
+                      "key": "initial",
+                      "type": {
+                        "kind": "integer",
+                        "description": "Permanent starting stock.",
+                        "optional": true,
+                        "minimum": 0,
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "key": "max",
+                      "type": {
+                        "kind": "integer",
+                        "description": "Maximum stock cap.",
+                        "optional": true,
+                        "minimum": 0,
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "key": "min",
+                      "type": {
+                        "kind": "integer",
+                        "description": "Minimum stock floor.",
+                        "optional": true,
+                        "minimum": 0,
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        }
+                      }
+                    }
+                  ],
+                  "description": "Server-wide stock limits for this item.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                }
+              },
+              {
+                "key": "item",
+                "type": {
+                  "kind": "reference",
+                  "typeName": "ItemMatcher",
+                  "description": "Item given when purchased."
+                }
+              },
+              {
+                "key": "purchase-limit",
+                "type": {
+                  "kind": "object",
+                  "fields": [
+                    {
+                      "key": "cooldown-per-item",
+                      "type": {
+                        "kind": "expression",
+                        "language": "math",
+                        "description": "Cooldown added per purchased item. The formula returns milliseconds, so bracket fixed times such as [6hr].",
+                        "optional": true,
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "key": "max-cooldown",
+                      "type": {
+                        "kind": "duration",
+                        "description": "Maximum accumulated purchase cooldown.",
+                        "optional": true,
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        }
+                      }
+                    }
+                  ],
+                  "description": "Optional per-kingdom purchase cooldown.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                }
+              }
+            ],
+            "description": "Outpost stock market entry.",
+            "optional": true,
+            "required": [],
+            "capability": {
+              "sources": [
+                "editor-overlay"
+              ]
+            }
+          },
+          "description": "Outpost stock entries. Item keys are referenced in the outpost GUI as stock-<id>.",
+          "optional": true,
+          "capability": {
+            "sources": [
+              "editor-overlay"
+            ]
+          }
+        }
+      }
+    ],
+    "capability": {
+      "sources": [
+        "jar-schema"
+      ]
+    }
+  }
+}

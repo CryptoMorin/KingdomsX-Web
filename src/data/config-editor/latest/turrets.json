@@ -1,0 +1,121 @@
+{
+  "formatVersion": 2,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "id": "turrets",
+  "resourceName": "turrets.yml",
+  "schema": {
+    "kind": "object",
+    "fields": [
+      {
+        "key": "enabled",
+        "type": {
+          "kind": "boolean"
+        }
+      },
+      {
+        "key": "limit",
+        "type": {
+          "kind": "expression",
+          "language": "math"
+        }
+      },
+      {
+        "key": "disable-shift-click",
+        "type": {
+          "kind": "boolean"
+        }
+      },
+      {
+        "key": "remove-unclaimed",
+        "type": {
+          "kind": "boolean"
+        }
+      },
+      {
+        "key": "to-inventory-on-break",
+        "type": {
+          "kind": "boolean"
+        }
+      },
+      {
+        "key": "teleportation-invulnerability",
+        "type": {
+          "kind": "integer"
+        }
+      },
+      {
+        "key": "pacifists",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "target",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "enabled",
+              "type": {
+                "kind": "boolean"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "disallow-accidental-mob-damage",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "friendly",
+              "type": {
+                "kind": "set",
+                "elements": {
+                  "kind": "suggestion",
+                  "typeName": "Enum<org.bukkit.entity.EntityType>",
+                  "allowCustom": true
+                }
+              }
+            },
+            {
+              "key": "others",
+              "type": {
+                "kind": "set",
+                "elements": {
+                  "kind": "suggestion",
+                  "typeName": "Enum<org.bukkit.entity.EntityType>",
+                  "allowCustom": true
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "temporary-hologram-display",
+        "type": {
+          "kind": "duration",
+          "typeName": "Period"
+        }
+      },
+      {
+        "key": "accuracy",
+        "type": {
+          "kind": "integer"
+        }
+      },
+      {
+        "key": "update-ticks",
+        "type": {
+          "kind": "integer"
+        }
+      }
+    ]
+  }
+}

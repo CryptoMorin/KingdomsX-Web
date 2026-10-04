@@ -1,3 +1,5 @@
+import { formatDate } from "../site-date.js";
+
 export const SERVER_DESCRIPTION_LIMIT = 240;
 
 const FALLBACK_SERVER_ICON = "/apple-touch-icon.png";
@@ -50,29 +52,10 @@ const SOCIAL_ICON_CLASSES = Object.freeze({
   ...Object.fromEntries(SOCIAL_PLATFORMS.map(({ key, icon }) => [key, icon])),
 });
 
-const twoDigit = (value) => String(value).padStart(2, "0");
-
 export const truncateServerDescription = (value, max = SERVER_DESCRIPTION_LIMIT) => {
   const text = String(value ?? "").trim();
 
   return text.length <= max ? text : `${text.slice(0, max - 1).trimEnd()}…`;
-};
-
-export const formatDate = (value, { timeSeparator = ", " } = {}) => {
-  if (!value) {
-    return "Not set";
-  }
-
-  const date = new Date(value);
-
-  if (Number.isNaN(date.getTime())) {
-    return value;
-  }
-
-  return [
-    `${twoDigit(date.getDate())}/${twoDigit(date.getMonth() + 1)}/${date.getFullYear()}`,
-    `${twoDigit(date.getHours())}:${twoDigit(date.getMinutes())}:${twoDigit(date.getSeconds())}`,
-  ].join(timeSeparator);
 };
 
 export const formatNumber = (value) => numberFormatter.format(value);
@@ -428,12 +411,14 @@ export const renderServerCards = (container, items, createCard) => {
 
   const row = document.createElement("div");
   row.className = "row row-cols-1 row-cols-md-2 g-3";
+
   items.forEach((server) => {
     const column = document.createElement("div");
     column.className = "col d-flex";
     column.append(createCard(server));
     row.append(column);
   });
+
   container.append(row);
 };
 

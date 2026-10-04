@@ -1,0 +1,2664 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "claims.yml",
+  "schemaId": "claims",
+  "options": [
+    {
+      "path": [
+        "disable-protection-system"
+      ],
+      "source": "false",
+      "comments": [
+        "Completely disables the protection system except for when placing turrets and structures.",
+        "This can be useful if you want to customize the behavior using an addon.",
+        "Requires a restart to change."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "disable-crops-physics"
+      ],
+      "source": "false",
+      "comments": [
+        "When true, crops will no longer break due to any natural/external sources.",
+        "This includes placing blocks near them, but crop farms that rely on water should continue to work.",
+        "This setting is here due to a server exploit in 1.18 which allows players",
+        "to get infinite amount of plants by placing a bed next to them when they don't have",
+        "kingdom build permission for their rank. This doesn't include normal grass.",
+        "This will affect all crops regardless of where they're placed.",
+        "Players will still be able to directly break these crops.",
+        "This issue is only confirmed in 1.18, and confirmed to be fixed in 1.20",
+        "This issue has nothing to do with this plugin specifically, it's a global issue",
+        "that affects all other plugins, this is just a simple option to fix it quickly.",
+        "- Requires a restart to apply."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "connection-radius"
+      ],
+      "source": "0",
+      "comments": [
+        "High numbers will lag the server.",
+        "It's recommended to keep it under 3 if you're using this option.",
+        "Anything above this is just pointless and will lag the server. You should turn off this option.",
+        "This of course works when unclaiming and even in advanced situations. For example, if you claimed",
+        "a square border (not filled) the plugin allows you to unclaim any land, as they're all connected in",
+        "a loop, but if you try to unclaim your second land from somewhere other than the land next to your",
+        "previously unclaimed land, that won't work, since it's like slicing a snake in half rather than",
+        "eating it from its tail. (No this isn't MGS3)",
+        "Set to 0 to disable."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "distance"
+      ],
+      "source": "0",
+      "comments": [
+        "High numbers will lag the server.",
+        "Set to 0 to disable."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "disabled-worlds"
+      ],
+      "source": "[ world_nether, world_the_end ]",
+      "comments": [
+        "Worlds that claiming is disabled in."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "world_nether",
+        "world_the_end"
+      ]
+    },
+    {
+      "path": [
+        "requires-outpost-for-other-worlds"
+      ],
+      "source": "true",
+      "comments": [
+        "You will need to place an outpost if you want to claim in another world",
+        "if your nexus is not in that world."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "biomes"
+      ],
+      "source": "\r\n  # All the biome and world names here support String Matchers.\r\n  # You can define multiple settings.\r\n  default: # This name can be anything\r\n    # List of worlds that this set of settings apply to.\r\n    worlds: [ world ]\r\n\r\n    # List of biomes that cannot/can be claimed.\r\n    whitelist: false\r\n    biomes: [ CRIMSON_FOREST ]\r\n\r\n    # Gives %biome_cost_factor% placeholder, however do note\r\n    # that this placeholder isn't used by default in the cost equation.\r\n    # You can add it for this to start working.\r\n    # (Cost equation is located in this file at \"resource-points -> claims\")\r\n    cost-factor:\r\n      BADLANDS: 10\r\n      NETHER_WASTES: 50\r\n\r\n# Claims the lands around the player once the player created a kingdom if possible.\r\n# Set to 0 to only claim the land that the player is standing in.\r\n# Any number above 0 will determine the square radius of the claimed lands from the player's location.\r\n# Set to -1 to disable.\r\n# This process will not continue if the central chunk (the player's location) cannot be claimed.\r\n# The hardlimit of this option is 100, because any value higher than this will just crash the server.\r\n",
+      "comments": [
+        "Biomes that players can/cant claim in. This will not work reliably since it only checks a few blocks in the chunk.",
+        "You can get a list of biomes here: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/block/Biome.html"
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "biomes",
+        "default"
+      ],
+      "source": "# This name can be anything\r\n    # List of worlds that this set of settings apply to.\r\n    worlds: [ world ]\r\n\r\n    # List of biomes that cannot/can be claimed.\r\n    whitelist: false\r\n    biomes: [ CRIMSON_FOREST ]\r\n\r\n    # Gives %biome_cost_factor% placeholder, however do note\r\n    # that this placeholder isn't used by default in the cost equation.\r\n    # You can add it for this to start working.\r\n    # (Cost equation is located in this file at \"resource-points -> claims\")\r\n    cost-factor:\r\n      BADLANDS: 10\r\n      NETHER_WASTES: 50\r\n\r\n# Claims the lands around the player once the player created a kingdom if possible.\r\n# Set to 0 to only claim the land that the player is standing in.\r\n# Any number above 0 will determine the square radius of the claimed lands from the player's location.\r\n# Set to -1 to disable.\r\n# This process will not continue if the central chunk (the player's location) cannot be claimed.\r\n# The hardlimit of this option is 100, because any value higher than this will just crash the server.\r\n",
+      "comments": [
+        "All the biome and world names here support String Matchers.",
+        "You can define multiple settings."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "biomes",
+        "default",
+        "worlds"
+      ],
+      "source": "[ world ]",
+      "comments": [
+        "List of worlds that this set of settings apply to."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "world"
+      ]
+    },
+    {
+      "path": [
+        "biomes",
+        "default",
+        "whitelist"
+      ],
+      "source": "false",
+      "comments": [
+        "List of biomes that cannot/can be claimed."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "biomes",
+        "default",
+        "biomes"
+      ],
+      "source": "[ CRIMSON_FOREST ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "CRIMSON_FOREST"
+      ]
+    },
+    {
+      "path": [
+        "biomes",
+        "default",
+        "cost-factor"
+      ],
+      "source": "\r\n      BADLANDS: 10\r\n      NETHER_WASTES: 50\r\n\r\n# Claims the lands around the player once the player created a kingdom if possible.\r\n# Set to 0 to only claim the land that the player is standing in.\r\n# Any number above 0 will determine the square radius of the claimed lands from the player's location.\r\n# Set to -1 to disable.\r\n# This process will not continue if the central chunk (the player's location) cannot be claimed.\r\n# The hardlimit of this option is 100, because any value higher than this will just crash the server.\r\n",
+      "comments": [
+        "Gives %biome_cost_factor% placeholder, however do note",
+        "that this placeholder isn't used by default in the cost equation.",
+        "You can add it for this to start working.",
+        "(Cost equation is located in this file at \"resource-points -> claims\")"
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "biomes",
+        "default",
+        "cost-factor",
+        "BADLANDS"
+      ],
+      "source": "10",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "biomes",
+        "default",
+        "cost-factor",
+        "NETHER_WASTES"
+      ],
+      "source": "50",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "claim-on-create"
+      ],
+      "source": "0",
+      "comments": [
+        "Claims the lands around the player once the player created a kingdom if possible.",
+        "Set to 0 to only claim the land that the player is standing in.",
+        "Any number above 0 will determine the square radius of the claimed lands from the player's location.",
+        "Set to -1 to disable.",
+        "This process will not continue if the central chunk (the player's location) cannot be claimed.",
+        "The hardlimit of this option is 100, because any value higher than this will just crash the server."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "starter-free"
+      ],
+      "source": "3",
+      "comments": [
+        "How many claims should be free if the number of owned lands is lower",
+        "than this number?"
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "confirmation"
+      ],
+      "source": "10s",
+      "comments": [
+        "If the player needs to confirm claiming a land again when all the free lands have been used.",
+        "This is the time which the player needs to do the command again before it ends.",
+        "Set to 0 to disable.",
+        "This cooldown will also refresh if you're in the cooldown to avoid",
+        "annoying confirmations for claiming multiple lands."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "fill"
+      ],
+      "source": "\r\n  # The maximum iterations allowed to check for\r\n  # the shape borders to start filling.\r\n  # Each \"iteration\" consists of checking 4 chunks.\r\n  # The option below is another way to restrict this.\r\n  # For players in admin mode, this limit is increased to 500\r\n  max-iterations: 100\r\n\r\n  # The maximum lands allowed to claim\r\n  # when filling the shape.\r\n  # For players in admin mode, this limit will be removed.\r\n  # This isn't affected by the kingdom's max claims or the max rank claims.\r\n  # This option is prioritized over those.\r\n  max-claims: 100\r\n\r\n# /k claim square <radius>\r\n# 5 = 5 * 5 = 25 chunks around the player.\r\n",
+      "comments": [
+        "/k claim fill",
+        "https://github.com/CryptoMorin/KingdomsX/wiki/Commands#k-claim-autofillx-y"
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "fill",
+        "max-iterations"
+      ],
+      "source": "100",
+      "comments": [
+        "The maximum iterations allowed to check for",
+        "the shape borders to start filling.",
+        "Each \"iteration\" consists of checking 4 chunks.",
+        "The option below is another way to restrict this.",
+        "For players in admin mode, this limit is increased to 500"
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "fill",
+        "max-claims"
+      ],
+      "source": "100",
+      "comments": [
+        "The maximum lands allowed to claim",
+        "when filling the shape.",
+        "For players in admin mode, this limit will be removed.",
+        "This isn't affected by the kingdom's max claims or the max rank claims.",
+        "This option is prioritized over those."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "square-max-radius"
+      ],
+      "source": "5",
+      "comments": [
+        "/k claim square <radius>",
+        "5 = 5 * 5 = 25 chunks around the player."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "line-max-distance"
+      ],
+      "source": "10",
+      "comments": [
+        "/k claim line <distance>",
+        "The distance in chunks, not blocks."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "corner-max-claims"
+      ],
+      "source": "20",
+      "comments": [
+        "Max claims per a /k claim corner."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "coordinates-claim-max-distance"
+      ],
+      "source": "30",
+      "comments": [
+        "/k claim <x> <z>",
+        "This is chunk distance, not block distance.",
+        "Note that this will affect interactive claims from /k map"
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "history"
+      ],
+      "source": "\r\n  # If you have the command disabled you should disable it here\r\n  # too to stop wasting memory.\r\n  enabled: true\r\n  # The limit of history to keep for land claims.\r\n  # Older claim history will be deleted automatically.\r\n  limit: 10\r\n\r\n# Cooldown before a land that was claimed, can be unclaimed again.\r\n# This is useful when allowing building inside claims, in order to prevent players from\r\n# temporary claiming a certain area just to build something and unclaim it again.\r\n# This cooldown doesn't persist between restarts.\r\n",
+      "comments": [
+        "History for undoing claims."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "history",
+        "enabled"
+      ],
+      "source": "true",
+      "comments": [
+        "If you have the command disabled you should disable it here",
+        "too to stop wasting memory."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "history",
+        "limit"
+      ],
+      "source": "10",
+      "comments": [
+        "The limit of history to keep for land claims.",
+        "Older claim history will be deleted automatically."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "unclaim-cooldown"
+      ],
+      "source": "0",
+      "comments": [
+        "Cooldown before a land that was claimed, can be unclaimed again.",
+        "This is useful when allowing building inside claims, in order to prevent players from",
+        "temporary claiming a certain area just to build something and unclaim it again.",
+        "This cooldown doesn't persist between restarts."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "max-claims"
+      ],
+      "source": "\r\n  # Worlds can have different limits, \"default\" is used for any world name that is not specified here.\r\n  #nether_world: \"...\"\r\n  default: \"((kingdoms_members + kingdoms_nation_kingdoms) * 5) + kingdoms_max_lands_modifier + max_claims - (kingdoms_kingdom_bankruptcy / 2)\"\r\n\r\n# You can only build in claims that the relation attribute allows building.\r\n# This function can be disabled for specific worlds in config.yml \"disabled-worlds\" option.\r\n",
+      "comments": [
+        "The equation used to calculate the maximum claims for kingdoms (%kingdoms_max_claims% placeholder).",
+        "All the placeholders and math functions such as log() and round() can be used as well.",
+        "Note that using %kingdoms_max_claims% here can cause a Stack Overflow error which can crash your server.",
+        "No player placeholders can be used here of course. Only kingdom and nation placeholders.",
+        "You can also use the \"max_claims\" placeholder for the max-claims misc upgrade scaling which can be found in misc-upgrades.yml config."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "max-claims",
+        "default"
+      ],
+      "source": "\"((kingdoms_members + kingdoms_nation_kingdoms) * 5) + kingdoms_max_lands_modifier + max_claims - (kingdoms_kingdom_bankruptcy / 2)\"",
+      "comments": [
+        "Worlds can have different limits, \"default\" is used for any world name that is not specified here.",
+        "nether_world: \"...\""
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "build-in-claimed-only"
+      ],
+      "source": "\r\n  # These two options are required to be set to true for any of these options\r\n  # below to work.\r\n  place: false\r\n  break: false\r\n\r\n  # If the above options are enabled, breaking/placing these blocks are allowed even in unclaimed lands.\r\n  whitelist:\r\n    place: [ ]\r\n    break: [ GRASS, TALL_GRASS ]\r\n\r\n  # This option can significantly affect server's performance.\r\n  # The radius that players are allowed to build if there are nearby claims\r\n  # that belong to their kingdom.\r\n  # Set to 0 to disable.\r\n  unclaimed-build-radius: 0\r\n\r\n  # If players should be charged for building instead of\r\n  # completely disabling building.\r\n  charges:\r\n    enabled: false\r\n\r\n    # true:  If the player should be charged when building within the \"unclaimed-build-radius\" this will competely disable building for outside the radius tho.\r\n    # false: If the player should be charged when building outside of the \"unclaimed-build-radius\" this will allow building inside the radius without charges.\r\n    # if \"unclaimed-build-radius\" is disabled, this will charge players in any unclaimed land.\r\n    in-range: true\r\n\r\n    # Note that resource points comes from the player's kingdom,\r\n    # but the money is taken directly from the player's balance.\r\n    placing:\r\n      resource-points: 0\r\n      money: 0\r\n    breaking:\r\n      resource-points: 0\r\n      money: 0\r\n\r\n# Show action bar when auto claim/unclaim is enabled.\r\n",
+      "comments": [
+        "You can only build in claims that the relation attribute allows building.",
+        "This function can be disabled for specific worlds in config.yml \"disabled-worlds\" option."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "build-in-claimed-only",
+        "place"
+      ],
+      "source": "false",
+      "comments": [
+        "These two options are required to be set to true for any of these options",
+        "below to work."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "build-in-claimed-only",
+        "break"
+      ],
+      "source": "false",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "build-in-claimed-only",
+        "whitelist"
+      ],
+      "source": "\r\n    place: [ ]\r\n    break: [ GRASS, TALL_GRASS ]\r\n\r\n  # This option can significantly affect server's performance.\r\n  # The radius that players are allowed to build if there are nearby claims\r\n  # that belong to their kingdom.\r\n  # Set to 0 to disable.\r\n",
+      "comments": [
+        "If the above options are enabled, breaking/placing these blocks are allowed even in unclaimed lands."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "build-in-claimed-only",
+        "whitelist",
+        "place"
+      ],
+      "source": "[ ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": []
+    },
+    {
+      "path": [
+        "build-in-claimed-only",
+        "whitelist",
+        "break"
+      ],
+      "source": "[ GRASS, TALL_GRASS ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "GRASS",
+        "TALL_GRASS"
+      ]
+    },
+    {
+      "path": [
+        "build-in-claimed-only",
+        "unclaimed-build-radius"
+      ],
+      "source": "0",
+      "comments": [
+        "This option can significantly affect server's performance.",
+        "The radius that players are allowed to build if there are nearby claims",
+        "that belong to their kingdom.",
+        "Set to 0 to disable."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "build-in-claimed-only",
+        "charges"
+      ],
+      "source": "\r\n    enabled: false\r\n\r\n    # true:  If the player should be charged when building within the \"unclaimed-build-radius\" this will competely disable building for outside the radius tho.\r\n    # false: If the player should be charged when building outside of the \"unclaimed-build-radius\" this will allow building inside the radius without charges.\r\n    # if \"unclaimed-build-radius\" is disabled, this will charge players in any unclaimed land.\r\n    in-range: true\r\n\r\n    # Note that resource points comes from the player's kingdom,\r\n    # but the money is taken directly from the player's balance.\r\n    placing:\r\n      resource-points: 0\r\n      money: 0\r\n    breaking:\r\n      resource-points: 0\r\n      money: 0\r\n\r\n# Show action bar when auto claim/unclaim is enabled.\r\n",
+      "comments": [
+        "If players should be charged for building instead of",
+        "completely disabling building."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "build-in-claimed-only",
+        "charges",
+        "enabled"
+      ],
+      "source": "false",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "build-in-claimed-only",
+        "charges",
+        "in-range"
+      ],
+      "source": "true",
+      "comments": [
+        "true:  If the player should be charged when building within the \"unclaimed-build-radius\" this will competely disable building for outside the radius tho.",
+        "false: If the player should be charged when building outside of the \"unclaimed-build-radius\" this will allow building inside the radius without charges.",
+        "if \"unclaimed-build-radius\" is disabled, this will charge players in any unclaimed land."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "build-in-claimed-only",
+        "charges",
+        "placing"
+      ],
+      "source": "\r\n      resource-points: 0\r\n      money: 0\r\n",
+      "comments": [
+        "Note that resource points comes from the player's kingdom,",
+        "but the money is taken directly from the player's balance."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "build-in-claimed-only",
+        "charges",
+        "placing",
+        "resource-points"
+      ],
+      "source": "0",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "build-in-claimed-only",
+        "charges",
+        "placing",
+        "money"
+      ],
+      "source": "0",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "build-in-claimed-only",
+        "charges",
+        "breaking"
+      ],
+      "source": "\r\n      resource-points: 0\r\n      money: 0\r\n\r\n# Show action bar when auto claim/unclaim is enabled.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "build-in-claimed-only",
+        "charges",
+        "breaking",
+        "resource-points"
+      ],
+      "source": "0",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "build-in-claimed-only",
+        "charges",
+        "breaking",
+        "money"
+      ],
+      "source": "0",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "actionbar"
+      ],
+      "source": "\r\n  auto-claim: true\r\n  auto-unclaim: true\r\n  keep: true\r\n\r\n# Activated beacons in a land will only affect players who their kingdom has the \"ceasefire\" attribute\r\n# with the kingdom that owns the land.\r\n",
+      "comments": [
+        "Show action bar when auto claim/unclaim is enabled."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "actionbar",
+        "auto-claim"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "actionbar",
+        "auto-unclaim"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "actionbar",
+        "keep"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "beacon-protected-effects"
+      ],
+      "source": "true",
+      "comments": [
+        "Activated beacons in a land will only affect players who their kingdom has the \"ceasefire\" attribute",
+        "with the kingdom that owns the land."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "potion-protected-effects"
+      ],
+      "source": "[ POISON, WEAKNESS, SLOW, BLINDNESS, HARM, WITHER ]",
+      "comments": [
+        "Throwing these potions at a player who has",
+        "ceasefire attribute with you, is disallowed."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "POISON",
+        "WEAKNESS",
+        "SLOW",
+        "BLINDNESS",
+        "HARM",
+        "WITHER"
+      ]
+    },
+    {
+      "path": [
+        "resource-points"
+      ],
+      "source": "\r\n  # The amount of resource points to give back to the player\r\n  # after unclaiming a land. Set to 0 to disable.\r\n  # Or you can set it to a negative value to take resource points instead.\r\n  refund-unclaim: 0\r\n  refund-auto-unclaim: 0\r\n\r\n  # The amount of resource points needed to claim a land.\r\n  claims: 50\r\n  auto-claims: 55\r\n\r\n",
+      "comments": [
+        "They support equations."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "resource-points",
+        "refund-unclaim"
+      ],
+      "source": "0",
+      "comments": [
+        "The amount of resource points to give back to the player",
+        "after unclaiming a land. Set to 0 to disable.",
+        "Or you can set it to a negative value to take resource points instead."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "resource-points",
+        "refund-auto-unclaim"
+      ],
+      "source": "0",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "resource-points",
+        "claims"
+      ],
+      "source": "50",
+      "comments": [
+        "The amount of resource points needed to claim a land."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "resource-points",
+        "auto-claims"
+      ],
+      "source": "55",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "money"
+      ],
+      "source": "\r\n  # The amount of money to give back to the player\r\n  # after unclaiming a land. Set to 0 to disable.\r\n  # Or you can set it to a negative value to take resource points instead.\r\n  refund-unclaim: 0\r\n  refund-auto-unclaim: 0\r\n\r\n  # The amount of money needed to claim a land.\r\n  claims: 50\r\n  auto-claims: 55\r\n\r\n# Sends a confirmation message before unclaiming certain lands\r\n# that contain one of elements below.\r\n# priority: Nexus -> Home -> Structures -> Turrets\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "money",
+        "refund-unclaim"
+      ],
+      "source": "0",
+      "comments": [
+        "The amount of money to give back to the player",
+        "after unclaiming a land. Set to 0 to disable.",
+        "Or you can set it to a negative value to take resource points instead."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "money",
+        "refund-auto-unclaim"
+      ],
+      "source": "0",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "money",
+        "claims"
+      ],
+      "source": "50",
+      "comments": [
+        "The amount of money needed to claim a land."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "money",
+        "auto-claims"
+      ],
+      "source": "55",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "unclaim-confirmation"
+      ],
+      "source": "\r\n  turrets: false\r\n  structures: true\r\n  home: true\r\n  nexus: true\r\n\r\n# /k unclaimall\r\n",
+      "comments": [
+        "Sends a confirmation message before unclaiming certain lands",
+        "that contain one of elements below.",
+        "priority: Nexus -> Home -> Structures -> Turrets"
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "unclaim-confirmation",
+        "turrets"
+      ],
+      "source": "false",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "unclaim-confirmation",
+        "structures"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "unclaim-confirmation",
+        "home"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "unclaim-confirmation",
+        "nexus"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "unclaim-all"
+      ],
+      "source": "\r\n  announce: true\r\n  keep-nexus-land: true\r\n  cost: 0\r\n  confirm:\r\n    enabled: true\r\n    time: 15\r\n    gui: true\r\n\r\n# The plugin will restore a chunk back to its original status once\r\n# it has been unclaimed.\r\n# All the options below require a restart to apply.\r\n",
+      "comments": [
+        "/k unclaimall"
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "unclaim-all",
+        "announce"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "unclaim-all",
+        "keep-nexus-land"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "unclaim-all",
+        "cost"
+      ],
+      "source": "0",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "unclaim-all",
+        "confirm"
+      ],
+      "source": "\r\n    enabled: true\r\n    time: 15\r\n    gui: true\r\n\r\n# The plugin will restore a chunk back to its original status once\r\n# it has been unclaimed.\r\n# All the options below require a restart to apply.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "unclaim-all",
+        "confirm",
+        "enabled"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "unclaim-all",
+        "confirm",
+        "time"
+      ],
+      "source": "15",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "unclaim-all",
+        "confirm",
+        "gui"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "restoration"
+      ],
+      "source": "\r\n  enabled: false\r\n\r\n  # Maximum amount of chunks that can be actively restored at once.\r\n  # Other chunks are queued to be restored later.\r\n  max-active-restoring-chunks: 30\r\n\r\n  # The rate which a single block of every active chunk that's being restored\r\n  # gets restored in ticks. Higher values will improve performance.\r\n  # Note that restoration include every single block, even the air blocks.\r\n  block-restoration-rate: 1\r\n\r\n  # Doesn't restore the following materials.\r\n  # In order to protect from other blocks, you might consider enabling unclaiming cooldown.\r\n  ignored-blocks: [ EMERALD_BLOCK, DIAMOND_BLOCK, IRON_BLOCK, GOLD_BLOCK, DIAMOND_ORE, EMERALD_ORE ]\r\n\r\n#|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-|#\r\n#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#\r\n#|                         Indicators & Visualizers                            |#\r\n#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#\r\n#|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-|#\r\n\r\n",
+      "comments": [
+        "The plugin will restore a chunk back to its original status once",
+        "it has been unclaimed.",
+        "All the options below require a restart to apply."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "restoration",
+        "enabled"
+      ],
+      "source": "false",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "restoration",
+        "max-active-restoring-chunks"
+      ],
+      "source": "30",
+      "comments": [
+        "Maximum amount of chunks that can be actively restored at once.",
+        "Other chunks are queued to be restored later."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "restoration",
+        "block-restoration-rate"
+      ],
+      "source": "1",
+      "comments": [
+        "The rate which a single block of every active chunk that's being restored",
+        "gets restored in ticks. Higher values will improve performance.",
+        "Note that restoration include every single block, even the air blocks."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "restoration",
+        "ignored-blocks"
+      ],
+      "source": "[ EMERALD_BLOCK, DIAMOND_BLOCK, IRON_BLOCK, GOLD_BLOCK, DIAMOND_ORE, EMERALD_ORE ]",
+      "comments": [
+        "Doesn't restore the following materials.",
+        "In order to protect from other blocks, you might consider enabling unclaiming cooldown."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "EMERALD_BLOCK",
+        "DIAMOND_BLOCK",
+        "IRON_BLOCK",
+        "GOLD_BLOCK",
+        "DIAMOND_ORE",
+        "EMERALD_ORE"
+      ]
+    },
+    {
+      "path": [
+        "indicator"
+      ],
+      "source": "\r\n  # Display these indicators for players that don't have a kingdom.\r\n  kingdomless-enabled: true\r\n\r\n  # The default settings for land indicators (visualizers)\r\n  default:\r\n    # The name of the default option used for /k visual markers\r\n    name: 'Default'\r\n\r\n    # Either 'blocks' or one of the particle entry names (not the name defined in them, the config entry name).\r\n    # E.g. the defaults are 'blocks', 'horizontal' and 'vertical'\r\n    method: blocks\r\n\r\n  particles:\r\n    horizontal:\r\n      name: 'Horizontal'\r\n      particle: DUST # Former REDSTONE\r\n      count: 2\r\n      height: 10\r\n      delay: 10\r\n      duration: 10\r\n      rates:\r\n        vertical: 4\r\n        horizontal: 30\r\n    vertical:\r\n      name: 'Vertical'\r\n      particle: DUST\r\n      count: 2\r\n      height: 5\r\n      delay: 10\r\n      duration: 10\r\n      rates:\r\n        vertical: 30\r\n        horizontal: 4\r\n\r\n  # Adds a block visualizer to separate chunks.\r\n  # It's similar to F3+G Chunk Border.\r\n  # Players can control their visualizers behaviour from /k visualize\r\n  visualizer:\r\n    # If visualizers should be enabled for players by default.\r\n    # They can disable it using /k visualize toggle\r\n    enabled: false\r\n\r\n    # The name for the markers type /k visual markers\r\n    name: 'Blocks'\r\n\r\n    # If the option above is set to false, then it'll check the blocks under the player\r\n    # until it hits the floor. The floor blood is determined by its type (whether it's passable) or not.\r\n    # This type check is not accurate for servers using 1.12 and below versions.\r\n    # The height check limit should be low to avoid lag.\r\n    # If no floor block was found within this range, then the indicator will display on (y - x),\r\n    # where x is the option and y is the player's y axis.\r\n    # Setting to 0: Blocks will appear on the same y as the blocks the player is standing on.\r\n    # Otherwise, blocks will be placed on the floor block.\r\n    # Note this must also be lower than the servers max view distance (16 by default but that is the chunk number)\r\n    # as higher values are useless. There is a hard limit of 160 blocks.\r\n    floor-check-height: 5\r\n\r\n    # If the blocks should visualize all the border blocks around the chunk.\r\n    # This will usually cause a lot of lag. Not recommended.\r\n    # The material used for these blocks is \"two-block\". You can change them below.\r\n    border: false\r\n\r\n    # Ignores enabled option.\r\n    # Should indicators be shown when a land is claimed or unclaimed?\r\n    on-claim: true\r\n\r\n    # The amount of time the indicator blocks should stay.\r\n    # In seconds.\r\n    stay: 3\r\n\r\n    # /k visualize all\r\n    all-stay: 20\r\n\r\n  # The land types to send the indicators and visualizers.\r\n  # You can edit the title, sound, actionbar and message of these from your language file's \"lands.visualizers.<relation>\" entry.\r\n  # corner-block: The 4 corner block used to indicate the chunk corners.\r\n  # two-blocks: The two blocks next to each corner blocks on sides.\r\n  # send-messages-for-same-chunk-type: If titles, actionbars, visualizers and sound should\r\n  #   be used again if the player is entering the same type of land as their previous land.\r\n  #   For example, if you're going from an unclaimed land to another unclaimed land, and this option is set to\r\n  #   true in wilderness, the messages will show again.\r\n  # You can remove any of these options and they'll not be used. Or you can add any of them to any types you want.\r\n  # The placeholders with \"kingdom\" identifier instead of \"kingdoms\" are for placeholders related to the land's kingdom.\r\n  wilderness:\r\n    corner-block: SEA_LANTERN\r\n    two-block: QUARTZ_BLOCK\r\n    particles:\r\n      horizontal:\r\n        color: 0, 0, 0\r\n      vertical:\r\n        color: 0, 0, 0\r\n  no-kingdom:\r\n    particles:\r\n      horizontal:\r\n        color: 255, 255, 255\r\n      vertical:\r\n        color: 255, 255, 255\r\n\r\n    corner-block: SEA_LANTERN\r\n    two-block: IRON_BLOCK\r\n  self:\r\n    particles:\r\n      horizontal:\r\n        color: 0, 255, 0\r\n      vertical:\r\n        color: 0, 255, 0\r\n\r\n    corner-block: SEA_LANTERN\r\n    two-block: EMERALD_BLOCK\r\n  neutral:\r\n    particles:\r\n      horizontal:\r\n        color: 255, 255, 255\r\n      vertical:\r\n        color: 255, 255, 255\r\n\r\n    corner-block: SEA_LANTERN\r\n    two-block: IRON_BLOCK\r\n  ally:\r\n    particles:\r\n      horizontal:\r\n        color: 100, 255, 0\r\n      vertical:\r\n        color: 100, 255, 0\r\n\r\n    corner-block: SEA_LANTERN\r\n    two-block: DIAMOND_BLOCK\r\n  truce:\r\n    particles:\r\n      horizontal:\r\n        color: 255, 255, 0\r\n      vertical:\r\n        color: 255, 255, 0\r\n\r\n    corner-block: SEA_LANTERN\r\n    two-block: GOLD_BLOCK\r\n  nation:\r\n    particles:\r\n      horizontal:\r\n        color: 0, 0, 255\r\n      vertical:\r\n        color: 0, 0, 255\r\n\r\n    corner-block: SEA_LANTERN\r\n    two-block: BLUE_WOOL\r\n  nation-zone:\r\n    particles:\r\n      horizontal:\r\n        color: 0, 120, 255\r\n      vertical:\r\n        color: 0, 120, 255\r\n\r\n    corner-block: SEA_LANTERN\r\n    two-block: BLUE_STAINED_GLASS\r\n  enemy:\r\n    particles:\r\n      horizontal:\r\n        color: 255, 0, 0\r\n      vertical:\r\n        color: 255, 0, 0\r\n\r\n    corner-block: SEA_LANTERN\r\n    two-block: REDSTONE_BLOCK",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "kingdomless-enabled"
+      ],
+      "source": "true",
+      "comments": [
+        "Display these indicators for players that don't have a kingdom."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "default"
+      ],
+      "source": "\r\n    # The name of the default option used for /k visual markers\r\n    name: 'Default'\r\n\r\n    # Either 'blocks' or one of the particle entry names (not the name defined in them, the config entry name).\r\n    # E.g. the defaults are 'blocks', 'horizontal' and 'vertical'\r\n    method: blocks\r\n\r\n",
+      "comments": [
+        "The default settings for land indicators (visualizers)"
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "default",
+        "name"
+      ],
+      "source": "'Default'",
+      "comments": [
+        "The name of the default option used for /k visual markers"
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "default",
+        "method"
+      ],
+      "source": "blocks",
+      "comments": [
+        "Either 'blocks' or one of the particle entry names (not the name defined in them, the config entry name).",
+        "E.g. the defaults are 'blocks', 'horizontal' and 'vertical'"
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "particles"
+      ],
+      "source": "\r\n    horizontal:\r\n      name: 'Horizontal'\r\n      particle: DUST # Former REDSTONE\r\n      count: 2\r\n      height: 10\r\n      delay: 10\r\n      duration: 10\r\n      rates:\r\n        vertical: 4\r\n        horizontal: 30\r\n    vertical:\r\n      name: 'Vertical'\r\n      particle: DUST\r\n      count: 2\r\n      height: 5\r\n      delay: 10\r\n      duration: 10\r\n      rates:\r\n        vertical: 30\r\n        horizontal: 4\r\n\r\n  # Adds a block visualizer to separate chunks.\r\n  # It's similar to F3+G Chunk Border.\r\n  # Players can control their visualizers behaviour from /k visualize\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "particles",
+        "horizontal"
+      ],
+      "source": "\r\n      name: 'Horizontal'\r\n      particle: DUST # Former REDSTONE\r\n      count: 2\r\n      height: 10\r\n      delay: 10\r\n      duration: 10\r\n      rates:\r\n        vertical: 4\r\n        horizontal: 30\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "particles",
+        "horizontal",
+        "name"
+      ],
+      "source": "'Horizontal'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "particles",
+        "horizontal",
+        "particle"
+      ],
+      "source": "DUST",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "particles",
+        "horizontal",
+        "count"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "particles",
+        "horizontal",
+        "height"
+      ],
+      "source": "10",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "particles",
+        "horizontal",
+        "delay"
+      ],
+      "source": "10",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "particles",
+        "horizontal",
+        "duration"
+      ],
+      "source": "10",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "particles",
+        "horizontal",
+        "rates"
+      ],
+      "source": "\r\n        vertical: 4\r\n        horizontal: 30\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "particles",
+        "horizontal",
+        "rates",
+        "vertical"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "particles",
+        "horizontal",
+        "rates",
+        "horizontal"
+      ],
+      "source": "30",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "particles",
+        "vertical"
+      ],
+      "source": "\r\n      name: 'Vertical'\r\n      particle: DUST\r\n      count: 2\r\n      height: 5\r\n      delay: 10\r\n      duration: 10\r\n      rates:\r\n        vertical: 30\r\n        horizontal: 4\r\n\r\n  # Adds a block visualizer to separate chunks.\r\n  # It's similar to F3+G Chunk Border.\r\n  # Players can control their visualizers behaviour from /k visualize\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "particles",
+        "vertical",
+        "name"
+      ],
+      "source": "'Vertical'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "particles",
+        "vertical",
+        "particle"
+      ],
+      "source": "DUST",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "particles",
+        "vertical",
+        "count"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "particles",
+        "vertical",
+        "height"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "particles",
+        "vertical",
+        "delay"
+      ],
+      "source": "10",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "particles",
+        "vertical",
+        "duration"
+      ],
+      "source": "10",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "particles",
+        "vertical",
+        "rates"
+      ],
+      "source": "\r\n        vertical: 30\r\n        horizontal: 4\r\n\r\n  # Adds a block visualizer to separate chunks.\r\n  # It's similar to F3+G Chunk Border.\r\n  # Players can control their visualizers behaviour from /k visualize\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "particles",
+        "vertical",
+        "rates",
+        "vertical"
+      ],
+      "source": "30",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "particles",
+        "vertical",
+        "rates",
+        "horizontal"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "visualizer"
+      ],
+      "source": "\r\n    # If visualizers should be enabled for players by default.\r\n    # They can disable it using /k visualize toggle\r\n    enabled: false\r\n\r\n    # The name for the markers type /k visual markers\r\n    name: 'Blocks'\r\n\r\n    # If the option above is set to false, then it'll check the blocks under the player\r\n    # until it hits the floor. The floor blood is determined by its type (whether it's passable) or not.\r\n    # This type check is not accurate for servers using 1.12 and below versions.\r\n    # The height check limit should be low to avoid lag.\r\n    # If no floor block was found within this range, then the indicator will display on (y - x),\r\n    # where x is the option and y is the player's y axis.\r\n    # Setting to 0: Blocks will appear on the same y as the blocks the player is standing on.\r\n    # Otherwise, blocks will be placed on the floor block.\r\n    # Note this must also be lower than the servers max view distance (16 by default but that is the chunk number)\r\n    # as higher values are useless. There is a hard limit of 160 blocks.\r\n    floor-check-height: 5\r\n\r\n    # If the blocks should visualize all the border blocks around the chunk.\r\n    # This will usually cause a lot of lag. Not recommended.\r\n    # The material used for these blocks is \"two-block\". You can change them below.\r\n    border: false\r\n\r\n    # Ignores enabled option.\r\n    # Should indicators be shown when a land is claimed or unclaimed?\r\n    on-claim: true\r\n\r\n    # The amount of time the indicator blocks should stay.\r\n    # In seconds.\r\n    stay: 3\r\n\r\n    # /k visualize all\r\n    all-stay: 20\r\n\r\n  # The land types to send the indicators and visualizers.\r\n  # You can edit the title, sound, actionbar and message of these from your language file's \"lands.visualizers.<relation>\" entry.\r\n  # corner-block: The 4 corner block used to indicate the chunk corners.\r\n  # two-blocks: The two blocks next to each corner blocks on sides.\r\n  # send-messages-for-same-chunk-type: If titles, actionbars, visualizers and sound should\r\n  #   be used again if the player is entering the same type of land as their previous land.\r\n  #   For example, if you're going from an unclaimed land to another unclaimed land, and this option is set to\r\n  #   true in wilderness, the messages will show again.\r\n  # You can remove any of these options and they'll not be used. Or you can add any of them to any types you want.\r\n  # The placeholders with \"kingdom\" identifier instead of \"kingdoms\" are for placeholders related to the land's kingdom.\r\n",
+      "comments": [
+        "Adds a block visualizer to separate chunks.",
+        "It's similar to F3+G Chunk Border.",
+        "Players can control their visualizers behaviour from /k visualize"
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "visualizer",
+        "enabled"
+      ],
+      "source": "false",
+      "comments": [
+        "If visualizers should be enabled for players by default.",
+        "They can disable it using /k visualize toggle"
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "visualizer",
+        "name"
+      ],
+      "source": "'Blocks'",
+      "comments": [
+        "The name for the markers type /k visual markers"
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "visualizer",
+        "floor-check-height"
+      ],
+      "source": "5",
+      "comments": [
+        "If the option above is set to false, then it'll check the blocks under the player",
+        "until it hits the floor. The floor blood is determined by its type (whether it's passable) or not.",
+        "This type check is not accurate for servers using 1.12 and below versions.",
+        "The height check limit should be low to avoid lag.",
+        "If no floor block was found within this range, then the indicator will display on (y - x),",
+        "where x is the option and y is the player's y axis.",
+        "Setting to 0: Blocks will appear on the same y as the blocks the player is standing on.",
+        "Otherwise, blocks will be placed on the floor block.",
+        "Note this must also be lower than the servers max view distance (16 by default but that is the chunk number)",
+        "as higher values are useless. There is a hard limit of 160 blocks."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "visualizer",
+        "border"
+      ],
+      "source": "false",
+      "comments": [
+        "If the blocks should visualize all the border blocks around the chunk.",
+        "This will usually cause a lot of lag. Not recommended.",
+        "The material used for these blocks is \"two-block\". You can change them below."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "visualizer",
+        "on-claim"
+      ],
+      "source": "true",
+      "comments": [
+        "Ignores enabled option.",
+        "Should indicators be shown when a land is claimed or unclaimed?"
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "visualizer",
+        "stay"
+      ],
+      "source": "3",
+      "comments": [
+        "The amount of time the indicator blocks should stay.",
+        "In seconds."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "visualizer",
+        "all-stay"
+      ],
+      "source": "20",
+      "comments": [
+        "/k visualize all"
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "wilderness"
+      ],
+      "source": "\r\n    corner-block: SEA_LANTERN\r\n    two-block: QUARTZ_BLOCK\r\n    particles:\r\n      horizontal:\r\n        color: 0, 0, 0\r\n      vertical:\r\n        color: 0, 0, 0\r\n",
+      "comments": [
+        "The land types to send the indicators and visualizers.",
+        "You can edit the title, sound, actionbar and message of these from your language file's \"lands.visualizers.<relation>\" entry.",
+        "corner-block: The 4 corner block used to indicate the chunk corners.",
+        "two-blocks: The two blocks next to each corner blocks on sides.",
+        "send-messages-for-same-chunk-type: If titles, actionbars, visualizers and sound should",
+        "be used again if the player is entering the same type of land as their previous land.",
+        "For example, if you're going from an unclaimed land to another unclaimed land, and this option is set to",
+        "true in wilderness, the messages will show again.",
+        "You can remove any of these options and they'll not be used. Or you can add any of them to any types you want.",
+        "The placeholders with \"kingdom\" identifier instead of \"kingdoms\" are for placeholders related to the land's kingdom."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "wilderness",
+        "corner-block"
+      ],
+      "source": "SEA_LANTERN",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "wilderness",
+        "two-block"
+      ],
+      "source": "QUARTZ_BLOCK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "wilderness",
+        "particles"
+      ],
+      "source": "\r\n      horizontal:\r\n        color: 0, 0, 0\r\n      vertical:\r\n        color: 0, 0, 0\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "wilderness",
+        "particles",
+        "horizontal"
+      ],
+      "source": "\r\n        color: 0, 0, 0\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "wilderness",
+        "particles",
+        "horizontal",
+        "color"
+      ],
+      "source": "0, 0, 0",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "wilderness",
+        "particles",
+        "vertical"
+      ],
+      "source": "\r\n        color: 0, 0, 0\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "wilderness",
+        "particles",
+        "vertical",
+        "color"
+      ],
+      "source": "0, 0, 0",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "no-kingdom"
+      ],
+      "source": "\r\n    particles:\r\n      horizontal:\r\n        color: 255, 255, 255\r\n      vertical:\r\n        color: 255, 255, 255\r\n\r\n    corner-block: SEA_LANTERN\r\n    two-block: IRON_BLOCK\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "no-kingdom",
+        "particles"
+      ],
+      "source": "\r\n      horizontal:\r\n        color: 255, 255, 255\r\n      vertical:\r\n        color: 255, 255, 255\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "no-kingdom",
+        "particles",
+        "horizontal"
+      ],
+      "source": "\r\n        color: 255, 255, 255\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "no-kingdom",
+        "particles",
+        "horizontal",
+        "color"
+      ],
+      "source": "255, 255, 255",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "no-kingdom",
+        "particles",
+        "vertical"
+      ],
+      "source": "\r\n        color: 255, 255, 255\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "no-kingdom",
+        "particles",
+        "vertical",
+        "color"
+      ],
+      "source": "255, 255, 255",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "no-kingdom",
+        "corner-block"
+      ],
+      "source": "SEA_LANTERN",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "no-kingdom",
+        "two-block"
+      ],
+      "source": "IRON_BLOCK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "self"
+      ],
+      "source": "\r\n    particles:\r\n      horizontal:\r\n        color: 0, 255, 0\r\n      vertical:\r\n        color: 0, 255, 0\r\n\r\n    corner-block: SEA_LANTERN\r\n    two-block: EMERALD_BLOCK\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "self",
+        "particles"
+      ],
+      "source": "\r\n      horizontal:\r\n        color: 0, 255, 0\r\n      vertical:\r\n        color: 0, 255, 0\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "self",
+        "particles",
+        "horizontal"
+      ],
+      "source": "\r\n        color: 0, 255, 0\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "self",
+        "particles",
+        "horizontal",
+        "color"
+      ],
+      "source": "0, 255, 0",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "self",
+        "particles",
+        "vertical"
+      ],
+      "source": "\r\n        color: 0, 255, 0\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "self",
+        "particles",
+        "vertical",
+        "color"
+      ],
+      "source": "0, 255, 0",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "self",
+        "corner-block"
+      ],
+      "source": "SEA_LANTERN",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "self",
+        "two-block"
+      ],
+      "source": "EMERALD_BLOCK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "neutral"
+      ],
+      "source": "\r\n    particles:\r\n      horizontal:\r\n        color: 255, 255, 255\r\n      vertical:\r\n        color: 255, 255, 255\r\n\r\n    corner-block: SEA_LANTERN\r\n    two-block: IRON_BLOCK\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "neutral",
+        "particles"
+      ],
+      "source": "\r\n      horizontal:\r\n        color: 255, 255, 255\r\n      vertical:\r\n        color: 255, 255, 255\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "neutral",
+        "particles",
+        "horizontal"
+      ],
+      "source": "\r\n        color: 255, 255, 255\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "neutral",
+        "particles",
+        "horizontal",
+        "color"
+      ],
+      "source": "255, 255, 255",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "neutral",
+        "particles",
+        "vertical"
+      ],
+      "source": "\r\n        color: 255, 255, 255\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "neutral",
+        "particles",
+        "vertical",
+        "color"
+      ],
+      "source": "255, 255, 255",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "neutral",
+        "corner-block"
+      ],
+      "source": "SEA_LANTERN",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "neutral",
+        "two-block"
+      ],
+      "source": "IRON_BLOCK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "ally"
+      ],
+      "source": "\r\n    particles:\r\n      horizontal:\r\n        color: 100, 255, 0\r\n      vertical:\r\n        color: 100, 255, 0\r\n\r\n    corner-block: SEA_LANTERN\r\n    two-block: DIAMOND_BLOCK\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "ally",
+        "particles"
+      ],
+      "source": "\r\n      horizontal:\r\n        color: 100, 255, 0\r\n      vertical:\r\n        color: 100, 255, 0\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "ally",
+        "particles",
+        "horizontal"
+      ],
+      "source": "\r\n        color: 100, 255, 0\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "ally",
+        "particles",
+        "horizontal",
+        "color"
+      ],
+      "source": "100, 255, 0",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "ally",
+        "particles",
+        "vertical"
+      ],
+      "source": "\r\n        color: 100, 255, 0\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "ally",
+        "particles",
+        "vertical",
+        "color"
+      ],
+      "source": "100, 255, 0",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "ally",
+        "corner-block"
+      ],
+      "source": "SEA_LANTERN",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "ally",
+        "two-block"
+      ],
+      "source": "DIAMOND_BLOCK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "truce"
+      ],
+      "source": "\r\n    particles:\r\n      horizontal:\r\n        color: 255, 255, 0\r\n      vertical:\r\n        color: 255, 255, 0\r\n\r\n    corner-block: SEA_LANTERN\r\n    two-block: GOLD_BLOCK\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "truce",
+        "particles"
+      ],
+      "source": "\r\n      horizontal:\r\n        color: 255, 255, 0\r\n      vertical:\r\n        color: 255, 255, 0\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "truce",
+        "particles",
+        "horizontal"
+      ],
+      "source": "\r\n        color: 255, 255, 0\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "truce",
+        "particles",
+        "horizontal",
+        "color"
+      ],
+      "source": "255, 255, 0",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "truce",
+        "particles",
+        "vertical"
+      ],
+      "source": "\r\n        color: 255, 255, 0\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "truce",
+        "particles",
+        "vertical",
+        "color"
+      ],
+      "source": "255, 255, 0",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "truce",
+        "corner-block"
+      ],
+      "source": "SEA_LANTERN",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "truce",
+        "two-block"
+      ],
+      "source": "GOLD_BLOCK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "nation"
+      ],
+      "source": "\r\n    particles:\r\n      horizontal:\r\n        color: 0, 0, 255\r\n      vertical:\r\n        color: 0, 0, 255\r\n\r\n    corner-block: SEA_LANTERN\r\n    two-block: BLUE_WOOL\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "nation",
+        "particles"
+      ],
+      "source": "\r\n      horizontal:\r\n        color: 0, 0, 255\r\n      vertical:\r\n        color: 0, 0, 255\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "nation",
+        "particles",
+        "horizontal"
+      ],
+      "source": "\r\n        color: 0, 0, 255\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "nation",
+        "particles",
+        "horizontal",
+        "color"
+      ],
+      "source": "0, 0, 255",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "nation",
+        "particles",
+        "vertical"
+      ],
+      "source": "\r\n        color: 0, 0, 255\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "nation",
+        "particles",
+        "vertical",
+        "color"
+      ],
+      "source": "0, 0, 255",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "nation",
+        "corner-block"
+      ],
+      "source": "SEA_LANTERN",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "nation",
+        "two-block"
+      ],
+      "source": "BLUE_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "nation-zone"
+      ],
+      "source": "\r\n    particles:\r\n      horizontal:\r\n        color: 0, 120, 255\r\n      vertical:\r\n        color: 0, 120, 255\r\n\r\n    corner-block: SEA_LANTERN\r\n    two-block: BLUE_STAINED_GLASS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "nation-zone",
+        "particles"
+      ],
+      "source": "\r\n      horizontal:\r\n        color: 0, 120, 255\r\n      vertical:\r\n        color: 0, 120, 255\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "nation-zone",
+        "particles",
+        "horizontal"
+      ],
+      "source": "\r\n        color: 0, 120, 255\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "nation-zone",
+        "particles",
+        "horizontal",
+        "color"
+      ],
+      "source": "0, 120, 255",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "nation-zone",
+        "particles",
+        "vertical"
+      ],
+      "source": "\r\n        color: 0, 120, 255\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "nation-zone",
+        "particles",
+        "vertical",
+        "color"
+      ],
+      "source": "0, 120, 255",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "nation-zone",
+        "corner-block"
+      ],
+      "source": "SEA_LANTERN",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "nation-zone",
+        "two-block"
+      ],
+      "source": "BLUE_STAINED_GLASS",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "enemy"
+      ],
+      "source": "\r\n    particles:\r\n      horizontal:\r\n        color: 255, 0, 0\r\n      vertical:\r\n        color: 255, 0, 0\r\n\r\n    corner-block: SEA_LANTERN\r\n    two-block: REDSTONE_BLOCK",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "enemy",
+        "particles"
+      ],
+      "source": "\r\n      horizontal:\r\n        color: 255, 0, 0\r\n      vertical:\r\n        color: 255, 0, 0\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "enemy",
+        "particles",
+        "horizontal"
+      ],
+      "source": "\r\n        color: 255, 0, 0\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "enemy",
+        "particles",
+        "horizontal",
+        "color"
+      ],
+      "source": "255, 0, 0",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "enemy",
+        "particles",
+        "vertical"
+      ],
+      "source": "\r\n        color: 255, 0, 0\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "enemy",
+        "particles",
+        "vertical",
+        "color"
+      ],
+      "source": "255, 0, 0",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "enemy",
+        "corner-block"
+      ],
+      "source": "SEA_LANTERN",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "indicator",
+        "enemy",
+        "two-block"
+      ],
+      "source": "REDSTONE_BLOCK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

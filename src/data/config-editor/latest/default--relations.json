@@ -1,0 +1,1317 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "relations.yml",
+  "schemaId": "relations",
+  "options": [
+    {
+      "path": [
+        "request-expiration"
+      ],
+      "source": "1 day",
+      "comments": [
+        "Relation request to a nation or a kingdom."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "prioritize-kingdom-relations"
+      ],
+      "source": "true",
+      "comments": [
+        "If kingdoms relations should be checked when",
+        "interacting with a kingdom that is not in the same nation."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "allow-relations-between-nation-kingdoms"
+      ],
+      "source": "false",
+      "comments": [
+        "Allow kingdoms to have separate relations with kingdoms that are in their nation?",
+        "If you use this, it'll destroy the whole purpose of nation relations."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "pvp"
+      ],
+      "source": "normal",
+      "comments": [
+        "The PvP mode of the plugin. Needs a restart to be changed due to performance issues.",
+        "disabled - The plugin doesn't do anything.",
+        "disallowed - Don't allow anyone to PvP. This is mostly useful only when relational pvp types are enabled.",
+        "normal - Players can PvP anywhere based on their relation attributes.",
+        "claimed - Players can only PvP inside of claimed lands based on their relation attributes.",
+        "unclaimed - Players can only PvP outside of claimed lands based on their relation attributes.",
+        "masswar - Players can only pvp anywhere during masswars.",
+        "territory - Players can pvp if both of them are not in their own or allies kingdom lands.",
+        "that means player X is only protected if he is in his own claimed land (or an ally). Not when he's in an unclaimed land or a neutral, truce or enemy land.",
+        "\"Allies\" in this context refers to any relation with ceasefire attribute.",
+        "relational - Allows you to configure the PvP mode of relations individually.",
+        "conditional - Only use the \"pvp-advanced\" conditional option below without evaluating this rule.",
+        "Note: When using the claimed/unclaimed options, if one player is a claimed land and the other is in an unclaimed land, they cannot PvP.",
+        "Note: If one of the players is invading any land this option acts like \"normal\""
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "pvp-advanced"
+      ],
+      "source": "''",
+      "comments": [
+        "When the options above don't exactly satisfy your needs you",
+        "can always use a custom condition. However the option above",
+        "has more performance advantages over using this.",
+        "If you set the above \"pvp\" option to \"conditional\" that means that you need",
+        "to define basic rules for relationships, like:",
+        "kingdoms_relation == '...'",
+        "- Primary Context: The attacker player.",
+        "- Secondary Context: The victim player.",
+        "- Special Variables:",
+        "* ceasefire - Whether the kingdom of these two players have the ceasefire attribute based on their relationship.",
+        "* can_fight - Only works if \"pvp\" is not set to \"conditional\" will give the result based on the basic ruling of \"pvp\" option.",
+        "When this condition evaluates to true, the two players can fight, otherwise they cannot."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "agreements"
+      ],
+      "source": "true",
+      "comments": [
+        "Only apply kingdom relations if both parties agree on that specific relation attribute. Meaning that",
+        "the attribute will only take effects if they both enabled that attribute for their relation in kingdom settings.",
+        "Requires a server restart to be applied.",
+        "If set to false, only the receiving end's relation attributes will be taken into account.",
+        "What that means is, if you're trying to attack a player from a kingdom with their ceasefire attribute set to false",
+        "but your kingdom has the ceasefire attribute for the relation set to true, your members will not be able to attack the",
+        "kingdom, but that kingdom will be able to attack your members. That doesn't sound like something you'd want in most cases."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "force-survival-mode"
+      ],
+      "source": "true",
+      "comments": [
+        "Forces survival mode when players enter another land",
+        "unless they have CEASEFIRE and TURRET_CEASEFIRE attributes with that kingdom",
+        "or have the kingdoms.land.bypass.creative permission.",
+        "Note that this does not disable their fly for their safety."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations"
+      ],
+      "source": "\r\n  self:\r\n    color: \"&2\"\r\n    name: \"\"\r\n\r\n  neutral:\r\n    color: \"&f\"\r\n    ceasefire: false\r\n    donate: false\r\n    build: false\r\n    use: false\r\n    fly: false\r\n    home: false\r\n    interact: false\r\n    invade: true\r\n    turret-ceasefire: false\r\n    manage-turrets: false\r\n    manage-structures: false\r\n    customizable: true\r\n    show-holograms: false\r\n    effects: [ ]\r\n\r\n  truce:\r\n    color: \"&e\"\r\n    auto-revoke: false\r\n    ceasefire: true\r\n    donate: true\r\n    build: false\r\n    fly: true\r\n    home: false\r\n    limit: 10\r\n    interact: false\r\n    invade: false\r\n    turret-ceasefire: true\r\n    manage-turrets: false\r\n    customizable: true\r\n    manage-structures: false\r\n    show-holograms: false\r\n    effects: [ ]\r\n\r\n  ally:\r\n    color: \"&a\"\r\n    auto-revoke: false\r\n    ceasefire: true\r\n    donate: true\r\n    build: false\r\n    fly: true\r\n    home: true\r\n    limit: 10\r\n    invade: false\r\n    interact: true\r\n    turret-ceasefire: true\r\n    manage-turrets: true\r\n    customizable: true\r\n    manage-structures: true\r\n    show-holograms: true\r\n    effects: [ ]\r\n\r\n  nation:\r\n    color: \"&9\"\r\n    auto-revoke: false\r\n    ceasefire: true\r\n    donate: true\r\n    build: true\r\n    home: true\r\n    invade: false\r\n    interact: true\r\n    use: true\r\n    turret-ceasefire: true\r\n    manage-turrets: true\r\n    manage-structures: true\r\n    show-holograms: true\r\n    customizable: false # because all nation members are supposed to follow the same rules.\r\n    effects: [ ]\r\n\r\n  enemy:\r\n    color: \"&c\"\r\n    #cost: 100 # Cost in resource points needed to enemy a kingdom.\r\n    auto-revoke: false\r\n    ceasefire: false\r\n    donate: false\r\n    fly: true\r\n    build: false\r\n    home: false\r\n    limit: 10\r\n    interact: false\r\n    invade: true\r\n    turret-ceasefire: false\r\n    manage-turrets: false\r\n    manage-structures: false\r\n    show-holograms: false\r\n    effects: [ ]\r\n    customizable: true\r\n    disabled-commands:\r\n      - \"sethome\"\r\n    # Should enemying a kingdom automatically enemy all kingdoms in their nation\r\n    # if they're in one?\r\n    national-automation: false\r\n",
+      "comments": [
+        "auto-revoke: If a kingdom declares that they no longer wish to be in a relation with the",
+        "other kingdom, the other kingdom will automatically have this relation revoked as well.",
+        "ceasefire: Members of the two kingdoms cannot PvP each other.",
+        "donate: Kingdoms can donate resource points to each other clicking their nexus. Note that they'll still be able to use /k donate",
+        "build: Kingdoms can build in each others lands, however you can't touch any turrets or structures.",
+        "invade: If kingdoms can invade each other.",
+        "interact: Kingdoms can interact and open chests, enchantment tables and other containers.",
+        "use: Kingdoms can use buttons, open doors and use pressure plates.",
+        "home: Allow players to teleport to home of these kingdoms using /k home <kingdom>",
+        "manage: Kingdoms can remove and place turrets and structures in your land.",
+        "Note that the placed turrets/structures will be for the kingdom that owns that land.",
+        "limit: How many kingdoms can a single kingdom have this type of relation with? Set to 0 for unlimited.",
+        "effects: List of potion effects activated when in these lands.",
+        "customizable: This merely manages the data saved, so it applies after a server restart.",
+        "To disable it completely, remove it from the Nexus Settings GUI. The players will",
+        "keep their relation data until the server is restarted if you keep the GUI.",
+        "Note that NOT specifiying this option defaults to true",
+        "show-holograms: Should turret and structure holograms be shown to them?",
+        "pvp: Only works if the main PvP mode option is set to \"relational\", this accepts all the same options",
+        "as the main PvP mode. This also requires a restart.",
+        "conditions: A list of conditions that supports placeholders with the primary context as the",
+        "sender kingdom and the secondary context as the receiver kingdom"
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "self"
+      ],
+      "source": "\r\n    color: \"&2\"\r\n    name: \"\"\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "self",
+        "color"
+      ],
+      "source": "\"&2\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "self",
+        "name"
+      ],
+      "source": "\"\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "neutral"
+      ],
+      "source": "\r\n    color: \"&f\"\r\n    ceasefire: false\r\n    donate: false\r\n    build: false\r\n    use: false\r\n    fly: false\r\n    home: false\r\n    interact: false\r\n    invade: true\r\n    turret-ceasefire: false\r\n    manage-turrets: false\r\n    manage-structures: false\r\n    customizable: true\r\n    show-holograms: false\r\n    effects: [ ]\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "neutral",
+        "color"
+      ],
+      "source": "\"&f\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "neutral",
+        "ceasefire"
+      ],
+      "source": "false",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "neutral",
+        "donate"
+      ],
+      "source": "false",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "neutral",
+        "build"
+      ],
+      "source": "false",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "neutral",
+        "use"
+      ],
+      "source": "false",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "neutral",
+        "fly"
+      ],
+      "source": "false",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "neutral",
+        "home"
+      ],
+      "source": "false",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "neutral",
+        "interact"
+      ],
+      "source": "false",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "neutral",
+        "invade"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "neutral",
+        "turret-ceasefire"
+      ],
+      "source": "false",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "neutral",
+        "manage-turrets"
+      ],
+      "source": "false",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "neutral",
+        "manage-structures"
+      ],
+      "source": "false",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "neutral",
+        "customizable"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "neutral",
+        "show-holograms"
+      ],
+      "source": "false",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "neutral",
+        "effects"
+      ],
+      "source": "[ ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": []
+    },
+    {
+      "path": [
+        "relations",
+        "truce"
+      ],
+      "source": "\r\n    color: \"&e\"\r\n    auto-revoke: false\r\n    ceasefire: true\r\n    donate: true\r\n    build: false\r\n    fly: true\r\n    home: false\r\n    limit: 10\r\n    interact: false\r\n    invade: false\r\n    turret-ceasefire: true\r\n    manage-turrets: false\r\n    customizable: true\r\n    manage-structures: false\r\n    show-holograms: false\r\n    effects: [ ]\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "truce",
+        "color"
+      ],
+      "source": "\"&e\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "truce",
+        "auto-revoke"
+      ],
+      "source": "false",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "truce",
+        "ceasefire"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "truce",
+        "donate"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "truce",
+        "build"
+      ],
+      "source": "false",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "truce",
+        "fly"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "truce",
+        "home"
+      ],
+      "source": "false",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "truce",
+        "limit"
+      ],
+      "source": "10",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "truce",
+        "interact"
+      ],
+      "source": "false",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "truce",
+        "invade"
+      ],
+      "source": "false",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "truce",
+        "turret-ceasefire"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "truce",
+        "manage-turrets"
+      ],
+      "source": "false",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "truce",
+        "customizable"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "truce",
+        "manage-structures"
+      ],
+      "source": "false",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "truce",
+        "show-holograms"
+      ],
+      "source": "false",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "truce",
+        "effects"
+      ],
+      "source": "[ ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": []
+    },
+    {
+      "path": [
+        "relations",
+        "ally"
+      ],
+      "source": "\r\n    color: \"&a\"\r\n    auto-revoke: false\r\n    ceasefire: true\r\n    donate: true\r\n    build: false\r\n    fly: true\r\n    home: true\r\n    limit: 10\r\n    invade: false\r\n    interact: true\r\n    turret-ceasefire: true\r\n    manage-turrets: true\r\n    customizable: true\r\n    manage-structures: true\r\n    show-holograms: true\r\n    effects: [ ]\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "ally",
+        "color"
+      ],
+      "source": "\"&a\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "ally",
+        "auto-revoke"
+      ],
+      "source": "false",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "ally",
+        "ceasefire"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "ally",
+        "donate"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "ally",
+        "build"
+      ],
+      "source": "false",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "ally",
+        "fly"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "ally",
+        "home"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "ally",
+        "limit"
+      ],
+      "source": "10",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "ally",
+        "invade"
+      ],
+      "source": "false",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "ally",
+        "interact"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "ally",
+        "turret-ceasefire"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "ally",
+        "manage-turrets"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "ally",
+        "customizable"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "ally",
+        "manage-structures"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "ally",
+        "show-holograms"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "ally",
+        "effects"
+      ],
+      "source": "[ ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": []
+    },
+    {
+      "path": [
+        "relations",
+        "nation"
+      ],
+      "source": "\r\n    color: \"&9\"\r\n    auto-revoke: false\r\n    ceasefire: true\r\n    donate: true\r\n    build: true\r\n    home: true\r\n    invade: false\r\n    interact: true\r\n    use: true\r\n    turret-ceasefire: true\r\n    manage-turrets: true\r\n    manage-structures: true\r\n    show-holograms: true\r\n    customizable: false # because all nation members are supposed to follow the same rules.\r\n    effects: [ ]\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "nation",
+        "color"
+      ],
+      "source": "\"&9\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "nation",
+        "auto-revoke"
+      ],
+      "source": "false",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "nation",
+        "ceasefire"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "nation",
+        "donate"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "nation",
+        "build"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "nation",
+        "home"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "nation",
+        "invade"
+      ],
+      "source": "false",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "nation",
+        "interact"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "nation",
+        "use"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "nation",
+        "turret-ceasefire"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "nation",
+        "manage-turrets"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "nation",
+        "manage-structures"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "nation",
+        "show-holograms"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "nation",
+        "customizable"
+      ],
+      "source": "false",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "nation",
+        "effects"
+      ],
+      "source": "[ ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": []
+    },
+    {
+      "path": [
+        "relations",
+        "enemy"
+      ],
+      "source": "\r\n    color: \"&c\"\r\n    #cost: 100 # Cost in resource points needed to enemy a kingdom.\r\n    auto-revoke: false\r\n    ceasefire: false\r\n    donate: false\r\n    fly: true\r\n    build: false\r\n    home: false\r\n    limit: 10\r\n    interact: false\r\n    invade: true\r\n    turret-ceasefire: false\r\n    manage-turrets: false\r\n    manage-structures: false\r\n    show-holograms: false\r\n    effects: [ ]\r\n    customizable: true\r\n    disabled-commands:\r\n      - \"sethome\"\r\n    # Should enemying a kingdom automatically enemy all kingdoms in their nation\r\n    # if they're in one?\r\n    national-automation: false\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "enemy",
+        "color"
+      ],
+      "source": "\"&c\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "enemy",
+        "auto-revoke"
+      ],
+      "source": "false",
+      "comments": [
+        "cost: 100 # Cost in resource points needed to enemy a kingdom."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "enemy",
+        "ceasefire"
+      ],
+      "source": "false",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "enemy",
+        "donate"
+      ],
+      "source": "false",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "enemy",
+        "fly"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "enemy",
+        "build"
+      ],
+      "source": "false",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "enemy",
+        "home"
+      ],
+      "source": "false",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "enemy",
+        "limit"
+      ],
+      "source": "10",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "enemy",
+        "interact"
+      ],
+      "source": "false",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "enemy",
+        "invade"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "enemy",
+        "turret-ceasefire"
+      ],
+      "source": "false",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "enemy",
+        "manage-turrets"
+      ],
+      "source": "false",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "enemy",
+        "manage-structures"
+      ],
+      "source": "false",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "enemy",
+        "show-holograms"
+      ],
+      "source": "false",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "enemy",
+        "effects"
+      ],
+      "source": "[ ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": []
+    },
+    {
+      "path": [
+        "relations",
+        "enemy",
+        "customizable"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "relations",
+        "enemy",
+        "disabled-commands"
+      ],
+      "source": "\r\n      - \"sethome\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"sethome\""
+      ]
+    },
+    {
+      "path": [
+        "relations",
+        "enemy",
+        "national-automation"
+      ],
+      "source": "false",
+      "comments": [
+        "Should enemying a kingdom automatically enemy all kingdoms in their nation",
+        "if they're in one?"
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

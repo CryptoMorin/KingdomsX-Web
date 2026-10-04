@@ -1,0 +1,113 @@
+{
+  "formatVersion": 2,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "id": "entity",
+  "resourceName": "entity.yml",
+  "schema": {
+    "kind": "object",
+    "fields": [
+      {
+        "key": "type",
+        "type": {
+          "kind": "suggestion",
+          "typeName": "Enum<org.bukkit.entity.EntityType>",
+          "allowCustom": true
+        }
+      },
+      {
+        "key": "name",
+        "type": {
+          "kind": "string",
+          "typeName": "str"
+        }
+      },
+      {
+        "key": "health",
+        "type": {
+          "kind": "decimal"
+        }
+      },
+      {
+        "key": "baby",
+        "type": {
+          "kind": "boolean"
+        }
+      },
+      {
+        "key": "invulnerable",
+        "type": {
+          "kind": "boolean"
+        }
+      },
+      {
+        "key": "glowing",
+        "type": {
+          "kind": "boolean"
+        }
+      },
+      {
+        "key": "gravity",
+        "type": {
+          "kind": "boolean"
+        }
+      },
+      {
+        "key": "silent",
+        "type": {
+          "kind": "boolean"
+        }
+      },
+      {
+        "key": "effects",
+        "type": {
+          "kind": "set",
+          "elements": {
+            "kind": "advanced",
+            "typeName": "Potion"
+          }
+        }
+      },
+      {
+        "key": "equipment",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "enum",
+            "values": [
+              "main-hand",
+              "off-hand",
+              "helmet",
+              "chestplate",
+              "leggings",
+              "boots"
+            ],
+            "allowCustom": false
+          },
+          "values": {
+            "kind": "object",
+            "fields": [
+              {
+                "key": "item",
+                "type": {
+                  "kind": "advanced",
+                  "typeName": "ItemStack"
+                }
+              },
+              {
+                "key": "drop-chance",
+                "type": {
+                  "kind": "integer"
+                }
+              }
+            ]
+          },
+          "fields": []
+        }
+      }
+    ]
+  }
+}

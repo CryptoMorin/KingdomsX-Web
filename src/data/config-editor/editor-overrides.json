@@ -1,0 +1,744 @@
+{
+  "formatVersion": 3,
+  "runtimeFields": {
+    "claims.INDICATOR_SEND_MESSAGES_FOR_SAME_LAND_TYPE": {
+      "type": {
+        "kind": "boolean",
+        "description": "Send land-change messages when moving between lands with the same relation type."
+      }
+    },
+    "invasions.ON_NEXUS_LOSS_MONEY": {
+      "type": {
+        "kind": "expression",
+        "language": "math",
+        "description": "Money removed or transferred when an invasion destroys the nexus."
+      }
+    },
+    "invasions.ALLOW_BUILDING_ENABLED": {
+      "type": {
+        "kind": "boolean",
+        "description": "Whether building rules are changed while an invasion is active."
+      }
+    },
+    "invasions.ALLOW_BUILDING_OWN_ONLY": {
+      "type": {
+        "kind": "boolean",
+        "description": "Restrict invasion building to the participant's own side."
+      }
+    },
+    "invasions.SURRENDER_REFUND_MOENY": {
+      "type": {
+        "kind": "boolean",
+        "description": "Whether surrender refunds the invasion money cost."
+      }
+    },
+    "invasions.PLAYER_DEATHS_KEEP_LEVEL": {
+      "type": {
+        "kind": "boolean",
+        "description": "Keep the player's experience level when they die during an invasion."
+      }
+    },
+    "invasions.PLUNDER_KEEP_PARTICIPANTS_NATION": {
+      "type": {
+        "kind": "boolean",
+        "description": "Keep nation participants in the plunder participant set."
+      }
+    },
+    "invasions.PLUNDER_KEEP_PARTICIPANTS_ALLIES": {
+      "type": {
+        "kind": "boolean",
+        "description": "Keep allied participants in the plunder participant set."
+      }
+    },
+    "invasions.PLUNDER_KEEP_PARTICIPANTS_TRUCES": {
+      "type": {
+        "kind": "boolean",
+        "description": "Keep truce participants in the plunder participant set."
+      }
+    },
+    "invasions.PLUNDER_CAPTURE_PROGRESS_ENDLESS_MODE_ENABLED": {
+      "type": {
+        "kind": "boolean",
+        "description": "Allow plunder capture progress to continue in endless mode."
+      }
+    },
+    "invasions.PLUNDER_CAPTURE_PROGRESS_ENDLESS_MODE_MAX": {
+      "type": {
+        "kind": "decimal",
+        "description": "Maximum capture progress used by endless plunder mode."
+      }
+    },
+    "map.KINGDOM_PLAYER_ONLY": {
+      "type": {
+        "kind": "boolean",
+        "description": "Only allow players who belong to a kingdom to use the kingdom map."
+      }
+    },
+    "misc-upgrades.ANTI_EXPLOSION_DROP_DESTROYED_KINGDOM_ITEMS": {
+      "type": {
+        "kind": "boolean",
+        "description": "Drop kingdom items destroyed by explosions instead of discarding them."
+      }
+    },
+    "powers.POWERUPS_DEFAULT_LEVEL": {
+      "type": {
+        "kind": "integer",
+        "minimum": 0,
+        "description": "Starting level for a powerup when a kingdom is created."
+      }
+    },
+    "ranks.CUSTOM_RANKS_LIMITS_MATERIAL_WHITELIST": {
+      "type": {
+        "kind": "boolean",
+        "description": "Treat the custom-rank material list as an allow-list."
+      }
+    },
+    "ranks.CUSTOM_RANKS_LIMITS_MATERIAL_LIST": {
+      "type": {
+        "kind": "list",
+        "description": "Materials allowed or blocked for custom rank icons.",
+        "elements": {
+          "kind": "suggestion",
+          "typeName": "Material",
+          "allowCustom": true
+        }
+      }
+    },
+    "relations.COST": {
+      "type": {
+        "kind": "expression",
+        "language": "math",
+        "description": "Resource-point cost for this relation."
+      }
+    },
+    "config.DATABASE_CLOSE_AT_VM_SHUTDOWN": {
+      "type": {
+        "kind": "boolean",
+        "description": "Close the database connection pool when the Java virtual machine shuts down."
+      }
+    },
+    "config.CREATION_KINGDOMS_SOUND": {
+      "type": {
+        "kind": "suggestion",
+        "typeName": "Sound",
+        "allowCustom": true,
+        "description": "Sound played when a kingdom is created."
+      }
+    },
+    "config.CREATION_NATIONS_SOUND": {
+      "type": {
+        "kind": "suggestion",
+        "typeName": "Sound",
+        "allowCustom": true,
+        "description": "Sound played when a nation is created."
+      }
+    },
+    "config.HOME_CHECK_SAFE_SELF": {
+      "type": {
+        "kind": "boolean",
+        "description": "Check that a player's own kingdom home destination is safe before teleporting."
+      }
+    },
+    "config.HOME_CHECK_SAFE_OTHERS": {
+      "type": {
+        "kind": "boolean",
+        "description": "Check that another kingdom's home destination is safe before teleporting."
+      }
+    },
+    "config.KINGDOM_FLY_CHARGES_AFK": {
+      "type": {
+        "kind": "object",
+        "description": "AFK handling for kingdom-flight charges.",
+        "required": [],
+        "fields": [
+          {
+            "key": "enabled",
+            "type": {
+              "kind": "expression",
+              "language": "condition",
+              "description": "Condition that enables AFK charge handling."
+            }
+          },
+          {
+            "key": "duration",
+            "type": {
+              "kind": "duration",
+              "description": "Time before a flying player is considered AFK."
+            }
+          },
+          {
+            "key": "consider-camera-movement",
+            "type": {
+              "kind": "boolean",
+              "description": "Whether camera movement counts as activity."
+            }
+          }
+        ]
+      }
+    }
+  },
+  "defaultValueExamples": [
+    {
+      "resourceName": "config.yml",
+      "path": ["commands"]
+    },
+    {
+      "resourceName": "config.yml",
+      "path": ["events"]
+    },
+    {
+      "resourceName": "claims.yml",
+      "path": ["biomes", "default", "cost-factor"]
+    },
+    {
+      "resourceName": "misc-upgrades.yml",
+      "path": ["custom-misc-upgrade"]
+    },
+    {
+      "resourceName": "resource-points.yml",
+      "path": ["advanced"]
+    },
+    {
+      "resourceName": "resource-points.yml",
+      "path": ["custom-items"]
+    }
+  ],
+  "commentTypes": [
+    {
+      "schemaId": "config",
+      "path": ["username-validation"],
+      "reason": "The default comment allows true, false, or a custom regular expression.",
+      "type": {
+        "kind": "union",
+        "description": "Choose standard username validation, disable validation, or enter a custom regular expression.",
+        "choices": [
+          {
+            "kind": "boolean",
+            "trueLabel": "Standard validation",
+            "falseLabel": "Validation disabled",
+            "description": "true uses Minecraft's standard username rules. false disables validation."
+          },
+          {
+            "kind": "string",
+            "typeName": "Regex",
+            "label": "Custom regular expression",
+            "description": "A custom regular expression for valid player names."
+          }
+        ]
+      }
+    },
+    {
+      "schemaId": "config",
+      "path": ["tax", "kingdoms", "bankruptcy", "disband"],
+      "reason": "The default value is a condition and the comment also permits the always-on true value.",
+      "type": {
+        "kind": "union",
+        "description": "Choose whether an unpaid kingdom is always disbanded, never disbanded, or disbanded only when a condition passes.",
+        "choices": [
+          {
+            "kind": "boolean",
+            "trueLabel": "Always disband",
+            "falseLabel": "Never disband"
+          },
+          {
+            "kind": "expression",
+            "language": "condition",
+            "label": "Condition",
+            "description": "Condition that decides whether the bankrupt kingdom is disbanded."
+          }
+        ]
+      }
+    },
+    {
+      "schemaId": "config",
+      "path": ["database", "use-data-folder"],
+      "reason": "The default comment permits true or ~ and explicitly rejects false.",
+      "type": {
+        "kind": "union",
+        "description": "Store data in the data folder, or use ~ for the main Kingdoms folder.",
+        "choices": [
+          {
+            "kind": "literal",
+            "value": true,
+            "label": "Use the data folder (true)"
+          },
+          {
+            "kind": "null",
+            "label": "Use the main Kingdoms folder (~)"
+          }
+        ]
+      }
+    },
+    {
+      "schemaId": "config",
+      "path": ["kingdom-fly", "speed"],
+      "reason": "The default comment allows a fixed number or a value relative to the speed variable.",
+      "type": {
+        "kind": "expression",
+        "language": "math",
+        "description": "Flight speed formula. Fixed results must be between -1 and 1. The speed variable refers to normal player speed."
+      }
+    },
+    {
+      "schemaId": "config",
+      "path": ["kingdom-fly", "normal-flight-speed"],
+      "reason": "The default comment applies the documented -1 to 1 flight-speed range.",
+      "type": {
+        "kind": "decimal",
+        "minimum": -1,
+        "maximum": 1,
+        "description": "Normal flight speed restored after leaving Kingdoms flight mode."
+      }
+    },
+    {
+      "schemaId": "config",
+      "path": ["daily-checks", "elections", "kingdoms", "sort-by"],
+      "reason": "The default comment lists fixed sorting modes. GROUP_VOTES is also used by the shipped default.",
+      "type": {
+        "kind": "enum",
+        "values": ["GROUP_VOTES", "VOTES", "SHUFFLE", "REGISTRATION_DATE"],
+        "description": "How candidates are ordered in the kingdom election GUI."
+      }
+    },
+    {
+      "schemaId": "config",
+      "path": ["daily-checks", "elections", "nations", "sort-by"],
+      "reason": "Nation elections use the same sorting modes as the documented kingdom election setting.",
+      "type": {
+        "kind": "enum",
+        "values": ["GROUP_VOTES", "VOTES", "SHUFFLE", "REGISTRATION_DATE"],
+        "description": "How candidates are ordered in the nation election GUI."
+      }
+    },
+    {
+      "schemaId": "config",
+      "path": ["daily-checks", "elections", "kingdoms", "candidate-requirements", "member-for"],
+      "reason": "The default comment asks for a membership duration and the shipped value uses a time suffix.",
+      "type": {
+        "kind": "duration",
+        "description": "How long a player must belong to the kingdom before becoming an election candidate."
+      }
+    },
+    {
+      "schemaId": "config",
+      "path": ["daily-checks", "elections", "nations", "candidate-requirements", "member-for"],
+      "reason": "The nation setting follows the documented kingdom candidate membership duration.",
+      "type": {
+        "kind": "duration",
+        "description": "How long a kingdom must belong to the nation before becoming an election candidate."
+      }
+    },
+    {
+      "schemaId": "config",
+      "path": ["daily-checks", "countdowns"],
+      "reason": "Every shipped countdown entry uses Kingdoms duration syntax and the comment describes notification times.",
+      "type": {
+        "kind": "list",
+        "description": "Notification countdowns in descending order.",
+        "elements": {
+          "kind": "duration",
+          "description": "Time remaining before the daily check."
+        }
+      }
+    },
+    {
+      "schemaId": "config",
+      "path": ["invitations", "codes", "expiration", "min"],
+      "reason": "The shipped minimum invite-code expiration uses Kingdoms duration syntax.",
+      "type": {
+        "kind": "duration",
+        "description": "Minimum invite-code expiration duration."
+      }
+    },
+    {
+      "schemaId": "config",
+      "path": ["kingdom-name", "max-length"],
+      "reason": "The default comment documents a hard limit of 100 characters.",
+      "type": {
+        "kind": "integer",
+        "minimum": 1,
+        "maximum": 100,
+        "description": "Maximum kingdom-name length. Kingdoms enforces a hard limit of 100."
+      }
+    },
+    {
+      "schemaId": "config",
+      "path": ["tags", "max-length"],
+      "reason": "The default comment documents a hard limit of 50 characters.",
+      "type": {
+        "kind": "integer",
+        "minimum": 1,
+        "maximum": 50,
+        "description": "Maximum tag length. Kingdoms enforces a hard limit of 50."
+      }
+    },
+    {
+      "schemaId": "config",
+      "path": ["kingdom-lore", "max-length"],
+      "reason": "The default comment documents a hard limit of 300 characters.",
+      "type": {
+        "kind": "integer",
+        "minimum": 1,
+        "maximum": 300,
+        "description": "Maximum kingdom-lore length. Kingdoms enforces a hard limit of 300."
+      }
+    },
+    {
+      "schemaId": "config",
+      "path": ["book", "title-max-length"],
+      "reason": "The default comment documents Minecraft's 15-character book-title limit.",
+      "type": {
+        "kind": "integer",
+        "minimum": 1,
+        "maximum": 15,
+        "description": "Maximum chapter-title length."
+      }
+    },
+    {
+      "schemaId": "claims",
+      "path": ["confirmation"],
+      "reason": "The default comment describes a duration and the default uses a time suffix.",
+      "type": {
+        "kind": "duration",
+        "description": "How long a player has to repeat the claim command. Use 0 to disable."
+      }
+    },
+    {
+      "schemaId": "claims",
+      "path": ["indicator", "visualizer", "floor-check-height"],
+      "reason": "The default comment documents a hard limit of 160 blocks.",
+      "type": {
+        "kind": "integer",
+        "minimum": 0,
+        "maximum": 160,
+        "description": "Maximum downward floor-check distance, with a hard limit of 160 blocks."
+      }
+    },
+    {
+      "schemaId": "claims",
+      "path": ["indicator", "default", "method"],
+      "reason": "The default comment accepts blocks or the name of any configured particle entry.",
+      "type": {
+        "kind": "suggestion",
+        "typeName": "ClaimIndicatorMethod",
+        "values": ["blocks", "horizontal", "vertical"],
+        "allowCustom": true,
+        "description": "Use blocks or the key of a configured particle entry."
+      }
+    },
+    {
+      "schemaId": "invasions",
+      "path": ["strength-comparison"],
+      "reason": "The default comment allows false to disable or a condition formula.",
+      "type": {
+        "kind": "union",
+        "description": "Set to false to disable, or enter a condition that blocks an invasion when it evaluates to true.",
+        "choices": [
+          {
+            "kind": "literal",
+            "value": false,
+            "label": "Disabled (false)"
+          },
+          {
+            "kind": "expression",
+            "language": "condition",
+            "label": "Condition formula",
+            "description": "The invader is the primary context and the target is the secondary context."
+          }
+        ]
+      }
+    },
+    {
+      "schemaId": "invasions",
+      "path": ["masswar", "start"],
+      "reason": "The default comment requires a 24-hour clock time or ~, not a duration amount.",
+      "type": {
+        "kind": "union",
+        "description": "Daily MassWar start time in 24-hour hour:minute format. Use ~ to schedule from the interval instead.",
+        "choices": [
+          {
+            "kind": "string",
+            "typeName": "TimeOfDay",
+            "label": "Daily start time",
+            "description": "A 24-hour time such as 13:00."
+          },
+          {
+            "kind": "null",
+            "label": "Use interval (~)"
+          }
+        ]
+      }
+    },
+    {
+      "schemaId": "invasions",
+      "path": ["nations", "capital-protection", "radius"],
+      "reason": "The default comment uses -1 as the disable sentinel.",
+      "type": {
+        "kind": "integer",
+        "minimum": -1,
+        "description": "Capital protection radius. 0 protects all capital lands. -1 disables the protection."
+      }
+    },
+    {
+      "schemaId": "invasions",
+      "path": ["shields", "nation-shield-access-loss"],
+      "reason": "The shipped value is the length of lost nation-shield access and uses a time suffix.",
+      "type": {
+        "kind": "duration",
+        "description": "How long an invading kingdom loses access to its nation's active shield."
+      }
+    },
+    {
+      "schemaId": "ranks",
+      "path": ["custom-ranks", "limits", "ranks"],
+      "reason": "The default comment requires a value from 2 through 20 for the shipped GUI.",
+      "type": {
+        "kind": "integer",
+        "minimum": 2,
+        "maximum": 20,
+        "description": "Maximum custom ranks supported by the shipped rank GUI."
+      }
+    },
+    {
+      "schemaId": "turrets",
+      "path": ["accuracy"],
+      "reason": "The default comment requires a positive tick interval.",
+      "type": {
+        "kind": "integer",
+        "minimum": 1,
+        "description": "Ticks between turret target-data refreshes."
+      }
+    },
+    {
+      "schemaId": "Structures/structure",
+      "path": ["attacker-shield-damage"],
+      "reason": "The siege-cannon default comment explicitly supports math equations.",
+      "type": {
+        "kind": "expression",
+        "language": "math",
+        "description": "Shield damage formula for the firing kingdom. You can use kingdoms_shield_time_left."
+      }
+    }
+  ],
+  "settings": [
+    {
+      "schemaId": "config",
+      "path": ["disabled-worlds"],
+      "tier": "common"
+    },
+    {
+      "schemaId": "config",
+      "path": ["lang"],
+      "tier": "common"
+    },
+    {
+      "schemaId": "config",
+      "path": ["database", "method"],
+      "tier": "common"
+    },
+    {
+      "schemaId": "config",
+      "path": ["updates", "automatic-config-reloads"],
+      "tier": "common"
+    },
+    {
+      "schemaId": "claims",
+      "path": ["resource-points", "claims"],
+      "tier": "common"
+    },
+    {
+      "schemaId": "claims",
+      "path": ["money", "claims"],
+      "tier": "common"
+    },
+    {
+      "schemaId": "claims",
+      "path": ["unclaim-cooldown"],
+      "tier": "common"
+    },
+    {
+      "schemaId": "chat",
+      "path": ["channels", "{entry}"],
+      "tier": "common"
+    },
+    {
+      "schemaId": "ranks",
+      "path": ["ranks", "{entry}", "name"],
+      "tier": "common"
+    },
+    {
+      "schemaId": "ranks",
+      "path": ["ranks", "{entry}", "priority"],
+      "tier": "common"
+    },
+    {
+      "schemaId": "ranks",
+      "path": ["ranks", "{entry}", "permissions"],
+      "tier": "common"
+    },
+    {
+      "schemaId": "Structures/structure",
+      "path": ["cost"],
+      "tier": "common"
+    },
+    {
+      "schemaId": "Structures/structure",
+      "path": ["upgrade-cost"],
+      "tier": "common"
+    },
+    {
+      "schemaId": "Structures/structure",
+      "path": ["name"],
+      "tier": "common"
+    },
+    {
+      "schemaId": "Turrets/turret",
+      "path": ["cost"],
+      "tier": "common"
+    },
+    {
+      "schemaId": "Turrets/turret",
+      "path": ["range"],
+      "tier": "common"
+    },
+    {
+      "schemaId": "Turrets/turret",
+      "path": ["cooldown"],
+      "tier": "common"
+    },
+    {
+      "schemaId": "Turrets/turret",
+      "path": ["damage"],
+      "tier": "common"
+    },
+    {
+      "schemaId": "guis/schema",
+      "path": ["title"],
+      "tier": "common"
+    },
+    {
+      "schemaId": "guis/schema",
+      "path": ["rows"],
+      "tier": "common"
+    },
+    {
+      "schemaId": "guis/schema",
+      "path": ["options", "{entry}", "slot"],
+      "tier": "common"
+    },
+    {
+      "schemaId": "guis/schema",
+      "path": ["options", "{entry}", "material"],
+      "tier": "common"
+    },
+    {
+      "schemaId": "guis/schema",
+      "path": ["options", "{entry}", "name"],
+      "tier": "common"
+    },
+    {
+      "schemaId": "guis/schema",
+      "path": ["options", "{entry}", "lore"],
+      "tier": "common"
+    }
+  ],
+  "documentedValues": {
+    "worldEditSchematicFormats": [
+      "MCEDIT_SCHEMATIC",
+      "SPONGE_SCHEMATIC",
+      "SPONGE_V1_SCHEMATIC",
+      "SPONGE_V2_SCHEMATIC",
+      "SPONGE_V3_SCHEMATIC",
+      "FAST_V3",
+      "FAST_V2",
+      "PNG",
+      "MINECRAFT_STRUCTURE",
+      "BROKENENTITY"
+    ],
+    "peaceTreatyTerms": [
+      "scutage",
+      "annul-treaties",
+      "limit-structures",
+      "limit-turrets",
+      "limit-claims",
+      "misc-upgrades",
+      "take-money",
+      "take-resource-points",
+      "keep-lands",
+      "leave-nation"
+    ]
+  },
+  "knownEnums": {
+    "EventPriority": {
+      "typeNames": [
+        "Enum<org.bukkit.event.EventPriority>",
+        "EventPriority"
+      ],
+      "values": ["LOWEST", "LOW", "NORMAL", "HIGH", "HIGHEST", "MONITOR"],
+      "description": "Bukkit event listener priority. Lower priorities run first. Changing this usually requires a restart."
+    },
+    "PvPType": {
+      "typeNames": [
+        "Enum<org.kingdoms.managers.pvp.PvPManager$PvPType>",
+        "PvPType"
+      ],
+      "values": ["disabled", "disallowed", "normal", "claimed", "unclaimed", "masswar", "territory", "relational", "conditional"],
+      "description": "How Kingdoms decides where and when players may fight. Changing this usually requires a restart."
+    },
+    "GUIInteractionType": {
+      "typeNames": [
+        "Enum<org.kingdoms.gui.objects.GUIInteractionType>",
+        "GUIInteractionType"
+      ],
+      "values": ["FREE", "DISALLOW", "PUT_ONLY", "TAKE_ONLY"],
+      "description": "Whether players may freely take or put items on this GUI button."
+    },
+    "HologramUpdateMethod": {
+      "typeNames": ["HologramUpdateMethod"],
+      "values": ["MANUAL", "AUTOMATIC"],
+      "description": "MANUAL updates holograms only when signaled. AUTOMATIC refreshes on an interval."
+    },
+    "DatabaseMethod": {
+      "typeNames": ["DatabaseMethod"],
+      "values": ["PostgreSQL", "MariaDB", "MySQL", "MongoDB", "H2", "SQLite", "YAML", "JSON"],
+      "description": "How Kingdoms stores data. Remote engines need connection settings. YAML and JSON are not recommended for live servers."
+    },
+    "BuildingPreviewType": {
+      "typeNames": ["BuildingPreviewType"],
+      "values": ["INFO", "ERROR"],
+      "description": "INFO allows placement. ERROR blocks placement while this preview state is active."
+    },
+    "BedrockComponentType": {
+      "typeNames": ["BedrockComponentType"],
+      "values": ["LABEL", "BUTTON", "TOGGLE", "SLIDER", "STEP_SLIDER", "DROPDOWN", "INPUT"],
+      "description": "Geyser/Floodgate Bedrock form component type."
+    }
+  },
+  "settingGuidance": [
+    {
+      "id": "condition",
+      "typePattern": "^condition$",
+      "title": "Condition",
+      "body": "Use the condition tools to build and test the rule."
+    },
+    {
+      "id": "expression",
+      "typePattern": "^math$",
+      "title": "Formula",
+      "body": "Use the formula tools to build the expression and test it with sample values."
+    },
+    {
+      "id": "matcher",
+      "typePattern": "^(?:StringMatcher(?:<[^>]+>)?|NumberMatcher)$",
+      "title": "Matcher",
+      "body": "Choose the matching method in Match, then enter the value or pattern it should use. Regular expression modes accept a regular-expression pattern."
+    },
+    {
+      "id": "gui-slot",
+      "schemaId": "guis/schema",
+      "keyPattern": "^(?:slot|slots|posx|posy)$",
+      "title": "Inventory position",
+      "body": "Set the inventory position with the position controls. The preview marks collisions and positions outside the inventory."
+    }
+  ]
+}

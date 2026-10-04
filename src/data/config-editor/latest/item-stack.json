@@ -1,0 +1,160 @@
+{
+  "formatVersion": 2,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "id": "item-stack",
+  "resourceName": "item-stack.yml",
+  "schema": {
+    "kind": "object",
+    "fields": [
+      {
+        "key": "name",
+        "type": {
+          "kind": "string",
+          "typeName": "str"
+        }
+      },
+      {
+        "key": "material",
+        "type": {
+          "kind": "suggestion",
+          "typeName": "Material",
+          "allowCustom": true
+        }
+      },
+      {
+        "key": "amount",
+        "type": {
+          "kind": "integer",
+          "minimum": 1
+        }
+      },
+      {
+        "key": "custom-model-data",
+        "type": {
+          "kind": "integer"
+        }
+      },
+      {
+        "key": "damage",
+        "type": {
+          "kind": "integer"
+        }
+      },
+      {
+        "key": "unbreakable",
+        "type": {
+          "kind": "boolean"
+        }
+      },
+      {
+        "key": "glow",
+        "type": {
+          "kind": "boolean"
+        }
+      },
+      {
+        "key": "skull",
+        "type": {
+          "kind": "string",
+          "typeName": "str"
+        }
+      },
+      {
+        "key": "color",
+        "type": {
+          "kind": "union",
+          "choices": [
+            {
+              "kind": "integer"
+            },
+            {
+              "kind": "string",
+              "typeName": "str"
+            }
+          ]
+        }
+      },
+      {
+        "key": "effects",
+        "type": {
+          "kind": "set",
+          "elements": {
+            "kind": "advanced",
+            "typeName": "Potion"
+          }
+        }
+      },
+      {
+        "key": "base-effect",
+        "type": {
+          "kind": "set",
+          "elements": {
+            "kind": "advanced",
+            "typeName": "Potion"
+          }
+        }
+      },
+      {
+        "key": "flags",
+        "type": {
+          "kind": "union",
+          "choices": [
+            {
+              "kind": "suggestion",
+              "typeName": "ItemFlag",
+              "allowCustom": true
+            },
+            {
+              "kind": "set",
+              "elements": {
+                "kind": "suggestion",
+                "typeName": "ItemFlag",
+                "allowCustom": true
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "lore",
+        "type": {
+          "kind": "union",
+          "choices": [
+            {
+              "kind": "list",
+              "elements": {
+                "kind": "string",
+                "typeName": "str"
+              }
+            },
+            {
+              "kind": "string",
+              "typeName": "str"
+            }
+          ]
+        }
+      },
+      {
+        "key": "enchants",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "suggestion",
+            "typeName": "Enchant",
+            "allowCustom": true
+          },
+          "values": {
+            "kind": "integer",
+            "minimum": 1,
+            "maximum": 256
+          },
+          "fields": []
+        }
+      }
+    ]
+  }
+}

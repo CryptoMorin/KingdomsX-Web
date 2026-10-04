@@ -1,0 +1,544 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "guis/map-settings.yml",
+  "schemaId": "guis/schema",
+  "options": [
+    {
+      "path": [
+        "title"
+      ],
+      "source": "\"&cMap Settings\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "type"
+      ],
+      "source": "HOPPER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options"
+      ],
+      "source": "\r\n  scoreboard:\r\n    slot: 0\r\n    material: PAPER\r\n    lore: |\r\n      {$sep}Shows the kingdom map as a scoreboard\r\n      which is much more convenient than\r\n      auto map mode and updates automatically.\r\n\r\n      The disadvantage is that\r\n      it takes a huge portion of your screen\r\n      and you must memorize the symbols and\r\n      colors and what they mean.\r\n\r\n      This option resets if you leave.\r\n    enabled:\r\n      condition: scoreboard_enabled\r\n      name: \"{$enabled} Toggle Scoreboard\"\r\n      glow: true\r\n    else:\r\n      name: \"{$disabled} Toggle Scoreboard\"\r\n  reset:\r\n    slot: 1\r\n    material: PLAYER_HEAD\r\n    name: '&4Reset Settings'\r\n\r\n    # https://minecraft-heads.com/custom-heads/alphabet/45282-redstone-block-refresh\r\n    skull: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzA1ZWI3ZTA0ODg2ODMyNTRlZGI2NzgyYzVkYjhkMjdjZDA3OGU3ODRkZTJkY2RjZDI1Y2UwODY0ZGZhYmQzOCJ9fX0='\r\n  resize:\r\n    slot: 2\r\n    material: PLAYER_HEAD\r\n    name: '{$p}Resize'\r\n    lore:\r\n      - \"{$sep}Resize your own map &awidth {$sep}and &aheight\"\r\n      - \"{$sep}Your current size{$colon} {$p}%kingdoms_map_width%{$sep}, {$p}%kingdoms_map_height%\"\r\n\r\n    # https://minecraft-heads.com/custom-heads/decoration/49973-globe\r\n    skull: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODc5ZTU0Y2JlODc4NjdkMTRiMmZiZGYzZjE4NzA4OTQzNTIwNDhkZmVjZDk2Mjg0NmRlYTg5M2IyMTU0Yzg1In19fQ=='\r\n  auto:\r\n    slot: 3\r\n    material: PLAYER_HEAD\r\n    lore:\r\n      - \"{$sep}The map keeps appearing automatically\"\r\n      - \"as you walk to different lands.\"\r\n\r\n    enabled:\r\n      condition: 'auto_map_enabled'\r\n      name: \"{$enabled} Auto\"\r\n      # https://minecraft-heads.com/custom-heads/alphabet/21774-green-checkmark\r\n      skull: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDMxMmNhNDYzMmRlZjVmZmFmMmViMGQ5ZDdjYzdiNTVhNTBjNGUzOTIwZDkwMzcyYWFiMTQwNzgxZjVkZmJjNCJ9fX0='\r\n    else:\r\n      name: \"{$disabled} Auto\"\r\n      # https://minecraft-heads.com/custom-heads/miscellaneous/44761-x\r\n      skull: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDdhY2ZmNThjMjExZTQ2ODA2ZDRhYzlhNzczMjBiZjU3MjUwZWQ4YmY3OTMzZWE0M2FjOGVmMmZkNzBkZWZkYyJ9fX0='\r\n  gui:\r\n    slot: 4\r\n    material: CHEST\r\n    name: \"{$p}See the map in a GUI\"\r\n    lore: |\r\n      {$sep}Advantages would be better\r\n      clicking behavior and clearer\r\n      icons for different lands.\r\n\r\n      Disadvantages would be the\r\n      limit of GUI inventory size\r\n      and limiting your mobility.",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "scoreboard"
+      ],
+      "source": "\r\n    slot: 0\r\n    material: PAPER\r\n    lore: |\r\n      {$sep}Shows the kingdom map as a scoreboard\r\n      which is much more convenient than\r\n      auto map mode and updates automatically.\r\n\r\n      The disadvantage is that\r\n      it takes a huge portion of your screen\r\n      and you must memorize the symbols and\r\n      colors and what they mean.\r\n\r\n      This option resets if you leave.\r\n    enabled:\r\n      condition: scoreboard_enabled\r\n      name: \"{$enabled} Toggle Scoreboard\"\r\n      glow: true\r\n    else:\r\n      name: \"{$disabled} Toggle Scoreboard\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "scoreboard",
+        "slot"
+      ],
+      "source": "0",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "scoreboard",
+        "material"
+      ],
+      "source": "PAPER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "scoreboard",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}Shows the kingdom map as a scoreboard\r\n      which is much more convenient than\r\n      auto map mode and updates automatically.\r\n\r\n      The disadvantage is that\r\n      it takes a huge portion of your screen\r\n      and you must memorize the symbols and\r\n      colors and what they mean.\r\n\r\n      This option resets if you leave.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "scoreboard",
+        "enabled"
+      ],
+      "source": "\r\n      condition: scoreboard_enabled\r\n      name: \"{$enabled} Toggle Scoreboard\"\r\n      glow: true\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "scoreboard",
+        "enabled",
+        "condition"
+      ],
+      "source": "scoreboard_enabled",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "scoreboard",
+        "enabled",
+        "name"
+      ],
+      "source": "\"{$enabled} Toggle Scoreboard\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "scoreboard",
+        "enabled",
+        "glow"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "scoreboard",
+        "else"
+      ],
+      "source": "\r\n      name: \"{$disabled} Toggle Scoreboard\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "scoreboard",
+        "else",
+        "name"
+      ],
+      "source": "\"{$disabled} Toggle Scoreboard\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "reset"
+      ],
+      "source": "\r\n    slot: 1\r\n    material: PLAYER_HEAD\r\n    name: '&4Reset Settings'\r\n\r\n    # https://minecraft-heads.com/custom-heads/alphabet/45282-redstone-block-refresh\r\n    skull: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzA1ZWI3ZTA0ODg2ODMyNTRlZGI2NzgyYzVkYjhkMjdjZDA3OGU3ODRkZTJkY2RjZDI1Y2UwODY0ZGZhYmQzOCJ9fX0='\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "reset",
+        "slot"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "reset",
+        "material"
+      ],
+      "source": "PLAYER_HEAD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "reset",
+        "name"
+      ],
+      "source": "'&4Reset Settings'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "reset",
+        "skull"
+      ],
+      "source": "'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzA1ZWI3ZTA0ODg2ODMyNTRlZGI2NzgyYzVkYjhkMjdjZDA3OGU3ODRkZTJkY2RjZDI1Y2UwODY0ZGZhYmQzOCJ9fX0='",
+      "comments": [
+        "https://minecraft-heads.com/custom-heads/alphabet/45282-redstone-block-refresh"
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "resize"
+      ],
+      "source": "\r\n    slot: 2\r\n    material: PLAYER_HEAD\r\n    name: '{$p}Resize'\r\n    lore:\r\n      - \"{$sep}Resize your own map &awidth {$sep}and &aheight\"\r\n      - \"{$sep}Your current size{$colon} {$p}%kingdoms_map_width%{$sep}, {$p}%kingdoms_map_height%\"\r\n\r\n    # https://minecraft-heads.com/custom-heads/decoration/49973-globe\r\n    skull: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODc5ZTU0Y2JlODc4NjdkMTRiMmZiZGYzZjE4NzA4OTQzNTIwNDhkZmVjZDk2Mjg0NmRlYTg5M2IyMTU0Yzg1In19fQ=='\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "resize",
+        "slot"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "resize",
+        "material"
+      ],
+      "source": "PLAYER_HEAD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "resize",
+        "name"
+      ],
+      "source": "'{$p}Resize'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "resize",
+        "lore"
+      ],
+      "source": "\r\n      - \"{$sep}Resize your own map &awidth {$sep}and &aheight\"\r\n      - \"{$sep}Your current size{$colon} {$p}%kingdoms_map_width%{$sep}, {$p}%kingdoms_map_height%\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$sep}Resize your own map &awidth {$sep}and &aheight\"",
+        "\"{$sep}Your current size{$colon} {$p}%kingdoms_map_width%{$sep}, {$p}%kingdoms_map_height%\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "resize",
+        "skull"
+      ],
+      "source": "'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODc5ZTU0Y2JlODc4NjdkMTRiMmZiZGYzZjE4NzA4OTQzNTIwNDhkZmVjZDk2Mjg0NmRlYTg5M2IyMTU0Yzg1In19fQ=='",
+      "comments": [
+        "https://minecraft-heads.com/custom-heads/decoration/49973-globe"
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "auto"
+      ],
+      "source": "\r\n    slot: 3\r\n    material: PLAYER_HEAD\r\n    lore:\r\n      - \"{$sep}The map keeps appearing automatically\"\r\n      - \"as you walk to different lands.\"\r\n\r\n    enabled:\r\n      condition: 'auto_map_enabled'\r\n      name: \"{$enabled} Auto\"\r\n      # https://minecraft-heads.com/custom-heads/alphabet/21774-green-checkmark\r\n      skull: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDMxMmNhNDYzMmRlZjVmZmFmMmViMGQ5ZDdjYzdiNTVhNTBjNGUzOTIwZDkwMzcyYWFiMTQwNzgxZjVkZmJjNCJ9fX0='\r\n    else:\r\n      name: \"{$disabled} Auto\"\r\n      # https://minecraft-heads.com/custom-heads/miscellaneous/44761-x\r\n      skull: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDdhY2ZmNThjMjExZTQ2ODA2ZDRhYzlhNzczMjBiZjU3MjUwZWQ4YmY3OTMzZWE0M2FjOGVmMmZkNzBkZWZkYyJ9fX0='\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "auto",
+        "slot"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "auto",
+        "material"
+      ],
+      "source": "PLAYER_HEAD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "auto",
+        "lore"
+      ],
+      "source": "\r\n      - \"{$sep}The map keeps appearing automatically\"\r\n      - \"as you walk to different lands.\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$sep}The map keeps appearing automatically\"",
+        "\"as you walk to different lands.\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "auto",
+        "enabled"
+      ],
+      "source": "\r\n      condition: 'auto_map_enabled'\r\n      name: \"{$enabled} Auto\"\r\n      # https://minecraft-heads.com/custom-heads/alphabet/21774-green-checkmark\r\n      skull: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDMxMmNhNDYzMmRlZjVmZmFmMmViMGQ5ZDdjYzdiNTVhNTBjNGUzOTIwZDkwMzcyYWFiMTQwNzgxZjVkZmJjNCJ9fX0='\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "auto",
+        "enabled",
+        "condition"
+      ],
+      "source": "'auto_map_enabled'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "auto",
+        "enabled",
+        "name"
+      ],
+      "source": "\"{$enabled} Auto\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "auto",
+        "enabled",
+        "skull"
+      ],
+      "source": "'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDMxMmNhNDYzMmRlZjVmZmFmMmViMGQ5ZDdjYzdiNTVhNTBjNGUzOTIwZDkwMzcyYWFiMTQwNzgxZjVkZmJjNCJ9fX0='",
+      "comments": [
+        "https://minecraft-heads.com/custom-heads/alphabet/21774-green-checkmark"
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "auto",
+        "else"
+      ],
+      "source": "\r\n      name: \"{$disabled} Auto\"\r\n      # https://minecraft-heads.com/custom-heads/miscellaneous/44761-x\r\n      skull: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDdhY2ZmNThjMjExZTQ2ODA2ZDRhYzlhNzczMjBiZjU3MjUwZWQ4YmY3OTMzZWE0M2FjOGVmMmZkNzBkZWZkYyJ9fX0='\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "auto",
+        "else",
+        "name"
+      ],
+      "source": "\"{$disabled} Auto\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "auto",
+        "else",
+        "skull"
+      ],
+      "source": "'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDdhY2ZmNThjMjExZTQ2ODA2ZDRhYzlhNzczMjBiZjU3MjUwZWQ4YmY3OTMzZWE0M2FjOGVmMmZkNzBkZWZkYyJ9fX0='",
+      "comments": [
+        "https://minecraft-heads.com/custom-heads/miscellaneous/44761-x"
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "gui"
+      ],
+      "source": "\r\n    slot: 4\r\n    material: CHEST\r\n    name: \"{$p}See the map in a GUI\"\r\n    lore: |\r\n      {$sep}Advantages would be better\r\n      clicking behavior and clearer\r\n      icons for different lands.\r\n\r\n      Disadvantages would be the\r\n      limit of GUI inventory size\r\n      and limiting your mobility.",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "gui",
+        "slot"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "gui",
+        "material"
+      ],
+      "source": "CHEST",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "gui",
+        "name"
+      ],
+      "source": "\"{$p}See the map in a GUI\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "gui",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}Advantages would be better\r\n      clicking behavior and clearer\r\n      icons for different lands.\r\n\r\n      Disadvantages would be the\r\n      limit of GUI inventory size\r\n      and limiting your mobility.",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

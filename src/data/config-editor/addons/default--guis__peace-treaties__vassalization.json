@@ -1,0 +1,646 @@
+{
+  "formatVersion": 1,
+  "source": {
+    "addonId": "peace-treaties",
+    "artifactPath": "addons/Kingdoms-Addon-Peace-Treaties-1.2.8.3.jar",
+    "artifactBlobSha": "65c542bd55dc6dfed6e222f079d37971fd24a682",
+    "artifactSha256": "54b2f1a879e10403200f218d852deb8d80c721cc933777812bbdcfcac5ca9f03",
+    "addonVersion": "1.2.8.3"
+  },
+  "resourceName": "guis/peace-treaties/vassalization.yml",
+  "schemaId": "guis/schema",
+  "sha256": "fd2c139164ce16ce7124005aa8ff918696b4ac8f3dbca4c08ddefba6c5c60650",
+  "options": [
+    {
+      "path": [
+        "title"
+      ],
+      "source": "'{$sep}-=( {$e}Vassalization {$sep})=-'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "rows"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options"
+      ],
+      "source": "\r\n  light-blue-stained-glass-pane:\r\n    slots: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 13, 17, 18, 19, 20, 21, 23, 24, 25, 26 ]\r\n    material: LIGHT_BLUE_STAINED_GLASS_PANE\r\n    name: ''\r\n  term-scutage:\r\n    posx: 2\r\n    posy: 2\r\n    material: CHEST\r\n    name: '%bool@subterm_scutage% {$p}Scutage'\r\n    lore: |\r\n      &7The kingdom has to pay\r\n      a certain amount from their\r\n      kingdom's bank as taxes to\r\n      your kingdom.\r\n  term-annul-treaties:\r\n    posx: 3\r\n    posy: 2\r\n    material: BOOK\r\n    name: '%bool@subterm_annul_treaties% {$p}Manage Relationships'\r\n    lore: |\r\n      &7Synchronizes this kingdom's relationships\r\n      with your kingdom. All relationships that\r\n      your kingdom has will be forced on this kingdom\r\n      right now and for future changes.\r\n  term-limit-structures:\r\n    posx: 4\r\n    posy: 2\r\n    material: EMERALD_BLOCK\r\n    name: '%bool@subterm_limit_structures%  {$p}Limit Structures'\r\n    lore: |\r\n      &7Limit the total number of\r\n      structures this kingdom can place\r\n      by {$p}50\r\n  term-limit-turrets:\r\n    posx: 6\r\n    posy: 2\r\n    material: ARROW\r\n    name: '%bool@subterm_limit_turrets% {$p}Limit Turrets'\r\n    lore: |\r\n      &7Limit the total number of\r\n      turrets this kingdom can place\r\n      by {$p}30\r\n  term-limit-claims:\r\n    posx: 7\r\n    posy: 2\r\n    material: BOOKSHELF\r\n    name: '%bool@subterm_limit_claims% {$p}Limit Claims'\r\n    lore: |\r\n      &7Limit the total number of\r\n      claims of this kingdom\r\n      by {$p}50\r\n  term-misc-upgrades:\r\n    posx: 8\r\n    posy: 2\r\n    material: ENCHANTING_TABLE\r\n    name: '%bool@subterm_misc_upgrades% {$p}Manage Misc Upgrades'\r\n    lore: |\r\n      &7Be able to disable and enable\r\n      any misc upgrade from the kingdom\r\n      which can be done from {$p}/k pt miscupgrades <kingdom>\r\n\r\n      &7This also prevents the kingdom from\r\n      enabling or disabling any of their misc upgrades,\r\n      but it doesn't prevent them from upgrading them.\r\n  back:\r\n    posx: 5\r\n    posy: 3\r\n    material: BARRIER\r\n    name: '{$p}Back'",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "light-blue-stained-glass-pane"
+      ],
+      "source": "\r\n    slots: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 13, 17, 18, 19, 20, 21, 23, 24, 25, 26 ]\r\n    material: LIGHT_BLUE_STAINED_GLASS_PANE\r\n    name: ''\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "light-blue-stained-glass-pane",
+        "slots"
+      ],
+      "source": "[ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 13, 17, 18, 19, 20, 21, 23, 24, 25, 26 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "13",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "23",
+        "24",
+        "25",
+        "26"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "light-blue-stained-glass-pane",
+        "material"
+      ],
+      "source": "LIGHT_BLUE_STAINED_GLASS_PANE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "light-blue-stained-glass-pane",
+        "name"
+      ],
+      "source": "''",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-scutage"
+      ],
+      "source": "\r\n    posx: 2\r\n    posy: 2\r\n    material: CHEST\r\n    name: '%bool@subterm_scutage% {$p}Scutage'\r\n    lore: |\r\n      &7The kingdom has to pay\r\n      a certain amount from their\r\n      kingdom's bank as taxes to\r\n      your kingdom.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-scutage",
+        "posx"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-scutage",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-scutage",
+        "material"
+      ],
+      "source": "CHEST",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-scutage",
+        "name"
+      ],
+      "source": "'%bool@subterm_scutage% {$p}Scutage'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-scutage",
+        "lore"
+      ],
+      "source": "|\r\n      &7The kingdom has to pay\r\n      a certain amount from their\r\n      kingdom's bank as taxes to\r\n      your kingdom.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-annul-treaties"
+      ],
+      "source": "\r\n    posx: 3\r\n    posy: 2\r\n    material: BOOK\r\n    name: '%bool@subterm_annul_treaties% {$p}Manage Relationships'\r\n    lore: |\r\n      &7Synchronizes this kingdom's relationships\r\n      with your kingdom. All relationships that\r\n      your kingdom has will be forced on this kingdom\r\n      right now and for future changes.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-annul-treaties",
+        "posx"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-annul-treaties",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-annul-treaties",
+        "material"
+      ],
+      "source": "BOOK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-annul-treaties",
+        "name"
+      ],
+      "source": "'%bool@subterm_annul_treaties% {$p}Manage Relationships'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-annul-treaties",
+        "lore"
+      ],
+      "source": "|\r\n      &7Synchronizes this kingdom's relationships\r\n      with your kingdom. All relationships that\r\n      your kingdom has will be forced on this kingdom\r\n      right now and for future changes.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-limit-structures"
+      ],
+      "source": "\r\n    posx: 4\r\n    posy: 2\r\n    material: EMERALD_BLOCK\r\n    name: '%bool@subterm_limit_structures%  {$p}Limit Structures'\r\n    lore: |\r\n      &7Limit the total number of\r\n      structures this kingdom can place\r\n      by {$p}50\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-limit-structures",
+        "posx"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-limit-structures",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-limit-structures",
+        "material"
+      ],
+      "source": "EMERALD_BLOCK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-limit-structures",
+        "name"
+      ],
+      "source": "'%bool@subterm_limit_structures%  {$p}Limit Structures'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-limit-structures",
+        "lore"
+      ],
+      "source": "|\r\n      &7Limit the total number of\r\n      structures this kingdom can place\r\n      by {$p}50\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-limit-turrets"
+      ],
+      "source": "\r\n    posx: 6\r\n    posy: 2\r\n    material: ARROW\r\n    name: '%bool@subterm_limit_turrets% {$p}Limit Turrets'\r\n    lore: |\r\n      &7Limit the total number of\r\n      turrets this kingdom can place\r\n      by {$p}30\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-limit-turrets",
+        "posx"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-limit-turrets",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-limit-turrets",
+        "material"
+      ],
+      "source": "ARROW",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-limit-turrets",
+        "name"
+      ],
+      "source": "'%bool@subterm_limit_turrets% {$p}Limit Turrets'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-limit-turrets",
+        "lore"
+      ],
+      "source": "|\r\n      &7Limit the total number of\r\n      turrets this kingdom can place\r\n      by {$p}30\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-limit-claims"
+      ],
+      "source": "\r\n    posx: 7\r\n    posy: 2\r\n    material: BOOKSHELF\r\n    name: '%bool@subterm_limit_claims% {$p}Limit Claims'\r\n    lore: |\r\n      &7Limit the total number of\r\n      claims of this kingdom\r\n      by {$p}50\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-limit-claims",
+        "posx"
+      ],
+      "source": "7",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-limit-claims",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-limit-claims",
+        "material"
+      ],
+      "source": "BOOKSHELF",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-limit-claims",
+        "name"
+      ],
+      "source": "'%bool@subterm_limit_claims% {$p}Limit Claims'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-limit-claims",
+        "lore"
+      ],
+      "source": "|\r\n      &7Limit the total number of\r\n      claims of this kingdom\r\n      by {$p}50\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-misc-upgrades"
+      ],
+      "source": "\r\n    posx: 8\r\n    posy: 2\r\n    material: ENCHANTING_TABLE\r\n    name: '%bool@subterm_misc_upgrades% {$p}Manage Misc Upgrades'\r\n    lore: |\r\n      &7Be able to disable and enable\r\n      any misc upgrade from the kingdom\r\n      which can be done from {$p}/k pt miscupgrades <kingdom>\r\n\r\n      &7This also prevents the kingdom from\r\n      enabling or disabling any of their misc upgrades,\r\n      but it doesn't prevent them from upgrading them.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-misc-upgrades",
+        "posx"
+      ],
+      "source": "8",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-misc-upgrades",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-misc-upgrades",
+        "material"
+      ],
+      "source": "ENCHANTING_TABLE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-misc-upgrades",
+        "name"
+      ],
+      "source": "'%bool@subterm_misc_upgrades% {$p}Manage Misc Upgrades'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-misc-upgrades",
+        "lore"
+      ],
+      "source": "|\r\n      &7Be able to disable and enable\r\n      any misc upgrade from the kingdom\r\n      which can be done from {$p}/k pt miscupgrades <kingdom>\r\n\r\n      &7This also prevents the kingdom from\r\n      enabling or disabling any of their misc upgrades,\r\n      but it doesn't prevent them from upgrading them.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back"
+      ],
+      "source": "\r\n    posx: 5\r\n    posy: 3\r\n    material: BARRIER\r\n    name: '{$p}Back'",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "material"
+      ],
+      "source": "BARRIER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "name"
+      ],
+      "source": "'{$p}Back'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

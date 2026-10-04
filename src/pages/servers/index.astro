@@ -8,15 +8,23 @@ import { SITE } from "../../config";
 
 const homeUrl = SITE.url ? `${SITE.url}/` : "/";
 const canonicalUrl = SITE.serverDirectoryUrl ? `${SITE.serverDirectoryUrl}/` : undefined;
-const filterUrl = (status: "all" | "online" | "offline") => status === "online" ? SITE.servers : `${SITE.servers}/${status}`;
+const filterUrl = (status: "all" | "online" | "offline") => {
+  if (status === "online") {
+    return SITE.servers;
+  }
+
+  return SITE.servers === "/" ? `/${status}` : `${SITE.servers}/${status}`;
+};
+
 const pageDescription = "Browse public servers running KingdomsX, whether you want to test the plugin or find a community already using it.";
 ---
 <BaseLayout
   title="Servers | KingdomsX"
   description={pageDescription}
-  canonicalPath="/servers"
+  canonicalPath={SITE.isStandaloneServerDirectory ? "/" : "/servers"}
   canonicalUrl={canonicalUrl}
   preloadHeroImage={false}
+  includeSiteScript={false}
 >
   <div class="page position-relative min-vh-100">
     <Header homeUrl={homeUrl} />
@@ -66,4 +74,8 @@ const pageDescription = "Browse public servers running KingdomsX, whether you wa
     </main>
     <Footer />
   </div>
+  <script>
+    import "../../assets/scripts/site-shell.js";
+    import "../../assets/scripts/server-directory/listings.js";
+  </script>
 </BaseLayout>

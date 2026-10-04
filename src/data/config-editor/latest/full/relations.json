@@ -1,0 +1,2583 @@
+{
+  "formatVersion": 1,
+  "id": "relations",
+  "resourceName": "relations.yml",
+  "sources": {
+    "schema": {
+      "kind": "kingdomsx-jar",
+      "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+      "pluginVersion": "1.17.27.3",
+      "fileName": "relations.json"
+    },
+    "defaults": [
+      "default--relations.json"
+    ],
+    "runtime": {
+      "kind": "kingdomsx-jar",
+      "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+      "pluginVersion": "1.17.27.3"
+    }
+  },
+  "coverage": {
+    "defaultPathCount": 96,
+    "rawDefaultPathCount": 96,
+    "activeRuntimePathCount": 1,
+    "fieldCount": 151,
+    "capabilitySourceCounts": {
+      "jar-schema": 117,
+      "jar-default": 94,
+      "editor-overlay": 151,
+      "jar-runtime": 6
+    },
+    "commonSettingCount": 0
+  },
+  "schema": {
+    "kind": "object",
+    "fields": [
+      {
+        "key": "request-expiration",
+        "type": {
+          "kind": "duration",
+          "typeName": "Period",
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "Relation request to a nation or a kingdom.",
+          "optional": true
+        }
+      },
+      {
+        "key": "prioritize-kingdom-relations",
+        "type": {
+          "kind": "boolean",
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "If kingdoms relations should be checked when interacting with a kingdom that is not in the same nation.",
+          "optional": true
+        }
+      },
+      {
+        "key": "allow-relations-between-nation-kingdoms",
+        "type": {
+          "kind": "boolean",
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "Allow kingdoms to have separate relations with kingdoms that are in their nation? If you use this, it'll destroy the whole purpose of nation relations.",
+          "optional": true
+        }
+      },
+      {
+        "key": "pvp",
+        "type": {
+          "kind": "enum",
+          "typeName": "Enum<org.kingdoms.managers.pvp.PvPManager$PvPType>",
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "The PvP mode of the plugin. Needs a restart to be changed due to performance issues. disabled - The plugin doesn't do anything. disallowed - Don't allow anyone to PvP. This is mostly useful only when relational pvp types are enabled. normal - Players can PvP anywhere based on their relation attributes. claimed - Players can only PvP inside of claimed lands based on their relation attributes. unclaimed - Players can only PvP outside of claimed lands based on their relation attributes. masswar - Players can only pvp anywhere during masswars. territory - Players can pvp if both of them are not in their own or allies kingdom lands. that means player X is only protected if he is in his own claimed land (or an ally). Not when he's in an unclaimed land or a neutral, truce or enemy land. \"Allies\" in this context refers to any relation with ceasefire attribute. relational - Allows you to configure the PvP mode of relations individually. conditional - Only use the \"pvp-advanced\" conditional option below without evaluating this rule. Note: When using the claimed/unclaimed options, if one player is a claimed land and the other is in an unclaimed land, they cannot PvP. Note: If one of the players is invading any land this option acts like \"normal\"",
+          "values": [
+            "disabled",
+            "disallowed",
+            "normal",
+            "claimed",
+            "unclaimed",
+            "masswar",
+            "territory",
+            "relational",
+            "conditional"
+          ],
+          "optional": true
+        }
+      },
+      {
+        "key": "agreements",
+        "type": {
+          "kind": "boolean",
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "Only apply kingdom relations if both parties agree on that specific relation attribute. Meaning that the attribute will only take effects if they both enabled that attribute for their relation in kingdom settings. Requires a server restart to be applied. If set to false, only the receiving end's relation attributes will be taken into account. What that means is, if you're trying to attack a player from a kingdom with their ceasefire attribute set to false but your kingdom has the ceasefire attribute for the relation set to true, your members will not be able to attack the kingdom, but that kingdom will be able to attack your members. That doesn't sound like something you'd want in most cases.",
+          "optional": true
+        }
+      },
+      {
+        "key": "force-survival-mode",
+        "type": {
+          "kind": "boolean",
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "Forces survival mode when players enter another land unless they have CEASEFIRE and TURRET_CEASEFIRE attributes with that kingdom or have the kingdoms.land.bypass.creative permission. Note that this does not disable their fly for their safety.",
+          "optional": true
+        }
+      },
+      {
+        "key": "relations",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "enum",
+            "values": [
+              "self",
+              "neutral",
+              "truce",
+              "ally",
+              "enemy",
+              "nation"
+            ],
+            "allowCustom": false,
+            "capability": {
+              "sources": [
+                "jar-schema"
+              ]
+            }
+          },
+          "values": {
+            "kind": "object",
+            "fields": [
+              {
+                "key": "color",
+                "type": {
+                  "kind": "string",
+                  "typeName": "Message",
+                  "capability": {
+                    "sources": [
+                      "jar-schema",
+                      "jar-default",
+                      "editor-overlay"
+                    ]
+                  },
+                  "description": "Relation color code. Supports Minecraft colors, RGB, hex, and shared color variables.",
+                  "optional": true
+                }
+              },
+              {
+                "key": "ceasefire",
+                "type": {
+                  "kind": "boolean",
+                  "capability": {
+                    "sources": [
+                      "jar-schema",
+                      "jar-default",
+                      "editor-overlay"
+                    ]
+                  },
+                  "description": "Whether these kingdoms treat each other as non-hostile.",
+                  "optional": true
+                }
+              },
+              {
+                "key": "donate",
+                "type": {
+                  "kind": "boolean",
+                  "capability": {
+                    "sources": [
+                      "jar-schema",
+                      "jar-default",
+                      "editor-overlay"
+                    ]
+                  },
+                  "description": "Allow resource-point donations.",
+                  "optional": true
+                }
+              },
+              {
+                "key": "build",
+                "type": {
+                  "kind": "boolean",
+                  "capability": {
+                    "sources": [
+                      "jar-schema",
+                      "jar-default",
+                      "editor-overlay"
+                    ]
+                  },
+                  "description": "Allow building in the other kingdom's land.",
+                  "optional": true
+                }
+              },
+              {
+                "key": "use",
+                "type": {
+                  "kind": "boolean",
+                  "capability": {
+                    "sources": [
+                      "jar-schema",
+                      "jar-default",
+                      "editor-overlay"
+                    ]
+                  },
+                  "description": "Allow using containers/doors and similar blocks.",
+                  "optional": true
+                }
+              },
+              {
+                "key": "fly",
+                "type": {
+                  "kind": "boolean",
+                  "capability": {
+                    "sources": [
+                      "jar-schema",
+                      "jar-default",
+                      "editor-overlay"
+                    ]
+                  },
+                  "description": "Allow kingdom flight in the other land when kingdom fly is enabled.",
+                  "optional": true
+                }
+              },
+              {
+                "key": "home",
+                "type": {
+                  "kind": "boolean",
+                  "capability": {
+                    "sources": [
+                      "jar-schema",
+                      "jar-default",
+                      "editor-overlay"
+                    ]
+                  },
+                  "description": "Allow using the other kingdom's home.",
+                  "optional": true
+                }
+              },
+              {
+                "key": "interact",
+                "type": {
+                  "kind": "boolean",
+                  "capability": {
+                    "sources": [
+                      "jar-schema",
+                      "jar-default",
+                      "editor-overlay"
+                    ]
+                  },
+                  "description": "Allow interacting with blocks in the other kingdom's land.",
+                  "optional": true
+                }
+              },
+              {
+                "key": "invade",
+                "type": {
+                  "kind": "boolean",
+                  "capability": {
+                    "sources": [
+                      "jar-schema",
+                      "jar-default",
+                      "editor-overlay"
+                    ]
+                  },
+                  "description": "Allow invasions against this relation.",
+                  "optional": true
+                }
+              },
+              {
+                "key": "turret-ceasefire",
+                "type": {
+                  "kind": "boolean",
+                  "capability": {
+                    "sources": [
+                      "jar-schema",
+                      "jar-default",
+                      "editor-overlay"
+                    ]
+                  },
+                  "description": "Whether turrets refuse to fire at this relation.",
+                  "optional": true
+                }
+              },
+              {
+                "key": "manage-turrets",
+                "type": {
+                  "kind": "boolean",
+                  "capability": {
+                    "sources": [
+                      "jar-schema",
+                      "jar-default",
+                      "editor-overlay"
+                    ]
+                  },
+                  "description": "Allow managing turrets in the other kingdom's land.",
+                  "optional": true
+                }
+              },
+              {
+                "key": "manage-structures",
+                "type": {
+                  "kind": "boolean",
+                  "capability": {
+                    "sources": [
+                      "jar-schema",
+                      "jar-default",
+                      "editor-overlay"
+                    ]
+                  },
+                  "description": "Allow managing structures in the other kingdom's land.",
+                  "optional": true
+                }
+              },
+              {
+                "key": "customizable",
+                "type": {
+                  "kind": "boolean",
+                  "capability": {
+                    "sources": [
+                      "jar-schema",
+                      "jar-default",
+                      "editor-overlay"
+                    ]
+                  },
+                  "description": "Whether kingdoms can change this attribute in settings. Defaults to true when omitted.",
+                  "optional": true
+                }
+              },
+              {
+                "key": "show-holograms",
+                "type": {
+                  "kind": "boolean",
+                  "capability": {
+                    "sources": [
+                      "jar-schema",
+                      "jar-default",
+                      "editor-overlay"
+                    ]
+                  },
+                  "description": "Show relation holograms for this relationship.",
+                  "optional": true
+                }
+              },
+              {
+                "key": "pvp",
+                "type": {
+                  "kind": "enum",
+                  "typeName": "Enum<org.kingdoms.managers.pvp.PvPManager$PvPType>",
+                  "capability": {
+                    "sources": [
+                      "jar-schema",
+                      "editor-overlay"
+                    ]
+                  },
+                  "values": [
+                    "disabled",
+                    "disallowed",
+                    "normal",
+                    "claimed",
+                    "unclaimed",
+                    "masswar",
+                    "territory",
+                    "relational",
+                    "conditional"
+                  ],
+                  "description": "How Kingdoms decides where and when players may fight. Changing this usually requires a restart.",
+                  "optional": true
+                }
+              },
+              {
+                "key": "effects",
+                "type": {
+                  "kind": "list",
+                  "elements": {
+                    "kind": "advanced",
+                    "typeName": "Potion",
+                    "capability": {
+                      "sources": [
+                        "jar-schema"
+                      ]
+                    }
+                  },
+                  "capability": {
+                    "sources": [
+                      "jar-schema",
+                      "jar-default",
+                      "editor-overlay"
+                    ]
+                  },
+                  "description": "Potion effects activated when standing in lands covered by this relation.",
+                  "optional": true
+                }
+              },
+              {
+                "key": "cost",
+                "type": {
+                  "kind": "expression",
+                  "language": "math",
+                  "description": "Resource-point cost for this relation.",
+                  "capability": {
+                    "sources": [
+                      "jar-runtime",
+                      "editor-overlay"
+                    ],
+                    "tier": "advanced",
+                    "runtimeField": "COST",
+                    "consumers": [
+                      "org/kingdoms/constants/group/model/relationships/KingdomRelation"
+                    ]
+                  },
+                  "minimum": 0,
+                  "optional": true
+                }
+              },
+              {
+                "key": "name",
+                "type": {
+                  "kind": "string",
+                  "typeName": "Message",
+                  "description": "Optional player-facing relation name.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                }
+              },
+              {
+                "key": "auto-revoke",
+                "type": {
+                  "kind": "boolean",
+                  "description": "Automatically revoke this relation when its conditions fail.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                }
+              },
+              {
+                "key": "limit",
+                "type": {
+                  "kind": "integer",
+                  "description": "Maximum kingdoms that may hold this relation at once. Set to 0 or -1 for unlimited.",
+                  "optional": true,
+                  "minimum": -1,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                }
+              },
+              {
+                "key": "disabled-commands",
+                "type": {
+                  "kind": "list",
+                  "elements": {
+                    "kind": "string",
+                    "typeName": "str",
+                    "description": "",
+                    "optional": true,
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    }
+                  },
+                  "description": "Commands disabled while this relation applies.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                }
+              },
+              {
+                "key": "national-automation",
+                "type": {
+                  "kind": "boolean",
+                  "description": "Whether nation automation applies for this relation.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                }
+              },
+              {
+                "key": "conditions",
+                "type": {
+                  "kind": "list",
+                  "elements": {
+                    "kind": "expression",
+                    "language": "condition",
+                    "description": "Condition that must pass for this relation attribute set.",
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    }
+                  },
+                  "description": "Extra conditions required for this relation.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                }
+              }
+            ],
+            "capability": {
+              "sources": [
+                "jar-schema"
+              ]
+            },
+            "description": "Relation attribute block. Common optional keys: auto-revoke, ceasefire, donate, build, invade, interact, use, home, manage-turrets, manage-structures, limit, effects, customizable, show-holograms, fly, disabled-commands, national-automation, cost, pvp, conditions. Omit a key to keep the plugin default for that attribute.",
+            "optional": true,
+            "required": []
+          },
+          "fields": [
+            {
+              "key": "self",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "color",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "Message",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Relation color code. Supports Minecraft colors, RGB, hex, and shared color variables.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "ceasefire",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Whether these kingdoms treat each other as non-hostile.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "donate",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Allow resource-point donations.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "build",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Allow building in the other kingdom's land.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "use",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Allow using containers/doors and similar blocks.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "fly",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Allow kingdom flight in the other land when kingdom fly is enabled.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "home",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Allow using the other kingdom's home.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "interact",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Allow interacting with blocks in the other kingdom's land.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "invade",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Allow invasions against this relation.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "turret-ceasefire",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Whether turrets refuse to fire at this relation.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "manage-turrets",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Allow managing turrets in the other kingdom's land.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "manage-structures",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Allow managing structures in the other kingdom's land.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "customizable",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Whether kingdoms can change this attribute in settings. Defaults to true when omitted.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "show-holograms",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Show relation holograms for this relationship.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "pvp",
+                    "type": {
+                      "kind": "enum",
+                      "typeName": "Enum<org.kingdoms.managers.pvp.PvPManager$PvPType>",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "editor-overlay"
+                        ]
+                      },
+                      "values": [
+                        "disabled",
+                        "disallowed",
+                        "normal",
+                        "claimed",
+                        "unclaimed",
+                        "masswar",
+                        "territory",
+                        "relational",
+                        "conditional"
+                      ],
+                      "description": "How Kingdoms decides where and when players may fight. Changing this usually requires a restart.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "effects",
+                    "type": {
+                      "kind": "list",
+                      "elements": {
+                        "kind": "advanced",
+                        "typeName": "Potion",
+                        "capability": {
+                          "sources": [
+                            "jar-schema"
+                          ]
+                        }
+                      },
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Potion effects activated when standing in lands covered by this relation.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "name",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "Message",
+                      "description": "Optional player-facing relation name.",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "cost",
+                    "type": {
+                      "kind": "expression",
+                      "language": "math",
+                      "description": "Resource-point cost for this relation.",
+                      "capability": {
+                        "sources": [
+                          "jar-runtime",
+                          "editor-overlay"
+                        ],
+                        "tier": "advanced",
+                        "runtimeField": "COST",
+                        "consumers": [
+                          "org/kingdoms/constants/group/model/relationships/KingdomRelation"
+                        ]
+                      },
+                      "minimum": 0,
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "auto-revoke",
+                    "type": {
+                      "kind": "boolean",
+                      "description": "Automatically revoke this relation when its conditions fail.",
+                      "optional": true,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "key": "limit",
+                    "type": {
+                      "kind": "integer",
+                      "description": "Maximum kingdoms that may hold this relation at once. Set to 0 or -1 for unlimited.",
+                      "optional": true,
+                      "minimum": -1,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "key": "disabled-commands",
+                    "type": {
+                      "kind": "list",
+                      "elements": {
+                        "kind": "string",
+                        "typeName": "str",
+                        "description": "",
+                        "optional": true,
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        }
+                      },
+                      "description": "Commands disabled while this relation applies.",
+                      "optional": true,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "key": "national-automation",
+                    "type": {
+                      "kind": "boolean",
+                      "description": "Whether nation automation applies for this relation.",
+                      "optional": true,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "key": "conditions",
+                    "type": {
+                      "kind": "list",
+                      "elements": {
+                        "kind": "expression",
+                        "language": "condition",
+                        "description": "Condition that must pass for this relation attribute set.",
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        }
+                      },
+                      "description": "Extra conditions required for this relation.",
+                      "optional": true,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      }
+                    }
+                  }
+                ],
+                "capability": {
+                  "sources": [
+                    "jar-schema"
+                  ]
+                },
+                "description": "Relation attribute block. Common optional keys: auto-revoke, ceasefire, donate, build, invade, interact, use, home, manage-turrets, manage-structures, limit, effects, customizable, show-holograms, fly, disabled-commands, national-automation, cost, pvp, conditions. Omit a key to keep the plugin default for that attribute.",
+                "optional": true,
+                "required": []
+              }
+            },
+            {
+              "key": "truce",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "color",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "Message",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Relation color code. Supports Minecraft colors, RGB, hex, and shared color variables.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "ceasefire",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Whether these kingdoms treat each other as non-hostile.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "donate",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Allow resource-point donations.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "build",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Allow building in the other kingdom's land.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "use",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Allow using containers/doors and similar blocks.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "fly",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Allow kingdom flight in the other land when kingdom fly is enabled.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "home",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Allow using the other kingdom's home.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "interact",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Allow interacting with blocks in the other kingdom's land.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "invade",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Allow invasions against this relation.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "turret-ceasefire",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Whether turrets refuse to fire at this relation.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "manage-turrets",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Allow managing turrets in the other kingdom's land.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "manage-structures",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Allow managing structures in the other kingdom's land.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "customizable",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Whether kingdoms can change this attribute in settings. Defaults to true when omitted.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "show-holograms",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Show relation holograms for this relationship.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "pvp",
+                    "type": {
+                      "kind": "enum",
+                      "typeName": "Enum<org.kingdoms.managers.pvp.PvPManager$PvPType>",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "editor-overlay"
+                        ]
+                      },
+                      "values": [
+                        "disabled",
+                        "disallowed",
+                        "normal",
+                        "claimed",
+                        "unclaimed",
+                        "masswar",
+                        "territory",
+                        "relational",
+                        "conditional"
+                      ],
+                      "description": "How Kingdoms decides where and when players may fight. Changing this usually requires a restart.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "effects",
+                    "type": {
+                      "kind": "list",
+                      "elements": {
+                        "kind": "advanced",
+                        "typeName": "Potion",
+                        "capability": {
+                          "sources": [
+                            "jar-schema"
+                          ]
+                        }
+                      },
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Potion effects activated when standing in lands covered by this relation.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "auto-revoke",
+                    "type": {
+                      "kind": "boolean",
+                      "description": "Automatically revoke this relation when its conditions fail.",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "limit",
+                    "type": {
+                      "kind": "integer",
+                      "description": "Maximum kingdoms that may hold this relation at once. Set to 0 or -1 for unlimited.",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-default"
+                        ]
+                      },
+                      "minimum": -1,
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "cost",
+                    "type": {
+                      "kind": "expression",
+                      "language": "math",
+                      "description": "Resource-point cost for this relation.",
+                      "capability": {
+                        "sources": [
+                          "jar-runtime",
+                          "editor-overlay"
+                        ],
+                        "tier": "advanced",
+                        "runtimeField": "COST",
+                        "consumers": [
+                          "org/kingdoms/constants/group/model/relationships/KingdomRelation"
+                        ]
+                      },
+                      "minimum": 0,
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "name",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "Message",
+                      "description": "Optional player-facing relation name.",
+                      "optional": true,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "key": "disabled-commands",
+                    "type": {
+                      "kind": "list",
+                      "elements": {
+                        "kind": "string",
+                        "typeName": "str",
+                        "description": "",
+                        "optional": true,
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        }
+                      },
+                      "description": "Commands disabled while this relation applies.",
+                      "optional": true,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "key": "national-automation",
+                    "type": {
+                      "kind": "boolean",
+                      "description": "Whether nation automation applies for this relation.",
+                      "optional": true,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "key": "conditions",
+                    "type": {
+                      "kind": "list",
+                      "elements": {
+                        "kind": "expression",
+                        "language": "condition",
+                        "description": "Condition that must pass for this relation attribute set.",
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        }
+                      },
+                      "description": "Extra conditions required for this relation.",
+                      "optional": true,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      }
+                    }
+                  }
+                ],
+                "capability": {
+                  "sources": [
+                    "jar-schema"
+                  ]
+                },
+                "description": "Relation attribute block. Common optional keys: auto-revoke, ceasefire, donate, build, invade, interact, use, home, manage-turrets, manage-structures, limit, effects, customizable, show-holograms, fly, disabled-commands, national-automation, cost, pvp, conditions. Omit a key to keep the plugin default for that attribute.",
+                "optional": true,
+                "required": []
+              }
+            },
+            {
+              "key": "ally",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "color",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "Message",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Relation color code. Supports Minecraft colors, RGB, hex, and shared color variables.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "ceasefire",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Whether these kingdoms treat each other as non-hostile.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "donate",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Allow resource-point donations.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "build",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Allow building in the other kingdom's land.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "use",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Allow using containers/doors and similar blocks.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "fly",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Allow kingdom flight in the other land when kingdom fly is enabled.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "home",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Allow using the other kingdom's home.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "interact",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Allow interacting with blocks in the other kingdom's land.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "invade",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Allow invasions against this relation.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "turret-ceasefire",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Whether turrets refuse to fire at this relation.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "manage-turrets",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Allow managing turrets in the other kingdom's land.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "manage-structures",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Allow managing structures in the other kingdom's land.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "customizable",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Whether kingdoms can change this attribute in settings. Defaults to true when omitted.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "show-holograms",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Show relation holograms for this relationship.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "pvp",
+                    "type": {
+                      "kind": "enum",
+                      "typeName": "Enum<org.kingdoms.managers.pvp.PvPManager$PvPType>",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "editor-overlay"
+                        ]
+                      },
+                      "values": [
+                        "disabled",
+                        "disallowed",
+                        "normal",
+                        "claimed",
+                        "unclaimed",
+                        "masswar",
+                        "territory",
+                        "relational",
+                        "conditional"
+                      ],
+                      "description": "How Kingdoms decides where and when players may fight. Changing this usually requires a restart.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "effects",
+                    "type": {
+                      "kind": "list",
+                      "elements": {
+                        "kind": "advanced",
+                        "typeName": "Potion",
+                        "capability": {
+                          "sources": [
+                            "jar-schema"
+                          ]
+                        }
+                      },
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Potion effects activated when standing in lands covered by this relation.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "auto-revoke",
+                    "type": {
+                      "kind": "boolean",
+                      "description": "Automatically revoke this relation when its conditions fail.",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "limit",
+                    "type": {
+                      "kind": "integer",
+                      "description": "Maximum kingdoms that may hold this relation at once. Set to 0 or -1 for unlimited.",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-default"
+                        ]
+                      },
+                      "minimum": -1,
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "cost",
+                    "type": {
+                      "kind": "expression",
+                      "language": "math",
+                      "description": "Resource-point cost for this relation.",
+                      "capability": {
+                        "sources": [
+                          "jar-runtime",
+                          "editor-overlay"
+                        ],
+                        "tier": "advanced",
+                        "runtimeField": "COST",
+                        "consumers": [
+                          "org/kingdoms/constants/group/model/relationships/KingdomRelation"
+                        ]
+                      },
+                      "minimum": 0,
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "name",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "Message",
+                      "description": "Optional player-facing relation name.",
+                      "optional": true,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "key": "disabled-commands",
+                    "type": {
+                      "kind": "list",
+                      "elements": {
+                        "kind": "string",
+                        "typeName": "str",
+                        "description": "",
+                        "optional": true,
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        }
+                      },
+                      "description": "Commands disabled while this relation applies.",
+                      "optional": true,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "key": "national-automation",
+                    "type": {
+                      "kind": "boolean",
+                      "description": "Whether nation automation applies for this relation.",
+                      "optional": true,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "key": "conditions",
+                    "type": {
+                      "kind": "list",
+                      "elements": {
+                        "kind": "expression",
+                        "language": "condition",
+                        "description": "Condition that must pass for this relation attribute set.",
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        }
+                      },
+                      "description": "Extra conditions required for this relation.",
+                      "optional": true,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      }
+                    }
+                  }
+                ],
+                "capability": {
+                  "sources": [
+                    "jar-schema"
+                  ]
+                },
+                "description": "Relation attribute block. Common optional keys: auto-revoke, ceasefire, donate, build, invade, interact, use, home, manage-turrets, manage-structures, limit, effects, customizable, show-holograms, fly, disabled-commands, national-automation, cost, pvp, conditions. Omit a key to keep the plugin default for that attribute.",
+                "optional": true,
+                "required": []
+              }
+            },
+            {
+              "key": "nation",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "color",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "Message",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Relation color code. Supports Minecraft colors, RGB, hex, and shared color variables.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "ceasefire",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Whether these kingdoms treat each other as non-hostile.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "donate",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Allow resource-point donations.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "build",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Allow building in the other kingdom's land.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "use",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Allow using containers/doors and similar blocks.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "fly",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Allow kingdom flight in the other land when kingdom fly is enabled.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "home",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Allow using the other kingdom's home.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "interact",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Allow interacting with blocks in the other kingdom's land.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "invade",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Allow invasions against this relation.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "turret-ceasefire",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Whether turrets refuse to fire at this relation.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "manage-turrets",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Allow managing turrets in the other kingdom's land.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "manage-structures",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Allow managing structures in the other kingdom's land.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "customizable",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Whether kingdoms can change this attribute in settings. Defaults to true when omitted.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "show-holograms",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Show relation holograms for this relationship.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "pvp",
+                    "type": {
+                      "kind": "enum",
+                      "typeName": "Enum<org.kingdoms.managers.pvp.PvPManager$PvPType>",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "editor-overlay"
+                        ]
+                      },
+                      "values": [
+                        "disabled",
+                        "disallowed",
+                        "normal",
+                        "claimed",
+                        "unclaimed",
+                        "masswar",
+                        "territory",
+                        "relational",
+                        "conditional"
+                      ],
+                      "description": "How Kingdoms decides where and when players may fight. Changing this usually requires a restart.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "effects",
+                    "type": {
+                      "kind": "list",
+                      "elements": {
+                        "kind": "advanced",
+                        "typeName": "Potion",
+                        "capability": {
+                          "sources": [
+                            "jar-schema"
+                          ]
+                        }
+                      },
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Potion effects activated when standing in lands covered by this relation.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "auto-revoke",
+                    "type": {
+                      "kind": "boolean",
+                      "description": "Automatically revoke this relation when its conditions fail.",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "cost",
+                    "type": {
+                      "kind": "expression",
+                      "language": "math",
+                      "description": "Resource-point cost for this relation.",
+                      "capability": {
+                        "sources": [
+                          "jar-runtime",
+                          "editor-overlay"
+                        ],
+                        "tier": "advanced",
+                        "runtimeField": "COST",
+                        "consumers": [
+                          "org/kingdoms/constants/group/model/relationships/KingdomRelation"
+                        ]
+                      },
+                      "minimum": 0,
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "name",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "Message",
+                      "description": "Optional player-facing relation name.",
+                      "optional": true,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "key": "limit",
+                    "type": {
+                      "kind": "integer",
+                      "description": "Maximum kingdoms that may hold this relation at once. Set to 0 or -1 for unlimited.",
+                      "optional": true,
+                      "minimum": -1,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "key": "disabled-commands",
+                    "type": {
+                      "kind": "list",
+                      "elements": {
+                        "kind": "string",
+                        "typeName": "str",
+                        "description": "",
+                        "optional": true,
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        }
+                      },
+                      "description": "Commands disabled while this relation applies.",
+                      "optional": true,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "key": "national-automation",
+                    "type": {
+                      "kind": "boolean",
+                      "description": "Whether nation automation applies for this relation.",
+                      "optional": true,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "key": "conditions",
+                    "type": {
+                      "kind": "list",
+                      "elements": {
+                        "kind": "expression",
+                        "language": "condition",
+                        "description": "Condition that must pass for this relation attribute set.",
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        }
+                      },
+                      "description": "Extra conditions required for this relation.",
+                      "optional": true,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      }
+                    }
+                  }
+                ],
+                "capability": {
+                  "sources": [
+                    "jar-schema"
+                  ]
+                },
+                "description": "Relation attribute block. Common optional keys: auto-revoke, ceasefire, donate, build, invade, interact, use, home, manage-turrets, manage-structures, limit, effects, customizable, show-holograms, fly, disabled-commands, national-automation, cost, pvp, conditions. Omit a key to keep the plugin default for that attribute.",
+                "optional": true,
+                "required": []
+              }
+            },
+            {
+              "key": "enemy",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "color",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "Message",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Relation color code. Supports Minecraft colors, RGB, hex, and shared color variables.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "ceasefire",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Whether these kingdoms treat each other as non-hostile.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "donate",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Allow resource-point donations.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "build",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Allow building in the other kingdom's land.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "use",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Allow using containers/doors and similar blocks.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "fly",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Allow kingdom flight in the other land when kingdom fly is enabled.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "home",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Allow using the other kingdom's home.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "interact",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Allow interacting with blocks in the other kingdom's land.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "invade",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Allow invasions against this relation.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "turret-ceasefire",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Whether turrets refuse to fire at this relation.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "manage-turrets",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Allow managing turrets in the other kingdom's land.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "manage-structures",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Allow managing structures in the other kingdom's land.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "customizable",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Whether kingdoms can change this attribute in settings. Defaults to true when omitted.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "show-holograms",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Show relation holograms for this relationship.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "pvp",
+                    "type": {
+                      "kind": "enum",
+                      "typeName": "Enum<org.kingdoms.managers.pvp.PvPManager$PvPType>",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "editor-overlay"
+                        ]
+                      },
+                      "values": [
+                        "disabled",
+                        "disallowed",
+                        "normal",
+                        "claimed",
+                        "unclaimed",
+                        "masswar",
+                        "territory",
+                        "relational",
+                        "conditional"
+                      ],
+                      "description": "How Kingdoms decides where and when players may fight. Changing this usually requires a restart.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "effects",
+                    "type": {
+                      "kind": "list",
+                      "elements": {
+                        "kind": "advanced",
+                        "typeName": "Potion",
+                        "capability": {
+                          "sources": [
+                            "jar-schema"
+                          ]
+                        }
+                      },
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Potion effects activated when standing in lands covered by this relation.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "auto-revoke",
+                    "type": {
+                      "kind": "boolean",
+                      "description": "cost: 100 # Cost in resource points needed to enemy a kingdom.",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "limit",
+                    "type": {
+                      "kind": "integer",
+                      "description": "Maximum kingdoms that may hold this relation at once. Set to 0 or -1 for unlimited.",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-default"
+                        ]
+                      },
+                      "minimum": -1,
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "disabled-commands",
+                    "type": {
+                      "kind": "list",
+                      "elements": {
+                        "kind": "string",
+                        "typeName": "str",
+                        "description": "",
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        }
+                      },
+                      "description": "Commands disabled while this relation applies.",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "national-automation",
+                    "type": {
+                      "kind": "boolean",
+                      "description": "Should enemying a kingdom automatically enemy all kingdoms in their nation if they're in one?",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "cost",
+                    "type": {
+                      "kind": "expression",
+                      "language": "math",
+                      "description": "Resource-point cost for this relation.",
+                      "capability": {
+                        "sources": [
+                          "jar-runtime",
+                          "editor-overlay"
+                        ],
+                        "tier": "advanced",
+                        "runtimeField": "COST",
+                        "consumers": [
+                          "org/kingdoms/constants/group/model/relationships/KingdomRelation"
+                        ]
+                      },
+                      "minimum": 0,
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "name",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "Message",
+                      "description": "Optional player-facing relation name.",
+                      "optional": true,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "key": "conditions",
+                    "type": {
+                      "kind": "list",
+                      "elements": {
+                        "kind": "expression",
+                        "language": "condition",
+                        "description": "Condition that must pass for this relation attribute set.",
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        }
+                      },
+                      "description": "Extra conditions required for this relation.",
+                      "optional": true,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      }
+                    }
+                  }
+                ],
+                "capability": {
+                  "sources": [
+                    "jar-schema"
+                  ]
+                },
+                "description": "Relation attribute block. Common optional keys: auto-revoke, ceasefire, donate, build, invade, interact, use, home, manage-turrets, manage-structures, limit, effects, customizable, show-holograms, fly, disabled-commands, national-automation, cost, pvp, conditions. Omit a key to keep the plugin default for that attribute.",
+                "optional": true,
+                "required": []
+              }
+            }
+          ],
+          "required": [
+            "self",
+            "neutral",
+            "truce",
+            "ally",
+            "enemy",
+            "nation"
+          ],
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "auto-revoke: If a kingdom declares that they no longer wish to be in a relation with the other kingdom, the other kingdom will automatically have this relation revoked as well. ceasefire: Members of the two kingdoms cannot PvP each other. donate: Kingdoms can donate resource points to each other clicking their nexus. Note that they'll still be able to use /k donate build: Kingdoms can build in each others lands, however you can't touch any turrets or structures. invade: If kingdoms can invade each other. interact: Kingdoms can interact and open chests, enchantment tables and other containers. use: Kingdoms can use buttons, open doors and use pressure plates. home: Allow players to teleport to home of these kingdoms using /k home <kingdom> manage: Kingdoms can remove and place turrets and structures in your land. Note that the placed turrets/structures will be for the kingdom that owns that land. limit: How many kingdoms can a single kingdom have this type of relation with? Set to 0 for unlimited. effects: List of potion effects activated when in these lands. customizable: This merely manages the data saved, so it applies after a server restart. To disable it completely, remove it from the Nexus Settings GUI. The players will keep their relation data until the server is restarted if you keep the GUI. Note that NOT specifiying this option defaults to true show-holograms: Should turret and structure holograms be shown to them? pvp: Only works if the main PvP mode option is set to \"relational\", this accepts all the same options as the main PvP mode. This also requires a restart. conditions: A list of conditions that supports placeholders with the primary context as the sender kingdom and the secondary context as the receiver kingdom",
+          "optional": true
+        }
+      },
+      {
+        "key": "pvp-advanced",
+        "type": {
+          "kind": "expression",
+          "language": "condition",
+          "optional": true,
+          "description": "Custom PvP condition used when the root pvp mode is conditional, or as an extra rule otherwise. Primary context is the attacker. Secondary context is the victim. Special variables: ceasefire, can_fight (when pvp is not conditional).",
+          "capability": {
+            "sources": [
+              "editor-overlay",
+              "jar-default"
+            ]
+          }
+        }
+      }
+    ],
+    "capability": {
+      "sources": [
+        "jar-schema"
+      ]
+    }
+  }
+}

@@ -1,0 +1,2962 @@
+{
+  "formatVersion": 1,
+  "source": {
+    "addonId": "admin-tools",
+    "artifactPath": "addons/Kingdoms-Addon-Admin-Tools-1.2.3.2.jar",
+    "artifactBlobSha": "c63f5eab8d950936ae09f12aed4ff1383c87cee2",
+    "artifactSha256": "c07ed8f5f52b657f57beca205d12755f0b4f94e26dfcd691834e2ad77043256f",
+    "addonVersion": "1.2.3.2"
+  },
+  "resourceName": "guis/item-editor/enchantments.yml",
+  "schemaId": "guis/schema",
+  "sha256": "56062b2473bc233a5d03bfb1db62197dd1263633877d974756eef11941c6ab75",
+  "options": [
+    {
+      "path": [
+        "title"
+      ],
+      "source": "\"{$sep}-=( {$p}Enchantments {$sep})=-\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "rows"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-enchant]"
+      ],
+      "source": "&fn-enchant\r\n  args: [ \"<x>\" ]\r\n  return:\r\n    not-supported:\r\n      condition: \"!supported\"\r\n      name: \"{$sep}[{$e}Not Supported{$sep}] {$es}<x>\"\r\n      sound: BLOCK_NOTE_BLOCK_BASS\r\n      lore: |\r\n        {$e}This enchantment is not\r\n        supported in your current server\r\n        version.\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$enabled} <x>{$colon} {$s}%roman@level% {$sep}({$s}%level%{$sep})\"\r\n      glow: true\r\n      lore: |\r\n        {$sep}Left-click to change level\r\n        {$sep}Right-click to remove\r\n    else:\r\n      name: \"{$disabled} <x>\"\r\n      lore: |\r\n        {$sep}Left-click to add enchant\r\n\r\n",
+      "comments": [
+        "What the hell is this: https://github.com/CryptoMorin/KingdomsX/wiki/Config#yaml"
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-enchant]",
+        "args"
+      ],
+      "source": "[ \"<x>\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"<x>\""
+      ]
+    },
+    {
+      "path": [
+        "[fn-enchant]",
+        "return"
+      ],
+      "source": "\r\n    not-supported:\r\n      condition: \"!supported\"\r\n      name: \"{$sep}[{$e}Not Supported{$sep}] {$es}<x>\"\r\n      sound: BLOCK_NOTE_BLOCK_BASS\r\n      lore: |\r\n        {$e}This enchantment is not\r\n        supported in your current server\r\n        version.\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$enabled} <x>{$colon} {$s}%roman@level% {$sep}({$s}%level%{$sep})\"\r\n      glow: true\r\n      lore: |\r\n        {$sep}Left-click to change level\r\n        {$sep}Right-click to remove\r\n    else:\r\n      name: \"{$disabled} <x>\"\r\n      lore: |\r\n        {$sep}Left-click to add enchant\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-enchant]",
+        "return",
+        "not-supported"
+      ],
+      "source": "\r\n      condition: \"!supported\"\r\n      name: \"{$sep}[{$e}Not Supported{$sep}] {$es}<x>\"\r\n      sound: BLOCK_NOTE_BLOCK_BASS\r\n      lore: |\r\n        {$e}This enchantment is not\r\n        supported in your current server\r\n        version.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-enchant]",
+        "return",
+        "not-supported",
+        "condition"
+      ],
+      "source": "\"!supported\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-enchant]",
+        "return",
+        "not-supported",
+        "name"
+      ],
+      "source": "\"{$sep}[{$e}Not Supported{$sep}] {$es}<x>\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-enchant]",
+        "return",
+        "not-supported",
+        "sound"
+      ],
+      "source": "BLOCK_NOTE_BLOCK_BASS",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-enchant]",
+        "return",
+        "not-supported",
+        "lore"
+      ],
+      "source": "|\r\n        {$e}This enchantment is not\r\n        supported in your current server\r\n        version.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-enchant]",
+        "return",
+        "enabled"
+      ],
+      "source": "\r\n      condition: enabled\r\n      name: \"{$enabled} <x>{$colon} {$s}%roman@level% {$sep}({$s}%level%{$sep})\"\r\n      glow: true\r\n      lore: |\r\n        {$sep}Left-click to change level\r\n        {$sep}Right-click to remove\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-enchant]",
+        "return",
+        "enabled",
+        "condition"
+      ],
+      "source": "enabled",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-enchant]",
+        "return",
+        "enabled",
+        "name"
+      ],
+      "source": "\"{$enabled} <x>{$colon} {$s}%roman@level% {$sep}({$s}%level%{$sep})\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-enchant]",
+        "return",
+        "enabled",
+        "glow"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-enchant]",
+        "return",
+        "enabled",
+        "lore"
+      ],
+      "source": "|\r\n        {$sep}Left-click to change level\r\n        {$sep}Right-click to remove\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-enchant]",
+        "return",
+        "else"
+      ],
+      "source": "\r\n      name: \"{$disabled} <x>\"\r\n      lore: |\r\n        {$sep}Left-click to add enchant\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-enchant]",
+        "return",
+        "else",
+        "name"
+      ],
+      "source": "\"{$disabled} <x>\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-enchant]",
+        "return",
+        "else",
+        "lore"
+      ],
+      "source": "|\r\n        {$sep}Left-click to add enchant\r\n\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options"
+      ],
+      "source": "\r\n  enchant-water-worker:\r\n    posx: 1\r\n    posy: 1\r\n    material: WATER_BUCKET\r\n    <<: *fn-enchant [ \"Aqua Infinity\" ]\r\n  enchant-depth-strider:\r\n    posx: 2\r\n    posy: 1\r\n    material: WATER_BUCKET\r\n    <<: *fn-enchant [ \"Depth Strider\" ]\r\n  enchant-impaling:\r\n    posx: 3\r\n    posy: 1\r\n    material: WATER_BUCKET\r\n    <<: *fn-enchant [ \"Impaling\" ]\r\n  enchant-oxygen:\r\n    posx: 4\r\n    posy: 1\r\n    material: WATER_BUCKET\r\n    <<: *fn-enchant [ \"Respiration\" ]\r\n  enchant-damage-all:\r\n    posx: 5\r\n    posy: 1\r\n    material: DIAMOND_SWORD\r\n    <<: *fn-enchant [ \"Sharpness\" ]\r\n  enchant-knockback:\r\n    posx: 6\r\n    posy: 1\r\n    material: GOLDEN_SWORD\r\n    <<: *fn-enchant [ \"Knockback\" ]\r\n  enchant-dig-speed:\r\n    posx: 7\r\n    posy: 1\r\n    material: DIAMOND_PICKAXE\r\n    <<: *fn-enchant [ \"Efficiency\" ]\r\n  enchant-frost-walker:\r\n    posx: 8\r\n    posy: 1\r\n    material: BLUE_ICE\r\n    <<: *fn-enchant [ \"Frost Walker\" ]\r\n  enchant-swift-sneak:\r\n    posx: 9\r\n    posy: 1\r\n    material: DIAMOND_LEGGINGS\r\n    <<: *fn-enchant [ \"Swift Sneak\" ]\r\n  enchant-arrow-damage:\r\n    posx: 1\r\n    posy: 2\r\n    material: ARROW\r\n    <<: *fn-enchant [ \"Power\" ]\r\n  enchant-arrow-knockback:\r\n    posx: 2\r\n    posy: 2\r\n    material: ARROW\r\n    <<: *fn-enchant [ \"Punch\" ]\r\n  enchant-arrow-fire:\r\n    posx: 3\r\n    posy: 2\r\n    material: ARROW\r\n    <<: *fn-enchant [ \"Flame\" ]\r\n  enchant-multishot:\r\n    posx: 4\r\n    posy: 2\r\n    material: ARROW\r\n    <<: *fn-enchant [ \"MultiShot\" ]\r\n  enchant-piercing:\r\n    posx: 5\r\n    posy: 2\r\n    material: ARROW\r\n    <<: *fn-enchant [ \"Piercing\" ]\r\n  enchant-arrow-infinite:\r\n    posx: 6\r\n    posy: 2\r\n    material: SPECTRAL_ARROW\r\n    <<: *fn-enchant [ \"Infinity\" ]\r\n  enchant-quick-charge:\r\n    posx: 7\r\n    posy: 2\r\n    material: CROSSBOW\r\n    <<: *fn-enchant [ \"Quick Charge\" ]\r\n  enchant-mending:\r\n    posx: 8\r\n    posy: 2\r\n    material: EXPERIENCE_BOTTLE\r\n    <<: *fn-enchant [ \"Mending\" ]\r\n  enchant-durability:\r\n    posx: 9\r\n    posy: 2\r\n    material: OBSIDIAN\r\n    <<: *fn-enchant [ \"Unbreaking\" ]\r\n  enchant-fire-aspect:\r\n    posx: 1\r\n    posy: 3\r\n    material: FIRE_CHARGE\r\n    <<: *fn-enchant [ \"Fire Aspect\" ]\r\n  enchant-channeling:\r\n    posx: 2\r\n    posy: 3\r\n    material: TRIDENT\r\n    <<: *fn-enchant [ \"Channeling\" ]\r\n  enchant-loyalty:\r\n    posx: 3\r\n    posy: 3\r\n    material: TRIDENT\r\n    <<: *fn-enchant [ \"Loyalty\" ]\r\n  enchant-riptide:\r\n    posx: 4\r\n    posy: 3\r\n    material: TRIDENT\r\n    <<: *fn-enchant [ \"Riptide\" ]\r\n  enchant-protection-environmental:\r\n    posx: 5\r\n    posy: 3\r\n    material: DIAMOND_CHESTPLATE\r\n    <<: *fn-enchant [ \"Protection\" ]\r\n  enchant-protection-projectile:\r\n    posx: 6\r\n    posy: 3\r\n    material: GOLDEN_CHESTPLATE\r\n    <<: *fn-enchant [ \"Projectile Protection\" ]\r\n  enchant-protection-explosions:\r\n    posx: 7\r\n    posy: 3\r\n    material: TNT\r\n    <<: *fn-enchant [ \"Blast Protection\" ]\r\n  enchant-protection-fire:\r\n    posx: 8\r\n    posy: 3\r\n    material: LAVA_BUCKET\r\n    <<: *fn-enchant [ \"Fire Protection\" ]\r\n  enchant-thorns:\r\n    posx: 9\r\n    posy: 3\r\n    material: ROSE_BUSH\r\n    <<: *fn-enchant [ \"Thorns\" ]\r\n  enchant-damage-undead:\r\n    posx: 1\r\n    posy: 4\r\n    material: ZOMBIE_HEAD\r\n    <<: *fn-enchant [ \"Smite\" ]\r\n  enchant-damage-arthropods:\r\n    posx: 2\r\n    posy: 4\r\n    material: SPIDER_SPAWN_EGG\r\n    <<: *fn-enchant [ \"Bane Of Arthropods\" ]\r\n  enchant-soul-speed:\r\n    posx: 3\r\n    posy: 4\r\n    material: SOUL_SAND\r\n    <<: *fn-enchant [ \"Soul Speed\" ]\r\n  enchant-vanishing-curse:\r\n    posx: 4\r\n    posy: 4\r\n    material: ENDER_EYE\r\n    <<: *fn-enchant [ \"Curse Of Vanishing\" ]\r\n  enchant-binding-curse:\r\n    posx: 5\r\n    posy: 4\r\n    material: ENDER_PEARL\r\n    <<: *fn-enchant [ \"Curse Of Binding\" ]\r\n  enchant-wind-burst:\r\n    posx: 6\r\n    posy: 4\r\n    material: WIND_CHARGE\r\n    <<: *fn-enchant [ \"Wind Burst\" ]\r\n  enchant-loot-bonus-mobs:\r\n    posx: 7\r\n    posy: 4\r\n    material: ENCHANTED_BOOK\r\n    <<: *fn-enchant [ \"Looting\" ]\r\n  enchant-loot-bonus-blocks:\r\n    posx: 8\r\n    posy: 4\r\n    material: ENCHANTED_BOOK\r\n    <<: *fn-enchant [ \"Fortune\" ]\r\n  enchant-silk-touch:\r\n    posx: 9\r\n    posy: 4\r\n    material: ENCHANTED_BOOK\r\n    <<: *fn-enchant [ \"Silk Touch\" ]\r\n  enchant-luck:\r\n    posx: 1\r\n    posy: 5\r\n    material: FISHING_ROD\r\n    <<: *fn-enchant [ \"Luck Of The Sea\" ]\r\n  enchant-lure:\r\n    posx: 2\r\n    posy: 5\r\n    material: FISHING_ROD\r\n    <<: *fn-enchant [ \"Lure\" ]\r\n  enchant-protection-fall:\r\n    posx: 3\r\n    posy: 5\r\n    material: FEATHER\r\n    <<: *fn-enchant [ \"Feather Falling\" ]\r\n\r\n  back:\r\n    posx: 1\r\n    posy: 6\r\n    material: PLAYER_HEAD\r\n    skull: \"{$gui-back}\"\r\n    name: '{$p}Back'\r\n  decoration:\r\n    slots: [ 46, 47, 48, 49, 50, 51, 52 ]\r\n    material: BLACK_STAINED_GLASS_PANE\r\n    name: ''\r\n  remove-all:\r\n    posx: 9\r\n    posy: 6\r\n    material: RED_WOOL\r\n    name: '{$e}Remove All Enchantments'",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-water-worker"
+      ],
+      "source": "\r\n    posx: 1\r\n    posy: 1\r\n    material: WATER_BUCKET\r\n    <<: *fn-enchant [ \"Aqua Infinity\" ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-water-worker",
+        "posx"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-water-worker",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-water-worker",
+        "material"
+      ],
+      "source": "WATER_BUCKET",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-water-worker",
+        "<<"
+      ],
+      "source": "*fn-enchant [ \"Aqua Infinity\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-depth-strider"
+      ],
+      "source": "\r\n    posx: 2\r\n    posy: 1\r\n    material: WATER_BUCKET\r\n    <<: *fn-enchant [ \"Depth Strider\" ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-depth-strider",
+        "posx"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-depth-strider",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-depth-strider",
+        "material"
+      ],
+      "source": "WATER_BUCKET",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-depth-strider",
+        "<<"
+      ],
+      "source": "*fn-enchant [ \"Depth Strider\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-impaling"
+      ],
+      "source": "\r\n    posx: 3\r\n    posy: 1\r\n    material: WATER_BUCKET\r\n    <<: *fn-enchant [ \"Impaling\" ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-impaling",
+        "posx"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-impaling",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-impaling",
+        "material"
+      ],
+      "source": "WATER_BUCKET",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-impaling",
+        "<<"
+      ],
+      "source": "*fn-enchant [ \"Impaling\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-oxygen"
+      ],
+      "source": "\r\n    posx: 4\r\n    posy: 1\r\n    material: WATER_BUCKET\r\n    <<: *fn-enchant [ \"Respiration\" ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-oxygen",
+        "posx"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-oxygen",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-oxygen",
+        "material"
+      ],
+      "source": "WATER_BUCKET",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-oxygen",
+        "<<"
+      ],
+      "source": "*fn-enchant [ \"Respiration\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-damage-all"
+      ],
+      "source": "\r\n    posx: 5\r\n    posy: 1\r\n    material: DIAMOND_SWORD\r\n    <<: *fn-enchant [ \"Sharpness\" ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-damage-all",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-damage-all",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-damage-all",
+        "material"
+      ],
+      "source": "DIAMOND_SWORD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-damage-all",
+        "<<"
+      ],
+      "source": "*fn-enchant [ \"Sharpness\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-knockback"
+      ],
+      "source": "\r\n    posx: 6\r\n    posy: 1\r\n    material: GOLDEN_SWORD\r\n    <<: *fn-enchant [ \"Knockback\" ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-knockback",
+        "posx"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-knockback",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-knockback",
+        "material"
+      ],
+      "source": "GOLDEN_SWORD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-knockback",
+        "<<"
+      ],
+      "source": "*fn-enchant [ \"Knockback\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-dig-speed"
+      ],
+      "source": "\r\n    posx: 7\r\n    posy: 1\r\n    material: DIAMOND_PICKAXE\r\n    <<: *fn-enchant [ \"Efficiency\" ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-dig-speed",
+        "posx"
+      ],
+      "source": "7",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-dig-speed",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-dig-speed",
+        "material"
+      ],
+      "source": "DIAMOND_PICKAXE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-dig-speed",
+        "<<"
+      ],
+      "source": "*fn-enchant [ \"Efficiency\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-frost-walker"
+      ],
+      "source": "\r\n    posx: 8\r\n    posy: 1\r\n    material: BLUE_ICE\r\n    <<: *fn-enchant [ \"Frost Walker\" ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-frost-walker",
+        "posx"
+      ],
+      "source": "8",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-frost-walker",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-frost-walker",
+        "material"
+      ],
+      "source": "BLUE_ICE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-frost-walker",
+        "<<"
+      ],
+      "source": "*fn-enchant [ \"Frost Walker\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-swift-sneak"
+      ],
+      "source": "\r\n    posx: 9\r\n    posy: 1\r\n    material: DIAMOND_LEGGINGS\r\n    <<: *fn-enchant [ \"Swift Sneak\" ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-swift-sneak",
+        "posx"
+      ],
+      "source": "9",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-swift-sneak",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-swift-sneak",
+        "material"
+      ],
+      "source": "DIAMOND_LEGGINGS",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-swift-sneak",
+        "<<"
+      ],
+      "source": "*fn-enchant [ \"Swift Sneak\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-arrow-damage"
+      ],
+      "source": "\r\n    posx: 1\r\n    posy: 2\r\n    material: ARROW\r\n    <<: *fn-enchant [ \"Power\" ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-arrow-damage",
+        "posx"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-arrow-damage",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-arrow-damage",
+        "material"
+      ],
+      "source": "ARROW",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-arrow-damage",
+        "<<"
+      ],
+      "source": "*fn-enchant [ \"Power\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-arrow-knockback"
+      ],
+      "source": "\r\n    posx: 2\r\n    posy: 2\r\n    material: ARROW\r\n    <<: *fn-enchant [ \"Punch\" ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-arrow-knockback",
+        "posx"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-arrow-knockback",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-arrow-knockback",
+        "material"
+      ],
+      "source": "ARROW",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-arrow-knockback",
+        "<<"
+      ],
+      "source": "*fn-enchant [ \"Punch\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-arrow-fire"
+      ],
+      "source": "\r\n    posx: 3\r\n    posy: 2\r\n    material: ARROW\r\n    <<: *fn-enchant [ \"Flame\" ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-arrow-fire",
+        "posx"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-arrow-fire",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-arrow-fire",
+        "material"
+      ],
+      "source": "ARROW",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-arrow-fire",
+        "<<"
+      ],
+      "source": "*fn-enchant [ \"Flame\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-multishot"
+      ],
+      "source": "\r\n    posx: 4\r\n    posy: 2\r\n    material: ARROW\r\n    <<: *fn-enchant [ \"MultiShot\" ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-multishot",
+        "posx"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-multishot",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-multishot",
+        "material"
+      ],
+      "source": "ARROW",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-multishot",
+        "<<"
+      ],
+      "source": "*fn-enchant [ \"MultiShot\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-piercing"
+      ],
+      "source": "\r\n    posx: 5\r\n    posy: 2\r\n    material: ARROW\r\n    <<: *fn-enchant [ \"Piercing\" ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-piercing",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-piercing",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-piercing",
+        "material"
+      ],
+      "source": "ARROW",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-piercing",
+        "<<"
+      ],
+      "source": "*fn-enchant [ \"Piercing\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-arrow-infinite"
+      ],
+      "source": "\r\n    posx: 6\r\n    posy: 2\r\n    material: SPECTRAL_ARROW\r\n    <<: *fn-enchant [ \"Infinity\" ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-arrow-infinite",
+        "posx"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-arrow-infinite",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-arrow-infinite",
+        "material"
+      ],
+      "source": "SPECTRAL_ARROW",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-arrow-infinite",
+        "<<"
+      ],
+      "source": "*fn-enchant [ \"Infinity\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-quick-charge"
+      ],
+      "source": "\r\n    posx: 7\r\n    posy: 2\r\n    material: CROSSBOW\r\n    <<: *fn-enchant [ \"Quick Charge\" ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-quick-charge",
+        "posx"
+      ],
+      "source": "7",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-quick-charge",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-quick-charge",
+        "material"
+      ],
+      "source": "CROSSBOW",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-quick-charge",
+        "<<"
+      ],
+      "source": "*fn-enchant [ \"Quick Charge\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-mending"
+      ],
+      "source": "\r\n    posx: 8\r\n    posy: 2\r\n    material: EXPERIENCE_BOTTLE\r\n    <<: *fn-enchant [ \"Mending\" ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-mending",
+        "posx"
+      ],
+      "source": "8",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-mending",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-mending",
+        "material"
+      ],
+      "source": "EXPERIENCE_BOTTLE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-mending",
+        "<<"
+      ],
+      "source": "*fn-enchant [ \"Mending\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-durability"
+      ],
+      "source": "\r\n    posx: 9\r\n    posy: 2\r\n    material: OBSIDIAN\r\n    <<: *fn-enchant [ \"Unbreaking\" ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-durability",
+        "posx"
+      ],
+      "source": "9",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-durability",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-durability",
+        "material"
+      ],
+      "source": "OBSIDIAN",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-durability",
+        "<<"
+      ],
+      "source": "*fn-enchant [ \"Unbreaking\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-fire-aspect"
+      ],
+      "source": "\r\n    posx: 1\r\n    posy: 3\r\n    material: FIRE_CHARGE\r\n    <<: *fn-enchant [ \"Fire Aspect\" ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-fire-aspect",
+        "posx"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-fire-aspect",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-fire-aspect",
+        "material"
+      ],
+      "source": "FIRE_CHARGE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-fire-aspect",
+        "<<"
+      ],
+      "source": "*fn-enchant [ \"Fire Aspect\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-channeling"
+      ],
+      "source": "\r\n    posx: 2\r\n    posy: 3\r\n    material: TRIDENT\r\n    <<: *fn-enchant [ \"Channeling\" ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-channeling",
+        "posx"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-channeling",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-channeling",
+        "material"
+      ],
+      "source": "TRIDENT",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-channeling",
+        "<<"
+      ],
+      "source": "*fn-enchant [ \"Channeling\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-loyalty"
+      ],
+      "source": "\r\n    posx: 3\r\n    posy: 3\r\n    material: TRIDENT\r\n    <<: *fn-enchant [ \"Loyalty\" ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-loyalty",
+        "posx"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-loyalty",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-loyalty",
+        "material"
+      ],
+      "source": "TRIDENT",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-loyalty",
+        "<<"
+      ],
+      "source": "*fn-enchant [ \"Loyalty\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-riptide"
+      ],
+      "source": "\r\n    posx: 4\r\n    posy: 3\r\n    material: TRIDENT\r\n    <<: *fn-enchant [ \"Riptide\" ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-riptide",
+        "posx"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-riptide",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-riptide",
+        "material"
+      ],
+      "source": "TRIDENT",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-riptide",
+        "<<"
+      ],
+      "source": "*fn-enchant [ \"Riptide\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-protection-environmental"
+      ],
+      "source": "\r\n    posx: 5\r\n    posy: 3\r\n    material: DIAMOND_CHESTPLATE\r\n    <<: *fn-enchant [ \"Protection\" ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-protection-environmental",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-protection-environmental",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-protection-environmental",
+        "material"
+      ],
+      "source": "DIAMOND_CHESTPLATE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-protection-environmental",
+        "<<"
+      ],
+      "source": "*fn-enchant [ \"Protection\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-protection-projectile"
+      ],
+      "source": "\r\n    posx: 6\r\n    posy: 3\r\n    material: GOLDEN_CHESTPLATE\r\n    <<: *fn-enchant [ \"Projectile Protection\" ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-protection-projectile",
+        "posx"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-protection-projectile",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-protection-projectile",
+        "material"
+      ],
+      "source": "GOLDEN_CHESTPLATE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-protection-projectile",
+        "<<"
+      ],
+      "source": "*fn-enchant [ \"Projectile Protection\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-protection-explosions"
+      ],
+      "source": "\r\n    posx: 7\r\n    posy: 3\r\n    material: TNT\r\n    <<: *fn-enchant [ \"Blast Protection\" ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-protection-explosions",
+        "posx"
+      ],
+      "source": "7",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-protection-explosions",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-protection-explosions",
+        "material"
+      ],
+      "source": "TNT",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-protection-explosions",
+        "<<"
+      ],
+      "source": "*fn-enchant [ \"Blast Protection\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-protection-fire"
+      ],
+      "source": "\r\n    posx: 8\r\n    posy: 3\r\n    material: LAVA_BUCKET\r\n    <<: *fn-enchant [ \"Fire Protection\" ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-protection-fire",
+        "posx"
+      ],
+      "source": "8",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-protection-fire",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-protection-fire",
+        "material"
+      ],
+      "source": "LAVA_BUCKET",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-protection-fire",
+        "<<"
+      ],
+      "source": "*fn-enchant [ \"Fire Protection\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-thorns"
+      ],
+      "source": "\r\n    posx: 9\r\n    posy: 3\r\n    material: ROSE_BUSH\r\n    <<: *fn-enchant [ \"Thorns\" ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-thorns",
+        "posx"
+      ],
+      "source": "9",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-thorns",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-thorns",
+        "material"
+      ],
+      "source": "ROSE_BUSH",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-thorns",
+        "<<"
+      ],
+      "source": "*fn-enchant [ \"Thorns\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-damage-undead"
+      ],
+      "source": "\r\n    posx: 1\r\n    posy: 4\r\n    material: ZOMBIE_HEAD\r\n    <<: *fn-enchant [ \"Smite\" ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-damage-undead",
+        "posx"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-damage-undead",
+        "posy"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-damage-undead",
+        "material"
+      ],
+      "source": "ZOMBIE_HEAD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-damage-undead",
+        "<<"
+      ],
+      "source": "*fn-enchant [ \"Smite\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-damage-arthropods"
+      ],
+      "source": "\r\n    posx: 2\r\n    posy: 4\r\n    material: SPIDER_SPAWN_EGG\r\n    <<: *fn-enchant [ \"Bane Of Arthropods\" ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-damage-arthropods",
+        "posx"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-damage-arthropods",
+        "posy"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-damage-arthropods",
+        "material"
+      ],
+      "source": "SPIDER_SPAWN_EGG",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-damage-arthropods",
+        "<<"
+      ],
+      "source": "*fn-enchant [ \"Bane Of Arthropods\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-soul-speed"
+      ],
+      "source": "\r\n    posx: 3\r\n    posy: 4\r\n    material: SOUL_SAND\r\n    <<: *fn-enchant [ \"Soul Speed\" ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-soul-speed",
+        "posx"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-soul-speed",
+        "posy"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-soul-speed",
+        "material"
+      ],
+      "source": "SOUL_SAND",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-soul-speed",
+        "<<"
+      ],
+      "source": "*fn-enchant [ \"Soul Speed\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-vanishing-curse"
+      ],
+      "source": "\r\n    posx: 4\r\n    posy: 4\r\n    material: ENDER_EYE\r\n    <<: *fn-enchant [ \"Curse Of Vanishing\" ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-vanishing-curse",
+        "posx"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-vanishing-curse",
+        "posy"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-vanishing-curse",
+        "material"
+      ],
+      "source": "ENDER_EYE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-vanishing-curse",
+        "<<"
+      ],
+      "source": "*fn-enchant [ \"Curse Of Vanishing\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-binding-curse"
+      ],
+      "source": "\r\n    posx: 5\r\n    posy: 4\r\n    material: ENDER_PEARL\r\n    <<: *fn-enchant [ \"Curse Of Binding\" ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-binding-curse",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-binding-curse",
+        "posy"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-binding-curse",
+        "material"
+      ],
+      "source": "ENDER_PEARL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-binding-curse",
+        "<<"
+      ],
+      "source": "*fn-enchant [ \"Curse Of Binding\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-wind-burst"
+      ],
+      "source": "\r\n    posx: 6\r\n    posy: 4\r\n    material: WIND_CHARGE\r\n    <<: *fn-enchant [ \"Wind Burst\" ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-wind-burst",
+        "posx"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-wind-burst",
+        "posy"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-wind-burst",
+        "material"
+      ],
+      "source": "WIND_CHARGE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-wind-burst",
+        "<<"
+      ],
+      "source": "*fn-enchant [ \"Wind Burst\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-loot-bonus-mobs"
+      ],
+      "source": "\r\n    posx: 7\r\n    posy: 4\r\n    material: ENCHANTED_BOOK\r\n    <<: *fn-enchant [ \"Looting\" ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-loot-bonus-mobs",
+        "posx"
+      ],
+      "source": "7",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-loot-bonus-mobs",
+        "posy"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-loot-bonus-mobs",
+        "material"
+      ],
+      "source": "ENCHANTED_BOOK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-loot-bonus-mobs",
+        "<<"
+      ],
+      "source": "*fn-enchant [ \"Looting\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-loot-bonus-blocks"
+      ],
+      "source": "\r\n    posx: 8\r\n    posy: 4\r\n    material: ENCHANTED_BOOK\r\n    <<: *fn-enchant [ \"Fortune\" ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-loot-bonus-blocks",
+        "posx"
+      ],
+      "source": "8",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-loot-bonus-blocks",
+        "posy"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-loot-bonus-blocks",
+        "material"
+      ],
+      "source": "ENCHANTED_BOOK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-loot-bonus-blocks",
+        "<<"
+      ],
+      "source": "*fn-enchant [ \"Fortune\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-silk-touch"
+      ],
+      "source": "\r\n    posx: 9\r\n    posy: 4\r\n    material: ENCHANTED_BOOK\r\n    <<: *fn-enchant [ \"Silk Touch\" ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-silk-touch",
+        "posx"
+      ],
+      "source": "9",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-silk-touch",
+        "posy"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-silk-touch",
+        "material"
+      ],
+      "source": "ENCHANTED_BOOK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-silk-touch",
+        "<<"
+      ],
+      "source": "*fn-enchant [ \"Silk Touch\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-luck"
+      ],
+      "source": "\r\n    posx: 1\r\n    posy: 5\r\n    material: FISHING_ROD\r\n    <<: *fn-enchant [ \"Luck Of The Sea\" ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-luck",
+        "posx"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-luck",
+        "posy"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-luck",
+        "material"
+      ],
+      "source": "FISHING_ROD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-luck",
+        "<<"
+      ],
+      "source": "*fn-enchant [ \"Luck Of The Sea\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-lure"
+      ],
+      "source": "\r\n    posx: 2\r\n    posy: 5\r\n    material: FISHING_ROD\r\n    <<: *fn-enchant [ \"Lure\" ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-lure",
+        "posx"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-lure",
+        "posy"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-lure",
+        "material"
+      ],
+      "source": "FISHING_ROD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-lure",
+        "<<"
+      ],
+      "source": "*fn-enchant [ \"Lure\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-protection-fall"
+      ],
+      "source": "\r\n    posx: 3\r\n    posy: 5\r\n    material: FEATHER\r\n    <<: *fn-enchant [ \"Feather Falling\" ]\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-protection-fall",
+        "posx"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-protection-fall",
+        "posy"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-protection-fall",
+        "material"
+      ],
+      "source": "FEATHER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "enchant-protection-fall",
+        "<<"
+      ],
+      "source": "*fn-enchant [ \"Feather Falling\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back"
+      ],
+      "source": "\r\n    posx: 1\r\n    posy: 6\r\n    material: PLAYER_HEAD\r\n    skull: \"{$gui-back}\"\r\n    name: '{$p}Back'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "posx"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "posy"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "material"
+      ],
+      "source": "PLAYER_HEAD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "skull"
+      ],
+      "source": "\"{$gui-back}\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "name"
+      ],
+      "source": "'{$p}Back'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "decoration"
+      ],
+      "source": "\r\n    slots: [ 46, 47, 48, 49, 50, 51, 52 ]\r\n    material: BLACK_STAINED_GLASS_PANE\r\n    name: ''\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "decoration",
+        "slots"
+      ],
+      "source": "[ 46, 47, 48, 49, 50, 51, 52 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "46",
+        "47",
+        "48",
+        "49",
+        "50",
+        "51",
+        "52"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "decoration",
+        "material"
+      ],
+      "source": "BLACK_STAINED_GLASS_PANE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "decoration",
+        "name"
+      ],
+      "source": "''",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "remove-all"
+      ],
+      "source": "\r\n    posx: 9\r\n    posy: 6\r\n    material: RED_WOOL\r\n    name: '{$e}Remove All Enchantments'",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "remove-all",
+        "posx"
+      ],
+      "source": "9",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "remove-all",
+        "posy"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "remove-all",
+        "material"
+      ],
+      "source": "RED_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "remove-all",
+        "name"
+      ],
+      "source": "'{$e}Remove All Enchantments'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

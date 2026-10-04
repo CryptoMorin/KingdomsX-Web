@@ -1,0 +1,340 @@
+{
+  "formatVersion": 1,
+  "id": "addons/enginehub",
+  "resourceName": "enginehub.yml",
+  "sources": {
+    "schema": {
+      "addonId": "enginehub",
+      "artifactPath": "addons/Kingdoms-Addon-EngineHub-1.6.0.jar",
+      "artifactBlobSha": "67f070da4d22ca24adbed543854603585d031d35",
+      "artifactSha256": "5031072f65ae645269301935d8b38dcf26df31572b420e3f437dc8042d2a0423",
+      "addonVersion": "1.6.0",
+      "fileName": "schema--addons__enginehub.json"
+    },
+    "defaults": [
+      "default--enginehub.json"
+    ],
+    "runtime": null
+  },
+  "coverage": {
+    "defaultPathCount": 16,
+    "rawDefaultPathCount": 16,
+    "activeRuntimePathCount": 0,
+    "fieldCount": 16,
+    "capabilitySourceCounts": {
+      "jar-schema": 1,
+      "editor-overlay": 20,
+      "jar-default": 16
+    },
+    "commonSettingCount": 0
+  },
+  "schema": {
+    "kind": "object",
+    "fields": [
+      {
+        "key": "worldedit",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "schematics",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "enabled",
+                    "type": {
+                      "kind": "boolean",
+                      "description": "Should WorldEdit schematics be used for buildings instead of single blocks? Disabling this will not reverse changes done by \"/k admin schematic setup\" you'd have to reset your building configs. * Requires a restart to change.",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "default-save-format",
+                    "type": {
+                      "kind": "nullable",
+                      "value": {
+                        "kind": "enum",
+                        "values": [
+                          "MCEDIT_SCHEMATIC",
+                          "SPONGE_SCHEMATIC",
+                          "SPONGE_V1_SCHEMATIC",
+                          "SPONGE_V2_SCHEMATIC",
+                          "SPONGE_V3_SCHEMATIC",
+                          "FAST_V3",
+                          "FAST_V2",
+                          "PNG",
+                          "MINECRAFT_STRUCTURE",
+                          "BROKENENTITY"
+                        ],
+                        "description": "Documented WorldEdit or FAWE schematic format.",
+                        "optional": true,
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        }
+                      },
+                      "description": "Format used by /k admin schematic save. Leave automatic to use the newest format supported by the installed WorldEdit implementation.",
+                      "optional": true,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-default"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "key": "loading-mechanism",
+                    "type": {
+                      "kind": "object",
+                      "fields": [
+                        {
+                          "key": "forced-format",
+                          "type": {
+                            "kind": "nullable",
+                            "value": {
+                              "kind": "enum",
+                              "values": [
+                                "MCEDIT_SCHEMATIC",
+                                "SPONGE_SCHEMATIC",
+                                "SPONGE_V1_SCHEMATIC",
+                                "SPONGE_V2_SCHEMATIC",
+                                "SPONGE_V3_SCHEMATIC",
+                                "FAST_V3",
+                                "FAST_V2",
+                                "PNG",
+                                "MINECRAFT_STRUCTURE",
+                                "BROKENENTITY"
+                              ],
+                              "description": "Documented WorldEdit or FAWE schematic format.",
+                              "optional": true,
+                              "capability": {
+                                "sources": [
+                                  "editor-overlay"
+                                ]
+                              }
+                            },
+                            "description": "Force a format while loading schematics, mainly for debugging. Leave automatic to let WorldEdit detect the format.",
+                            "optional": true,
+                            "capability": {
+                              "sources": [
+                                "editor-overlay",
+                                "jar-default"
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "key": "bypass-fawe-extension-check",
+                          "type": {
+                            "kind": "boolean",
+                            "description": "FastAsyncWorldEdit (FAWE) additionally checks the file's extension before checking the file format and may ignore the file completely, this check doesn't exist in WorldEdit and is problematic.",
+                            "capability": {
+                              "sources": [
+                                "editor-overlay",
+                                "jar-default"
+                              ]
+                            },
+                            "optional": true
+                          }
+                        }
+                      ],
+                      "description": "",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "force-extension",
+                    "type": {
+                      "kind": "nullable",
+                      "value": {
+                        "kind": "string",
+                        "typeName": "FileExtension",
+                        "description": "File extension applied to saved schematics, such as schem or schematic.",
+                        "optional": true,
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        }
+                      },
+                      "description": "Force a schematic file extension. Leave automatic to apply only the compatibility fixes required by the installed WorldEdit implementation.",
+                      "optional": true,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-default"
+                        ]
+                      }
+                    }
+                  }
+                ],
+                "description": "",
+                "capability": {
+                  "sources": [
+                    "editor-overlay",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "edit-protection",
+              "type": {
+                "kind": "boolean",
+                "description": "Some server owners give players access to WorldEdit, should the plugin prevent players from editing in unauthorized claimed lands? The players will be notified of the blocks that couldn't be changed. If a single session changed multiple chunks, the allowed chunks will have their blocks changed. * You can bypass this using this permission: kingdoms.worldedit.bypass.edit-protection * Requires a restar to change.",
+                "capability": {
+                  "sources": [
+                    "editor-overlay",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            }
+          ],
+          "description": "",
+          "capability": {
+            "sources": [
+              "editor-overlay",
+              "jar-default"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "worldguard",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "register-flags",
+              "type": {
+                "kind": "boolean",
+                "description": "Should the plugin register WorldGuard flags? * Requires a restart to change.",
+                "capability": {
+                  "sources": [
+                    "editor-overlay",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "region-claim-protection",
+              "type": {
+                "kind": "boolean",
+                "description": "Should claiming in any WorldGuard regions be prevented? * Permission to bypass: kingdoms.worldguard.bypass.claim-protection",
+                "capability": {
+                  "sources": [
+                    "editor-overlay",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "protected-region-radius",
+              "type": {
+                "kind": "integer",
+                "description": "Claim-protection radius around WorldGuard regions, measured in lands rather than blocks.",
+                "optional": true,
+                "minimum": 0,
+                "capability": {
+                  "sources": [
+                    "editor-overlay",
+                    "jar-default"
+                  ]
+                }
+              }
+            },
+            {
+              "key": "indicator-ignore-regions",
+              "type": {
+                "kind": "boolean",
+                "description": "Wilderness regions that are protected will not have indicators. * Requires a restart to change.",
+                "capability": {
+                  "sources": [
+                    "editor-overlay",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "map-markers",
+              "type": {
+                "kind": "boolean",
+                "description": "Should WorldGuard regions be shown on /k map? * Requires a restart to change.",
+                "capability": {
+                  "sources": [
+                    "editor-overlay",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "keep-kingdoms-flight-with-flag",
+              "type": {
+                "kind": "nullable",
+                "value": {
+                  "kind": "string",
+                  "typeName": "WorldGuardFlag",
+                  "description": "WorldGuard flag that permits Kingdoms flight outside claimed land.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                },
+                "description": "WorldGuard flag that preserves Kingdoms flight. Leave disabled to turn this integration off.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay",
+                    "jar-default"
+                  ]
+                }
+              }
+            }
+          ],
+          "description": "",
+          "capability": {
+            "sources": [
+              "editor-overlay",
+              "jar-default"
+            ]
+          },
+          "optional": true
+        }
+      }
+    ],
+    "capability": {
+      "sources": [
+        "jar-schema"
+      ]
+    }
+  }
+}

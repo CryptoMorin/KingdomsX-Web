@@ -1,0 +1,344 @@
+{
+  "formatVersion": 1,
+  "source": {
+    "addonId": "map-viewers",
+    "artifactPath": "addons/Kingdoms-Addon-Map-Viewers-3.2.2.jar",
+    "artifactBlobSha": "29aaabc3ae8f20ecc1fe6ff4ea14652e4f5e96ac",
+    "artifactSha256": "b169a040912e6c578a6092569ea0e64e092b530f846bbb40b9f56f11104dcf4e",
+    "addonVersion": "3.2.2"
+  },
+  "resourceName": "maps/nations.yml",
+  "schemaId": "addons/maps/marker",
+  "sha256": "de0c3af2f3b3a9b18c164c0d4a193f1ebfe43246220e67b5a3efdbaa418bef1a",
+  "options": [
+    {
+      "path": [
+        "label"
+      ],
+      "source": "\"Nations\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "priority"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "z-index"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "special-flag"
+      ],
+      "source": "false",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "hide-by-default"
+      ],
+      "source": "false",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "show-controls"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "zoom"
+      ],
+      "source": "\r\n  min: -1\r\n  max: -1\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "zoom",
+        "min"
+      ],
+      "source": "-1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "zoom",
+        "max"
+      ],
+      "source": "-1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "fill"
+      ],
+      "source": "\r\n  opacity: 50\r\n  color: '01ce00'\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "fill",
+        "opacity"
+      ],
+      "source": "50",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "fill",
+        "color"
+      ],
+      "source": "'01ce00'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "line"
+      ],
+      "source": "\r\n  weight: 5\r\n  color: '017800'\r\n\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "line",
+        "weight"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "line",
+        "color"
+      ],
+      "source": "'017800'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[style]"
+      ],
+      "source": "&fn-style\r\n  args: [ \"{content}\" ]\r\n  return: |\r\n    <style>\r\n    {? flag_height > flag_width ? \"\r\n    .kingdoms-description {\r\n      display: flex;\r\n      align-items: center;\r\n      align-content: center;\r\n    }\r\n\r\n    .kingdoms-description-text {\r\n      margin-left: 10px;\r\n      flex-shrink: 0;\r\n    }\r\n    \" : \"\"}\r\n\r\n    .kingdoms-description-text {\r\n      white-space: nowrap;\r\n    }\r\n\r\n    .kingdoms-popup {\r\n      z-index: 1000;\r\n      padding: 1em;\r\n      animation-name: kingdoms-popup-animation;\r\n      animation-duration: 1s;\r\n      animation-timing-function: ease;\r\n    }\r\n\r\n    %popup_container_selector% {\r\n      max-width: none !important;\r\n      width: fit-content !important;\r\n      background-color: rgb(20 20 20);\r\n      border-radius: 5px;\r\n    }\r\n\r\n    @keyframes kingdoms-popup-animation {\r\n      0% {\r\n        box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);\r\n        transform: translatey(0px);\r\n      }\r\n      50% {\r\n        box-shadow: 0 25px 15px 0px rgba(0,0,0,0.2);\r\n        transform: translatey(-30px);\r\n      }\r\n        100% {\r\n        box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);\r\n        transform: translatey(0px);\r\n      }\r\n    }\r\n\r\n    @media screen and (prefers-reduced-motion: reduce) {\r\n      .kingdoms-popup { animation: none !important; }\r\n    }\r\n\r\n    .kingdoms-flex-item {\r\n      min-width: 0;\r\n      min-height: 0;\r\n    }\r\n\r\n    .leaflet-popup-content-wrapper:has(.kingdoms-popup) ~ .leaflet-popup-tip-container .leaflet-popup-tip {\r\n      background-color: rgb(20 20 20) !important;\r\n    }\r\n\r\n    .kingdoms-popup > div, .leaflet-popup-content-wrapper:has(.kingdoms-popup) .leaflet-popup-content {\r\n      width: auto !important;\r\n      margin: 13px 20px 13px 20px;\r\n    }\r\n\r\n    .kingdoms-popup h1,h2,h3,h4 {\r\n      text-align: center\r\n    }\r\n\r\n    .kingdoms-popup h1:after {\r\n      content: ' ';\r\n      display: block;\r\n      border: 0.07em solid rgb(50 50 50);\r\n      width: 80%;\r\n      margin-left: 10%;\r\n    }\r\n    </style>\r\n\r\n    <div class=\"kingdoms-popup\">\r\n      <h1><span style=\"color:#%kingdoms_nation_color%\">%html_kingdoms_nation_name%</span></h1>\r\n      <div class=\"kingdoms-description\">\r\n        %flag%\r\n        <div class=\"kingdoms-description-text kingdoms-flex-item\">\r\n          {content}\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[style]",
+        "args"
+      ],
+      "source": "[ \"{content}\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{content}\""
+      ]
+    },
+    {
+      "path": [
+        "[style]",
+        "return"
+      ],
+      "source": "|\r\n    <style>\r\n    {? flag_height > flag_width ? \"\r\n    .kingdoms-description {\r\n      display: flex;\r\n      align-items: center;\r\n      align-content: center;\r\n    }\r\n\r\n    .kingdoms-description-text {\r\n      margin-left: 10px;\r\n      flex-shrink: 0;\r\n    }\r\n    \" : \"\"}\r\n\r\n    .kingdoms-description-text {\r\n      white-space: nowrap;\r\n    }\r\n\r\n    .kingdoms-popup {\r\n      z-index: 1000;\r\n      padding: 1em;\r\n      animation-name: kingdoms-popup-animation;\r\n      animation-duration: 1s;\r\n      animation-timing-function: ease;\r\n    }\r\n\r\n    %popup_container_selector% {\r\n      max-width: none !important;\r\n      width: fit-content !important;\r\n      background-color: rgb(20 20 20);\r\n      border-radius: 5px;\r\n    }\r\n\r\n    @keyframes kingdoms-popup-animation {\r\n      0% {\r\n        box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);\r\n        transform: translatey(0px);\r\n      }\r\n      50% {\r\n        box-shadow: 0 25px 15px 0px rgba(0,0,0,0.2);\r\n        transform: translatey(-30px);\r\n      }\r\n        100% {\r\n        box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);\r\n        transform: translatey(0px);\r\n      }\r\n    }\r\n\r\n    @media screen and (prefers-reduced-motion: reduce) {\r\n      .kingdoms-popup { animation: none !important; }\r\n    }\r\n\r\n    .kingdoms-flex-item {\r\n      min-width: 0;\r\n      min-height: 0;\r\n    }\r\n\r\n    .leaflet-popup-content-wrapper:has(.kingdoms-popup) ~ .leaflet-popup-tip-container .leaflet-popup-tip {\r\n      background-color: rgb(20 20 20) !important;\r\n    }\r\n\r\n    .kingdoms-popup > div, .leaflet-popup-content-wrapper:has(.kingdoms-popup) .leaflet-popup-content {\r\n      width: auto !important;\r\n      margin: 13px 20px 13px 20px;\r\n    }\r\n\r\n    .kingdoms-popup h1,h2,h3,h4 {\r\n      text-align: center\r\n    }\r\n\r\n    .kingdoms-popup h1:after {\r\n      content: ' ';\r\n      display: block;\r\n      border: 0.07em solid rgb(50 50 50);\r\n      width: 80%;\r\n      margin-left: 10%;\r\n    }\r\n    </style>\r\n\r\n    <div class=\"kingdoms-popup\">\r\n      <h1><span style=\"color:#%kingdoms_nation_color%\">%html_kingdoms_nation_name%</span></h1>\r\n      <div class=\"kingdoms-description\">\r\n        %flag%\r\n        <div class=\"kingdoms-description-text kingdoms-flex-item\">\r\n          {content}\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "descriptions"
+      ],
+      "source": "\r\n  flag: '<img class=\"kingdoms-banner kingdoms-flex-item\" src=\"%src%\" alt=\"%kingdoms_nation_name% flag\" style=\"border:5px solid black;margin-bottom: 10px; {? flag_height > flag_width ? \"min-width: 100px;max-width: 100px;\" : \"min-width: 200px;max-width: 500px;width: 20vw;\"}\">'\r\n\r\n  click:\r\n    '[fn]': *fn-style\r\n    '{content}': |\r\n      <span style=\"color:green\">Might</span><span style=\"color:gray\">:</span> <span style=\"color:orange\">%fancy@kingdoms_nation_might%</span><br>\r\n      <span style=\"color:green\">Capital</span><span style=\"color:gray\">:</span> <span style=\"color:orange\">%kingdoms_nation:capital get=name%</span><br>\r\n      <span style=\"color:green\">Bank</span><span style=\"color:gray\">:</span> <span style=\"color:orange\">%fancy@kingdoms_nation_bank%</span><br>\r\n      <span style=\"color:green\">Resource Points</span><span style=\"color:gray\">:</span> <span style=\"color:orange\">%fancy@kingdoms_nation_resource_points%</span><br>\r\n      <span style=\"color:green\">Lands</span><span style=\"color:gray\">:</span> <span style=\"color:orange\">%kingdoms_nation:sum of=lands%</span><br>\r\n      <span style=\"color:green\">Kingdoms</span><span style=\"color:gray\">:</span> <span style=\"color:orange\">%kingdoms_nation:sum of=members%</span><span style=\"color:grey\"><br>\r\n      %members%\r\n      <br>\r\n\r\n  members: '<span style=\"font-weight:italic;color:%kingdoms_kingdom_color%\">%kingdoms_kingdom_name%</span> '\r\n  allies: '<span style=\"font-weight:italic;color:darkgreen\">%kingdoms_nation_name%</span> '\r\n  truces: '<span style=\"font-weight:italic;color:yellow\">%kingdoms_nation_name%</span> '\r\n  enemies: '<span style=\"font-weight:italic;codlor:red\">%kingdoms_nation_name%</span> '\r\n  hover: |\r\n    <h1><span style=\"color:%kingdoms_nation_color%\">%kingdoms_nation_name%</span></h1>\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "descriptions",
+        "flag"
+      ],
+      "source": "'<img class=\"kingdoms-banner kingdoms-flex-item\" src=\"%src%\" alt=\"%kingdoms_nation_name% flag\" style=\"border:5px solid black;margin-bottom: 10px; {? flag_height > flag_width ? \"min-width: 100px;max-width: 100px;\" : \"min-width: 200px;max-width: 500px;width: 20vw;\"}\">'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "descriptions",
+        "click"
+      ],
+      "source": "\r\n    '[fn]': *fn-style\r\n    '{content}': |\r\n      <span style=\"color:green\">Might</span><span style=\"color:gray\">:</span> <span style=\"color:orange\">%fancy@kingdoms_nation_might%</span><br>\r\n      <span style=\"color:green\">Capital</span><span style=\"color:gray\">:</span> <span style=\"color:orange\">%kingdoms_nation:capital get=name%</span><br>\r\n      <span style=\"color:green\">Bank</span><span style=\"color:gray\">:</span> <span style=\"color:orange\">%fancy@kingdoms_nation_bank%</span><br>\r\n      <span style=\"color:green\">Resource Points</span><span style=\"color:gray\">:</span> <span style=\"color:orange\">%fancy@kingdoms_nation_resource_points%</span><br>\r\n      <span style=\"color:green\">Lands</span><span style=\"color:gray\">:</span> <span style=\"color:orange\">%kingdoms_nation:sum of=lands%</span><br>\r\n      <span style=\"color:green\">Kingdoms</span><span style=\"color:gray\">:</span> <span style=\"color:orange\">%kingdoms_nation:sum of=members%</span><span style=\"color:grey\"><br>\r\n      %members%\r\n      <br>\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "descriptions",
+        "click",
+        "[fn]"
+      ],
+      "source": "*fn-style",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "descriptions",
+        "click",
+        "{content}"
+      ],
+      "source": "|\r\n      <span style=\"color:green\">Might</span><span style=\"color:gray\">:</span> <span style=\"color:orange\">%fancy@kingdoms_nation_might%</span><br>\r\n      <span style=\"color:green\">Capital</span><span style=\"color:gray\">:</span> <span style=\"color:orange\">%kingdoms_nation:capital get=name%</span><br>\r\n      <span style=\"color:green\">Bank</span><span style=\"color:gray\">:</span> <span style=\"color:orange\">%fancy@kingdoms_nation_bank%</span><br>\r\n      <span style=\"color:green\">Resource Points</span><span style=\"color:gray\">:</span> <span style=\"color:orange\">%fancy@kingdoms_nation_resource_points%</span><br>\r\n      <span style=\"color:green\">Lands</span><span style=\"color:gray\">:</span> <span style=\"color:orange\">%kingdoms_nation:sum of=lands%</span><br>\r\n      <span style=\"color:green\">Kingdoms</span><span style=\"color:gray\">:</span> <span style=\"color:orange\">%kingdoms_nation:sum of=members%</span><span style=\"color:grey\"><br>\r\n      %members%\r\n      <br>\r\n\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "descriptions",
+        "members"
+      ],
+      "source": "'<span style=\"font-weight:italic;color:%kingdoms_kingdom_color%\">%kingdoms_kingdom_name%</span> '",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "descriptions",
+        "allies"
+      ],
+      "source": "'<span style=\"font-weight:italic;color:darkgreen\">%kingdoms_nation_name%</span> '",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "descriptions",
+        "truces"
+      ],
+      "source": "'<span style=\"font-weight:italic;color:yellow\">%kingdoms_nation_name%</span> '",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "descriptions",
+        "enemies"
+      ],
+      "source": "'<span style=\"font-weight:italic;codlor:red\">%kingdoms_nation_name%</span> '",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "descriptions",
+        "hover"
+      ],
+      "source": "|\r\n    <h1><span style=\"color:%kingdoms_nation_color%\">%kingdoms_nation_name%</span></h1>\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

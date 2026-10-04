@@ -1,0 +1,736 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "guis/invsee.yml",
+  "schemaId": "guis/schema",
+  "options": [
+    {
+      "path": [
+        "title"
+      ],
+      "source": "\"&0-=( {$s}%target% &0)=-\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "rows"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sound"
+      ],
+      "source": "ENTITY_EXPERIENCE_ORB_PICKUP",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "context-start-row"
+      ],
+      "source": "3",
+      "comments": [
+        "We need 4 free rows. Don't forget about the hotbar."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options"
+      ],
+      "source": "\r\n  helmet:\r\n    name: '&cNo Helmet'\r\n    posx: 2\r\n    posy: 1\r\n    material: LEATHER_HELMET\r\n    flags: [ ALL ]\r\n  chestplate:\r\n    name: '&cNo Chestplate'\r\n    posx: 3\r\n    posy: 1\r\n    material: LEATHER_CHESTPLATE\r\n    flags: [ ALL ]\r\n  leggings:\r\n    name: '&cNo Leggings'\r\n    posx: 4\r\n    posy: 1\r\n    material: LEATHER_LEGGINGS\r\n    flags: [ ALL ]\r\n  boots:\r\n    name: '&cNo Boots'\r\n    posx: 5\r\n    posy: 1\r\n    material: LEATHER_BOOTS\r\n    flags: [ ALL ]\r\n  offhand:\r\n    name: '&cNo item in offhand'\r\n    posx: 7\r\n    posy: 1\r\n    material: WOODEN_HOE\r\n    flags: [ ALL ]\r\n  mainhand:\r\n    name: '&cNo item in main hand'\r\n    posx: 8\r\n    posy: 1\r\n    material: WOODEN_SWORD\r\n    flags: [ ALL ]\r\n  offhand-indicator:\r\n    name: '&cAbove is showing the offhand'\r\n    posx: 7\r\n    posy: 2\r\n    material: RED_STAINED_GLASS_PANE\r\n  mainhand-indicator:\r\n    name: '&cAbove is showing the main hand in slot{$colon} &e%held_slot%'\r\n    posx: 8\r\n    posy: 2\r\n    material: RED_STAINED_GLASS_PANE\r\n  separators:\r\n    name: ''\r\n    slots: [ 0, 5, 8, 9, 10, 11, 12, 13, 14, 17 ]\r\n    material: BLACK_STAINED_GLASS_PANE",
+      "comments": [
+        "It's important to not change the config entry names of armors and hands.",
+        "These slots will be replaced if the player has the item."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "helmet"
+      ],
+      "source": "\r\n    name: '&cNo Helmet'\r\n    posx: 2\r\n    posy: 1\r\n    material: LEATHER_HELMET\r\n    flags: [ ALL ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "helmet",
+        "name"
+      ],
+      "source": "'&cNo Helmet'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "helmet",
+        "posx"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "helmet",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "helmet",
+        "material"
+      ],
+      "source": "LEATHER_HELMET",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "helmet",
+        "flags"
+      ],
+      "source": "[ ALL ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "ALL"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "chestplate"
+      ],
+      "source": "\r\n    name: '&cNo Chestplate'\r\n    posx: 3\r\n    posy: 1\r\n    material: LEATHER_CHESTPLATE\r\n    flags: [ ALL ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "chestplate",
+        "name"
+      ],
+      "source": "'&cNo Chestplate'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "chestplate",
+        "posx"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "chestplate",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "chestplate",
+        "material"
+      ],
+      "source": "LEATHER_CHESTPLATE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "chestplate",
+        "flags"
+      ],
+      "source": "[ ALL ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "ALL"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "leggings"
+      ],
+      "source": "\r\n    name: '&cNo Leggings'\r\n    posx: 4\r\n    posy: 1\r\n    material: LEATHER_LEGGINGS\r\n    flags: [ ALL ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "leggings",
+        "name"
+      ],
+      "source": "'&cNo Leggings'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "leggings",
+        "posx"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "leggings",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "leggings",
+        "material"
+      ],
+      "source": "LEATHER_LEGGINGS",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "leggings",
+        "flags"
+      ],
+      "source": "[ ALL ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "ALL"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "boots"
+      ],
+      "source": "\r\n    name: '&cNo Boots'\r\n    posx: 5\r\n    posy: 1\r\n    material: LEATHER_BOOTS\r\n    flags: [ ALL ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "boots",
+        "name"
+      ],
+      "source": "'&cNo Boots'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "boots",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "boots",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "boots",
+        "material"
+      ],
+      "source": "LEATHER_BOOTS",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "boots",
+        "flags"
+      ],
+      "source": "[ ALL ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "ALL"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "offhand"
+      ],
+      "source": "\r\n    name: '&cNo item in offhand'\r\n    posx: 7\r\n    posy: 1\r\n    material: WOODEN_HOE\r\n    flags: [ ALL ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "offhand",
+        "name"
+      ],
+      "source": "'&cNo item in offhand'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "offhand",
+        "posx"
+      ],
+      "source": "7",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "offhand",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "offhand",
+        "material"
+      ],
+      "source": "WOODEN_HOE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "offhand",
+        "flags"
+      ],
+      "source": "[ ALL ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "ALL"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "mainhand"
+      ],
+      "source": "\r\n    name: '&cNo item in main hand'\r\n    posx: 8\r\n    posy: 1\r\n    material: WOODEN_SWORD\r\n    flags: [ ALL ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "mainhand",
+        "name"
+      ],
+      "source": "'&cNo item in main hand'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "mainhand",
+        "posx"
+      ],
+      "source": "8",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "mainhand",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "mainhand",
+        "material"
+      ],
+      "source": "WOODEN_SWORD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "mainhand",
+        "flags"
+      ],
+      "source": "[ ALL ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "ALL"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "offhand-indicator"
+      ],
+      "source": "\r\n    name: '&cAbove is showing the offhand'\r\n    posx: 7\r\n    posy: 2\r\n    material: RED_STAINED_GLASS_PANE\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "offhand-indicator",
+        "name"
+      ],
+      "source": "'&cAbove is showing the offhand'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "offhand-indicator",
+        "posx"
+      ],
+      "source": "7",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "offhand-indicator",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "offhand-indicator",
+        "material"
+      ],
+      "source": "RED_STAINED_GLASS_PANE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "mainhand-indicator"
+      ],
+      "source": "\r\n    name: '&cAbove is showing the main hand in slot{$colon} &e%held_slot%'\r\n    posx: 8\r\n    posy: 2\r\n    material: RED_STAINED_GLASS_PANE\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "mainhand-indicator",
+        "name"
+      ],
+      "source": "'&cAbove is showing the main hand in slot{$colon} &e%held_slot%'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "mainhand-indicator",
+        "posx"
+      ],
+      "source": "8",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "mainhand-indicator",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "mainhand-indicator",
+        "material"
+      ],
+      "source": "RED_STAINED_GLASS_PANE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "separators"
+      ],
+      "source": "\r\n    name: ''\r\n    slots: [ 0, 5, 8, 9, 10, 11, 12, 13, 14, 17 ]\r\n    material: BLACK_STAINED_GLASS_PANE",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "separators",
+        "name"
+      ],
+      "source": "''",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "separators",
+        "slots"
+      ],
+      "source": "[ 0, 5, 8, 9, 10, 11, 12, 13, 14, 17 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "0",
+        "5",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "17"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "separators",
+        "material"
+      ],
+      "source": "BLACK_STAINED_GLASS_PANE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

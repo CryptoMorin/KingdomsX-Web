@@ -1,11 +1,12 @@
 {
-  "extends": "./tsconfig.json",
+  "extends": "./server-directory/tsconfig.json",
   "compilerOptions": {
     "skipLibCheck": true,
-    "types": ["@cloudflare/workers-types", "@cloudflare/vitest-pool-workers/types"]
+    "types": ["@cloudflare/workers-types", "@cloudflare/vitest-plugin/types"]
   },
   "include": [
-    "bindings.local.d.ts",
+    "server-directory/bindings.production.d.ts",
+    "server-directory/bindings.local.d.ts",
     "bindings.local-check.ts",
     "test-support/**/*.ts",
     "tests/**/*.ts",

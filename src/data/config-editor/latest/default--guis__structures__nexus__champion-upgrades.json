@@ -1,0 +1,1543 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "guis/structures/nexus/champion-upgrades.yml",
+  "schemaId": "guis/schema",
+  "options": [
+    {
+      "path": [
+        "title"
+      ],
+      "source": "\"{$sep}-=( {$p}Champion Upgrades {$sep})=-\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "rows"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sound"
+      ],
+      "source": "ITEM_ARMOR_EQUIP_DIAMOND",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options"
+      ],
+      "source": "\r\n  settings:\r\n    name: \"&bSettings\"\r\n    material: DIAMOND_SWORD\r\n    flags: [ ALL ]\r\n    lore: |\r\n      {$desc}Change your champion's settings\r\n      such as upgrading its equipment or\r\n      changing your champion type.\r\n    posx: 3\r\n    posy: 2\r\n  health:\r\n    name: \"&bChampion Health\"\r\n    material: MELON_SLICE\r\n    lore: |\r\n      {$desc}Increases the champion's health\r\n      by {$p}50 {$desc}every level.\r\n      {$desc}Current champion's health{$colon} {$p}%scaling%\r\n\r\n      {? level >= 10 && kingdoms_kingdom_level < 2 ? \"{$kingdom-lvl-II}\"}\r\n      {? level >= 30 && kingdoms_kingdom_level < 3 ? \"{$kingdom-lvl-III}\"}\r\n      {$p}Level{$colon} {$s}%roman@level%\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n    posx: 4\r\n    posy: 2\r\n  reinforcements:\r\n    name: \"&bReinforcements\"\r\n    material: ZOMBIE_HEAD\r\n    lore: |\r\n      {$desc}Spawns nexus guardians every {$p}3 {$desc}minutes.\r\n      Each upgrade will reduce the spawn cooldown by {$p}15 seconds{$desc}.\r\n      These guards have the same stats as your nexus guards.\r\n\r\n      {$chk-kingdom-lvl-IV}\r\n      {$p}Level{$colon} {$s}%roman@level%\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n    posx: 5\r\n    posy: 2\r\n  resistance:\r\n    name: \"&bResistance\"\r\n    material: BRICK\r\n    lore: |\r\n      {$desc}Each upgrade adds {$p}10% {$desc}chance that the\r\n      champion won't take knockback.\r\n\r\n      {$p}Resistance{$colon} {$s}%scaling%\r\n      {$p}Level{$colon} {$s}%roman@level%\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n    posx: 6\r\n    posy: 2\r\n  speed:\r\n    name: \"&bSpeed\"\r\n    material: POTION\r\n    lore: |\r\n      {$desc}Increases the champion's speed when\r\n      its health is lower than {$p}20%\r\n\r\n      {$p}Level{$colon} {$s}%roman@level%\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n    posx: 7\r\n    posy: 2\r\n  focus:\r\n    name: \"&bFocus\"\r\n    material: ENDER_EYE\r\n    lore: |\r\n      {$desc}Players hit by the champion will\r\n      have {$p}%scaling% {$desc}second removed from all\r\n      their active potion effects.\r\n      Each upgrade increases the time removed by 1 second.\r\n\r\n      {$p}Level{$colon} {$s}%roman@level%\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n    posx: 3\r\n    posy: 3\r\n  strength:\r\n    name: \"&bStrength\"\r\n    material: ANVIL\r\n    lore: |\r\n      {$desc}Applies strength to the champion.\r\n      Potency is scaled according to this upgrade's level.\r\n\r\n      {$p}Level{$colon} {$s}%roman@level%\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n    posx: 4\r\n    posy: 3\r\n  throw:\r\n    name: \"&bThrow\"\r\n    material: COOKED_PORKCHOP\r\n    lore: |\r\n      {$desc}Every attack, there will be a chance\r\n      {$desc}to knock the player into the sky.\r\n      {$desc}Each upgrade increases this chance by {$p}10%{$desc}.\r\n\r\n      {$chk-kingdom-lvl-II}\r\n      {$p}Level{$colon} {$s}%roman@level%\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n    posx: 5\r\n    posy: 3\r\n  death-duel:\r\n    name: \"&bDeath Duel\"\r\n    material: GOLDEN_SWORD\r\n    flags: [ ALL ]\r\n    lore: |\r\n      {$desc}All players except the invader will deal\r\n      50% less damage to the champion. The\r\n      champion will also deal 50% more damage\r\n      to all players except the invader.\r\n\r\n      {$note} &9In this case the &2invader &9refers\r\n      to the player who initially used &2/k invade\r\n\r\n      {$p}Level{$colon} {$s}%roman@level%\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n    posx: 6\r\n    posy: 3\r\n  drag:\r\n    name: \"&bDrag\"\r\n    material: FISHING_ROD\r\n    lore: |\r\n      {$desc}If the invading player is more than\r\n      &2%scaling% {$desc}blocks away from the champion, the\r\n      player will be dragged to the champion.\r\n\r\n      {$chk-kingdom-lvl-III}\r\n      {$p}Level{$colon} {$s}%roman@level%\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n    posx: 7\r\n    posy: 3\r\n  thor:\r\n    name: \"&bThor\"\r\n    material: DIAMOND_AXE\r\n    flags: [ ALL ]\r\n    lore: |\r\n      {$desc}Every {$p}%cooldown%{$desc}, lightning\r\n      strikes the invading player and all\r\n      nearby non-allied players. Deals\r\n      damage, and knocks the players back also.\r\n      Each upgrade decreases the cooldown by 1 second.\r\n\r\n      {$chk-kingdom-lvl-III}\r\n      {$p}Level{$colon} {$s}%roman@level%\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n    posx: 3\r\n    posy: 4\r\n  damage-cap:\r\n    name: \"&bDamage Cap\"\r\n    material: DIAMOND_CHESTPLATE\r\n    flags: [ ALL ]\r\n    lore: |\r\n      {$desc}Your champion can only receive up to\r\n      &2%scaling% {$desc}damage on any attack.\r\n      Each upgrade decreases the damage cap by 1.\r\n\r\n      {$chk-kingdom-lvl-II}\r\n      {$p}Level{$colon} {$s}%roman@level%\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n    posx: 4\r\n    posy: 4\r\n  burst:\r\n    name: \"&bBurst\"\r\n    material: WIND_CHARGE\r\n    flags: [ ALL ]\r\n    lore: |\r\n      {$desc}When a lot of enemies are around\r\n      the champion, a powerful burst causes all\r\n      unfriendly players (and their pets) to\r\n      take damage and get thrown back.\r\n\r\n      {$p}Range{$colon} {$s}%fancy@upgrade_range%\r\n      {$p}Minimum Targets{$colon} {$s}%fancy@upgrade_min_targets%\r\n      {$p}Damage{$colon} {$s}%fancy@upgrade_damage%\r\n      {$p}Knockback{$colon} {$s}%fancy@upgrade_knockback%\r\n\r\n      {$chk-kingdom-lvl-V}\r\n      {$p}Level{$colon} {$s}%roman@level%\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n    posx: 5\r\n    posy: 4\r\n  plow:\r\n    name: \"&bPlow\"\r\n    material: COBWEB\r\n    lore: |\r\n      {$desc}Your champion will try to clear\r\n      lava and webs every {$p}%cooldown%\r\n\r\n      {$p}Level{$colon} {$s}%roman@level%\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n    posx: 6\r\n    posy: 4\r\n  fangs:\r\n    name: \"&bFangs\"\r\n    material: EVOKER_SPAWN_EGG\r\n    lore: |\r\n      {$desc}Spawn fangs for the enemy\r\n      players around the champion\r\n      every {$p}%cooldown%{$desc}.\r\n      Each upgrade increases the damage\r\n      and radius of the attack by {$p}1{$desc}.\r\n\r\n      {$p}Level{$colon} {$s}%roman@level%\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n    posx: 7\r\n    posy: 4\r\n\r\n  back:\r\n    name: \"{$p}Back\"\r\n    material: BARRIER\r\n    lore: \"\"\r\n    posx: 5\r\n    posy: 6\r\n  purple-glass:\r\n    name: \"\"\r\n    material: PURPLE_STAINED_GLASS_PANE\r\n    slots: [ 0, 2, 6, 8, 18, 26, 27, 35, 45, 47, 51, 53 ]\r\n  black-glass:\r\n    name: \"\"\r\n    material: BLACK_STAINED_GLASS_PANE\r\n    slots: [ 1, 7, 9, 17, 36, 44, 46, 52 ]\r\n  magenta-glass:\r\n    name: \"\"\r\n    material: MAGENTA_STAINED_GLASS_PANE\r\n    slots: [ 10, 16, 37, 43 ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "settings"
+      ],
+      "source": "\r\n    name: \"&bSettings\"\r\n    material: DIAMOND_SWORD\r\n    flags: [ ALL ]\r\n    lore: |\r\n      {$desc}Change your champion's settings\r\n      such as upgrading its equipment or\r\n      changing your champion type.\r\n    posx: 3\r\n    posy: 2\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "settings",
+        "name"
+      ],
+      "source": "\"&bSettings\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "settings",
+        "material"
+      ],
+      "source": "DIAMOND_SWORD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "settings",
+        "flags"
+      ],
+      "source": "[ ALL ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "ALL"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "settings",
+        "lore"
+      ],
+      "source": "|\r\n      {$desc}Change your champion's settings\r\n      such as upgrading its equipment or\r\n      changing your champion type.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "settings",
+        "posx"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "settings",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "health"
+      ],
+      "source": "\r\n    name: \"&bChampion Health\"\r\n    material: MELON_SLICE\r\n    lore: |\r\n      {$desc}Increases the champion's health\r\n      by {$p}50 {$desc}every level.\r\n      {$desc}Current champion's health{$colon} {$p}%scaling%\r\n\r\n      {? level >= 10 && kingdoms_kingdom_level < 2 ? \"{$kingdom-lvl-II}\"}\r\n      {? level >= 30 && kingdoms_kingdom_level < 3 ? \"{$kingdom-lvl-III}\"}\r\n      {$p}Level{$colon} {$s}%roman@level%\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n    posx: 4\r\n    posy: 2\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "health",
+        "name"
+      ],
+      "source": "\"&bChampion Health\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "health",
+        "material"
+      ],
+      "source": "MELON_SLICE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "health",
+        "lore"
+      ],
+      "source": "|\r\n      {$desc}Increases the champion's health\r\n      by {$p}50 {$desc}every level.\r\n      {$desc}Current champion's health{$colon} {$p}%scaling%\r\n\r\n      {? level >= 10 && kingdoms_kingdom_level < 2 ? \"{$kingdom-lvl-II}\"}\r\n      {? level >= 30 && kingdoms_kingdom_level < 3 ? \"{$kingdom-lvl-III}\"}\r\n      {$p}Level{$colon} {$s}%roman@level%\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "health",
+        "posx"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "health",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "reinforcements"
+      ],
+      "source": "\r\n    name: \"&bReinforcements\"\r\n    material: ZOMBIE_HEAD\r\n    lore: |\r\n      {$desc}Spawns nexus guardians every {$p}3 {$desc}minutes.\r\n      Each upgrade will reduce the spawn cooldown by {$p}15 seconds{$desc}.\r\n      These guards have the same stats as your nexus guards.\r\n\r\n      {$chk-kingdom-lvl-IV}\r\n      {$p}Level{$colon} {$s}%roman@level%\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n    posx: 5\r\n    posy: 2\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "reinforcements",
+        "name"
+      ],
+      "source": "\"&bReinforcements\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "reinforcements",
+        "material"
+      ],
+      "source": "ZOMBIE_HEAD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "reinforcements",
+        "lore"
+      ],
+      "source": "|\r\n      {$desc}Spawns nexus guardians every {$p}3 {$desc}minutes.\r\n      Each upgrade will reduce the spawn cooldown by {$p}15 seconds{$desc}.\r\n      These guards have the same stats as your nexus guards.\r\n\r\n      {$chk-kingdom-lvl-IV}\r\n      {$p}Level{$colon} {$s}%roman@level%\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "reinforcements",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "reinforcements",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "resistance"
+      ],
+      "source": "\r\n    name: \"&bResistance\"\r\n    material: BRICK\r\n    lore: |\r\n      {$desc}Each upgrade adds {$p}10% {$desc}chance that the\r\n      champion won't take knockback.\r\n\r\n      {$p}Resistance{$colon} {$s}%scaling%\r\n      {$p}Level{$colon} {$s}%roman@level%\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n    posx: 6\r\n    posy: 2\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "resistance",
+        "name"
+      ],
+      "source": "\"&bResistance\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "resistance",
+        "material"
+      ],
+      "source": "BRICK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "resistance",
+        "lore"
+      ],
+      "source": "|\r\n      {$desc}Each upgrade adds {$p}10% {$desc}chance that the\r\n      champion won't take knockback.\r\n\r\n      {$p}Resistance{$colon} {$s}%scaling%\r\n      {$p}Level{$colon} {$s}%roman@level%\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "resistance",
+        "posx"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "resistance",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "speed"
+      ],
+      "source": "\r\n    name: \"&bSpeed\"\r\n    material: POTION\r\n    lore: |\r\n      {$desc}Increases the champion's speed when\r\n      its health is lower than {$p}20%\r\n\r\n      {$p}Level{$colon} {$s}%roman@level%\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n    posx: 7\r\n    posy: 2\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "speed",
+        "name"
+      ],
+      "source": "\"&bSpeed\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "speed",
+        "material"
+      ],
+      "source": "POTION",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "speed",
+        "lore"
+      ],
+      "source": "|\r\n      {$desc}Increases the champion's speed when\r\n      its health is lower than {$p}20%\r\n\r\n      {$p}Level{$colon} {$s}%roman@level%\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "speed",
+        "posx"
+      ],
+      "source": "7",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "speed",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "focus"
+      ],
+      "source": "\r\n    name: \"&bFocus\"\r\n    material: ENDER_EYE\r\n    lore: |\r\n      {$desc}Players hit by the champion will\r\n      have {$p}%scaling% {$desc}second removed from all\r\n      their active potion effects.\r\n      Each upgrade increases the time removed by 1 second.\r\n\r\n      {$p}Level{$colon} {$s}%roman@level%\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n    posx: 3\r\n    posy: 3\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "focus",
+        "name"
+      ],
+      "source": "\"&bFocus\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "focus",
+        "material"
+      ],
+      "source": "ENDER_EYE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "focus",
+        "lore"
+      ],
+      "source": "|\r\n      {$desc}Players hit by the champion will\r\n      have {$p}%scaling% {$desc}second removed from all\r\n      their active potion effects.\r\n      Each upgrade increases the time removed by 1 second.\r\n\r\n      {$p}Level{$colon} {$s}%roman@level%\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "focus",
+        "posx"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "focus",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "strength"
+      ],
+      "source": "\r\n    name: \"&bStrength\"\r\n    material: ANVIL\r\n    lore: |\r\n      {$desc}Applies strength to the champion.\r\n      Potency is scaled according to this upgrade's level.\r\n\r\n      {$p}Level{$colon} {$s}%roman@level%\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n    posx: 4\r\n    posy: 3\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "strength",
+        "name"
+      ],
+      "source": "\"&bStrength\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "strength",
+        "material"
+      ],
+      "source": "ANVIL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "strength",
+        "lore"
+      ],
+      "source": "|\r\n      {$desc}Applies strength to the champion.\r\n      Potency is scaled according to this upgrade's level.\r\n\r\n      {$p}Level{$colon} {$s}%roman@level%\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "strength",
+        "posx"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "strength",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "throw"
+      ],
+      "source": "\r\n    name: \"&bThrow\"\r\n    material: COOKED_PORKCHOP\r\n    lore: |\r\n      {$desc}Every attack, there will be a chance\r\n      {$desc}to knock the player into the sky.\r\n      {$desc}Each upgrade increases this chance by {$p}10%{$desc}.\r\n\r\n      {$chk-kingdom-lvl-II}\r\n      {$p}Level{$colon} {$s}%roman@level%\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n    posx: 5\r\n    posy: 3\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "throw",
+        "name"
+      ],
+      "source": "\"&bThrow\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "throw",
+        "material"
+      ],
+      "source": "COOKED_PORKCHOP",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "throw",
+        "lore"
+      ],
+      "source": "|\r\n      {$desc}Every attack, there will be a chance\r\n      {$desc}to knock the player into the sky.\r\n      {$desc}Each upgrade increases this chance by {$p}10%{$desc}.\r\n\r\n      {$chk-kingdom-lvl-II}\r\n      {$p}Level{$colon} {$s}%roman@level%\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "throw",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "throw",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "death-duel"
+      ],
+      "source": "\r\n    name: \"&bDeath Duel\"\r\n    material: GOLDEN_SWORD\r\n    flags: [ ALL ]\r\n    lore: |\r\n      {$desc}All players except the invader will deal\r\n      50% less damage to the champion. The\r\n      champion will also deal 50% more damage\r\n      to all players except the invader.\r\n\r\n      {$note} &9In this case the &2invader &9refers\r\n      to the player who initially used &2/k invade\r\n\r\n      {$p}Level{$colon} {$s}%roman@level%\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n    posx: 6\r\n    posy: 3\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "death-duel",
+        "name"
+      ],
+      "source": "\"&bDeath Duel\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "death-duel",
+        "material"
+      ],
+      "source": "GOLDEN_SWORD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "death-duel",
+        "flags"
+      ],
+      "source": "[ ALL ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "ALL"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "death-duel",
+        "lore"
+      ],
+      "source": "|\r\n      {$desc}All players except the invader will deal\r\n      50% less damage to the champion. The\r\n      champion will also deal 50% more damage\r\n      to all players except the invader.\r\n\r\n      {$note} &9In this case the &2invader &9refers\r\n      to the player who initially used &2/k invade\r\n\r\n      {$p}Level{$colon} {$s}%roman@level%\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "death-duel",
+        "posx"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "death-duel",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "drag"
+      ],
+      "source": "\r\n    name: \"&bDrag\"\r\n    material: FISHING_ROD\r\n    lore: |\r\n      {$desc}If the invading player is more than\r\n      &2%scaling% {$desc}blocks away from the champion, the\r\n      player will be dragged to the champion.\r\n\r\n      {$chk-kingdom-lvl-III}\r\n      {$p}Level{$colon} {$s}%roman@level%\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n    posx: 7\r\n    posy: 3\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "drag",
+        "name"
+      ],
+      "source": "\"&bDrag\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "drag",
+        "material"
+      ],
+      "source": "FISHING_ROD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "drag",
+        "lore"
+      ],
+      "source": "|\r\n      {$desc}If the invading player is more than\r\n      &2%scaling% {$desc}blocks away from the champion, the\r\n      player will be dragged to the champion.\r\n\r\n      {$chk-kingdom-lvl-III}\r\n      {$p}Level{$colon} {$s}%roman@level%\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "drag",
+        "posx"
+      ],
+      "source": "7",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "drag",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "thor"
+      ],
+      "source": "\r\n    name: \"&bThor\"\r\n    material: DIAMOND_AXE\r\n    flags: [ ALL ]\r\n    lore: |\r\n      {$desc}Every {$p}%cooldown%{$desc}, lightning\r\n      strikes the invading player and all\r\n      nearby non-allied players. Deals\r\n      damage, and knocks the players back also.\r\n      Each upgrade decreases the cooldown by 1 second.\r\n\r\n      {$chk-kingdom-lvl-III}\r\n      {$p}Level{$colon} {$s}%roman@level%\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n    posx: 3\r\n    posy: 4\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "thor",
+        "name"
+      ],
+      "source": "\"&bThor\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "thor",
+        "material"
+      ],
+      "source": "DIAMOND_AXE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "thor",
+        "flags"
+      ],
+      "source": "[ ALL ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "ALL"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "thor",
+        "lore"
+      ],
+      "source": "|\r\n      {$desc}Every {$p}%cooldown%{$desc}, lightning\r\n      strikes the invading player and all\r\n      nearby non-allied players. Deals\r\n      damage, and knocks the players back also.\r\n      Each upgrade decreases the cooldown by 1 second.\r\n\r\n      {$chk-kingdom-lvl-III}\r\n      {$p}Level{$colon} {$s}%roman@level%\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "thor",
+        "posx"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "thor",
+        "posy"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "damage-cap"
+      ],
+      "source": "\r\n    name: \"&bDamage Cap\"\r\n    material: DIAMOND_CHESTPLATE\r\n    flags: [ ALL ]\r\n    lore: |\r\n      {$desc}Your champion can only receive up to\r\n      &2%scaling% {$desc}damage on any attack.\r\n      Each upgrade decreases the damage cap by 1.\r\n\r\n      {$chk-kingdom-lvl-II}\r\n      {$p}Level{$colon} {$s}%roman@level%\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n    posx: 4\r\n    posy: 4\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "damage-cap",
+        "name"
+      ],
+      "source": "\"&bDamage Cap\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "damage-cap",
+        "material"
+      ],
+      "source": "DIAMOND_CHESTPLATE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "damage-cap",
+        "flags"
+      ],
+      "source": "[ ALL ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "ALL"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "damage-cap",
+        "lore"
+      ],
+      "source": "|\r\n      {$desc}Your champion can only receive up to\r\n      &2%scaling% {$desc}damage on any attack.\r\n      Each upgrade decreases the damage cap by 1.\r\n\r\n      {$chk-kingdom-lvl-II}\r\n      {$p}Level{$colon} {$s}%roman@level%\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "damage-cap",
+        "posx"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "damage-cap",
+        "posy"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "burst"
+      ],
+      "source": "\r\n    name: \"&bBurst\"\r\n    material: WIND_CHARGE\r\n    flags: [ ALL ]\r\n    lore: |\r\n      {$desc}When a lot of enemies are around\r\n      the champion, a powerful burst causes all\r\n      unfriendly players (and their pets) to\r\n      take damage and get thrown back.\r\n\r\n      {$p}Range{$colon} {$s}%fancy@upgrade_range%\r\n      {$p}Minimum Targets{$colon} {$s}%fancy@upgrade_min_targets%\r\n      {$p}Damage{$colon} {$s}%fancy@upgrade_damage%\r\n      {$p}Knockback{$colon} {$s}%fancy@upgrade_knockback%\r\n\r\n      {$chk-kingdom-lvl-V}\r\n      {$p}Level{$colon} {$s}%roman@level%\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n    posx: 5\r\n    posy: 4\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "burst",
+        "name"
+      ],
+      "source": "\"&bBurst\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "burst",
+        "material"
+      ],
+      "source": "WIND_CHARGE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "burst",
+        "flags"
+      ],
+      "source": "[ ALL ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "ALL"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "burst",
+        "lore"
+      ],
+      "source": "|\r\n      {$desc}When a lot of enemies are around\r\n      the champion, a powerful burst causes all\r\n      unfriendly players (and their pets) to\r\n      take damage and get thrown back.\r\n\r\n      {$p}Range{$colon} {$s}%fancy@upgrade_range%\r\n      {$p}Minimum Targets{$colon} {$s}%fancy@upgrade_min_targets%\r\n      {$p}Damage{$colon} {$s}%fancy@upgrade_damage%\r\n      {$p}Knockback{$colon} {$s}%fancy@upgrade_knockback%\r\n\r\n      {$chk-kingdom-lvl-V}\r\n      {$p}Level{$colon} {$s}%roman@level%\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "burst",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "burst",
+        "posy"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "plow"
+      ],
+      "source": "\r\n    name: \"&bPlow\"\r\n    material: COBWEB\r\n    lore: |\r\n      {$desc}Your champion will try to clear\r\n      lava and webs every {$p}%cooldown%\r\n\r\n      {$p}Level{$colon} {$s}%roman@level%\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n    posx: 6\r\n    posy: 4\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "plow",
+        "name"
+      ],
+      "source": "\"&bPlow\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "plow",
+        "material"
+      ],
+      "source": "COBWEB",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "plow",
+        "lore"
+      ],
+      "source": "|\r\n      {$desc}Your champion will try to clear\r\n      lava and webs every {$p}%cooldown%\r\n\r\n      {$p}Level{$colon} {$s}%roman@level%\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "plow",
+        "posx"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "plow",
+        "posy"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "fangs"
+      ],
+      "source": "\r\n    name: \"&bFangs\"\r\n    material: EVOKER_SPAWN_EGG\r\n    lore: |\r\n      {$desc}Spawn fangs for the enemy\r\n      players around the champion\r\n      every {$p}%cooldown%{$desc}.\r\n      Each upgrade increases the damage\r\n      and radius of the attack by {$p}1{$desc}.\r\n\r\n      {$p}Level{$colon} {$s}%roman@level%\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n    posx: 7\r\n    posy: 4\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "fangs",
+        "name"
+      ],
+      "source": "\"&bFangs\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "fangs",
+        "material"
+      ],
+      "source": "EVOKER_SPAWN_EGG",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "fangs",
+        "lore"
+      ],
+      "source": "|\r\n      {$desc}Spawn fangs for the enemy\r\n      players around the champion\r\n      every {$p}%cooldown%{$desc}.\r\n      Each upgrade increases the damage\r\n      and radius of the attack by {$p}1{$desc}.\r\n\r\n      {$p}Level{$colon} {$s}%roman@level%\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "fangs",
+        "posx"
+      ],
+      "source": "7",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "fangs",
+        "posy"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back"
+      ],
+      "source": "\r\n    name: \"{$p}Back\"\r\n    material: BARRIER\r\n    lore: \"\"\r\n    posx: 5\r\n    posy: 6\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "name"
+      ],
+      "source": "\"{$p}Back\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "material"
+      ],
+      "source": "BARRIER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "lore"
+      ],
+      "source": "\"\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "posy"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "purple-glass"
+      ],
+      "source": "\r\n    name: \"\"\r\n    material: PURPLE_STAINED_GLASS_PANE\r\n    slots: [ 0, 2, 6, 8, 18, 26, 27, 35, 45, 47, 51, 53 ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "purple-glass",
+        "name"
+      ],
+      "source": "\"\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "purple-glass",
+        "material"
+      ],
+      "source": "PURPLE_STAINED_GLASS_PANE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "purple-glass",
+        "slots"
+      ],
+      "source": "[ 0, 2, 6, 8, 18, 26, 27, 35, 45, 47, 51, 53 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "0",
+        "2",
+        "6",
+        "8",
+        "18",
+        "26",
+        "27",
+        "35",
+        "45",
+        "47",
+        "51",
+        "53"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "black-glass"
+      ],
+      "source": "\r\n    name: \"\"\r\n    material: BLACK_STAINED_GLASS_PANE\r\n    slots: [ 1, 7, 9, 17, 36, 44, 46, 52 ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "black-glass",
+        "name"
+      ],
+      "source": "\"\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "black-glass",
+        "material"
+      ],
+      "source": "BLACK_STAINED_GLASS_PANE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "black-glass",
+        "slots"
+      ],
+      "source": "[ 1, 7, 9, 17, 36, 44, 46, 52 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "1",
+        "7",
+        "9",
+        "17",
+        "36",
+        "44",
+        "46",
+        "52"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "magenta-glass"
+      ],
+      "source": "\r\n    name: \"\"\r\n    material: MAGENTA_STAINED_GLASS_PANE\r\n    slots: [ 10, 16, 37, 43 ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "magenta-glass",
+        "name"
+      ],
+      "source": "\"\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "magenta-glass",
+        "material"
+      ],
+      "source": "MAGENTA_STAINED_GLASS_PANE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "magenta-glass",
+        "slots"
+      ],
+      "source": "[ 10, 16, 37, 43 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "10",
+        "16",
+        "37",
+        "43"
+      ]
+    }
+  ]
+}

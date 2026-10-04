@@ -1,0 +1,186 @@
+{
+  "formatVersion": 1,
+  "id": "item-matcher",
+  "resourceName": "item-matcher.yml",
+  "sources": {
+    "schema": {
+      "kind": "kingdomsx-jar",
+      "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+      "pluginVersion": "1.17.27.3",
+      "fileName": "item-matcher.json"
+    },
+    "defaults": [],
+    "runtime": {
+      "kind": "kingdomsx-jar",
+      "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+      "pluginVersion": "1.17.27.3"
+    }
+  },
+  "coverage": {
+    "defaultPathCount": 0,
+    "rawDefaultPathCount": 0,
+    "activeRuntimePathCount": 0,
+    "fieldCount": 6,
+    "capabilitySourceCounts": {
+      "jar-schema": 1,
+      "editor-overlay": 8
+    },
+    "commonSettingCount": 0
+  },
+  "schema": {
+    "kind": "object",
+    "fields": [
+      {
+        "key": "name",
+        "type": {
+          "kind": "advanced",
+          "typeName": "StringMatcher",
+          "description": "Displayed-name matcher.",
+          "optional": true
+        }
+      },
+      {
+        "key": "lore",
+        "type": {
+          "kind": "advanced",
+          "typeName": "StringMatcher",
+          "description": "Lore matcher.",
+          "optional": true
+        }
+      },
+      {
+        "key": "material",
+        "type": {
+          "kind": "advanced",
+          "typeName": "StringMatcher<Material>",
+          "description": "Material matcher.",
+          "optional": true
+        }
+      },
+      {
+        "key": "custom-model-data",
+        "type": {
+          "kind": "union",
+          "description": "Custom model data number, text, or color matcher.",
+          "choices": [
+            {
+              "kind": "integer",
+              "description": "",
+              "capability": {
+                "sources": [
+                  "editor-overlay"
+                ]
+              }
+            },
+            {
+              "kind": "string",
+              "typeName": "str",
+              "description": "",
+              "capability": {
+                "sources": [
+                  "editor-overlay"
+                ]
+              }
+            },
+            {
+              "kind": "advanced",
+              "typeName": "Color",
+              "description": "Minecraft RGB or hexadecimal color."
+            }
+          ],
+          "optional": true
+        }
+      },
+      {
+        "key": "enchants",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "suggestion",
+            "typeName": "Enchant",
+            "allowCustom": true,
+            "description": "Spigot Enchant.",
+            "capability": {
+              "sources": [
+                "editor-overlay"
+              ]
+            }
+          },
+          "values": {
+            "kind": "union",
+            "description": "Any level (*), an exact level, or a condition using the lvl variable.",
+            "choices": [
+              {
+                "kind": "enum",
+                "values": [
+                  "*"
+                ],
+                "allowCustom": false,
+                "description": "",
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              },
+              {
+                "kind": "integer",
+                "description": "",
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              },
+              {
+                "kind": "expression",
+                "language": "condition"
+              }
+            ]
+          },
+          "description": "Enchantment requirements.",
+          "capability": {
+            "sources": [
+              "editor-overlay"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "nbt",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "string",
+            "typeName": "str",
+            "description": "",
+            "capability": {
+              "sources": [
+                "editor-overlay"
+              ]
+            }
+          },
+          "values": {
+            "kind": "advanced",
+            "typeName": "StringMatcher"
+          },
+          "description": "NBT paths mapped to string matchers.",
+          "capability": {
+            "sources": [
+              "editor-overlay"
+            ]
+          },
+          "optional": true
+        }
+      }
+    ],
+    "capability": {
+      "sources": [
+        "jar-schema"
+      ]
+    },
+    "description": "Optional item properties that must match. Unspecified properties are ignored.",
+    "required": []
+  }
+}

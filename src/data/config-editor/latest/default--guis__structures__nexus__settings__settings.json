@@ -1,0 +1,1355 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "guis/structures/nexus/settings/settings.yml",
+  "schemaId": "guis/schema",
+  "options": [
+    {
+      "path": [
+        "title"
+      ],
+      "source": "\"{$sep}-=( {$sep}Settings {$sep})=-\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "rows"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sound"
+      ],
+      "source": "ITEM_BOOK_PAGE_TURN",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options"
+      ],
+      "source": "\r\n  back:\r\n    posx: 1\r\n    posy: 1\r\n    material: PLAYER_HEAD\r\n    name: '{$p}Back'\r\n    lore: [ '{$s}Go back to nexus menu.' ]\r\n    skull: \"{$gui-back}\"\r\n  light-blue-stained-glass-pane:\r\n    slots: [ 1, 2, 6, 7, 8, 9, 17, 18, 21, 23, 26, 27, 29, 30, 32, 33, 35, 36, 39, 41, 44, 45, 53 ]\r\n    material: LIGHT_BLUE_STAINED_GLASS_PANE\r\n    name: ''\r\n  upgrade:\r\n    posx: 5\r\n    posy: 4\r\n    material: NETHER_STAR\r\n    upgrade:\r\n      condition: \"level < max_level\"\r\n      name: \"{$sp}Upgrade{$colon} {$s}%roman@level% {$arrow} {$s}%roman@next_level%\"\r\n      material: NETHER_STAR\r\n      lvl-I:\r\n        condition: 'level == 1'\r\n        lore: |\r\n          {$dot} {$p}&lMisc Upgrades{$colon}\r\n            {$sdot} {$s}Unlock Insanity\r\n\r\n          {$dot} {$p}&lPowerups{$colon}\r\n            {$sdot} {$s}All Upgrades{$colon} {$sp}{$lvlup} Lvl. 30\r\n\r\n          {$dot} {$p}&lChampion Upgrades{$colon}\r\n            {$sdot} {$s}Unlock Throw\r\n            {$sdot} {$s}Unlock Damage Cap\r\n            {$sdot} {$s}Health{$colon} {$sp}{$lvlup} Lvl. 30\r\n\r\n          {$dot} {$p}&lTurrets{$colon}\r\n            {$sdot} {$s}Unlock Healing Turret\r\n            {$sdot} {$s}Unlock Flame Turret\r\n\r\n          {$dot} {$p}&lStructures{$colon}\r\n            {$sdot} {$s}Unlock Powercell\r\n            {$sdot} {$s}Unlock Outpost\r\n\r\n          {$p}Max Level{$colon} {$s}%roman@max_level%\r\n          {$p}Cost{$colon} {$s}%fancy@upgrade_cost%\r\n      lvl-II:\r\n        condition: 'level == 2'\r\n        lore: |\r\n          {$dot} {$p}&lMisc Upgrades{$colon}\r\n            {$sdot} {$s}Unlock Guards\r\n            {$sdot} {$s}Unlock Glory\r\n            {$sdot} {$s}Unlock Keep Inventory\r\n\r\n          {$dot} {$p}&lPowerups{$colon}\r\n            {$sdot} {$s}All Upgrades{$colon} {$sp}{$lvlup} Lvl. 40\r\n\r\n          {$dot} {$p}&lChampion Upgrades{$colon}\r\n            {$sdot} {$s}Unlock Drag\r\n            {$sdot} {$s}Unlock Thor\r\n            {$sdot} {$s}Health{$colon} {$sp}{$lvlup} Lvl. 40\r\n\r\n          {$dot} {$p}&lTurrets{$colon}\r\n            {$sdot} {$s}Unlock Psionic Turret\r\n            {$sdot} {$s}Unlock HellFire Turret\r\n\r\n          {$dot} {$p}&lStructures{$colon}\r\n            {$sdot} {$s}Unlock Extractor\r\n\r\n          {$p}Max Level{$colon} {$s}%roman@max_level%\r\n          {$p}Cost{$colon} {$s}%fancy@upgrade_cost%\r\n      lvl-III:\r\n        condition: 'level == 3'\r\n        lore: |\r\n          {$dot} {$p}&lMisc Upgrades{$colon}\r\n            {$sdot} {$s}Unlock Nexus Guards\r\n            {$sdot} {$s}Keep Inventory{$colon}: {$sp}{$lvlup} Lvl. 2\r\n\r\n          {$dot} {$p}&lPowerups{$colon}\r\n            {$sdot} {$s}All Upgrades{$colon} {$sp}{$lvlup} Lvl. 50\r\n\r\n          {$dot} {$p}&lChampion Upgrades{$colon}\r\n            {$sdot} {$s}Unlock Reinforcements\r\n\r\n          {$dot} {$p}&lTurrets{$colon}\r\n            {$sdot} {$s}Unlock Heatbeam Turret\r\n            {$sdot} {$s}Unlock Soldier Turret\r\n\r\n          {$dot} {$p}&lStructures{$colon}\r\n            {$sdot} {$s}Unlock WarpPad Structure\r\n            {$sdot} {$s}Unlock Regulator Structure\r\n\r\n          {$p}Max Level{$colon} {$s}%roman@max_level%\r\n          {$p}Cost{$colon} {$s}%fancy@upgrade_cost%\r\n      lvl-IV:\r\n        condition: 'level == 4'\r\n        lore: |\r\n          {$dot} {$p}&lMisc Upgrades{$colon}\r\n            {$sdot} {$s}Unlock Flight\r\n            {$sdot} {$s}Keep Inventory{$colon}: {$sp}{$lvlup} Lvl. 3\r\n\r\n          {$dot} {$p}&lPowerups{$colon}\r\n            {$sdot} {$s}All Upgrades{$colon} {$sp}{$lvlup} Lvl. 70\r\n\r\n          {$dot} {$p}&lChampion Upgrades{$colon}\r\n            {$sdot} {$s}Unlocks Burst\r\n\r\n          {$dot} {$p}&lTurrets{$colon}\r\n            {$sdot} {$s}Unlock Inferno Turret\r\n\r\n          {$dot} {$p}&lStructures{$colon}\r\n            {$sdot} {$s}Unlock Siege Cannon\r\n\r\n          {$p}Max Level{$colon} {$s}%roman@max_level%\r\n          {$p}Cost{$colon} {$s}%fancy@upgrade_cost%\r\n      else:\r\n        lore: [ \"&cUnknown Kingdom Upgrade: %level%\" ]\r\n    maxxed:\r\n      name: \"{$sp}Kingdom Level{$colon} {$s}%roman@level% {$sep}(&5Maxxed{$sep})\"\r\n      material: NETHER_STAR\r\n  public-home:\r\n    posx: 4\r\n    posy: 1\r\n    material: DARK_OAK_DOOR\r\n    name: \"{$s}Public Home{$colon} %bool@kingdoms_kingdom_home_is_public%\"\r\n    lore: |\r\n      {$sep}When your home is public, anyone\r\n      can teleport to it using\r\n      {$p}/k home %kingdoms_kingdom_name%\r\n\r\n      {$p}Left-click {$sep}to toggle public homes.\r\n      {$p}Right-click {$sep}to set public home cost.\r\n      This cost is only for people outside of your\r\n      kingdom.\r\n      {$p}Current Home Tax{$colon} {$s}%kingdoms_kingdom_taxes_home%\r\n\r\n      {$note} Both kingdoms need to have\r\n      the HOME relationship attribute for\r\n      your relationship for this to work.\r\n  hidden:\r\n    posx: 5\r\n    posy: 1\r\n    material: POTION\r\n    color: 818595\r\n    name: \"{$s}Hidden{$colon} %bool@kingdoms_kingdom_is_hidden%\"\r\n    lore: |\r\n      {$sep}Hidden kingdoms aren't displayed\r\n      in {$p}/k map {$sep}and online maps.\r\n  tax:\r\n    posx: 6\r\n    posy: 1\r\n    material: PAPER\r\n    name: '{$s}Tax'\r\n    lore: |\r\n      {$sep}Change your kingdom taxes\r\n      for members.\r\n\r\n      {$s}Member Tax Equation{$colon}\r\n      {$p}%tax_equation%\r\n      {? is_member ? \"{$s}Your Personal Tax{$colon} {$p}$%fancy@kingdoms_tax%\" }\r\n\r\n      {$s}Kingdom Tax{$colon} {$p}$%fancy@kingdoms_kingdom_tax%\r\n  blue-stained-glass-pane:\r\n    slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 25, 28, 34, 37, 43, 46, 47, 48, 49, 50, 51, 52 ]\r\n    material: BLUE_STAINED_GLASS_PANE\r\n    name: ''\r\n  relations:\r\n    posx: 3\r\n    posy: 3\r\n    material: WRITABLE_BOOK\r\n    name: '{$s}Relations'\r\n    lore: |\r\n      {$sep}Change your relation attributes\r\n      for other kingdoms.\r\n\r\n      {$sep}[&e!{$sep}] {$es}In order for some attributes\r\n      to work, both kingdoms need to have the\r\n      attribute enabled for the relationship.\r\n\r\n      For example, if you have {$e}BUILD {$es}attribute\r\n      enabled for allies, but you're trying to\r\n      build in an ally's land that doesn't\r\n      have {$e}BUILD {$es}attribute enabled for allies,\r\n      this won't work. They won't be able to\r\n      build in your land either.\r\n  banners:\r\n    posx: 5\r\n    posy: 3\r\n    material: BLACK_BANNER\r\n    name: '{$s}Flags & Banners'\r\n    lore: |\r\n      {$sep}Set your kingdom flag and banner\r\n      for online web maps, icons, and they may\r\n      also appear in other places as decorative\r\n      blocks and a symbol of your kingdom.\r\n  pacifism:\r\n    posx: 7\r\n    posy: 3\r\n    material: END_CRYSTAL\r\n    name: '{$s}Pacifist{$colon} %bool@kingdoms_kingdom_is_pacifist%'\r\n    lore: |\r\n      {$sep}When you're in pacifism mode,\r\n      your kingdom cannot invade\r\n      and cannot be invaded by other kingdoms.\r\n\r\n      If you invade a Kingdom, you cannot go\r\n      back into pacifism mode for a week.\r\n      {? pacifism_left > 0 ? \"\r\n      {$p}Cooldown{$colon} {$s}%pacifism_cooldown%\" }\r\n  invites:\r\n    posx: 3\r\n    posy: 5\r\n    material: BOOK\r\n    name: '{$s}Requires Invite{$colon} %bool@kingdoms_kingdom_requires_invite%'\r\n    lore: |\r\n      {$sep}When turned off, anyone can\r\n      join this kingdom without needing\r\n      an invitation with {$p}/k join %kingdoms_kingdom_name%\r\n  color:\r\n    posx: 5\r\n    posy: 5\r\n    material: LIME_DYE\r\n    name: '{$s}Color{$colon} &c%r%{$sep}, {$p}%g%{$sep}, {$sp}%b% {$sep}(%hex@kingdoms_kingdom_color%%kingdoms_kingdom_color%{$sep})'\r\n    lore: |\r\n      {$sep}Set your kingdom marker\r\n      color for chat and online land maps.\r\n  shields:\r\n    posx: 7\r\n    posy: 5\r\n    material: SHIELD\r\n    name: '{$s}Shield{$colon} {$p}%time@kingdoms_shield_time_left%'\r\n    lore: |\r\n      {$sep}Buy a shield for your\r\n      kingdom to protect your kingdom\r\n      against invades.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back"
+      ],
+      "source": "\r\n    posx: 1\r\n    posy: 1\r\n    material: PLAYER_HEAD\r\n    name: '{$p}Back'\r\n    lore: [ '{$s}Go back to nexus menu.' ]\r\n    skull: \"{$gui-back}\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "posx"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "material"
+      ],
+      "source": "PLAYER_HEAD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "name"
+      ],
+      "source": "'{$p}Back'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "lore"
+      ],
+      "source": "[ '{$s}Go back to nexus menu.' ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "'{$s}Go back to nexus menu.'"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "skull"
+      ],
+      "source": "\"{$gui-back}\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "light-blue-stained-glass-pane"
+      ],
+      "source": "\r\n    slots: [ 1, 2, 6, 7, 8, 9, 17, 18, 21, 23, 26, 27, 29, 30, 32, 33, 35, 36, 39, 41, 44, 45, 53 ]\r\n    material: LIGHT_BLUE_STAINED_GLASS_PANE\r\n    name: ''\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "light-blue-stained-glass-pane",
+        "slots"
+      ],
+      "source": "[ 1, 2, 6, 7, 8, 9, 17, 18, 21, 23, 26, 27, 29, 30, 32, 33, 35, 36, 39, 41, 44, 45, 53 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "1",
+        "2",
+        "6",
+        "7",
+        "8",
+        "9",
+        "17",
+        "18",
+        "21",
+        "23",
+        "26",
+        "27",
+        "29",
+        "30",
+        "32",
+        "33",
+        "35",
+        "36",
+        "39",
+        "41",
+        "44",
+        "45",
+        "53"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "light-blue-stained-glass-pane",
+        "material"
+      ],
+      "source": "LIGHT_BLUE_STAINED_GLASS_PANE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "light-blue-stained-glass-pane",
+        "name"
+      ],
+      "source": "''",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "upgrade"
+      ],
+      "source": "\r\n    posx: 5\r\n    posy: 4\r\n    material: NETHER_STAR\r\n    upgrade:\r\n      condition: \"level < max_level\"\r\n      name: \"{$sp}Upgrade{$colon} {$s}%roman@level% {$arrow} {$s}%roman@next_level%\"\r\n      material: NETHER_STAR\r\n      lvl-I:\r\n        condition: 'level == 1'\r\n        lore: |\r\n          {$dot} {$p}&lMisc Upgrades{$colon}\r\n            {$sdot} {$s}Unlock Insanity\r\n\r\n          {$dot} {$p}&lPowerups{$colon}\r\n            {$sdot} {$s}All Upgrades{$colon} {$sp}{$lvlup} Lvl. 30\r\n\r\n          {$dot} {$p}&lChampion Upgrades{$colon}\r\n            {$sdot} {$s}Unlock Throw\r\n            {$sdot} {$s}Unlock Damage Cap\r\n            {$sdot} {$s}Health{$colon} {$sp}{$lvlup} Lvl. 30\r\n\r\n          {$dot} {$p}&lTurrets{$colon}\r\n            {$sdot} {$s}Unlock Healing Turret\r\n            {$sdot} {$s}Unlock Flame Turret\r\n\r\n          {$dot} {$p}&lStructures{$colon}\r\n            {$sdot} {$s}Unlock Powercell\r\n            {$sdot} {$s}Unlock Outpost\r\n\r\n          {$p}Max Level{$colon} {$s}%roman@max_level%\r\n          {$p}Cost{$colon} {$s}%fancy@upgrade_cost%\r\n      lvl-II:\r\n        condition: 'level == 2'\r\n        lore: |\r\n          {$dot} {$p}&lMisc Upgrades{$colon}\r\n            {$sdot} {$s}Unlock Guards\r\n            {$sdot} {$s}Unlock Glory\r\n            {$sdot} {$s}Unlock Keep Inventory\r\n\r\n          {$dot} {$p}&lPowerups{$colon}\r\n            {$sdot} {$s}All Upgrades{$colon} {$sp}{$lvlup} Lvl. 40\r\n\r\n          {$dot} {$p}&lChampion Upgrades{$colon}\r\n            {$sdot} {$s}Unlock Drag\r\n            {$sdot} {$s}Unlock Thor\r\n            {$sdot} {$s}Health{$colon} {$sp}{$lvlup} Lvl. 40\r\n\r\n          {$dot} {$p}&lTurrets{$colon}\r\n            {$sdot} {$s}Unlock Psionic Turret\r\n            {$sdot} {$s}Unlock HellFire Turret\r\n\r\n          {$dot} {$p}&lStructures{$colon}\r\n            {$sdot} {$s}Unlock Extractor\r\n\r\n          {$p}Max Level{$colon} {$s}%roman@max_level%\r\n          {$p}Cost{$colon} {$s}%fancy@upgrade_cost%\r\n      lvl-III:\r\n        condition: 'level == 3'\r\n        lore: |\r\n          {$dot} {$p}&lMisc Upgrades{$colon}\r\n            {$sdot} {$s}Unlock Nexus Guards\r\n            {$sdot} {$s}Keep Inventory{$colon}: {$sp}{$lvlup} Lvl. 2\r\n\r\n          {$dot} {$p}&lPowerups{$colon}\r\n            {$sdot} {$s}All Upgrades{$colon} {$sp}{$lvlup} Lvl. 50\r\n\r\n          {$dot} {$p}&lChampion Upgrades{$colon}\r\n            {$sdot} {$s}Unlock Reinforcements\r\n\r\n          {$dot} {$p}&lTurrets{$colon}\r\n            {$sdot} {$s}Unlock Heatbeam Turret\r\n            {$sdot} {$s}Unlock Soldier Turret\r\n\r\n          {$dot} {$p}&lStructures{$colon}\r\n            {$sdot} {$s}Unlock WarpPad Structure\r\n            {$sdot} {$s}Unlock Regulator Structure\r\n\r\n          {$p}Max Level{$colon} {$s}%roman@max_level%\r\n          {$p}Cost{$colon} {$s}%fancy@upgrade_cost%\r\n      lvl-IV:\r\n        condition: 'level == 4'\r\n        lore: |\r\n          {$dot} {$p}&lMisc Upgrades{$colon}\r\n            {$sdot} {$s}Unlock Flight\r\n            {$sdot} {$s}Keep Inventory{$colon}: {$sp}{$lvlup} Lvl. 3\r\n\r\n          {$dot} {$p}&lPowerups{$colon}\r\n            {$sdot} {$s}All Upgrades{$colon} {$sp}{$lvlup} Lvl. 70\r\n\r\n          {$dot} {$p}&lChampion Upgrades{$colon}\r\n            {$sdot} {$s}Unlocks Burst\r\n\r\n          {$dot} {$p}&lTurrets{$colon}\r\n            {$sdot} {$s}Unlock Inferno Turret\r\n\r\n          {$dot} {$p}&lStructures{$colon}\r\n            {$sdot} {$s}Unlock Siege Cannon\r\n\r\n          {$p}Max Level{$colon} {$s}%roman@max_level%\r\n          {$p}Cost{$colon} {$s}%fancy@upgrade_cost%\r\n      else:\r\n        lore: [ \"&cUnknown Kingdom Upgrade: %level%\" ]\r\n    maxxed:\r\n      name: \"{$sp}Kingdom Level{$colon} {$s}%roman@level% {$sep}(&5Maxxed{$sep})\"\r\n      material: NETHER_STAR\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "upgrade",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "upgrade",
+        "posy"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "upgrade",
+        "material"
+      ],
+      "source": "NETHER_STAR",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "upgrade",
+        "upgrade"
+      ],
+      "source": "\r\n      condition: \"level < max_level\"\r\n      name: \"{$sp}Upgrade{$colon} {$s}%roman@level% {$arrow} {$s}%roman@next_level%\"\r\n      material: NETHER_STAR\r\n      lvl-I:\r\n        condition: 'level == 1'\r\n        lore: |\r\n          {$dot} {$p}&lMisc Upgrades{$colon}\r\n            {$sdot} {$s}Unlock Insanity\r\n\r\n          {$dot} {$p}&lPowerups{$colon}\r\n            {$sdot} {$s}All Upgrades{$colon} {$sp}{$lvlup} Lvl. 30\r\n\r\n          {$dot} {$p}&lChampion Upgrades{$colon}\r\n            {$sdot} {$s}Unlock Throw\r\n            {$sdot} {$s}Unlock Damage Cap\r\n            {$sdot} {$s}Health{$colon} {$sp}{$lvlup} Lvl. 30\r\n\r\n          {$dot} {$p}&lTurrets{$colon}\r\n            {$sdot} {$s}Unlock Healing Turret\r\n            {$sdot} {$s}Unlock Flame Turret\r\n\r\n          {$dot} {$p}&lStructures{$colon}\r\n            {$sdot} {$s}Unlock Powercell\r\n            {$sdot} {$s}Unlock Outpost\r\n\r\n          {$p}Max Level{$colon} {$s}%roman@max_level%\r\n          {$p}Cost{$colon} {$s}%fancy@upgrade_cost%\r\n      lvl-II:\r\n        condition: 'level == 2'\r\n        lore: |\r\n          {$dot} {$p}&lMisc Upgrades{$colon}\r\n            {$sdot} {$s}Unlock Guards\r\n            {$sdot} {$s}Unlock Glory\r\n            {$sdot} {$s}Unlock Keep Inventory\r\n\r\n          {$dot} {$p}&lPowerups{$colon}\r\n            {$sdot} {$s}All Upgrades{$colon} {$sp}{$lvlup} Lvl. 40\r\n\r\n          {$dot} {$p}&lChampion Upgrades{$colon}\r\n            {$sdot} {$s}Unlock Drag\r\n            {$sdot} {$s}Unlock Thor\r\n            {$sdot} {$s}Health{$colon} {$sp}{$lvlup} Lvl. 40\r\n\r\n          {$dot} {$p}&lTurrets{$colon}\r\n            {$sdot} {$s}Unlock Psionic Turret\r\n            {$sdot} {$s}Unlock HellFire Turret\r\n\r\n          {$dot} {$p}&lStructures{$colon}\r\n            {$sdot} {$s}Unlock Extractor\r\n\r\n          {$p}Max Level{$colon} {$s}%roman@max_level%\r\n          {$p}Cost{$colon} {$s}%fancy@upgrade_cost%\r\n      lvl-III:\r\n        condition: 'level == 3'\r\n        lore: |\r\n          {$dot} {$p}&lMisc Upgrades{$colon}\r\n            {$sdot} {$s}Unlock Nexus Guards\r\n            {$sdot} {$s}Keep Inventory{$colon}: {$sp}{$lvlup} Lvl. 2\r\n\r\n          {$dot} {$p}&lPowerups{$colon}\r\n            {$sdot} {$s}All Upgrades{$colon} {$sp}{$lvlup} Lvl. 50\r\n\r\n          {$dot} {$p}&lChampion Upgrades{$colon}\r\n            {$sdot} {$s}Unlock Reinforcements\r\n\r\n          {$dot} {$p}&lTurrets{$colon}\r\n            {$sdot} {$s}Unlock Heatbeam Turret\r\n            {$sdot} {$s}Unlock Soldier Turret\r\n\r\n          {$dot} {$p}&lStructures{$colon}\r\n            {$sdot} {$s}Unlock WarpPad Structure\r\n            {$sdot} {$s}Unlock Regulator Structure\r\n\r\n          {$p}Max Level{$colon} {$s}%roman@max_level%\r\n          {$p}Cost{$colon} {$s}%fancy@upgrade_cost%\r\n      lvl-IV:\r\n        condition: 'level == 4'\r\n        lore: |\r\n          {$dot} {$p}&lMisc Upgrades{$colon}\r\n            {$sdot} {$s}Unlock Flight\r\n            {$sdot} {$s}Keep Inventory{$colon}: {$sp}{$lvlup} Lvl. 3\r\n\r\n          {$dot} {$p}&lPowerups{$colon}\r\n            {$sdot} {$s}All Upgrades{$colon} {$sp}{$lvlup} Lvl. 70\r\n\r\n          {$dot} {$p}&lChampion Upgrades{$colon}\r\n            {$sdot} {$s}Unlocks Burst\r\n\r\n          {$dot} {$p}&lTurrets{$colon}\r\n            {$sdot} {$s}Unlock Inferno Turret\r\n\r\n          {$dot} {$p}&lStructures{$colon}\r\n            {$sdot} {$s}Unlock Siege Cannon\r\n\r\n          {$p}Max Level{$colon} {$s}%roman@max_level%\r\n          {$p}Cost{$colon} {$s}%fancy@upgrade_cost%\r\n      else:\r\n        lore: [ \"&cUnknown Kingdom Upgrade: %level%\" ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "upgrade",
+        "upgrade",
+        "condition"
+      ],
+      "source": "\"level < max_level\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "upgrade",
+        "upgrade",
+        "name"
+      ],
+      "source": "\"{$sp}Upgrade{$colon} {$s}%roman@level% {$arrow} {$s}%roman@next_level%\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "upgrade",
+        "upgrade",
+        "material"
+      ],
+      "source": "NETHER_STAR",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "upgrade",
+        "upgrade",
+        "lvl-I"
+      ],
+      "source": "\r\n        condition: 'level == 1'\r\n        lore: |\r\n          {$dot} {$p}&lMisc Upgrades{$colon}\r\n            {$sdot} {$s}Unlock Insanity\r\n\r\n          {$dot} {$p}&lPowerups{$colon}\r\n            {$sdot} {$s}All Upgrades{$colon} {$sp}{$lvlup} Lvl. 30\r\n\r\n          {$dot} {$p}&lChampion Upgrades{$colon}\r\n            {$sdot} {$s}Unlock Throw\r\n            {$sdot} {$s}Unlock Damage Cap\r\n            {$sdot} {$s}Health{$colon} {$sp}{$lvlup} Lvl. 30\r\n\r\n          {$dot} {$p}&lTurrets{$colon}\r\n            {$sdot} {$s}Unlock Healing Turret\r\n            {$sdot} {$s}Unlock Flame Turret\r\n\r\n          {$dot} {$p}&lStructures{$colon}\r\n            {$sdot} {$s}Unlock Powercell\r\n            {$sdot} {$s}Unlock Outpost\r\n\r\n          {$p}Max Level{$colon} {$s}%roman@max_level%\r\n          {$p}Cost{$colon} {$s}%fancy@upgrade_cost%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "upgrade",
+        "upgrade",
+        "lvl-I",
+        "condition"
+      ],
+      "source": "'level == 1'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "upgrade",
+        "upgrade",
+        "lvl-I",
+        "lore"
+      ],
+      "source": "|\r\n          {$dot} {$p}&lMisc Upgrades{$colon}\r\n            {$sdot} {$s}Unlock Insanity\r\n\r\n          {$dot} {$p}&lPowerups{$colon}\r\n            {$sdot} {$s}All Upgrades{$colon} {$sp}{$lvlup} Lvl. 30\r\n\r\n          {$dot} {$p}&lChampion Upgrades{$colon}\r\n            {$sdot} {$s}Unlock Throw\r\n            {$sdot} {$s}Unlock Damage Cap\r\n            {$sdot} {$s}Health{$colon} {$sp}{$lvlup} Lvl. 30\r\n\r\n          {$dot} {$p}&lTurrets{$colon}\r\n            {$sdot} {$s}Unlock Healing Turret\r\n            {$sdot} {$s}Unlock Flame Turret\r\n\r\n          {$dot} {$p}&lStructures{$colon}\r\n            {$sdot} {$s}Unlock Powercell\r\n            {$sdot} {$s}Unlock Outpost\r\n\r\n          {$p}Max Level{$colon} {$s}%roman@max_level%\r\n          {$p}Cost{$colon} {$s}%fancy@upgrade_cost%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "upgrade",
+        "upgrade",
+        "lvl-II"
+      ],
+      "source": "\r\n        condition: 'level == 2'\r\n        lore: |\r\n          {$dot} {$p}&lMisc Upgrades{$colon}\r\n            {$sdot} {$s}Unlock Guards\r\n            {$sdot} {$s}Unlock Glory\r\n            {$sdot} {$s}Unlock Keep Inventory\r\n\r\n          {$dot} {$p}&lPowerups{$colon}\r\n            {$sdot} {$s}All Upgrades{$colon} {$sp}{$lvlup} Lvl. 40\r\n\r\n          {$dot} {$p}&lChampion Upgrades{$colon}\r\n            {$sdot} {$s}Unlock Drag\r\n            {$sdot} {$s}Unlock Thor\r\n            {$sdot} {$s}Health{$colon} {$sp}{$lvlup} Lvl. 40\r\n\r\n          {$dot} {$p}&lTurrets{$colon}\r\n            {$sdot} {$s}Unlock Psionic Turret\r\n            {$sdot} {$s}Unlock HellFire Turret\r\n\r\n          {$dot} {$p}&lStructures{$colon}\r\n            {$sdot} {$s}Unlock Extractor\r\n\r\n          {$p}Max Level{$colon} {$s}%roman@max_level%\r\n          {$p}Cost{$colon} {$s}%fancy@upgrade_cost%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "upgrade",
+        "upgrade",
+        "lvl-II",
+        "condition"
+      ],
+      "source": "'level == 2'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "upgrade",
+        "upgrade",
+        "lvl-II",
+        "lore"
+      ],
+      "source": "|\r\n          {$dot} {$p}&lMisc Upgrades{$colon}\r\n            {$sdot} {$s}Unlock Guards\r\n            {$sdot} {$s}Unlock Glory\r\n            {$sdot} {$s}Unlock Keep Inventory\r\n\r\n          {$dot} {$p}&lPowerups{$colon}\r\n            {$sdot} {$s}All Upgrades{$colon} {$sp}{$lvlup} Lvl. 40\r\n\r\n          {$dot} {$p}&lChampion Upgrades{$colon}\r\n            {$sdot} {$s}Unlock Drag\r\n            {$sdot} {$s}Unlock Thor\r\n            {$sdot} {$s}Health{$colon} {$sp}{$lvlup} Lvl. 40\r\n\r\n          {$dot} {$p}&lTurrets{$colon}\r\n            {$sdot} {$s}Unlock Psionic Turret\r\n            {$sdot} {$s}Unlock HellFire Turret\r\n\r\n          {$dot} {$p}&lStructures{$colon}\r\n            {$sdot} {$s}Unlock Extractor\r\n\r\n          {$p}Max Level{$colon} {$s}%roman@max_level%\r\n          {$p}Cost{$colon} {$s}%fancy@upgrade_cost%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "upgrade",
+        "upgrade",
+        "lvl-III"
+      ],
+      "source": "\r\n        condition: 'level == 3'\r\n        lore: |\r\n          {$dot} {$p}&lMisc Upgrades{$colon}\r\n            {$sdot} {$s}Unlock Nexus Guards\r\n            {$sdot} {$s}Keep Inventory{$colon}: {$sp}{$lvlup} Lvl. 2\r\n\r\n          {$dot} {$p}&lPowerups{$colon}\r\n            {$sdot} {$s}All Upgrades{$colon} {$sp}{$lvlup} Lvl. 50\r\n\r\n          {$dot} {$p}&lChampion Upgrades{$colon}\r\n            {$sdot} {$s}Unlock Reinforcements\r\n\r\n          {$dot} {$p}&lTurrets{$colon}\r\n            {$sdot} {$s}Unlock Heatbeam Turret\r\n            {$sdot} {$s}Unlock Soldier Turret\r\n\r\n          {$dot} {$p}&lStructures{$colon}\r\n            {$sdot} {$s}Unlock WarpPad Structure\r\n            {$sdot} {$s}Unlock Regulator Structure\r\n\r\n          {$p}Max Level{$colon} {$s}%roman@max_level%\r\n          {$p}Cost{$colon} {$s}%fancy@upgrade_cost%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "upgrade",
+        "upgrade",
+        "lvl-III",
+        "condition"
+      ],
+      "source": "'level == 3'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "upgrade",
+        "upgrade",
+        "lvl-III",
+        "lore"
+      ],
+      "source": "|\r\n          {$dot} {$p}&lMisc Upgrades{$colon}\r\n            {$sdot} {$s}Unlock Nexus Guards\r\n            {$sdot} {$s}Keep Inventory{$colon}: {$sp}{$lvlup} Lvl. 2\r\n\r\n          {$dot} {$p}&lPowerups{$colon}\r\n            {$sdot} {$s}All Upgrades{$colon} {$sp}{$lvlup} Lvl. 50\r\n\r\n          {$dot} {$p}&lChampion Upgrades{$colon}\r\n            {$sdot} {$s}Unlock Reinforcements\r\n\r\n          {$dot} {$p}&lTurrets{$colon}\r\n            {$sdot} {$s}Unlock Heatbeam Turret\r\n            {$sdot} {$s}Unlock Soldier Turret\r\n\r\n          {$dot} {$p}&lStructures{$colon}\r\n            {$sdot} {$s}Unlock WarpPad Structure\r\n            {$sdot} {$s}Unlock Regulator Structure\r\n\r\n          {$p}Max Level{$colon} {$s}%roman@max_level%\r\n          {$p}Cost{$colon} {$s}%fancy@upgrade_cost%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "upgrade",
+        "upgrade",
+        "lvl-IV"
+      ],
+      "source": "\r\n        condition: 'level == 4'\r\n        lore: |\r\n          {$dot} {$p}&lMisc Upgrades{$colon}\r\n            {$sdot} {$s}Unlock Flight\r\n            {$sdot} {$s}Keep Inventory{$colon}: {$sp}{$lvlup} Lvl. 3\r\n\r\n          {$dot} {$p}&lPowerups{$colon}\r\n            {$sdot} {$s}All Upgrades{$colon} {$sp}{$lvlup} Lvl. 70\r\n\r\n          {$dot} {$p}&lChampion Upgrades{$colon}\r\n            {$sdot} {$s}Unlocks Burst\r\n\r\n          {$dot} {$p}&lTurrets{$colon}\r\n            {$sdot} {$s}Unlock Inferno Turret\r\n\r\n          {$dot} {$p}&lStructures{$colon}\r\n            {$sdot} {$s}Unlock Siege Cannon\r\n\r\n          {$p}Max Level{$colon} {$s}%roman@max_level%\r\n          {$p}Cost{$colon} {$s}%fancy@upgrade_cost%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "upgrade",
+        "upgrade",
+        "lvl-IV",
+        "condition"
+      ],
+      "source": "'level == 4'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "upgrade",
+        "upgrade",
+        "lvl-IV",
+        "lore"
+      ],
+      "source": "|\r\n          {$dot} {$p}&lMisc Upgrades{$colon}\r\n            {$sdot} {$s}Unlock Flight\r\n            {$sdot} {$s}Keep Inventory{$colon}: {$sp}{$lvlup} Lvl. 3\r\n\r\n          {$dot} {$p}&lPowerups{$colon}\r\n            {$sdot} {$s}All Upgrades{$colon} {$sp}{$lvlup} Lvl. 70\r\n\r\n          {$dot} {$p}&lChampion Upgrades{$colon}\r\n            {$sdot} {$s}Unlocks Burst\r\n\r\n          {$dot} {$p}&lTurrets{$colon}\r\n            {$sdot} {$s}Unlock Inferno Turret\r\n\r\n          {$dot} {$p}&lStructures{$colon}\r\n            {$sdot} {$s}Unlock Siege Cannon\r\n\r\n          {$p}Max Level{$colon} {$s}%roman@max_level%\r\n          {$p}Cost{$colon} {$s}%fancy@upgrade_cost%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "upgrade",
+        "upgrade",
+        "else"
+      ],
+      "source": "\r\n        lore: [ \"&cUnknown Kingdom Upgrade: %level%\" ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "upgrade",
+        "upgrade",
+        "else",
+        "lore"
+      ],
+      "source": "[ \"&cUnknown Kingdom Upgrade: %level%\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"&cUnknown Kingdom Upgrade: %level%\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "upgrade",
+        "maxxed"
+      ],
+      "source": "\r\n      name: \"{$sp}Kingdom Level{$colon} {$s}%roman@level% {$sep}(&5Maxxed{$sep})\"\r\n      material: NETHER_STAR\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "upgrade",
+        "maxxed",
+        "name"
+      ],
+      "source": "\"{$sp}Kingdom Level{$colon} {$s}%roman@level% {$sep}(&5Maxxed{$sep})\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "upgrade",
+        "maxxed",
+        "material"
+      ],
+      "source": "NETHER_STAR",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "public-home"
+      ],
+      "source": "\r\n    posx: 4\r\n    posy: 1\r\n    material: DARK_OAK_DOOR\r\n    name: \"{$s}Public Home{$colon} %bool@kingdoms_kingdom_home_is_public%\"\r\n    lore: |\r\n      {$sep}When your home is public, anyone\r\n      can teleport to it using\r\n      {$p}/k home %kingdoms_kingdom_name%\r\n\r\n      {$p}Left-click {$sep}to toggle public homes.\r\n      {$p}Right-click {$sep}to set public home cost.\r\n      This cost is only for people outside of your\r\n      kingdom.\r\n      {$p}Current Home Tax{$colon} {$s}%kingdoms_kingdom_taxes_home%\r\n\r\n      {$note} Both kingdoms need to have\r\n      the HOME relationship attribute for\r\n      your relationship for this to work.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "public-home",
+        "posx"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "public-home",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "public-home",
+        "material"
+      ],
+      "source": "DARK_OAK_DOOR",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "public-home",
+        "name"
+      ],
+      "source": "\"{$s}Public Home{$colon} %bool@kingdoms_kingdom_home_is_public%\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "public-home",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}When your home is public, anyone\r\n      can teleport to it using\r\n      {$p}/k home %kingdoms_kingdom_name%\r\n\r\n      {$p}Left-click {$sep}to toggle public homes.\r\n      {$p}Right-click {$sep}to set public home cost.\r\n      This cost is only for people outside of your\r\n      kingdom.\r\n      {$p}Current Home Tax{$colon} {$s}%kingdoms_kingdom_taxes_home%\r\n\r\n      {$note} Both kingdoms need to have\r\n      the HOME relationship attribute for\r\n      your relationship for this to work.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "hidden"
+      ],
+      "source": "\r\n    posx: 5\r\n    posy: 1\r\n    material: POTION\r\n    color: 818595\r\n    name: \"{$s}Hidden{$colon} %bool@kingdoms_kingdom_is_hidden%\"\r\n    lore: |\r\n      {$sep}Hidden kingdoms aren't displayed\r\n      in {$p}/k map {$sep}and online maps.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "hidden",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "hidden",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "hidden",
+        "material"
+      ],
+      "source": "POTION",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "hidden",
+        "color"
+      ],
+      "source": "818595",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "hidden",
+        "name"
+      ],
+      "source": "\"{$s}Hidden{$colon} %bool@kingdoms_kingdom_is_hidden%\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "hidden",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}Hidden kingdoms aren't displayed\r\n      in {$p}/k map {$sep}and online maps.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "tax"
+      ],
+      "source": "\r\n    posx: 6\r\n    posy: 1\r\n    material: PAPER\r\n    name: '{$s}Tax'\r\n    lore: |\r\n      {$sep}Change your kingdom taxes\r\n      for members.\r\n\r\n      {$s}Member Tax Equation{$colon}\r\n      {$p}%tax_equation%\r\n      {? is_member ? \"{$s}Your Personal Tax{$colon} {$p}$%fancy@kingdoms_tax%\" }\r\n\r\n      {$s}Kingdom Tax{$colon} {$p}$%fancy@kingdoms_kingdom_tax%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "tax",
+        "posx"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "tax",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "tax",
+        "material"
+      ],
+      "source": "PAPER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "tax",
+        "name"
+      ],
+      "source": "'{$s}Tax'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "tax",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}Change your kingdom taxes\r\n      for members.\r\n\r\n      {$s}Member Tax Equation{$colon}\r\n      {$p}%tax_equation%\r\n      {? is_member ? \"{$s}Your Personal Tax{$colon} {$p}$%fancy@kingdoms_tax%\" }\r\n\r\n      {$s}Kingdom Tax{$colon} {$p}$%fancy@kingdoms_kingdom_tax%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "blue-stained-glass-pane"
+      ],
+      "source": "\r\n    slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 25, 28, 34, 37, 43, 46, 47, 48, 49, 50, 51, 52 ]\r\n    material: BLUE_STAINED_GLASS_PANE\r\n    name: ''\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "blue-stained-glass-pane",
+        "slots"
+      ],
+      "source": "[ 10, 11, 12, 13, 14, 15, 16, 19, 25, 28, 34, 37, 43, 46, 47, 48, 49, 50, 51, 52 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "19",
+        "25",
+        "28",
+        "34",
+        "37",
+        "43",
+        "46",
+        "47",
+        "48",
+        "49",
+        "50",
+        "51",
+        "52"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "blue-stained-glass-pane",
+        "material"
+      ],
+      "source": "BLUE_STAINED_GLASS_PANE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "blue-stained-glass-pane",
+        "name"
+      ],
+      "source": "''",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "relations"
+      ],
+      "source": "\r\n    posx: 3\r\n    posy: 3\r\n    material: WRITABLE_BOOK\r\n    name: '{$s}Relations'\r\n    lore: |\r\n      {$sep}Change your relation attributes\r\n      for other kingdoms.\r\n\r\n      {$sep}[&e!{$sep}] {$es}In order for some attributes\r\n      to work, both kingdoms need to have the\r\n      attribute enabled for the relationship.\r\n\r\n      For example, if you have {$e}BUILD {$es}attribute\r\n      enabled for allies, but you're trying to\r\n      build in an ally's land that doesn't\r\n      have {$e}BUILD {$es}attribute enabled for allies,\r\n      this won't work. They won't be able to\r\n      build in your land either.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "relations",
+        "posx"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "relations",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "relations",
+        "material"
+      ],
+      "source": "WRITABLE_BOOK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "relations",
+        "name"
+      ],
+      "source": "'{$s}Relations'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "relations",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}Change your relation attributes\r\n      for other kingdoms.\r\n\r\n      {$sep}[&e!{$sep}] {$es}In order for some attributes\r\n      to work, both kingdoms need to have the\r\n      attribute enabled for the relationship.\r\n\r\n      For example, if you have {$e}BUILD {$es}attribute\r\n      enabled for allies, but you're trying to\r\n      build in an ally's land that doesn't\r\n      have {$e}BUILD {$es}attribute enabled for allies,\r\n      this won't work. They won't be able to\r\n      build in your land either.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "banners"
+      ],
+      "source": "\r\n    posx: 5\r\n    posy: 3\r\n    material: BLACK_BANNER\r\n    name: '{$s}Flags & Banners'\r\n    lore: |\r\n      {$sep}Set your kingdom flag and banner\r\n      for online web maps, icons, and they may\r\n      also appear in other places as decorative\r\n      blocks and a symbol of your kingdom.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "banners",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "banners",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "banners",
+        "material"
+      ],
+      "source": "BLACK_BANNER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "banners",
+        "name"
+      ],
+      "source": "'{$s}Flags & Banners'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "banners",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}Set your kingdom flag and banner\r\n      for online web maps, icons, and they may\r\n      also appear in other places as decorative\r\n      blocks and a symbol of your kingdom.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "pacifism"
+      ],
+      "source": "\r\n    posx: 7\r\n    posy: 3\r\n    material: END_CRYSTAL\r\n    name: '{$s}Pacifist{$colon} %bool@kingdoms_kingdom_is_pacifist%'\r\n    lore: |\r\n      {$sep}When you're in pacifism mode,\r\n      your kingdom cannot invade\r\n      and cannot be invaded by other kingdoms.\r\n\r\n      If you invade a Kingdom, you cannot go\r\n      back into pacifism mode for a week.\r\n      {? pacifism_left > 0 ? \"\r\n      {$p}Cooldown{$colon} {$s}%pacifism_cooldown%\" }\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "pacifism",
+        "posx"
+      ],
+      "source": "7",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "pacifism",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "pacifism",
+        "material"
+      ],
+      "source": "END_CRYSTAL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "pacifism",
+        "name"
+      ],
+      "source": "'{$s}Pacifist{$colon} %bool@kingdoms_kingdom_is_pacifist%'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "pacifism",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}When you're in pacifism mode,\r\n      your kingdom cannot invade\r\n      and cannot be invaded by other kingdoms.\r\n\r\n      If you invade a Kingdom, you cannot go\r\n      back into pacifism mode for a week.\r\n      {? pacifism_left > 0 ? \"\r\n      {$p}Cooldown{$colon} {$s}%pacifism_cooldown%\" }\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "invites"
+      ],
+      "source": "\r\n    posx: 3\r\n    posy: 5\r\n    material: BOOK\r\n    name: '{$s}Requires Invite{$colon} %bool@kingdoms_kingdom_requires_invite%'\r\n    lore: |\r\n      {$sep}When turned off, anyone can\r\n      join this kingdom without needing\r\n      an invitation with {$p}/k join %kingdoms_kingdom_name%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "invites",
+        "posx"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "invites",
+        "posy"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "invites",
+        "material"
+      ],
+      "source": "BOOK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "invites",
+        "name"
+      ],
+      "source": "'{$s}Requires Invite{$colon} %bool@kingdoms_kingdom_requires_invite%'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "invites",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}When turned off, anyone can\r\n      join this kingdom without needing\r\n      an invitation with {$p}/k join %kingdoms_kingdom_name%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color"
+      ],
+      "source": "\r\n    posx: 5\r\n    posy: 5\r\n    material: LIME_DYE\r\n    name: '{$s}Color{$colon} &c%r%{$sep}, {$p}%g%{$sep}, {$sp}%b% {$sep}(%hex@kingdoms_kingdom_color%%kingdoms_kingdom_color%{$sep})'\r\n    lore: |\r\n      {$sep}Set your kingdom marker\r\n      color for chat and online land maps.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color",
+        "posy"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color",
+        "material"
+      ],
+      "source": "LIME_DYE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color",
+        "name"
+      ],
+      "source": "'{$s}Color{$colon} &c%r%{$sep}, {$p}%g%{$sep}, {$sp}%b% {$sep}(%hex@kingdoms_kingdom_color%%kingdoms_kingdom_color%{$sep})'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}Set your kingdom marker\r\n      color for chat and online land maps.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shields"
+      ],
+      "source": "\r\n    posx: 7\r\n    posy: 5\r\n    material: SHIELD\r\n    name: '{$s}Shield{$colon} {$p}%time@kingdoms_shield_time_left%'\r\n    lore: |\r\n      {$sep}Buy a shield for your\r\n      kingdom to protect your kingdom\r\n      against invades.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shields",
+        "posx"
+      ],
+      "source": "7",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shields",
+        "posy"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shields",
+        "material"
+      ],
+      "source": "SHIELD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shields",
+        "name"
+      ],
+      "source": "'{$s}Shield{$colon} {$p}%time@kingdoms_shield_time_left%'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shields",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}Buy a shield for your\r\n      kingdom to protect your kingdom\r\n      against invades.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

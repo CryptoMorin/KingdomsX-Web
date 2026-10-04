@@ -1,0 +1,1397 @@
+{
+  "formatVersion": 1,
+  "id": "item-stack",
+  "resourceName": "item-stack.yml",
+  "sources": {
+    "schema": {
+      "kind": "kingdomsx-jar",
+      "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+      "pluginVersion": "1.17.27.3",
+      "fileName": "item-stack.json"
+    },
+    "defaults": [],
+    "runtime": {
+      "kind": "kingdomsx-jar",
+      "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+      "pluginVersion": "1.17.27.3"
+    }
+  },
+  "coverage": {
+    "defaultPathCount": 0,
+    "rawDefaultPathCount": 0,
+    "activeRuntimePathCount": 0,
+    "fieldCount": 116,
+    "capabilitySourceCounts": {
+      "jar-schema": 1,
+      "editor-overlay": 98
+    },
+    "commonSettingCount": 0
+  },
+  "schema": {
+    "kind": "object",
+    "fields": [
+      {
+        "key": "name",
+        "type": {
+          "kind": "string",
+          "typeName": "Message",
+          "description": "Displayed item name. Supports Kingdoms colors and placeholders.",
+          "capability": {
+            "sources": [
+              "editor-overlay"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "material",
+        "type": {
+          "kind": "suggestion",
+          "typeName": "Material",
+          "allowCustom": true,
+          "description": "Minecraft material. Required for a standalone item definition.",
+          "capability": {
+            "sources": [
+              "editor-overlay"
+            ]
+          }
+        }
+      },
+      {
+        "key": "amount",
+        "type": {
+          "kind": "integer",
+          "description": "Item stack amount.",
+          "minimum": 1,
+          "capability": {
+            "sources": [
+              "editor-overlay"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "custom-model-data",
+        "type": {
+          "kind": "union",
+          "description": "Legacy model number, text/flag/color value, or the modern custom-model-data component.",
+          "choices": [
+            {
+              "kind": "integer",
+              "description": "Legacy custom model number.",
+              "capability": {
+                "sources": [
+                  "editor-overlay"
+                ]
+              }
+            },
+            {
+              "kind": "decimal",
+              "description": "Custom model floating-point value.",
+              "capability": {
+                "sources": [
+                  "editor-overlay"
+                ]
+              }
+            },
+            {
+              "kind": "string",
+              "typeName": "str",
+              "description": "Custom model string value.",
+              "capability": {
+                "sources": [
+                  "editor-overlay"
+                ]
+              }
+            },
+            {
+              "kind": "boolean",
+              "description": "Custom model flag value.",
+              "capability": {
+                "sources": [
+                  "editor-overlay"
+                ]
+              }
+            },
+            {
+              "kind": "advanced",
+              "typeName": "Color",
+              "description": "Custom model color value."
+            },
+            {
+              "kind": "object",
+              "fields": [
+                {
+                  "key": "strings",
+                  "type": {
+                    "kind": "list",
+                    "elements": {
+                      "kind": "string",
+                      "typeName": "str",
+                      "description": "",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      }
+                    },
+                    "description": "Custom model string components.",
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    },
+                    "optional": true
+                  }
+                },
+                {
+                  "key": "floats",
+                  "type": {
+                    "kind": "list",
+                    "elements": {
+                      "kind": "decimal",
+                      "description": "",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      }
+                    },
+                    "description": "Custom model floating-point components.",
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    },
+                    "optional": true
+                  }
+                },
+                {
+                  "key": "colors",
+                  "type": {
+                    "kind": "list",
+                    "elements": {
+                      "kind": "advanced",
+                      "typeName": "Color",
+                      "description": "Minecraft RGB or hexadecimal color."
+                    },
+                    "description": "Custom model color components.",
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    },
+                    "optional": true
+                  }
+                },
+                {
+                  "key": "flags",
+                  "type": {
+                    "kind": "list",
+                    "elements": {
+                      "kind": "boolean",
+                      "description": "",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      }
+                    },
+                    "description": "Custom model boolean components.",
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    },
+                    "optional": true
+                  }
+                }
+              ],
+              "description": "Modern custom-model-data component values.",
+              "capability": {
+                "sources": [
+                  "editor-overlay"
+                ]
+              }
+            }
+          ],
+          "optional": true
+        }
+      },
+      {
+        "key": "damage",
+        "type": {
+          "kind": "decimal",
+          "description": "Item damage or durability value.",
+          "capability": {
+            "sources": [
+              "editor-overlay"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "unbreakable",
+        "type": {
+          "kind": "boolean",
+          "description": "Whether the item is unbreakable.",
+          "capability": {
+            "sources": [
+              "editor-overlay"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "glow",
+        "type": {
+          "kind": "boolean",
+          "description": "Adds the visual enchantment glow.",
+          "capability": {
+            "sources": [
+              "editor-overlay"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "skull",
+        "type": {
+          "kind": "advanced",
+          "typeName": "SkullTexture",
+          "description": "Player name, UUID, textures URL/hash, or Base64 texture.",
+          "optional": true
+        }
+      },
+      {
+        "key": "color",
+        "type": {
+          "kind": "advanced",
+          "typeName": "Color",
+          "description": "Leather, potion, map, or entity color depending on material.",
+          "optional": true
+        }
+      },
+      {
+        "key": "effects",
+        "type": {
+          "kind": "set",
+          "elements": {
+            "kind": "advanced",
+            "typeName": "Potion"
+          },
+          "description": "Potion or suspicious-stew effects.",
+          "optional": true
+        }
+      },
+      {
+        "key": "base-effect",
+        "type": {
+          "kind": "set",
+          "elements": {
+            "kind": "advanced",
+            "typeName": "Potion"
+          },
+          "description": "Legacy base potion effect settings.",
+          "optional": true
+        }
+      },
+      {
+        "key": "flags",
+        "type": {
+          "kind": "union",
+          "description": "One or more Bukkit item flags.",
+          "choices": [
+            {
+              "kind": "suggestion",
+              "typeName": "ItemFlag",
+              "allowCustom": true,
+              "description": "Spigot item flag or ALL.",
+              "capability": {
+                "sources": [
+                  "editor-overlay"
+                ]
+              }
+            },
+            {
+              "kind": "set",
+              "elements": {
+                "kind": "suggestion",
+                "typeName": "ItemFlag",
+                "allowCustom": true,
+                "description": "Spigot ItemFlag.",
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              },
+              "description": "Spigot item flags."
+            }
+          ],
+          "optional": true
+        }
+      },
+      {
+        "key": "lore",
+        "type": {
+          "kind": "union",
+          "description": "One lore line, a multiline scalar, or a list of lore lines.",
+          "choices": [
+            {
+              "kind": "list",
+              "elements": {
+                "kind": "string",
+                "typeName": "Message",
+                "description": "",
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              },
+              "description": "",
+              "capability": {
+                "sources": [
+                  "editor-overlay"
+                ]
+              }
+            },
+            {
+              "kind": "string",
+              "typeName": "Message",
+              "description": "",
+              "capability": {
+                "sources": [
+                  "editor-overlay"
+                ]
+              }
+            }
+          ],
+          "optional": true
+        }
+      },
+      {
+        "key": "enchants",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "suggestion",
+            "typeName": "Enchant",
+            "allowCustom": true,
+            "description": "Spigot Enchant.",
+            "capability": {
+              "sources": [
+                "editor-overlay"
+              ]
+            }
+          },
+          "values": {
+            "kind": "integer",
+            "description": "Enchantment level.",
+            "minimum": 1,
+            "maximum": 256,
+            "capability": {
+              "sources": [
+                "editor-overlay"
+              ]
+            }
+          },
+          "description": "Applied enchantments by enchantment name.",
+          "capability": {
+            "sources": [
+              "editor-overlay"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "item-model",
+        "type": {
+          "kind": "string",
+          "typeName": "str",
+          "description": "Namespaced item model identifier. Takes priority over custom model data.",
+          "capability": {
+            "sources": [
+              "editor-overlay"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "item-name",
+        "type": {
+          "kind": "string",
+          "typeName": "Message",
+          "description": "Minecraft item-name component, separate from the display name.",
+          "capability": {
+            "sources": [
+              "editor-overlay"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "stored-enchants",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "suggestion",
+            "typeName": "Enchant",
+            "allowCustom": true,
+            "description": "Spigot Enchant.",
+            "capability": {
+              "sources": [
+                "editor-overlay"
+              ]
+            }
+          },
+          "values": {
+            "kind": "integer",
+            "description": "Stored enchantment level.",
+            "minimum": 1,
+            "maximum": 256,
+            "capability": {
+              "sources": [
+                "editor-overlay"
+              ]
+            }
+          },
+          "description": "Stored enchantments for enchanted books.",
+          "capability": {
+            "sources": [
+              "editor-overlay"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "attributes",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "suggestion",
+            "typeName": "Attribute",
+            "allowCustom": true,
+            "description": "",
+            "capability": {
+              "sources": [
+                "editor-overlay"
+              ]
+            }
+          },
+          "values": {
+            "kind": "object",
+            "fields": [
+              {
+                "key": "name",
+                "type": {
+                  "kind": "string",
+                  "typeName": "str",
+                  "description": "Attribute modifier name.",
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  },
+                  "optional": true
+                }
+              },
+              {
+                "key": "amount",
+                "type": {
+                  "kind": "decimal",
+                  "description": "Attribute modifier amount.",
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                }
+              },
+              {
+                "key": "operation",
+                "type": {
+                  "kind": "suggestion",
+                  "typeName": "AttributeOperation",
+                  "allowCustom": true,
+                  "description": "How the modifier amount is applied.",
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  },
+                  "optional": true
+                }
+              },
+              {
+                "key": "slot",
+                "type": {
+                  "kind": "suggestion",
+                  "typeName": "EquipmentSlot",
+                  "allowCustom": true,
+                  "description": "Equipment slot in which this modifier applies.",
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  },
+                  "optional": true
+                }
+              }
+            ],
+            "description": "Attribute modifier settings.",
+            "required": [
+              "amount"
+            ],
+            "capability": {
+              "sources": [
+                "editor-overlay"
+              ]
+            }
+          },
+          "description": "Item attribute modifiers by Bukkit attribute name.",
+          "capability": {
+            "sources": [
+              "editor-overlay"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "patterns",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "suggestion",
+            "typeName": "PatternType",
+            "allowCustom": true,
+            "description": "Spigot PatternType.",
+            "capability": {
+              "sources": [
+                "editor-overlay"
+              ]
+            }
+          },
+          "values": {
+            "kind": "suggestion",
+            "typeName": "DyeColor",
+            "allowCustom": true,
+            "description": "Spigot DyeColor.",
+            "capability": {
+              "sources": [
+                "editor-overlay"
+              ]
+            }
+          },
+          "description": "Banner pattern names mapped to dye colors.",
+          "capability": {
+            "sources": [
+              "editor-overlay"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "pattern-color",
+        "type": {
+          "kind": "suggestion",
+          "typeName": "DyeColor",
+          "allowCustom": true,
+          "description": "Tropical fish pattern color.",
+          "capability": {
+            "sources": [
+              "editor-overlay"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "pattern",
+        "type": {
+          "kind": "suggestion",
+          "typeName": "TropicalFishPattern",
+          "allowCustom": true,
+          "description": "Tropical fish pattern.",
+          "capability": {
+            "sources": [
+              "editor-overlay"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "contents",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "string",
+            "typeName": "str",
+            "description": "",
+            "capability": {
+              "sources": [
+                "editor-overlay"
+              ]
+            }
+          },
+          "values": {
+            "kind": "reference",
+            "typeName": "ItemStack",
+            "description": ""
+          },
+          "description": "Named items inside a shulker box.",
+          "capability": {
+            "sources": [
+              "editor-overlay"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "spawner",
+        "type": {
+          "kind": "suggestion",
+          "typeName": "EntityType",
+          "allowCustom": true,
+          "description": "Entity spawned by a spawner item.",
+          "capability": {
+            "sources": [
+              "editor-overlay"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "projectiles",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "string",
+            "typeName": "str",
+            "description": "",
+            "capability": {
+              "sources": [
+                "editor-overlay"
+              ]
+            }
+          },
+          "values": {
+            "kind": "reference",
+            "typeName": "ItemStack",
+            "description": ""
+          },
+          "description": "Charged crossbow projectiles.",
+          "capability": {
+            "sources": [
+              "editor-overlay"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "base-type",
+        "type": {
+          "kind": "string",
+          "typeName": "str",
+          "description": "Base potion type and optional extended/upgraded state.",
+          "capability": {
+            "sources": [
+              "editor-overlay"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "author",
+        "type": {
+          "kind": "string",
+          "typeName": "Message",
+          "description": "Written-book author (legacy root form).",
+          "capability": {
+            "sources": [
+              "editor-overlay"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "title",
+        "type": {
+          "kind": "string",
+          "typeName": "Message",
+          "description": "Written-book title (legacy root form).",
+          "capability": {
+            "sources": [
+              "editor-overlay"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "pages",
+        "type": {
+          "kind": "list",
+          "elements": {
+            "kind": "string",
+            "typeName": "Message",
+            "description": "",
+            "capability": {
+              "sources": [
+                "editor-overlay"
+              ]
+            }
+          },
+          "description": "Written-book pages (legacy root form).",
+          "capability": {
+            "sources": [
+              "editor-overlay"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "generation",
+        "type": {
+          "kind": "suggestion",
+          "typeName": "BookGeneration",
+          "allowCustom": true,
+          "description": "Written-book generation.",
+          "capability": {
+            "sources": [
+              "editor-overlay"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "book",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "author",
+              "type": {
+                "kind": "string",
+                "typeName": "Message",
+                "description": "Written-book author.",
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "title",
+              "type": {
+                "kind": "string",
+                "typeName": "Message",
+                "description": "Written-book title.",
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "pages",
+              "type": {
+                "kind": "list",
+                "elements": {
+                  "kind": "string",
+                  "typeName": "Message",
+                  "description": "",
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                },
+                "description": "Written-book pages.",
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "generation",
+              "type": {
+                "kind": "suggestion",
+                "typeName": "BookGeneration",
+                "allowCustom": true,
+                "description": "Written-book generation.",
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                },
+                "optional": true
+              }
+            }
+          ],
+          "description": "Written-book metadata.",
+          "capability": {
+            "sources": [
+              "editor-overlay"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "scaling",
+        "type": {
+          "kind": "boolean",
+          "description": "Whether a filled map is allowed to scale (legacy root form).",
+          "capability": {
+            "sources": [
+              "editor-overlay"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "location",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "world",
+              "type": {
+                "kind": "suggestion",
+                "typeName": "World",
+                "allowCustom": true,
+                "description": "World name or namespace.",
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "x",
+              "type": {
+                "kind": "decimal",
+                "description": "World X coordinate.",
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "y",
+              "type": {
+                "kind": "decimal",
+                "description": "World Y coordinate.",
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "z",
+              "type": {
+                "kind": "decimal",
+                "description": "World Z coordinate.",
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                },
+                "optional": true
+              }
+            }
+          ],
+          "description": "A Minecraft world location.",
+          "capability": {
+            "sources": [
+              "editor-overlay"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "map",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "location",
+              "type": {
+                "kind": "string",
+                "typeName": "str",
+                "description": "Displayed map location name.",
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "color",
+              "type": {
+                "kind": "advanced",
+                "typeName": "Color",
+                "description": "Map display color.",
+                "optional": true
+              }
+            },
+            {
+              "key": "view",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "world",
+                    "type": {
+                      "kind": "suggestion",
+                      "typeName": "World",
+                      "allowCustom": true,
+                      "description": "",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "scale",
+                    "type": {
+                      "kind": "suggestion",
+                      "typeName": "MapScale",
+                      "allowCustom": true,
+                      "description": "",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "center",
+                    "type": {
+                      "kind": "object",
+                      "fields": [
+                        {
+                          "key": "x",
+                          "type": {
+                            "kind": "decimal",
+                            "description": "",
+                            "capability": {
+                              "sources": [
+                                "editor-overlay"
+                              ]
+                            },
+                            "optional": true
+                          }
+                        },
+                        {
+                          "key": "z",
+                          "type": {
+                            "kind": "decimal",
+                            "description": "",
+                            "capability": {
+                              "sources": [
+                                "editor-overlay"
+                              ]
+                            },
+                            "optional": true
+                          }
+                        }
+                      ],
+                      "description": "Map center coordinates.",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  }
+                ],
+                "description": "Map view settings.",
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                },
+                "optional": true
+              }
+            }
+          ],
+          "description": "Filled-map metadata.",
+          "capability": {
+            "sources": [
+              "editor-overlay"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "creature",
+        "type": {
+          "kind": "suggestion",
+          "typeName": "EntityType",
+          "allowCustom": true,
+          "description": "Legacy spawn-egg entity type.",
+          "capability": {
+            "sources": [
+              "editor-overlay"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "tracked",
+        "type": {
+          "kind": "boolean",
+          "description": "Whether a compass tracks its lodestone.",
+          "capability": {
+            "sources": [
+              "editor-overlay"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "lodestone",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "world",
+              "type": {
+                "kind": "suggestion",
+                "typeName": "World",
+                "allowCustom": true,
+                "description": "World name or namespace.",
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "x",
+              "type": {
+                "kind": "decimal",
+                "description": "World X coordinate.",
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "y",
+              "type": {
+                "kind": "decimal",
+                "description": "World Y coordinate.",
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "z",
+              "type": {
+                "kind": "decimal",
+                "description": "World Z coordinate.",
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                },
+                "optional": true
+              }
+            }
+          ],
+          "description": "A Minecraft world location.",
+          "capability": {
+            "sources": [
+              "editor-overlay"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "power",
+        "type": {
+          "kind": "decimal",
+          "description": "Firework flight power.",
+          "capability": {
+            "sources": [
+              "editor-overlay"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "firework",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "string",
+            "typeName": "str",
+            "description": "",
+            "capability": {
+              "sources": [
+                "editor-overlay"
+              ]
+            }
+          },
+          "values": {
+            "kind": "object",
+            "fields": [
+              {
+                "key": "flicker",
+                "type": {
+                  "kind": "boolean",
+                  "description": "Whether the effect flickers.",
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  },
+                  "optional": true
+                }
+              },
+              {
+                "key": "trail",
+                "type": {
+                  "kind": "boolean",
+                  "description": "Whether the effect has a trail.",
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  },
+                  "optional": true
+                }
+              },
+              {
+                "key": "trial",
+                "type": {
+                  "kind": "boolean",
+                  "description": "Legacy misspelling accepted by older XItemStack versions.",
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  },
+                  "optional": true
+                }
+              },
+              {
+                "key": "colors",
+                "type": {
+                  "kind": "object",
+                  "fields": [
+                    {
+                      "key": "base",
+                      "type": {
+                        "kind": "list",
+                        "elements": {
+                          "kind": "advanced",
+                          "typeName": "Color",
+                          "description": "Minecraft RGB or hexadecimal color."
+                        },
+                        "description": "Primary firework colors.",
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        },
+                        "optional": true
+                      }
+                    },
+                    {
+                      "key": "fade",
+                      "type": {
+                        "kind": "list",
+                        "elements": {
+                          "kind": "advanced",
+                          "typeName": "Color",
+                          "description": "Minecraft RGB or hexadecimal color."
+                        },
+                        "description": "Fade firework colors.",
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        },
+                        "optional": true
+                      }
+                    }
+                  ],
+                  "description": "Firework colors.",
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  },
+                  "optional": true
+                }
+              },
+              {
+                "key": "fade-colors",
+                "type": {
+                  "kind": "list",
+                  "elements": {
+                    "kind": "advanced",
+                    "typeName": "Color",
+                    "description": "Minecraft RGB or hexadecimal color."
+                  },
+                  "description": "Legacy fade-color list.",
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  },
+                  "optional": true
+                }
+              },
+              {
+                "key": "type",
+                "type": {
+                  "kind": "suggestion",
+                  "typeName": "FireworkType",
+                  "allowCustom": true,
+                  "description": "Firework effect shape.",
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  },
+                  "optional": true
+                }
+              }
+            ],
+            "description": "One firework effect.",
+            "capability": {
+              "sources": [
+                "editor-overlay"
+              ]
+            }
+          },
+          "description": "Named firework effects.",
+          "capability": {
+            "sources": [
+              "editor-overlay"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "trim",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "material",
+              "type": {
+                "kind": "string",
+                "typeName": "str",
+                "description": "Armor trim material key.",
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            },
+            {
+              "key": "pattern",
+              "type": {
+                "kind": "string",
+                "typeName": "str",
+                "description": "Armor trim pattern key.",
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            }
+          ],
+          "description": "Armor trim settings.",
+          "required": [
+            "material",
+            "pattern"
+          ],
+          "capability": {
+            "sources": [
+              "editor-overlay"
+            ]
+          },
+          "optional": true
+        }
+      }
+    ],
+    "capability": {
+      "sources": [
+        "jar-schema"
+      ]
+    },
+    "description": "An XItemStack item definition. Material is required for a standalone item. GUI condition variants may inherit it.",
+    "required": [
+      "material"
+    ]
+  }
+}

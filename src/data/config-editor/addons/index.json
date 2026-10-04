@@ -1,0 +1,1640 @@
+{
+  "formatVersion": 1,
+  "source": {
+    "kind": "kingdomsx-addon-jars",
+    "repository": "CryptoMorin/KingdomsX",
+    "ref": "master",
+    "commitSha": "b797369ffd59a2a42b9b3f2d30978683b839af7e",
+    "artifacts": [
+      {
+        "addonId": "admin-tools",
+        "artifactPath": "addons/Kingdoms-Addon-Admin-Tools-1.2.3.2.jar",
+        "artifactBlobSha": "c63f5eab8d950936ae09f12aed4ff1383c87cee2",
+        "artifactSha256": "c07ed8f5f52b657f57beca205d12755f0b4f94e26dfcd691834e2ad77043256f",
+        "addonVersion": "1.2.3.2"
+      },
+      {
+        "addonId": "enginehub",
+        "artifactPath": "addons/Kingdoms-Addon-EngineHub-1.6.0.jar",
+        "artifactBlobSha": "67f070da4d22ca24adbed543854603585d031d35",
+        "artifactSha256": "5031072f65ae645269301935d8b38dcf26df31572b420e3f437dc8042d2a0423",
+        "addonVersion": "1.6.0"
+      },
+      {
+        "addonId": "map-viewers",
+        "artifactPath": "addons/Kingdoms-Addon-Map-Viewers-3.2.2.jar",
+        "artifactBlobSha": "29aaabc3ae8f20ecc1fe6ff4ea14652e4f5e96ac",
+        "artifactSha256": "b169a040912e6c578a6092569ea0e64e092b530f846bbb40b9f56f11104dcf4e",
+        "addonVersion": "3.2.2"
+      },
+      {
+        "addonId": "outposts",
+        "artifactPath": "addons/Kingdoms-Addon-Outposts-3.1.2.4.jar",
+        "artifactBlobSha": "831afdbcfedd0d7574337c93a662b58e51186ee0",
+        "artifactSha256": "37567955a0194f18a5eed5b11631d4e1225cc927605e183d3a438ca9469ac633",
+        "addonVersion": "3.1.2.4"
+      },
+      {
+        "addonId": "peace-treaties",
+        "artifactPath": "addons/Kingdoms-Addon-Peace-Treaties-1.2.8.3.jar",
+        "artifactBlobSha": "65c542bd55dc6dfed6e222f079d37971fd24a682",
+        "artifactSha256": "54b2f1a879e10403200f218d852deb8d80c721cc933777812bbdcfcac5ca9f03",
+        "addonVersion": "1.2.8.3"
+      }
+    ]
+  },
+  "schemaCount": 5,
+  "defaultCount": 27,
+  "schematicCount": 40,
+  "schematicCatalog": "schematics.json",
+  "files": [
+    {
+      "pattern": "enginehub.yml",
+      "schemaId": "addons/enginehub"
+    },
+    {
+      "pattern": "maps/map.yml",
+      "schemaId": "addons/maps/map"
+    },
+    {
+      "pattern": "maps/*.yml",
+      "schemaId": "addons/maps/marker"
+    },
+    {
+      "pattern": "outposts.yml",
+      "schemaId": "addons/outposts"
+    },
+    {
+      "pattern": "peace-treaties.yml",
+      "schemaId": "addons/peace-treaties"
+    }
+  ],
+  "defaults": [
+    {
+      "resourceName": "enginehub.yml",
+      "schemaId": "addons/enginehub",
+      "fileName": "default--enginehub.json",
+      "signature": {
+        "entryCount": 16,
+        "rootKeys": [
+          "worldedit",
+          "worldguard"
+        ],
+        "paths": [
+          "worldedit",
+          "worldedit\u0000edit-protection",
+          "worldedit\u0000schematics",
+          "worldguard",
+          "worldguard\u0000indicator-ignore-regions",
+          "worldguard\u0000keep-kingdoms-flight-with-flag",
+          "worldguard\u0000map-markers",
+          "worldguard\u0000protected-region-radius",
+          "worldguard\u0000region-claim-protection",
+          "worldguard\u0000register-flags"
+        ]
+      },
+      "source": {
+        "addonId": "enginehub",
+        "artifactPath": "addons/Kingdoms-Addon-EngineHub-1.6.0.jar",
+        "artifactBlobSha": "67f070da4d22ca24adbed543854603585d031d35",
+        "artifactSha256": "5031072f65ae645269301935d8b38dcf26df31572b420e3f437dc8042d2a0423",
+        "addonVersion": "1.6.0"
+      },
+      "sha256": "cd594850478ebf1eaba4421d3192230e561454e19f144525cd4700c4b57091a0"
+    },
+    {
+      "resourceName": "guis/item-editor/attributes/editor.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__item-editor__attributes__editor.json",
+      "signature": {
+        "entryCount": 47,
+        "rootKeys": [
+          "options",
+          "rows",
+          "title"
+        ],
+        "paths": [
+          "options",
+          "options\u0000amount",
+          "options\u0000back",
+          "options\u0000decoration",
+          "options\u0000equipment-slot",
+          "options\u0000name",
+          "options\u0000operation",
+          "options\u0000type",
+          "options\u0000uuid",
+          "rows",
+          "title"
+        ]
+      },
+      "source": {
+        "addonId": "admin-tools",
+        "artifactPath": "addons/Kingdoms-Addon-Admin-Tools-1.2.3.2.jar",
+        "artifactBlobSha": "c63f5eab8d950936ae09f12aed4ff1383c87cee2",
+        "artifactSha256": "c07ed8f5f52b657f57beca205d12755f0b4f94e26dfcd691834e2ad77043256f",
+        "addonVersion": "1.2.3.2"
+      },
+      "sha256": "dc435b9b64d7cfb63f60ba4da1d763897be94b0d20c443db7b8744c0a3f9122d"
+    },
+    {
+      "resourceName": "guis/item-editor/attributes/equipment-slots.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__item-editor__attributes__equipment-slots.json",
+      "signature": {
+        "entryCount": 58,
+        "rootKeys": [
+          "options",
+          "rows",
+          "title"
+        ],
+        "paths": [
+          "options",
+          "options\u0000back",
+          "options\u0000chest",
+          "options\u0000feet",
+          "options\u0000hand",
+          "options\u0000head",
+          "options\u0000info",
+          "options\u0000inner-decoration",
+          "options\u0000legs",
+          "options\u0000none",
+          "options\u0000off-hand",
+          "options\u0000outer-decoration",
+          "rows",
+          "title"
+        ]
+      },
+      "source": {
+        "addonId": "admin-tools",
+        "artifactPath": "addons/Kingdoms-Addon-Admin-Tools-1.2.3.2.jar",
+        "artifactBlobSha": "c63f5eab8d950936ae09f12aed4ff1383c87cee2",
+        "artifactSha256": "c07ed8f5f52b657f57beca205d12755f0b4f94e26dfcd691834e2ad77043256f",
+        "addonVersion": "1.2.3.2"
+      },
+      "sha256": "4c6e26286aa6657feb928508d4b33ae3cf196a3f1ce3822037aeb5861fa29156"
+    },
+    {
+      "resourceName": "guis/item-editor/attributes/list.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__item-editor__attributes__list.json",
+      "signature": {
+        "entryCount": 29,
+        "rootKeys": [
+          "options",
+          "rows",
+          "title"
+        ],
+        "paths": [
+          "options",
+          "options\u0000add-attribute",
+          "options\u0000attribute",
+          "options\u0000back",
+          "options\u0000decoration",
+          "options\u0000remove-all",
+          "rows",
+          "title"
+        ]
+      },
+      "source": {
+        "addonId": "admin-tools",
+        "artifactPath": "addons/Kingdoms-Addon-Admin-Tools-1.2.3.2.jar",
+        "artifactBlobSha": "c63f5eab8d950936ae09f12aed4ff1383c87cee2",
+        "artifactSha256": "c07ed8f5f52b657f57beca205d12755f0b4f94e26dfcd691834e2ad77043256f",
+        "addonVersion": "1.2.3.2"
+      },
+      "sha256": "571d147fce6abc34d3641c6f26e6a5a88c80bfa586a7f673666a83042d5da7e6"
+    },
+    {
+      "resourceName": "guis/item-editor/attributes/operations.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__item-editor__attributes__operations.json",
+      "signature": {
+        "entryCount": 46,
+        "rootKeys": [
+          "op",
+          "options",
+          "rows",
+          "title"
+        ],
+        "paths": [
+          "op",
+          "op\u0000args",
+          "op\u0000return",
+          "options",
+          "options\u0000add-number",
+          "options\u0000add-scalar",
+          "options\u0000back",
+          "options\u0000decoration",
+          "options\u0000info",
+          "options\u0000multiply-scalar-1",
+          "rows",
+          "title"
+        ]
+      },
+      "source": {
+        "addonId": "admin-tools",
+        "artifactPath": "addons/Kingdoms-Addon-Admin-Tools-1.2.3.2.jar",
+        "artifactBlobSha": "c63f5eab8d950936ae09f12aed4ff1383c87cee2",
+        "artifactSha256": "c07ed8f5f52b657f57beca205d12755f0b4f94e26dfcd691834e2ad77043256f",
+        "addonVersion": "1.2.3.2"
+      },
+      "sha256": "c82de982c2048d541e476a8aa467a85e0d2bb8c32362794127a1332157665947"
+    },
+    {
+      "resourceName": "guis/item-editor/attributes/types.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__item-editor__attributes__types.json",
+      "signature": {
+        "entryCount": 96,
+        "rootKeys": [
+          "options",
+          "rows",
+          "title"
+        ],
+        "paths": [
+          "options",
+          "options\u0000armor",
+          "options\u0000armor-toughness",
+          "options\u0000attack-damage",
+          "options\u0000attack-knockback",
+          "options\u0000attack-speed",
+          "options\u0000back",
+          "options\u0000entity-interaction-range",
+          "options\u0000flying-speed",
+          "options\u0000follow-range",
+          "options\u0000jump-strength",
+          "options\u0000knockback-resistance",
+          "options\u0000luck",
+          "options\u0000max-health",
+          "options\u0000movement-speed",
+          "options\u0000orange-stained-glass-pane",
+          "options\u0000spawn-reinforcements",
+          "rows",
+          "title"
+        ]
+      },
+      "source": {
+        "addonId": "admin-tools",
+        "artifactPath": "addons/Kingdoms-Addon-Admin-Tools-1.2.3.2.jar",
+        "artifactBlobSha": "c63f5eab8d950936ae09f12aed4ff1383c87cee2",
+        "artifactSha256": "c07ed8f5f52b657f57beca205d12755f0b4f94e26dfcd691834e2ad77043256f",
+        "addonVersion": "1.2.3.2"
+      },
+      "sha256": "edd44852594e9a2f7e672e83940aefd5e61fcec6547580d293d523bb66fd789c"
+    },
+    {
+      "resourceName": "guis/item-editor/enchantments.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__item-editor__enchantments.json",
+      "signature": {
+        "entryCount": 229,
+        "rootKeys": [
+          "[fn-enchant]",
+          "options",
+          "rows",
+          "title"
+        ],
+        "paths": [
+          "[fn-enchant]",
+          "[fn-enchant]\u0000args",
+          "[fn-enchant]\u0000return",
+          "options",
+          "options\u0000back",
+          "options\u0000decoration",
+          "options\u0000enchant-arrow-damage",
+          "options\u0000enchant-arrow-fire",
+          "options\u0000enchant-arrow-infinite",
+          "options\u0000enchant-arrow-knockback",
+          "options\u0000enchant-binding-curse",
+          "options\u0000enchant-channeling",
+          "options\u0000enchant-damage-all",
+          "options\u0000enchant-damage-arthropods",
+          "options\u0000enchant-damage-undead",
+          "options\u0000enchant-depth-strider",
+          "options\u0000enchant-dig-speed",
+          "options\u0000enchant-durability",
+          "options\u0000enchant-fire-aspect",
+          "options\u0000enchant-frost-walker",
+          "options\u0000enchant-impaling",
+          "options\u0000enchant-knockback",
+          "options\u0000enchant-loot-bonus-blocks",
+          "options\u0000enchant-loot-bonus-mobs",
+          "options\u0000enchant-loyalty",
+          "options\u0000enchant-luck",
+          "options\u0000enchant-lure",
+          "options\u0000enchant-mending",
+          "options\u0000enchant-multishot",
+          "options\u0000enchant-oxygen",
+          "options\u0000enchant-piercing",
+          "options\u0000enchant-protection-environmental",
+          "options\u0000enchant-protection-explosions",
+          "options\u0000enchant-protection-fall",
+          "options\u0000enchant-protection-fire",
+          "options\u0000enchant-protection-projectile",
+          "options\u0000enchant-quick-charge",
+          "options\u0000enchant-riptide",
+          "options\u0000enchant-silk-touch",
+          "options\u0000enchant-soul-speed",
+          "options\u0000enchant-swift-sneak",
+          "options\u0000enchant-thorns",
+          "options\u0000enchant-vanishing-curse",
+          "options\u0000enchant-water-worker",
+          "options\u0000enchant-wind-burst",
+          "options\u0000remove-all",
+          "rows",
+          "title"
+        ]
+      },
+      "source": {
+        "addonId": "admin-tools",
+        "artifactPath": "addons/Kingdoms-Addon-Admin-Tools-1.2.3.2.jar",
+        "artifactBlobSha": "c63f5eab8d950936ae09f12aed4ff1383c87cee2",
+        "artifactSha256": "c07ed8f5f52b657f57beca205d12755f0b4f94e26dfcd691834e2ad77043256f",
+        "addonVersion": "1.2.3.2"
+      },
+      "sha256": "56062b2473bc233a5d03bfb1db62197dd1263633877d974756eef11941c6ab75"
+    },
+    {
+      "resourceName": "guis/item-editor/flags.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__item-editor__flags.json",
+      "signature": {
+        "entryCount": 134,
+        "rootKeys": [
+          "options",
+          "rows",
+          "title"
+        ],
+        "paths": [
+          "options",
+          "options\u0000back",
+          "options\u0000decoration",
+          "options\u0000flag-hide-additional-tooltip",
+          "options\u0000flag-hide-attributes",
+          "options\u0000flag-hide-destroys",
+          "options\u0000flag-hide-dye",
+          "options\u0000flag-hide-enchants",
+          "options\u0000flag-hide-placed-on",
+          "options\u0000flag-hide-unbreakable",
+          "options\u0000info",
+          "options\u0000remove-all",
+          "rows",
+          "title"
+        ]
+      },
+      "source": {
+        "addonId": "admin-tools",
+        "artifactPath": "addons/Kingdoms-Addon-Admin-Tools-1.2.3.2.jar",
+        "artifactBlobSha": "c63f5eab8d950936ae09f12aed4ff1383c87cee2",
+        "artifactSha256": "c07ed8f5f52b657f57beca205d12755f0b4f94e26dfcd691834e2ad77043256f",
+        "addonVersion": "1.2.3.2"
+      },
+      "sha256": "c817bc46d2e42cbc2cd2a6816ebf7f5a75dd8c48038c26f15153af2a639c50c9"
+    },
+    {
+      "resourceName": "guis/item-editor/main.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__item-editor__main.json",
+      "signature": {
+        "entryCount": 73,
+        "rootKeys": [
+          "options",
+          "rows",
+          "sound",
+          "title"
+        ],
+        "paths": [
+          "options",
+          "options\u0000amount",
+          "options\u0000attributes",
+          "options\u0000custom-model-data",
+          "options\u0000decoration",
+          "options\u0000enchantments",
+          "options\u0000flags",
+          "options\u0000item",
+          "options\u0000lore",
+          "options\u0000material",
+          "options\u0000name",
+          "options\u0000nbt",
+          "options\u0000unbreakable",
+          "rows",
+          "sound",
+          "title"
+        ]
+      },
+      "source": {
+        "addonId": "admin-tools",
+        "artifactPath": "addons/Kingdoms-Addon-Admin-Tools-1.2.3.2.jar",
+        "artifactBlobSha": "c63f5eab8d950936ae09f12aed4ff1383c87cee2",
+        "artifactSha256": "c07ed8f5f52b657f57beca205d12755f0b4f94e26dfcd691834e2ad77043256f",
+        "addonVersion": "1.2.3.2"
+      },
+      "sha256": "33b9a33acf2505cb3290563f5a01bbb08049c6470dce01ca18a1577e23955cee"
+    },
+    {
+      "resourceName": "guis/item-editor/nbt-types.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__item-editor__nbt-types.json",
+      "signature": {
+        "entryCount": 53,
+        "rootKeys": [
+          "options",
+          "rows",
+          "title"
+        ],
+        "paths": [
+          "options",
+          "options\u0000back",
+          "options\u0000black-stained-glass-pane",
+          "options\u0000nbt-NBTTagByte",
+          "options\u0000nbt-NBTTagCompound",
+          "options\u0000nbt-NBTTagDouble",
+          "options\u0000nbt-NBTTagInt",
+          "options\u0000nbt-NBTTagList",
+          "options\u0000nbt-NBTTagLong",
+          "options\u0000nbt-NBTTagShort",
+          "options\u0000nbt-NBTTagString",
+          "rows",
+          "title"
+        ]
+      },
+      "source": {
+        "addonId": "admin-tools",
+        "artifactPath": "addons/Kingdoms-Addon-Admin-Tools-1.2.3.2.jar",
+        "artifactBlobSha": "c63f5eab8d950936ae09f12aed4ff1383c87cee2",
+        "artifactSha256": "c07ed8f5f52b657f57beca205d12755f0b4f94e26dfcd691834e2ad77043256f",
+        "addonVersion": "1.2.3.2"
+      },
+      "sha256": "cc1ea2aad81ae29b4146ca18a8cd1b89fb2b44a6c288472343e30178144f0d83"
+    },
+    {
+      "resourceName": "guis/item-editor/nbt.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__item-editor__nbt.json",
+      "signature": {
+        "entryCount": 70,
+        "rootKeys": [
+          "options",
+          "rows",
+          "title"
+        ],
+        "paths": [
+          "options",
+          "options\u0000add-nbt",
+          "options\u0000back",
+          "options\u0000decoration",
+          "options\u0000info",
+          "options\u0000path",
+          "options\u0000tag",
+          "rows",
+          "title"
+        ]
+      },
+      "source": {
+        "addonId": "admin-tools",
+        "artifactPath": "addons/Kingdoms-Addon-Admin-Tools-1.2.3.2.jar",
+        "artifactBlobSha": "c63f5eab8d950936ae09f12aed4ff1383c87cee2",
+        "artifactSha256": "c07ed8f5f52b657f57beca205d12755f0b4f94e26dfcd691834e2ad77043256f",
+        "addonVersion": "1.2.3.2"
+      },
+      "sha256": "447ff0b7ab40139af437a813096cecb204710231a4403644089e7021885c288f"
+    },
+    {
+      "resourceName": "guis/outposts/arena-mob.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__outposts__arena-mob.json",
+      "signature": {
+        "entryCount": 50,
+        "rootKeys": [
+          "options",
+          "rows",
+          "title"
+        ],
+        "paths": [
+          "options",
+          "options\u0000back",
+          "options\u0000damage-bonus",
+          "options\u0000decoration",
+          "options\u0000label",
+          "options\u0000max-spawn-count",
+          "options\u0000mob-settings",
+          "options\u0000spawn-interval",
+          "options\u0000spawn-location",
+          "rows",
+          "title"
+        ]
+      },
+      "source": {
+        "addonId": "outposts",
+        "artifactPath": "addons/Kingdoms-Addon-Outposts-3.1.2.4.jar",
+        "artifactBlobSha": "831afdbcfedd0d7574337c93a662b58e51186ee0",
+        "artifactSha256": "37567955a0194f18a5eed5b11631d4e1225cc927605e183d3a438ca9469ac633",
+        "addonVersion": "3.1.2.4"
+      },
+      "sha256": "67fe125a4fbd093c8697d8222337873835a8e67636dad1f0b764a19eaced4619"
+    },
+    {
+      "resourceName": "guis/outposts/arena-mobs.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__outposts__arena-mobs.json",
+      "signature": {
+        "entryCount": 26,
+        "rootKeys": [
+          "options",
+          "rows",
+          "title"
+        ],
+        "paths": [
+          "options",
+          "options\u0000add",
+          "options\u0000arena-mobs",
+          "options\u0000back",
+          "options\u0000decoration",
+          "rows",
+          "title"
+        ]
+      },
+      "source": {
+        "addonId": "outposts",
+        "artifactPath": "addons/Kingdoms-Addon-Outposts-3.1.2.4.jar",
+        "artifactBlobSha": "831afdbcfedd0d7574337c93a662b58e51186ee0",
+        "artifactSha256": "37567955a0194f18a5eed5b11631d4e1225cc927605e183d3a438ca9469ac633",
+        "addonVersion": "3.1.2.4"
+      },
+      "sha256": "2fdd15c536bf2a3294968e23bdc96a91cd84773f0c631a5d1f186612dc88b664"
+    },
+    {
+      "resourceName": "guis/outposts/editor.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__outposts__editor.json",
+      "signature": {
+        "entryCount": 60,
+        "rootKeys": [
+          "options",
+          "rows",
+          "title"
+        ],
+        "paths": [
+          "options",
+          "options\u0000arena-mobs",
+          "options\u0000bossbar",
+          "options\u0000center",
+          "options\u0000decoration",
+          "options\u0000delete",
+          "options\u0000entrance-money",
+          "options\u0000entrance-resource-points-fee",
+          "options\u0000name",
+          "options\u0000region",
+          "options\u0000rewards",
+          "options\u0000spawn",
+          "rows",
+          "title"
+        ]
+      },
+      "source": {
+        "addonId": "outposts",
+        "artifactPath": "addons/Kingdoms-Addon-Outposts-3.1.2.4.jar",
+        "artifactBlobSha": "831afdbcfedd0d7574337c93a662b58e51186ee0",
+        "artifactSha256": "37567955a0194f18a5eed5b11631d4e1225cc927605e183d3a438ca9469ac633",
+        "addonVersion": "3.1.2.4"
+      },
+      "sha256": "c663cbd98df724862213e15b3155732bd6d33ebe1a8f941e898c8800e471e908"
+    },
+    {
+      "resourceName": "guis/outposts/rewards/commands.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__outposts__rewards__commands.json",
+      "signature": {
+        "entryCount": 31,
+        "rootKeys": [
+          "options",
+          "rows",
+          "title"
+        ],
+        "paths": [
+          "options",
+          "options\u0000add",
+          "options\u0000back",
+          "options\u0000commands",
+          "options\u0000decoration",
+          "options\u0000info",
+          "rows",
+          "title"
+        ]
+      },
+      "source": {
+        "addonId": "outposts",
+        "artifactPath": "addons/Kingdoms-Addon-Outposts-3.1.2.4.jar",
+        "artifactBlobSha": "831afdbcfedd0d7574337c93a662b58e51186ee0",
+        "artifactSha256": "37567955a0194f18a5eed5b11631d4e1225cc927605e183d3a438ca9469ac633",
+        "addonVersion": "3.1.2.4"
+      },
+      "sha256": "a54c8e959e98a5ec87645929bd5c885c5bf61e767dbb8c740977810a9559d590"
+    },
+    {
+      "resourceName": "guis/outposts/rewards/items.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__outposts__rewards__items.json",
+      "signature": {
+        "entryCount": 28,
+        "rootKeys": [
+          "interactable",
+          "options",
+          "rows",
+          "title"
+        ],
+        "paths": [
+          "interactable",
+          "options",
+          "options\u0000back",
+          "options\u0000decoration-1",
+          "options\u0000decoration-2",
+          "options\u0000info",
+          "options\u0000items",
+          "rows",
+          "title"
+        ]
+      },
+      "source": {
+        "addonId": "outposts",
+        "artifactPath": "addons/Kingdoms-Addon-Outposts-3.1.2.4.jar",
+        "artifactBlobSha": "831afdbcfedd0d7574337c93a662b58e51186ee0",
+        "artifactSha256": "37567955a0194f18a5eed5b11631d4e1225cc927605e183d3a438ca9469ac633",
+        "addonVersion": "3.1.2.4"
+      },
+      "sha256": "4420ae71a1c76901c3b2c129ffef9e3de86045a0f1bd8738e5b82837ab5ee7b7"
+    },
+    {
+      "resourceName": "guis/outposts/rewards/main.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__outposts__rewards__main.json",
+      "signature": {
+        "entryCount": 35,
+        "rootKeys": [
+          "options",
+          "rows",
+          "title"
+        ],
+        "paths": [
+          "options",
+          "options\u0000back",
+          "options\u0000commands",
+          "options\u0000decoration",
+          "options\u0000items",
+          "options\u0000money",
+          "options\u0000resource-points",
+          "rows",
+          "title"
+        ]
+      },
+      "source": {
+        "addonId": "outposts",
+        "artifactPath": "addons/Kingdoms-Addon-Outposts-3.1.2.4.jar",
+        "artifactBlobSha": "831afdbcfedd0d7574337c93a662b58e51186ee0",
+        "artifactSha256": "37567955a0194f18a5eed5b11631d4e1225cc927605e183d3a438ca9469ac633",
+        "addonVersion": "3.1.2.4"
+      },
+      "sha256": "48961c14bf2863c9cb1693ce5471ec986d0b02c1d62a26229081e40a2b8b215e"
+    },
+    {
+      "resourceName": "guis/peace-treaties/default-term-editor.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__peace-treaties__default-term-editor.json",
+      "signature": {
+        "entryCount": 47,
+        "rootKeys": [
+          "options",
+          "rows",
+          "title"
+        ],
+        "paths": [
+          "options",
+          "options\u0000back",
+          "options\u0000blue-stained-glass-pane",
+          "options\u0000lime-stained-glass-pane",
+          "options\u0000send",
+          "options\u0000term-keep-lands",
+          "options\u0000term-leave-nation",
+          "options\u0000term-take-resource-points",
+          "options\u0000term-vassalization",
+          "options\u0000term-war-reparation",
+          "rows",
+          "title"
+        ]
+      },
+      "source": {
+        "addonId": "peace-treaties",
+        "artifactPath": "addons/Kingdoms-Addon-Peace-Treaties-1.2.8.3.jar",
+        "artifactBlobSha": "65c542bd55dc6dfed6e222f079d37971fd24a682",
+        "artifactSha256": "54b2f1a879e10403200f218d852deb8d80c721cc933777812bbdcfcac5ca9f03",
+        "addonVersion": "1.2.8.3"
+      },
+      "sha256": "a6518c4fcceeb2092774befa5132d29f1c5e787cf7c2baf7c2a61fe0e61f0a01"
+    },
+    {
+      "resourceName": "guis/peace-treaties/editor.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__peace-treaties__editor.json",
+      "signature": {
+        "entryCount": 72,
+        "rootKeys": [
+          "options",
+          "rows",
+          "title"
+        ],
+        "paths": [
+          "options",
+          "options\u0000blue-stained-glass-pane",
+          "options\u0000cancel",
+          "options\u0000lime-stained-glass-pane",
+          "options\u0000pause",
+          "options\u0000send",
+          "options\u0000term-keep-lands",
+          "options\u0000term-leave-nation",
+          "options\u0000term-take-rp",
+          "options\u0000term-vassalization",
+          "options\u0000term-war-reparation",
+          "rows",
+          "title"
+        ]
+      },
+      "source": {
+        "addonId": "peace-treaties",
+        "artifactPath": "addons/Kingdoms-Addon-Peace-Treaties-1.2.8.3.jar",
+        "artifactBlobSha": "65c542bd55dc6dfed6e222f079d37971fd24a682",
+        "artifactSha256": "54b2f1a879e10403200f218d852deb8d80c721cc933777812bbdcfcac5ca9f03",
+        "addonVersion": "1.2.8.3"
+      },
+      "sha256": "2be835aed4d42ce14ea3e7408486c1e81e20c72f95832fcf98b73f4c767a1b13"
+    },
+    {
+      "resourceName": "guis/peace-treaties/keep-lands.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__peace-treaties__keep-lands.json",
+      "signature": {
+        "entryCount": 58,
+        "rootKeys": [
+          "options",
+          "rows",
+          "title"
+        ],
+        "paths": [
+          "options",
+          "options\u0000cancel",
+          "options\u0000display-mode",
+          "options\u0000done",
+          "options\u0000land",
+          "options\u0000magenta-stained-glass-pane",
+          "options\u0000next-page",
+          "options\u0000previous-page",
+          "rows",
+          "title"
+        ]
+      },
+      "source": {
+        "addonId": "peace-treaties",
+        "artifactPath": "addons/Kingdoms-Addon-Peace-Treaties-1.2.8.3.jar",
+        "artifactBlobSha": "65c542bd55dc6dfed6e222f079d37971fd24a682",
+        "artifactSha256": "54b2f1a879e10403200f218d852deb8d80c721cc933777812bbdcfcac5ca9f03",
+        "addonVersion": "1.2.8.3"
+      },
+      "sha256": "8abc7a81c9a94def42364eab8b740723cb452f40389f5b9decf98a61621ead3d"
+    },
+    {
+      "resourceName": "guis/peace-treaties/peace-treaties.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__peace-treaties__peace-treaties.json",
+      "signature": {
+        "entryCount": 60,
+        "rootKeys": [
+          "options",
+          "rows",
+          "sound",
+          "title"
+        ],
+        "paths": [
+          "options",
+          "options\u0000close",
+          "options\u0000info",
+          "options\u0000next",
+          "options\u0000previous",
+          "options\u0000received",
+          "options\u0000received-indicator",
+          "options\u0000sent",
+          "options\u0000sent-indicator",
+          "options\u0000separators",
+          "rows",
+          "sound",
+          "title"
+        ]
+      },
+      "source": {
+        "addonId": "peace-treaties",
+        "artifactPath": "addons/Kingdoms-Addon-Peace-Treaties-1.2.8.3.jar",
+        "artifactBlobSha": "65c542bd55dc6dfed6e222f079d37971fd24a682",
+        "artifactSha256": "54b2f1a879e10403200f218d852deb8d80c721cc933777812bbdcfcac5ca9f03",
+        "addonVersion": "1.2.8.3"
+      },
+      "sha256": "169c78decc274107ee0fde4eaf1c0fda9a6367e37ba1f35c06f7a9bde74d98ef"
+    },
+    {
+      "resourceName": "guis/peace-treaties/vassalization.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__peace-treaties__vassalization.json",
+      "signature": {
+        "entryCount": 48,
+        "rootKeys": [
+          "options",
+          "rows",
+          "title"
+        ],
+        "paths": [
+          "options",
+          "options\u0000back",
+          "options\u0000light-blue-stained-glass-pane",
+          "options\u0000term-annul-treaties",
+          "options\u0000term-limit-claims",
+          "options\u0000term-limit-structures",
+          "options\u0000term-limit-turrets",
+          "options\u0000term-misc-upgrades",
+          "options\u0000term-scutage",
+          "rows",
+          "title"
+        ]
+      },
+      "source": {
+        "addonId": "peace-treaties",
+        "artifactPath": "addons/Kingdoms-Addon-Peace-Treaties-1.2.8.3.jar",
+        "artifactBlobSha": "65c542bd55dc6dfed6e222f079d37971fd24a682",
+        "artifactSha256": "54b2f1a879e10403200f218d852deb8d80c721cc933777812bbdcfcac5ca9f03",
+        "addonVersion": "1.2.8.3"
+      },
+      "sha256": "fd2c139164ce16ce7124005aa8ff918696b4ac8f3dbca4c08ddefba6c5c60650"
+    },
+    {
+      "resourceName": "maps/kingdoms.yml",
+      "schemaId": "addons/maps/marker",
+      "fileName": "default--maps__kingdoms.json",
+      "signature": {
+        "entryCount": 85,
+        "rootKeys": [
+          "[fn-top]",
+          "[style]",
+          "descriptions",
+          "fill",
+          "hide-by-default",
+          "invasion",
+          "label",
+          "line",
+          "persistent-data",
+          "powercell",
+          "priority",
+          "show-controls",
+          "sorting",
+          "special-flag",
+          "top-kingdoms",
+          "z-index",
+          "zoom"
+        ],
+        "paths": [
+          "[fn-top]",
+          "[fn-top]\u0000args",
+          "[fn-top]\u0000return",
+          "[style]",
+          "[style]\u0000args",
+          "[style]\u0000return",
+          "descriptions",
+          "descriptions\u0000allies",
+          "descriptions\u0000click",
+          "descriptions\u0000enemies",
+          "descriptions\u0000flag",
+          "descriptions\u0000hover",
+          "descriptions\u0000members",
+          "descriptions\u0000members-etc",
+          "descriptions\u0000truces",
+          "fill",
+          "fill\u0000color",
+          "fill\u0000opacity",
+          "hide-by-default",
+          "invasion",
+          "invasion\u0000fill",
+          "invasion\u0000line",
+          "label",
+          "line",
+          "line\u0000color",
+          "line\u0000weight",
+          "persistent-data",
+          "powercell",
+          "powercell\u0000descriptions",
+          "powercell\u0000fill",
+          "powercell\u0000hide-by-default",
+          "powercell\u0000label",
+          "powercell\u0000line",
+          "powercell\u0000sorting",
+          "powercell\u0000z-index",
+          "priority",
+          "show-controls",
+          "sorting",
+          "special-flag",
+          "top-kingdoms",
+          "top-kingdoms\u0000default",
+          "top-kingdoms\u0000lands",
+          "top-kingdoms\u0000members",
+          "top-kingdoms\u0000resource-points",
+          "z-index",
+          "zoom",
+          "zoom\u0000max",
+          "zoom\u0000min"
+        ]
+      },
+      "source": {
+        "addonId": "map-viewers",
+        "artifactPath": "addons/Kingdoms-Addon-Map-Viewers-3.2.2.jar",
+        "artifactBlobSha": "29aaabc3ae8f20ecc1fe6ff4ea14652e4f5e96ac",
+        "artifactSha256": "b169a040912e6c578a6092569ea0e64e092b530f846bbb40b9f56f11104dcf4e",
+        "addonVersion": "3.2.2"
+      },
+      "sha256": "d345b4b6857103f2e38642b61dc0fbd6a49133c8fae705ea88450707493b0c2b"
+    },
+    {
+      "resourceName": "maps/map.yml",
+      "schemaId": "addons/maps/map",
+      "fileName": "default--maps__map.json",
+      "signature": {
+        "entryCount": 43,
+        "rootKeys": [
+          "banners",
+          "icons",
+          "update-interval"
+        ],
+        "paths": [
+          "banners",
+          "banners\u0000scaling",
+          "icons",
+          "icons\u0000enabled",
+          "icons\u0000extractor",
+          "icons\u0000home",
+          "icons\u0000invasion",
+          "icons\u0000national-nexus",
+          "icons\u0000national-spawn",
+          "icons\u0000nexus",
+          "icons\u0000outpost",
+          "icons\u0000powercell",
+          "icons\u0000regulator",
+          "icons\u0000siege-cannon",
+          "icons\u0000warppad",
+          "update-interval"
+        ]
+      },
+      "source": {
+        "addonId": "map-viewers",
+        "artifactPath": "addons/Kingdoms-Addon-Map-Viewers-3.2.2.jar",
+        "artifactBlobSha": "29aaabc3ae8f20ecc1fe6ff4ea14652e4f5e96ac",
+        "artifactSha256": "b169a040912e6c578a6092569ea0e64e092b530f846bbb40b9f56f11104dcf4e",
+        "addonVersion": "3.2.2"
+      },
+      "sha256": "c604c2b6cb7cbecf17abf55d61743d14bcd34a05faa84ce43abfe36b54087a1b"
+    },
+    {
+      "resourceName": "maps/nations.yml",
+      "schemaId": "addons/maps/marker",
+      "fileName": "default--maps__nations.json",
+      "signature": {
+        "entryCount": 28,
+        "rootKeys": [
+          "[style]",
+          "descriptions",
+          "fill",
+          "hide-by-default",
+          "label",
+          "line",
+          "priority",
+          "show-controls",
+          "special-flag",
+          "z-index",
+          "zoom"
+        ],
+        "paths": [
+          "[style]",
+          "[style]\u0000args",
+          "[style]\u0000return",
+          "descriptions",
+          "descriptions\u0000allies",
+          "descriptions\u0000click",
+          "descriptions\u0000enemies",
+          "descriptions\u0000flag",
+          "descriptions\u0000hover",
+          "descriptions\u0000members",
+          "descriptions\u0000truces",
+          "fill",
+          "fill\u0000color",
+          "fill\u0000opacity",
+          "hide-by-default",
+          "label",
+          "line",
+          "line\u0000color",
+          "line\u0000weight",
+          "priority",
+          "show-controls",
+          "special-flag",
+          "z-index",
+          "zoom",
+          "zoom\u0000max",
+          "zoom\u0000min"
+        ]
+      },
+      "source": {
+        "addonId": "map-viewers",
+        "artifactPath": "addons/Kingdoms-Addon-Map-Viewers-3.2.2.jar",
+        "artifactBlobSha": "29aaabc3ae8f20ecc1fe6ff4ea14652e4f5e96ac",
+        "artifactSha256": "b169a040912e6c578a6092569ea0e64e092b530f846bbb40b9f56f11104dcf4e",
+        "addonVersion": "3.2.2"
+      },
+      "sha256": "de0c3af2f3b3a9b18c164c0d4a193f1ebfe43246220e67b5a3efdbaa418bef1a"
+    },
+    {
+      "resourceName": "maps/top-kingdoms.yml",
+      "schemaId": "addons/maps/marker",
+      "fileName": "default--maps__top-kingdoms.json",
+      "signature": {
+        "entryCount": 6,
+        "rootKeys": [
+          "hide-by-default",
+          "label",
+          "priority",
+          "show-controls",
+          "special-flag",
+          "z-index"
+        ],
+        "paths": [
+          "hide-by-default",
+          "label",
+          "priority",
+          "show-controls",
+          "special-flag",
+          "z-index"
+        ]
+      },
+      "source": {
+        "addonId": "map-viewers",
+        "artifactPath": "addons/Kingdoms-Addon-Map-Viewers-3.2.2.jar",
+        "artifactBlobSha": "29aaabc3ae8f20ecc1fe6ff4ea14652e4f5e96ac",
+        "artifactSha256": "b169a040912e6c578a6092569ea0e64e092b530f846bbb40b9f56f11104dcf4e",
+        "addonVersion": "3.2.2"
+      },
+      "sha256": "2a88b85a2a43dcbc949916bdec5022e7e20b3d8d23c9b8227a27c383dbcaad01"
+    },
+    {
+      "resourceName": "peace-treaties.yml",
+      "schemaId": "addons/peace-treaties",
+      "fileName": "default--peace-treaties.json",
+      "signature": {
+        "entryCount": 71,
+        "rootKeys": [
+          "duration",
+          "force-accept",
+          "min-terms",
+          "terms",
+          "unfinished-contract-reminder",
+          "war-points"
+        ],
+        "paths": [
+          "duration",
+          "force-accept",
+          "force-accept\u0000condition",
+          "force-accept\u0000war-points",
+          "min-terms",
+          "terms",
+          "terms\u0000keep-lands",
+          "terms\u0000leave-nation",
+          "terms\u0000take-rp",
+          "terms\u0000vassalization",
+          "terms\u0000war-reparation",
+          "unfinished-contract-reminder",
+          "war-points",
+          "war-points\u0000allowed-relationships",
+          "war-points\u0000initial",
+          "war-points\u0000max",
+          "war-points\u0000scores"
+        ]
+      },
+      "source": {
+        "addonId": "peace-treaties",
+        "artifactPath": "addons/Kingdoms-Addon-Peace-Treaties-1.2.8.3.jar",
+        "artifactBlobSha": "65c542bd55dc6dfed6e222f079d37971fd24a682",
+        "artifactSha256": "54b2f1a879e10403200f218d852deb8d80c721cc933777812bbdcfcac5ca9f03",
+        "addonVersion": "1.2.8.3"
+      },
+      "sha256": "06a2868222c7532cd02068a4ddf5a9fc18909c918654c979f6e478a7ab07fa19"
+    }
+  ],
+  "schemas": [
+    {
+      "id": "addons/enginehub",
+      "resourceName": "enginehub.yml",
+      "fileName": "schema--addons__enginehub.json",
+      "source": {
+        "addonId": "enginehub",
+        "artifactPath": "addons/Kingdoms-Addon-EngineHub-1.6.0.jar",
+        "artifactBlobSha": "67f070da4d22ca24adbed543854603585d031d35",
+        "artifactSha256": "5031072f65ae645269301935d8b38dcf26df31572b420e3f437dc8042d2a0423",
+        "addonVersion": "1.6.0"
+      },
+      "reason": "The addon ships a default file without a schema. Its typed fields are derived from that default and its comments."
+    },
+    {
+      "id": "addons/maps/map",
+      "resourceName": "schemas/maps/map.yml",
+      "fileName": "schema--addons__maps__map.json",
+      "source": {
+        "addonId": "map-viewers",
+        "artifactPath": "addons/Kingdoms-Addon-Map-Viewers-3.2.2.jar",
+        "artifactBlobSha": "29aaabc3ae8f20ecc1fe6ff4ea14652e4f5e96ac",
+        "artifactSha256": "b169a040912e6c578a6092569ea0e64e092b530f846bbb40b9f56f11104dcf4e",
+        "addonVersion": "3.2.2"
+      },
+      "reason": null
+    },
+    {
+      "id": "addons/maps/marker",
+      "resourceName": "schemas/maps/marker.yml",
+      "fileName": "schema--addons__maps__marker.json",
+      "source": {
+        "addonId": "map-viewers",
+        "artifactPath": "addons/Kingdoms-Addon-Map-Viewers-3.2.2.jar",
+        "artifactBlobSha": "29aaabc3ae8f20ecc1fe6ff4ea14652e4f5e96ac",
+        "artifactSha256": "b169a040912e6c578a6092569ea0e64e092b530f846bbb40b9f56f11104dcf4e",
+        "addonVersion": "3.2.2"
+      },
+      "reason": null
+    },
+    {
+      "id": "addons/outposts",
+      "resourceName": "outposts.yml",
+      "fileName": "schema--addons__outposts.json",
+      "source": {
+        "addonId": "outposts",
+        "artifactPath": "addons/Kingdoms-Addon-Outposts-3.1.2.4.jar",
+        "artifactBlobSha": "831afdbcfedd0d7574337c93a662b58e51186ee0",
+        "artifactSha256": "37567955a0194f18a5eed5b11631d4e1225cc927605e183d3a438ca9469ac633",
+        "addonVersion": "3.1.2.4"
+      },
+      "reason": "The addon creates this runtime data file after an outpost is configured. Its structure is supplied by the editor's Outposts data contract."
+    },
+    {
+      "id": "addons/peace-treaties",
+      "resourceName": "schemas/peace-treaties.yml",
+      "fileName": "schema--addons__peace-treaties.json",
+      "source": {
+        "addonId": "peace-treaties",
+        "artifactPath": "addons/Kingdoms-Addon-Peace-Treaties-1.2.8.3.jar",
+        "artifactBlobSha": "65c542bd55dc6dfed6e222f079d37971fd24a682",
+        "artifactSha256": "54b2f1a879e10403200f218d852deb8d80c721cc933777812bbdcfcac5ca9f03",
+        "addonVersion": "1.2.8.3"
+      },
+      "reason": null
+    }
+  ],
+  "schematics": [
+    {
+      "resourceName": "schematics/structures/extractor/1.schematic",
+      "source": {
+        "addonId": "enginehub",
+        "artifactPath": "addons/Kingdoms-Addon-EngineHub-1.6.0.jar",
+        "artifactBlobSha": "67f070da4d22ca24adbed543854603585d031d35",
+        "artifactSha256": "5031072f65ae645269301935d8b38dcf26df31572b420e3f437dc8042d2a0423",
+        "addonVersion": "1.6.0"
+      },
+      "sha256": "fa3af8d7a39e3b68cd3fbad0f9562893e34dd0155f25407bb23bf89f6b1d38bc"
+    },
+    {
+      "resourceName": "schematics/structures/extractor/2.schematic",
+      "source": {
+        "addonId": "enginehub",
+        "artifactPath": "addons/Kingdoms-Addon-EngineHub-1.6.0.jar",
+        "artifactBlobSha": "67f070da4d22ca24adbed543854603585d031d35",
+        "artifactSha256": "5031072f65ae645269301935d8b38dcf26df31572b420e3f437dc8042d2a0423",
+        "addonVersion": "1.6.0"
+      },
+      "sha256": "c3858b25d8d90738e2b7d8d9c8daeda30c39cb1ce061036612c8fdecc0a4d495"
+    },
+    {
+      "resourceName": "schematics/structures/extractor/3.schematic",
+      "source": {
+        "addonId": "enginehub",
+        "artifactPath": "addons/Kingdoms-Addon-EngineHub-1.6.0.jar",
+        "artifactBlobSha": "67f070da4d22ca24adbed543854603585d031d35",
+        "artifactSha256": "5031072f65ae645269301935d8b38dcf26df31572b420e3f437dc8042d2a0423",
+        "addonVersion": "1.6.0"
+      },
+      "sha256": "b72932a3316add16f680ba1a46538d4089ed872fa25850fdac36012228d204c3"
+    },
+    {
+      "resourceName": "schematics/structures/nexus/1.schematic",
+      "source": {
+        "addonId": "enginehub",
+        "artifactPath": "addons/Kingdoms-Addon-EngineHub-1.6.0.jar",
+        "artifactBlobSha": "67f070da4d22ca24adbed543854603585d031d35",
+        "artifactSha256": "5031072f65ae645269301935d8b38dcf26df31572b420e3f437dc8042d2a0423",
+        "addonVersion": "1.6.0"
+      },
+      "sha256": "ffdb3a861753416762cdbd4c7f7fc63590d3b73c304fb9f348270393e71c3268"
+    },
+    {
+      "resourceName": "schematics/structures/nexus/2.schematic",
+      "source": {
+        "addonId": "enginehub",
+        "artifactPath": "addons/Kingdoms-Addon-EngineHub-1.6.0.jar",
+        "artifactBlobSha": "67f070da4d22ca24adbed543854603585d031d35",
+        "artifactSha256": "5031072f65ae645269301935d8b38dcf26df31572b420e3f437dc8042d2a0423",
+        "addonVersion": "1.6.0"
+      },
+      "sha256": "31130d8759aa415f305bc1088d2f3a4c0ecf1bd6f1651536e41deba81a0e4f7a"
+    },
+    {
+      "resourceName": "schematics/structures/nexus/3.schematic",
+      "source": {
+        "addonId": "enginehub",
+        "artifactPath": "addons/Kingdoms-Addon-EngineHub-1.6.0.jar",
+        "artifactBlobSha": "67f070da4d22ca24adbed543854603585d031d35",
+        "artifactSha256": "5031072f65ae645269301935d8b38dcf26df31572b420e3f437dc8042d2a0423",
+        "addonVersion": "1.6.0"
+      },
+      "sha256": "80815d82e4d3be4f07a99eda3368927ce7844b1cede99c487fc66ecde53eb98a"
+    },
+    {
+      "resourceName": "schematics/structures/nexus/4.schematic",
+      "source": {
+        "addonId": "enginehub",
+        "artifactPath": "addons/Kingdoms-Addon-EngineHub-1.6.0.jar",
+        "artifactBlobSha": "67f070da4d22ca24adbed543854603585d031d35",
+        "artifactSha256": "5031072f65ae645269301935d8b38dcf26df31572b420e3f437dc8042d2a0423",
+        "addonVersion": "1.6.0"
+      },
+      "sha256": "ed4218ed5245d06c69d69051d6b153c21b24b5c81098a88827539cef3daed5de"
+    },
+    {
+      "resourceName": "schematics/structures/nexus/5.schematic",
+      "source": {
+        "addonId": "enginehub",
+        "artifactPath": "addons/Kingdoms-Addon-EngineHub-1.6.0.jar",
+        "artifactBlobSha": "67f070da4d22ca24adbed543854603585d031d35",
+        "artifactSha256": "5031072f65ae645269301935d8b38dcf26df31572b420e3f437dc8042d2a0423",
+        "addonVersion": "1.6.0"
+      },
+      "sha256": "3bd32e61c115676cd762bfd8cc84cc9439c7d6ecbe601bdb363d937e574416b1"
+    },
+    {
+      "resourceName": "schematics/structures/outpost/1.schematic",
+      "source": {
+        "addonId": "enginehub",
+        "artifactPath": "addons/Kingdoms-Addon-EngineHub-1.6.0.jar",
+        "artifactBlobSha": "67f070da4d22ca24adbed543854603585d031d35",
+        "artifactSha256": "5031072f65ae645269301935d8b38dcf26df31572b420e3f437dc8042d2a0423",
+        "addonVersion": "1.6.0"
+      },
+      "sha256": "0a49017f1b6a51d833365281bb96ecd6ac956abe61c2375395142a9595b4d60f"
+    },
+    {
+      "resourceName": "schematics/structures/powercell/1.schematic",
+      "source": {
+        "addonId": "enginehub",
+        "artifactPath": "addons/Kingdoms-Addon-EngineHub-1.6.0.jar",
+        "artifactBlobSha": "67f070da4d22ca24adbed543854603585d031d35",
+        "artifactSha256": "5031072f65ae645269301935d8b38dcf26df31572b420e3f437dc8042d2a0423",
+        "addonVersion": "1.6.0"
+      },
+      "sha256": "e53967d1b38c3c9035098a18bddb4164b83748166ff525193a6fc3aab28c45e2"
+    },
+    {
+      "resourceName": "schematics/structures/powercell/2.schematic",
+      "source": {
+        "addonId": "enginehub",
+        "artifactPath": "addons/Kingdoms-Addon-EngineHub-1.6.0.jar",
+        "artifactBlobSha": "67f070da4d22ca24adbed543854603585d031d35",
+        "artifactSha256": "5031072f65ae645269301935d8b38dcf26df31572b420e3f437dc8042d2a0423",
+        "addonVersion": "1.6.0"
+      },
+      "sha256": "fee484df10ac5d53c2a5a80d1d6ca5c5bbc34b4eb0cdf3da752a02f3384ff027"
+    },
+    {
+      "resourceName": "schematics/structures/regulator/1.schematic",
+      "source": {
+        "addonId": "enginehub",
+        "artifactPath": "addons/Kingdoms-Addon-EngineHub-1.6.0.jar",
+        "artifactBlobSha": "67f070da4d22ca24adbed543854603585d031d35",
+        "artifactSha256": "5031072f65ae645269301935d8b38dcf26df31572b420e3f437dc8042d2a0423",
+        "addonVersion": "1.6.0"
+      },
+      "sha256": "ffaa26670d1420d6d40488b29a8ccaedc5afaa1550328a9b708a14d566ae7760"
+    },
+    {
+      "resourceName": "schematics/structures/siege-cannon/1.schematic",
+      "source": {
+        "addonId": "enginehub",
+        "artifactPath": "addons/Kingdoms-Addon-EngineHub-1.6.0.jar",
+        "artifactBlobSha": "67f070da4d22ca24adbed543854603585d031d35",
+        "artifactSha256": "5031072f65ae645269301935d8b38dcf26df31572b420e3f437dc8042d2a0423",
+        "addonVersion": "1.6.0"
+      },
+      "sha256": "acb529536c5d8bc8dfd15b430cabacdb2566b6f410ce69dee3ccbb3a77536668"
+    },
+    {
+      "resourceName": "schematics/structures/siege-cannon/2.schematic",
+      "source": {
+        "addonId": "enginehub",
+        "artifactPath": "addons/Kingdoms-Addon-EngineHub-1.6.0.jar",
+        "artifactBlobSha": "67f070da4d22ca24adbed543854603585d031d35",
+        "artifactSha256": "5031072f65ae645269301935d8b38dcf26df31572b420e3f437dc8042d2a0423",
+        "addonVersion": "1.6.0"
+      },
+      "sha256": "d54f7dedad1b60b433a131a84c7e9e62055a00c0a675d232f241d1d540427538"
+    },
+    {
+      "resourceName": "schematics/structures/siege-cannon/3.schematic",
+      "source": {
+        "addonId": "enginehub",
+        "artifactPath": "addons/Kingdoms-Addon-EngineHub-1.6.0.jar",
+        "artifactBlobSha": "67f070da4d22ca24adbed543854603585d031d35",
+        "artifactSha256": "5031072f65ae645269301935d8b38dcf26df31572b420e3f437dc8042d2a0423",
+        "addonVersion": "1.6.0"
+      },
+      "sha256": "80185e5d08f6b5e015a6a876545746b9853128d48da56a8ae0afbf5623858c42"
+    },
+    {
+      "resourceName": "schematics/structures/warppad/1.schematic",
+      "source": {
+        "addonId": "enginehub",
+        "artifactPath": "addons/Kingdoms-Addon-EngineHub-1.6.0.jar",
+        "artifactBlobSha": "67f070da4d22ca24adbed543854603585d031d35",
+        "artifactSha256": "5031072f65ae645269301935d8b38dcf26df31572b420e3f437dc8042d2a0423",
+        "addonVersion": "1.6.0"
+      },
+      "sha256": "1147e559e581576ad8427d654fada51da182deebfb90146891f46b54e4827543"
+    },
+    {
+      "resourceName": "schematics/turrets/arrow/1.schematic",
+      "source": {
+        "addonId": "enginehub",
+        "artifactPath": "addons/Kingdoms-Addon-EngineHub-1.6.0.jar",
+        "artifactBlobSha": "67f070da4d22ca24adbed543854603585d031d35",
+        "artifactSha256": "5031072f65ae645269301935d8b38dcf26df31572b420e3f437dc8042d2a0423",
+        "addonVersion": "1.6.0"
+      },
+      "sha256": "945036c6fe2f36de9b99c73b29db2a7d121e5a41ce598d4bf750b5bd08581ecb"
+    },
+    {
+      "resourceName": "schematics/turrets/arrow/2.schematic",
+      "source": {
+        "addonId": "enginehub",
+        "artifactPath": "addons/Kingdoms-Addon-EngineHub-1.6.0.jar",
+        "artifactBlobSha": "67f070da4d22ca24adbed543854603585d031d35",
+        "artifactSha256": "5031072f65ae645269301935d8b38dcf26df31572b420e3f437dc8042d2a0423",
+        "addonVersion": "1.6.0"
+      },
+      "sha256": "e11d78466830b2574821d23fc1e0c94bff9f1e0b3e94460a77819ac9e5dd7210"
+    },
+    {
+      "resourceName": "schematics/turrets/arrow/3.schematic",
+      "source": {
+        "addonId": "enginehub",
+        "artifactPath": "addons/Kingdoms-Addon-EngineHub-1.6.0.jar",
+        "artifactBlobSha": "67f070da4d22ca24adbed543854603585d031d35",
+        "artifactSha256": "5031072f65ae645269301935d8b38dcf26df31572b420e3f437dc8042d2a0423",
+        "addonVersion": "1.6.0"
+      },
+      "sha256": "bda0c7639b46dce6035b69d0d65f3670e306eca3ceef3b3dc3c8ba9a74b80844"
+    },
+    {
+      "resourceName": "schematics/turrets/flame/1.schematic",
+      "source": {
+        "addonId": "enginehub",
+        "artifactPath": "addons/Kingdoms-Addon-EngineHub-1.6.0.jar",
+        "artifactBlobSha": "67f070da4d22ca24adbed543854603585d031d35",
+        "artifactSha256": "5031072f65ae645269301935d8b38dcf26df31572b420e3f437dc8042d2a0423",
+        "addonVersion": "1.6.0"
+      },
+      "sha256": "0cc0354cce6357c9c301c388e10d927f8e1f0161c8ae79e0aff7dc78e3fa01ce"
+    },
+    {
+      "resourceName": "schematics/turrets/flame/2.schematic",
+      "source": {
+        "addonId": "enginehub",
+        "artifactPath": "addons/Kingdoms-Addon-EngineHub-1.6.0.jar",
+        "artifactBlobSha": "67f070da4d22ca24adbed543854603585d031d35",
+        "artifactSha256": "5031072f65ae645269301935d8b38dcf26df31572b420e3f437dc8042d2a0423",
+        "addonVersion": "1.6.0"
+      },
+      "sha256": "aed8ffe39c94b4605beef21792d67fd8b0ea7a7189abd0c78ac9e9b8804dd30a"
+    },
+    {
+      "resourceName": "schematics/turrets/flame/3.schematic",
+      "source": {
+        "addonId": "enginehub",
+        "artifactPath": "addons/Kingdoms-Addon-EngineHub-1.6.0.jar",
+        "artifactBlobSha": "67f070da4d22ca24adbed543854603585d031d35",
+        "artifactSha256": "5031072f65ae645269301935d8b38dcf26df31572b420e3f437dc8042d2a0423",
+        "addonVersion": "1.6.0"
+      },
+      "sha256": "9e4a4be74240b37023abc6640f5dda985f41c9c9ca776559129b0ca946728df9"
+    },
+    {
+      "resourceName": "schematics/turrets/healing/1.schematic",
+      "source": {
+        "addonId": "enginehub",
+        "artifactPath": "addons/Kingdoms-Addon-EngineHub-1.6.0.jar",
+        "artifactBlobSha": "67f070da4d22ca24adbed543854603585d031d35",
+        "artifactSha256": "5031072f65ae645269301935d8b38dcf26df31572b420e3f437dc8042d2a0423",
+        "addonVersion": "1.6.0"
+      },
+      "sha256": "61cf1b51c6efd67976fdba82751689e3a44d2b56a0320766331c84199d2ab4d2"
+    },
+    {
+      "resourceName": "schematics/turrets/healing/2.schematic",
+      "source": {
+        "addonId": "enginehub",
+        "artifactPath": "addons/Kingdoms-Addon-EngineHub-1.6.0.jar",
+        "artifactBlobSha": "67f070da4d22ca24adbed543854603585d031d35",
+        "artifactSha256": "5031072f65ae645269301935d8b38dcf26df31572b420e3f437dc8042d2a0423",
+        "addonVersion": "1.6.0"
+      },
+      "sha256": "2586428d6115259d56a6a69e66118643b0207dd1314ebd8c328407d894c7cc1e"
+    },
+    {
+      "resourceName": "schematics/turrets/healing/3.schematic",
+      "source": {
+        "addonId": "enginehub",
+        "artifactPath": "addons/Kingdoms-Addon-EngineHub-1.6.0.jar",
+        "artifactBlobSha": "67f070da4d22ca24adbed543854603585d031d35",
+        "artifactSha256": "5031072f65ae645269301935d8b38dcf26df31572b420e3f437dc8042d2a0423",
+        "addonVersion": "1.6.0"
+      },
+      "sha256": "bd7d445e07326335f4f830c7a1313b8f21d6fb371219b82476ea85a1011447b7"
+    },
+    {
+      "resourceName": "schematics/turrets/heatbeam/1.schematic",
+      "source": {
+        "addonId": "enginehub",
+        "artifactPath": "addons/Kingdoms-Addon-EngineHub-1.6.0.jar",
+        "artifactBlobSha": "67f070da4d22ca24adbed543854603585d031d35",
+        "artifactSha256": "5031072f65ae645269301935d8b38dcf26df31572b420e3f437dc8042d2a0423",
+        "addonVersion": "1.6.0"
+      },
+      "sha256": "33026bad1b16af9e88131ba29b3009514abe376180b3081381223cf4f09bc70d"
+    },
+    {
+      "resourceName": "schematics/turrets/heatbeam/2.schematic",
+      "source": {
+        "addonId": "enginehub",
+        "artifactPath": "addons/Kingdoms-Addon-EngineHub-1.6.0.jar",
+        "artifactBlobSha": "67f070da4d22ca24adbed543854603585d031d35",
+        "artifactSha256": "5031072f65ae645269301935d8b38dcf26df31572b420e3f437dc8042d2a0423",
+        "addonVersion": "1.6.0"
+      },
+      "sha256": "db150c7dcbe53120b772058c106585f8fcd978f791dc18e083186e149c8f4749"
+    },
+    {
+      "resourceName": "schematics/turrets/heatbeam/3.schematic",
+      "source": {
+        "addonId": "enginehub",
+        "artifactPath": "addons/Kingdoms-Addon-EngineHub-1.6.0.jar",
+        "artifactBlobSha": "67f070da4d22ca24adbed543854603585d031d35",
+        "artifactSha256": "5031072f65ae645269301935d8b38dcf26df31572b420e3f437dc8042d2a0423",
+        "addonVersion": "1.6.0"
+      },
+      "sha256": "11f978346f64411a4f0fa3d358ad4dd3e49dac7b58435f4e20eb4cee8803ffa2"
+    },
+    {
+      "resourceName": "schematics/turrets/hellfire/1.schematic",
+      "source": {
+        "addonId": "enginehub",
+        "artifactPath": "addons/Kingdoms-Addon-EngineHub-1.6.0.jar",
+        "artifactBlobSha": "67f070da4d22ca24adbed543854603585d031d35",
+        "artifactSha256": "5031072f65ae645269301935d8b38dcf26df31572b420e3f437dc8042d2a0423",
+        "addonVersion": "1.6.0"
+      },
+      "sha256": "956b5b624c3190b22f55a55e0ef5d8ffeb3794ec9ff5facd2246960f10cfdb85"
+    },
+    {
+      "resourceName": "schematics/turrets/hellfire/2.schematic",
+      "source": {
+        "addonId": "enginehub",
+        "artifactPath": "addons/Kingdoms-Addon-EngineHub-1.6.0.jar",
+        "artifactBlobSha": "67f070da4d22ca24adbed543854603585d031d35",
+        "artifactSha256": "5031072f65ae645269301935d8b38dcf26df31572b420e3f437dc8042d2a0423",
+        "addonVersion": "1.6.0"
+      },
+      "sha256": "260177fbdfa2dc2668da19efc4c646b6e641fff23b56180cd29e50bad701ec45"
+    },
+    {
+      "resourceName": "schematics/turrets/hellfire/3.schematic",
+      "source": {
+        "addonId": "enginehub",
+        "artifactPath": "addons/Kingdoms-Addon-EngineHub-1.6.0.jar",
+        "artifactBlobSha": "67f070da4d22ca24adbed543854603585d031d35",
+        "artifactSha256": "5031072f65ae645269301935d8b38dcf26df31572b420e3f437dc8042d2a0423",
+        "addonVersion": "1.6.0"
+      },
+      "sha256": "b88f6d89ec43c1b1ca3a691797e01cdb0d04c7cd35f1714084447db2f82b81b9"
+    },
+    {
+      "resourceName": "schematics/turrets/inferno/1.schematic",
+      "source": {
+        "addonId": "enginehub",
+        "artifactPath": "addons/Kingdoms-Addon-EngineHub-1.6.0.jar",
+        "artifactBlobSha": "67f070da4d22ca24adbed543854603585d031d35",
+        "artifactSha256": "5031072f65ae645269301935d8b38dcf26df31572b420e3f437dc8042d2a0423",
+        "addonVersion": "1.6.0"
+      },
+      "sha256": "896fa21eb14feca1317dc4f8b0aebc6d34343d8dc49433c6b52aec62090b28db"
+    },
+    {
+      "resourceName": "schematics/turrets/inferno/2.schematic",
+      "source": {
+        "addonId": "enginehub",
+        "artifactPath": "addons/Kingdoms-Addon-EngineHub-1.6.0.jar",
+        "artifactBlobSha": "67f070da4d22ca24adbed543854603585d031d35",
+        "artifactSha256": "5031072f65ae645269301935d8b38dcf26df31572b420e3f437dc8042d2a0423",
+        "addonVersion": "1.6.0"
+      },
+      "sha256": "2a3368d0c14064db96ea7efa97c299143b717889f13c85cf0f015857e4024be5"
+    },
+    {
+      "resourceName": "schematics/turrets/inferno/3.schematic",
+      "source": {
+        "addonId": "enginehub",
+        "artifactPath": "addons/Kingdoms-Addon-EngineHub-1.6.0.jar",
+        "artifactBlobSha": "67f070da4d22ca24adbed543854603585d031d35",
+        "artifactSha256": "5031072f65ae645269301935d8b38dcf26df31572b420e3f437dc8042d2a0423",
+        "addonVersion": "1.6.0"
+      },
+      "sha256": "10b571677a71f17df1b36bcc2cdcb572d2aa1f0aab0f5d08583a4a6886c1ee00"
+    },
+    {
+      "resourceName": "schematics/turrets/psionic/1.schematic",
+      "source": {
+        "addonId": "enginehub",
+        "artifactPath": "addons/Kingdoms-Addon-EngineHub-1.6.0.jar",
+        "artifactBlobSha": "67f070da4d22ca24adbed543854603585d031d35",
+        "artifactSha256": "5031072f65ae645269301935d8b38dcf26df31572b420e3f437dc8042d2a0423",
+        "addonVersion": "1.6.0"
+      },
+      "sha256": "062f06f86622c6fd2bfad3beaa5c3e4eb4ab4a4756825667be8269ab32629b91"
+    },
+    {
+      "resourceName": "schematics/turrets/psionic/2.schematic",
+      "source": {
+        "addonId": "enginehub",
+        "artifactPath": "addons/Kingdoms-Addon-EngineHub-1.6.0.jar",
+        "artifactBlobSha": "67f070da4d22ca24adbed543854603585d031d35",
+        "artifactSha256": "5031072f65ae645269301935d8b38dcf26df31572b420e3f437dc8042d2a0423",
+        "addonVersion": "1.6.0"
+      },
+      "sha256": "101e0f99021abb2bb99e344ebb8e78692f7cdfd7588b33f10b683cb171a409ab"
+    },
+    {
+      "resourceName": "schematics/turrets/psionic/3.schematic",
+      "source": {
+        "addonId": "enginehub",
+        "artifactPath": "addons/Kingdoms-Addon-EngineHub-1.6.0.jar",
+        "artifactBlobSha": "67f070da4d22ca24adbed543854603585d031d35",
+        "artifactSha256": "5031072f65ae645269301935d8b38dcf26df31572b420e3f437dc8042d2a0423",
+        "addonVersion": "1.6.0"
+      },
+      "sha256": "f3089f83682edf2e42e995d06f939b6694e8aaaa7f70bd2634a5988a2605163d"
+    },
+    {
+      "resourceName": "schematics/turrets/soldier/1.schematic",
+      "source": {
+        "addonId": "enginehub",
+        "artifactPath": "addons/Kingdoms-Addon-EngineHub-1.6.0.jar",
+        "artifactBlobSha": "67f070da4d22ca24adbed543854603585d031d35",
+        "artifactSha256": "5031072f65ae645269301935d8b38dcf26df31572b420e3f437dc8042d2a0423",
+        "addonVersion": "1.6.0"
+      },
+      "sha256": "731f9952bd481dc971508d8553b6c42b8f7d50bb8f18a433387af2890627fdc4"
+    },
+    {
+      "resourceName": "schematics/turrets/soldier/2.schematic",
+      "source": {
+        "addonId": "enginehub",
+        "artifactPath": "addons/Kingdoms-Addon-EngineHub-1.6.0.jar",
+        "artifactBlobSha": "67f070da4d22ca24adbed543854603585d031d35",
+        "artifactSha256": "5031072f65ae645269301935d8b38dcf26df31572b420e3f437dc8042d2a0423",
+        "addonVersion": "1.6.0"
+      },
+      "sha256": "4e303147af8aae689fd0ee0745d0b19008b3b0125473889d8e0151045132613b"
+    },
+    {
+      "resourceName": "schematics/turrets/soldier/3.schematic",
+      "source": {
+        "addonId": "enginehub",
+        "artifactPath": "addons/Kingdoms-Addon-EngineHub-1.6.0.jar",
+        "artifactBlobSha": "67f070da4d22ca24adbed543854603585d031d35",
+        "artifactSha256": "5031072f65ae645269301935d8b38dcf26df31572b420e3f437dc8042d2a0423",
+        "addonVersion": "1.6.0"
+      },
+      "sha256": "3d743c1c634f96fa0d7648d5e21b7f09d6b37e1a5af37e11014260e4cfc9b7e9"
+    }
+  ]
+}

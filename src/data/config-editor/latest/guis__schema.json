@@ -1,0 +1,167 @@
+{
+  "formatVersion": 2,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "id": "guis/schema",
+  "resourceName": "guis/schema.yml",
+  "schema": {
+    "kind": "object",
+    "fields": [
+      {
+        "key": "title",
+        "type": {
+          "kind": "string",
+          "typeName": "Message"
+        }
+      },
+      {
+        "key": "rows",
+        "type": {
+          "kind": "integer"
+        }
+      },
+      {
+        "key": "sound",
+        "type": {
+          "kind": "suggestion",
+          "typeName": "Sound",
+          "allowCustom": true
+        }
+      },
+      {
+        "key": "interactable",
+        "type": {
+          "kind": "union",
+          "choices": [
+            {
+              "kind": "set",
+              "elements": {
+                "kind": "integer"
+              }
+            },
+            {
+              "kind": "enum",
+              "values": [
+                "empty"
+              ],
+              "allowCustom": false
+            }
+          ]
+        }
+      },
+      {
+        "key": "disallow-creative",
+        "type": {
+          "kind": "boolean"
+        }
+      },
+      {
+        "key": "message",
+        "type": {
+          "kind": "string",
+          "typeName": "Message"
+        }
+      },
+      {
+        "key": "open-options",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "expression",
+            "language": "condition"
+          },
+          "values": {
+            "kind": "string",
+            "typeName": "Message"
+          },
+          "fields": []
+        }
+      },
+      {
+        "key": "options",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "string",
+            "typeName": "str"
+          },
+          "values": {
+            "kind": "object",
+            "fields": [
+              {
+                "key": "interaction",
+                "type": {
+                  "kind": "suggestion",
+                  "typeName": "Enum<org.kingdoms.gui.objects.GUIInteractionType>",
+                  "allowCustom": true
+                }
+              },
+              {
+                "key": "condition",
+                "type": {
+                  "kind": "string",
+                  "typeName": "str"
+                }
+              },
+              {
+                "key": "sound",
+                "type": {
+                  "kind": "suggestion",
+                  "typeName": "Sound",
+                  "allowCustom": true
+                }
+              },
+              {
+                "key": "refresh",
+                "type": {
+                  "kind": "boolean"
+                }
+              },
+              {
+                "key": "message",
+                "type": {
+                  "kind": "string",
+                  "typeName": "Message"
+                }
+              },
+              {
+                "key": "slot",
+                "type": {
+                  "kind": "integer"
+                }
+              },
+              {
+                "key": "posx",
+                "type": {
+                  "kind": "integer"
+                }
+              },
+              {
+                "key": "posy",
+                "type": {
+                  "kind": "integer"
+                }
+              },
+              {
+                "key": "slots",
+                "type": {
+                  "kind": "list",
+                  "elements": {
+                    "kind": "integer"
+                  }
+                }
+              }
+            ],
+            "extends": [
+              "ItemStack"
+            ]
+          },
+          "fields": []
+        }
+      }
+    ]
+  }
+}

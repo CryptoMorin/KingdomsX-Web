@@ -1,0 +1,437 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "guis/structures/nexus/members.yml",
+  "schemaId": "guis/schema",
+  "options": [
+    {
+      "path": [
+        "title"
+      ],
+      "source": "\"&0-=( &aMembers &0)=-\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "rows"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sound"
+      ],
+      "source": "ENTITY_EXPERIENCE_ORB_PICKUP",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options"
+      ],
+      "source": "\r\n  members:\r\n    name: \"&8[%kingdoms_rank_color%%kingdoms_rank_symbol%&8] {$p}%player%\"\r\n    material: PLAYER_HEAD\r\n    lore:\r\n      - \"%online%\"\r\n      - \"{$p}Joined{$colon} {$s}%date@kingdoms_joined%\"\r\n      - \"{$p}Donations{$colon} {$s}%kingdoms_total_donations%\"\r\n      - \"{$p}Last Donation{$colon} {$s}%date@kingdoms_last_donation_time%\"\r\n      - \"{$p}Rank{$colon} {$s}%kingdoms_rank_name%\"\r\n    slots: [ 10, 11, 12, 13, 14, 15, 16,  19, 20, 21, 22, 23, 24, 25,  28, 29, 30, 31, 32, 33, 34,  37, 38, 39, 40, 41, 42, 43 ]\r\n  red-glass:\r\n    name: ''\r\n    material: RED_STAINED_GLASS_PANE\r\n    slots: [ 1, 2, 3, 4, 5, 6, 7, 9, 17, 18, 26, 27, 35, 36, 44, 45, 46, 47, 48, 50, 51, 52, 53 ]\r\n  next-page:\r\n    name: '{$s}Next Page {$sep}- &e%page%&8/&e%pages%'\r\n    material: PLAYER_HEAD\r\n    skull: \"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjgyYWQxYjljYjRkZDIxMjU5YzBkNzVhYTMxNWZmMzg5YzNjZWY3NTJiZTM5NDkzMzgxNjRiYWM4NGE5NmUifX19\"\r\n    slot: 8\r\n  previous-page:\r\n    name: '{$s}Previous Page {$sep}- &e%page%&8/&e%pages%'\r\n    material: PLAYER_HEAD\r\n    skull: \"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzdhZWU5YTc1YmYwZGY3ODk3MTgzMDE1Y2NhMGIyYTdkNzU1YzYzMzg4ZmYwMTc1MmQ1ZjQ0MTlmYzY0NSJ9fX0=\"\r\n    slot: 0\r\n  back:\r\n    name: \"{$p}Back\"\r\n    material: BARRIER\r\n    lore:\r\n      - \"{$s}Go back to nexus menu.\"\r\n    posx: 5\r\n    posy: 6",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "members"
+      ],
+      "source": "\r\n    name: \"&8[%kingdoms_rank_color%%kingdoms_rank_symbol%&8] {$p}%player%\"\r\n    material: PLAYER_HEAD\r\n    lore:\r\n      - \"%online%\"\r\n      - \"{$p}Joined{$colon} {$s}%date@kingdoms_joined%\"\r\n      - \"{$p}Donations{$colon} {$s}%kingdoms_total_donations%\"\r\n      - \"{$p}Last Donation{$colon} {$s}%date@kingdoms_last_donation_time%\"\r\n      - \"{$p}Rank{$colon} {$s}%kingdoms_rank_name%\"\r\n    slots: [ 10, 11, 12, 13, 14, 15, 16,  19, 20, 21, 22, 23, 24, 25,  28, 29, 30, 31, 32, 33, 34,  37, 38, 39, 40, 41, 42, 43 ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "members",
+        "name"
+      ],
+      "source": "\"&8[%kingdoms_rank_color%%kingdoms_rank_symbol%&8] {$p}%player%\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "members",
+        "material"
+      ],
+      "source": "PLAYER_HEAD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "members",
+        "lore"
+      ],
+      "source": "\r\n      - \"%online%\"\r\n      - \"{$p}Joined{$colon} {$s}%date@kingdoms_joined%\"\r\n      - \"{$p}Donations{$colon} {$s}%kingdoms_total_donations%\"\r\n      - \"{$p}Last Donation{$colon} {$s}%date@kingdoms_last_donation_time%\"\r\n      - \"{$p}Rank{$colon} {$s}%kingdoms_rank_name%\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"%online%\"",
+        "\"{$p}Joined{$colon} {$s}%date@kingdoms_joined%\"",
+        "\"{$p}Donations{$colon} {$s}%kingdoms_total_donations%\"",
+        "\"{$p}Last Donation{$colon} {$s}%date@kingdoms_last_donation_time%\"",
+        "\"{$p}Rank{$colon} {$s}%kingdoms_rank_name%\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "members",
+        "slots"
+      ],
+      "source": "[ 10, 11, 12, 13, 14, 15, 16,  19, 20, 21, 22, 23, 24, 25,  28, 29, 30, 31, 32, 33, 34,  37, 38, 39, 40, 41, 42, 43 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "28",
+        "29",
+        "30",
+        "31",
+        "32",
+        "33",
+        "34",
+        "37",
+        "38",
+        "39",
+        "40",
+        "41",
+        "42",
+        "43"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "red-glass"
+      ],
+      "source": "\r\n    name: ''\r\n    material: RED_STAINED_GLASS_PANE\r\n    slots: [ 1, 2, 3, 4, 5, 6, 7, 9, 17, 18, 26, 27, 35, 36, 44, 45, 46, 47, 48, 50, 51, 52, 53 ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "red-glass",
+        "name"
+      ],
+      "source": "''",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "red-glass",
+        "material"
+      ],
+      "source": "RED_STAINED_GLASS_PANE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "red-glass",
+        "slots"
+      ],
+      "source": "[ 1, 2, 3, 4, 5, 6, 7, 9, 17, 18, 26, 27, 35, 36, 44, 45, 46, 47, 48, 50, 51, 52, 53 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "9",
+        "17",
+        "18",
+        "26",
+        "27",
+        "35",
+        "36",
+        "44",
+        "45",
+        "46",
+        "47",
+        "48",
+        "50",
+        "51",
+        "52",
+        "53"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "next-page"
+      ],
+      "source": "\r\n    name: '{$s}Next Page {$sep}- &e%page%&8/&e%pages%'\r\n    material: PLAYER_HEAD\r\n    skull: \"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjgyYWQxYjljYjRkZDIxMjU5YzBkNzVhYTMxNWZmMzg5YzNjZWY3NTJiZTM5NDkzMzgxNjRiYWM4NGE5NmUifX19\"\r\n    slot: 8\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "next-page",
+        "name"
+      ],
+      "source": "'{$s}Next Page {$sep}- &e%page%&8/&e%pages%'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "next-page",
+        "material"
+      ],
+      "source": "PLAYER_HEAD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "next-page",
+        "skull"
+      ],
+      "source": "\"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjgyYWQxYjljYjRkZDIxMjU5YzBkNzVhYTMxNWZmMzg5YzNjZWY3NTJiZTM5NDkzMzgxNjRiYWM4NGE5NmUifX19\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "next-page",
+        "slot"
+      ],
+      "source": "8",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "previous-page"
+      ],
+      "source": "\r\n    name: '{$s}Previous Page {$sep}- &e%page%&8/&e%pages%'\r\n    material: PLAYER_HEAD\r\n    skull: \"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzdhZWU5YTc1YmYwZGY3ODk3MTgzMDE1Y2NhMGIyYTdkNzU1YzYzMzg4ZmYwMTc1MmQ1ZjQ0MTlmYzY0NSJ9fX0=\"\r\n    slot: 0\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "previous-page",
+        "name"
+      ],
+      "source": "'{$s}Previous Page {$sep}- &e%page%&8/&e%pages%'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "previous-page",
+        "material"
+      ],
+      "source": "PLAYER_HEAD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "previous-page",
+        "skull"
+      ],
+      "source": "\"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzdhZWU5YTc1YmYwZGY3ODk3MTgzMDE1Y2NhMGIyYTdkNzU1YzYzMzg4ZmYwMTc1MmQ1ZjQ0MTlmYzY0NSJ9fX0=\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "previous-page",
+        "slot"
+      ],
+      "source": "0",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back"
+      ],
+      "source": "\r\n    name: \"{$p}Back\"\r\n    material: BARRIER\r\n    lore:\r\n      - \"{$s}Go back to nexus menu.\"\r\n    posx: 5\r\n    posy: 6",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "name"
+      ],
+      "source": "\"{$p}Back\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "material"
+      ],
+      "source": "BARRIER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "lore"
+      ],
+      "source": "\r\n      - \"{$s}Go back to nexus menu.\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$s}Go back to nexus menu.\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "posy"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

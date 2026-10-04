@@ -1,0 +1,209 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "guis/kingdom-create.yml",
+  "schemaId": "guis/schema",
+  "options": [
+    {
+      "path": [
+        "title"
+      ],
+      "source": "\"&0-=( {$s}Kingdom Type &0)=-\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "type"
+      ],
+      "source": "HOPPER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sound"
+      ],
+      "source": "ENTITY_EXPERIENCE_ORB_PICKUP",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options"
+      ],
+      "source": "\r\n  pacifist:\r\n    name: \"{$p}Pacifist\"\r\n    material: OAK_SAPLING\r\n    lore:\r\n      - '{$sep}Pacifist kingdoms cannot invade'\r\n      - 'other kingdoms and cannot be invaded.'\r\n      - \"They cannot PvP other players\"\r\n      - \"unless {$s}/k pvp {$sep}is enabled.\"\r\n      - \"Basically it'll provide a\"\r\n      - '&4permanent {$sep}peaceful gameplay.'\r\n    slot: 1\r\n  aggressor:\r\n    name: \"&cAggressor\"\r\n    material: DIAMOND_SWORD\r\n    flags: ALL\r\n    lore:\r\n      - '{$sep}These kingdoms can invade and PvP'\r\n      - 'other non-ally kingdoms, but they may'\r\n      - 'use shields for a peaceful experience'\r\n      - 'to a certain extent temporarily.'\r\n    slot: 3",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "pacifist"
+      ],
+      "source": "\r\n    name: \"{$p}Pacifist\"\r\n    material: OAK_SAPLING\r\n    lore:\r\n      - '{$sep}Pacifist kingdoms cannot invade'\r\n      - 'other kingdoms and cannot be invaded.'\r\n      - \"They cannot PvP other players\"\r\n      - \"unless {$s}/k pvp {$sep}is enabled.\"\r\n      - \"Basically it'll provide a\"\r\n      - '&4permanent {$sep}peaceful gameplay.'\r\n    slot: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "pacifist",
+        "name"
+      ],
+      "source": "\"{$p}Pacifist\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "pacifist",
+        "material"
+      ],
+      "source": "OAK_SAPLING",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "pacifist",
+        "lore"
+      ],
+      "source": "\r\n      - '{$sep}Pacifist kingdoms cannot invade'\r\n      - 'other kingdoms and cannot be invaded.'\r\n      - \"They cannot PvP other players\"\r\n      - \"unless {$s}/k pvp {$sep}is enabled.\"\r\n      - \"Basically it'll provide a\"\r\n      - '&4permanent {$sep}peaceful gameplay.'\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "'{$sep}Pacifist kingdoms cannot invade'",
+        "'other kingdoms and cannot be invaded.'",
+        "\"They cannot PvP other players\"",
+        "\"unless {$s}/k pvp {$sep}is enabled.\"",
+        "\"Basically it'll provide a\"",
+        "'&4permanent {$sep}peaceful gameplay.'"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "pacifist",
+        "slot"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "aggressor"
+      ],
+      "source": "\r\n    name: \"&cAggressor\"\r\n    material: DIAMOND_SWORD\r\n    flags: ALL\r\n    lore:\r\n      - '{$sep}These kingdoms can invade and PvP'\r\n      - 'other non-ally kingdoms, but they may'\r\n      - 'use shields for a peaceful experience'\r\n      - 'to a certain extent temporarily.'\r\n    slot: 3",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "aggressor",
+        "name"
+      ],
+      "source": "\"&cAggressor\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "aggressor",
+        "material"
+      ],
+      "source": "DIAMOND_SWORD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "aggressor",
+        "flags"
+      ],
+      "source": "ALL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "aggressor",
+        "lore"
+      ],
+      "source": "\r\n      - '{$sep}These kingdoms can invade and PvP'\r\n      - 'other non-ally kingdoms, but they may'\r\n      - 'use shields for a peaceful experience'\r\n      - 'to a certain extent temporarily.'\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "'{$sep}These kingdoms can invade and PvP'",
+        "'other non-ally kingdoms, but they may'",
+        "'use shields for a peaceful experience'",
+        "'to a certain extent temporarily.'"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "aggressor",
+        "slot"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

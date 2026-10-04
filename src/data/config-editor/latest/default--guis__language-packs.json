@@ -1,0 +1,492 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "guis/language-packs.yml",
+  "schemaId": "guis/schema",
+  "options": [
+    {
+      "path": [
+        "title"
+      ],
+      "source": "\"{$sep}-=( {$sp}Language Packs {$sep})=-\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "rows"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options"
+      ],
+      "source": "\r\n  decoration:\r\n    slots: [ 0, 1, 2, 3, 5, 6, 7, 8, 9, 17, 18, 26, 27, 35, 36, 44, 45, 46, 47, 48, 50, 51, 52, 53 ]\r\n    material: LIGHT_BLUE_STAINED_GLASS_PANE\r\n    name: ''\r\n  info:\r\n    posx: 5\r\n    posy: 1\r\n    material: PLAYER_HEAD\r\n    skull: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDAxYWZlOTczYzU0ODJmZGM3MWU2YWExMDY5ODgzM2M3OWM0MzdmMjEzMDhlYTlhMWEwOTU3NDZlYzI3NGEwZiJ9fX0='\r\n    name: '{$p}Available Languages To Download'\r\n    lore: |\r\n      {$sep}They're all under {$p}500kb\r\n      {$sep}note that always the latest version is\r\n      downloaded, so if a GUI/message gets\r\n      renamed, moved or deleted which rarely\r\n      happens, the plugin &cwill not be able\r\n      to show them.\r\n\r\n      {$p}English {$sep}is always installed and\r\n      &ccannot be uninstalled {$sep}since its\r\n      the 'reference' language.\r\n\r\n      {$sep}All downloaded language packs are saved\r\n      in a folder named {$p}repository{$sep}. That\r\n      folder should never be edited manually.\r\n      That's the reference folder.\r\n\r\n      If you want to modify the downloaded\r\n      languages, you should do so in the\r\n      {$p}languages {$sep}folder instead. Even deleting\r\n      those are fine, the plugin will regenerate\r\n      them back without redownloading.\r\n  download-all:\r\n    posx: 5\r\n    posy: 6\r\n    name: \"{$p}Download & Update All\"\r\n    material: PLAYER_HEAD\r\n    skull: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZmFmZWMzYzdmYWIyYTM3MjkwNWZhM2ZjMWZiMjI4ZTc4M2JiOTNhNTNlNmQzMmU0NWViZGI0YTAyMThmY2NhIn19fQ=='\r\n    lore: |\r\n      {$sep}This option downloads all\r\n      languages that haven't been\r\n      downloaded yet and updates all\r\n      other languages that have already\r\n      been downloaded but are outdated.\r\n  languages:\r\n    # The skull skin textures used for this option comes from \"languages.yml\" GUI config.\r\n    slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43 ]\r\n    material: PLAYER_HEAD\r\n    name: '{$p}%native-name% &8({$sp}%lang%&8)'\r\n    up-to-date:\r\n      condition: installed && updated\r\n      lore: |\r\n        {$p}Up to date\r\n        &4Right-click to uninstall.\r\n    outdated:\r\n      condition: installed\r\n      lore: |\r\n        &eOutdated. Left-click to update.\r\n        &8(&4!&8) &eUpdating will override all\r\n        files that needs updating. Only the\r\n        files shown below will be redownloaded.\r\n        &4Right-click to uninstall\r\n        {$sp}Middle-click to see a full list of\r\n        updated files.\r\n\r\n        &cUpdated files summary{$colon}\r\n    not-installed:\r\n      lore: |\r\n        &4Not installed\r\n        Left-click to download\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "decoration"
+      ],
+      "source": "\r\n    slots: [ 0, 1, 2, 3, 5, 6, 7, 8, 9, 17, 18, 26, 27, 35, 36, 44, 45, 46, 47, 48, 50, 51, 52, 53 ]\r\n    material: LIGHT_BLUE_STAINED_GLASS_PANE\r\n    name: ''\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "decoration",
+        "slots"
+      ],
+      "source": "[ 0, 1, 2, 3, 5, 6, 7, 8, 9, 17, 18, 26, 27, 35, 36, 44, 45, 46, 47, 48, 50, 51, 52, 53 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "17",
+        "18",
+        "26",
+        "27",
+        "35",
+        "36",
+        "44",
+        "45",
+        "46",
+        "47",
+        "48",
+        "50",
+        "51",
+        "52",
+        "53"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "decoration",
+        "material"
+      ],
+      "source": "LIGHT_BLUE_STAINED_GLASS_PANE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "decoration",
+        "name"
+      ],
+      "source": "''",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "info"
+      ],
+      "source": "\r\n    posx: 5\r\n    posy: 1\r\n    material: PLAYER_HEAD\r\n    skull: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDAxYWZlOTczYzU0ODJmZGM3MWU2YWExMDY5ODgzM2M3OWM0MzdmMjEzMDhlYTlhMWEwOTU3NDZlYzI3NGEwZiJ9fX0='\r\n    name: '{$p}Available Languages To Download'\r\n    lore: |\r\n      {$sep}They're all under {$p}500kb\r\n      {$sep}note that always the latest version is\r\n      downloaded, so if a GUI/message gets\r\n      renamed, moved or deleted which rarely\r\n      happens, the plugin &cwill not be able\r\n      to show them.\r\n\r\n      {$p}English {$sep}is always installed and\r\n      &ccannot be uninstalled {$sep}since its\r\n      the 'reference' language.\r\n\r\n      {$sep}All downloaded language packs are saved\r\n      in a folder named {$p}repository{$sep}. That\r\n      folder should never be edited manually.\r\n      That's the reference folder.\r\n\r\n      If you want to modify the downloaded\r\n      languages, you should do so in the\r\n      {$p}languages {$sep}folder instead. Even deleting\r\n      those are fine, the plugin will regenerate\r\n      them back without redownloading.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "info",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "info",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "info",
+        "material"
+      ],
+      "source": "PLAYER_HEAD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "info",
+        "skull"
+      ],
+      "source": "'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDAxYWZlOTczYzU0ODJmZGM3MWU2YWExMDY5ODgzM2M3OWM0MzdmMjEzMDhlYTlhMWEwOTU3NDZlYzI3NGEwZiJ9fX0='",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "info",
+        "name"
+      ],
+      "source": "'{$p}Available Languages To Download'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "info",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}They're all under {$p}500kb\r\n      {$sep}note that always the latest version is\r\n      downloaded, so if a GUI/message gets\r\n      renamed, moved or deleted which rarely\r\n      happens, the plugin &cwill not be able\r\n      to show them.\r\n\r\n      {$p}English {$sep}is always installed and\r\n      &ccannot be uninstalled {$sep}since its\r\n      the 'reference' language.\r\n\r\n      {$sep}All downloaded language packs are saved\r\n      in a folder named {$p}repository{$sep}. That\r\n      folder should never be edited manually.\r\n      That's the reference folder.\r\n\r\n      If you want to modify the downloaded\r\n      languages, you should do so in the\r\n      {$p}languages {$sep}folder instead. Even deleting\r\n      those are fine, the plugin will regenerate\r\n      them back without redownloading.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "download-all"
+      ],
+      "source": "\r\n    posx: 5\r\n    posy: 6\r\n    name: \"{$p}Download & Update All\"\r\n    material: PLAYER_HEAD\r\n    skull: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZmFmZWMzYzdmYWIyYTM3MjkwNWZhM2ZjMWZiMjI4ZTc4M2JiOTNhNTNlNmQzMmU0NWViZGI0YTAyMThmY2NhIn19fQ=='\r\n    lore: |\r\n      {$sep}This option downloads all\r\n      languages that haven't been\r\n      downloaded yet and updates all\r\n      other languages that have already\r\n      been downloaded but are outdated.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "download-all",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "download-all",
+        "posy"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "download-all",
+        "name"
+      ],
+      "source": "\"{$p}Download & Update All\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "download-all",
+        "material"
+      ],
+      "source": "PLAYER_HEAD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "download-all",
+        "skull"
+      ],
+      "source": "'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZmFmZWMzYzdmYWIyYTM3MjkwNWZhM2ZjMWZiMjI4ZTc4M2JiOTNhNTNlNmQzMmU0NWViZGI0YTAyMThmY2NhIn19fQ=='",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "download-all",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}This option downloads all\r\n      languages that haven't been\r\n      downloaded yet and updates all\r\n      other languages that have already\r\n      been downloaded but are outdated.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "languages"
+      ],
+      "source": "\r\n    # The skull skin textures used for this option comes from \"languages.yml\" GUI config.\r\n    slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43 ]\r\n    material: PLAYER_HEAD\r\n    name: '{$p}%native-name% &8({$sp}%lang%&8)'\r\n    up-to-date:\r\n      condition: installed && updated\r\n      lore: |\r\n        {$p}Up to date\r\n        &4Right-click to uninstall.\r\n    outdated:\r\n      condition: installed\r\n      lore: |\r\n        &eOutdated. Left-click to update.\r\n        &8(&4!&8) &eUpdating will override all\r\n        files that needs updating. Only the\r\n        files shown below will be redownloaded.\r\n        &4Right-click to uninstall\r\n        {$sp}Middle-click to see a full list of\r\n        updated files.\r\n\r\n        &cUpdated files summary{$colon}\r\n    not-installed:\r\n      lore: |\r\n        &4Not installed\r\n        Left-click to download\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "languages",
+        "slots"
+      ],
+      "source": "[ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43 ]",
+      "comments": [
+        "The skull skin textures used for this option comes from \"languages.yml\" GUI config."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "28",
+        "29",
+        "30",
+        "31",
+        "32",
+        "33",
+        "34",
+        "37",
+        "38",
+        "39",
+        "40",
+        "41",
+        "42",
+        "43"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "languages",
+        "material"
+      ],
+      "source": "PLAYER_HEAD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "languages",
+        "name"
+      ],
+      "source": "'{$p}%native-name% &8({$sp}%lang%&8)'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "languages",
+        "up-to-date"
+      ],
+      "source": "\r\n      condition: installed && updated\r\n      lore: |\r\n        {$p}Up to date\r\n        &4Right-click to uninstall.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "languages",
+        "up-to-date",
+        "condition"
+      ],
+      "source": "installed && updated",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "languages",
+        "up-to-date",
+        "lore"
+      ],
+      "source": "|\r\n        {$p}Up to date\r\n        &4Right-click to uninstall.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "languages",
+        "outdated"
+      ],
+      "source": "\r\n      condition: installed\r\n      lore: |\r\n        &eOutdated. Left-click to update.\r\n        &8(&4!&8) &eUpdating will override all\r\n        files that needs updating. Only the\r\n        files shown below will be redownloaded.\r\n        &4Right-click to uninstall\r\n        {$sp}Middle-click to see a full list of\r\n        updated files.\r\n\r\n        &cUpdated files summary{$colon}\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "languages",
+        "outdated",
+        "condition"
+      ],
+      "source": "installed",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "languages",
+        "outdated",
+        "lore"
+      ],
+      "source": "|\r\n        &eOutdated. Left-click to update.\r\n        &8(&4!&8) &eUpdating will override all\r\n        files that needs updating. Only the\r\n        files shown below will be redownloaded.\r\n        &4Right-click to uninstall\r\n        {$sp}Middle-click to see a full list of\r\n        updated files.\r\n\r\n        &cUpdated files summary{$colon}\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "languages",
+        "not-installed"
+      ],
+      "source": "\r\n      lore: |\r\n        &4Not installed\r\n        Left-click to download\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "languages",
+        "not-installed",
+        "lore"
+      ],
+      "source": "|\r\n        &4Not installed\r\n        Left-click to download\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

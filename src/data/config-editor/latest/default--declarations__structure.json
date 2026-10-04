@@ -1,0 +1,559 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "declarations/structure.yml",
+  "schemaId": "Structures/structure",
+  "options": [
+    {
+      "path": [
+        "(import)"
+      ],
+      "source": "\r\n  building:\r\n    parameters:\r\n      <type>: structures\r\n      <extra-holograms>: <extra-holograms>\r\n      <durability-factor>: <durability-factor>\r\n      <block-1>:\r\n        material: <material-1>\r\n      <block-2>:\r\n        material: <material-2>\r\n      <block-3>:\r\n        material: <material-3>\r\n\r\n### Shared structure settings ###\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "building"
+      ],
+      "source": "\r\n    parameters:\r\n      <type>: structures\r\n      <extra-holograms>: <extra-holograms>\r\n      <durability-factor>: <durability-factor>\r\n      <block-1>:\r\n        material: <material-1>\r\n      <block-2>:\r\n        material: <material-2>\r\n      <block-3>:\r\n        material: <material-3>\r\n\r\n### Shared structure settings ###\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "building",
+        "parameters"
+      ],
+      "source": "\r\n      <type>: structures\r\n      <extra-holograms>: <extra-holograms>\r\n      <durability-factor>: <durability-factor>\r\n      <block-1>:\r\n        material: <material-1>\r\n      <block-2>:\r\n        material: <material-2>\r\n      <block-3>:\r\n        material: <material-3>\r\n\r\n### Shared structure settings ###\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "building",
+        "parameters",
+        "<type>"
+      ],
+      "source": "structures",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "building",
+        "parameters",
+        "<extra-holograms>"
+      ],
+      "source": "<extra-holograms>",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "building",
+        "parameters",
+        "<durability-factor>"
+      ],
+      "source": "<durability-factor>",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "building",
+        "parameters",
+        "<block-1>"
+      ],
+      "source": "\r\n        material: <material-1>\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "building",
+        "parameters",
+        "<block-1>",
+        "material"
+      ],
+      "source": "<material-1>",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "building",
+        "parameters",
+        "<block-2>"
+      ],
+      "source": "\r\n        material: <material-2>\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "building",
+        "parameters",
+        "<block-2>",
+        "material"
+      ],
+      "source": "<material-2>",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "building",
+        "parameters",
+        "<block-3>"
+      ],
+      "source": "\r\n        material: <material-3>\r\n\r\n### Shared structure settings ###\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "building",
+        "parameters",
+        "<block-3>",
+        "material"
+      ],
+      "source": "<material-3>",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(module)"
+      ],
+      "source": "\r\n  description: 'Base settings for structures.'\r\n  parameters:\r\n    <name>: str\r\n    <build-duration-factor>: str\r\n    <durability-factor>: int\r\n    <extra-holograms>:\r\n      type: list\r\n      default: [ ]\r\n    <material-1>: Material\r\n    <material-2>: Material\r\n    <material-3>: Material\r\n\r\n# Currently the effects don't do anything for structures.\r\n# Don't remove the following comment line:\r\n# [Final]\r\n",
+      "comments": [
+        "Shared structure settings ###"
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(module)",
+        "description"
+      ],
+      "source": "'Base settings for structures.'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(module)",
+        "parameters"
+      ],
+      "source": "\r\n    <name>: str\r\n    <build-duration-factor>: str\r\n    <durability-factor>: int\r\n    <extra-holograms>:\r\n      type: list\r\n      default: [ ]\r\n    <material-1>: Material\r\n    <material-2>: Material\r\n    <material-3>: Material\r\n\r\n# Currently the effects don't do anything for structures.\r\n# Don't remove the following comment line:\r\n# [Final]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(module)",
+        "parameters",
+        "<name>"
+      ],
+      "source": "str",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(module)",
+        "parameters",
+        "<build-duration-factor>"
+      ],
+      "source": "str",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(module)",
+        "parameters",
+        "<durability-factor>"
+      ],
+      "source": "int",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(module)",
+        "parameters",
+        "<extra-holograms>"
+      ],
+      "source": "\r\n      type: list\r\n      default: [ ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(module)",
+        "parameters",
+        "<extra-holograms>",
+        "type"
+      ],
+      "source": "list",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(module)",
+        "parameters",
+        "<extra-holograms>",
+        "default"
+      ],
+      "source": "[ ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": []
+    },
+    {
+      "path": [
+        "(module)",
+        "parameters",
+        "<material-1>"
+      ],
+      "source": "Material",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(module)",
+        "parameters",
+        "<material-2>"
+      ],
+      "source": "Material",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(module)",
+        "parameters",
+        "<material-3>"
+      ],
+      "source": "Material",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damaging-factors"
+      ],
+      "source": "\r\n  TNT:\r\n    damage: yield * 2\r\n  ARROW:\r\n    normal:\r\n      damage: (0.1 * force) * max(1, weapon_enchant_power * 3)\r\n    INSTANT_DAMAGE:\r\n      damage: 7 * effect_lvl\r\n  POTION:\r\n    INSTANT_DAMAGE:\r\n      allowed-range: [ 5, 4, 5 ]\r\n      damage: 10 * effect_lvl\r\n  WIND_CHARGE:\r\n    damage: 20\r\n  TRIDENT:\r\n    damage: 1\r\n\r\n# Currently most structures cannot be \"broken\".\r\n",
+      "comments": [
+        "Currently the effects don't do anything for structures.",
+        "Don't remove the following comment line:",
+        "[Final]"
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damaging-factors",
+        "TNT"
+      ],
+      "source": "\r\n    damage: yield * 2\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damaging-factors",
+        "TNT",
+        "damage"
+      ],
+      "source": "yield * 2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damaging-factors",
+        "ARROW"
+      ],
+      "source": "\r\n    normal:\r\n      damage: (0.1 * force) * max(1, weapon_enchant_power * 3)\r\n    INSTANT_DAMAGE:\r\n      damage: 7 * effect_lvl\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damaging-factors",
+        "ARROW",
+        "normal"
+      ],
+      "source": "\r\n      damage: (0.1 * force) * max(1, weapon_enchant_power * 3)\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damaging-factors",
+        "ARROW",
+        "normal",
+        "damage"
+      ],
+      "source": "(0.1 * force) * max(1, weapon_enchant_power * 3)",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damaging-factors",
+        "ARROW",
+        "INSTANT_DAMAGE"
+      ],
+      "source": "\r\n      damage: 7 * effect_lvl\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damaging-factors",
+        "ARROW",
+        "INSTANT_DAMAGE",
+        "damage"
+      ],
+      "source": "7 * effect_lvl",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damaging-factors",
+        "POTION"
+      ],
+      "source": "\r\n    INSTANT_DAMAGE:\r\n      allowed-range: [ 5, 4, 5 ]\r\n      damage: 10 * effect_lvl\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damaging-factors",
+        "POTION",
+        "INSTANT_DAMAGE"
+      ],
+      "source": "\r\n      allowed-range: [ 5, 4, 5 ]\r\n      damage: 10 * effect_lvl\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damaging-factors",
+        "POTION",
+        "INSTANT_DAMAGE",
+        "allowed-range"
+      ],
+      "source": "[ 5, 4, 5 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "5",
+        "4",
+        "5"
+      ]
+    },
+    {
+      "path": [
+        "damaging-factors",
+        "POTION",
+        "INSTANT_DAMAGE",
+        "damage"
+      ],
+      "source": "10 * effect_lvl",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damaging-factors",
+        "WIND_CHARGE"
+      ],
+      "source": "\r\n    damage: 20\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damaging-factors",
+        "WIND_CHARGE",
+        "damage"
+      ],
+      "source": "20",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damaging-factors",
+        "TRIDENT"
+      ],
+      "source": "\r\n    damage: 1\r\n\r\n# Currently most structures cannot be \"broken\".\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damaging-factors",
+        "TRIDENT",
+        "damage"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "durability"
+      ],
+      "source": "0",
+      "comments": [
+        "Currently most structures cannot be \"broken\"."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

@@ -1,0 +1,444 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "guis/structures/regulator/regulator.yml",
+  "schemaId": "guis/schema",
+  "options": [
+    {
+      "path": [
+        "title"
+      ],
+      "source": "\"&eRegulator\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "type"
+      ],
+      "source": "HOPPER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sound"
+      ],
+      "source": "BLOCK_ANVIL_USE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options"
+      ],
+      "source": "\r\n  rules:\r\n    name: \"{$p}Rules\"\r\n    material: LECTERN\r\n    sound: ITEM_BOOK_PAGE_TURN\r\n    slot: 0\r\n    lore:\r\n      - \"{$sep}Change this land's rules\"\r\n      - \"such as disabling turrets or\"\r\n      - \"auto refilling turret within\"\r\n      - \"this land.\"\r\n  attributes:\r\n    name: \"{$p}Attributes\"\r\n    material: BOOK\r\n    sound: ITEM_BOOK_PAGE_TURN\r\n    slot: 1\r\n    lore:\r\n      - \"{$sep}Change different attributes\"\r\n      - \"for each player such as\"\r\n      - \"building and turret ceasefire.\"\r\n  interactions:\r\n    name: \"{$p}Interactions\"\r\n    material: CRAFTING_TABLE\r\n    sound: ITEM_BOOK_PAGE_TURN\r\n    slot: 2\r\n    lore:\r\n      - \"{$sep}Manage who can interact with\"\r\n      - \"what kind of blocks.\"\r\n\r\n  break:\r\n    name: \"&4Break\"\r\n    material: REDSTONE_BLOCK\r\n    sound: ENTITY_ITEM_BREAK\r\n    slot: 3\r\n    lore:\r\n      - \"{$s}Breaks the structure.\"\r\n  close:\r\n    name: \"{$p}Close\"\r\n    material: BARRIER\r\n    slot: 4\r\n    lore:\r\n      - \"{$s}Close the GUI.\"",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "rules"
+      ],
+      "source": "\r\n    name: \"{$p}Rules\"\r\n    material: LECTERN\r\n    sound: ITEM_BOOK_PAGE_TURN\r\n    slot: 0\r\n    lore:\r\n      - \"{$sep}Change this land's rules\"\r\n      - \"such as disabling turrets or\"\r\n      - \"auto refilling turret within\"\r\n      - \"this land.\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "rules",
+        "name"
+      ],
+      "source": "\"{$p}Rules\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "rules",
+        "material"
+      ],
+      "source": "LECTERN",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "rules",
+        "sound"
+      ],
+      "source": "ITEM_BOOK_PAGE_TURN",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "rules",
+        "slot"
+      ],
+      "source": "0",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "rules",
+        "lore"
+      ],
+      "source": "\r\n      - \"{$sep}Change this land's rules\"\r\n      - \"such as disabling turrets or\"\r\n      - \"auto refilling turret within\"\r\n      - \"this land.\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$sep}Change this land's rules\"",
+        "\"such as disabling turrets or\"",
+        "\"auto refilling turret within\"",
+        "\"this land.\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "attributes"
+      ],
+      "source": "\r\n    name: \"{$p}Attributes\"\r\n    material: BOOK\r\n    sound: ITEM_BOOK_PAGE_TURN\r\n    slot: 1\r\n    lore:\r\n      - \"{$sep}Change different attributes\"\r\n      - \"for each player such as\"\r\n      - \"building and turret ceasefire.\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "attributes",
+        "name"
+      ],
+      "source": "\"{$p}Attributes\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "attributes",
+        "material"
+      ],
+      "source": "BOOK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "attributes",
+        "sound"
+      ],
+      "source": "ITEM_BOOK_PAGE_TURN",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "attributes",
+        "slot"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "attributes",
+        "lore"
+      ],
+      "source": "\r\n      - \"{$sep}Change different attributes\"\r\n      - \"for each player such as\"\r\n      - \"building and turret ceasefire.\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$sep}Change different attributes\"",
+        "\"for each player such as\"",
+        "\"building and turret ceasefire.\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "interactions"
+      ],
+      "source": "\r\n    name: \"{$p}Interactions\"\r\n    material: CRAFTING_TABLE\r\n    sound: ITEM_BOOK_PAGE_TURN\r\n    slot: 2\r\n    lore:\r\n      - \"{$sep}Manage who can interact with\"\r\n      - \"what kind of blocks.\"\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "interactions",
+        "name"
+      ],
+      "source": "\"{$p}Interactions\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "interactions",
+        "material"
+      ],
+      "source": "CRAFTING_TABLE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "interactions",
+        "sound"
+      ],
+      "source": "ITEM_BOOK_PAGE_TURN",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "interactions",
+        "slot"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "interactions",
+        "lore"
+      ],
+      "source": "\r\n      - \"{$sep}Manage who can interact with\"\r\n      - \"what kind of blocks.\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$sep}Manage who can interact with\"",
+        "\"what kind of blocks.\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "break"
+      ],
+      "source": "\r\n    name: \"&4Break\"\r\n    material: REDSTONE_BLOCK\r\n    sound: ENTITY_ITEM_BREAK\r\n    slot: 3\r\n    lore:\r\n      - \"{$s}Breaks the structure.\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "break",
+        "name"
+      ],
+      "source": "\"&4Break\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "break",
+        "material"
+      ],
+      "source": "REDSTONE_BLOCK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "break",
+        "sound"
+      ],
+      "source": "ENTITY_ITEM_BREAK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "break",
+        "slot"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "break",
+        "lore"
+      ],
+      "source": "\r\n      - \"{$s}Breaks the structure.\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$s}Breaks the structure.\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "close"
+      ],
+      "source": "\r\n    name: \"{$p}Close\"\r\n    material: BARRIER\r\n    slot: 4\r\n    lore:\r\n      - \"{$s}Close the GUI.\"",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "close",
+        "name"
+      ],
+      "source": "\"{$p}Close\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "close",
+        "material"
+      ],
+      "source": "BARRIER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "close",
+        "slot"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "close",
+        "lore"
+      ],
+      "source": "\r\n      - \"{$s}Close the GUI.\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$s}Close the GUI.\""
+      ]
+    }
+  ]
+}

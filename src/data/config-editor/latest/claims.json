@@ -1,0 +1,813 @@
+{
+  "formatVersion": 2,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "id": "claims",
+  "resourceName": "claims.yml",
+  "schema": {
+    "kind": "object",
+    "fields": [
+      {
+        "key": "disable-protection-system",
+        "type": {
+          "kind": "boolean"
+        }
+      },
+      {
+        "key": "disable-crops-physics",
+        "type": {
+          "kind": "boolean"
+        }
+      },
+      {
+        "key": "connection-radius",
+        "type": {
+          "kind": "integer"
+        }
+      },
+      {
+        "key": "distance",
+        "type": {
+          "kind": "integer"
+        }
+      },
+      {
+        "key": "disabled-worlds",
+        "type": {
+          "kind": "set",
+          "elements": {
+            "kind": "suggestion",
+            "typeName": "World",
+            "allowCustom": true
+          }
+        }
+      },
+      {
+        "key": "biomes",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "suggestion",
+            "typeName": "World",
+            "allowCustom": true
+          },
+          "values": {
+            "kind": "object",
+            "fields": [
+              {
+                "key": "whitelist",
+                "type": {
+                  "kind": "boolean"
+                }
+              },
+              {
+                "key": "biomes",
+                "type": {
+                  "kind": "set",
+                  "elements": {
+                    "kind": "suggestion",
+                    "typeName": "Biome",
+                    "allowCustom": true
+                  }
+                }
+              }
+            ]
+          },
+          "fields": []
+        }
+      },
+      {
+        "key": "claim-on-create",
+        "type": {
+          "kind": "integer",
+          "minimum": -1,
+          "maximum": 100
+        }
+      },
+      {
+        "key": "starter-free",
+        "type": {
+          "kind": "integer"
+        }
+      },
+      {
+        "key": "confirmation",
+        "type": {
+          "kind": "string",
+          "typeName": "str"
+        }
+      },
+      {
+        "key": "fill",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "max-iterations",
+              "type": {
+                "kind": "integer"
+              }
+            },
+            {
+              "key": "max-claims",
+              "type": {
+                "kind": "integer"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "unclaim-cooldown",
+        "type": {
+          "kind": "duration",
+          "typeName": "Period"
+        }
+      },
+      {
+        "key": "square-max-radius",
+        "type": {
+          "kind": "integer"
+        }
+      },
+      {
+        "key": "line-max-distance",
+        "type": {
+          "kind": "integer"
+        }
+      },
+      {
+        "key": "corner-max-claims",
+        "type": {
+          "kind": "integer"
+        }
+      },
+      {
+        "key": "coordinates-claim-max-distance",
+        "type": {
+          "kind": "integer"
+        }
+      },
+      {
+        "key": "protected-region-radius",
+        "type": {
+          "kind": "integer"
+        }
+      },
+      {
+        "key": "history",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "enabled",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "limit",
+              "type": {
+                "kind": "integer"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "max-claims",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "union",
+            "choices": [
+              {
+                "kind": "enum",
+                "values": [
+                  "default"
+                ],
+                "allowCustom": false
+              },
+              {
+                "kind": "suggestion",
+                "typeName": "World",
+                "allowCustom": true
+              }
+            ]
+          },
+          "values": {
+            "kind": "expression",
+            "language": "math"
+          },
+          "fields": [],
+          "required": [
+            "default"
+          ]
+        }
+      },
+      {
+        "key": "build-in-claimed-only",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "place",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "break",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "whitelist",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "place",
+                    "type": {
+                      "kind": "set",
+                      "elements": {
+                        "kind": "advanced",
+                        "typeName": "StringMatcher<Material>"
+                      }
+                    }
+                  },
+                  {
+                    "key": "break",
+                    "type": {
+                      "kind": "set",
+                      "elements": {
+                        "kind": "advanced",
+                        "typeName": "StringMatcher<Material>"
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "key": "unclaimed-build-radius",
+              "type": {
+                "kind": "integer"
+              }
+            },
+            {
+              "key": "charges",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "enabled",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  },
+                  {
+                    "key": "in-range",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  },
+                  {
+                    "key": "placing",
+                    "type": {
+                      "kind": "object",
+                      "fields": [
+                        {
+                          "key": "resource-points",
+                          "type": {
+                            "kind": "integer"
+                          }
+                        },
+                        {
+                          "key": "money",
+                          "type": {
+                            "kind": "integer"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "key": "breaking",
+                    "type": {
+                      "kind": "object",
+                      "fields": [
+                        {
+                          "key": "resource-points",
+                          "type": {
+                            "kind": "integer"
+                          }
+                        },
+                        {
+                          "key": "money",
+                          "type": {
+                            "kind": "integer"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "actionbar",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "auto-claim",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "auto-unclaim",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "keep",
+              "type": {
+                "kind": "boolean"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "beacon-protected-effects",
+        "type": {
+          "kind": "boolean"
+        }
+      },
+      {
+        "key": "potion-protected-effects",
+        "type": {
+          "kind": "set",
+          "elements": {
+            "kind": "suggestion",
+            "typeName": "PotionEffectType",
+            "allowCustom": true
+          }
+        }
+      },
+      {
+        "key": "resource-points",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "refund-unclaim",
+              "type": {
+                "kind": "expression",
+                "language": "math"
+              }
+            },
+            {
+              "key": "refund-auto-unclaim",
+              "type": {
+                "kind": "expression",
+                "language": "math"
+              }
+            },
+            {
+              "key": "claims",
+              "type": {
+                "kind": "expression",
+                "language": "math"
+              }
+            },
+            {
+              "key": "auto-claims",
+              "type": {
+                "kind": "expression",
+                "language": "math"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "money",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "refund-unclaim",
+              "type": {
+                "kind": "expression",
+                "language": "math"
+              }
+            },
+            {
+              "key": "refund-auto-unclaim",
+              "type": {
+                "kind": "expression",
+                "language": "math"
+              }
+            },
+            {
+              "key": "claims",
+              "type": {
+                "kind": "expression",
+                "language": "math"
+              }
+            },
+            {
+              "key": "auto-claims",
+              "type": {
+                "kind": "expression",
+                "language": "math"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "unclaim-confirmation",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "turrets",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "structures",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "home",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "nexus",
+              "type": {
+                "kind": "boolean"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "unclaim-all",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "announce",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "keep-nexus-land",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "cost",
+              "type": {
+                "kind": "integer"
+              }
+            },
+            {
+              "key": "confirm",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "enabled",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  },
+                  {
+                    "key": "time",
+                    "type": {
+                      "kind": "integer"
+                    }
+                  },
+                  {
+                    "key": "gui",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "restoration",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "enabled",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "ignored-blocks",
+              "type": {
+                "kind": "set",
+                "elements": {
+                  "kind": "advanced",
+                  "typeName": "StringMatcher<Material>"
+                }
+              }
+            },
+            {
+              "key": "max-active-restoring-chunks",
+              "type": {
+                "kind": "integer",
+                "minimum": 1
+              }
+            },
+            {
+              "key": "block-restoration-rate",
+              "type": {
+                "kind": "integer",
+                "minimum": 1
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "indicator",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "enum",
+            "values": [
+              "wilderness",
+              "no-kingdom",
+              "nation-zone",
+              "neutral",
+              "truce",
+              "self",
+              "ally",
+              "kingdom",
+              "nation",
+              "enemy"
+            ],
+            "allowCustom": false
+          },
+          "values": {
+            "kind": "object",
+            "fields": [
+              {
+                "key": "particles",
+                "type": {
+                  "kind": "object",
+                  "fields": [
+                    {
+                      "key": "horizontal",
+                      "type": {
+                        "kind": "object",
+                        "fields": [
+                          {
+                            "key": "color",
+                            "type": {
+                              "kind": "string",
+                              "typeName": "str"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "key": "vertical",
+                      "type": {
+                        "kind": "object",
+                        "fields": [
+                          {
+                            "key": "color",
+                            "type": {
+                              "kind": "string",
+                              "typeName": "str"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "key": "send-messages-for-same-chunk-type",
+                "type": {
+                  "kind": "boolean"
+                }
+              },
+              {
+                "key": "corner-block",
+                "type": {
+                  "kind": "suggestion",
+                  "typeName": "Material",
+                  "allowCustom": true
+                }
+              },
+              {
+                "key": "two-block",
+                "type": {
+                  "kind": "suggestion",
+                  "typeName": "Material",
+                  "allowCustom": true
+                }
+              }
+            ]
+          },
+          "fields": [
+            {
+              "key": "ignore-worldguard-regions",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "kingdomless-enabled",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "default",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "name",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "str"
+                    }
+                  },
+                  {
+                    "key": "method",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "str"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "key": "particles",
+              "type": {
+                "kind": "mapping",
+                "keys": {
+                  "kind": "string",
+                  "typeName": "str"
+                },
+                "values": {
+                  "kind": "object",
+                  "fields": [
+                    {
+                      "key": "name",
+                      "type": {
+                        "kind": "string",
+                        "typeName": "str"
+                      }
+                    },
+                    {
+                      "key": "particle",
+                      "type": {
+                        "kind": "string",
+                        "typeName": "str"
+                      }
+                    },
+                    {
+                      "key": "count",
+                      "type": {
+                        "kind": "integer"
+                      }
+                    },
+                    {
+                      "key": "height",
+                      "type": {
+                        "kind": "integer"
+                      }
+                    },
+                    {
+                      "key": "delay",
+                      "type": {
+                        "kind": "integer"
+                      }
+                    },
+                    {
+                      "key": "duration",
+                      "type": {
+                        "kind": "integer"
+                      }
+                    },
+                    {
+                      "key": "rates",
+                      "type": {
+                        "kind": "object",
+                        "fields": [
+                          {
+                            "key": "vertical",
+                            "type": {
+                              "kind": "integer"
+                            }
+                          },
+                          {
+                            "key": "horizontal",
+                            "type": {
+                              "kind": "integer"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                "fields": []
+              }
+            },
+            {
+              "key": "visualizer",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "enabled",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  },
+                  {
+                    "key": "name",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "str"
+                    }
+                  },
+                  {
+                    "key": "floor-check-height",
+                    "type": {
+                      "kind": "integer"
+                    }
+                  },
+                  {
+                    "key": "border",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  },
+                  {
+                    "key": "on-claim",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  },
+                  {
+                    "key": "stay",
+                    "type": {
+                      "kind": "integer"
+                    }
+                  },
+                  {
+                    "key": "all-stay",
+                    "type": {
+                      "kind": "integer"
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "optional": true
+        }
+      }
+    ]
+  }
+}

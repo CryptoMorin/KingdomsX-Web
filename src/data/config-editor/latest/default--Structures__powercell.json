@@ -1,0 +1,358 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "Structures/powercell.yml",
+  "schemaId": "Structures/structure",
+  "options": [
+    {
+      "path": [
+        "(import)"
+      ],
+      "source": "\r\n  structure:\r\n    parameters:\r\n      <name>: powercell\r\n      <build-duration-factor>: '+5 minutes'\r\n      <durability-factor>: 100\r\n      <material-1>: REDSTONE_LAMP\r\n      <material-2>: TARGET\r\n      <material-3>: TARGET\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "structure"
+      ],
+      "source": "\r\n    parameters:\r\n      <name>: powercell\r\n      <build-duration-factor>: '+5 minutes'\r\n      <durability-factor>: 100\r\n      <material-1>: REDSTONE_LAMP\r\n      <material-2>: TARGET\r\n      <material-3>: TARGET\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "structure",
+        "parameters"
+      ],
+      "source": "\r\n      <name>: powercell\r\n      <build-duration-factor>: '+5 minutes'\r\n      <durability-factor>: 100\r\n      <material-1>: REDSTONE_LAMP\r\n      <material-2>: TARGET\r\n      <material-3>: TARGET\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "structure",
+        "parameters",
+        "<name>"
+      ],
+      "source": "powercell",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "structure",
+        "parameters",
+        "<build-duration-factor>"
+      ],
+      "source": "'+5 minutes'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "structure",
+        "parameters",
+        "<durability-factor>"
+      ],
+      "source": "100",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "structure",
+        "parameters",
+        "<material-1>"
+      ],
+      "source": "REDSTONE_LAMP",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "structure",
+        "parameters",
+        "<material-2>"
+      ],
+      "source": "TARGET",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "structure",
+        "parameters",
+        "<material-3>"
+      ],
+      "source": "TARGET",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "name"
+      ],
+      "source": "\"&4Powercell\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "type"
+      ],
+      "source": "powercell",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "default-name"
+      ],
+      "source": "'Powercell'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "max-level"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "upgrade-cost"
+      ],
+      "source": "10000",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "dont-update-holograms"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "conditions"
+      ],
+      "source": "\r\n  purchase:\r\n    'kingdoms_kingdom_level < 2': '{$$kingdom-levels.II}'\r\n  upgrade:\r\n    'level == 1 && kingdoms_kingdom_level < 4': '{$$kingdom-levels.IV}'\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "conditions",
+        "purchase"
+      ],
+      "source": "\r\n    'kingdoms_kingdom_level < 2': '{$$kingdom-levels.II}'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "conditions",
+        "purchase",
+        "kingdoms_kingdom_level < 2"
+      ],
+      "source": "'{$$kingdom-levels.II}'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "conditions",
+        "upgrade"
+      ],
+      "source": "\r\n    'level == 1 && kingdoms_kingdom_level < 4': '{$$kingdom-levels.IV}'\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "conditions",
+        "upgrade",
+        "level == 1 && kingdoms_kingdom_level < 4"
+      ],
+      "source": "'{$$kingdom-levels.IV}'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "cost"
+      ],
+      "source": "1000",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sell"
+      ],
+      "source": "500",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "item"
+      ],
+      "source": "\r\n  1:\r\n    name: \"&bPowercell\"\r\n    material: MUSIC_DISC_BLOCKS\r\n    flags: [ ALL ]\r\n    lore: |\r\n      {$dot} {$p}Level{$colon} {$s}%roman@level%\r\n\r\n      {$sep}Chunks next to a chunk\r\n      with a power cell cannot be\r\n      invaded without invading the\r\n      power cell first.\r\n      &cDoes not work on other power cell lands.\r\n      {$dot} {$p}Level{$colon} {$s}%roman@level%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "item",
+        "1"
+      ],
+      "source": "\r\n    name: \"&bPowercell\"\r\n    material: MUSIC_DISC_BLOCKS\r\n    flags: [ ALL ]\r\n    lore: |\r\n      {$dot} {$p}Level{$colon} {$s}%roman@level%\r\n\r\n      {$sep}Chunks next to a chunk\r\n      with a power cell cannot be\r\n      invaded without invading the\r\n      power cell first.\r\n      &cDoes not work on other power cell lands.\r\n      {$dot} {$p}Level{$colon} {$s}%roman@level%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "item",
+        "1",
+        "name"
+      ],
+      "source": "\"&bPowercell\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "item",
+        "1",
+        "material"
+      ],
+      "source": "MUSIC_DISC_BLOCKS",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "item",
+        "1",
+        "flags"
+      ],
+      "source": "[ ALL ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "ALL"
+      ]
+    },
+    {
+      "path": [
+        "item",
+        "1",
+        "lore"
+      ],
+      "source": "|\r\n      {$dot} {$p}Level{$colon} {$s}%roman@level%\r\n\r\n      {$sep}Chunks next to a chunk\r\n      with a power cell cannot be\r\n      invaded without invading the\r\n      power cell first.\r\n      &cDoes not work on other power cell lands.\r\n      {$dot} {$p}Level{$colon} {$s}%roman@level%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

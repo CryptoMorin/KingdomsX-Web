@@ -12,6 +12,7 @@ import { SITE } from "../config";
   robots="noindex, follow"
   preloadHeroImage={false}
   includeStructuredData={false}
+  includeSiteScript={false}
 >
   <div class="page overflow-hidden position-relative min-vh-100" id="top">
     <Header homeUrl={SITE.url || "/"} />
@@ -24,4 +25,7 @@ import { SITE } from "../config";
     </main>
     <Footer />
   </div>
+  <script>
+    import "../assets/scripts/site-shell.js";
+  </script>
 </BaseLayout>

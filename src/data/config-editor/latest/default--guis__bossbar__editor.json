@@ -1,0 +1,754 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "guis/bossbar/editor.yml",
+  "schemaId": "guis/schema",
+  "options": [
+    {
+      "path": [
+        "title"
+      ],
+      "source": "\"{$sep}-=[ {$p}BossBar Settings {$sep}]=-\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "type"
+      ],
+      "source": "HOPPER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options"
+      ],
+      "source": "\r\n  title:\r\n    slot: 0\r\n    material: PAPER\r\n    name: '{$p}Title'\r\n    lore: \"&f%bossbar-title%\"\r\n  colors:\r\n    slot: 2\r\n    name: '{$p}Color{$colon} {$sp}%bossbar_color%'\r\n    yellow:\r\n      condition: \"bossbar_color == 'YELLOW'\"\r\n      material: YELLOW_WOOL\r\n    lime-wool:\r\n      condition: \"bossbar_color == 'GREEN'\"\r\n      material: LIME_WOOL\r\n    red-wool:\r\n      condition: \"bossbar_color == 'RED'\"\r\n      material: RED_WOOL\r\n    blue-wool:\r\n      condition: \"bossbar_color == 'BLUE'\"\r\n      material: BLUE_WOOL\r\n    magenta-wool:\r\n      condition: \"bossbar_color == 'PINK'\"\r\n      material: MAGENTA_WOOL\r\n    purple-wool:\r\n      condition: \"bossbar_color == 'PURPLE'\"\r\n      material: PURPLE_WOOL\r\n    white-wool:\r\n      condition: \"bossbar_color == 'WHITE'\"\r\n      material: WHITE_WOOL\r\n  styles:\r\n    slot: 3\r\n    material: PLAYER_HEAD\r\n    name: '{$p}Style{$colon} &3%bossbar_style%'\r\n    SOLID:\r\n      condition: \"bossbar_style == 'SOLID'\"\r\n      skull: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvY2NmNjc2N2RkMzQ3MzdlOTliZDU0YjY5NWVmMDY4M2M2YzZjZTZhNTRmNjZhZDk3Mjk5MmJkMGU0OGU0NTc5YiJ9fX0=\r\n    SEGMENTED_6:\r\n      condition: \"bossbar_style == 'SEGMENTED_6'\"\r\n      skull: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDEyYWFiNDAxZDY5YTVmMGM1Y2FkY2IzYzFkMTM3YjEwNzk0YzQzYjA1OGY5MzYzMGI4MTQ1YjgzNDk3YTQwIn19fQ==\r\n    SEGMENTED_10:\r\n      condition: \"bossbar_style == 'SEGMENTED_10'\"\r\n      skull: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjFmODNkNmMxN2U0ZWZlODRlZGJhMzkxNzAzNzNkZjQ3NDgzNTRlYzNiMzM0MmU2YWEwYjRlZWE0YjYyMTkyIn19fQ==\r\n    SEGMENTED_12:\r\n      condition: \"bossbar_style == 'SEGMENTED_12'\"\r\n      skull: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjQ3NDNjYzg2YzZiYzM3ZTE4Njk5ZjU2MzEyMGFhMjFmYzc2MmQ3YmQ2ODUxODNjYjgzYTlmN2E5YmEzZmIxIn19fQ==\r\n    SEGMENTED_20:\r\n      condition: \"bossbar_style == 'SEGMENTED_20'\"\r\n      skull: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTA1MzMxOWY4NzM3ODllOGE5ODU4OWFhZDJkMDlhMTEyMzU4ZGQxNzkzOTcxN2UzNGVkNjc3ZDYxMWM5YmFjYyJ9fX0=\r\n  flags:\r\n    slot: 4\r\n    material: WHITE_BANNER\r\n    name: '&fFlags'\r\n    lore: |\r\n      {$sp}Music{$colon} %bossbar_flag_play_boss_music%\r\n      {$sp}Darken Sky{$colon} %bossbar_flag_darken_sky%\r\n      {$sp}Fog{$colon} %bossbar_flag_create_fog%",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "title"
+      ],
+      "source": "\r\n    slot: 0\r\n    material: PAPER\r\n    name: '{$p}Title'\r\n    lore: \"&f%bossbar-title%\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "title",
+        "slot"
+      ],
+      "source": "0",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "title",
+        "material"
+      ],
+      "source": "PAPER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "title",
+        "name"
+      ],
+      "source": "'{$p}Title'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "title",
+        "lore"
+      ],
+      "source": "\"&f%bossbar-title%\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "colors"
+      ],
+      "source": "\r\n    slot: 2\r\n    name: '{$p}Color{$colon} {$sp}%bossbar_color%'\r\n    yellow:\r\n      condition: \"bossbar_color == 'YELLOW'\"\r\n      material: YELLOW_WOOL\r\n    lime-wool:\r\n      condition: \"bossbar_color == 'GREEN'\"\r\n      material: LIME_WOOL\r\n    red-wool:\r\n      condition: \"bossbar_color == 'RED'\"\r\n      material: RED_WOOL\r\n    blue-wool:\r\n      condition: \"bossbar_color == 'BLUE'\"\r\n      material: BLUE_WOOL\r\n    magenta-wool:\r\n      condition: \"bossbar_color == 'PINK'\"\r\n      material: MAGENTA_WOOL\r\n    purple-wool:\r\n      condition: \"bossbar_color == 'PURPLE'\"\r\n      material: PURPLE_WOOL\r\n    white-wool:\r\n      condition: \"bossbar_color == 'WHITE'\"\r\n      material: WHITE_WOOL\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "colors",
+        "slot"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "colors",
+        "name"
+      ],
+      "source": "'{$p}Color{$colon} {$sp}%bossbar_color%'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "colors",
+        "yellow"
+      ],
+      "source": "\r\n      condition: \"bossbar_color == 'YELLOW'\"\r\n      material: YELLOW_WOOL\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "colors",
+        "yellow",
+        "condition"
+      ],
+      "source": "\"bossbar_color == 'YELLOW'\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "colors",
+        "yellow",
+        "material"
+      ],
+      "source": "YELLOW_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "colors",
+        "lime-wool"
+      ],
+      "source": "\r\n      condition: \"bossbar_color == 'GREEN'\"\r\n      material: LIME_WOOL\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "colors",
+        "lime-wool",
+        "condition"
+      ],
+      "source": "\"bossbar_color == 'GREEN'\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "colors",
+        "lime-wool",
+        "material"
+      ],
+      "source": "LIME_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "colors",
+        "red-wool"
+      ],
+      "source": "\r\n      condition: \"bossbar_color == 'RED'\"\r\n      material: RED_WOOL\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "colors",
+        "red-wool",
+        "condition"
+      ],
+      "source": "\"bossbar_color == 'RED'\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "colors",
+        "red-wool",
+        "material"
+      ],
+      "source": "RED_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "colors",
+        "blue-wool"
+      ],
+      "source": "\r\n      condition: \"bossbar_color == 'BLUE'\"\r\n      material: BLUE_WOOL\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "colors",
+        "blue-wool",
+        "condition"
+      ],
+      "source": "\"bossbar_color == 'BLUE'\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "colors",
+        "blue-wool",
+        "material"
+      ],
+      "source": "BLUE_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "colors",
+        "magenta-wool"
+      ],
+      "source": "\r\n      condition: \"bossbar_color == 'PINK'\"\r\n      material: MAGENTA_WOOL\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "colors",
+        "magenta-wool",
+        "condition"
+      ],
+      "source": "\"bossbar_color == 'PINK'\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "colors",
+        "magenta-wool",
+        "material"
+      ],
+      "source": "MAGENTA_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "colors",
+        "purple-wool"
+      ],
+      "source": "\r\n      condition: \"bossbar_color == 'PURPLE'\"\r\n      material: PURPLE_WOOL\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "colors",
+        "purple-wool",
+        "condition"
+      ],
+      "source": "\"bossbar_color == 'PURPLE'\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "colors",
+        "purple-wool",
+        "material"
+      ],
+      "source": "PURPLE_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "colors",
+        "white-wool"
+      ],
+      "source": "\r\n      condition: \"bossbar_color == 'WHITE'\"\r\n      material: WHITE_WOOL\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "colors",
+        "white-wool",
+        "condition"
+      ],
+      "source": "\"bossbar_color == 'WHITE'\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "colors",
+        "white-wool",
+        "material"
+      ],
+      "source": "WHITE_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "styles"
+      ],
+      "source": "\r\n    slot: 3\r\n    material: PLAYER_HEAD\r\n    name: '{$p}Style{$colon} &3%bossbar_style%'\r\n    SOLID:\r\n      condition: \"bossbar_style == 'SOLID'\"\r\n      skull: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvY2NmNjc2N2RkMzQ3MzdlOTliZDU0YjY5NWVmMDY4M2M2YzZjZTZhNTRmNjZhZDk3Mjk5MmJkMGU0OGU0NTc5YiJ9fX0=\r\n    SEGMENTED_6:\r\n      condition: \"bossbar_style == 'SEGMENTED_6'\"\r\n      skull: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDEyYWFiNDAxZDY5YTVmMGM1Y2FkY2IzYzFkMTM3YjEwNzk0YzQzYjA1OGY5MzYzMGI4MTQ1YjgzNDk3YTQwIn19fQ==\r\n    SEGMENTED_10:\r\n      condition: \"bossbar_style == 'SEGMENTED_10'\"\r\n      skull: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjFmODNkNmMxN2U0ZWZlODRlZGJhMzkxNzAzNzNkZjQ3NDgzNTRlYzNiMzM0MmU2YWEwYjRlZWE0YjYyMTkyIn19fQ==\r\n    SEGMENTED_12:\r\n      condition: \"bossbar_style == 'SEGMENTED_12'\"\r\n      skull: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjQ3NDNjYzg2YzZiYzM3ZTE4Njk5ZjU2MzEyMGFhMjFmYzc2MmQ3YmQ2ODUxODNjYjgzYTlmN2E5YmEzZmIxIn19fQ==\r\n    SEGMENTED_20:\r\n      condition: \"bossbar_style == 'SEGMENTED_20'\"\r\n      skull: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTA1MzMxOWY4NzM3ODllOGE5ODU4OWFhZDJkMDlhMTEyMzU4ZGQxNzkzOTcxN2UzNGVkNjc3ZDYxMWM5YmFjYyJ9fX0=\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "styles",
+        "slot"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "styles",
+        "material"
+      ],
+      "source": "PLAYER_HEAD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "styles",
+        "name"
+      ],
+      "source": "'{$p}Style{$colon} &3%bossbar_style%'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "styles",
+        "SOLID"
+      ],
+      "source": "\r\n      condition: \"bossbar_style == 'SOLID'\"\r\n      skull: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvY2NmNjc2N2RkMzQ3MzdlOTliZDU0YjY5NWVmMDY4M2M2YzZjZTZhNTRmNjZhZDk3Mjk5MmJkMGU0OGU0NTc5YiJ9fX0=\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "styles",
+        "SOLID",
+        "condition"
+      ],
+      "source": "\"bossbar_style == 'SOLID'\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "styles",
+        "SOLID",
+        "skull"
+      ],
+      "source": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvY2NmNjc2N2RkMzQ3MzdlOTliZDU0YjY5NWVmMDY4M2M2YzZjZTZhNTRmNjZhZDk3Mjk5MmJkMGU0OGU0NTc5YiJ9fX0=",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "styles",
+        "SEGMENTED_6"
+      ],
+      "source": "\r\n      condition: \"bossbar_style == 'SEGMENTED_6'\"\r\n      skull: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDEyYWFiNDAxZDY5YTVmMGM1Y2FkY2IzYzFkMTM3YjEwNzk0YzQzYjA1OGY5MzYzMGI4MTQ1YjgzNDk3YTQwIn19fQ==\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "styles",
+        "SEGMENTED_6",
+        "condition"
+      ],
+      "source": "\"bossbar_style == 'SEGMENTED_6'\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "styles",
+        "SEGMENTED_6",
+        "skull"
+      ],
+      "source": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDEyYWFiNDAxZDY5YTVmMGM1Y2FkY2IzYzFkMTM3YjEwNzk0YzQzYjA1OGY5MzYzMGI4MTQ1YjgzNDk3YTQwIn19fQ==",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "styles",
+        "SEGMENTED_10"
+      ],
+      "source": "\r\n      condition: \"bossbar_style == 'SEGMENTED_10'\"\r\n      skull: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjFmODNkNmMxN2U0ZWZlODRlZGJhMzkxNzAzNzNkZjQ3NDgzNTRlYzNiMzM0MmU2YWEwYjRlZWE0YjYyMTkyIn19fQ==\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "styles",
+        "SEGMENTED_10",
+        "condition"
+      ],
+      "source": "\"bossbar_style == 'SEGMENTED_10'\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "styles",
+        "SEGMENTED_10",
+        "skull"
+      ],
+      "source": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjFmODNkNmMxN2U0ZWZlODRlZGJhMzkxNzAzNzNkZjQ3NDgzNTRlYzNiMzM0MmU2YWEwYjRlZWE0YjYyMTkyIn19fQ==",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "styles",
+        "SEGMENTED_12"
+      ],
+      "source": "\r\n      condition: \"bossbar_style == 'SEGMENTED_12'\"\r\n      skull: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjQ3NDNjYzg2YzZiYzM3ZTE4Njk5ZjU2MzEyMGFhMjFmYzc2MmQ3YmQ2ODUxODNjYjgzYTlmN2E5YmEzZmIxIn19fQ==\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "styles",
+        "SEGMENTED_12",
+        "condition"
+      ],
+      "source": "\"bossbar_style == 'SEGMENTED_12'\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "styles",
+        "SEGMENTED_12",
+        "skull"
+      ],
+      "source": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjQ3NDNjYzg2YzZiYzM3ZTE4Njk5ZjU2MzEyMGFhMjFmYzc2MmQ3YmQ2ODUxODNjYjgzYTlmN2E5YmEzZmIxIn19fQ==",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "styles",
+        "SEGMENTED_20"
+      ],
+      "source": "\r\n      condition: \"bossbar_style == 'SEGMENTED_20'\"\r\n      skull: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTA1MzMxOWY4NzM3ODllOGE5ODU4OWFhZDJkMDlhMTEyMzU4ZGQxNzkzOTcxN2UzNGVkNjc3ZDYxMWM5YmFjYyJ9fX0=\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "styles",
+        "SEGMENTED_20",
+        "condition"
+      ],
+      "source": "\"bossbar_style == 'SEGMENTED_20'\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "styles",
+        "SEGMENTED_20",
+        "skull"
+      ],
+      "source": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTA1MzMxOWY4NzM3ODllOGE5ODU4OWFhZDJkMDlhMTEyMzU4ZGQxNzkzOTcxN2UzNGVkNjc3ZDYxMWM5YmFjYyJ9fX0=",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flags"
+      ],
+      "source": "\r\n    slot: 4\r\n    material: WHITE_BANNER\r\n    name: '&fFlags'\r\n    lore: |\r\n      {$sp}Music{$colon} %bossbar_flag_play_boss_music%\r\n      {$sp}Darken Sky{$colon} %bossbar_flag_darken_sky%\r\n      {$sp}Fog{$colon} %bossbar_flag_create_fog%",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flags",
+        "slot"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flags",
+        "material"
+      ],
+      "source": "WHITE_BANNER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flags",
+        "name"
+      ],
+      "source": "'&fFlags'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flags",
+        "lore"
+      ],
+      "source": "|\r\n      {$sp}Music{$colon} %bossbar_flag_play_boss_music%\r\n      {$sp}Darken Sky{$colon} %bossbar_flag_darken_sky%\r\n      {$sp}Fog{$colon} %bossbar_flag_create_fog%",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

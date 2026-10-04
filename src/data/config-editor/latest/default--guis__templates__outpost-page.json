@@ -1,0 +1,583 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "guis/templates/outpost-page.yml",
+  "schemaId": "guis/schema",
+  "options": [
+    {
+      "path": [
+        "(module)"
+      ],
+      "source": "\r\n  description: 'Base settings for outpost pages.'\r\n  parameters: { }\r\n\r\n",
+      "comments": [
+        "Shared outpost page settings ###"
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(module)",
+        "description"
+      ],
+      "source": "'Base settings for outpost pages.'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(module)",
+        "parameters"
+      ],
+      "source": "{ }",
+      "comments": [],
+      "container": false,
+      "emptyMapping": true,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)"
+      ],
+      "source": "\r\n  pagination: { }\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "pagination"
+      ],
+      "source": "{ }",
+      "comments": [],
+      "container": false,
+      "emptyMapping": true,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "title"
+      ],
+      "source": "\"&eOutpost\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "rows"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sound"
+      ],
+      "source": "BLOCK_ANVIL_USE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "base"
+      ],
+      "source": "&base\r\n  name: \"&5%item_name%\"\r\n  lore: |\r\n    {$p}{? !buy_allowed ? \"&m\"}Buy{$colon} {$s}%fancy@buy% {$sep}({$sp}Left-click{$sep}){? buy_max_items != -1 ? \" {$sep}({$sp}Max{$colon} &5%buy_max_items%{$sep})\" }\r\n    {$p}Sell{$colon} {$s}%fancy@sell% {$sep}({$sp}Right-click{$sep})\r\n    {? !buy_allowed ? \"\r\n    {$e}You cannot buy this item\r\n    {$e}until {$es}%time@buy_cooldown%\"}\r\n\r\n",
+      "comments": [
+        "Used in imported configs."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "base",
+        "name"
+      ],
+      "source": "\"&5%item_name%\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "base",
+        "lore"
+      ],
+      "source": "|\r\n    {$p}{? !buy_allowed ? \"&m\"}Buy{$colon} {$s}%fancy@buy% {$sep}({$sp}Left-click{$sep}){? buy_max_items != -1 ? \" {$sep}({$sp}Max{$colon} &5%buy_max_items%{$sep})\" }\r\n    {$p}Sell{$colon} {$s}%fancy@sell% {$sep}({$sp}Right-click{$sep})\r\n    {? !buy_allowed ? \"\r\n    {$e}You cannot buy this item\r\n    {$e}until {$es}%time@buy_cooldown%\"}\r\n\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options"
+      ],
+      "source": "\r\n  info:\r\n    posx: 5\r\n    posy: 1\r\n    material: PLAYER_HEAD\r\n    skull: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDAxYWZlOTczYzU0ODJmZGM3MWU2YWExMDY5ODgzM2M3OWM0MzdmMjEzMDhlYTlhMWEwOTU3NDZlYzI3NGEwZiJ9fX0='\r\n    name: '{$e}Info'\r\n    lore: |\r\n      &eAll item prices are affected server-wide\r\n      based on supply-and-demand principles.\r\n      The more people buy the same item,\r\n      the prices increase and the more\r\n      they sell that item, their buy price\r\n      decreases.\r\n\r\n      {$note} {$sep}You can {$p}Shift left-click\r\n      {$sep}after buying the item once, to\r\n      keep buying the same amount.\r\n\r\n  break:\r\n    name: \"&4Break\"\r\n    material: REDSTONE_BLOCK\r\n    sound: ENTITY_ITEM_BREAK\r\n    lore:\r\n      - \"{$s}Breaks the structure.\"\r\n    slot: 53\r\n  nexus:\r\n    name: \"{$p}Open Nexus\"\r\n    lore:\r\n      - \"{$s}Resource Points{$colon} {$p}%fancy@kingdoms_resource_points%\"\r\n    material: NETHER_STAR\r\n    posx: 5\r\n    posy: 6\r\n  close:\r\n    name: \"{$p}Close\"\r\n    material: BARRIER\r\n    slot: 45\r\n\r\n  black-glass:\r\n    name: ''\r\n    material: BLACK_STAINED_GLASS_PANE\r\n    slots: [ 46, 47, 48, 50, 51, 52 ]\r\n  brown-stained-glass-pane:\r\n    name: ''\r\n    material: CYAN_STAINED_GLASS_PANE\r\n    slots: [ 1, 2, 3, 5, 6, 7, 9, 17, 18, 26, 27, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44 ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "info"
+      ],
+      "source": "\r\n    posx: 5\r\n    posy: 1\r\n    material: PLAYER_HEAD\r\n    skull: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDAxYWZlOTczYzU0ODJmZGM3MWU2YWExMDY5ODgzM2M3OWM0MzdmMjEzMDhlYTlhMWEwOTU3NDZlYzI3NGEwZiJ9fX0='\r\n    name: '{$e}Info'\r\n    lore: |\r\n      &eAll item prices are affected server-wide\r\n      based on supply-and-demand principles.\r\n      The more people buy the same item,\r\n      the prices increase and the more\r\n      they sell that item, their buy price\r\n      decreases.\r\n\r\n      {$note} {$sep}You can {$p}Shift left-click\r\n      {$sep}after buying the item once, to\r\n      keep buying the same amount.\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "info",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "info",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "info",
+        "material"
+      ],
+      "source": "PLAYER_HEAD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "info",
+        "skull"
+      ],
+      "source": "'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDAxYWZlOTczYzU0ODJmZGM3MWU2YWExMDY5ODgzM2M3OWM0MzdmMjEzMDhlYTlhMWEwOTU3NDZlYzI3NGEwZiJ9fX0='",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "info",
+        "name"
+      ],
+      "source": "'{$e}Info'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "info",
+        "lore"
+      ],
+      "source": "|\r\n      &eAll item prices are affected server-wide\r\n      based on supply-and-demand principles.\r\n      The more people buy the same item,\r\n      the prices increase and the more\r\n      they sell that item, their buy price\r\n      decreases.\r\n\r\n      {$note} {$sep}You can {$p}Shift left-click\r\n      {$sep}after buying the item once, to\r\n      keep buying the same amount.\r\n\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "break"
+      ],
+      "source": "\r\n    name: \"&4Break\"\r\n    material: REDSTONE_BLOCK\r\n    sound: ENTITY_ITEM_BREAK\r\n    lore:\r\n      - \"{$s}Breaks the structure.\"\r\n    slot: 53\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "break",
+        "name"
+      ],
+      "source": "\"&4Break\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "break",
+        "material"
+      ],
+      "source": "REDSTONE_BLOCK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "break",
+        "sound"
+      ],
+      "source": "ENTITY_ITEM_BREAK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "break",
+        "lore"
+      ],
+      "source": "\r\n      - \"{$s}Breaks the structure.\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$s}Breaks the structure.\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "break",
+        "slot"
+      ],
+      "source": "53",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "nexus"
+      ],
+      "source": "\r\n    name: \"{$p}Open Nexus\"\r\n    lore:\r\n      - \"{$s}Resource Points{$colon} {$p}%fancy@kingdoms_resource_points%\"\r\n    material: NETHER_STAR\r\n    posx: 5\r\n    posy: 6\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "nexus",
+        "name"
+      ],
+      "source": "\"{$p}Open Nexus\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "nexus",
+        "lore"
+      ],
+      "source": "\r\n      - \"{$s}Resource Points{$colon} {$p}%fancy@kingdoms_resource_points%\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$s}Resource Points{$colon} {$p}%fancy@kingdoms_resource_points%\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "nexus",
+        "material"
+      ],
+      "source": "NETHER_STAR",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "nexus",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "nexus",
+        "posy"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "close"
+      ],
+      "source": "\r\n    name: \"{$p}Close\"\r\n    material: BARRIER\r\n    slot: 45\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "close",
+        "name"
+      ],
+      "source": "\"{$p}Close\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "close",
+        "material"
+      ],
+      "source": "BARRIER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "close",
+        "slot"
+      ],
+      "source": "45",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "black-glass"
+      ],
+      "source": "\r\n    name: ''\r\n    material: BLACK_STAINED_GLASS_PANE\r\n    slots: [ 46, 47, 48, 50, 51, 52 ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "black-glass",
+        "name"
+      ],
+      "source": "''",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "black-glass",
+        "material"
+      ],
+      "source": "BLACK_STAINED_GLASS_PANE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "black-glass",
+        "slots"
+      ],
+      "source": "[ 46, 47, 48, 50, 51, 52 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "46",
+        "47",
+        "48",
+        "50",
+        "51",
+        "52"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "brown-stained-glass-pane"
+      ],
+      "source": "\r\n    name: ''\r\n    material: CYAN_STAINED_GLASS_PANE\r\n    slots: [ 1, 2, 3, 5, 6, 7, 9, 17, 18, 26, 27, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44 ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "brown-stained-glass-pane",
+        "name"
+      ],
+      "source": "''",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "brown-stained-glass-pane",
+        "material"
+      ],
+      "source": "CYAN_STAINED_GLASS_PANE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "brown-stained-glass-pane",
+        "slots"
+      ],
+      "source": "[ 1, 2, 3, 5, 6, 7, 9, 17, 18, 26, 27, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "1",
+        "2",
+        "3",
+        "5",
+        "6",
+        "7",
+        "9",
+        "17",
+        "18",
+        "26",
+        "27",
+        "35",
+        "36",
+        "37",
+        "38",
+        "39",
+        "40",
+        "41",
+        "42",
+        "43",
+        "44"
+      ]
+    }
+  ]
+}

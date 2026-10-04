@@ -1,0 +1,54 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "kingdomsx-editor-test",
+  "main": "./index.ts",
+  "compatibility_date": "2026-07-29",
+  "compatibility_flags": ["global_fetch_strictly_public"],
+  "assets": {
+    "directory": "./tests/static",
+    "binding": "ASSETS",
+    "not_found_handling": "none",
+    "run_worker_first": [
+      "/api/editor/*",
+      "/socket/editor/*"
+    ]
+  },
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "EDITOR_SESSIONS",
+        "class_name": "EditorSession"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "editor-sessions-v1",
+      "new_sqlite_classes": ["EditorSession"]
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "EDITOR_PAYLOADS",
+      "bucket_name": "kingdomsx-editor-sessions-test"
+    }
+  ],
+  "ratelimits": [
+    {
+      "name": "EDITOR_SESSION_CREATES",
+      "namespace_id": "2003",
+      "simple": {
+        "limit": 1000,
+        "period": 60
+      }
+    },
+    {
+      "name": "EDITOR_SESSION_TRAFFIC",
+      "namespace_id": "2005",
+      "simple": {
+        "limit": 5000,
+        "period": 60
+      }
+    }
+  ]
+}

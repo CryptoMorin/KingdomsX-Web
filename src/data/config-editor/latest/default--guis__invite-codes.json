@@ -1,0 +1,428 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "guis/invite-codes.yml",
+  "schemaId": "guis/schema",
+  "options": [
+    {
+      "path": [
+        "title"
+      ],
+      "source": "\"&0-=( &aInvite Codes &0)=-\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "rows"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sound"
+      ],
+      "source": "ENTITY_EXPERIENCE_ORB_PICKUP",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options"
+      ],
+      "source": "\r\n  invite-codes:\r\n    name: \"&8[%kingdoms_rank_color%%kingdoms_rank_symbol%&8] {$p}%player%\"\r\n    material: PLAYER_HEAD\r\n    lore: |\r\n      {$p}Code{$colon} {$s}%invitecode-code%\r\n      {$p}Uses{$colon} {$s}%invitecode-used%{$sep}/{$s}%invitecode-uses%\r\n      {$p}Created By{$colon} {$s}%invitecode-creator%\r\n      {$p}Created At{$colon} {$s}%invitecode-createdAt%\r\n      {$p}Expires At{$colon} {$s}%invitecode-expiration%\r\n\r\n      {$p}Left-click to buy paper codes.\r\n      {$sp}Middle-click to redeem the code.\r\n      {$e}Right-click to delete.\r\n    slots: [ 10, 11, 12, 13, 14, 15, 16 ]\r\n  info:\r\n    name: \"&eInfo\"\r\n    material: PLAYER_HEAD\r\n    skull: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDAxYWZlOTczYzU0ODJmZGM3MWU2YWExMDY5ODgzM2M3OWM0MzdmMjEzMDhlYTlhMWEwOTU3NDZlYzI3NGEwZiJ9fX0='\r\n    posx: 5\r\n    posy: 1\r\n    lore: |\r\n      {$sep}Invite codes are an alternative\r\n      way of inviting players to your kingdom.\r\n      They're similar to discord invite codes.\r\n\r\n      Once you create a new invite code, a player\r\n      can either type the code using\r\n      {$p}/k invitecode {$s}<code> {$sep}or you can\r\n      generate a physical paper which players can\r\n      right-click to use them.\r\n      Each invite code paper costs {$s}%invitecode-paper-cost%\r\n      {$sep}resource points.\r\n\r\n      Invite codes expire at a certain point and\r\n      they can either have limited or unlimited uses.\r\n  new-invite-code:\r\n    name: \"{$p}Create New Invite Code\"\r\n    lore: |\r\n      {$sep}You can only make up to\r\n      {$p}%invitecode-max% {$sep}invite codes.\r\n    material: GREEN_WOOL\r\n    posx: 6\r\n    posy: 1\r\n  delete-all:\r\n    name: \"&4Delete All Invite Codes\"\r\n    material: RED_WOOL\r\n    posx: 4\r\n    posy: 1\r\n  blue-glass:\r\n    name: ''\r\n    material: BLUE_STAINED_GLASS_PANE\r\n    slots: [ 0, 1, 2, 6, 7, 8, 9, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26 ]\r\n\r\n#  next-page:\r\n#    name: '{$s}Next Page {$sep}- &e%page%&8/&e%pages%'\r\n#    material: PLAYER_HEAD\r\n#    skull: \"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjgyYWQxYjljYjRkZDIxMjU5YzBkNzVhYTMxNWZmMzg5YzNjZWY3NTJiZTM5NDkzMzgxNjRiYWM4NGE5NmUifX19\"\r\n#    slot: 8\r\n#  previous-page:\r\n#    name: '{$s}Previous Page {$sep}- &e%page%&8/&e%pages%'\r\n#    material: PLAYER_HEAD\r\n#    skull: \"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzdhZWU5YTc1YmYwZGY3ODk3MTgzMDE1Y2NhMGIyYTdkNzU1YzYzMzg4ZmYwMTc1MmQ1ZjQ0MTlmYzY0NSJ9fX0=\"\r\n#    slot: 0",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "invite-codes"
+      ],
+      "source": "\r\n    name: \"&8[%kingdoms_rank_color%%kingdoms_rank_symbol%&8] {$p}%player%\"\r\n    material: PLAYER_HEAD\r\n    lore: |\r\n      {$p}Code{$colon} {$s}%invitecode-code%\r\n      {$p}Uses{$colon} {$s}%invitecode-used%{$sep}/{$s}%invitecode-uses%\r\n      {$p}Created By{$colon} {$s}%invitecode-creator%\r\n      {$p}Created At{$colon} {$s}%invitecode-createdAt%\r\n      {$p}Expires At{$colon} {$s}%invitecode-expiration%\r\n\r\n      {$p}Left-click to buy paper codes.\r\n      {$sp}Middle-click to redeem the code.\r\n      {$e}Right-click to delete.\r\n    slots: [ 10, 11, 12, 13, 14, 15, 16 ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "invite-codes",
+        "name"
+      ],
+      "source": "\"&8[%kingdoms_rank_color%%kingdoms_rank_symbol%&8] {$p}%player%\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "invite-codes",
+        "material"
+      ],
+      "source": "PLAYER_HEAD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "invite-codes",
+        "lore"
+      ],
+      "source": "|\r\n      {$p}Code{$colon} {$s}%invitecode-code%\r\n      {$p}Uses{$colon} {$s}%invitecode-used%{$sep}/{$s}%invitecode-uses%\r\n      {$p}Created By{$colon} {$s}%invitecode-creator%\r\n      {$p}Created At{$colon} {$s}%invitecode-createdAt%\r\n      {$p}Expires At{$colon} {$s}%invitecode-expiration%\r\n\r\n      {$p}Left-click to buy paper codes.\r\n      {$sp}Middle-click to redeem the code.\r\n      {$e}Right-click to delete.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "invite-codes",
+        "slots"
+      ],
+      "source": "[ 10, 11, 12, 13, 14, 15, 16 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "info"
+      ],
+      "source": "\r\n    name: \"&eInfo\"\r\n    material: PLAYER_HEAD\r\n    skull: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDAxYWZlOTczYzU0ODJmZGM3MWU2YWExMDY5ODgzM2M3OWM0MzdmMjEzMDhlYTlhMWEwOTU3NDZlYzI3NGEwZiJ9fX0='\r\n    posx: 5\r\n    posy: 1\r\n    lore: |\r\n      {$sep}Invite codes are an alternative\r\n      way of inviting players to your kingdom.\r\n      They're similar to discord invite codes.\r\n\r\n      Once you create a new invite code, a player\r\n      can either type the code using\r\n      {$p}/k invitecode {$s}<code> {$sep}or you can\r\n      generate a physical paper which players can\r\n      right-click to use them.\r\n      Each invite code paper costs {$s}%invitecode-paper-cost%\r\n      {$sep}resource points.\r\n\r\n      Invite codes expire at a certain point and\r\n      they can either have limited or unlimited uses.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "info",
+        "name"
+      ],
+      "source": "\"&eInfo\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "info",
+        "material"
+      ],
+      "source": "PLAYER_HEAD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "info",
+        "skull"
+      ],
+      "source": "'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDAxYWZlOTczYzU0ODJmZGM3MWU2YWExMDY5ODgzM2M3OWM0MzdmMjEzMDhlYTlhMWEwOTU3NDZlYzI3NGEwZiJ9fX0='",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "info",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "info",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "info",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}Invite codes are an alternative\r\n      way of inviting players to your kingdom.\r\n      They're similar to discord invite codes.\r\n\r\n      Once you create a new invite code, a player\r\n      can either type the code using\r\n      {$p}/k invitecode {$s}<code> {$sep}or you can\r\n      generate a physical paper which players can\r\n      right-click to use them.\r\n      Each invite code paper costs {$s}%invitecode-paper-cost%\r\n      {$sep}resource points.\r\n\r\n      Invite codes expire at a certain point and\r\n      they can either have limited or unlimited uses.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "new-invite-code"
+      ],
+      "source": "\r\n    name: \"{$p}Create New Invite Code\"\r\n    lore: |\r\n      {$sep}You can only make up to\r\n      {$p}%invitecode-max% {$sep}invite codes.\r\n    material: GREEN_WOOL\r\n    posx: 6\r\n    posy: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "new-invite-code",
+        "name"
+      ],
+      "source": "\"{$p}Create New Invite Code\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "new-invite-code",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}You can only make up to\r\n      {$p}%invitecode-max% {$sep}invite codes.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "new-invite-code",
+        "material"
+      ],
+      "source": "GREEN_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "new-invite-code",
+        "posx"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "new-invite-code",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "delete-all"
+      ],
+      "source": "\r\n    name: \"&4Delete All Invite Codes\"\r\n    material: RED_WOOL\r\n    posx: 4\r\n    posy: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "delete-all",
+        "name"
+      ],
+      "source": "\"&4Delete All Invite Codes\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "delete-all",
+        "material"
+      ],
+      "source": "RED_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "delete-all",
+        "posx"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "delete-all",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "blue-glass"
+      ],
+      "source": "\r\n    name: ''\r\n    material: BLUE_STAINED_GLASS_PANE\r\n    slots: [ 0, 1, 2, 6, 7, 8, 9, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26 ]\r\n\r\n#  next-page:\r\n#    name: '{$s}Next Page {$sep}- &e%page%&8/&e%pages%'\r\n#    material: PLAYER_HEAD\r\n#    skull: \"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjgyYWQxYjljYjRkZDIxMjU5YzBkNzVhYTMxNWZmMzg5YzNjZWY3NTJiZTM5NDkzMzgxNjRiYWM4NGE5NmUifX19\"\r\n#    slot: 8\r\n#  previous-page:\r\n#    name: '{$s}Previous Page {$sep}- &e%page%&8/&e%pages%'\r\n#    material: PLAYER_HEAD\r\n#    skull: \"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzdhZWU5YTc1YmYwZGY3ODk3MTgzMDE1Y2NhMGIyYTdkNzU1YzYzMzg4ZmYwMTc1MmQ1ZjQ0MTlmYzY0NSJ9fX0=\"\r\n#    slot: 0",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "blue-glass",
+        "name"
+      ],
+      "source": "''",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "blue-glass",
+        "material"
+      ],
+      "source": "BLUE_STAINED_GLASS_PANE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "blue-glass",
+        "slots"
+      ],
+      "source": "[ 0, 1, 2, 6, 7, 8, 9, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "0",
+        "1",
+        "2",
+        "6",
+        "7",
+        "8",
+        "9",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26"
+      ]
+    }
+  ]
+}

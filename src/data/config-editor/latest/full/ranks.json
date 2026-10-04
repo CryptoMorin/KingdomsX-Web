@@ -1,0 +1,1470 @@
+{
+  "formatVersion": 1,
+  "id": "ranks",
+  "resourceName": "ranks.yml",
+  "sources": {
+    "schema": {
+      "kind": "kingdomsx-jar",
+      "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+      "pluginVersion": "1.17.27.3",
+      "fileName": "ranks.json"
+    },
+    "defaults": [
+      "default--ranks.json"
+    ],
+    "runtime": {
+      "kind": "kingdomsx-jar",
+      "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+      "pluginVersion": "1.17.27.3"
+    }
+  },
+  "coverage": {
+    "defaultPathCount": 113,
+    "rawDefaultPathCount": 113,
+    "activeRuntimePathCount": 2,
+    "fieldCount": 60,
+    "capabilitySourceCounts": {
+      "jar-schema": 31,
+      "jar-default": 34,
+      "editor-overlay": 64,
+      "jar-runtime": 2
+    },
+    "commonSettingCount": 3
+  },
+  "schema": {
+    "kind": "object",
+    "fields": [
+      {
+        "key": "custom-ranks",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "enabled",
+              "type": {
+                "kind": "boolean",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "This option requires a restart to work. The only thing that this option is going to do is optimizing the amount of data being saved. Ranks have a lot of data and it helps the IO operation a lot of they're not saved. When the plugin wants to load data, first it checks if that option is enabled. If it's disabled it'll just copy the default ranks from this file Then when the plugin wants to save data, it checks the option again and if it's disabled, it'll not write the rank settings to the json file. It doesn't matter what you changed in your rank settings. You can keep them as long as your kingdom didn't go through a cache cycle, but after that it'll go back to defaults below.",
+                "optional": true
+              }
+            },
+            {
+              "key": "limits",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "ranks",
+                    "type": {
+                      "kind": "integer",
+                      "minimum": 2,
+                      "maximum": 20,
+                      "description": "Maximum custom ranks supported by the shipped rank GUI.",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "max-claims",
+                    "type": {
+                      "kind": "integer",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "length",
+                    "type": {
+                      "kind": "object",
+                      "fields": [
+                        {
+                          "key": "ignore-colors",
+                          "type": {
+                            "kind": "boolean",
+                            "capability": {
+                              "sources": [
+                                "jar-schema"
+                              ]
+                            },
+                            "optional": true
+                          }
+                        },
+                        {
+                          "key": "node",
+                          "type": {
+                            "kind": "integer",
+                            "capability": {
+                              "sources": [
+                                "jar-schema",
+                                "jar-default"
+                              ]
+                            },
+                            "optional": true
+                          }
+                        },
+                        {
+                          "key": "name",
+                          "type": {
+                            "kind": "integer",
+                            "capability": {
+                              "sources": [
+                                "jar-schema",
+                                "jar-default"
+                              ]
+                            },
+                            "optional": true
+                          }
+                        },
+                        {
+                          "key": "symbol",
+                          "type": {
+                            "kind": "integer",
+                            "capability": {
+                              "sources": [
+                                "jar-schema",
+                                "jar-default"
+                              ]
+                            },
+                            "optional": true
+                          }
+                        },
+                        {
+                          "key": "color",
+                          "type": {
+                            "kind": "integer",
+                            "capability": {
+                              "sources": [
+                                "jar-schema",
+                                "jar-default"
+                              ]
+                            },
+                            "optional": true
+                          }
+                        },
+                        {
+                          "key": "material",
+                          "type": {
+                            "kind": "object",
+                            "fields": [
+                              {
+                                "key": "whitelist",
+                                "type": {
+                                  "kind": "boolean",
+                                  "capability": {
+                                    "sources": [
+                                      "jar-schema",
+                                      "jar-default"
+                                    ]
+                                  },
+                                  "optional": true
+                                }
+                              },
+                              {
+                                "key": "list",
+                                "type": {
+                                  "kind": "set",
+                                  "elements": {
+                                    "kind": "advanced",
+                                    "typeName": "StringMatcher<Material>",
+                                    "allowCustom": true,
+                                    "capability": {
+                                      "sources": [
+                                        "jar-schema"
+                                      ]
+                                    },
+                                    "description": "Material name or matcher."
+                                  },
+                                  "capability": {
+                                    "sources": [
+                                      "jar-schema",
+                                      "jar-default"
+                                    ]
+                                  },
+                                  "description": "Material names or material matchers.",
+                                  "optional": true
+                                }
+                              }
+                            ],
+                            "capability": {
+                              "sources": [
+                                "jar-schema",
+                                "jar-default"
+                              ]
+                            },
+                            "optional": true
+                          }
+                        }
+                      ],
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "description": "Max length of the names. Color codes are also considered.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "material",
+                    "type": {
+                      "kind": "object",
+                      "fields": [
+                        {
+                          "key": "whitelist",
+                          "type": {
+                            "kind": "boolean",
+                            "description": "Treat the custom-rank material list as an allow-list.",
+                            "capability": {
+                              "sources": [
+                                "jar-runtime"
+                              ],
+                              "tier": "advanced",
+                              "runtimeField": "CUSTOM_RANKS_LIMITS_MATERIAL_WHITELIST",
+                              "consumers": [
+                                "org/kingdoms/managers/buildings/structures/RankEditor"
+                              ]
+                            },
+                            "optional": true
+                          }
+                        },
+                        {
+                          "key": "list",
+                          "type": {
+                            "kind": "list",
+                            "description": "Materials allowed or blocked for custom rank icons.",
+                            "elements": {
+                              "kind": "advanced",
+                              "typeName": "StringMatcher<Material>",
+                              "allowCustom": true,
+                              "description": "Material name or matcher."
+                            },
+                            "capability": {
+                              "sources": [
+                                "jar-runtime"
+                              ],
+                              "tier": "advanced",
+                              "runtimeField": "CUSTOM_RANKS_LIMITS_MATERIAL_LIST",
+                              "consumers": [
+                                "org/kingdoms/managers/buildings/structures/RankEditor"
+                              ]
+                            },
+                            "optional": true
+                          }
+                        }
+                      ],
+                      "description": "",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  }
+                ],
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "The limitations of rank settings.",
+                "optional": true
+              }
+            }
+          ],
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "interact-blocks",
+        "type": {
+          "kind": "list",
+          "elements": {
+            "kind": "advanced",
+            "typeName": "StringMatcher<Material>",
+            "capability": {
+              "sources": [
+                "jar-schema"
+              ]
+            },
+            "description": "Material name or matcher."
+          },
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "Which blocks are considered to be in INTERACT permission? All the other blocks that are interactable and are not specified in this list will be considered in USE permission.",
+          "optional": true
+        }
+      },
+      {
+        "key": "new-rank",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "node",
+              "type": {
+                "kind": "string",
+                "typeName": "str",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default",
+                    "editor-overlay"
+                  ]
+                },
+                "description": "If this node already exists, it'll increment 'i' number in the format \"node (i)\" until it's not used.",
+                "optional": true
+              }
+            },
+            {
+              "key": "name",
+              "type": {
+                "kind": "string",
+                "typeName": "Message",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default",
+                    "editor-overlay"
+                  ]
+                },
+                "description": "Rank display name.",
+                "optional": true
+              }
+            },
+            {
+              "key": "color",
+              "type": {
+                "kind": "string",
+                "typeName": "Message",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default",
+                    "editor-overlay"
+                  ]
+                },
+                "description": "Rank color code. Supports Minecraft colors, RGB, hex, and shared color variables.",
+                "optional": true
+              }
+            },
+            {
+              "key": "symbol",
+              "type": {
+                "kind": "string",
+                "typeName": "str",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default",
+                    "editor-overlay"
+                  ]
+                },
+                "description": "Rank chat symbol.",
+                "optional": true
+              }
+            },
+            {
+              "key": "max-claims",
+              "type": {
+                "kind": "integer",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default",
+                    "editor-overlay"
+                  ]
+                },
+                "description": "Set to -1 to copy member rank's max claims.",
+                "minimum": -1,
+                "optional": true
+              }
+            },
+            {
+              "key": "material",
+              "type": {
+                "kind": "union",
+                "typeName": "str",
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                },
+                "description": "Rank icon material. Use RANDOM for a random material.",
+                "optional": true,
+                "choices": [
+                  {
+                    "kind": "suggestion",
+                    "typeName": "Material",
+                    "allowCustom": true,
+                    "description": "Fixed rank icon material.",
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    }
+                  },
+                  {
+                    "kind": "literal",
+                    "value": "RANDOM",
+                    "label": "Random material",
+                    "description": "Pick a random material.",
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "key": "permissions",
+              "type": {
+                "kind": "set",
+                "elements": {
+                  "kind": "enum",
+                  "typeName": "KingdomPermission",
+                  "values": [
+                    "@MEMBER",
+                    "BROADCAST",
+                    "BUILD",
+                    "BUILD_OWNED",
+                    "NEXUS_BUILD",
+                    "CLAIM",
+                    "UNCLAIM",
+                    "UNCLAIM_OWNED",
+                    "EDIT_RANKS",
+                    "MANAGE_RANKS",
+                    "WITHDRAW",
+                    "INTERACT",
+                    "USE",
+                    "HOME",
+                    "SET_HOME",
+                    "INVADE",
+                    "INVITE",
+                    "KICK",
+                    "LORE",
+                    "NEXUS",
+                    "FLY",
+                    "EXCLUDE_TAX",
+                    "NATION",
+                    "TRUCE",
+                    "ENEMY",
+                    "ALLIANCE",
+                    "NEXUS_CHEST",
+                    "OUTPOST",
+                    "PROTECTION_SIGNS",
+                    "RELATION_ATTRIBUTES",
+                    "SETTINGS",
+                    "UPGRADE",
+                    "INSTANT_TELEPORT",
+                    "INVSEE",
+                    "READ_MAILS",
+                    "MANAGE_MAILS",
+                    "STRUCTURES",
+                    "TURRETS",
+                    "VIEW_LOGS",
+                    "JAIL"
+                  ],
+                  "description": "Standard rank permission or @MEMBER to copy the member rank permissions.",
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                },
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                },
+                "description": "Rank permissions. Start with @MEMBER to inherit member permissions.",
+                "optional": true
+              }
+            },
+            {
+              "key": "priority",
+              "type": {
+                "kind": "expression",
+                "typeName": "str",
+                "description": "Rank ordering equation. Lower priority numbers outrank higher ones.",
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                },
+                "language": "math",
+                "optional": true
+              }
+            }
+          ],
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "Rank definition. max-claims: -1 is unlimited (new ranks copy the member rank when set to -1). material: use RANDOM for a random rank icon. permissions: start with @MEMBER to copy the member rank permissions.",
+          "optional": true
+        }
+      },
+      {
+        "key": "ranks",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "string",
+            "typeName": "str",
+            "capability": {
+              "sources": [
+                "jar-schema"
+              ]
+            }
+          },
+          "values": {
+            "kind": "object",
+            "fields": [
+              {
+                "key": "color",
+                "type": {
+                  "kind": "string",
+                  "typeName": "Message",
+                  "capability": {
+                    "sources": [
+                      "jar-schema",
+                      "editor-overlay"
+                    ]
+                  },
+                  "description": "Rank color code. Supports Minecraft colors, RGB, hex, and shared color variables.",
+                  "optional": true
+                }
+              },
+              {
+                "key": "symbol",
+                "type": {
+                  "kind": "string",
+                  "typeName": "str",
+                  "capability": {
+                    "sources": [
+                      "jar-schema",
+                      "editor-overlay"
+                    ]
+                  },
+                  "description": "Rank chat symbol.",
+                  "optional": true
+                }
+              },
+              {
+                "key": "name",
+                "type": {
+                  "kind": "string",
+                  "typeName": "Message",
+                  "capability": {
+                    "sources": [
+                      "jar-schema",
+                      "editor-overlay"
+                    ],
+                    "tier": "common"
+                  },
+                  "description": "Rank display name.",
+                  "optional": true
+                }
+              },
+              {
+                "key": "material",
+                "type": {
+                  "kind": "union",
+                  "typeName": "Material",
+                  "allowCustom": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  },
+                  "optional": true,
+                  "description": "Rank icon material. Use RANDOM for a random material.",
+                  "choices": [
+                    {
+                      "kind": "suggestion",
+                      "typeName": "Material",
+                      "allowCustom": true,
+                      "description": "Fixed rank icon material.",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      }
+                    },
+                    {
+                      "kind": "literal",
+                      "value": "RANDOM",
+                      "label": "Random material",
+                      "description": "Pick a random material.",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "key": "max-claims",
+                "type": {
+                  "kind": "integer",
+                  "capability": {
+                    "sources": [
+                      "jar-schema",
+                      "editor-overlay"
+                    ]
+                  },
+                  "description": "Maximum claims for this rank. -1 is unlimited.",
+                  "minimum": -1,
+                  "optional": true
+                }
+              },
+              {
+                "key": "permissions",
+                "type": {
+                  "kind": "set",
+                  "elements": {
+                    "kind": "enum",
+                    "typeName": "KingdomPermission",
+                    "values": [
+                      "@MEMBER",
+                      "BROADCAST",
+                      "BUILD",
+                      "BUILD_OWNED",
+                      "NEXUS_BUILD",
+                      "CLAIM",
+                      "UNCLAIM",
+                      "UNCLAIM_OWNED",
+                      "EDIT_RANKS",
+                      "MANAGE_RANKS",
+                      "WITHDRAW",
+                      "INTERACT",
+                      "USE",
+                      "HOME",
+                      "SET_HOME",
+                      "INVADE",
+                      "INVITE",
+                      "KICK",
+                      "LORE",
+                      "NEXUS",
+                      "FLY",
+                      "EXCLUDE_TAX",
+                      "NATION",
+                      "TRUCE",
+                      "ENEMY",
+                      "ALLIANCE",
+                      "NEXUS_CHEST",
+                      "OUTPOST",
+                      "PROTECTION_SIGNS",
+                      "RELATION_ATTRIBUTES",
+                      "SETTINGS",
+                      "UPGRADE",
+                      "INSTANT_TELEPORT",
+                      "INVSEE",
+                      "READ_MAILS",
+                      "MANAGE_MAILS",
+                      "STRUCTURES",
+                      "TURRETS",
+                      "VIEW_LOGS",
+                      "JAIL"
+                    ],
+                    "description": "Standard rank permission or @MEMBER to copy the member rank permissions.",
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    }
+                  },
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ],
+                    "tier": "common"
+                  },
+                  "description": "Rank permissions. Start with @MEMBER to inherit member permissions.",
+                  "optional": true
+                }
+              },
+              {
+                "key": "node",
+                "type": {
+                  "kind": "string",
+                  "typeName": "str",
+                  "description": "Internal rank node id.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                }
+              },
+              {
+                "key": "priority",
+                "type": {
+                  "kind": "expression",
+                  "language": "math",
+                  "optional": true,
+                  "description": "Rank ordering equation. Lower priority numbers outrank higher ones.",
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ],
+                    "tier": "common"
+                  }
+                }
+              }
+            ],
+            "capability": {
+              "sources": [
+                "jar-schema"
+              ]
+            },
+            "description": "Rank definition. max-claims: -1 is unlimited (new ranks copy the member rank when set to -1). material: use RANDOM for a random rank icon. permissions: start with @MEMBER to copy the member rank permissions.",
+            "optional": true,
+            "required": []
+          },
+          "fields": [],
+          "capability": {
+            "sources": [
+              "jar-schema"
+            ]
+          },
+          "description": "Rank definition. max-claims: -1 is unlimited (new ranks copy the member rank when set to -1). material: use RANDOM for a random rank icon. permissions: start with @MEMBER to copy the member rank permissions.",
+          "optional": true
+        }
+      },
+      {
+        "key": "kingdom-ranks",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "string",
+            "typeName": "str",
+            "description": "Rank node id.",
+            "optional": true,
+            "capability": {
+              "sources": [
+                "editor-overlay"
+              ]
+            }
+          },
+          "values": {
+            "kind": "object",
+            "fields": [
+              {
+                "key": "color",
+                "type": {
+                  "kind": "string",
+                  "typeName": "Message",
+                  "description": "Rank color code. Supports Minecraft colors, RGB, hex, and shared color variables.",
+                  "capability": {
+                    "sources": [
+                      "editor-overlay",
+                      "jar-default"
+                    ]
+                  },
+                  "optional": true
+                }
+              },
+              {
+                "key": "symbol",
+                "type": {
+                  "kind": "string",
+                  "typeName": "str",
+                  "description": "Rank chat symbol.",
+                  "capability": {
+                    "sources": [
+                      "editor-overlay",
+                      "jar-default"
+                    ]
+                  },
+                  "optional": true
+                }
+              },
+              {
+                "key": "name",
+                "type": {
+                  "kind": "string",
+                  "typeName": "Message",
+                  "description": "Rank display name.",
+                  "capability": {
+                    "sources": [
+                      "editor-overlay",
+                      "jar-default"
+                    ]
+                  },
+                  "optional": true
+                }
+              },
+              {
+                "key": "material",
+                "type": {
+                  "kind": "union",
+                  "typeName": "str",
+                  "description": "Rank icon material. Use RANDOM for a random material.",
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  },
+                  "optional": true,
+                  "choices": [
+                    {
+                      "kind": "suggestion",
+                      "typeName": "Material",
+                      "allowCustom": true,
+                      "description": "Fixed rank icon material.",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      }
+                    },
+                    {
+                      "kind": "literal",
+                      "value": "RANDOM",
+                      "label": "Random material",
+                      "description": "Pick a random material.",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "key": "max-claims",
+                "type": {
+                  "kind": "integer",
+                  "description": "-1 means unlimited",
+                  "capability": {
+                    "sources": [
+                      "editor-overlay",
+                      "jar-default"
+                    ]
+                  },
+                  "minimum": -1,
+                  "optional": true
+                }
+              },
+              {
+                "key": "permissions",
+                "type": {
+                  "kind": "set",
+                  "elements": {
+                    "kind": "enum",
+                    "typeName": "KingdomPermission",
+                    "values": [
+                      "@MEMBER",
+                      "BROADCAST",
+                      "BUILD",
+                      "BUILD_OWNED",
+                      "NEXUS_BUILD",
+                      "CLAIM",
+                      "UNCLAIM",
+                      "UNCLAIM_OWNED",
+                      "EDIT_RANKS",
+                      "MANAGE_RANKS",
+                      "WITHDRAW",
+                      "INTERACT",
+                      "USE",
+                      "HOME",
+                      "SET_HOME",
+                      "INVADE",
+                      "INVITE",
+                      "KICK",
+                      "LORE",
+                      "NEXUS",
+                      "FLY",
+                      "EXCLUDE_TAX",
+                      "NATION",
+                      "TRUCE",
+                      "ENEMY",
+                      "ALLIANCE",
+                      "NEXUS_CHEST",
+                      "OUTPOST",
+                      "PROTECTION_SIGNS",
+                      "RELATION_ATTRIBUTES",
+                      "SETTINGS",
+                      "UPGRADE",
+                      "INSTANT_TELEPORT",
+                      "INVSEE",
+                      "READ_MAILS",
+                      "MANAGE_MAILS",
+                      "STRUCTURES",
+                      "TURRETS",
+                      "VIEW_LOGS",
+                      "JAIL"
+                    ],
+                    "description": "Standard rank permission or @MEMBER to copy the member rank permissions.",
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    }
+                  },
+                  "description": "Rank permissions. Start with @MEMBER to inherit member permissions.",
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  },
+                  "optional": true
+                }
+              },
+              {
+                "key": "node",
+                "type": {
+                  "kind": "string",
+                  "typeName": "str",
+                  "description": "Internal rank node id.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                }
+              },
+              {
+                "key": "priority",
+                "type": {
+                  "kind": "expression",
+                  "language": "math",
+                  "optional": true,
+                  "description": "Rank ordering equation. Lower priority numbers outrank higher ones.",
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                }
+              }
+            ],
+            "description": "Rank definition. max-claims: -1 is unlimited (new ranks copy the member rank when set to -1). material: use RANDOM for a random rank icon. permissions: start with @MEMBER to copy the member rank permissions.",
+            "capability": {
+              "sources": [
+                "editor-overlay",
+                "jar-default"
+              ]
+            },
+            "optional": true,
+            "required": []
+          },
+          "description": "Rank definition. max-claims: -1 is unlimited (new ranks copy the member rank when set to -1). material: use RANDOM for a random rank icon. permissions: start with @MEMBER to copy the member rank permissions.",
+          "optional": true,
+          "capability": {
+            "sources": [
+              "editor-overlay",
+              "jar-default"
+            ]
+          }
+        }
+      },
+      {
+        "key": "national-ranks",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "string",
+            "typeName": "str",
+            "description": "Rank node id.",
+            "optional": true,
+            "capability": {
+              "sources": [
+                "editor-overlay"
+              ]
+            }
+          },
+          "values": {
+            "kind": "object",
+            "fields": [
+              {
+                "key": "color",
+                "type": {
+                  "kind": "string",
+                  "typeName": "Message",
+                  "description": "Rank color code. Supports Minecraft colors, RGB, hex, and shared color variables.",
+                  "capability": {
+                    "sources": [
+                      "editor-overlay",
+                      "jar-default"
+                    ]
+                  },
+                  "optional": true
+                }
+              },
+              {
+                "key": "symbol",
+                "type": {
+                  "kind": "string",
+                  "typeName": "str",
+                  "description": "Rank chat symbol.",
+                  "capability": {
+                    "sources": [
+                      "editor-overlay",
+                      "jar-default"
+                    ]
+                  },
+                  "optional": true
+                }
+              },
+              {
+                "key": "name",
+                "type": {
+                  "kind": "string",
+                  "typeName": "Message",
+                  "description": "Rank display name.",
+                  "capability": {
+                    "sources": [
+                      "editor-overlay",
+                      "jar-default"
+                    ]
+                  },
+                  "optional": true
+                }
+              },
+              {
+                "key": "material",
+                "type": {
+                  "kind": "union",
+                  "typeName": "str",
+                  "description": "Rank icon material. Use RANDOM for a random material.",
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  },
+                  "optional": true,
+                  "choices": [
+                    {
+                      "kind": "suggestion",
+                      "typeName": "Material",
+                      "allowCustom": true,
+                      "description": "Fixed rank icon material.",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      }
+                    },
+                    {
+                      "kind": "literal",
+                      "value": "RANDOM",
+                      "label": "Random material",
+                      "description": "Pick a random material.",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "key": "max-claims",
+                "type": {
+                  "kind": "integer",
+                  "description": "Maximum claims for this rank. -1 is unlimited.",
+                  "capability": {
+                    "sources": [
+                      "editor-overlay",
+                      "jar-default"
+                    ]
+                  },
+                  "minimum": -1,
+                  "optional": true
+                }
+              },
+              {
+                "key": "permissions",
+                "type": {
+                  "kind": "set",
+                  "elements": {
+                    "kind": "enum",
+                    "typeName": "KingdomPermission",
+                    "values": [
+                      "@MEMBER",
+                      "BROADCAST",
+                      "BUILD",
+                      "BUILD_OWNED",
+                      "NEXUS_BUILD",
+                      "CLAIM",
+                      "UNCLAIM",
+                      "UNCLAIM_OWNED",
+                      "EDIT_RANKS",
+                      "MANAGE_RANKS",
+                      "WITHDRAW",
+                      "INTERACT",
+                      "USE",
+                      "HOME",
+                      "SET_HOME",
+                      "INVADE",
+                      "INVITE",
+                      "KICK",
+                      "LORE",
+                      "NEXUS",
+                      "FLY",
+                      "EXCLUDE_TAX",
+                      "NATION",
+                      "TRUCE",
+                      "ENEMY",
+                      "ALLIANCE",
+                      "NEXUS_CHEST",
+                      "OUTPOST",
+                      "PROTECTION_SIGNS",
+                      "RELATION_ATTRIBUTES",
+                      "SETTINGS",
+                      "UPGRADE",
+                      "INSTANT_TELEPORT",
+                      "INVSEE",
+                      "READ_MAILS",
+                      "MANAGE_MAILS",
+                      "STRUCTURES",
+                      "TURRETS",
+                      "VIEW_LOGS",
+                      "JAIL"
+                    ],
+                    "description": "Standard rank permission or @MEMBER to copy the member rank permissions.",
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    }
+                  },
+                  "description": "Rank permissions. Start with @MEMBER to inherit member permissions.",
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  },
+                  "optional": true
+                }
+              },
+              {
+                "key": "node",
+                "type": {
+                  "kind": "string",
+                  "typeName": "str",
+                  "description": "Internal rank node id.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                }
+              },
+              {
+                "key": "priority",
+                "type": {
+                  "kind": "expression",
+                  "language": "math",
+                  "optional": true,
+                  "description": "Rank ordering equation. Lower priority numbers outrank higher ones.",
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                }
+              }
+            ],
+            "description": "Rank definition. max-claims: -1 is unlimited (new ranks copy the member rank when set to -1). material: use RANDOM for a random rank icon. permissions: start with @MEMBER to copy the member rank permissions.",
+            "capability": {
+              "sources": [
+                "editor-overlay",
+                "jar-default"
+              ]
+            },
+            "optional": true,
+            "required": []
+          },
+          "description": "Rank definition. max-claims: -1 is unlimited (new ranks copy the member rank when set to -1). material: use RANDOM for a random rank icon. permissions: start with @MEMBER to copy the member rank permissions.",
+          "optional": true,
+          "capability": {
+            "sources": [
+              "editor-overlay",
+              "jar-default"
+            ]
+          }
+        }
+      },
+      {
+        "key": "permission-categories",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "string",
+            "typeName": "str",
+            "description": "Permission category id.",
+            "optional": true,
+            "capability": {
+              "sources": [
+                "editor-overlay"
+              ]
+            }
+          },
+          "values": {
+            "kind": "object",
+            "fields": [
+              {
+                "key": "permissions",
+                "type": {
+                  "kind": "list",
+                  "elements": {
+                    "kind": "enum",
+                    "typeName": "KingdomPermission",
+                    "values": [
+                      "BROADCAST",
+                      "BUILD",
+                      "BUILD_OWNED",
+                      "NEXUS_BUILD",
+                      "CLAIM",
+                      "UNCLAIM",
+                      "UNCLAIM_OWNED",
+                      "EDIT_RANKS",
+                      "MANAGE_RANKS",
+                      "WITHDRAW",
+                      "INTERACT",
+                      "USE",
+                      "HOME",
+                      "SET_HOME",
+                      "INVADE",
+                      "INVITE",
+                      "KICK",
+                      "LORE",
+                      "NEXUS",
+                      "FLY",
+                      "EXCLUDE_TAX",
+                      "NATION",
+                      "TRUCE",
+                      "ENEMY",
+                      "ALLIANCE",
+                      "NEXUS_CHEST",
+                      "OUTPOST",
+                      "PROTECTION_SIGNS",
+                      "RELATION_ATTRIBUTES",
+                      "SETTINGS",
+                      "UPGRADE",
+                      "INSTANT_TELEPORT",
+                      "INVSEE",
+                      "READ_MAILS",
+                      "MANAGE_MAILS",
+                      "STRUCTURES",
+                      "TURRETS",
+                      "VIEW_LOGS",
+                      "JAIL"
+                    ],
+                    "description": "Standard rank permission.",
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    }
+                  },
+                  "description": "Permissions shown in the order listed.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                }
+              },
+              {
+                "key": "gui",
+                "type": {
+                  "kind": "string",
+                  "typeName": "str",
+                  "description": "GUI file used to display this category.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                }
+              }
+            ],
+            "description": "Permission category shown in the ranks GUI.",
+            "optional": true,
+            "required": [],
+            "capability": {
+              "sources": [
+                "editor-overlay"
+              ]
+            }
+          },
+          "description": "Ordered, user-defined permission categories for the ranks GUI.",
+          "optional": true,
+          "capability": {
+            "sources": [
+              "editor-overlay",
+              "jar-default"
+            ]
+          }
+        }
+      },
+      {
+        "key": "national-permission-categories",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "string",
+            "typeName": "str",
+            "description": "Permission category id.",
+            "optional": true,
+            "capability": {
+              "sources": [
+                "editor-overlay"
+              ]
+            }
+          },
+          "values": {
+            "kind": "object",
+            "fields": [
+              {
+                "key": "permissions",
+                "type": {
+                  "kind": "list",
+                  "elements": {
+                    "kind": "enum",
+                    "typeName": "KingdomPermission",
+                    "values": [
+                      "BROADCAST",
+                      "BUILD",
+                      "BUILD_OWNED",
+                      "NEXUS_BUILD",
+                      "CLAIM",
+                      "UNCLAIM",
+                      "UNCLAIM_OWNED",
+                      "EDIT_RANKS",
+                      "MANAGE_RANKS",
+                      "WITHDRAW",
+                      "INTERACT",
+                      "USE",
+                      "HOME",
+                      "SET_HOME",
+                      "INVADE",
+                      "INVITE",
+                      "KICK",
+                      "LORE",
+                      "NEXUS",
+                      "FLY",
+                      "EXCLUDE_TAX",
+                      "NATION",
+                      "TRUCE",
+                      "ENEMY",
+                      "ALLIANCE",
+                      "NEXUS_CHEST",
+                      "OUTPOST",
+                      "PROTECTION_SIGNS",
+                      "RELATION_ATTRIBUTES",
+                      "SETTINGS",
+                      "UPGRADE",
+                      "INSTANT_TELEPORT",
+                      "INVSEE",
+                      "READ_MAILS",
+                      "MANAGE_MAILS",
+                      "STRUCTURES",
+                      "TURRETS",
+                      "VIEW_LOGS",
+                      "JAIL"
+                    ],
+                    "description": "Standard rank permission.",
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    }
+                  },
+                  "description": "Permissions shown in the order listed.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                }
+              },
+              {
+                "key": "gui",
+                "type": {
+                  "kind": "string",
+                  "typeName": "str",
+                  "description": "GUI file used to display this category.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                }
+              }
+            ],
+            "description": "Permission category shown in the ranks GUI.",
+            "optional": true,
+            "required": [],
+            "capability": {
+              "sources": [
+                "editor-overlay"
+              ]
+            }
+          },
+          "description": "Ordered, user-defined permission categories for the ranks GUI.",
+          "optional": true,
+          "capability": {
+            "sources": [
+              "editor-overlay",
+              "jar-default"
+            ]
+          }
+        }
+      }
+    ],
+    "capability": {
+      "sources": [
+        "jar-schema"
+      ]
+    }
+  }
+}

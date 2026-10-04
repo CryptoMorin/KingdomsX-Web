@@ -36,17 +36,21 @@ export async function routeAuth({
   url,
   env
 }: DirectoryRequestContext): Promise<Response | null> {
-  if (!url.pathname.startsWith("/api/auth/"))
+  if (!url.pathname.startsWith("/api/auth/")) {
     return null;
+  }
 
-  if (request.method === "GET" && url.pathname === "/api/auth/discord/login")
+  if (request.method === "GET" && url.pathname === "/api/auth/discord/login") {
     return startDiscordLogin(request, url, env);
+  }
 
-  if (request.method === "GET" && url.pathname === "/api/auth/discord/callback")
+  if (request.method === "GET" && url.pathname === "/api/auth/discord/callback") {
     return finishDiscordLogin(request, url, env);
+  }
 
-  if (request.method === "POST" && url.pathname === "/api/auth/logout")
+  if (request.method === "POST" && url.pathname === "/api/auth/logout") {
     return logoutSubmitter(request, env);
+  }
 
   return json({ error: "Not found." }, 404, NO_STORE_JSON_HEADERS);
 }
@@ -58,8 +62,9 @@ async function startDiscordLogin(
 ): Promise<Response> {
   const config = discordConfig(request, env);
 
-  if (!config.ok)
+  if (!config.ok) {
     return json({ error: config.error }, 503, NO_STORE_JSON_HEADERS);
+  }
 
   // State blocks callback forgery
   // PKCE keeps an intercepted code from being exchanged
@@ -74,6 +79,7 @@ async function startDiscordLogin(
   authorizeUrl.searchParams.set("state", state);
   authorizeUrl.searchParams.set("code_challenge", await base64UrlDigest(verifier));
   authorizeUrl.searchParams.set("code_challenge_method", "S256");
+
   const headers = new Headers({ location: authorizeUrl.toString() });
 
   headers.append(
@@ -89,7 +95,7 @@ async function startDiscordLogin(
     setCookie(
       request,
       OAUTH_RETURN_COOKIE,
-      submitterReturnPath(env, url.searchParams.get("returnTo")),
+      submitterReturnPath(url.searchParams.get("returnTo")),
       OAUTH_COOKIE_MAX_AGE_SECONDS
     )
   );
@@ -106,22 +112,25 @@ async function finishDiscordLogin(
   const cookies = parseCookies(request.headers.get("cookie") ?? "");
   const expectedState = cookies[OAUTH_STATE_COOKIE] ?? "";
   const verifier = cookies[OAUTH_VERIFIER_COOKIE] ?? "";
-  const returnTo = submitterReturnPath(env, cookies[OAUTH_RETURN_COOKIE]);
+  const returnTo = submitterReturnPath(cookies[OAUTH_RETURN_COOKIE]);
   const error = url.searchParams.get("error");
   const code = url.searchParams.get("code") ?? "";
   const state = url.searchParams.get("state") ?? "";
 
-  if (!config.ok)
+  if (!config.ok) {
     return redirectWithAuthCookiesCleared(
       request,
-      `${submitterReturnPath(env)}?auth=not-configured`
+      `${submitterReturnPath()}?auth=not-configured`
     );
+  }
 
-  if (error)
+  if (error) {
     return redirectWithAuthCookiesCleared(request, authRedirectPath(returnTo, "denied"));
+  }
 
-  if (!code || !state || !expectedState || state !== expectedState || !verifier)
+  if (!code || !state || !expectedState || state !== expectedState || !verifier) {
     return redirectWithAuthCookiesCleared(request, authRedirectPath(returnTo, "invalid"));
+  }
 
   let token: string;
 
@@ -164,9 +173,11 @@ async function finishDiscordLogin(
     createdAt,
     maxActive: SUBMITTER_SESSION_MAX_ACTIVE_PER_ACCOUNT
   });
+
   const redirect = new URL(returnTo, url.origin);
 
   redirect.searchParams.set("auth", "ok");
+
   const headers = new Headers({ location: redirect.toString() });
 
   headers.append("set-cookie", deleteCookie(request, OAUTH_STATE_COOKIE));
@@ -237,8 +248,9 @@ function discordConfig(
     return { ok: false, error: "Discord login is not configured." };
   }
 
-  if (!/^\d{10,32}$/.test(clientId) || !/^\d{10,32}$/.test(guildId))
+  if (!/^\d{10,32}$/.test(clientId) || !/^\d{10,32}$/.test(guildId)) {
     return { ok: false, error: "Discord login is not configured." };
+  }
 
   try {
     const parsed = new URL(redirectUri);
@@ -271,6 +283,7 @@ async function exchangeDiscordCode(
   form.set("code", code);
   form.set("redirect_uri", redirectUri);
   form.set("code_verifier", verifier);
+
   const response = await fetch(DISCORD_TOKEN_URL, {
     method: "POST",
     headers: { "content-type": "application/x-www-form-urlencoded", accept: "application/json" },
@@ -278,8 +291,9 @@ async function exchangeDiscordCode(
     signal: AbortSignal.timeout(TURNSTILE_TIMEOUT_MS)
   });
 
-  if (!response.ok)
+  if (!response.ok) {
     throw new Error(`Discord token endpoint returned ${response.status}`);
+  }
 
   const data: unknown = await response.json();
 
@@ -293,8 +307,9 @@ async function exchangeDiscordCode(
 async function fetchDiscordProfile(token: string): Promise<DiscordProfile> {
   const data = await fetchDiscordJson(`${DISCORD_API_BASE}/users/@me`, token);
 
-  if (typeof data.id !== "string" || typeof data.username !== "string")
+  if (typeof data.id !== "string" || typeof data.username !== "string") {
     throw new Error("Discord profile response was incomplete.");
+  }
 
   return {
     id: data.id,
@@ -317,13 +332,15 @@ async function fetchDiscordJson(url: string, token: string): Promise<Record<stri
     signal: AbortSignal.timeout(TURNSTILE_TIMEOUT_MS)
   });
 
-  if (!response.ok)
+  if (!response.ok) {
     throw new Error(`Discord API returned ${response.status}`);
+  }
 
   const data: unknown = await response.json();
 
-  if (!isRecord(data))
+  if (!isRecord(data)) {
     throw new Error("Discord API returned unusable JSON.");
+  }
 
   return data;
 }

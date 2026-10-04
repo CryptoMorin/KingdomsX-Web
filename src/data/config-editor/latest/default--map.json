@@ -1,0 +1,4006 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "map.yml",
+  "schemaId": "map",
+  "options": [
+    {
+      "path": [
+        "height"
+      ],
+      "source": "4",
+      "comments": [
+        "Default size of the map. Players can adjust their own size using /k map command."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "width"
+      ],
+      "source": "12",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "limit"
+      ],
+      "source": "\r\n  height: 10\r\n  width: 20\r\n\r\n# Only allow players that have a kingdom to use this command.\r\n",
+      "comments": [
+        "The limit of map that the players can set using /k map command."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "limit",
+        "height"
+      ],
+      "source": "10",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "limit",
+        "width"
+      ],
+      "source": "20",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "kingdom-member-only"
+      ],
+      "source": "false",
+      "comments": [
+        "Only allow players that have a kingdom to use this command."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "header"
+      ],
+      "source": "\"   {$sep}&m&l-{$s}&l&m--=[{$sep}&l&m--&r {$p}&l{$$maps.name}&r {$sep}&l&m--{$s}&l&m]=--{$sep}&l&m-&r\"",
+      "comments": [
+        "Message shown before and after the map."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "footer"
+      ],
+      "source": "\"{$sep}&m&l--{$s}&l&m-=[&c✦{$s}&l&m]=--&e&l&m--{$s}&l&m--=[&c✦{$s}&l&m]=-{$sep}&l&m--\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "begin"
+      ],
+      "source": "\"      \"",
+      "comments": [
+        "Space at the beginning of the map elements."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "distance"
+      ],
+      "source": "\"\"",
+      "comments": [
+        "Distance between each map element."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "compass"
+      ],
+      "source": "\"   {$sp}%compass%\"",
+      "comments": [
+        "The direction shown in the map."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "scoreboard"
+      ],
+      "source": "\r\n  # Scoreboard text alignments usually tent to be weird, so separate messages are desirable.\r\n  header: \"{$sep}&m&l-{$s}&l&m--=[{$sep}&l&m--&r {$p}&l{$$maps.name}&r {$sep}&l&m--{$s}&l&m]=--{$sep}&l&m-&r\"\r\n  begin: \"   \"\r\n\r\n# You can get some symbols here https://coolsymbol.com/    -   https://unicode.org/charts/nameslist/n_25A0.html\r\n# hover: The lore shown when you hover on the element icon.\r\n# action: Hover actions. You can read about it here: https://github.com/CryptoMorin/KingdomsX/wiki/Config#actions\r\n# item: This is used for the GUI map. The name of the item is the first entry of the hover option and the lore is the rest of the hover option.\r\n#       The material of the item is determined by the structure's block type (considering their level too) or specified here if not related to a structure.\r\n# Some people might also find using \"⬛\" or \"■\" appealing, the only disadvantage is that, there aren't many varieties of squares with this size.\r\n# Characters with the same size: ◉\r\n# When using GUIs, the \"action\" option also continues to work if it's a command (not a suggestion or a URL)\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "scoreboard",
+        "header"
+      ],
+      "source": "\"{$sep}&m&l-{$s}&l&m--=[{$sep}&l&m--&r {$p}&l{$$maps.name}&r {$sep}&l&m--{$s}&l&m]=--{$sep}&l&m-&r\"",
+      "comments": [
+        "Scoreboard text alignments usually tent to be weird, so separate messages are desirable."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "scoreboard",
+        "begin"
+      ],
+      "source": "\"   \"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements"
+      ],
+      "source": "\r\n  protected:\r\n    icon: \"&4▩\"\r\n    hover:\r\n      - \"&cProtected region\"\r\n      - &loc \"{$s}Location{$colon} {$p}%loc_x%{$sep}, {$p}%loc_z% {$sep}({$s}Chunk{$colon} {$p}%X%{$sep}, {$p}%Z%{$sep})\"\r\n    item:\r\n      material: PURPLE_WOOL\r\n  you:\r\n    icon: \"{$p}◈\"\r\n    hover: [ \"{$s}You{$colon} {$p}%X%{$sep}, {$p}%Z%\" ]\r\n    item:\r\n      material: COMPASS\r\n  wilderness:\r\n    icon: \"{$sep}▩\"\r\n    action: \"/k claim %X% %Z%\"\r\n    hover: [ \"{$sep}Click to claim.\", *loc ]\r\n    item:\r\n      material: WHITE_WOOL\r\n  outpost-break-confirm:\r\n    icon: \"&3▩\"\r\n    hover:\r\n      - \"&cRemoving the structure will cause\"\r\n      - \"this land to get unclaimed.\"\r\n      - *loc\r\n    item:\r\n      material: CYAN_WOOL\r\n  clipboard:\r\n    added:\r\n      icon: \"&5▩\"\r\n      action: \"/k claim clipboard remove %X% %Z%\"\r\n      hover: [ \"{$sep}Click to remove from the clipboard.\", *loc ]\r\n      item:\r\n        material: PINK_WOOL\r\n    failed:\r\n      icon: \"&c▩\"\r\n      action: \"/k claim clipboard remove %X% %Z%\"\r\n      hover:\r\n        - \"{$desc}Failed to claim this land.\"\r\n        - \"{$desc}It's not necessary to remove it\"\r\n        - \"{$desc}from the clipboard.\"\r\n        - \"\"\r\n        - \"&c%reason%\"\r\n        - \"\"\r\n        - *loc\r\n      item:\r\n        material: RED_WOOL\r\n    wilderness:\r\n      icon: \"{$sep}▩\"\r\n      action: \"/k claim clipboard add %X% %Z%\"\r\n      hover:\r\n        - \"{$sep}Click to add to the clipboard.\"\r\n        - *loc\r\n      item:\r\n        material: WHITE_WOOL\r\n  invasion:\r\n    icon: \"&4▩\"\r\n    hover:\r\n      - \"&cOngoing invasion in &e%other*kingdoms_kingdom_name%'s &cland.\"\r\n      - *loc\r\n    item:\r\n      material: RED_WOOL\r\n  nation-zone:\r\n    self:\r\n      icon: \"{$p}◉\"\r\n      action: \"/k claim %X% %Z%\"\r\n      hover:\r\n        - \"&a%kingdoms_nation_name%'s Nation Zone\"\r\n        - \"{$desc}Click to claim.\"\r\n        - *loc\r\n      item:\r\n        material: GREEN_TERRACOTTA\r\n    ally:\r\n      icon: \"{$s}◉\"\r\n      hover:\r\n        - \"{$s}%other*kingdoms_nation_name%'s Nation Zone\"\r\n        - *loc\r\n      item:\r\n        material: ORANGE_TERRACOTTA\r\n    truce:\r\n      icon: \"&e◉\"\r\n      hover:\r\n        - \"&e%other*kingdoms_nation_name%'s Nation Zone\"\r\n        - *loc\r\n      item:\r\n        material: YELLOW_TERRACOTTA\r\n    neutral:\r\n      icon: \"&f◉\"\r\n      hover:\r\n        - \"&f%other*kingdoms_nation_name%'s Nation Zone\"\r\n        - *loc\r\n      item:\r\n        material: GRAY_TERRACOTTA\r\n    enemy:\r\n      icon: \"&c◉\"\r\n      hover:\r\n        - \"&c%other*kingdoms_nation_name%'s Nation Zone\"\r\n        - *loc\r\n      item:\r\n        material: RED_TERRACOTTA\r\n\r\n  land:\r\n    self:\r\n      icon: \"{$p}▩\"\r\n      action: \"/k unclaim %X% %Z%\"\r\n      hover:\r\n        - \"&a%other*kingdoms_kingdom_name%'s Land\"\r\n        - *loc\r\n        - \"{$sep}Click to unclaim.\"\r\n      item:\r\n        material: GREEN_WOOL\r\n    ally:\r\n      icon: \"{$s}▩\"\r\n      hover:\r\n        - \"{$s}%other*kingdoms_kingdom_name%'s Land\"\r\n        - *loc\r\n      item:\r\n        material: ORANGE_WOOL\r\n    truce:\r\n      icon: \"&e▩\"\r\n      hover:\r\n        - \"&e%other*kingdoms_kingdom_name%'s Land\"\r\n        - *loc\r\n      item:\r\n        material: YELLOW_WOOL\r\n    neutral:\r\n      icon: \"&f▩\"\r\n      hover:\r\n        - \"&f%other*kingdoms_kingdom_name%'s Land\"\r\n        - *loc\r\n      item:\r\n        material: GRAY_WOOL\r\n    enemy:\r\n      icon: \"&c▩\"\r\n      hover:\r\n        - \"&c%other*kingdoms_kingdom_name%'s Land\"\r\n        - *loc\r\n      item:\r\n        material: RED_WOOL\r\n    nation:\r\n      icon: \"{$sp}▩\"\r\n      hover:\r\n        - \"{$sp}%other*kingdoms_kingdom_name%'s Land\"\r\n        - *loc\r\n      item:\r\n        material: BLUE_WOOL\r\n  nexus:\r\n    priority: 2\r\n    self:\r\n      icon: \"{$p}▣\"\r\n      hover:\r\n        - \"&a%other*kingdoms_kingdom_name%'s Nexus\"\r\n        - *loc\r\n    ally:\r\n      icon: \"{$s}▣\"\r\n      hover:\r\n        - \"{$s}%other*kingdoms_kingdom_name%'s Nexus\"\r\n        - *loc\r\n    truce:\r\n      icon: \"&e▣\"\r\n      hover:\r\n        - \"&e%other*kingdoms_kingdom_name%'s Nexus\"\r\n        - *loc\r\n    neutral:\r\n      icon: \"&f▣\"\r\n      hover:\r\n        - \"&f%other*kingdoms_kingdom_name%'s Nexus\"\r\n        - *loc\r\n    enemy:\r\n      icon: \"&c▣\"\r\n      hover:\r\n        - \"&c%other*kingdoms_kingdom_name%'s Nexus\"\r\n        - *loc\r\n    nation:\r\n      icon: \"{$sp}▣\"\r\n      hover:\r\n        - \"{$sp}%other*kingdoms_kingdom_name%'s Nexus\"\r\n        - *loc\r\n  national-nexus:\r\n    priority: 1\r\n    self:\r\n      icon: \"{$p}▣\"\r\n      hover:\r\n        - \"&a%other*kingdoms_kingdom_name%'s National Nexus\"\r\n        - *loc\r\n    ally:\r\n      icon: \"{$s}▣\"\r\n      hover:\r\n        - \"{$s}%other*kingdoms_kingdom_name%'s National Nexus\"\r\n        - *loc\r\n    truce:\r\n      icon: \"&e▣\"\r\n      hover:\r\n        - \"&e%other*kingdoms_kingdom_name%'s National Nexus\"\r\n        - *loc\r\n    neutral:\r\n      icon: \"&f▣\"\r\n      hover:\r\n        - \"&f%other*kingdoms_kingdom_name%'s National Nexus\"\r\n        - *loc\r\n    enemy:\r\n      icon: \"&c▣\"\r\n      hover:\r\n        - \"&c%other*kingdoms_kingdom_name%'s National Nexus\"\r\n        - *loc\r\n    nation:\r\n      icon: \"{$sp}▣\"\r\n      hover:\r\n        - \"{$sp}%other*kingdoms_kingdom_name%'s National Nexus\"\r\n        - *loc\r\n  powercell:\r\n    priority: 3\r\n    self:\r\n      icon: \"{$p}⊠\"\r\n      hover:\r\n        - \"&a%other*kingdoms_kingdom_name%'s Powercell\"\r\n        - *loc\r\n    ally:\r\n      icon: \"{$s}⊠\"\r\n      hover:\r\n        - \"{$s}%other*kingdoms_kingdom_name%'s Powercell\"\r\n        - *loc\r\n    truce:\r\n      icon: \"&e⊠\"\r\n      hover:\r\n        - \"&e%other*kingdoms_kingdom_name%'s Powercell\"\r\n        - *loc\r\n    neutral:\r\n      icon: \"&f⊠\"\r\n      hover:\r\n        - \"&f%other*kingdoms_kingdom_name%'s Powercell\"\r\n        - *loc\r\n    enemy:\r\n      icon: \"&c⊠\"\r\n      hover:\r\n        - \"&c%other*kingdoms_kingdom_name%'s Powercell\"\r\n        - *loc\r\n    nation:\r\n      icon: \"{$sp}⊠\"\r\n      hover:\r\n        - \"{$sp}%other*kingdoms_kingdom_name%'s Powercell\"\r\n        - *loc\r\n  extractor:\r\n    priority: 5\r\n    self:\r\n      icon: \"{$p}▨\"\r\n      hover:\r\n        - \"&a%other*kingdoms_kingdom_name%'s Extractor\"\r\n        - *loc\r\n    ally:\r\n      icon: \"{$s}▨\"\r\n      hover:\r\n        - \"{$s}%other*kingdoms_kingdom_name%'s Extractor\"\r\n        - *loc\r\n    truce:\r\n      icon: \"&e▨\"\r\n      hover:\r\n        - \"&e%other*kingdoms_kingdom_name%'s Extractor\"\r\n        - *loc\r\n    neutral:\r\n      icon: \"&f▨\"\r\n      hover:\r\n        - \"&f%other*kingdoms_kingdom_name%'s Extractor\"\r\n        - *loc\r\n    enemy:\r\n      icon: \"&c▨\"\r\n      hover:\r\n        - \"&c%other*kingdoms_kingdom_name%'s Extractor\"\r\n        - *loc\r\n    nation:\r\n      icon: \"{$sp}▨\"\r\n      hover:\r\n        - \"{$sp}%other*kingdoms_kingdom_name%'s Extractor\"\r\n        - *loc\r\n  outpost:\r\n    priority: 7\r\n    self:\r\n      icon: \"{$p}▤\"\r\n      hover:\r\n        - \"&a%other*kingdoms_kingdom_name%'s Outpost\"\r\n        - *loc\r\n    ally:\r\n      icon: \"{$s}▤\"\r\n      hover:\r\n        - \"{$s}%other*kingdoms_kingdom_name%'s Outpost\"\r\n        - *loc\r\n    truce:\r\n      icon: \"&e▤\"\r\n      hover:\r\n        - \"&e%other*kingdoms_kingdom_name%'s Outpost\"\r\n        - *loc\r\n    neutral:\r\n      icon: \"&f▤\"\r\n      hover:\r\n        - \"&f%other*kingdoms_kingdom_name%'s Outpost\"\r\n        - *loc\r\n    enemy:\r\n      icon: \"&c▤\"\r\n      hover:\r\n        - \"&c%other*kingdoms_kingdom_name%'s Outpost\"\r\n        - *loc\r\n    nation:\r\n      icon: \"{$sp}▤\"\r\n      hover:\r\n        - \"{$sp}%other*kingdoms_kingdom_name%'s Outpost\"\r\n        - *loc\r\n  warppad:\r\n    priority: 5\r\n    self:\r\n      icon: \"{$p}▥\"\r\n      hover:\r\n        - \"&a%other*kingdoms_kingdom_name%'s Warppad\"\r\n        - *loc\r\n    ally:\r\n      icon: \"{$s}▥\"\r\n      hover:\r\n        - \"{$s}%other*kingdoms_kingdom_name%'s Warppad\"\r\n        - *loc\r\n    truce:\r\n      icon: \"&e▥\"\r\n      hover:\r\n        - \"&e%other*kingdoms_kingdom_name%'s Warppad\"\r\n        - *loc\r\n    neutral:\r\n      icon: \"&f▥\"\r\n      hover:\r\n        - \"&f%other*kingdoms_kingdom_name%'s Warppad\"\r\n        - *loc\r\n    enemy:\r\n      icon: \"&c▥\"\r\n      hover:\r\n        - \"&c%other*kingdoms_kingdom_name%'s Warppad\"\r\n        - *loc\r\n    nation:\r\n      icon: \"{$sp}▥\"\r\n      hover:\r\n        - \"{$sp}%other*kingdoms_kingdom_name%'s Warppad\"\r\n        - *loc\r\n  regulator:\r\n    priority: 4\r\n    self:\r\n      icon: \"{$p}▦\"\r\n      hover:\r\n        - \"&a%other*kingdoms_kingdom_name%'s Regulator\"\r\n        - *loc\r\n    ally:\r\n      icon: \"{$s}▦\"\r\n      hover:\r\n        - \"{$s}%other*kingdoms_kingdom_name%'s Regulator\"\r\n        - *loc\r\n    truce:\r\n      icon: \"&e▦\"\r\n      hover:\r\n        - \"&e%other*kingdoms_kingdom_name%'s Regulator\"\r\n        - *loc\r\n    neutral:\r\n      icon: \"&f▦\"\r\n      hover:\r\n        - \"&f%other*kingdoms_kingdom_name%'s Regulator\"\r\n        - *loc\r\n    enemy:\r\n      icon: \"&c▦\"\r\n      hover:\r\n        - \"&c%other*kingdoms_kingdom_name%'s Regulator\"\r\n        - *loc\r\n    nation:\r\n      icon: \"{$sp}▦\"\r\n      hover:\r\n        - \"{$sp}%other*kingdoms_kingdom_name%'s Regulator\"\r\n        - *loc\r\n  siege-cannon:\r\n    priority: 8\r\n    self:\r\n      icon: \"{$p}▦\"\r\n      hover:\r\n        - \"&a%other*kingdoms_kingdom_name%'s Siege Cannon\"\r\n        - *loc\r\n    ally:\r\n      icon: \"{$s}▦\"\r\n      hover:\r\n        - \"{$s}%other*kingdoms_kingdom_name%'s Siege Cannon\"\r\n        - *loc\r\n    truce:\r\n      icon: \"&e▦\"\r\n      hover:\r\n        - \"&e%other*kingdoms_kingdom_name%'s Siege Cannon\"\r\n        - *loc\r\n    neutral:\r\n      icon: \"&f▦\"\r\n      hover:\r\n        - \"&f%other*kingdoms_kingdom_name%'s Siege Cannon\"\r\n        - *loc\r\n    enemy:\r\n      icon: \"&c▦\"\r\n      hover:\r\n        - \"&c%other*kingdoms_kingdom_name%'s Siege Cannon\"\r\n        - *loc\r\n    nation:\r\n      icon: \"{$sp}▦\"\r\n      hover:\r\n        - \"{$sp}%other*kingdoms_kingdom_name%'s Siege Cannon\"\r\n        - *loc",
+      "comments": [
+        "You can get some symbols here https://coolsymbol.com/    -   https://unicode.org/charts/nameslist/n_25A0.html",
+        "hover: The lore shown when you hover on the element icon.",
+        "action: Hover actions. You can read about it here: https://github.com/CryptoMorin/KingdomsX/wiki/Config#actions",
+        "item: This is used for the GUI map. The name of the item is the first entry of the hover option and the lore is the rest of the hover option.",
+        "The material of the item is determined by the structure's block type (considering their level too) or specified here if not related to a structure.",
+        "Some people might also find using \"⬛\" or \"■\" appealing, the only disadvantage is that, there aren't many varieties of squares with this size.",
+        "Characters with the same size: ◉",
+        "When using GUIs, the \"action\" option also continues to work if it's a command (not a suggestion or a URL)"
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "protected"
+      ],
+      "source": "\r\n    icon: \"&4▩\"\r\n    hover:\r\n      - \"&cProtected region\"\r\n      - &loc \"{$s}Location{$colon} {$p}%loc_x%{$sep}, {$p}%loc_z% {$sep}({$s}Chunk{$colon} {$p}%X%{$sep}, {$p}%Z%{$sep})\"\r\n    item:\r\n      material: PURPLE_WOOL\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "protected",
+        "icon"
+      ],
+      "source": "\"&4▩\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "protected",
+        "hover"
+      ],
+      "source": "\r\n      - \"&cProtected region\"\r\n      - &loc \"{$s}Location{$colon} {$p}%loc_x%{$sep}, {$p}%loc_z% {$sep}({$s}Chunk{$colon} {$p}%X%{$sep}, {$p}%Z%{$sep})\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"&cProtected region\"",
+        "&loc \"{$s}Location{$colon} {$p}%loc_x%{$sep}, {$p}%loc_z% {$sep}({$s}Chunk{$colon} {$p}%X%{$sep}, {$p}%Z%{$sep})\""
+      ]
+    },
+    {
+      "path": [
+        "elements",
+        "protected",
+        "item"
+      ],
+      "source": "\r\n      material: PURPLE_WOOL\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "protected",
+        "item",
+        "material"
+      ],
+      "source": "PURPLE_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "you"
+      ],
+      "source": "\r\n    icon: \"{$p}◈\"\r\n    hover: [ \"{$s}You{$colon} {$p}%X%{$sep}, {$p}%Z%\" ]\r\n    item:\r\n      material: COMPASS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "you",
+        "icon"
+      ],
+      "source": "\"{$p}◈\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "you",
+        "hover"
+      ],
+      "source": "[ \"{$s}You{$colon} {$p}%X%{$sep}, {$p}%Z%\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$s}You{$colon} {$p}%X%{$sep}, {$p}%Z%\""
+      ]
+    },
+    {
+      "path": [
+        "elements",
+        "you",
+        "item"
+      ],
+      "source": "\r\n      material: COMPASS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "you",
+        "item",
+        "material"
+      ],
+      "source": "COMPASS",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "wilderness"
+      ],
+      "source": "\r\n    icon: \"{$sep}▩\"\r\n    action: \"/k claim %X% %Z%\"\r\n    hover: [ \"{$sep}Click to claim.\", *loc ]\r\n    item:\r\n      material: WHITE_WOOL\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "wilderness",
+        "icon"
+      ],
+      "source": "\"{$sep}▩\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "wilderness",
+        "action"
+      ],
+      "source": "\"/k claim %X% %Z%\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "wilderness",
+        "hover"
+      ],
+      "source": "[ \"{$sep}Click to claim.\", *loc ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$sep}Click to claim.\"",
+        "*loc"
+      ]
+    },
+    {
+      "path": [
+        "elements",
+        "wilderness",
+        "item"
+      ],
+      "source": "\r\n      material: WHITE_WOOL\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "wilderness",
+        "item",
+        "material"
+      ],
+      "source": "WHITE_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "outpost-break-confirm"
+      ],
+      "source": "\r\n    icon: \"&3▩\"\r\n    hover:\r\n      - \"&cRemoving the structure will cause\"\r\n      - \"this land to get unclaimed.\"\r\n      - *loc\r\n    item:\r\n      material: CYAN_WOOL\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "outpost-break-confirm",
+        "icon"
+      ],
+      "source": "\"&3▩\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "outpost-break-confirm",
+        "hover"
+      ],
+      "source": "\r\n      - \"&cRemoving the structure will cause\"\r\n      - \"this land to get unclaimed.\"\r\n      - *loc\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"&cRemoving the structure will cause\"",
+        "\"this land to get unclaimed.\"",
+        "*loc"
+      ]
+    },
+    {
+      "path": [
+        "elements",
+        "outpost-break-confirm",
+        "item"
+      ],
+      "source": "\r\n      material: CYAN_WOOL\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "outpost-break-confirm",
+        "item",
+        "material"
+      ],
+      "source": "CYAN_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "clipboard"
+      ],
+      "source": "\r\n    added:\r\n      icon: \"&5▩\"\r\n      action: \"/k claim clipboard remove %X% %Z%\"\r\n      hover: [ \"{$sep}Click to remove from the clipboard.\", *loc ]\r\n      item:\r\n        material: PINK_WOOL\r\n    failed:\r\n      icon: \"&c▩\"\r\n      action: \"/k claim clipboard remove %X% %Z%\"\r\n      hover:\r\n        - \"{$desc}Failed to claim this land.\"\r\n        - \"{$desc}It's not necessary to remove it\"\r\n        - \"{$desc}from the clipboard.\"\r\n        - \"\"\r\n        - \"&c%reason%\"\r\n        - \"\"\r\n        - *loc\r\n      item:\r\n        material: RED_WOOL\r\n    wilderness:\r\n      icon: \"{$sep}▩\"\r\n      action: \"/k claim clipboard add %X% %Z%\"\r\n      hover:\r\n        - \"{$sep}Click to add to the clipboard.\"\r\n        - *loc\r\n      item:\r\n        material: WHITE_WOOL\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "clipboard",
+        "added"
+      ],
+      "source": "\r\n      icon: \"&5▩\"\r\n      action: \"/k claim clipboard remove %X% %Z%\"\r\n      hover: [ \"{$sep}Click to remove from the clipboard.\", *loc ]\r\n      item:\r\n        material: PINK_WOOL\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "clipboard",
+        "added",
+        "icon"
+      ],
+      "source": "\"&5▩\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "clipboard",
+        "added",
+        "action"
+      ],
+      "source": "\"/k claim clipboard remove %X% %Z%\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "clipboard",
+        "added",
+        "hover"
+      ],
+      "source": "[ \"{$sep}Click to remove from the clipboard.\", *loc ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$sep}Click to remove from the clipboard.\"",
+        "*loc"
+      ]
+    },
+    {
+      "path": [
+        "elements",
+        "clipboard",
+        "added",
+        "item"
+      ],
+      "source": "\r\n        material: PINK_WOOL\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "clipboard",
+        "added",
+        "item",
+        "material"
+      ],
+      "source": "PINK_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "clipboard",
+        "failed"
+      ],
+      "source": "\r\n      icon: \"&c▩\"\r\n      action: \"/k claim clipboard remove %X% %Z%\"\r\n      hover:\r\n        - \"{$desc}Failed to claim this land.\"\r\n        - \"{$desc}It's not necessary to remove it\"\r\n        - \"{$desc}from the clipboard.\"\r\n        - \"\"\r\n        - \"&c%reason%\"\r\n        - \"\"\r\n        - *loc\r\n      item:\r\n        material: RED_WOOL\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "clipboard",
+        "failed",
+        "icon"
+      ],
+      "source": "\"&c▩\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "clipboard",
+        "failed",
+        "action"
+      ],
+      "source": "\"/k claim clipboard remove %X% %Z%\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "clipboard",
+        "failed",
+        "hover"
+      ],
+      "source": "\r\n        - \"{$desc}Failed to claim this land.\"\r\n        - \"{$desc}It's not necessary to remove it\"\r\n        - \"{$desc}from the clipboard.\"\r\n        - \"\"\r\n        - \"&c%reason%\"\r\n        - \"\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$desc}Failed to claim this land.\"",
+        "\"{$desc}It's not necessary to remove it\"",
+        "\"{$desc}from the clipboard.\"",
+        "\"\"",
+        "\"&c%reason%\"",
+        "\"\"",
+        "*loc"
+      ]
+    },
+    {
+      "path": [
+        "elements",
+        "clipboard",
+        "failed",
+        "item"
+      ],
+      "source": "\r\n        material: RED_WOOL\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "clipboard",
+        "failed",
+        "item",
+        "material"
+      ],
+      "source": "RED_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "clipboard",
+        "wilderness"
+      ],
+      "source": "\r\n      icon: \"{$sep}▩\"\r\n      action: \"/k claim clipboard add %X% %Z%\"\r\n      hover:\r\n        - \"{$sep}Click to add to the clipboard.\"\r\n        - *loc\r\n      item:\r\n        material: WHITE_WOOL\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "clipboard",
+        "wilderness",
+        "icon"
+      ],
+      "source": "\"{$sep}▩\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "clipboard",
+        "wilderness",
+        "action"
+      ],
+      "source": "\"/k claim clipboard add %X% %Z%\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "clipboard",
+        "wilderness",
+        "hover"
+      ],
+      "source": "\r\n        - \"{$sep}Click to add to the clipboard.\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$sep}Click to add to the clipboard.\"",
+        "*loc"
+      ]
+    },
+    {
+      "path": [
+        "elements",
+        "clipboard",
+        "wilderness",
+        "item"
+      ],
+      "source": "\r\n        material: WHITE_WOOL\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "clipboard",
+        "wilderness",
+        "item",
+        "material"
+      ],
+      "source": "WHITE_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "invasion"
+      ],
+      "source": "\r\n    icon: \"&4▩\"\r\n    hover:\r\n      - \"&cOngoing invasion in &e%other*kingdoms_kingdom_name%'s &cland.\"\r\n      - *loc\r\n    item:\r\n      material: RED_WOOL\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "invasion",
+        "icon"
+      ],
+      "source": "\"&4▩\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "invasion",
+        "hover"
+      ],
+      "source": "\r\n      - \"&cOngoing invasion in &e%other*kingdoms_kingdom_name%'s &cland.\"\r\n      - *loc\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"&cOngoing invasion in &e%other*kingdoms_kingdom_name%'s &cland.\"",
+        "*loc"
+      ]
+    },
+    {
+      "path": [
+        "elements",
+        "invasion",
+        "item"
+      ],
+      "source": "\r\n      material: RED_WOOL\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "invasion",
+        "item",
+        "material"
+      ],
+      "source": "RED_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "nation-zone"
+      ],
+      "source": "\r\n    self:\r\n      icon: \"{$p}◉\"\r\n      action: \"/k claim %X% %Z%\"\r\n      hover:\r\n        - \"&a%kingdoms_nation_name%'s Nation Zone\"\r\n        - \"{$desc}Click to claim.\"\r\n        - *loc\r\n      item:\r\n        material: GREEN_TERRACOTTA\r\n    ally:\r\n      icon: \"{$s}◉\"\r\n      hover:\r\n        - \"{$s}%other*kingdoms_nation_name%'s Nation Zone\"\r\n        - *loc\r\n      item:\r\n        material: ORANGE_TERRACOTTA\r\n    truce:\r\n      icon: \"&e◉\"\r\n      hover:\r\n        - \"&e%other*kingdoms_nation_name%'s Nation Zone\"\r\n        - *loc\r\n      item:\r\n        material: YELLOW_TERRACOTTA\r\n    neutral:\r\n      icon: \"&f◉\"\r\n      hover:\r\n        - \"&f%other*kingdoms_nation_name%'s Nation Zone\"\r\n        - *loc\r\n      item:\r\n        material: GRAY_TERRACOTTA\r\n    enemy:\r\n      icon: \"&c◉\"\r\n      hover:\r\n        - \"&c%other*kingdoms_nation_name%'s Nation Zone\"\r\n        - *loc\r\n      item:\r\n        material: RED_TERRACOTTA\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "nation-zone",
+        "self"
+      ],
+      "source": "\r\n      icon: \"{$p}◉\"\r\n      action: \"/k claim %X% %Z%\"\r\n      hover:\r\n        - \"&a%kingdoms_nation_name%'s Nation Zone\"\r\n        - \"{$desc}Click to claim.\"\r\n        - *loc\r\n      item:\r\n        material: GREEN_TERRACOTTA\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "nation-zone",
+        "self",
+        "icon"
+      ],
+      "source": "\"{$p}◉\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "nation-zone",
+        "self",
+        "action"
+      ],
+      "source": "\"/k claim %X% %Z%\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "nation-zone",
+        "self",
+        "hover"
+      ],
+      "source": "\r\n        - \"&a%kingdoms_nation_name%'s Nation Zone\"\r\n        - \"{$desc}Click to claim.\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"&a%kingdoms_nation_name%'s Nation Zone\"",
+        "\"{$desc}Click to claim.\"",
+        "*loc"
+      ]
+    },
+    {
+      "path": [
+        "elements",
+        "nation-zone",
+        "self",
+        "item"
+      ],
+      "source": "\r\n        material: GREEN_TERRACOTTA\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "nation-zone",
+        "self",
+        "item",
+        "material"
+      ],
+      "source": "GREEN_TERRACOTTA",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "nation-zone",
+        "ally"
+      ],
+      "source": "\r\n      icon: \"{$s}◉\"\r\n      hover:\r\n        - \"{$s}%other*kingdoms_nation_name%'s Nation Zone\"\r\n        - *loc\r\n      item:\r\n        material: ORANGE_TERRACOTTA\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "nation-zone",
+        "ally",
+        "icon"
+      ],
+      "source": "\"{$s}◉\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "nation-zone",
+        "ally",
+        "hover"
+      ],
+      "source": "\r\n        - \"{$s}%other*kingdoms_nation_name%'s Nation Zone\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$s}%other*kingdoms_nation_name%'s Nation Zone\"",
+        "*loc"
+      ]
+    },
+    {
+      "path": [
+        "elements",
+        "nation-zone",
+        "ally",
+        "item"
+      ],
+      "source": "\r\n        material: ORANGE_TERRACOTTA\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "nation-zone",
+        "ally",
+        "item",
+        "material"
+      ],
+      "source": "ORANGE_TERRACOTTA",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "nation-zone",
+        "truce"
+      ],
+      "source": "\r\n      icon: \"&e◉\"\r\n      hover:\r\n        - \"&e%other*kingdoms_nation_name%'s Nation Zone\"\r\n        - *loc\r\n      item:\r\n        material: YELLOW_TERRACOTTA\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "nation-zone",
+        "truce",
+        "icon"
+      ],
+      "source": "\"&e◉\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "nation-zone",
+        "truce",
+        "hover"
+      ],
+      "source": "\r\n        - \"&e%other*kingdoms_nation_name%'s Nation Zone\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"&e%other*kingdoms_nation_name%'s Nation Zone\"",
+        "*loc"
+      ]
+    },
+    {
+      "path": [
+        "elements",
+        "nation-zone",
+        "truce",
+        "item"
+      ],
+      "source": "\r\n        material: YELLOW_TERRACOTTA\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "nation-zone",
+        "truce",
+        "item",
+        "material"
+      ],
+      "source": "YELLOW_TERRACOTTA",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "nation-zone",
+        "neutral"
+      ],
+      "source": "\r\n      icon: \"&f◉\"\r\n      hover:\r\n        - \"&f%other*kingdoms_nation_name%'s Nation Zone\"\r\n        - *loc\r\n      item:\r\n        material: GRAY_TERRACOTTA\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "nation-zone",
+        "neutral",
+        "icon"
+      ],
+      "source": "\"&f◉\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "nation-zone",
+        "neutral",
+        "hover"
+      ],
+      "source": "\r\n        - \"&f%other*kingdoms_nation_name%'s Nation Zone\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"&f%other*kingdoms_nation_name%'s Nation Zone\"",
+        "*loc"
+      ]
+    },
+    {
+      "path": [
+        "elements",
+        "nation-zone",
+        "neutral",
+        "item"
+      ],
+      "source": "\r\n        material: GRAY_TERRACOTTA\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "nation-zone",
+        "neutral",
+        "item",
+        "material"
+      ],
+      "source": "GRAY_TERRACOTTA",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "nation-zone",
+        "enemy"
+      ],
+      "source": "\r\n      icon: \"&c◉\"\r\n      hover:\r\n        - \"&c%other*kingdoms_nation_name%'s Nation Zone\"\r\n        - *loc\r\n      item:\r\n        material: RED_TERRACOTTA\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "nation-zone",
+        "enemy",
+        "icon"
+      ],
+      "source": "\"&c◉\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "nation-zone",
+        "enemy",
+        "hover"
+      ],
+      "source": "\r\n        - \"&c%other*kingdoms_nation_name%'s Nation Zone\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"&c%other*kingdoms_nation_name%'s Nation Zone\"",
+        "*loc"
+      ]
+    },
+    {
+      "path": [
+        "elements",
+        "nation-zone",
+        "enemy",
+        "item"
+      ],
+      "source": "\r\n        material: RED_TERRACOTTA\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "nation-zone",
+        "enemy",
+        "item",
+        "material"
+      ],
+      "source": "RED_TERRACOTTA",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "land"
+      ],
+      "source": "\r\n    self:\r\n      icon: \"{$p}▩\"\r\n      action: \"/k unclaim %X% %Z%\"\r\n      hover:\r\n        - \"&a%other*kingdoms_kingdom_name%'s Land\"\r\n        - *loc\r\n        - \"{$sep}Click to unclaim.\"\r\n      item:\r\n        material: GREEN_WOOL\r\n    ally:\r\n      icon: \"{$s}▩\"\r\n      hover:\r\n        - \"{$s}%other*kingdoms_kingdom_name%'s Land\"\r\n        - *loc\r\n      item:\r\n        material: ORANGE_WOOL\r\n    truce:\r\n      icon: \"&e▩\"\r\n      hover:\r\n        - \"&e%other*kingdoms_kingdom_name%'s Land\"\r\n        - *loc\r\n      item:\r\n        material: YELLOW_WOOL\r\n    neutral:\r\n      icon: \"&f▩\"\r\n      hover:\r\n        - \"&f%other*kingdoms_kingdom_name%'s Land\"\r\n        - *loc\r\n      item:\r\n        material: GRAY_WOOL\r\n    enemy:\r\n      icon: \"&c▩\"\r\n      hover:\r\n        - \"&c%other*kingdoms_kingdom_name%'s Land\"\r\n        - *loc\r\n      item:\r\n        material: RED_WOOL\r\n    nation:\r\n      icon: \"{$sp}▩\"\r\n      hover:\r\n        - \"{$sp}%other*kingdoms_kingdom_name%'s Land\"\r\n        - *loc\r\n      item:\r\n        material: BLUE_WOOL\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "land",
+        "self"
+      ],
+      "source": "\r\n      icon: \"{$p}▩\"\r\n      action: \"/k unclaim %X% %Z%\"\r\n      hover:\r\n        - \"&a%other*kingdoms_kingdom_name%'s Land\"\r\n        - *loc\r\n        - \"{$sep}Click to unclaim.\"\r\n      item:\r\n        material: GREEN_WOOL\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "land",
+        "self",
+        "icon"
+      ],
+      "source": "\"{$p}▩\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "land",
+        "self",
+        "action"
+      ],
+      "source": "\"/k unclaim %X% %Z%\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "land",
+        "self",
+        "hover"
+      ],
+      "source": "\r\n        - \"&a%other*kingdoms_kingdom_name%'s Land\"\r\n        - *loc\r\n        - \"{$sep}Click to unclaim.\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"&a%other*kingdoms_kingdom_name%'s Land\"",
+        "*loc",
+        "\"{$sep}Click to unclaim.\""
+      ]
+    },
+    {
+      "path": [
+        "elements",
+        "land",
+        "self",
+        "item"
+      ],
+      "source": "\r\n        material: GREEN_WOOL\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "land",
+        "self",
+        "item",
+        "material"
+      ],
+      "source": "GREEN_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "land",
+        "ally"
+      ],
+      "source": "\r\n      icon: \"{$s}▩\"\r\n      hover:\r\n        - \"{$s}%other*kingdoms_kingdom_name%'s Land\"\r\n        - *loc\r\n      item:\r\n        material: ORANGE_WOOL\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "land",
+        "ally",
+        "icon"
+      ],
+      "source": "\"{$s}▩\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "land",
+        "ally",
+        "hover"
+      ],
+      "source": "\r\n        - \"{$s}%other*kingdoms_kingdom_name%'s Land\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$s}%other*kingdoms_kingdom_name%'s Land\"",
+        "*loc"
+      ]
+    },
+    {
+      "path": [
+        "elements",
+        "land",
+        "ally",
+        "item"
+      ],
+      "source": "\r\n        material: ORANGE_WOOL\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "land",
+        "ally",
+        "item",
+        "material"
+      ],
+      "source": "ORANGE_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "land",
+        "truce"
+      ],
+      "source": "\r\n      icon: \"&e▩\"\r\n      hover:\r\n        - \"&e%other*kingdoms_kingdom_name%'s Land\"\r\n        - *loc\r\n      item:\r\n        material: YELLOW_WOOL\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "land",
+        "truce",
+        "icon"
+      ],
+      "source": "\"&e▩\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "land",
+        "truce",
+        "hover"
+      ],
+      "source": "\r\n        - \"&e%other*kingdoms_kingdom_name%'s Land\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"&e%other*kingdoms_kingdom_name%'s Land\"",
+        "*loc"
+      ]
+    },
+    {
+      "path": [
+        "elements",
+        "land",
+        "truce",
+        "item"
+      ],
+      "source": "\r\n        material: YELLOW_WOOL\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "land",
+        "truce",
+        "item",
+        "material"
+      ],
+      "source": "YELLOW_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "land",
+        "neutral"
+      ],
+      "source": "\r\n      icon: \"&f▩\"\r\n      hover:\r\n        - \"&f%other*kingdoms_kingdom_name%'s Land\"\r\n        - *loc\r\n      item:\r\n        material: GRAY_WOOL\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "land",
+        "neutral",
+        "icon"
+      ],
+      "source": "\"&f▩\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "land",
+        "neutral",
+        "hover"
+      ],
+      "source": "\r\n        - \"&f%other*kingdoms_kingdom_name%'s Land\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"&f%other*kingdoms_kingdom_name%'s Land\"",
+        "*loc"
+      ]
+    },
+    {
+      "path": [
+        "elements",
+        "land",
+        "neutral",
+        "item"
+      ],
+      "source": "\r\n        material: GRAY_WOOL\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "land",
+        "neutral",
+        "item",
+        "material"
+      ],
+      "source": "GRAY_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "land",
+        "enemy"
+      ],
+      "source": "\r\n      icon: \"&c▩\"\r\n      hover:\r\n        - \"&c%other*kingdoms_kingdom_name%'s Land\"\r\n        - *loc\r\n      item:\r\n        material: RED_WOOL\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "land",
+        "enemy",
+        "icon"
+      ],
+      "source": "\"&c▩\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "land",
+        "enemy",
+        "hover"
+      ],
+      "source": "\r\n        - \"&c%other*kingdoms_kingdom_name%'s Land\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"&c%other*kingdoms_kingdom_name%'s Land\"",
+        "*loc"
+      ]
+    },
+    {
+      "path": [
+        "elements",
+        "land",
+        "enemy",
+        "item"
+      ],
+      "source": "\r\n        material: RED_WOOL\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "land",
+        "enemy",
+        "item",
+        "material"
+      ],
+      "source": "RED_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "land",
+        "nation"
+      ],
+      "source": "\r\n      icon: \"{$sp}▩\"\r\n      hover:\r\n        - \"{$sp}%other*kingdoms_kingdom_name%'s Land\"\r\n        - *loc\r\n      item:\r\n        material: BLUE_WOOL\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "land",
+        "nation",
+        "icon"
+      ],
+      "source": "\"{$sp}▩\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "land",
+        "nation",
+        "hover"
+      ],
+      "source": "\r\n        - \"{$sp}%other*kingdoms_kingdom_name%'s Land\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$sp}%other*kingdoms_kingdom_name%'s Land\"",
+        "*loc"
+      ]
+    },
+    {
+      "path": [
+        "elements",
+        "land",
+        "nation",
+        "item"
+      ],
+      "source": "\r\n        material: BLUE_WOOL\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "land",
+        "nation",
+        "item",
+        "material"
+      ],
+      "source": "BLUE_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "nexus"
+      ],
+      "source": "\r\n    priority: 2\r\n    self:\r\n      icon: \"{$p}▣\"\r\n      hover:\r\n        - \"&a%other*kingdoms_kingdom_name%'s Nexus\"\r\n        - *loc\r\n    ally:\r\n      icon: \"{$s}▣\"\r\n      hover:\r\n        - \"{$s}%other*kingdoms_kingdom_name%'s Nexus\"\r\n        - *loc\r\n    truce:\r\n      icon: \"&e▣\"\r\n      hover:\r\n        - \"&e%other*kingdoms_kingdom_name%'s Nexus\"\r\n        - *loc\r\n    neutral:\r\n      icon: \"&f▣\"\r\n      hover:\r\n        - \"&f%other*kingdoms_kingdom_name%'s Nexus\"\r\n        - *loc\r\n    enemy:\r\n      icon: \"&c▣\"\r\n      hover:\r\n        - \"&c%other*kingdoms_kingdom_name%'s Nexus\"\r\n        - *loc\r\n    nation:\r\n      icon: \"{$sp}▣\"\r\n      hover:\r\n        - \"{$sp}%other*kingdoms_kingdom_name%'s Nexus\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "nexus",
+        "priority"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "nexus",
+        "self"
+      ],
+      "source": "\r\n      icon: \"{$p}▣\"\r\n      hover:\r\n        - \"&a%other*kingdoms_kingdom_name%'s Nexus\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "nexus",
+        "self",
+        "icon"
+      ],
+      "source": "\"{$p}▣\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "nexus",
+        "self",
+        "hover"
+      ],
+      "source": "\r\n        - \"&a%other*kingdoms_kingdom_name%'s Nexus\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"&a%other*kingdoms_kingdom_name%'s Nexus\"",
+        "*loc"
+      ]
+    },
+    {
+      "path": [
+        "elements",
+        "nexus",
+        "ally"
+      ],
+      "source": "\r\n      icon: \"{$s}▣\"\r\n      hover:\r\n        - \"{$s}%other*kingdoms_kingdom_name%'s Nexus\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "nexus",
+        "ally",
+        "icon"
+      ],
+      "source": "\"{$s}▣\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "nexus",
+        "ally",
+        "hover"
+      ],
+      "source": "\r\n        - \"{$s}%other*kingdoms_kingdom_name%'s Nexus\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$s}%other*kingdoms_kingdom_name%'s Nexus\"",
+        "*loc"
+      ]
+    },
+    {
+      "path": [
+        "elements",
+        "nexus",
+        "truce"
+      ],
+      "source": "\r\n      icon: \"&e▣\"\r\n      hover:\r\n        - \"&e%other*kingdoms_kingdom_name%'s Nexus\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "nexus",
+        "truce",
+        "icon"
+      ],
+      "source": "\"&e▣\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "nexus",
+        "truce",
+        "hover"
+      ],
+      "source": "\r\n        - \"&e%other*kingdoms_kingdom_name%'s Nexus\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"&e%other*kingdoms_kingdom_name%'s Nexus\"",
+        "*loc"
+      ]
+    },
+    {
+      "path": [
+        "elements",
+        "nexus",
+        "neutral"
+      ],
+      "source": "\r\n      icon: \"&f▣\"\r\n      hover:\r\n        - \"&f%other*kingdoms_kingdom_name%'s Nexus\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "nexus",
+        "neutral",
+        "icon"
+      ],
+      "source": "\"&f▣\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "nexus",
+        "neutral",
+        "hover"
+      ],
+      "source": "\r\n        - \"&f%other*kingdoms_kingdom_name%'s Nexus\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"&f%other*kingdoms_kingdom_name%'s Nexus\"",
+        "*loc"
+      ]
+    },
+    {
+      "path": [
+        "elements",
+        "nexus",
+        "enemy"
+      ],
+      "source": "\r\n      icon: \"&c▣\"\r\n      hover:\r\n        - \"&c%other*kingdoms_kingdom_name%'s Nexus\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "nexus",
+        "enemy",
+        "icon"
+      ],
+      "source": "\"&c▣\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "nexus",
+        "enemy",
+        "hover"
+      ],
+      "source": "\r\n        - \"&c%other*kingdoms_kingdom_name%'s Nexus\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"&c%other*kingdoms_kingdom_name%'s Nexus\"",
+        "*loc"
+      ]
+    },
+    {
+      "path": [
+        "elements",
+        "nexus",
+        "nation"
+      ],
+      "source": "\r\n      icon: \"{$sp}▣\"\r\n      hover:\r\n        - \"{$sp}%other*kingdoms_kingdom_name%'s Nexus\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "nexus",
+        "nation",
+        "icon"
+      ],
+      "source": "\"{$sp}▣\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "nexus",
+        "nation",
+        "hover"
+      ],
+      "source": "\r\n        - \"{$sp}%other*kingdoms_kingdom_name%'s Nexus\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$sp}%other*kingdoms_kingdom_name%'s Nexus\"",
+        "*loc"
+      ]
+    },
+    {
+      "path": [
+        "elements",
+        "national-nexus"
+      ],
+      "source": "\r\n    priority: 1\r\n    self:\r\n      icon: \"{$p}▣\"\r\n      hover:\r\n        - \"&a%other*kingdoms_kingdom_name%'s National Nexus\"\r\n        - *loc\r\n    ally:\r\n      icon: \"{$s}▣\"\r\n      hover:\r\n        - \"{$s}%other*kingdoms_kingdom_name%'s National Nexus\"\r\n        - *loc\r\n    truce:\r\n      icon: \"&e▣\"\r\n      hover:\r\n        - \"&e%other*kingdoms_kingdom_name%'s National Nexus\"\r\n        - *loc\r\n    neutral:\r\n      icon: \"&f▣\"\r\n      hover:\r\n        - \"&f%other*kingdoms_kingdom_name%'s National Nexus\"\r\n        - *loc\r\n    enemy:\r\n      icon: \"&c▣\"\r\n      hover:\r\n        - \"&c%other*kingdoms_kingdom_name%'s National Nexus\"\r\n        - *loc\r\n    nation:\r\n      icon: \"{$sp}▣\"\r\n      hover:\r\n        - \"{$sp}%other*kingdoms_kingdom_name%'s National Nexus\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "national-nexus",
+        "priority"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "national-nexus",
+        "self"
+      ],
+      "source": "\r\n      icon: \"{$p}▣\"\r\n      hover:\r\n        - \"&a%other*kingdoms_kingdom_name%'s National Nexus\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "national-nexus",
+        "self",
+        "icon"
+      ],
+      "source": "\"{$p}▣\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "national-nexus",
+        "self",
+        "hover"
+      ],
+      "source": "\r\n        - \"&a%other*kingdoms_kingdom_name%'s National Nexus\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"&a%other*kingdoms_kingdom_name%'s National Nexus\"",
+        "*loc"
+      ]
+    },
+    {
+      "path": [
+        "elements",
+        "national-nexus",
+        "ally"
+      ],
+      "source": "\r\n      icon: \"{$s}▣\"\r\n      hover:\r\n        - \"{$s}%other*kingdoms_kingdom_name%'s National Nexus\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "national-nexus",
+        "ally",
+        "icon"
+      ],
+      "source": "\"{$s}▣\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "national-nexus",
+        "ally",
+        "hover"
+      ],
+      "source": "\r\n        - \"{$s}%other*kingdoms_kingdom_name%'s National Nexus\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$s}%other*kingdoms_kingdom_name%'s National Nexus\"",
+        "*loc"
+      ]
+    },
+    {
+      "path": [
+        "elements",
+        "national-nexus",
+        "truce"
+      ],
+      "source": "\r\n      icon: \"&e▣\"\r\n      hover:\r\n        - \"&e%other*kingdoms_kingdom_name%'s National Nexus\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "national-nexus",
+        "truce",
+        "icon"
+      ],
+      "source": "\"&e▣\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "national-nexus",
+        "truce",
+        "hover"
+      ],
+      "source": "\r\n        - \"&e%other*kingdoms_kingdom_name%'s National Nexus\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"&e%other*kingdoms_kingdom_name%'s National Nexus\"",
+        "*loc"
+      ]
+    },
+    {
+      "path": [
+        "elements",
+        "national-nexus",
+        "neutral"
+      ],
+      "source": "\r\n      icon: \"&f▣\"\r\n      hover:\r\n        - \"&f%other*kingdoms_kingdom_name%'s National Nexus\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "national-nexus",
+        "neutral",
+        "icon"
+      ],
+      "source": "\"&f▣\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "national-nexus",
+        "neutral",
+        "hover"
+      ],
+      "source": "\r\n        - \"&f%other*kingdoms_kingdom_name%'s National Nexus\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"&f%other*kingdoms_kingdom_name%'s National Nexus\"",
+        "*loc"
+      ]
+    },
+    {
+      "path": [
+        "elements",
+        "national-nexus",
+        "enemy"
+      ],
+      "source": "\r\n      icon: \"&c▣\"\r\n      hover:\r\n        - \"&c%other*kingdoms_kingdom_name%'s National Nexus\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "national-nexus",
+        "enemy",
+        "icon"
+      ],
+      "source": "\"&c▣\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "national-nexus",
+        "enemy",
+        "hover"
+      ],
+      "source": "\r\n        - \"&c%other*kingdoms_kingdom_name%'s National Nexus\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"&c%other*kingdoms_kingdom_name%'s National Nexus\"",
+        "*loc"
+      ]
+    },
+    {
+      "path": [
+        "elements",
+        "national-nexus",
+        "nation"
+      ],
+      "source": "\r\n      icon: \"{$sp}▣\"\r\n      hover:\r\n        - \"{$sp}%other*kingdoms_kingdom_name%'s National Nexus\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "national-nexus",
+        "nation",
+        "icon"
+      ],
+      "source": "\"{$sp}▣\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "national-nexus",
+        "nation",
+        "hover"
+      ],
+      "source": "\r\n        - \"{$sp}%other*kingdoms_kingdom_name%'s National Nexus\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$sp}%other*kingdoms_kingdom_name%'s National Nexus\"",
+        "*loc"
+      ]
+    },
+    {
+      "path": [
+        "elements",
+        "powercell"
+      ],
+      "source": "\r\n    priority: 3\r\n    self:\r\n      icon: \"{$p}⊠\"\r\n      hover:\r\n        - \"&a%other*kingdoms_kingdom_name%'s Powercell\"\r\n        - *loc\r\n    ally:\r\n      icon: \"{$s}⊠\"\r\n      hover:\r\n        - \"{$s}%other*kingdoms_kingdom_name%'s Powercell\"\r\n        - *loc\r\n    truce:\r\n      icon: \"&e⊠\"\r\n      hover:\r\n        - \"&e%other*kingdoms_kingdom_name%'s Powercell\"\r\n        - *loc\r\n    neutral:\r\n      icon: \"&f⊠\"\r\n      hover:\r\n        - \"&f%other*kingdoms_kingdom_name%'s Powercell\"\r\n        - *loc\r\n    enemy:\r\n      icon: \"&c⊠\"\r\n      hover:\r\n        - \"&c%other*kingdoms_kingdom_name%'s Powercell\"\r\n        - *loc\r\n    nation:\r\n      icon: \"{$sp}⊠\"\r\n      hover:\r\n        - \"{$sp}%other*kingdoms_kingdom_name%'s Powercell\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "powercell",
+        "priority"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "powercell",
+        "self"
+      ],
+      "source": "\r\n      icon: \"{$p}⊠\"\r\n      hover:\r\n        - \"&a%other*kingdoms_kingdom_name%'s Powercell\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "powercell",
+        "self",
+        "icon"
+      ],
+      "source": "\"{$p}⊠\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "powercell",
+        "self",
+        "hover"
+      ],
+      "source": "\r\n        - \"&a%other*kingdoms_kingdom_name%'s Powercell\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"&a%other*kingdoms_kingdom_name%'s Powercell\"",
+        "*loc"
+      ]
+    },
+    {
+      "path": [
+        "elements",
+        "powercell",
+        "ally"
+      ],
+      "source": "\r\n      icon: \"{$s}⊠\"\r\n      hover:\r\n        - \"{$s}%other*kingdoms_kingdom_name%'s Powercell\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "powercell",
+        "ally",
+        "icon"
+      ],
+      "source": "\"{$s}⊠\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "powercell",
+        "ally",
+        "hover"
+      ],
+      "source": "\r\n        - \"{$s}%other*kingdoms_kingdom_name%'s Powercell\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$s}%other*kingdoms_kingdom_name%'s Powercell\"",
+        "*loc"
+      ]
+    },
+    {
+      "path": [
+        "elements",
+        "powercell",
+        "truce"
+      ],
+      "source": "\r\n      icon: \"&e⊠\"\r\n      hover:\r\n        - \"&e%other*kingdoms_kingdom_name%'s Powercell\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "powercell",
+        "truce",
+        "icon"
+      ],
+      "source": "\"&e⊠\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "powercell",
+        "truce",
+        "hover"
+      ],
+      "source": "\r\n        - \"&e%other*kingdoms_kingdom_name%'s Powercell\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"&e%other*kingdoms_kingdom_name%'s Powercell\"",
+        "*loc"
+      ]
+    },
+    {
+      "path": [
+        "elements",
+        "powercell",
+        "neutral"
+      ],
+      "source": "\r\n      icon: \"&f⊠\"\r\n      hover:\r\n        - \"&f%other*kingdoms_kingdom_name%'s Powercell\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "powercell",
+        "neutral",
+        "icon"
+      ],
+      "source": "\"&f⊠\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "powercell",
+        "neutral",
+        "hover"
+      ],
+      "source": "\r\n        - \"&f%other*kingdoms_kingdom_name%'s Powercell\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"&f%other*kingdoms_kingdom_name%'s Powercell\"",
+        "*loc"
+      ]
+    },
+    {
+      "path": [
+        "elements",
+        "powercell",
+        "enemy"
+      ],
+      "source": "\r\n      icon: \"&c⊠\"\r\n      hover:\r\n        - \"&c%other*kingdoms_kingdom_name%'s Powercell\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "powercell",
+        "enemy",
+        "icon"
+      ],
+      "source": "\"&c⊠\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "powercell",
+        "enemy",
+        "hover"
+      ],
+      "source": "\r\n        - \"&c%other*kingdoms_kingdom_name%'s Powercell\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"&c%other*kingdoms_kingdom_name%'s Powercell\"",
+        "*loc"
+      ]
+    },
+    {
+      "path": [
+        "elements",
+        "powercell",
+        "nation"
+      ],
+      "source": "\r\n      icon: \"{$sp}⊠\"\r\n      hover:\r\n        - \"{$sp}%other*kingdoms_kingdom_name%'s Powercell\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "powercell",
+        "nation",
+        "icon"
+      ],
+      "source": "\"{$sp}⊠\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "powercell",
+        "nation",
+        "hover"
+      ],
+      "source": "\r\n        - \"{$sp}%other*kingdoms_kingdom_name%'s Powercell\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$sp}%other*kingdoms_kingdom_name%'s Powercell\"",
+        "*loc"
+      ]
+    },
+    {
+      "path": [
+        "elements",
+        "extractor"
+      ],
+      "source": "\r\n    priority: 5\r\n    self:\r\n      icon: \"{$p}▨\"\r\n      hover:\r\n        - \"&a%other*kingdoms_kingdom_name%'s Extractor\"\r\n        - *loc\r\n    ally:\r\n      icon: \"{$s}▨\"\r\n      hover:\r\n        - \"{$s}%other*kingdoms_kingdom_name%'s Extractor\"\r\n        - *loc\r\n    truce:\r\n      icon: \"&e▨\"\r\n      hover:\r\n        - \"&e%other*kingdoms_kingdom_name%'s Extractor\"\r\n        - *loc\r\n    neutral:\r\n      icon: \"&f▨\"\r\n      hover:\r\n        - \"&f%other*kingdoms_kingdom_name%'s Extractor\"\r\n        - *loc\r\n    enemy:\r\n      icon: \"&c▨\"\r\n      hover:\r\n        - \"&c%other*kingdoms_kingdom_name%'s Extractor\"\r\n        - *loc\r\n    nation:\r\n      icon: \"{$sp}▨\"\r\n      hover:\r\n        - \"{$sp}%other*kingdoms_kingdom_name%'s Extractor\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "extractor",
+        "priority"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "extractor",
+        "self"
+      ],
+      "source": "\r\n      icon: \"{$p}▨\"\r\n      hover:\r\n        - \"&a%other*kingdoms_kingdom_name%'s Extractor\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "extractor",
+        "self",
+        "icon"
+      ],
+      "source": "\"{$p}▨\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "extractor",
+        "self",
+        "hover"
+      ],
+      "source": "\r\n        - \"&a%other*kingdoms_kingdom_name%'s Extractor\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"&a%other*kingdoms_kingdom_name%'s Extractor\"",
+        "*loc"
+      ]
+    },
+    {
+      "path": [
+        "elements",
+        "extractor",
+        "ally"
+      ],
+      "source": "\r\n      icon: \"{$s}▨\"\r\n      hover:\r\n        - \"{$s}%other*kingdoms_kingdom_name%'s Extractor\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "extractor",
+        "ally",
+        "icon"
+      ],
+      "source": "\"{$s}▨\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "extractor",
+        "ally",
+        "hover"
+      ],
+      "source": "\r\n        - \"{$s}%other*kingdoms_kingdom_name%'s Extractor\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$s}%other*kingdoms_kingdom_name%'s Extractor\"",
+        "*loc"
+      ]
+    },
+    {
+      "path": [
+        "elements",
+        "extractor",
+        "truce"
+      ],
+      "source": "\r\n      icon: \"&e▨\"\r\n      hover:\r\n        - \"&e%other*kingdoms_kingdom_name%'s Extractor\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "extractor",
+        "truce",
+        "icon"
+      ],
+      "source": "\"&e▨\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "extractor",
+        "truce",
+        "hover"
+      ],
+      "source": "\r\n        - \"&e%other*kingdoms_kingdom_name%'s Extractor\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"&e%other*kingdoms_kingdom_name%'s Extractor\"",
+        "*loc"
+      ]
+    },
+    {
+      "path": [
+        "elements",
+        "extractor",
+        "neutral"
+      ],
+      "source": "\r\n      icon: \"&f▨\"\r\n      hover:\r\n        - \"&f%other*kingdoms_kingdom_name%'s Extractor\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "extractor",
+        "neutral",
+        "icon"
+      ],
+      "source": "\"&f▨\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "extractor",
+        "neutral",
+        "hover"
+      ],
+      "source": "\r\n        - \"&f%other*kingdoms_kingdom_name%'s Extractor\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"&f%other*kingdoms_kingdom_name%'s Extractor\"",
+        "*loc"
+      ]
+    },
+    {
+      "path": [
+        "elements",
+        "extractor",
+        "enemy"
+      ],
+      "source": "\r\n      icon: \"&c▨\"\r\n      hover:\r\n        - \"&c%other*kingdoms_kingdom_name%'s Extractor\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "extractor",
+        "enemy",
+        "icon"
+      ],
+      "source": "\"&c▨\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "extractor",
+        "enemy",
+        "hover"
+      ],
+      "source": "\r\n        - \"&c%other*kingdoms_kingdom_name%'s Extractor\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"&c%other*kingdoms_kingdom_name%'s Extractor\"",
+        "*loc"
+      ]
+    },
+    {
+      "path": [
+        "elements",
+        "extractor",
+        "nation"
+      ],
+      "source": "\r\n      icon: \"{$sp}▨\"\r\n      hover:\r\n        - \"{$sp}%other*kingdoms_kingdom_name%'s Extractor\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "extractor",
+        "nation",
+        "icon"
+      ],
+      "source": "\"{$sp}▨\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "extractor",
+        "nation",
+        "hover"
+      ],
+      "source": "\r\n        - \"{$sp}%other*kingdoms_kingdom_name%'s Extractor\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$sp}%other*kingdoms_kingdom_name%'s Extractor\"",
+        "*loc"
+      ]
+    },
+    {
+      "path": [
+        "elements",
+        "outpost"
+      ],
+      "source": "\r\n    priority: 7\r\n    self:\r\n      icon: \"{$p}▤\"\r\n      hover:\r\n        - \"&a%other*kingdoms_kingdom_name%'s Outpost\"\r\n        - *loc\r\n    ally:\r\n      icon: \"{$s}▤\"\r\n      hover:\r\n        - \"{$s}%other*kingdoms_kingdom_name%'s Outpost\"\r\n        - *loc\r\n    truce:\r\n      icon: \"&e▤\"\r\n      hover:\r\n        - \"&e%other*kingdoms_kingdom_name%'s Outpost\"\r\n        - *loc\r\n    neutral:\r\n      icon: \"&f▤\"\r\n      hover:\r\n        - \"&f%other*kingdoms_kingdom_name%'s Outpost\"\r\n        - *loc\r\n    enemy:\r\n      icon: \"&c▤\"\r\n      hover:\r\n        - \"&c%other*kingdoms_kingdom_name%'s Outpost\"\r\n        - *loc\r\n    nation:\r\n      icon: \"{$sp}▤\"\r\n      hover:\r\n        - \"{$sp}%other*kingdoms_kingdom_name%'s Outpost\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "outpost",
+        "priority"
+      ],
+      "source": "7",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "outpost",
+        "self"
+      ],
+      "source": "\r\n      icon: \"{$p}▤\"\r\n      hover:\r\n        - \"&a%other*kingdoms_kingdom_name%'s Outpost\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "outpost",
+        "self",
+        "icon"
+      ],
+      "source": "\"{$p}▤\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "outpost",
+        "self",
+        "hover"
+      ],
+      "source": "\r\n        - \"&a%other*kingdoms_kingdom_name%'s Outpost\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"&a%other*kingdoms_kingdom_name%'s Outpost\"",
+        "*loc"
+      ]
+    },
+    {
+      "path": [
+        "elements",
+        "outpost",
+        "ally"
+      ],
+      "source": "\r\n      icon: \"{$s}▤\"\r\n      hover:\r\n        - \"{$s}%other*kingdoms_kingdom_name%'s Outpost\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "outpost",
+        "ally",
+        "icon"
+      ],
+      "source": "\"{$s}▤\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "outpost",
+        "ally",
+        "hover"
+      ],
+      "source": "\r\n        - \"{$s}%other*kingdoms_kingdom_name%'s Outpost\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$s}%other*kingdoms_kingdom_name%'s Outpost\"",
+        "*loc"
+      ]
+    },
+    {
+      "path": [
+        "elements",
+        "outpost",
+        "truce"
+      ],
+      "source": "\r\n      icon: \"&e▤\"\r\n      hover:\r\n        - \"&e%other*kingdoms_kingdom_name%'s Outpost\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "outpost",
+        "truce",
+        "icon"
+      ],
+      "source": "\"&e▤\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "outpost",
+        "truce",
+        "hover"
+      ],
+      "source": "\r\n        - \"&e%other*kingdoms_kingdom_name%'s Outpost\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"&e%other*kingdoms_kingdom_name%'s Outpost\"",
+        "*loc"
+      ]
+    },
+    {
+      "path": [
+        "elements",
+        "outpost",
+        "neutral"
+      ],
+      "source": "\r\n      icon: \"&f▤\"\r\n      hover:\r\n        - \"&f%other*kingdoms_kingdom_name%'s Outpost\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "outpost",
+        "neutral",
+        "icon"
+      ],
+      "source": "\"&f▤\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "outpost",
+        "neutral",
+        "hover"
+      ],
+      "source": "\r\n        - \"&f%other*kingdoms_kingdom_name%'s Outpost\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"&f%other*kingdoms_kingdom_name%'s Outpost\"",
+        "*loc"
+      ]
+    },
+    {
+      "path": [
+        "elements",
+        "outpost",
+        "enemy"
+      ],
+      "source": "\r\n      icon: \"&c▤\"\r\n      hover:\r\n        - \"&c%other*kingdoms_kingdom_name%'s Outpost\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "outpost",
+        "enemy",
+        "icon"
+      ],
+      "source": "\"&c▤\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "outpost",
+        "enemy",
+        "hover"
+      ],
+      "source": "\r\n        - \"&c%other*kingdoms_kingdom_name%'s Outpost\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"&c%other*kingdoms_kingdom_name%'s Outpost\"",
+        "*loc"
+      ]
+    },
+    {
+      "path": [
+        "elements",
+        "outpost",
+        "nation"
+      ],
+      "source": "\r\n      icon: \"{$sp}▤\"\r\n      hover:\r\n        - \"{$sp}%other*kingdoms_kingdom_name%'s Outpost\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "outpost",
+        "nation",
+        "icon"
+      ],
+      "source": "\"{$sp}▤\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "outpost",
+        "nation",
+        "hover"
+      ],
+      "source": "\r\n        - \"{$sp}%other*kingdoms_kingdom_name%'s Outpost\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$sp}%other*kingdoms_kingdom_name%'s Outpost\"",
+        "*loc"
+      ]
+    },
+    {
+      "path": [
+        "elements",
+        "warppad"
+      ],
+      "source": "\r\n    priority: 5\r\n    self:\r\n      icon: \"{$p}▥\"\r\n      hover:\r\n        - \"&a%other*kingdoms_kingdom_name%'s Warppad\"\r\n        - *loc\r\n    ally:\r\n      icon: \"{$s}▥\"\r\n      hover:\r\n        - \"{$s}%other*kingdoms_kingdom_name%'s Warppad\"\r\n        - *loc\r\n    truce:\r\n      icon: \"&e▥\"\r\n      hover:\r\n        - \"&e%other*kingdoms_kingdom_name%'s Warppad\"\r\n        - *loc\r\n    neutral:\r\n      icon: \"&f▥\"\r\n      hover:\r\n        - \"&f%other*kingdoms_kingdom_name%'s Warppad\"\r\n        - *loc\r\n    enemy:\r\n      icon: \"&c▥\"\r\n      hover:\r\n        - \"&c%other*kingdoms_kingdom_name%'s Warppad\"\r\n        - *loc\r\n    nation:\r\n      icon: \"{$sp}▥\"\r\n      hover:\r\n        - \"{$sp}%other*kingdoms_kingdom_name%'s Warppad\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "warppad",
+        "priority"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "warppad",
+        "self"
+      ],
+      "source": "\r\n      icon: \"{$p}▥\"\r\n      hover:\r\n        - \"&a%other*kingdoms_kingdom_name%'s Warppad\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "warppad",
+        "self",
+        "icon"
+      ],
+      "source": "\"{$p}▥\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "warppad",
+        "self",
+        "hover"
+      ],
+      "source": "\r\n        - \"&a%other*kingdoms_kingdom_name%'s Warppad\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"&a%other*kingdoms_kingdom_name%'s Warppad\"",
+        "*loc"
+      ]
+    },
+    {
+      "path": [
+        "elements",
+        "warppad",
+        "ally"
+      ],
+      "source": "\r\n      icon: \"{$s}▥\"\r\n      hover:\r\n        - \"{$s}%other*kingdoms_kingdom_name%'s Warppad\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "warppad",
+        "ally",
+        "icon"
+      ],
+      "source": "\"{$s}▥\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "warppad",
+        "ally",
+        "hover"
+      ],
+      "source": "\r\n        - \"{$s}%other*kingdoms_kingdom_name%'s Warppad\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$s}%other*kingdoms_kingdom_name%'s Warppad\"",
+        "*loc"
+      ]
+    },
+    {
+      "path": [
+        "elements",
+        "warppad",
+        "truce"
+      ],
+      "source": "\r\n      icon: \"&e▥\"\r\n      hover:\r\n        - \"&e%other*kingdoms_kingdom_name%'s Warppad\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "warppad",
+        "truce",
+        "icon"
+      ],
+      "source": "\"&e▥\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "warppad",
+        "truce",
+        "hover"
+      ],
+      "source": "\r\n        - \"&e%other*kingdoms_kingdom_name%'s Warppad\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"&e%other*kingdoms_kingdom_name%'s Warppad\"",
+        "*loc"
+      ]
+    },
+    {
+      "path": [
+        "elements",
+        "warppad",
+        "neutral"
+      ],
+      "source": "\r\n      icon: \"&f▥\"\r\n      hover:\r\n        - \"&f%other*kingdoms_kingdom_name%'s Warppad\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "warppad",
+        "neutral",
+        "icon"
+      ],
+      "source": "\"&f▥\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "warppad",
+        "neutral",
+        "hover"
+      ],
+      "source": "\r\n        - \"&f%other*kingdoms_kingdom_name%'s Warppad\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"&f%other*kingdoms_kingdom_name%'s Warppad\"",
+        "*loc"
+      ]
+    },
+    {
+      "path": [
+        "elements",
+        "warppad",
+        "enemy"
+      ],
+      "source": "\r\n      icon: \"&c▥\"\r\n      hover:\r\n        - \"&c%other*kingdoms_kingdom_name%'s Warppad\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "warppad",
+        "enemy",
+        "icon"
+      ],
+      "source": "\"&c▥\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "warppad",
+        "enemy",
+        "hover"
+      ],
+      "source": "\r\n        - \"&c%other*kingdoms_kingdom_name%'s Warppad\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"&c%other*kingdoms_kingdom_name%'s Warppad\"",
+        "*loc"
+      ]
+    },
+    {
+      "path": [
+        "elements",
+        "warppad",
+        "nation"
+      ],
+      "source": "\r\n      icon: \"{$sp}▥\"\r\n      hover:\r\n        - \"{$sp}%other*kingdoms_kingdom_name%'s Warppad\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "warppad",
+        "nation",
+        "icon"
+      ],
+      "source": "\"{$sp}▥\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "warppad",
+        "nation",
+        "hover"
+      ],
+      "source": "\r\n        - \"{$sp}%other*kingdoms_kingdom_name%'s Warppad\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$sp}%other*kingdoms_kingdom_name%'s Warppad\"",
+        "*loc"
+      ]
+    },
+    {
+      "path": [
+        "elements",
+        "regulator"
+      ],
+      "source": "\r\n    priority: 4\r\n    self:\r\n      icon: \"{$p}▦\"\r\n      hover:\r\n        - \"&a%other*kingdoms_kingdom_name%'s Regulator\"\r\n        - *loc\r\n    ally:\r\n      icon: \"{$s}▦\"\r\n      hover:\r\n        - \"{$s}%other*kingdoms_kingdom_name%'s Regulator\"\r\n        - *loc\r\n    truce:\r\n      icon: \"&e▦\"\r\n      hover:\r\n        - \"&e%other*kingdoms_kingdom_name%'s Regulator\"\r\n        - *loc\r\n    neutral:\r\n      icon: \"&f▦\"\r\n      hover:\r\n        - \"&f%other*kingdoms_kingdom_name%'s Regulator\"\r\n        - *loc\r\n    enemy:\r\n      icon: \"&c▦\"\r\n      hover:\r\n        - \"&c%other*kingdoms_kingdom_name%'s Regulator\"\r\n        - *loc\r\n    nation:\r\n      icon: \"{$sp}▦\"\r\n      hover:\r\n        - \"{$sp}%other*kingdoms_kingdom_name%'s Regulator\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "regulator",
+        "priority"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "regulator",
+        "self"
+      ],
+      "source": "\r\n      icon: \"{$p}▦\"\r\n      hover:\r\n        - \"&a%other*kingdoms_kingdom_name%'s Regulator\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "regulator",
+        "self",
+        "icon"
+      ],
+      "source": "\"{$p}▦\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "regulator",
+        "self",
+        "hover"
+      ],
+      "source": "\r\n        - \"&a%other*kingdoms_kingdom_name%'s Regulator\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"&a%other*kingdoms_kingdom_name%'s Regulator\"",
+        "*loc"
+      ]
+    },
+    {
+      "path": [
+        "elements",
+        "regulator",
+        "ally"
+      ],
+      "source": "\r\n      icon: \"{$s}▦\"\r\n      hover:\r\n        - \"{$s}%other*kingdoms_kingdom_name%'s Regulator\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "regulator",
+        "ally",
+        "icon"
+      ],
+      "source": "\"{$s}▦\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "regulator",
+        "ally",
+        "hover"
+      ],
+      "source": "\r\n        - \"{$s}%other*kingdoms_kingdom_name%'s Regulator\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$s}%other*kingdoms_kingdom_name%'s Regulator\"",
+        "*loc"
+      ]
+    },
+    {
+      "path": [
+        "elements",
+        "regulator",
+        "truce"
+      ],
+      "source": "\r\n      icon: \"&e▦\"\r\n      hover:\r\n        - \"&e%other*kingdoms_kingdom_name%'s Regulator\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "regulator",
+        "truce",
+        "icon"
+      ],
+      "source": "\"&e▦\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "regulator",
+        "truce",
+        "hover"
+      ],
+      "source": "\r\n        - \"&e%other*kingdoms_kingdom_name%'s Regulator\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"&e%other*kingdoms_kingdom_name%'s Regulator\"",
+        "*loc"
+      ]
+    },
+    {
+      "path": [
+        "elements",
+        "regulator",
+        "neutral"
+      ],
+      "source": "\r\n      icon: \"&f▦\"\r\n      hover:\r\n        - \"&f%other*kingdoms_kingdom_name%'s Regulator\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "regulator",
+        "neutral",
+        "icon"
+      ],
+      "source": "\"&f▦\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "regulator",
+        "neutral",
+        "hover"
+      ],
+      "source": "\r\n        - \"&f%other*kingdoms_kingdom_name%'s Regulator\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"&f%other*kingdoms_kingdom_name%'s Regulator\"",
+        "*loc"
+      ]
+    },
+    {
+      "path": [
+        "elements",
+        "regulator",
+        "enemy"
+      ],
+      "source": "\r\n      icon: \"&c▦\"\r\n      hover:\r\n        - \"&c%other*kingdoms_kingdom_name%'s Regulator\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "regulator",
+        "enemy",
+        "icon"
+      ],
+      "source": "\"&c▦\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "regulator",
+        "enemy",
+        "hover"
+      ],
+      "source": "\r\n        - \"&c%other*kingdoms_kingdom_name%'s Regulator\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"&c%other*kingdoms_kingdom_name%'s Regulator\"",
+        "*loc"
+      ]
+    },
+    {
+      "path": [
+        "elements",
+        "regulator",
+        "nation"
+      ],
+      "source": "\r\n      icon: \"{$sp}▦\"\r\n      hover:\r\n        - \"{$sp}%other*kingdoms_kingdom_name%'s Regulator\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "regulator",
+        "nation",
+        "icon"
+      ],
+      "source": "\"{$sp}▦\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "regulator",
+        "nation",
+        "hover"
+      ],
+      "source": "\r\n        - \"{$sp}%other*kingdoms_kingdom_name%'s Regulator\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$sp}%other*kingdoms_kingdom_name%'s Regulator\"",
+        "*loc"
+      ]
+    },
+    {
+      "path": [
+        "elements",
+        "siege-cannon"
+      ],
+      "source": "\r\n    priority: 8\r\n    self:\r\n      icon: \"{$p}▦\"\r\n      hover:\r\n        - \"&a%other*kingdoms_kingdom_name%'s Siege Cannon\"\r\n        - *loc\r\n    ally:\r\n      icon: \"{$s}▦\"\r\n      hover:\r\n        - \"{$s}%other*kingdoms_kingdom_name%'s Siege Cannon\"\r\n        - *loc\r\n    truce:\r\n      icon: \"&e▦\"\r\n      hover:\r\n        - \"&e%other*kingdoms_kingdom_name%'s Siege Cannon\"\r\n        - *loc\r\n    neutral:\r\n      icon: \"&f▦\"\r\n      hover:\r\n        - \"&f%other*kingdoms_kingdom_name%'s Siege Cannon\"\r\n        - *loc\r\n    enemy:\r\n      icon: \"&c▦\"\r\n      hover:\r\n        - \"&c%other*kingdoms_kingdom_name%'s Siege Cannon\"\r\n        - *loc\r\n    nation:\r\n      icon: \"{$sp}▦\"\r\n      hover:\r\n        - \"{$sp}%other*kingdoms_kingdom_name%'s Siege Cannon\"\r\n        - *loc",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "siege-cannon",
+        "priority"
+      ],
+      "source": "8",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "siege-cannon",
+        "self"
+      ],
+      "source": "\r\n      icon: \"{$p}▦\"\r\n      hover:\r\n        - \"&a%other*kingdoms_kingdom_name%'s Siege Cannon\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "siege-cannon",
+        "self",
+        "icon"
+      ],
+      "source": "\"{$p}▦\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "siege-cannon",
+        "self",
+        "hover"
+      ],
+      "source": "\r\n        - \"&a%other*kingdoms_kingdom_name%'s Siege Cannon\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"&a%other*kingdoms_kingdom_name%'s Siege Cannon\"",
+        "*loc"
+      ]
+    },
+    {
+      "path": [
+        "elements",
+        "siege-cannon",
+        "ally"
+      ],
+      "source": "\r\n      icon: \"{$s}▦\"\r\n      hover:\r\n        - \"{$s}%other*kingdoms_kingdom_name%'s Siege Cannon\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "siege-cannon",
+        "ally",
+        "icon"
+      ],
+      "source": "\"{$s}▦\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "siege-cannon",
+        "ally",
+        "hover"
+      ],
+      "source": "\r\n        - \"{$s}%other*kingdoms_kingdom_name%'s Siege Cannon\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$s}%other*kingdoms_kingdom_name%'s Siege Cannon\"",
+        "*loc"
+      ]
+    },
+    {
+      "path": [
+        "elements",
+        "siege-cannon",
+        "truce"
+      ],
+      "source": "\r\n      icon: \"&e▦\"\r\n      hover:\r\n        - \"&e%other*kingdoms_kingdom_name%'s Siege Cannon\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "siege-cannon",
+        "truce",
+        "icon"
+      ],
+      "source": "\"&e▦\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "siege-cannon",
+        "truce",
+        "hover"
+      ],
+      "source": "\r\n        - \"&e%other*kingdoms_kingdom_name%'s Siege Cannon\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"&e%other*kingdoms_kingdom_name%'s Siege Cannon\"",
+        "*loc"
+      ]
+    },
+    {
+      "path": [
+        "elements",
+        "siege-cannon",
+        "neutral"
+      ],
+      "source": "\r\n      icon: \"&f▦\"\r\n      hover:\r\n        - \"&f%other*kingdoms_kingdom_name%'s Siege Cannon\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "siege-cannon",
+        "neutral",
+        "icon"
+      ],
+      "source": "\"&f▦\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "siege-cannon",
+        "neutral",
+        "hover"
+      ],
+      "source": "\r\n        - \"&f%other*kingdoms_kingdom_name%'s Siege Cannon\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"&f%other*kingdoms_kingdom_name%'s Siege Cannon\"",
+        "*loc"
+      ]
+    },
+    {
+      "path": [
+        "elements",
+        "siege-cannon",
+        "enemy"
+      ],
+      "source": "\r\n      icon: \"&c▦\"\r\n      hover:\r\n        - \"&c%other*kingdoms_kingdom_name%'s Siege Cannon\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "siege-cannon",
+        "enemy",
+        "icon"
+      ],
+      "source": "\"&c▦\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "siege-cannon",
+        "enemy",
+        "hover"
+      ],
+      "source": "\r\n        - \"&c%other*kingdoms_kingdom_name%'s Siege Cannon\"\r\n        - *loc\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"&c%other*kingdoms_kingdom_name%'s Siege Cannon\"",
+        "*loc"
+      ]
+    },
+    {
+      "path": [
+        "elements",
+        "siege-cannon",
+        "nation"
+      ],
+      "source": "\r\n      icon: \"{$sp}▦\"\r\n      hover:\r\n        - \"{$sp}%other*kingdoms_kingdom_name%'s Siege Cannon\"\r\n        - *loc",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "siege-cannon",
+        "nation",
+        "icon"
+      ],
+      "source": "\"{$sp}▦\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "elements",
+        "siege-cannon",
+        "nation",
+        "hover"
+      ],
+      "source": "\r\n        - \"{$sp}%other*kingdoms_kingdom_name%'s Siege Cannon\"\r\n        - *loc",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$sp}%other*kingdoms_kingdom_name%'s Siege Cannon\"",
+        "*loc"
+      ]
+    }
+  ]
+}

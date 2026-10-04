@@ -1,0 +1,586 @@
+{
+  "formatVersion": 1,
+  "source": {
+    "addonId": "map-viewers",
+    "artifactPath": "addons/Kingdoms-Addon-Map-Viewers-3.2.2.jar",
+    "artifactBlobSha": "29aaabc3ae8f20ecc1fe6ff4ea14652e4f5e96ac",
+    "artifactSha256": "b169a040912e6c578a6092569ea0e64e092b530f846bbb40b9f56f11104dcf4e",
+    "addonVersion": "3.2.2"
+  },
+  "resourceName": "maps/map.yml",
+  "schemaId": "addons/maps/map",
+  "sha256": "c604c2b6cb7cbecf17abf55d61743d14bcd34a05faa84ce43abfe36b54087a1b",
+  "options": [
+    {
+      "path": [
+        "update-interval"
+      ],
+      "source": "1hr",
+      "comments": [
+        "Updates all the lands. Set to 0 to disable.",
+        "This performs a full async render for all the claimed lands.",
+        "This is not necessary most of the time, since the plugin already keeps track",
+        "of most changes such as land claiming, unclaiming, structure placing, breaking, etc."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "banners"
+      ],
+      "source": "\r\n  # This scales both width and height.\r\n  # The correct aspect retio is calculated.\r\n  # This simply controls the original file size, you\r\n  # should use CSS properties to adjust other things when necessary.\r\n  scaling: 3\r\n\r\n# If you changed an icon image, you have to restart the server.\r\n# Turrets do not use an icon as there are too many of them.\r\n# The folder names in your \"maps/icons\" need to match the entry names here.\r\n# Each file is named after the level of the structure.\r\n# The size of the image doesn't really matter, and will be resized when needed.\r\n",
+      "comments": [
+        "Settings for kingdom/nation banners (alternative to flags)"
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "banners",
+        "scaling"
+      ],
+      "source": "3",
+      "comments": [
+        "This scales both width and height.",
+        "The correct aspect retio is calculated.",
+        "This simply controls the original file size, you",
+        "should use CSS properties to adjust other things when necessary."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "icons"
+      ],
+      "source": "\r\n  # To disable a certain icon, add \"disabled: true\" option under it.\r\n  enabled: true\r\n\r\n  home:\r\n    disabled: false\r\n\r\n    # The label shown when clicking the icon.\r\n    name: 'Home'\r\n\r\n    # Should the kingdom/nation banner be used as the icon?\r\n    # There are two types of \"banners\" for kingdoms and nations:\r\n    #   * banner: The Minecraft banner item created in-game.\r\n    #   * flag: Can be any image. (Usually a URL to the image)\r\n    use-banner: banner\r\n\r\n    # See the explanation in maps/kingdoms.yml on the zoom option.\r\n    zoom: &zoom\r\n      min: 60\r\n      max: -1\r\n\r\n  national-spawn:\r\n    disabled: false\r\n    name: 'National Spawn'\r\n    zoom: *zoom\r\n  national-nexus:\r\n    name: 'National Nexus %roman@level%'\r\n    zoom: *zoom\r\n  nexus:\r\n    name: 'Nexus %roman@level%'\r\n    zoom: *zoom\r\n\r\n  powercell:\r\n    name: 'Powercell %roman@level%'\r\n    zoom: *zoom\r\n  extractor:\r\n    name: 'Extractor %roman@level%'\r\n    zoom: *zoom\r\n  outpost:\r\n    name: 'Outpost'\r\n    zoom: *zoom\r\n  warppad:\r\n    name: 'Warp Pad'\r\n    zoom: *zoom\r\n  regulator:\r\n    name: 'Regulator'\r\n    zoom: *zoom\r\n  siege-cannon:\r\n    name: 'Siege Cannon %roman@level%'\r\n    zoom: *zoom\r\n  invasion:\r\n    name: 'Invasion'\r\n    zoom: *zoom\r\n",
+      "comments": [
+        "If you changed an icon image, you have to restart the server.",
+        "Turrets do not use an icon as there are too many of them.",
+        "The folder names in your \"maps/icons\" need to match the entry names here.",
+        "Each file is named after the level of the structure.",
+        "The size of the image doesn't really matter, and will be resized when needed."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "icons",
+        "enabled"
+      ],
+      "source": "true",
+      "comments": [
+        "To disable a certain icon, add \"disabled: true\" option under it."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "icons",
+        "home"
+      ],
+      "source": "\r\n    disabled: false\r\n\r\n    # The label shown when clicking the icon.\r\n    name: 'Home'\r\n\r\n    # Should the kingdom/nation banner be used as the icon?\r\n    # There are two types of \"banners\" for kingdoms and nations:\r\n    #   * banner: The Minecraft banner item created in-game.\r\n    #   * flag: Can be any image. (Usually a URL to the image)\r\n    use-banner: banner\r\n\r\n    # See the explanation in maps/kingdoms.yml on the zoom option.\r\n    zoom: &zoom\r\n      min: 60\r\n      max: -1\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "icons",
+        "home",
+        "disabled"
+      ],
+      "source": "false",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "icons",
+        "home",
+        "name"
+      ],
+      "source": "'Home'",
+      "comments": [
+        "The label shown when clicking the icon."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "icons",
+        "home",
+        "use-banner"
+      ],
+      "source": "banner",
+      "comments": [
+        "Should the kingdom/nation banner be used as the icon?",
+        "There are two types of \"banners\" for kingdoms and nations:",
+        "* banner: The Minecraft banner item created in-game.",
+        "* flag: Can be any image. (Usually a URL to the image)"
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "icons",
+        "home",
+        "zoom"
+      ],
+      "source": "&zoom\r\n      min: 60\r\n      max: -1\r\n\r\n",
+      "comments": [
+        "See the explanation in maps/kingdoms.yml on the zoom option."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "icons",
+        "home",
+        "zoom",
+        "min"
+      ],
+      "source": "60",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "icons",
+        "home",
+        "zoom",
+        "max"
+      ],
+      "source": "-1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "icons",
+        "national-spawn"
+      ],
+      "source": "\r\n    disabled: false\r\n    name: 'National Spawn'\r\n    zoom: *zoom\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "icons",
+        "national-spawn",
+        "disabled"
+      ],
+      "source": "false",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "icons",
+        "national-spawn",
+        "name"
+      ],
+      "source": "'National Spawn'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "icons",
+        "national-spawn",
+        "zoom"
+      ],
+      "source": "*zoom",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "icons",
+        "national-nexus"
+      ],
+      "source": "\r\n    name: 'National Nexus %roman@level%'\r\n    zoom: *zoom\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "icons",
+        "national-nexus",
+        "name"
+      ],
+      "source": "'National Nexus %roman@level%'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "icons",
+        "national-nexus",
+        "zoom"
+      ],
+      "source": "*zoom",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "icons",
+        "nexus"
+      ],
+      "source": "\r\n    name: 'Nexus %roman@level%'\r\n    zoom: *zoom\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "icons",
+        "nexus",
+        "name"
+      ],
+      "source": "'Nexus %roman@level%'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "icons",
+        "nexus",
+        "zoom"
+      ],
+      "source": "*zoom",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "icons",
+        "powercell"
+      ],
+      "source": "\r\n    name: 'Powercell %roman@level%'\r\n    zoom: *zoom\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "icons",
+        "powercell",
+        "name"
+      ],
+      "source": "'Powercell %roman@level%'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "icons",
+        "powercell",
+        "zoom"
+      ],
+      "source": "*zoom",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "icons",
+        "extractor"
+      ],
+      "source": "\r\n    name: 'Extractor %roman@level%'\r\n    zoom: *zoom\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "icons",
+        "extractor",
+        "name"
+      ],
+      "source": "'Extractor %roman@level%'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "icons",
+        "extractor",
+        "zoom"
+      ],
+      "source": "*zoom",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "icons",
+        "outpost"
+      ],
+      "source": "\r\n    name: 'Outpost'\r\n    zoom: *zoom\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "icons",
+        "outpost",
+        "name"
+      ],
+      "source": "'Outpost'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "icons",
+        "outpost",
+        "zoom"
+      ],
+      "source": "*zoom",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "icons",
+        "warppad"
+      ],
+      "source": "\r\n    name: 'Warp Pad'\r\n    zoom: *zoom\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "icons",
+        "warppad",
+        "name"
+      ],
+      "source": "'Warp Pad'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "icons",
+        "warppad",
+        "zoom"
+      ],
+      "source": "*zoom",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "icons",
+        "regulator"
+      ],
+      "source": "\r\n    name: 'Regulator'\r\n    zoom: *zoom\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "icons",
+        "regulator",
+        "name"
+      ],
+      "source": "'Regulator'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "icons",
+        "regulator",
+        "zoom"
+      ],
+      "source": "*zoom",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "icons",
+        "siege-cannon"
+      ],
+      "source": "\r\n    name: 'Siege Cannon %roman@level%'\r\n    zoom: *zoom\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "icons",
+        "siege-cannon",
+        "name"
+      ],
+      "source": "'Siege Cannon %roman@level%'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "icons",
+        "siege-cannon",
+        "zoom"
+      ],
+      "source": "*zoom",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "icons",
+        "invasion"
+      ],
+      "source": "\r\n    name: 'Invasion'\r\n    zoom: *zoom\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "icons",
+        "invasion",
+        "name"
+      ],
+      "source": "'Invasion'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "icons",
+        "invasion",
+        "zoom"
+      ],
+      "source": "*zoom",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

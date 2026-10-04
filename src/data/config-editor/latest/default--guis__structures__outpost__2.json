@@ -1,0 +1,1405 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "guis/structures/outpost/2.yml",
+  "schemaId": "guis/schema",
+  "options": [
+    {
+      "path": [
+        "(import)"
+      ],
+      "source": "\r\n  outpost-page:\r\n    anchors: [ &base base ]\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "outpost-page"
+      ],
+      "source": "\r\n    anchors: [ &base base ]\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "outpost-page",
+        "anchors"
+      ],
+      "source": "[ &base base ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "&base base"
+      ]
+    },
+    {
+      "path": [
+        "options"
+      ],
+      "source": "\r\n  stock-cooked-rabbit:\r\n    posx: 2\r\n    posy: 2\r\n    material: COOKED_RABBIT\r\n    <<: *base\r\n  stock-cooked-beef:\r\n    posx: 3\r\n    posy: 2\r\n    material: COOKED_BEEF\r\n    <<: *base\r\n  stock-cooked-porkchop:\r\n    posx: 4\r\n    posy: 2\r\n    material: COOKED_PORKCHOP\r\n    <<: *base\r\n  stock-cooked-chicken:\r\n    posx: 5\r\n    posy: 2\r\n    material: COOKED_CHICKEN\r\n    <<: *base\r\n  stock-cooked-fish:\r\n    posx: 6\r\n    posy: 2\r\n    material: COOKED_COD\r\n    <<: *base\r\n  stock-cooked-salmon:\r\n    posx: 7\r\n    posy: 2\r\n    material: COOKED_SALMON\r\n    <<: *base\r\n  stock-cooked-mutton:\r\n    posx: 8\r\n    posy: 2\r\n    material: COOKED_MUTTON\r\n    <<: *base\r\n  stock-wool:\r\n    posx: 2\r\n    posy: 3\r\n    material: WHITE_WOOL\r\n    <<: *base\r\n  stock-string:\r\n    posx: 3\r\n    posy: 3\r\n    material: STRING\r\n    <<: *base\r\n  stock-bucket:\r\n    posx: 4\r\n    posy: 3\r\n    material: BUCKET\r\n    <<: *base\r\n  stock-bone-meal:\r\n    posx: 5\r\n    posy: 3\r\n    material: BONE_MEAL\r\n    <<: *base\r\n  stock-rail:\r\n    posx: 6\r\n    posy: 3\r\n    material: RAIL\r\n    <<: *base\r\n  stock-glass:\r\n    posx: 7\r\n    posy: 3\r\n    material: GLASS\r\n    <<: *base\r\n  stock-ghast-tear:\r\n    posx: 8\r\n    posy: 3\r\n    material: GHAST_TEAR\r\n    <<: *base\r\n  stock-redstone-torch:\r\n    posx: 2\r\n    posy: 4\r\n    material: REDSTONE_TORCH\r\n    <<: *base\r\n  stock-repeater:\r\n    posx: 3\r\n    posy: 4\r\n    material: REPEATER\r\n    <<: *base\r\n  stock-comparator:\r\n    posx: 4\r\n    posy: 4\r\n    material: COMPARATOR\r\n    <<: *base\r\n  stock-dispenser:\r\n    posx: 5\r\n    posy: 4\r\n    material: DISPENSER\r\n    <<: *base\r\n  stock-dropper:\r\n    posx: 6\r\n    posy: 4\r\n    material: DROPPER\r\n    <<: *base\r\n  stock-hopper:\r\n    posx: 7\r\n    posy: 4\r\n    material: HOPPER\r\n    <<: *base\r\n  stock-piston:\r\n    posx: 8\r\n    posy: 4\r\n    material: PISTON\r\n    <<: *base\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-cooked-rabbit"
+      ],
+      "source": "\r\n    posx: 2\r\n    posy: 2\r\n    material: COOKED_RABBIT\r\n    <<: *base\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-cooked-rabbit",
+        "posx"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-cooked-rabbit",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-cooked-rabbit",
+        "material"
+      ],
+      "source": "COOKED_RABBIT",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-cooked-rabbit",
+        "<<"
+      ],
+      "source": "*base",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-cooked-beef"
+      ],
+      "source": "\r\n    posx: 3\r\n    posy: 2\r\n    material: COOKED_BEEF\r\n    <<: *base\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-cooked-beef",
+        "posx"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-cooked-beef",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-cooked-beef",
+        "material"
+      ],
+      "source": "COOKED_BEEF",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-cooked-beef",
+        "<<"
+      ],
+      "source": "*base",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-cooked-porkchop"
+      ],
+      "source": "\r\n    posx: 4\r\n    posy: 2\r\n    material: COOKED_PORKCHOP\r\n    <<: *base\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-cooked-porkchop",
+        "posx"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-cooked-porkchop",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-cooked-porkchop",
+        "material"
+      ],
+      "source": "COOKED_PORKCHOP",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-cooked-porkchop",
+        "<<"
+      ],
+      "source": "*base",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-cooked-chicken"
+      ],
+      "source": "\r\n    posx: 5\r\n    posy: 2\r\n    material: COOKED_CHICKEN\r\n    <<: *base\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-cooked-chicken",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-cooked-chicken",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-cooked-chicken",
+        "material"
+      ],
+      "source": "COOKED_CHICKEN",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-cooked-chicken",
+        "<<"
+      ],
+      "source": "*base",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-cooked-fish"
+      ],
+      "source": "\r\n    posx: 6\r\n    posy: 2\r\n    material: COOKED_COD\r\n    <<: *base\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-cooked-fish",
+        "posx"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-cooked-fish",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-cooked-fish",
+        "material"
+      ],
+      "source": "COOKED_COD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-cooked-fish",
+        "<<"
+      ],
+      "source": "*base",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-cooked-salmon"
+      ],
+      "source": "\r\n    posx: 7\r\n    posy: 2\r\n    material: COOKED_SALMON\r\n    <<: *base\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-cooked-salmon",
+        "posx"
+      ],
+      "source": "7",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-cooked-salmon",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-cooked-salmon",
+        "material"
+      ],
+      "source": "COOKED_SALMON",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-cooked-salmon",
+        "<<"
+      ],
+      "source": "*base",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-cooked-mutton"
+      ],
+      "source": "\r\n    posx: 8\r\n    posy: 2\r\n    material: COOKED_MUTTON\r\n    <<: *base\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-cooked-mutton",
+        "posx"
+      ],
+      "source": "8",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-cooked-mutton",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-cooked-mutton",
+        "material"
+      ],
+      "source": "COOKED_MUTTON",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-cooked-mutton",
+        "<<"
+      ],
+      "source": "*base",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-wool"
+      ],
+      "source": "\r\n    posx: 2\r\n    posy: 3\r\n    material: WHITE_WOOL\r\n    <<: *base\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-wool",
+        "posx"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-wool",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-wool",
+        "material"
+      ],
+      "source": "WHITE_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-wool",
+        "<<"
+      ],
+      "source": "*base",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-string"
+      ],
+      "source": "\r\n    posx: 3\r\n    posy: 3\r\n    material: STRING\r\n    <<: *base\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-string",
+        "posx"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-string",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-string",
+        "material"
+      ],
+      "source": "STRING",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-string",
+        "<<"
+      ],
+      "source": "*base",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-bucket"
+      ],
+      "source": "\r\n    posx: 4\r\n    posy: 3\r\n    material: BUCKET\r\n    <<: *base\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-bucket",
+        "posx"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-bucket",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-bucket",
+        "material"
+      ],
+      "source": "BUCKET",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-bucket",
+        "<<"
+      ],
+      "source": "*base",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-bone-meal"
+      ],
+      "source": "\r\n    posx: 5\r\n    posy: 3\r\n    material: BONE_MEAL\r\n    <<: *base\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-bone-meal",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-bone-meal",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-bone-meal",
+        "material"
+      ],
+      "source": "BONE_MEAL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-bone-meal",
+        "<<"
+      ],
+      "source": "*base",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-rail"
+      ],
+      "source": "\r\n    posx: 6\r\n    posy: 3\r\n    material: RAIL\r\n    <<: *base\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-rail",
+        "posx"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-rail",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-rail",
+        "material"
+      ],
+      "source": "RAIL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-rail",
+        "<<"
+      ],
+      "source": "*base",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-glass"
+      ],
+      "source": "\r\n    posx: 7\r\n    posy: 3\r\n    material: GLASS\r\n    <<: *base\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-glass",
+        "posx"
+      ],
+      "source": "7",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-glass",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-glass",
+        "material"
+      ],
+      "source": "GLASS",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-glass",
+        "<<"
+      ],
+      "source": "*base",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-ghast-tear"
+      ],
+      "source": "\r\n    posx: 8\r\n    posy: 3\r\n    material: GHAST_TEAR\r\n    <<: *base\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-ghast-tear",
+        "posx"
+      ],
+      "source": "8",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-ghast-tear",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-ghast-tear",
+        "material"
+      ],
+      "source": "GHAST_TEAR",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-ghast-tear",
+        "<<"
+      ],
+      "source": "*base",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-redstone-torch"
+      ],
+      "source": "\r\n    posx: 2\r\n    posy: 4\r\n    material: REDSTONE_TORCH\r\n    <<: *base\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-redstone-torch",
+        "posx"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-redstone-torch",
+        "posy"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-redstone-torch",
+        "material"
+      ],
+      "source": "REDSTONE_TORCH",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-redstone-torch",
+        "<<"
+      ],
+      "source": "*base",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-repeater"
+      ],
+      "source": "\r\n    posx: 3\r\n    posy: 4\r\n    material: REPEATER\r\n    <<: *base\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-repeater",
+        "posx"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-repeater",
+        "posy"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-repeater",
+        "material"
+      ],
+      "source": "REPEATER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-repeater",
+        "<<"
+      ],
+      "source": "*base",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-comparator"
+      ],
+      "source": "\r\n    posx: 4\r\n    posy: 4\r\n    material: COMPARATOR\r\n    <<: *base\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-comparator",
+        "posx"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-comparator",
+        "posy"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-comparator",
+        "material"
+      ],
+      "source": "COMPARATOR",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-comparator",
+        "<<"
+      ],
+      "source": "*base",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-dispenser"
+      ],
+      "source": "\r\n    posx: 5\r\n    posy: 4\r\n    material: DISPENSER\r\n    <<: *base\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-dispenser",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-dispenser",
+        "posy"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-dispenser",
+        "material"
+      ],
+      "source": "DISPENSER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-dispenser",
+        "<<"
+      ],
+      "source": "*base",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-dropper"
+      ],
+      "source": "\r\n    posx: 6\r\n    posy: 4\r\n    material: DROPPER\r\n    <<: *base\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-dropper",
+        "posx"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-dropper",
+        "posy"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-dropper",
+        "material"
+      ],
+      "source": "DROPPER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-dropper",
+        "<<"
+      ],
+      "source": "*base",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-hopper"
+      ],
+      "source": "\r\n    posx: 7\r\n    posy: 4\r\n    material: HOPPER\r\n    <<: *base\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-hopper",
+        "posx"
+      ],
+      "source": "7",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-hopper",
+        "posy"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-hopper",
+        "material"
+      ],
+      "source": "HOPPER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-hopper",
+        "<<"
+      ],
+      "source": "*base",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-piston"
+      ],
+      "source": "\r\n    posx: 8\r\n    posy: 4\r\n    material: PISTON\r\n    <<: *base\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-piston",
+        "posx"
+      ],
+      "source": "8",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-piston",
+        "posy"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-piston",
+        "material"
+      ],
+      "source": "PISTON",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-piston",
+        "<<"
+      ],
+      "source": "*base",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

@@ -1,0 +1,431 @@
+{
+  "formatVersion": 2,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "id": "misc-upgrades",
+  "resourceName": "misc-upgrades.yml",
+  "schema": {
+    "kind": "mapping",
+    "keys": {
+      "kind": "string",
+      "typeName": "str"
+    },
+    "values": {
+      "kind": "object",
+      "fields": [
+        {
+          "key": "enabled",
+          "type": {
+            "kind": "boolean"
+          }
+        },
+        {
+          "key": "scaling",
+          "type": {
+            "kind": "expression",
+            "language": "math"
+          }
+        },
+        {
+          "key": "cost",
+          "type": {
+            "kind": "expression",
+            "language": "math"
+          }
+        },
+        {
+          "key": "refresh-cooldown",
+          "type": {
+            "kind": "expression",
+            "language": "math"
+          }
+        },
+        {
+          "key": "max-level",
+          "type": {
+            "kind": "expression",
+            "language": "math"
+          }
+        },
+        {
+          "key": "default-level",
+          "type": {
+            "kind": "expression",
+            "language": "math"
+          }
+        },
+        {
+          "key": "effects",
+          "type": {
+            "kind": "mapping",
+            "keys": {
+              "kind": "integer"
+            },
+            "values": {
+              "kind": "set",
+              "elements": {
+                "kind": "advanced",
+                "typeName": "Potion"
+              }
+            },
+            "fields": [],
+            "required": [
+              "1"
+            ]
+          }
+        }
+      ]
+    },
+    "fields": [
+      {
+        "key": "nexus-guards",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "enabled",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "scaling",
+              "type": {
+                "kind": "expression",
+                "language": "math"
+              }
+            },
+            {
+              "key": "cost",
+              "type": {
+                "kind": "expression",
+                "language": "math"
+              }
+            },
+            {
+              "key": "refresh-cooldown",
+              "type": {
+                "kind": "expression",
+                "language": "math"
+              }
+            },
+            {
+              "key": "max-level",
+              "type": {
+                "kind": "expression",
+                "language": "math"
+              }
+            },
+            {
+              "key": "default-level",
+              "type": {
+                "kind": "expression",
+                "language": "math"
+              }
+            },
+            {
+              "key": "effects",
+              "type": {
+                "kind": "mapping",
+                "keys": {
+                  "kind": "integer"
+                },
+                "values": {
+                  "kind": "set",
+                  "elements": {
+                    "kind": "advanced",
+                    "typeName": "Potion"
+                  }
+                },
+                "fields": [],
+                "required": [
+                  "1"
+                ]
+              }
+            },
+            {
+              "key": "spawn-delay",
+              "type": {
+                "kind": "integer"
+              }
+            },
+            {
+              "key": "levels",
+              "type": {
+                "kind": "mapping",
+                "keys": {
+                  "kind": "integer"
+                },
+                "values": {
+                  "kind": "mapping",
+                  "keys": {
+                    "kind": "string",
+                    "typeName": "str"
+                  },
+                  "values": {
+                    "kind": "object",
+                    "fields": [
+                      {
+                        "key": "amount",
+                        "type": {
+                          "kind": "integer",
+                          "minimum": 1
+                        }
+                      }
+                    ],
+                    "extends": [
+                      "Entity"
+                    ]
+                  },
+                  "fields": [],
+                  "optional": true
+                },
+                "fields": [],
+                "required": [
+                  "1"
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "guards",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "enabled",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "scaling",
+              "type": {
+                "kind": "expression",
+                "language": "math"
+              }
+            },
+            {
+              "key": "cost",
+              "type": {
+                "kind": "expression",
+                "language": "math"
+              }
+            },
+            {
+              "key": "refresh-cooldown",
+              "type": {
+                "kind": "expression",
+                "language": "math"
+              }
+            },
+            {
+              "key": "max-level",
+              "type": {
+                "kind": "expression",
+                "language": "math"
+              }
+            },
+            {
+              "key": "default-level",
+              "type": {
+                "kind": "expression",
+                "language": "math"
+              }
+            },
+            {
+              "key": "effects",
+              "type": {
+                "kind": "mapping",
+                "keys": {
+                  "kind": "integer"
+                },
+                "values": {
+                  "kind": "set",
+                  "elements": {
+                    "kind": "advanced",
+                    "typeName": "Potion"
+                  }
+                },
+                "fields": [],
+                "required": [
+                  "1"
+                ]
+              }
+            },
+            {
+              "key": "spawn-delay",
+              "type": {
+                "kind": "integer"
+              }
+            },
+            {
+              "key": "levels",
+              "type": {
+                "kind": "mapping",
+                "keys": {
+                  "kind": "integer"
+                },
+                "values": {
+                  "kind": "mapping",
+                  "keys": {
+                    "kind": "string",
+                    "typeName": "str"
+                  },
+                  "values": {
+                    "kind": "object",
+                    "fields": [
+                      {
+                        "key": "amount",
+                        "type": {
+                          "kind": "integer",
+                          "minimum": 1
+                        }
+                      }
+                    ],
+                    "extends": [
+                      "Entity"
+                    ]
+                  },
+                  "fields": [],
+                  "optional": true
+                },
+                "fields": [],
+                "required": [
+                  "1"
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "glory",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "xp",
+              "type": {
+                "kind": "mapping",
+                "keys": {
+                  "kind": "expression",
+                  "language": "condition"
+                },
+                "values": {
+                  "kind": "expression",
+                  "language": "math"
+                },
+                "fields": []
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "chest-size",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "enabled",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "scaling",
+              "type": {
+                "kind": "expression",
+                "language": "math"
+              }
+            },
+            {
+              "key": "cost",
+              "type": {
+                "kind": "expression",
+                "language": "math"
+              }
+            },
+            {
+              "key": "refresh-cooldown",
+              "type": {
+                "kind": "expression",
+                "language": "math"
+              }
+            },
+            {
+              "key": "max-level",
+              "type": {
+                "kind": "expression",
+                "language": "math"
+              }
+            },
+            {
+              "key": "default-level",
+              "type": {
+                "kind": "expression",
+                "language": "math"
+              }
+            },
+            {
+              "key": "effects",
+              "type": {
+                "kind": "mapping",
+                "keys": {
+                  "kind": "integer"
+                },
+                "values": {
+                  "kind": "set",
+                  "elements": {
+                    "kind": "advanced",
+                    "typeName": "Potion"
+                  }
+                },
+                "fields": [],
+                "required": [
+                  "1"
+                ]
+              }
+            },
+            {
+              "key": "items",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "blacklist",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  },
+                  {
+                    "key": "list",
+                    "type": {
+                      "kind": "mapping",
+                      "keys": {
+                        "kind": "string",
+                        "typeName": "str"
+                      },
+                      "values": {
+                        "kind": "advanced",
+                        "typeName": "ItemMatcher"
+                      },
+                      "fields": [],
+                      "optional": true
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

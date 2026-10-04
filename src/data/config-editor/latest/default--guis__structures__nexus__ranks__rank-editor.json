@@ -1,0 +1,1028 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "guis/structures/nexus/ranks/rank-editor.yml",
+  "schemaId": "guis/schema",
+  "options": [
+    {
+      "path": [
+        "title"
+      ],
+      "source": "\"%rank_color%%rank_symbol% %rank_name%\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "rows"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sound"
+      ],
+      "source": "ITEM_BOOK_PAGE_TURN",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options"
+      ],
+      "source": "\r\n  decoration:\r\n    slots: [ 1, 2, 3, 5, 6, 7, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 26, 27, 28, 29, 30, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44 ]\r\n    material: BLUE_STAINED_GLASS_PANE\r\n    name: ''\r\n\r\n  node:\r\n    name: \"{$p}Node{$colon} {$p}%rank_node%\"\r\n    material: EMERALD\r\n    lore:\r\n      - \"{$s}Node is the basically the rank's name but\"\r\n      - \"without colors or any special characters.\"\r\n      - \"This is used when you use promote/demote command.\"\r\n      - \"Cannot contain numbers and must be 15 characters max.\"\r\n    posx: 2\r\n    posy: 3\r\n  name:\r\n    name: \"&5Name{$colon} {$p}%rank_name%\"\r\n    material: DIAMOND\r\n    lore:\r\n      - \"{$s}The name of this rank.\"\r\n      - \"Can contain any character but must be\"\r\n      - \"20 characters max.\"\r\n      - \"It can also contain color codes.\"\r\n    posx: 3\r\n    posy: 3\r\n  material:\r\n    name: \"&eMaterial{$colon} {$p}%rank_material%\"\r\n    material: STONE # Gets replaced by the material that the player picked, don't change.\r\n    lore:\r\n      - \"{$s}The material used to display\"\r\n      - \"this rank in the ranks GUI.\"\r\n      - \"You should use the latest\"\r\n      - \"material names even if the\"\r\n      - \"server is running on old versions.\"\r\n    posx: 4\r\n    posy: 3\r\n  symbol:\r\n    name: \"&dSymbol{$colon} {$p}%rank_symbol%\"\r\n    material: IRON_INGOT\r\n    lore:\r\n      - \"{$s}Symbol for this rank.\"\r\n      - \"It can only be 5 characters.\"\r\n      - \"Also supports colors.\"\r\n    posx: 5\r\n    posy: 3\r\n  color:\r\n    name: \"%rank_color%Color\"\r\n    material: COAL\r\n    lore:\r\n      - \"{$s}The chat color for this rank.\"\r\n      - \"It can only be 5 characters.\"\r\n    posx: 6\r\n    posy: 3\r\n  priority:\r\n    name: \"&aPriority{$colon} {$p}%rank_priority%\"\r\n    material: PAPER\r\n    lore:\r\n      - \"{$s}The priority for this rank\"\r\n      - \"Note that lower numbers means higher priority.\"\r\n      - \"You cannot change the priority of the king rank.\"\r\n    posx: 7\r\n    posy: 3\r\n  max-claims:\r\n    name: \"{$sep}Max Claims{$colon} {$p}%rank_max_claims%\"\r\n    material: BOOK\r\n    lore: |\r\n      {$sep}Players with this rank will not\r\n      be able to claim more lands than\r\n      the specified value.\r\n      \r\n      If they want to claim more lands,\r\n      they have to unclaim the lands that\r\n      they claimed themselves not the \r\n      claims that other members claimed.\r\n    posx: 8\r\n    posy: 3\r\n  copy:\r\n    name: \"&1Copy Rank\"\r\n    material: WRITABLE_BOOK\r\n    lore:\r\n      - \"{$s}Copy properties of another rank\"\r\n      - \"to this rank.\"\r\n    posx: 5\r\n    posy: 1\r\n  permissions:\r\n    posx: 5\r\n    posy: 4\r\n    material: ENCHANTED_BOOK\r\n    name: '{$p}Permissions'\r\n\r\n  delete:\r\n    posx: 9\r\n    posy: 1\r\n    material: BARRIER\r\n    name: '{$p}&4Delete'\r\n    lore:\r\n      - '{$s}Delete this rank.'\r\n      - All the players with this\r\n      - rank will be demoted to member\r\n      - unless you create another rank\r\n      - with the same node again within\r\n      - a random time.\r\n\r\n  back:\r\n    name: \"{$p}Back\"\r\n    material: PLAYER_HEAD\r\n    skull: \"{$gui-back}\"\r\n    lore:\r\n      - \"{$s}Go back to ranks menu.\"\r\n    posx: 1\r\n    posy: 1",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "decoration"
+      ],
+      "source": "\r\n    slots: [ 1, 2, 3, 5, 6, 7, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 26, 27, 28, 29, 30, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44 ]\r\n    material: BLUE_STAINED_GLASS_PANE\r\n    name: ''\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "decoration",
+        "slots"
+      ],
+      "source": "[ 1, 2, 3, 5, 6, 7, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 26, 27, 28, 29, 30, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "1",
+        "2",
+        "3",
+        "5",
+        "6",
+        "7",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30",
+        "32",
+        "33",
+        "34",
+        "35",
+        "36",
+        "37",
+        "38",
+        "39",
+        "40",
+        "41",
+        "42",
+        "43",
+        "44"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "decoration",
+        "material"
+      ],
+      "source": "BLUE_STAINED_GLASS_PANE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "decoration",
+        "name"
+      ],
+      "source": "''",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "node"
+      ],
+      "source": "\r\n    name: \"{$p}Node{$colon} {$p}%rank_node%\"\r\n    material: EMERALD\r\n    lore:\r\n      - \"{$s}Node is the basically the rank's name but\"\r\n      - \"without colors or any special characters.\"\r\n      - \"This is used when you use promote/demote command.\"\r\n      - \"Cannot contain numbers and must be 15 characters max.\"\r\n    posx: 2\r\n    posy: 3\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "node",
+        "name"
+      ],
+      "source": "\"{$p}Node{$colon} {$p}%rank_node%\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "node",
+        "material"
+      ],
+      "source": "EMERALD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "node",
+        "lore"
+      ],
+      "source": "\r\n      - \"{$s}Node is the basically the rank's name but\"\r\n      - \"without colors or any special characters.\"\r\n      - \"This is used when you use promote/demote command.\"\r\n      - \"Cannot contain numbers and must be 15 characters max.\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$s}Node is the basically the rank's name but\"",
+        "\"without colors or any special characters.\"",
+        "\"This is used when you use promote/demote command.\"",
+        "\"Cannot contain numbers and must be 15 characters max.\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "node",
+        "posx"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "node",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "name"
+      ],
+      "source": "\r\n    name: \"&5Name{$colon} {$p}%rank_name%\"\r\n    material: DIAMOND\r\n    lore:\r\n      - \"{$s}The name of this rank.\"\r\n      - \"Can contain any character but must be\"\r\n      - \"20 characters max.\"\r\n      - \"It can also contain color codes.\"\r\n    posx: 3\r\n    posy: 3\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "name",
+        "name"
+      ],
+      "source": "\"&5Name{$colon} {$p}%rank_name%\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "name",
+        "material"
+      ],
+      "source": "DIAMOND",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "name",
+        "lore"
+      ],
+      "source": "\r\n      - \"{$s}The name of this rank.\"\r\n      - \"Can contain any character but must be\"\r\n      - \"20 characters max.\"\r\n      - \"It can also contain color codes.\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$s}The name of this rank.\"",
+        "\"Can contain any character but must be\"",
+        "\"20 characters max.\"",
+        "\"It can also contain color codes.\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "name",
+        "posx"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "name",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "material"
+      ],
+      "source": "\r\n    name: \"&eMaterial{$colon} {$p}%rank_material%\"\r\n    material: STONE # Gets replaced by the material that the player picked, don't change.\r\n    lore:\r\n      - \"{$s}The material used to display\"\r\n      - \"this rank in the ranks GUI.\"\r\n      - \"You should use the latest\"\r\n      - \"material names even if the\"\r\n      - \"server is running on old versions.\"\r\n    posx: 4\r\n    posy: 3\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "material",
+        "name"
+      ],
+      "source": "\"&eMaterial{$colon} {$p}%rank_material%\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "material",
+        "material"
+      ],
+      "source": "STONE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "material",
+        "lore"
+      ],
+      "source": "\r\n      - \"{$s}The material used to display\"\r\n      - \"this rank in the ranks GUI.\"\r\n      - \"You should use the latest\"\r\n      - \"material names even if the\"\r\n      - \"server is running on old versions.\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$s}The material used to display\"",
+        "\"this rank in the ranks GUI.\"",
+        "\"You should use the latest\"",
+        "\"material names even if the\"",
+        "\"server is running on old versions.\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "material",
+        "posx"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "material",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "symbol"
+      ],
+      "source": "\r\n    name: \"&dSymbol{$colon} {$p}%rank_symbol%\"\r\n    material: IRON_INGOT\r\n    lore:\r\n      - \"{$s}Symbol for this rank.\"\r\n      - \"It can only be 5 characters.\"\r\n      - \"Also supports colors.\"\r\n    posx: 5\r\n    posy: 3\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "symbol",
+        "name"
+      ],
+      "source": "\"&dSymbol{$colon} {$p}%rank_symbol%\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "symbol",
+        "material"
+      ],
+      "source": "IRON_INGOT",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "symbol",
+        "lore"
+      ],
+      "source": "\r\n      - \"{$s}Symbol for this rank.\"\r\n      - \"It can only be 5 characters.\"\r\n      - \"Also supports colors.\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$s}Symbol for this rank.\"",
+        "\"It can only be 5 characters.\"",
+        "\"Also supports colors.\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "symbol",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "symbol",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color"
+      ],
+      "source": "\r\n    name: \"%rank_color%Color\"\r\n    material: COAL\r\n    lore:\r\n      - \"{$s}The chat color for this rank.\"\r\n      - \"It can only be 5 characters.\"\r\n    posx: 6\r\n    posy: 3\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color",
+        "name"
+      ],
+      "source": "\"%rank_color%Color\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color",
+        "material"
+      ],
+      "source": "COAL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color",
+        "lore"
+      ],
+      "source": "\r\n      - \"{$s}The chat color for this rank.\"\r\n      - \"It can only be 5 characters.\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$s}The chat color for this rank.\"",
+        "\"It can only be 5 characters.\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "color",
+        "posx"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "priority"
+      ],
+      "source": "\r\n    name: \"&aPriority{$colon} {$p}%rank_priority%\"\r\n    material: PAPER\r\n    lore:\r\n      - \"{$s}The priority for this rank\"\r\n      - \"Note that lower numbers means higher priority.\"\r\n      - \"You cannot change the priority of the king rank.\"\r\n    posx: 7\r\n    posy: 3\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "priority",
+        "name"
+      ],
+      "source": "\"&aPriority{$colon} {$p}%rank_priority%\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "priority",
+        "material"
+      ],
+      "source": "PAPER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "priority",
+        "lore"
+      ],
+      "source": "\r\n      - \"{$s}The priority for this rank\"\r\n      - \"Note that lower numbers means higher priority.\"\r\n      - \"You cannot change the priority of the king rank.\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$s}The priority for this rank\"",
+        "\"Note that lower numbers means higher priority.\"",
+        "\"You cannot change the priority of the king rank.\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "priority",
+        "posx"
+      ],
+      "source": "7",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "priority",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "max-claims"
+      ],
+      "source": "\r\n    name: \"{$sep}Max Claims{$colon} {$p}%rank_max_claims%\"\r\n    material: BOOK\r\n    lore: |\r\n      {$sep}Players with this rank will not\r\n      be able to claim more lands than\r\n      the specified value.\r\n      \r\n      If they want to claim more lands,\r\n      they have to unclaim the lands that\r\n      they claimed themselves not the \r\n      claims that other members claimed.\r\n    posx: 8\r\n    posy: 3\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "max-claims",
+        "name"
+      ],
+      "source": "\"{$sep}Max Claims{$colon} {$p}%rank_max_claims%\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "max-claims",
+        "material"
+      ],
+      "source": "BOOK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "max-claims",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}Players with this rank will not\r\n      be able to claim more lands than\r\n      the specified value.\r\n      \r\n      If they want to claim more lands,\r\n      they have to unclaim the lands that\r\n      they claimed themselves not the \r\n      claims that other members claimed.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "max-claims",
+        "posx"
+      ],
+      "source": "8",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "max-claims",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "copy"
+      ],
+      "source": "\r\n    name: \"&1Copy Rank\"\r\n    material: WRITABLE_BOOK\r\n    lore:\r\n      - \"{$s}Copy properties of another rank\"\r\n      - \"to this rank.\"\r\n    posx: 5\r\n    posy: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "copy",
+        "name"
+      ],
+      "source": "\"&1Copy Rank\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "copy",
+        "material"
+      ],
+      "source": "WRITABLE_BOOK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "copy",
+        "lore"
+      ],
+      "source": "\r\n      - \"{$s}Copy properties of another rank\"\r\n      - \"to this rank.\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$s}Copy properties of another rank\"",
+        "\"to this rank.\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "copy",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "copy",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "permissions"
+      ],
+      "source": "\r\n    posx: 5\r\n    posy: 4\r\n    material: ENCHANTED_BOOK\r\n    name: '{$p}Permissions'\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "permissions",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "permissions",
+        "posy"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "permissions",
+        "material"
+      ],
+      "source": "ENCHANTED_BOOK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "permissions",
+        "name"
+      ],
+      "source": "'{$p}Permissions'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "delete"
+      ],
+      "source": "\r\n    posx: 9\r\n    posy: 1\r\n    material: BARRIER\r\n    name: '{$p}&4Delete'\r\n    lore:\r\n      - '{$s}Delete this rank.'\r\n      - All the players with this\r\n      - rank will be demoted to member\r\n      - unless you create another rank\r\n      - with the same node again within\r\n      - a random time.\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "delete",
+        "posx"
+      ],
+      "source": "9",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "delete",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "delete",
+        "material"
+      ],
+      "source": "BARRIER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "delete",
+        "name"
+      ],
+      "source": "'{$p}&4Delete'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "delete",
+        "lore"
+      ],
+      "source": "\r\n      - '{$s}Delete this rank.'\r\n      - All the players with this\r\n      - rank will be demoted to member\r\n      - unless you create another rank\r\n      - with the same node again within\r\n      - a random time.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "'{$s}Delete this rank.'",
+        "All the players with this",
+        "rank will be demoted to member",
+        "unless you create another rank",
+        "with the same node again within",
+        "a random time."
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "back"
+      ],
+      "source": "\r\n    name: \"{$p}Back\"\r\n    material: PLAYER_HEAD\r\n    skull: \"{$gui-back}\"\r\n    lore:\r\n      - \"{$s}Go back to ranks menu.\"\r\n    posx: 1\r\n    posy: 1",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "name"
+      ],
+      "source": "\"{$p}Back\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "material"
+      ],
+      "source": "PLAYER_HEAD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "skull"
+      ],
+      "source": "\"{$gui-back}\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "lore"
+      ],
+      "source": "\r\n      - \"{$s}Go back to ranks menu.\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$s}Go back to ranks menu.\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "posx"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

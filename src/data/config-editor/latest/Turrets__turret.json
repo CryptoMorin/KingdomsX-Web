@@ -1,0 +1,390 @@
+{
+  "formatVersion": 2,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "id": "Turrets/turret",
+  "resourceName": "Turrets/turret.yml",
+  "schema": {
+    "kind": "object",
+    "fields": [
+      {
+        "key": "name",
+        "type": {
+          "kind": "string",
+          "typeName": "str"
+        }
+      },
+      {
+        "key": "type",
+        "type": {
+          "kind": "suggestion",
+          "typeName": "TurretType",
+          "allowCustom": true
+        }
+      },
+      {
+        "key": "cost",
+        "type": {
+          "kind": "expression",
+          "language": "math"
+        }
+      },
+      {
+        "key": "sell",
+        "type": {
+          "kind": "expression",
+          "language": "math"
+        }
+      },
+      {
+        "key": "max-level",
+        "type": {
+          "kind": "expression",
+          "language": "math"
+        }
+      },
+      {
+        "key": "dont-update-holograms",
+        "type": {
+          "kind": "boolean"
+        }
+      },
+      {
+        "key": "vertical-knockback",
+        "type": {
+          "kind": "expression",
+          "language": "math"
+        }
+      },
+      {
+        "key": "lingering",
+        "type": {
+          "kind": "boolean"
+        }
+      },
+      {
+        "key": "sounds",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "integer"
+          },
+          "values": {
+            "kind": "mapping",
+            "keys": {
+              "kind": "enum",
+              "values": [
+                "opening",
+                "upgrading",
+                "demolition",
+                "repairing",
+                "activate",
+                "partial-repair",
+                "damaged",
+                "broken"
+              ],
+              "allowCustom": false
+            },
+            "values": {
+              "kind": "union",
+              "choices": [
+                {
+                  "kind": "nullable",
+                  "value": {
+                    "kind": "suggestion",
+                    "typeName": "Sound",
+                    "allowCustom": true
+                  }
+                },
+                {
+                  "kind": "mapping",
+                  "keys": {
+                    "kind": "enum",
+                    "values": [
+                      "started",
+                      "finished",
+                      "stopped"
+                    ],
+                    "allowCustom": false
+                  },
+                  "values": {
+                    "kind": "suggestion",
+                    "typeName": "Sound",
+                    "allowCustom": true
+                  },
+                  "fields": []
+                }
+              ]
+            },
+            "fields": []
+          },
+          "fields": []
+        }
+      },
+      {
+        "key": "death-messages",
+        "type": {
+          "kind": "list",
+          "elements": {
+            "kind": "advanced",
+            "typeName": "any"
+          }
+        }
+      },
+      {
+        "key": "dropped-exp",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "string",
+            "typeName": "str"
+          },
+          "values": {
+            "kind": "expression",
+            "language": "math"
+          },
+          "fields": []
+        }
+      },
+      {
+        "key": "hologram",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "string",
+            "typeName": "str"
+          },
+          "values": {
+            "kind": "object",
+            "fields": [
+              {
+                "key": "lines",
+                "type": {
+                  "kind": "list",
+                  "elements": {
+                    "kind": "advanced",
+                    "typeName": "any"
+                  }
+                }
+              },
+              {
+                "key": "height",
+                "type": {
+                  "kind": "decimal"
+                }
+              }
+            ]
+          },
+          "fields": []
+        }
+      },
+      {
+        "key": "placing",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "whitelist",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "blocks",
+              "type": {
+                "kind": "list",
+                "elements": {
+                  "kind": "advanced",
+                  "typeName": "any"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "range",
+        "type": {
+          "kind": "expression",
+          "language": "math"
+        }
+      },
+      {
+        "key": "cooldown",
+        "type": {
+          "kind": "expression",
+          "language": "math"
+        }
+      },
+      {
+        "key": "max-targets",
+        "type": {
+          "kind": "expression",
+          "language": "math"
+        }
+      },
+      {
+        "key": "max-ammo",
+        "type": {
+          "kind": "expression",
+          "language": "math"
+        }
+      },
+      {
+        "key": "knockback",
+        "type": {
+          "kind": "expression",
+          "language": "math"
+        }
+      },
+      {
+        "key": "pass-through",
+        "type": {
+          "kind": "expression",
+          "language": "math"
+        }
+      },
+      {
+        "key": "upgrade-cost",
+        "type": {
+          "kind": "expression",
+          "language": "math"
+        }
+      },
+      {
+        "key": "fire",
+        "type": {
+          "kind": "expression",
+          "language": "math"
+        }
+      },
+      {
+        "key": "manual",
+        "type": {
+          "kind": "expression",
+          "language": "math"
+        }
+      },
+      {
+        "key": "explosion",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "level",
+              "type": {
+                "kind": "integer"
+              }
+            },
+            {
+              "key": "fire",
+              "type": {
+                "kind": "integer"
+              }
+            },
+            {
+              "key": "power",
+              "type": {
+                "kind": "expression",
+                "language": "math"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "effects",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "string",
+            "typeName": "str"
+          },
+          "values": {
+            "kind": "list",
+            "elements": {
+              "kind": "advanced",
+              "typeName": "any"
+            }
+          },
+          "fields": [],
+          "optional": true
+        }
+      },
+      {
+        "key": "projectile",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "integer"
+          },
+          "values": {
+            "kind": "string",
+            "typeName": "str"
+          },
+          "fields": [],
+          "optional": true,
+          "required": [
+            "1"
+          ]
+        }
+      },
+      {
+        "key": "speed",
+        "type": {
+          "kind": "expression",
+          "language": "math"
+        }
+      },
+      {
+        "key": "damage",
+        "type": {
+          "kind": "expression",
+          "language": "math"
+        }
+      },
+      {
+        "key": "entities",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "whitelist",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "list",
+              "type": {
+                "kind": "set",
+                "elements": {
+                  "kind": "suggestion",
+                  "typeName": "Enum<org.bukkit.entity.EntityType>",
+                  "allowCustom": true
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "item",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "integer"
+          },
+          "values": {
+            "kind": "advanced",
+            "typeName": "ItemStack"
+          },
+          "fields": []
+        }
+      }
+    ]
+  }
+}

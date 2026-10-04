@@ -1,0 +1,1263 @@
+{
+  "formatVersion": 1,
+  "source": {
+    "addonId": "admin-tools",
+    "artifactPath": "addons/Kingdoms-Addon-Admin-Tools-1.2.3.2.jar",
+    "artifactBlobSha": "c63f5eab8d950936ae09f12aed4ff1383c87cee2",
+    "artifactSha256": "c07ed8f5f52b657f57beca205d12755f0b4f94e26dfcd691834e2ad77043256f",
+    "addonVersion": "1.2.3.2"
+  },
+  "resourceName": "guis/item-editor/attributes/types.yml",
+  "schemaId": "guis/schema",
+  "sha256": "edd44852594e9a2f7e672e83940aefd5e61fcec6547580d293d523bb66fd789c",
+  "options": [
+    {
+      "path": [
+        "title"
+      ],
+      "source": "\"{$sep}-=( {$p}Attribute Types {$sep})=-\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "rows"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options"
+      ],
+      "source": "\r\n  back:\r\n    posx: 1\r\n    posy: 1\r\n    skull: \"{$gui-back}\"\r\n    name: '{$p}Back'\r\n  orange-stained-glass-pane:\r\n    slots: [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 17, 18, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35 ]\r\n    material: ORANGE_STAINED_GLASS_PANE\r\n    name: ''\r\n  max-health:\r\n    posx: 2\r\n    posy: 2\r\n    skull: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjg2OWJkZDlhOGY3N2VlZmY3NWQ4ZjY3ZWQwMzIyYmQ5YzE2ZGQ0OTQ5NzIzMTRlZDcwN2RkMTBhMzEzOWE1OCJ9fX0='\r\n    name: Max Health\r\n    lore: |\r\n      {$desc}The maximum health of this mob\r\n      (in half-hearts); determines the\r\n      highest health they may be healed to.\r\n      If the player is using this to summon\r\n      a mob with high health, use this and\r\n      the Health tag {Health:200.0f} for example.\r\n      (Disabled in 1.17)\r\n  follow-range:\r\n    posx: 3\r\n    posy: 2\r\n    material: COMPASS\r\n    name: Follow Range\r\n    lore: |\r\n      {$desc}The range in blocks within which\r\n      a mob with this attribute targets players\r\n      or other mobs to track.\r\n      Exiting this range causes the mob to\r\n      cease following the player/mob.\r\n      Actual value used by most mobs is {$p}16{$desc};\r\n      for zombies it is {$p}40{$desc}.\r\n  knockback-resistance:\r\n    posx: 4\r\n    posy: 2\r\n    material: ANVIL\r\n    name: Knockback Resistance\r\n    lore: |\r\n      {$desc}The scale of horizontal knockback\r\n      resisted from attacks and projectiles.\r\n      Vertical knockback is not affected.\r\n      Does not affect explosions. {$p}1.0 {$desc}is {$p}100%\r\n      {$desc}knockback resistance. {$p}0.4 {$desc}means {$p}60% {$desc}of\r\n      knockback is applied.\r\n  movement-speed:\r\n    posx: 5\r\n    posy: 2\r\n    material: DIAMOND_BOOTS\r\n    name: Movement Speed\r\n    lore: |\r\n      {$desc}Movement speed of an entity.\r\n      The mob's maximum speed in\r\n      blocks/second is a bit over {$p}43\r\n      {$desc}times this value, but can be\r\n      affected by various conditions, such as:\r\n      being ridden (if a horse), sprinting,\r\n      fleeing (if a passive mob), attacking\r\n      (if an Enderman or Zombified Piglin),\r\n      being led by a leash, being under the\r\n      effect of a Speed or Slowness potion,\r\n      being a baby zombie, or being a witch\r\n      and drinking a potion.\r\n  flying-speed:\r\n    posx: 6\r\n    posy: 2\r\n    material: ELYTRA\r\n    name: Flying Speed\r\n    lore: \"{$desc}Fly speed of an entity.\"\r\n  armor:\r\n    posx: 7\r\n    posy: 2\r\n    material: DIAMOND_CHESTPLATE\r\n    name: Armor\r\n    lore: \"{$desc}Armor bonus of an entity.\"\r\n  armor-toughness:\r\n    posx: 8\r\n    posy: 2\r\n    material: GOLDEN_CHESTPLATE\r\n    name: Armor Toughness\r\n    lore: \"{$desc}Armor durability bonus of an entity.\"\r\n  attack-damage:\r\n    posx: 2\r\n    posy: 3\r\n    material: DIAMOND_SWORD\r\n    name: Attack Damage\r\n    lore: \"{$desc}Attack strength of an entity.\"\r\n  attack-speed:\r\n    posx: 3\r\n    posy: 3\r\n    material: GOLDEN_SWORD\r\n    name: Attack Speed\r\n    lore: |\r\n      {$desc}Attack speed of an entity.\r\n      Value is the number of full-strength\r\n      attacks per second.\r\n  attack-knockback:\r\n    posx: 4\r\n    posy: 3\r\n    material: FISHING_ROD\r\n    name: Attack Knockback\r\n    lore: |\r\n      {$desc}Attack knockback strength of an entity.\r\n      Applies only to mobs with physical attacks.\r\n      {$p}Ravager{$colon} {$s}1.5\r\n      {$p}Hoglin{$colon} {$s}1.0\r\n      {$p}Zoglin{$colon} {$s}1.0\r\n  jump-strength:\r\n    posx: 5\r\n    posy: 3\r\n    material: DIAMOND_HORSE_ARMOR\r\n    name: Jump Strength\r\n    lore: \"{$desc}How high animals can jump.\"\r\n  luck:\r\n    posx: 6\r\n    posy: 3\r\n    material: EMERALD\r\n    name: Luck\r\n    lore: |\r\n      {$desc}Affects the results of {$p}loot tables\r\n      {$desc}using the {$p}quality {$desc}or {$p}bonus_rolls {$p}tag\r\n      {$desc}(e.g. when opening chests or chest\r\n      minecarts, fishing, and killing mobs).\r\n  spawn-reinforcements:\r\n    posx: 7\r\n    posy: 3\r\n    material: ZOMBIE_HEAD\r\n    name: Spawn Reinforcements\r\n    lore: |\r\n      {$desc}Chance for a mob to spawn\r\n      another mob when attacked.\r\n\r\n      This only worked for zombies in\r\n      older versions.\r\n  entity-interaction-range:\r\n    posx: 8\r\n    posy: 3\r\n    skull: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzBmNGIxNmIwYTRkNTc2ODc4OTI2MzRiNjYxNDNkNmM0NTk0YzZmYTU0ZGFhNjM4NTQ1ZmExYzUwYjI3ZjE0YyJ9fX0='\r\n    name: Entity Interaction Range\r\n    lore: |\r\n      {$desc}The distance in blocks which this\r\n      tool can reach in order to interact with\r\n      entities.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back"
+      ],
+      "source": "\r\n    posx: 1\r\n    posy: 1\r\n    skull: \"{$gui-back}\"\r\n    name: '{$p}Back'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "posx"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "skull"
+      ],
+      "source": "\"{$gui-back}\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "name"
+      ],
+      "source": "'{$p}Back'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "orange-stained-glass-pane"
+      ],
+      "source": "\r\n    slots: [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 17, 18, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35 ]\r\n    material: ORANGE_STAINED_GLASS_PANE\r\n    name: ''\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "orange-stained-glass-pane",
+        "slots"
+      ],
+      "source": "[ 1, 2, 3, 4, 5, 6, 7, 8, 9, 17, 18, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "17",
+        "18",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30",
+        "31",
+        "32",
+        "33",
+        "34",
+        "35"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "orange-stained-glass-pane",
+        "material"
+      ],
+      "source": "ORANGE_STAINED_GLASS_PANE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "orange-stained-glass-pane",
+        "name"
+      ],
+      "source": "''",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "max-health"
+      ],
+      "source": "\r\n    posx: 2\r\n    posy: 2\r\n    skull: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjg2OWJkZDlhOGY3N2VlZmY3NWQ4ZjY3ZWQwMzIyYmQ5YzE2ZGQ0OTQ5NzIzMTRlZDcwN2RkMTBhMzEzOWE1OCJ9fX0='\r\n    name: Max Health\r\n    lore: |\r\n      {$desc}The maximum health of this mob\r\n      (in half-hearts); determines the\r\n      highest health they may be healed to.\r\n      If the player is using this to summon\r\n      a mob with high health, use this and\r\n      the Health tag {Health:200.0f} for example.\r\n      (Disabled in 1.17)\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "max-health",
+        "posx"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "max-health",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "max-health",
+        "skull"
+      ],
+      "source": "'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjg2OWJkZDlhOGY3N2VlZmY3NWQ4ZjY3ZWQwMzIyYmQ5YzE2ZGQ0OTQ5NzIzMTRlZDcwN2RkMTBhMzEzOWE1OCJ9fX0='",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "max-health",
+        "name"
+      ],
+      "source": "Max Health",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "max-health",
+        "lore"
+      ],
+      "source": "|\r\n      {$desc}The maximum health of this mob\r\n      (in half-hearts); determines the\r\n      highest health they may be healed to.\r\n      If the player is using this to summon\r\n      a mob with high health, use this and\r\n      the Health tag {Health:200.0f} for example.\r\n      (Disabled in 1.17)\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "follow-range"
+      ],
+      "source": "\r\n    posx: 3\r\n    posy: 2\r\n    material: COMPASS\r\n    name: Follow Range\r\n    lore: |\r\n      {$desc}The range in blocks within which\r\n      a mob with this attribute targets players\r\n      or other mobs to track.\r\n      Exiting this range causes the mob to\r\n      cease following the player/mob.\r\n      Actual value used by most mobs is {$p}16{$desc};\r\n      for zombies it is {$p}40{$desc}.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "follow-range",
+        "posx"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "follow-range",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "follow-range",
+        "material"
+      ],
+      "source": "COMPASS",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "follow-range",
+        "name"
+      ],
+      "source": "Follow Range",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "follow-range",
+        "lore"
+      ],
+      "source": "|\r\n      {$desc}The range in blocks within which\r\n      a mob with this attribute targets players\r\n      or other mobs to track.\r\n      Exiting this range causes the mob to\r\n      cease following the player/mob.\r\n      Actual value used by most mobs is {$p}16{$desc};\r\n      for zombies it is {$p}40{$desc}.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "knockback-resistance"
+      ],
+      "source": "\r\n    posx: 4\r\n    posy: 2\r\n    material: ANVIL\r\n    name: Knockback Resistance\r\n    lore: |\r\n      {$desc}The scale of horizontal knockback\r\n      resisted from attacks and projectiles.\r\n      Vertical knockback is not affected.\r\n      Does not affect explosions. {$p}1.0 {$desc}is {$p}100%\r\n      {$desc}knockback resistance. {$p}0.4 {$desc}means {$p}60% {$desc}of\r\n      knockback is applied.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "knockback-resistance",
+        "posx"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "knockback-resistance",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "knockback-resistance",
+        "material"
+      ],
+      "source": "ANVIL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "knockback-resistance",
+        "name"
+      ],
+      "source": "Knockback Resistance",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "knockback-resistance",
+        "lore"
+      ],
+      "source": "|\r\n      {$desc}The scale of horizontal knockback\r\n      resisted from attacks and projectiles.\r\n      Vertical knockback is not affected.\r\n      Does not affect explosions. {$p}1.0 {$desc}is {$p}100%\r\n      {$desc}knockback resistance. {$p}0.4 {$desc}means {$p}60% {$desc}of\r\n      knockback is applied.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "movement-speed"
+      ],
+      "source": "\r\n    posx: 5\r\n    posy: 2\r\n    material: DIAMOND_BOOTS\r\n    name: Movement Speed\r\n    lore: |\r\n      {$desc}Movement speed of an entity.\r\n      The mob's maximum speed in\r\n      blocks/second is a bit over {$p}43\r\n      {$desc}times this value, but can be\r\n      affected by various conditions, such as:\r\n      being ridden (if a horse), sprinting,\r\n      fleeing (if a passive mob), attacking\r\n      (if an Enderman or Zombified Piglin),\r\n      being led by a leash, being under the\r\n      effect of a Speed or Slowness potion,\r\n      being a baby zombie, or being a witch\r\n      and drinking a potion.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "movement-speed",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "movement-speed",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "movement-speed",
+        "material"
+      ],
+      "source": "DIAMOND_BOOTS",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "movement-speed",
+        "name"
+      ],
+      "source": "Movement Speed",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "movement-speed",
+        "lore"
+      ],
+      "source": "|\r\n      {$desc}Movement speed of an entity.\r\n      The mob's maximum speed in\r\n      blocks/second is a bit over {$p}43\r\n      {$desc}times this value, but can be\r\n      affected by various conditions, such as:\r\n      being ridden (if a horse), sprinting,\r\n      fleeing (if a passive mob), attacking\r\n      (if an Enderman or Zombified Piglin),\r\n      being led by a leash, being under the\r\n      effect of a Speed or Slowness potion,\r\n      being a baby zombie, or being a witch\r\n      and drinking a potion.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flying-speed"
+      ],
+      "source": "\r\n    posx: 6\r\n    posy: 2\r\n    material: ELYTRA\r\n    name: Flying Speed\r\n    lore: \"{$desc}Fly speed of an entity.\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flying-speed",
+        "posx"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flying-speed",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flying-speed",
+        "material"
+      ],
+      "source": "ELYTRA",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flying-speed",
+        "name"
+      ],
+      "source": "Flying Speed",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flying-speed",
+        "lore"
+      ],
+      "source": "\"{$desc}Fly speed of an entity.\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "armor"
+      ],
+      "source": "\r\n    posx: 7\r\n    posy: 2\r\n    material: DIAMOND_CHESTPLATE\r\n    name: Armor\r\n    lore: \"{$desc}Armor bonus of an entity.\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "armor",
+        "posx"
+      ],
+      "source": "7",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "armor",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "armor",
+        "material"
+      ],
+      "source": "DIAMOND_CHESTPLATE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "armor",
+        "name"
+      ],
+      "source": "Armor",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "armor",
+        "lore"
+      ],
+      "source": "\"{$desc}Armor bonus of an entity.\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "armor-toughness"
+      ],
+      "source": "\r\n    posx: 8\r\n    posy: 2\r\n    material: GOLDEN_CHESTPLATE\r\n    name: Armor Toughness\r\n    lore: \"{$desc}Armor durability bonus of an entity.\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "armor-toughness",
+        "posx"
+      ],
+      "source": "8",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "armor-toughness",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "armor-toughness",
+        "material"
+      ],
+      "source": "GOLDEN_CHESTPLATE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "armor-toughness",
+        "name"
+      ],
+      "source": "Armor Toughness",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "armor-toughness",
+        "lore"
+      ],
+      "source": "\"{$desc}Armor durability bonus of an entity.\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "attack-damage"
+      ],
+      "source": "\r\n    posx: 2\r\n    posy: 3\r\n    material: DIAMOND_SWORD\r\n    name: Attack Damage\r\n    lore: \"{$desc}Attack strength of an entity.\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "attack-damage",
+        "posx"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "attack-damage",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "attack-damage",
+        "material"
+      ],
+      "source": "DIAMOND_SWORD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "attack-damage",
+        "name"
+      ],
+      "source": "Attack Damage",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "attack-damage",
+        "lore"
+      ],
+      "source": "\"{$desc}Attack strength of an entity.\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "attack-speed"
+      ],
+      "source": "\r\n    posx: 3\r\n    posy: 3\r\n    material: GOLDEN_SWORD\r\n    name: Attack Speed\r\n    lore: |\r\n      {$desc}Attack speed of an entity.\r\n      Value is the number of full-strength\r\n      attacks per second.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "attack-speed",
+        "posx"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "attack-speed",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "attack-speed",
+        "material"
+      ],
+      "source": "GOLDEN_SWORD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "attack-speed",
+        "name"
+      ],
+      "source": "Attack Speed",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "attack-speed",
+        "lore"
+      ],
+      "source": "|\r\n      {$desc}Attack speed of an entity.\r\n      Value is the number of full-strength\r\n      attacks per second.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "attack-knockback"
+      ],
+      "source": "\r\n    posx: 4\r\n    posy: 3\r\n    material: FISHING_ROD\r\n    name: Attack Knockback\r\n    lore: |\r\n      {$desc}Attack knockback strength of an entity.\r\n      Applies only to mobs with physical attacks.\r\n      {$p}Ravager{$colon} {$s}1.5\r\n      {$p}Hoglin{$colon} {$s}1.0\r\n      {$p}Zoglin{$colon} {$s}1.0\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "attack-knockback",
+        "posx"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "attack-knockback",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "attack-knockback",
+        "material"
+      ],
+      "source": "FISHING_ROD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "attack-knockback",
+        "name"
+      ],
+      "source": "Attack Knockback",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "attack-knockback",
+        "lore"
+      ],
+      "source": "|\r\n      {$desc}Attack knockback strength of an entity.\r\n      Applies only to mobs with physical attacks.\r\n      {$p}Ravager{$colon} {$s}1.5\r\n      {$p}Hoglin{$colon} {$s}1.0\r\n      {$p}Zoglin{$colon} {$s}1.0\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "jump-strength"
+      ],
+      "source": "\r\n    posx: 5\r\n    posy: 3\r\n    material: DIAMOND_HORSE_ARMOR\r\n    name: Jump Strength\r\n    lore: \"{$desc}How high animals can jump.\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "jump-strength",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "jump-strength",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "jump-strength",
+        "material"
+      ],
+      "source": "DIAMOND_HORSE_ARMOR",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "jump-strength",
+        "name"
+      ],
+      "source": "Jump Strength",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "jump-strength",
+        "lore"
+      ],
+      "source": "\"{$desc}How high animals can jump.\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "luck"
+      ],
+      "source": "\r\n    posx: 6\r\n    posy: 3\r\n    material: EMERALD\r\n    name: Luck\r\n    lore: |\r\n      {$desc}Affects the results of {$p}loot tables\r\n      {$desc}using the {$p}quality {$desc}or {$p}bonus_rolls {$p}tag\r\n      {$desc}(e.g. when opening chests or chest\r\n      minecarts, fishing, and killing mobs).\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "luck",
+        "posx"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "luck",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "luck",
+        "material"
+      ],
+      "source": "EMERALD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "luck",
+        "name"
+      ],
+      "source": "Luck",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "luck",
+        "lore"
+      ],
+      "source": "|\r\n      {$desc}Affects the results of {$p}loot tables\r\n      {$desc}using the {$p}quality {$desc}or {$p}bonus_rolls {$p}tag\r\n      {$desc}(e.g. when opening chests or chest\r\n      minecarts, fishing, and killing mobs).\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "spawn-reinforcements"
+      ],
+      "source": "\r\n    posx: 7\r\n    posy: 3\r\n    material: ZOMBIE_HEAD\r\n    name: Spawn Reinforcements\r\n    lore: |\r\n      {$desc}Chance for a mob to spawn\r\n      another mob when attacked.\r\n\r\n      This only worked for zombies in\r\n      older versions.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "spawn-reinforcements",
+        "posx"
+      ],
+      "source": "7",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "spawn-reinforcements",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "spawn-reinforcements",
+        "material"
+      ],
+      "source": "ZOMBIE_HEAD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "spawn-reinforcements",
+        "name"
+      ],
+      "source": "Spawn Reinforcements",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "spawn-reinforcements",
+        "lore"
+      ],
+      "source": "|\r\n      {$desc}Chance for a mob to spawn\r\n      another mob when attacked.\r\n\r\n      This only worked for zombies in\r\n      older versions.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "entity-interaction-range"
+      ],
+      "source": "\r\n    posx: 8\r\n    posy: 3\r\n    skull: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzBmNGIxNmIwYTRkNTc2ODc4OTI2MzRiNjYxNDNkNmM0NTk0YzZmYTU0ZGFhNjM4NTQ1ZmExYzUwYjI3ZjE0YyJ9fX0='\r\n    name: Entity Interaction Range\r\n    lore: |\r\n      {$desc}The distance in blocks which this\r\n      tool can reach in order to interact with\r\n      entities.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "entity-interaction-range",
+        "posx"
+      ],
+      "source": "8",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "entity-interaction-range",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "entity-interaction-range",
+        "skull"
+      ],
+      "source": "'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzBmNGIxNmIwYTRkNTc2ODc4OTI2MzRiNjYxNDNkNmM0NTk0YzZmYTU0ZGFhNjM4NTQ1ZmExYzUwYjI3ZjE0YyJ9fX0='",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "entity-interaction-range",
+        "name"
+      ],
+      "source": "Entity Interaction Range",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "entity-interaction-range",
+        "lore"
+      ],
+      "source": "|\r\n      {$desc}The distance in blocks which this\r\n      tool can reach in order to interact with\r\n      entities.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

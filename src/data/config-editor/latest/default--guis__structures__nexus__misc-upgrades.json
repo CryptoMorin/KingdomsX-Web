@@ -1,0 +1,2290 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "guis/structures/nexus/misc-upgrades.yml",
+  "schemaId": "guis/schema",
+  "options": [
+    {
+      "path": [
+        "title"
+      ],
+      "source": "\"{$sep}-=( &3Misc Upgrades {$sep})=-\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "rows"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sound"
+      ],
+      "source": "BLOCK_ENCHANTMENT_TABLE_USE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-misc]"
+      ],
+      "source": "&fn-misc\r\n  args: [ <name>, <lore>, <disallowPacifists> ]\r\n  return:\r\n    pacifist:\r\n      condition: '<disallowPacifists> && kingdoms_pacifist'\r\n      name: \"<name>\"\r\n      perform-action: false\r\n      lore:\r\n        - <lore>\r\n        - \"\"\r\n        - \"&cYour kingdom is pacifist\"\r\n        - \"and cannot use this upgrade.\"\r\n    disabled:\r\n      condition: '!enabled'\r\n      name: \"{$disabled} <name>\"\r\n      lore:\r\n        - <lore>\r\n        - \"\"\r\n        - &lvl \"{$p}Level{$colon} {$s}%level%{$sep}/{$s}%max_level%\"\r\n        - \"{$sep}[{$e}!{$sep}] {$es}Right-click to enable\"\r\n    maxxed:\r\n      condition: 'enabled && maxxed'\r\n      name: \"{$enabled} <name>\"\r\n      lore:\r\n        - <lore>\r\n        - \"\"\r\n        - &lvl-maxxed \"{$p}Level{$colon} {$s}%level% {$sep}({$s}Maxxed{$sep})\"\r\n        - &disable-upgrade \"{$sep}[{$e}!{$sep}] {$es}Right-click to disable\"\r\n    else:\r\n      condition: enabled\r\n      name: \"{$enabled} <name>\"\r\n      lore:\r\n        - <lore>\r\n        - \"\"\r\n        - &upgrade-cost \"{$p}Upgrade Cost{$colon} {$s}%cost%\"\r\n        - *lvl\r\n        - *disable-upgrade\r\n\r\n# [NoSync]\r\n",
+      "comments": [
+        "[NoSync]"
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-misc]",
+        "args"
+      ],
+      "source": "[ <name>, <lore>, <disallowPacifists> ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "<name>",
+        "<lore>",
+        "<disallowPacifists>"
+      ]
+    },
+    {
+      "path": [
+        "[fn-misc]",
+        "return"
+      ],
+      "source": "\r\n    pacifist:\r\n      condition: '<disallowPacifists> && kingdoms_pacifist'\r\n      name: \"<name>\"\r\n      perform-action: false\r\n      lore:\r\n        - <lore>\r\n        - \"\"\r\n        - \"&cYour kingdom is pacifist\"\r\n        - \"and cannot use this upgrade.\"\r\n    disabled:\r\n      condition: '!enabled'\r\n      name: \"{$disabled} <name>\"\r\n      lore:\r\n        - <lore>\r\n        - \"\"\r\n        - &lvl \"{$p}Level{$colon} {$s}%level%{$sep}/{$s}%max_level%\"\r\n        - \"{$sep}[{$e}!{$sep}] {$es}Right-click to enable\"\r\n    maxxed:\r\n      condition: 'enabled && maxxed'\r\n      name: \"{$enabled} <name>\"\r\n      lore:\r\n        - <lore>\r\n        - \"\"\r\n        - &lvl-maxxed \"{$p}Level{$colon} {$s}%level% {$sep}({$s}Maxxed{$sep})\"\r\n        - &disable-upgrade \"{$sep}[{$e}!{$sep}] {$es}Right-click to disable\"\r\n    else:\r\n      condition: enabled\r\n      name: \"{$enabled} <name>\"\r\n      lore:\r\n        - <lore>\r\n        - \"\"\r\n        - &upgrade-cost \"{$p}Upgrade Cost{$colon} {$s}%cost%\"\r\n        - *lvl\r\n        - *disable-upgrade\r\n\r\n# [NoSync]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-misc]",
+        "return",
+        "pacifist"
+      ],
+      "source": "\r\n      condition: '<disallowPacifists> && kingdoms_pacifist'\r\n      name: \"<name>\"\r\n      perform-action: false\r\n      lore:\r\n        - <lore>\r\n        - \"\"\r\n        - \"&cYour kingdom is pacifist\"\r\n        - \"and cannot use this upgrade.\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-misc]",
+        "return",
+        "pacifist",
+        "condition"
+      ],
+      "source": "'<disallowPacifists> && kingdoms_pacifist'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-misc]",
+        "return",
+        "pacifist",
+        "name"
+      ],
+      "source": "\"<name>\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-misc]",
+        "return",
+        "pacifist",
+        "perform-action"
+      ],
+      "source": "false",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-misc]",
+        "return",
+        "pacifist",
+        "lore"
+      ],
+      "source": "\r\n        - <lore>\r\n        - \"\"\r\n        - \"&cYour kingdom is pacifist\"\r\n        - \"and cannot use this upgrade.\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "<lore>",
+        "\"\"",
+        "\"&cYour kingdom is pacifist\"",
+        "\"and cannot use this upgrade.\""
+      ]
+    },
+    {
+      "path": [
+        "[fn-misc]",
+        "return",
+        "disabled"
+      ],
+      "source": "\r\n      condition: '!enabled'\r\n      name: \"{$disabled} <name>\"\r\n      lore:\r\n        - <lore>\r\n        - \"\"\r\n        - &lvl \"{$p}Level{$colon} {$s}%level%{$sep}/{$s}%max_level%\"\r\n        - \"{$sep}[{$e}!{$sep}] {$es}Right-click to enable\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-misc]",
+        "return",
+        "disabled",
+        "condition"
+      ],
+      "source": "'!enabled'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-misc]",
+        "return",
+        "disabled",
+        "name"
+      ],
+      "source": "\"{$disabled} <name>\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-misc]",
+        "return",
+        "disabled",
+        "lore"
+      ],
+      "source": "\r\n        - <lore>\r\n        - \"\"\r\n        - &lvl \"{$p}Level{$colon} {$s}%level%{$sep}/{$s}%max_level%\"\r\n        - \"{$sep}[{$e}!{$sep}] {$es}Right-click to enable\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "<lore>",
+        "\"\"",
+        "&lvl \"{$p}Level{$colon} {$s}%level%{$sep}/{$s}%max_level%\"",
+        "\"{$sep}[{$e}!{$sep}] {$es}Right-click to enable\""
+      ]
+    },
+    {
+      "path": [
+        "[fn-misc]",
+        "return",
+        "maxxed"
+      ],
+      "source": "\r\n      condition: 'enabled && maxxed'\r\n      name: \"{$enabled} <name>\"\r\n      lore:\r\n        - <lore>\r\n        - \"\"\r\n        - &lvl-maxxed \"{$p}Level{$colon} {$s}%level% {$sep}({$s}Maxxed{$sep})\"\r\n        - &disable-upgrade \"{$sep}[{$e}!{$sep}] {$es}Right-click to disable\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-misc]",
+        "return",
+        "maxxed",
+        "condition"
+      ],
+      "source": "'enabled && maxxed'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-misc]",
+        "return",
+        "maxxed",
+        "name"
+      ],
+      "source": "\"{$enabled} <name>\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-misc]",
+        "return",
+        "maxxed",
+        "lore"
+      ],
+      "source": "\r\n        - <lore>\r\n        - \"\"\r\n        - &lvl-maxxed \"{$p}Level{$colon} {$s}%level% {$sep}({$s}Maxxed{$sep})\"\r\n        - &disable-upgrade \"{$sep}[{$e}!{$sep}] {$es}Right-click to disable\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "<lore>",
+        "\"\"",
+        "&lvl-maxxed \"{$p}Level{$colon} {$s}%level% {$sep}({$s}Maxxed{$sep})\"",
+        "&disable-upgrade \"{$sep}[{$e}!{$sep}] {$es}Right-click to disable\""
+      ]
+    },
+    {
+      "path": [
+        "[fn-misc]",
+        "return",
+        "else"
+      ],
+      "source": "\r\n      condition: enabled\r\n      name: \"{$enabled} <name>\"\r\n      lore:\r\n        - <lore>\r\n        - \"\"\r\n        - &upgrade-cost \"{$p}Upgrade Cost{$colon} {$s}%cost%\"\r\n        - *lvl\r\n        - *disable-upgrade\r\n\r\n# [NoSync]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-misc]",
+        "return",
+        "else",
+        "condition"
+      ],
+      "source": "enabled",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-misc]",
+        "return",
+        "else",
+        "name"
+      ],
+      "source": "\"{$enabled} <name>\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-misc]",
+        "return",
+        "else",
+        "lore"
+      ],
+      "source": "\r\n        - <lore>\r\n        - \"\"\r\n        - &upgrade-cost \"{$p}Upgrade Cost{$colon} {$s}%cost%\"\r\n        - *lvl\r\n        - *disable-upgrade\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "<lore>",
+        "\"\"",
+        "&upgrade-cost \"{$p}Upgrade Cost{$colon} {$s}%cost%\"",
+        "*lvl",
+        "*disable-upgrade"
+      ]
+    },
+    {
+      "path": [
+        "[fn-misc-basic]"
+      ],
+      "source": "&fn-misc-basic\r\n  args: [ <lore> ]\r\n  return:\r\n    maxxed:\r\n      condition: 'enabled && maxxed'\r\n      lore:\r\n        - \"<lore>\"\r\n        - *lvl-maxxed\r\n    else:\r\n      lore:\r\n        - \"<lore>\"\r\n        - *lvl\r\n        - *upgrade-cost\r\n\r\n",
+      "comments": [
+        "[NoSync]"
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-misc-basic]",
+        "args"
+      ],
+      "source": "[ <lore> ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "<lore>"
+      ]
+    },
+    {
+      "path": [
+        "[fn-misc-basic]",
+        "return"
+      ],
+      "source": "\r\n    maxxed:\r\n      condition: 'enabled && maxxed'\r\n      lore:\r\n        - \"<lore>\"\r\n        - *lvl-maxxed\r\n    else:\r\n      lore:\r\n        - \"<lore>\"\r\n        - *lvl\r\n        - *upgrade-cost\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-misc-basic]",
+        "return",
+        "maxxed"
+      ],
+      "source": "\r\n      condition: 'enabled && maxxed'\r\n      lore:\r\n        - \"<lore>\"\r\n        - *lvl-maxxed\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-misc-basic]",
+        "return",
+        "maxxed",
+        "condition"
+      ],
+      "source": "'enabled && maxxed'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-misc-basic]",
+        "return",
+        "maxxed",
+        "lore"
+      ],
+      "source": "\r\n        - \"<lore>\"\r\n        - *lvl-maxxed\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"<lore>\"",
+        "*lvl-maxxed"
+      ]
+    },
+    {
+      "path": [
+        "[fn-misc-basic]",
+        "return",
+        "else"
+      ],
+      "source": "\r\n      lore:\r\n        - \"<lore>\"\r\n        - *lvl\r\n        - *upgrade-cost\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-misc-basic]",
+        "return",
+        "else",
+        "lore"
+      ],
+      "source": "\r\n        - \"<lore>\"\r\n        - *lvl\r\n        - *upgrade-cost\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"<lore>\"",
+        "*lvl",
+        "*upgrade-cost"
+      ]
+    },
+    {
+      "path": [
+        "options"
+      ],
+      "source": "\r\n  glory:\r\n    material: NETHER_STAR\r\n    posx: 3\r\n    posy: 1\r\n    <<:\r\n      '[fn]': *fn-misc\r\n      <name>: '&3Glory'\r\n      <disallowPacifists>: false\r\n      <lore>: |\r\n        {$p}Level 1{$colon} {$desc}Killing non-player mobs on your land\r\n                 yields {$p}5 {$desc}more exp for each level.\r\n        {$p}Level 2{$colon} {$desc}Killing zombies and skeletons on your land\r\n                 yields {$p}x2 {$desc}experience.\r\n        {$p}Level 3{$colon} {$desc}Killing player enemies on your land\r\n                 yields {$p}x1.5 {$desc}experience.\r\n\r\n        {$chk-kingdom-lvl-IV}\r\n  anti-trample:\r\n    material: WHEAT_SEEDS\r\n    posx: 4\r\n    posy: 1\r\n    <<:\r\n      '[fn]': *fn-misc\r\n      <name>: '&aAnti-Trample'\r\n      <disallowPacifists>: false\r\n      <lore>: |\r\n        {$p}Level 1{$colon} {$desc}Your tilled soil cannot\r\n        be trampled by players. Wind charges will no longer\r\n        be able to trigger blocks.\r\n\r\n        {$p}Level 2{$colon} {$desc}Pistons placed outside of your\r\n        land to push blocks in/out of your kingdom will not work\r\n        This also prevents endermen from stealing blocks within\r\n        your territory\r\n\r\n        {$p}Level 3{$colon} {$desc}Protects certain animals from\r\n        being damaged in your lands.\r\n  nexus-guards:\r\n    material: DIAMOND_AXE\r\n    posx: 5\r\n    posy: 1\r\n    <<:\r\n      '[fn]': *fn-misc\r\n      <name>: '&4Nexus Guards'\r\n      <disallowPacifists>: false\r\n      <lore>: |\r\n        {$s}Spawns guards that are\r\n        stronger than your normal guards\r\n        when someone enters your nexus land.\r\n\r\n        {$chk-kingdom-lvl-IV}\r\n  guards:\r\n    material: IRON_AXE\r\n    posx: 6\r\n    posy: 1\r\n    <<:\r\n      '[fn]': *fn-misc\r\n      <name>: '&cGuards'\r\n      <disallowPacifists>: true\r\n      <lore>: |\r\n        {$s}Guards will randomly spawn\r\n        to protect the kingdom when\r\n        a non-ally enters your land.\r\n\r\n        {$chk-kingdom-lvl-III}\r\n  insanity:\r\n    material: REDSTONE\r\n    posx: 7\r\n    posy: 1\r\n    <<:\r\n      '[fn]': *fn-misc\r\n      <name>: '&cInsanity'\r\n      <disallowPacifists>: true\r\n      <lore>: |\r\n        {$desc}Normal guards, nexus guards and\r\n        reinforcements spawned by the champion\r\n        on powercell lands will have{$colon}\r\n\r\n        {$p}Level 1{$colon} {$s}Strength I for 10 seconds.\r\n        {$p}Level 2{$colon} {$s}Strength II for 10 seconds.\r\n        {$p}Level 3{$colon} {$s}Strength III for 10 seconds.\r\n\r\n        {$chk-kingdom-lvl-II}\r\n  invasion-teleportation:\r\n    material: ENDER_PEARL\r\n    posx: 3\r\n    posy: 2\r\n    <<:\r\n      '[fn]': *fn-misc\r\n      <name>: '&3Invasion Teleportation'\r\n      <disallowPacifists>: true\r\n      <lore>: |\r\n        {$desc}Decreases your teleportation delay\r\n        for {$p}/k tp {$desc}after every upgrade.\r\n\r\n        {$chk-kingdom-lvl-II}\r\n  invasions:\r\n    material: DIAMOND_SWORD\r\n    posx: 2\r\n    posy: 2\r\n    <<:\r\n      '[fn]': *fn-misc\r\n      <name>: '&3Invasions'\r\n      <disallowPacifists>: true\r\n      <lore>: |\r\n        {$desc}Your kingdom can invade {$s}%invasion-limit% {$desc}times.\r\n        {$p}Used invasions{$colon} {$s}%invasions%\r\n        {$p}Refresh Cooldown{$colon} {$s}%invasion-refresh-cooldown%\r\n  anti-explosion:\r\n    material: GUNPOWDER\r\n    posx: 4\r\n    posy: 2\r\n    <<:\r\n      '[fn]': *fn-misc\r\n      <name>: '&5Anti-Explosion'\r\n      <disallowPacifists>: false\r\n      <lore>: |\r\n        {$p}Level 1{$colon} {$desc}Prevents creepers from\r\n        destroying blocks in your land.\r\n\r\n        {$p}Level 2{$colon} {$desc}Prevents TNT from\r\n        destroying blocks in your land.\r\n\r\n        {$p}Level 3{$colon} {$desc}Protects your kingdom members,\r\n        animals, and all other animals (but not hostile mobs)\r\n        within your lands from explosions.\r\n\r\n        {$note} Explosions will still break the\r\n        blocks but they'll regenerate shortly after.\r\n\r\n        {$chk-kingdom-lvl-IV}\r\n  max-claims:\r\n    name: \"&3Max Claims\"\r\n    material: MAP\r\n    posx: 8\r\n    posy: 2\r\n    <<:\r\n      '[fn]': *fn-misc-basic\r\n      <lore>: |\r\n        {$desc}Increases your maximum claims\r\n        by {$p}2 {$desc}each upgrade.\r\n\r\n        {$p}Current Max Lands{$colon} {$s}%kingdoms_max_claims%\r\n  max-turrets:\r\n    name: \"&3Max Turrets\"\r\n    material: ARROW\r\n    posx: 5\r\n    posy: 2\r\n    <<:\r\n      '[fn]': *fn-misc-basic\r\n      <lore>: |\r\n        {$desc}Increases your maximum turrets\r\n        per land by {$p}1 {$desc}each upgrade.\r\n\r\n        {$p}Current Max Turrets Per Land{$colon} {$s}%max_turrets_per_land%\r\n        {$p}Total Max Turrets (Constant limit){$colon} {$s}%max_turrets_total%\r\n  max-members:\r\n    name: \"&3Max Players\"\r\n    material: PLAYER_HEAD\r\n    posx: 6\r\n    posy: 2\r\n    <<:\r\n      '[fn]': *fn-misc-basic\r\n      <lore>: |\r\n        {$desc}Every upgrade allows you to\r\n        have {$p}5 {$desc}more members.\r\n\r\n  chest-size:\r\n    name: \"&3Nexus Chest Size\"\r\n    material: ENDER_CHEST\r\n    posx: 7\r\n    posy: 2\r\n    <<:\r\n      '[fn]': *fn-misc-basic\r\n      <lore>: |\r\n        {$desc}Increases your nexus chest size.\r\n\r\n  flight:\r\n    material: ELYTRA\r\n    posx: 3\r\n    posy: 3\r\n    <<:\r\n      '[fn]': *fn-misc\r\n      <name>: '&3Flight'\r\n      <disallowPacifists>: false\r\n      <lore>: |\r\n        {$desc}Allows the use of {$p}/k fly\r\n\r\n        {$chk-kingdom-lvl-V}\r\n  keep-inventory:\r\n    material: CHEST\r\n    posx: 7\r\n    posy: 3\r\n    <<:\r\n      '[fn]': *fn-misc\r\n      <name>: '&3Keep Inventory'\r\n      <disallowPacifists>: false\r\n      <lore>: |\r\n        {$desc}Allows you to keep the items in\r\n        your inventory after dying in your own\r\n        kingdom's territory.\r\n\r\n        {$p}Level 1 {$sep}({$kingdom-lvl-II}{$sep}):\r\n          {$desc}Only keep armor and off-hand/main-hand items.\r\n        {$p}Level 2 {$sep}({$kingdom-lvl-IV}{$sep}):\r\n          {$desc}Only keep armor, and hotbar items.\r\n        {$p}Level 3 {$sep}({$kingdom-lvl-V}{$sep}):\r\n          {$desc}Keep all items.\r\n  back:\r\n    name: \"{$p}Back\"\r\n    material: PLAYER_HEAD\r\n    skull: \"{$gui-back}\"\r\n    lore: \"{$desc}Go back to nexus menu.\"\r\n    posx: 5\r\n    posy: 3\r\n  cyan-glass:\r\n    name: ''\r\n    material: CYAN_STAINED_GLASS_PANE\r\n    slots: [ 1, 7, 9, 17, 19, 25 ]\r\n  light-blue-glass:\r\n    name: ''\r\n    material: LIGHT_BLUE_STAINED_GLASS_PANE\r\n    slots: [ 0, 8, 18, 26 ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "glory"
+      ],
+      "source": "\r\n    material: NETHER_STAR\r\n    posx: 3\r\n    posy: 1\r\n    <<:\r\n      '[fn]': *fn-misc\r\n      <name>: '&3Glory'\r\n      <disallowPacifists>: false\r\n      <lore>: |\r\n        {$p}Level 1{$colon} {$desc}Killing non-player mobs on your land\r\n                 yields {$p}5 {$desc}more exp for each level.\r\n        {$p}Level 2{$colon} {$desc}Killing zombies and skeletons on your land\r\n                 yields {$p}x2 {$desc}experience.\r\n        {$p}Level 3{$colon} {$desc}Killing player enemies on your land\r\n                 yields {$p}x1.5 {$desc}experience.\r\n\r\n        {$chk-kingdom-lvl-IV}\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "glory",
+        "material"
+      ],
+      "source": "NETHER_STAR",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "glory",
+        "posx"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "glory",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "glory",
+        "<<"
+      ],
+      "source": "\r\n      '[fn]': *fn-misc\r\n      <name>: '&3Glory'\r\n      <disallowPacifists>: false\r\n      <lore>: |\r\n        {$p}Level 1{$colon} {$desc}Killing non-player mobs on your land\r\n                 yields {$p}5 {$desc}more exp for each level.\r\n        {$p}Level 2{$colon} {$desc}Killing zombies and skeletons on your land\r\n                 yields {$p}x2 {$desc}experience.\r\n        {$p}Level 3{$colon} {$desc}Killing player enemies on your land\r\n                 yields {$p}x1.5 {$desc}experience.\r\n\r\n        {$chk-kingdom-lvl-IV}\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "glory",
+        "<<",
+        "[fn]"
+      ],
+      "source": "*fn-misc",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "glory",
+        "<<",
+        "<name>"
+      ],
+      "source": "'&3Glory'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "glory",
+        "<<",
+        "<disallowPacifists>"
+      ],
+      "source": "false",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "glory",
+        "<<",
+        "<lore>"
+      ],
+      "source": "|\r\n        {$p}Level 1{$colon} {$desc}Killing non-player mobs on your land\r\n                 yields {$p}5 {$desc}more exp for each level.\r\n        {$p}Level 2{$colon} {$desc}Killing zombies and skeletons on your land\r\n                 yields {$p}x2 {$desc}experience.\r\n        {$p}Level 3{$colon} {$desc}Killing player enemies on your land\r\n                 yields {$p}x1.5 {$desc}experience.\r\n\r\n        {$chk-kingdom-lvl-IV}\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "anti-trample"
+      ],
+      "source": "\r\n    material: WHEAT_SEEDS\r\n    posx: 4\r\n    posy: 1\r\n    <<:\r\n      '[fn]': *fn-misc\r\n      <name>: '&aAnti-Trample'\r\n      <disallowPacifists>: false\r\n      <lore>: |\r\n        {$p}Level 1{$colon} {$desc}Your tilled soil cannot\r\n        be trampled by players. Wind charges will no longer\r\n        be able to trigger blocks.\r\n\r\n        {$p}Level 2{$colon} {$desc}Pistons placed outside of your\r\n        land to push blocks in/out of your kingdom will not work\r\n        This also prevents endermen from stealing blocks within\r\n        your territory\r\n\r\n        {$p}Level 3{$colon} {$desc}Protects certain animals from\r\n        being damaged in your lands.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "anti-trample",
+        "material"
+      ],
+      "source": "WHEAT_SEEDS",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "anti-trample",
+        "posx"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "anti-trample",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "anti-trample",
+        "<<"
+      ],
+      "source": "\r\n      '[fn]': *fn-misc\r\n      <name>: '&aAnti-Trample'\r\n      <disallowPacifists>: false\r\n      <lore>: |\r\n        {$p}Level 1{$colon} {$desc}Your tilled soil cannot\r\n        be trampled by players. Wind charges will no longer\r\n        be able to trigger blocks.\r\n\r\n        {$p}Level 2{$colon} {$desc}Pistons placed outside of your\r\n        land to push blocks in/out of your kingdom will not work\r\n        This also prevents endermen from stealing blocks within\r\n        your territory\r\n\r\n        {$p}Level 3{$colon} {$desc}Protects certain animals from\r\n        being damaged in your lands.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "anti-trample",
+        "<<",
+        "[fn]"
+      ],
+      "source": "*fn-misc",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "anti-trample",
+        "<<",
+        "<name>"
+      ],
+      "source": "'&aAnti-Trample'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "anti-trample",
+        "<<",
+        "<disallowPacifists>"
+      ],
+      "source": "false",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "anti-trample",
+        "<<",
+        "<lore>"
+      ],
+      "source": "|\r\n        {$p}Level 1{$colon} {$desc}Your tilled soil cannot\r\n        be trampled by players. Wind charges will no longer\r\n        be able to trigger blocks.\r\n\r\n        {$p}Level 2{$colon} {$desc}Pistons placed outside of your\r\n        land to push blocks in/out of your kingdom will not work\r\n        This also prevents endermen from stealing blocks within\r\n        your territory\r\n\r\n        {$p}Level 3{$colon} {$desc}Protects certain animals from\r\n        being damaged in your lands.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "nexus-guards"
+      ],
+      "source": "\r\n    material: DIAMOND_AXE\r\n    posx: 5\r\n    posy: 1\r\n    <<:\r\n      '[fn]': *fn-misc\r\n      <name>: '&4Nexus Guards'\r\n      <disallowPacifists>: false\r\n      <lore>: |\r\n        {$s}Spawns guards that are\r\n        stronger than your normal guards\r\n        when someone enters your nexus land.\r\n\r\n        {$chk-kingdom-lvl-IV}\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "nexus-guards",
+        "material"
+      ],
+      "source": "DIAMOND_AXE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "nexus-guards",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "nexus-guards",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "nexus-guards",
+        "<<"
+      ],
+      "source": "\r\n      '[fn]': *fn-misc\r\n      <name>: '&4Nexus Guards'\r\n      <disallowPacifists>: false\r\n      <lore>: |\r\n        {$s}Spawns guards that are\r\n        stronger than your normal guards\r\n        when someone enters your nexus land.\r\n\r\n        {$chk-kingdom-lvl-IV}\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "nexus-guards",
+        "<<",
+        "[fn]"
+      ],
+      "source": "*fn-misc",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "nexus-guards",
+        "<<",
+        "<name>"
+      ],
+      "source": "'&4Nexus Guards'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "nexus-guards",
+        "<<",
+        "<disallowPacifists>"
+      ],
+      "source": "false",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "nexus-guards",
+        "<<",
+        "<lore>"
+      ],
+      "source": "|\r\n        {$s}Spawns guards that are\r\n        stronger than your normal guards\r\n        when someone enters your nexus land.\r\n\r\n        {$chk-kingdom-lvl-IV}\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "guards"
+      ],
+      "source": "\r\n    material: IRON_AXE\r\n    posx: 6\r\n    posy: 1\r\n    <<:\r\n      '[fn]': *fn-misc\r\n      <name>: '&cGuards'\r\n      <disallowPacifists>: true\r\n      <lore>: |\r\n        {$s}Guards will randomly spawn\r\n        to protect the kingdom when\r\n        a non-ally enters your land.\r\n\r\n        {$chk-kingdom-lvl-III}\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "guards",
+        "material"
+      ],
+      "source": "IRON_AXE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "guards",
+        "posx"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "guards",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "guards",
+        "<<"
+      ],
+      "source": "\r\n      '[fn]': *fn-misc\r\n      <name>: '&cGuards'\r\n      <disallowPacifists>: true\r\n      <lore>: |\r\n        {$s}Guards will randomly spawn\r\n        to protect the kingdom when\r\n        a non-ally enters your land.\r\n\r\n        {$chk-kingdom-lvl-III}\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "guards",
+        "<<",
+        "[fn]"
+      ],
+      "source": "*fn-misc",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "guards",
+        "<<",
+        "<name>"
+      ],
+      "source": "'&cGuards'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "guards",
+        "<<",
+        "<disallowPacifists>"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "guards",
+        "<<",
+        "<lore>"
+      ],
+      "source": "|\r\n        {$s}Guards will randomly spawn\r\n        to protect the kingdom when\r\n        a non-ally enters your land.\r\n\r\n        {$chk-kingdom-lvl-III}\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "insanity"
+      ],
+      "source": "\r\n    material: REDSTONE\r\n    posx: 7\r\n    posy: 1\r\n    <<:\r\n      '[fn]': *fn-misc\r\n      <name>: '&cInsanity'\r\n      <disallowPacifists>: true\r\n      <lore>: |\r\n        {$desc}Normal guards, nexus guards and\r\n        reinforcements spawned by the champion\r\n        on powercell lands will have{$colon}\r\n\r\n        {$p}Level 1{$colon} {$s}Strength I for 10 seconds.\r\n        {$p}Level 2{$colon} {$s}Strength II for 10 seconds.\r\n        {$p}Level 3{$colon} {$s}Strength III for 10 seconds.\r\n\r\n        {$chk-kingdom-lvl-II}\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "insanity",
+        "material"
+      ],
+      "source": "REDSTONE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "insanity",
+        "posx"
+      ],
+      "source": "7",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "insanity",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "insanity",
+        "<<"
+      ],
+      "source": "\r\n      '[fn]': *fn-misc\r\n      <name>: '&cInsanity'\r\n      <disallowPacifists>: true\r\n      <lore>: |\r\n        {$desc}Normal guards, nexus guards and\r\n        reinforcements spawned by the champion\r\n        on powercell lands will have{$colon}\r\n\r\n        {$p}Level 1{$colon} {$s}Strength I for 10 seconds.\r\n        {$p}Level 2{$colon} {$s}Strength II for 10 seconds.\r\n        {$p}Level 3{$colon} {$s}Strength III for 10 seconds.\r\n\r\n        {$chk-kingdom-lvl-II}\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "insanity",
+        "<<",
+        "[fn]"
+      ],
+      "source": "*fn-misc",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "insanity",
+        "<<",
+        "<name>"
+      ],
+      "source": "'&cInsanity'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "insanity",
+        "<<",
+        "<disallowPacifists>"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "insanity",
+        "<<",
+        "<lore>"
+      ],
+      "source": "|\r\n        {$desc}Normal guards, nexus guards and\r\n        reinforcements spawned by the champion\r\n        on powercell lands will have{$colon}\r\n\r\n        {$p}Level 1{$colon} {$s}Strength I for 10 seconds.\r\n        {$p}Level 2{$colon} {$s}Strength II for 10 seconds.\r\n        {$p}Level 3{$colon} {$s}Strength III for 10 seconds.\r\n\r\n        {$chk-kingdom-lvl-II}\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "invasion-teleportation"
+      ],
+      "source": "\r\n    material: ENDER_PEARL\r\n    posx: 3\r\n    posy: 2\r\n    <<:\r\n      '[fn]': *fn-misc\r\n      <name>: '&3Invasion Teleportation'\r\n      <disallowPacifists>: true\r\n      <lore>: |\r\n        {$desc}Decreases your teleportation delay\r\n        for {$p}/k tp {$desc}after every upgrade.\r\n\r\n        {$chk-kingdom-lvl-II}\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "invasion-teleportation",
+        "material"
+      ],
+      "source": "ENDER_PEARL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "invasion-teleportation",
+        "posx"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "invasion-teleportation",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "invasion-teleportation",
+        "<<"
+      ],
+      "source": "\r\n      '[fn]': *fn-misc\r\n      <name>: '&3Invasion Teleportation'\r\n      <disallowPacifists>: true\r\n      <lore>: |\r\n        {$desc}Decreases your teleportation delay\r\n        for {$p}/k tp {$desc}after every upgrade.\r\n\r\n        {$chk-kingdom-lvl-II}\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "invasion-teleportation",
+        "<<",
+        "[fn]"
+      ],
+      "source": "*fn-misc",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "invasion-teleportation",
+        "<<",
+        "<name>"
+      ],
+      "source": "'&3Invasion Teleportation'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "invasion-teleportation",
+        "<<",
+        "<disallowPacifists>"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "invasion-teleportation",
+        "<<",
+        "<lore>"
+      ],
+      "source": "|\r\n        {$desc}Decreases your teleportation delay\r\n        for {$p}/k tp {$desc}after every upgrade.\r\n\r\n        {$chk-kingdom-lvl-II}\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "invasions"
+      ],
+      "source": "\r\n    material: DIAMOND_SWORD\r\n    posx: 2\r\n    posy: 2\r\n    <<:\r\n      '[fn]': *fn-misc\r\n      <name>: '&3Invasions'\r\n      <disallowPacifists>: true\r\n      <lore>: |\r\n        {$desc}Your kingdom can invade {$s}%invasion-limit% {$desc}times.\r\n        {$p}Used invasions{$colon} {$s}%invasions%\r\n        {$p}Refresh Cooldown{$colon} {$s}%invasion-refresh-cooldown%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "invasions",
+        "material"
+      ],
+      "source": "DIAMOND_SWORD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "invasions",
+        "posx"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "invasions",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "invasions",
+        "<<"
+      ],
+      "source": "\r\n      '[fn]': *fn-misc\r\n      <name>: '&3Invasions'\r\n      <disallowPacifists>: true\r\n      <lore>: |\r\n        {$desc}Your kingdom can invade {$s}%invasion-limit% {$desc}times.\r\n        {$p}Used invasions{$colon} {$s}%invasions%\r\n        {$p}Refresh Cooldown{$colon} {$s}%invasion-refresh-cooldown%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "invasions",
+        "<<",
+        "[fn]"
+      ],
+      "source": "*fn-misc",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "invasions",
+        "<<",
+        "<name>"
+      ],
+      "source": "'&3Invasions'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "invasions",
+        "<<",
+        "<disallowPacifists>"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "invasions",
+        "<<",
+        "<lore>"
+      ],
+      "source": "|\r\n        {$desc}Your kingdom can invade {$s}%invasion-limit% {$desc}times.\r\n        {$p}Used invasions{$colon} {$s}%invasions%\r\n        {$p}Refresh Cooldown{$colon} {$s}%invasion-refresh-cooldown%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "anti-explosion"
+      ],
+      "source": "\r\n    material: GUNPOWDER\r\n    posx: 4\r\n    posy: 2\r\n    <<:\r\n      '[fn]': *fn-misc\r\n      <name>: '&5Anti-Explosion'\r\n      <disallowPacifists>: false\r\n      <lore>: |\r\n        {$p}Level 1{$colon} {$desc}Prevents creepers from\r\n        destroying blocks in your land.\r\n\r\n        {$p}Level 2{$colon} {$desc}Prevents TNT from\r\n        destroying blocks in your land.\r\n\r\n        {$p}Level 3{$colon} {$desc}Protects your kingdom members,\r\n        animals, and all other animals (but not hostile mobs)\r\n        within your lands from explosions.\r\n\r\n        {$note} Explosions will still break the\r\n        blocks but they'll regenerate shortly after.\r\n\r\n        {$chk-kingdom-lvl-IV}\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "anti-explosion",
+        "material"
+      ],
+      "source": "GUNPOWDER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "anti-explosion",
+        "posx"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "anti-explosion",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "anti-explosion",
+        "<<"
+      ],
+      "source": "\r\n      '[fn]': *fn-misc\r\n      <name>: '&5Anti-Explosion'\r\n      <disallowPacifists>: false\r\n      <lore>: |\r\n        {$p}Level 1{$colon} {$desc}Prevents creepers from\r\n        destroying blocks in your land.\r\n\r\n        {$p}Level 2{$colon} {$desc}Prevents TNT from\r\n        destroying blocks in your land.\r\n\r\n        {$p}Level 3{$colon} {$desc}Protects your kingdom members,\r\n        animals, and all other animals (but not hostile mobs)\r\n        within your lands from explosions.\r\n\r\n        {$note} Explosions will still break the\r\n        blocks but they'll regenerate shortly after.\r\n\r\n        {$chk-kingdom-lvl-IV}\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "anti-explosion",
+        "<<",
+        "[fn]"
+      ],
+      "source": "*fn-misc",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "anti-explosion",
+        "<<",
+        "<name>"
+      ],
+      "source": "'&5Anti-Explosion'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "anti-explosion",
+        "<<",
+        "<disallowPacifists>"
+      ],
+      "source": "false",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "anti-explosion",
+        "<<",
+        "<lore>"
+      ],
+      "source": "|\r\n        {$p}Level 1{$colon} {$desc}Prevents creepers from\r\n        destroying blocks in your land.\r\n\r\n        {$p}Level 2{$colon} {$desc}Prevents TNT from\r\n        destroying blocks in your land.\r\n\r\n        {$p}Level 3{$colon} {$desc}Protects your kingdom members,\r\n        animals, and all other animals (but not hostile mobs)\r\n        within your lands from explosions.\r\n\r\n        {$note} Explosions will still break the\r\n        blocks but they'll regenerate shortly after.\r\n\r\n        {$chk-kingdom-lvl-IV}\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "max-claims"
+      ],
+      "source": "\r\n    name: \"&3Max Claims\"\r\n    material: MAP\r\n    posx: 8\r\n    posy: 2\r\n    <<:\r\n      '[fn]': *fn-misc-basic\r\n      <lore>: |\r\n        {$desc}Increases your maximum claims\r\n        by {$p}2 {$desc}each upgrade.\r\n\r\n        {$p}Current Max Lands{$colon} {$s}%kingdoms_max_claims%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "max-claims",
+        "name"
+      ],
+      "source": "\"&3Max Claims\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "max-claims",
+        "material"
+      ],
+      "source": "MAP",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "max-claims",
+        "posx"
+      ],
+      "source": "8",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "max-claims",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "max-claims",
+        "<<"
+      ],
+      "source": "\r\n      '[fn]': *fn-misc-basic\r\n      <lore>: |\r\n        {$desc}Increases your maximum claims\r\n        by {$p}2 {$desc}each upgrade.\r\n\r\n        {$p}Current Max Lands{$colon} {$s}%kingdoms_max_claims%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "max-claims",
+        "<<",
+        "[fn]"
+      ],
+      "source": "*fn-misc-basic",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "max-claims",
+        "<<",
+        "<lore>"
+      ],
+      "source": "|\r\n        {$desc}Increases your maximum claims\r\n        by {$p}2 {$desc}each upgrade.\r\n\r\n        {$p}Current Max Lands{$colon} {$s}%kingdoms_max_claims%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "max-turrets"
+      ],
+      "source": "\r\n    name: \"&3Max Turrets\"\r\n    material: ARROW\r\n    posx: 5\r\n    posy: 2\r\n    <<:\r\n      '[fn]': *fn-misc-basic\r\n      <lore>: |\r\n        {$desc}Increases your maximum turrets\r\n        per land by {$p}1 {$desc}each upgrade.\r\n\r\n        {$p}Current Max Turrets Per Land{$colon} {$s}%max_turrets_per_land%\r\n        {$p}Total Max Turrets (Constant limit){$colon} {$s}%max_turrets_total%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "max-turrets",
+        "name"
+      ],
+      "source": "\"&3Max Turrets\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "max-turrets",
+        "material"
+      ],
+      "source": "ARROW",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "max-turrets",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "max-turrets",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "max-turrets",
+        "<<"
+      ],
+      "source": "\r\n      '[fn]': *fn-misc-basic\r\n      <lore>: |\r\n        {$desc}Increases your maximum turrets\r\n        per land by {$p}1 {$desc}each upgrade.\r\n\r\n        {$p}Current Max Turrets Per Land{$colon} {$s}%max_turrets_per_land%\r\n        {$p}Total Max Turrets (Constant limit){$colon} {$s}%max_turrets_total%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "max-turrets",
+        "<<",
+        "[fn]"
+      ],
+      "source": "*fn-misc-basic",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "max-turrets",
+        "<<",
+        "<lore>"
+      ],
+      "source": "|\r\n        {$desc}Increases your maximum turrets\r\n        per land by {$p}1 {$desc}each upgrade.\r\n\r\n        {$p}Current Max Turrets Per Land{$colon} {$s}%max_turrets_per_land%\r\n        {$p}Total Max Turrets (Constant limit){$colon} {$s}%max_turrets_total%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "max-members"
+      ],
+      "source": "\r\n    name: \"&3Max Players\"\r\n    material: PLAYER_HEAD\r\n    posx: 6\r\n    posy: 2\r\n    <<:\r\n      '[fn]': *fn-misc-basic\r\n      <lore>: |\r\n        {$desc}Every upgrade allows you to\r\n        have {$p}5 {$desc}more members.\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "max-members",
+        "name"
+      ],
+      "source": "\"&3Max Players\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "max-members",
+        "material"
+      ],
+      "source": "PLAYER_HEAD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "max-members",
+        "posx"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "max-members",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "max-members",
+        "<<"
+      ],
+      "source": "\r\n      '[fn]': *fn-misc-basic\r\n      <lore>: |\r\n        {$desc}Every upgrade allows you to\r\n        have {$p}5 {$desc}more members.\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "max-members",
+        "<<",
+        "[fn]"
+      ],
+      "source": "*fn-misc-basic",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "max-members",
+        "<<",
+        "<lore>"
+      ],
+      "source": "|\r\n        {$desc}Every upgrade allows you to\r\n        have {$p}5 {$desc}more members.\r\n\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "chest-size"
+      ],
+      "source": "\r\n    name: \"&3Nexus Chest Size\"\r\n    material: ENDER_CHEST\r\n    posx: 7\r\n    posy: 2\r\n    <<:\r\n      '[fn]': *fn-misc-basic\r\n      <lore>: |\r\n        {$desc}Increases your nexus chest size.\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "chest-size",
+        "name"
+      ],
+      "source": "\"&3Nexus Chest Size\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "chest-size",
+        "material"
+      ],
+      "source": "ENDER_CHEST",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "chest-size",
+        "posx"
+      ],
+      "source": "7",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "chest-size",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "chest-size",
+        "<<"
+      ],
+      "source": "\r\n      '[fn]': *fn-misc-basic\r\n      <lore>: |\r\n        {$desc}Increases your nexus chest size.\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "chest-size",
+        "<<",
+        "[fn]"
+      ],
+      "source": "*fn-misc-basic",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "chest-size",
+        "<<",
+        "<lore>"
+      ],
+      "source": "|\r\n        {$desc}Increases your nexus chest size.\r\n\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flight"
+      ],
+      "source": "\r\n    material: ELYTRA\r\n    posx: 3\r\n    posy: 3\r\n    <<:\r\n      '[fn]': *fn-misc\r\n      <name>: '&3Flight'\r\n      <disallowPacifists>: false\r\n      <lore>: |\r\n        {$desc}Allows the use of {$p}/k fly\r\n\r\n        {$chk-kingdom-lvl-V}\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flight",
+        "material"
+      ],
+      "source": "ELYTRA",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flight",
+        "posx"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flight",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flight",
+        "<<"
+      ],
+      "source": "\r\n      '[fn]': *fn-misc\r\n      <name>: '&3Flight'\r\n      <disallowPacifists>: false\r\n      <lore>: |\r\n        {$desc}Allows the use of {$p}/k fly\r\n\r\n        {$chk-kingdom-lvl-V}\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flight",
+        "<<",
+        "[fn]"
+      ],
+      "source": "*fn-misc",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flight",
+        "<<",
+        "<name>"
+      ],
+      "source": "'&3Flight'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flight",
+        "<<",
+        "<disallowPacifists>"
+      ],
+      "source": "false",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flight",
+        "<<",
+        "<lore>"
+      ],
+      "source": "|\r\n        {$desc}Allows the use of {$p}/k fly\r\n\r\n        {$chk-kingdom-lvl-V}\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "keep-inventory"
+      ],
+      "source": "\r\n    material: CHEST\r\n    posx: 7\r\n    posy: 3\r\n    <<:\r\n      '[fn]': *fn-misc\r\n      <name>: '&3Keep Inventory'\r\n      <disallowPacifists>: false\r\n      <lore>: |\r\n        {$desc}Allows you to keep the items in\r\n        your inventory after dying in your own\r\n        kingdom's territory.\r\n\r\n        {$p}Level 1 {$sep}({$kingdom-lvl-II}{$sep}):\r\n          {$desc}Only keep armor and off-hand/main-hand items.\r\n        {$p}Level 2 {$sep}({$kingdom-lvl-IV}{$sep}):\r\n          {$desc}Only keep armor, and hotbar items.\r\n        {$p}Level 3 {$sep}({$kingdom-lvl-V}{$sep}):\r\n          {$desc}Keep all items.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "keep-inventory",
+        "material"
+      ],
+      "source": "CHEST",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "keep-inventory",
+        "posx"
+      ],
+      "source": "7",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "keep-inventory",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "keep-inventory",
+        "<<"
+      ],
+      "source": "\r\n      '[fn]': *fn-misc\r\n      <name>: '&3Keep Inventory'\r\n      <disallowPacifists>: false\r\n      <lore>: |\r\n        {$desc}Allows you to keep the items in\r\n        your inventory after dying in your own\r\n        kingdom's territory.\r\n\r\n        {$p}Level 1 {$sep}({$kingdom-lvl-II}{$sep}):\r\n          {$desc}Only keep armor and off-hand/main-hand items.\r\n        {$p}Level 2 {$sep}({$kingdom-lvl-IV}{$sep}):\r\n          {$desc}Only keep armor, and hotbar items.\r\n        {$p}Level 3 {$sep}({$kingdom-lvl-V}{$sep}):\r\n          {$desc}Keep all items.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "keep-inventory",
+        "<<",
+        "[fn]"
+      ],
+      "source": "*fn-misc",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "keep-inventory",
+        "<<",
+        "<name>"
+      ],
+      "source": "'&3Keep Inventory'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "keep-inventory",
+        "<<",
+        "<disallowPacifists>"
+      ],
+      "source": "false",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "keep-inventory",
+        "<<",
+        "<lore>"
+      ],
+      "source": "|\r\n        {$desc}Allows you to keep the items in\r\n        your inventory after dying in your own\r\n        kingdom's territory.\r\n\r\n        {$p}Level 1 {$sep}({$kingdom-lvl-II}{$sep}):\r\n          {$desc}Only keep armor and off-hand/main-hand items.\r\n        {$p}Level 2 {$sep}({$kingdom-lvl-IV}{$sep}):\r\n          {$desc}Only keep armor, and hotbar items.\r\n        {$p}Level 3 {$sep}({$kingdom-lvl-V}{$sep}):\r\n          {$desc}Keep all items.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back"
+      ],
+      "source": "\r\n    name: \"{$p}Back\"\r\n    material: PLAYER_HEAD\r\n    skull: \"{$gui-back}\"\r\n    lore: \"{$desc}Go back to nexus menu.\"\r\n    posx: 5\r\n    posy: 3\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "name"
+      ],
+      "source": "\"{$p}Back\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "material"
+      ],
+      "source": "PLAYER_HEAD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "skull"
+      ],
+      "source": "\"{$gui-back}\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "lore"
+      ],
+      "source": "\"{$desc}Go back to nexus menu.\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "cyan-glass"
+      ],
+      "source": "\r\n    name: ''\r\n    material: CYAN_STAINED_GLASS_PANE\r\n    slots: [ 1, 7, 9, 17, 19, 25 ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "cyan-glass",
+        "name"
+      ],
+      "source": "''",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "cyan-glass",
+        "material"
+      ],
+      "source": "CYAN_STAINED_GLASS_PANE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "cyan-glass",
+        "slots"
+      ],
+      "source": "[ 1, 7, 9, 17, 19, 25 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "1",
+        "7",
+        "9",
+        "17",
+        "19",
+        "25"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "light-blue-glass"
+      ],
+      "source": "\r\n    name: ''\r\n    material: LIGHT_BLUE_STAINED_GLASS_PANE\r\n    slots: [ 0, 8, 18, 26 ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "light-blue-glass",
+        "name"
+      ],
+      "source": "''",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "light-blue-glass",
+        "material"
+      ],
+      "source": "LIGHT_BLUE_STAINED_GLASS_PANE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "light-blue-glass",
+        "slots"
+      ],
+      "source": "[ 0, 8, 18, 26 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "0",
+        "8",
+        "18",
+        "26"
+      ]
+    }
+  ]
+}

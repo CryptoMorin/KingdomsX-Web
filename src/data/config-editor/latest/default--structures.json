@@ -1,0 +1,92 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "structures.yml",
+  "schemaId": "structures",
+  "options": [
+    {
+      "path": [
+        "disable-shift-click"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "remove-unclaimed"
+      ],
+      "source": "false",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "to-inventory-on-break"
+      ],
+      "source": "false",
+      "comments": [
+        "Should structures go directly to the player's inventory who broke the structure."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "limits"
+      ],
+      "source": "\r\n  # Total amount of structures a kingdom can place.\r\n  total: 100\r\n\r\n  # Total amount of structures that can be placed in a single chunk.\r\n  per-land: 10\r\n",
+      "comments": [
+        "Amount of structures limited per land/kingdom.",
+        "- Set to -1 for no limit.",
+        "- The same options can be added to any structure config inside",
+        "\"Structures\" folder to make the limit specific to that one structure.",
+        "Individual limits will override the limits set here."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "limits",
+        "total"
+      ],
+      "source": "100",
+      "comments": [
+        "Total amount of structures a kingdom can place."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "limits",
+        "per-land"
+      ],
+      "source": "10",
+      "comments": [
+        "Total amount of structures that can be placed in a single chunk."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

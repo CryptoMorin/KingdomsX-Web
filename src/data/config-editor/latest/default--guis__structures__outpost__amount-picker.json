@@ -1,0 +1,681 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "guis/structures/outpost/amount-picker.yml",
+  "schemaId": "guis/schema",
+  "options": [
+    {
+      "path": [
+        "title"
+      ],
+      "source": "\"{$sep}-=( &aAmount Picker {$sep})=-\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "rows"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sound"
+      ],
+      "source": "ENTITY_EXPERIENCE_ORB_PICKUP",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options"
+      ],
+      "source": "\r\n  black-stained-glass-pane:\r\n    slots: [ 1, 2, 3, 4, 5, 6, 7, 9, 11, 12, 14, 15, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26 ]\r\n    material: BLACK_STAINED_GLASS_PANE\r\n    name: ''\r\n  cancel:\r\n    name: \"{$e}Cancel\"\r\n    posx: 1\r\n    posy: 1\r\n    material: BARRIER\r\n  done:\r\n    name: \"{$p}Buy\"\r\n    lore: \"{$p}Price{$colon} {$s}%fancy@cost%\"\r\n    material: GREEN_WOOL\r\n    skull:\r\n    posx: 9\r\n    posy: 1\r\n  decrease:\r\n    name: '{$e}Decrease'\r\n    cantDecrease:\r\n      condition: '!can_decrease'\r\n      perform-action: false\r\n      sound: BLOCK_NOTE_BLOCK_BASS\r\n      lore: |\r\n        {$e}Minimum value reached{$colon} {$es}%min%\r\n    else:\r\n      lore: |\r\n        {$dot} {$p}Left-click{$colon} {$s}-1\r\n        {$dot} {$p}Right-click{$colon} {$s}-10\r\n        {$dot} {$p}Shift Right-click{$colon} {$s}-30\r\n        {$dot} {$p}Shift Left-click{$colon} {$s}set to %min%\r\n    posx: 2\r\n    posy: 2\r\n    material: PLAYER_HEAD\r\n    skull: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTM4NTJiZjYxNmYzMWVkNjdjMzdkZTRiMGJhYTJjNWY4ZDhmY2E4MmU3MmRiY2FmY2JhNjY5NTZhODFjNCJ9fX0='\r\n  item: # Template item, don't change\r\n    posx: 5\r\n    posy: 2\r\n    material: GRASS_BLOCK\r\n  increase:\r\n    cantIncrease:\r\n      condition: '!can_increase'\r\n      perform-action: false\r\n      sound: BLOCK_NOTE_BLOCK_BASS\r\n      lore: |\r\n        {$e}Maximum value reached{$colon} {$es}%max%\r\n    else:\r\n      lore: |\r\n        {$dot} {$p}Left-click{$colon} {$s}+1\r\n        {$dot} {$p}Right-click{$colon} {$s}+10\r\n        {$dot} {$p}Shift Right-click{$colon} {$s}+30\r\n        {$dot} {$p}Shift Left-click{$colon} {$s}set to %max%\r\n    posx: 8\r\n    posy: 2\r\n    material: PLAYER_HEAD\r\n    skull: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNWRhMDI3NDc3MTk3YzZmZDdhZDMzMDE0NTQ2ZGUzOTJiNGE1MWM2MzRlYTY4YzhiN2JjYzAxMzFjODNlM2YifX19'\r\n    name: '{$p}Increase'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "black-stained-glass-pane"
+      ],
+      "source": "\r\n    slots: [ 1, 2, 3, 4, 5, 6, 7, 9, 11, 12, 14, 15, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26 ]\r\n    material: BLACK_STAINED_GLASS_PANE\r\n    name: ''\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "black-stained-glass-pane",
+        "slots"
+      ],
+      "source": "[ 1, 2, 3, 4, 5, 6, 7, 9, 11, 12, 14, 15, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "9",
+        "11",
+        "12",
+        "14",
+        "15",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "black-stained-glass-pane",
+        "material"
+      ],
+      "source": "BLACK_STAINED_GLASS_PANE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "black-stained-glass-pane",
+        "name"
+      ],
+      "source": "''",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "cancel"
+      ],
+      "source": "\r\n    name: \"{$e}Cancel\"\r\n    posx: 1\r\n    posy: 1\r\n    material: BARRIER\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "cancel",
+        "name"
+      ],
+      "source": "\"{$e}Cancel\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "cancel",
+        "posx"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "cancel",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "cancel",
+        "material"
+      ],
+      "source": "BARRIER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "done"
+      ],
+      "source": "\r\n    name: \"{$p}Buy\"\r\n    lore: \"{$p}Price{$colon} {$s}%fancy@cost%\"\r\n    material: GREEN_WOOL\r\n    skull:\r\n    posx: 9\r\n    posy: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "done",
+        "name"
+      ],
+      "source": "\"{$p}Buy\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "done",
+        "lore"
+      ],
+      "source": "\"{$p}Price{$colon} {$s}%fancy@cost%\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "done",
+        "material"
+      ],
+      "source": "GREEN_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "done",
+        "skull"
+      ],
+      "source": "\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "done",
+        "posx"
+      ],
+      "source": "9",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "done",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "decrease"
+      ],
+      "source": "\r\n    name: '{$e}Decrease'\r\n    cantDecrease:\r\n      condition: '!can_decrease'\r\n      perform-action: false\r\n      sound: BLOCK_NOTE_BLOCK_BASS\r\n      lore: |\r\n        {$e}Minimum value reached{$colon} {$es}%min%\r\n    else:\r\n      lore: |\r\n        {$dot} {$p}Left-click{$colon} {$s}-1\r\n        {$dot} {$p}Right-click{$colon} {$s}-10\r\n        {$dot} {$p}Shift Right-click{$colon} {$s}-30\r\n        {$dot} {$p}Shift Left-click{$colon} {$s}set to %min%\r\n    posx: 2\r\n    posy: 2\r\n    material: PLAYER_HEAD\r\n    skull: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTM4NTJiZjYxNmYzMWVkNjdjMzdkZTRiMGJhYTJjNWY4ZDhmY2E4MmU3MmRiY2FmY2JhNjY5NTZhODFjNCJ9fX0='\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "decrease",
+        "name"
+      ],
+      "source": "'{$e}Decrease'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "decrease",
+        "cantDecrease"
+      ],
+      "source": "\r\n      condition: '!can_decrease'\r\n      perform-action: false\r\n      sound: BLOCK_NOTE_BLOCK_BASS\r\n      lore: |\r\n        {$e}Minimum value reached{$colon} {$es}%min%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "decrease",
+        "cantDecrease",
+        "condition"
+      ],
+      "source": "'!can_decrease'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "decrease",
+        "cantDecrease",
+        "perform-action"
+      ],
+      "source": "false",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "decrease",
+        "cantDecrease",
+        "sound"
+      ],
+      "source": "BLOCK_NOTE_BLOCK_BASS",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "decrease",
+        "cantDecrease",
+        "lore"
+      ],
+      "source": "|\r\n        {$e}Minimum value reached{$colon} {$es}%min%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "decrease",
+        "else"
+      ],
+      "source": "\r\n      lore: |\r\n        {$dot} {$p}Left-click{$colon} {$s}-1\r\n        {$dot} {$p}Right-click{$colon} {$s}-10\r\n        {$dot} {$p}Shift Right-click{$colon} {$s}-30\r\n        {$dot} {$p}Shift Left-click{$colon} {$s}set to %min%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "decrease",
+        "else",
+        "lore"
+      ],
+      "source": "|\r\n        {$dot} {$p}Left-click{$colon} {$s}-1\r\n        {$dot} {$p}Right-click{$colon} {$s}-10\r\n        {$dot} {$p}Shift Right-click{$colon} {$s}-30\r\n        {$dot} {$p}Shift Left-click{$colon} {$s}set to %min%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "decrease",
+        "posx"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "decrease",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "decrease",
+        "material"
+      ],
+      "source": "PLAYER_HEAD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "decrease",
+        "skull"
+      ],
+      "source": "'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTM4NTJiZjYxNmYzMWVkNjdjMzdkZTRiMGJhYTJjNWY4ZDhmY2E4MmU3MmRiY2FmY2JhNjY5NTZhODFjNCJ9fX0='",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "item"
+      ],
+      "source": "# Template item, don't change\r\n    posx: 5\r\n    posy: 2\r\n    material: GRASS_BLOCK\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "item",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "item",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "item",
+        "material"
+      ],
+      "source": "GRASS_BLOCK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "increase"
+      ],
+      "source": "\r\n    cantIncrease:\r\n      condition: '!can_increase'\r\n      perform-action: false\r\n      sound: BLOCK_NOTE_BLOCK_BASS\r\n      lore: |\r\n        {$e}Maximum value reached{$colon} {$es}%max%\r\n    else:\r\n      lore: |\r\n        {$dot} {$p}Left-click{$colon} {$s}+1\r\n        {$dot} {$p}Right-click{$colon} {$s}+10\r\n        {$dot} {$p}Shift Right-click{$colon} {$s}+30\r\n        {$dot} {$p}Shift Left-click{$colon} {$s}set to %max%\r\n    posx: 8\r\n    posy: 2\r\n    material: PLAYER_HEAD\r\n    skull: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNWRhMDI3NDc3MTk3YzZmZDdhZDMzMDE0NTQ2ZGUzOTJiNGE1MWM2MzRlYTY4YzhiN2JjYzAxMzFjODNlM2YifX19'\r\n    name: '{$p}Increase'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "increase",
+        "cantIncrease"
+      ],
+      "source": "\r\n      condition: '!can_increase'\r\n      perform-action: false\r\n      sound: BLOCK_NOTE_BLOCK_BASS\r\n      lore: |\r\n        {$e}Maximum value reached{$colon} {$es}%max%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "increase",
+        "cantIncrease",
+        "condition"
+      ],
+      "source": "'!can_increase'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "increase",
+        "cantIncrease",
+        "perform-action"
+      ],
+      "source": "false",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "increase",
+        "cantIncrease",
+        "sound"
+      ],
+      "source": "BLOCK_NOTE_BLOCK_BASS",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "increase",
+        "cantIncrease",
+        "lore"
+      ],
+      "source": "|\r\n        {$e}Maximum value reached{$colon} {$es}%max%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "increase",
+        "else"
+      ],
+      "source": "\r\n      lore: |\r\n        {$dot} {$p}Left-click{$colon} {$s}+1\r\n        {$dot} {$p}Right-click{$colon} {$s}+10\r\n        {$dot} {$p}Shift Right-click{$colon} {$s}+30\r\n        {$dot} {$p}Shift Left-click{$colon} {$s}set to %max%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "increase",
+        "else",
+        "lore"
+      ],
+      "source": "|\r\n        {$dot} {$p}Left-click{$colon} {$s}+1\r\n        {$dot} {$p}Right-click{$colon} {$s}+10\r\n        {$dot} {$p}Shift Right-click{$colon} {$s}+30\r\n        {$dot} {$p}Shift Left-click{$colon} {$s}set to %max%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "increase",
+        "posx"
+      ],
+      "source": "8",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "increase",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "increase",
+        "material"
+      ],
+      "source": "PLAYER_HEAD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "increase",
+        "skull"
+      ],
+      "source": "'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNWRhMDI3NDc3MTk3YzZmZDdhZDMzMDE0NTQ2ZGUzOTJiNGE1MWM2MzRlYTY4YzhiN2JjYzAxMzFjODNlM2YifX19'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "increase",
+        "name"
+      ],
+      "source": "'{$p}Increase'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

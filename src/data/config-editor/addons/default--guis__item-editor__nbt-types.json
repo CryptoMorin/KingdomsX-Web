@@ -1,0 +1,707 @@
+{
+  "formatVersion": 1,
+  "source": {
+    "addonId": "admin-tools",
+    "artifactPath": "addons/Kingdoms-Addon-Admin-Tools-1.2.3.2.jar",
+    "artifactBlobSha": "c63f5eab8d950936ae09f12aed4ff1383c87cee2",
+    "artifactSha256": "c07ed8f5f52b657f57beca205d12755f0b4f94e26dfcd691834e2ad77043256f",
+    "addonVersion": "1.2.3.2"
+  },
+  "resourceName": "guis/item-editor/nbt-types.yml",
+  "schemaId": "guis/schema",
+  "sha256": "cc1ea2aad81ae29b4146ca18a8cd1b89fb2b44a6c288472343e30178144f0d83",
+  "options": [
+    {
+      "path": [
+        "title"
+      ],
+      "source": "'{$sep}-=( {$p}NBT Types {$sep})=-'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "rows"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options"
+      ],
+      "source": "\r\n  back:\r\n    posx: 1\r\n    posy: 1\r\n    material: PLAYER_HEAD\r\n    name: '{$p}Back'\r\n    skull: \"{$gui-back}\"\r\n  black-stained-glass-pane:\r\n    slots: [ 1, 2, 3, 5, 6, 7, 8, 9, 13, 17, 18, 19, 20, 21, 23, 24, 25, 26 ]\r\n    material: BLACK_STAINED_GLASS_PANE\r\n    name: ''\r\n  nbt-NBTTagCompound:\r\n    posx: 5\r\n    posy: 1\r\n    material: WHITE_WOOL\r\n    name: '{$sep}[&fNBTTagCompound{$sep}]'\r\n  nbt-NBTTagString:\r\n    posx: 2\r\n    posy: 2\r\n    material: GREEN_WOOL\r\n    name: '{$sep}[{$p}NBTTagString{$sep}]'\r\n  nbt-NBTTagInt:\r\n    posx: 3\r\n    posy: 2\r\n    material: BLUE_WOOL\r\n    name: '{$sep}[{$sp}NBTTagInt{$sep}]'\r\n  nbt-NBTTagByte:\r\n    posx: 4\r\n    posy: 2\r\n    material: LIME_WOOL\r\n    name: '{$sep}[&aNBTTagByte{$sep}]'\r\n  nbt-NBTTagShort:\r\n    posx: 6\r\n    posy: 2\r\n    material: YELLOW_WOOL\r\n    name: '{$sep}[&eNBTTagShort{$sep}]'\r\n  nbt-NBTTagLong:\r\n    posx: 7\r\n    posy: 2\r\n    material: PURPLE_WOOL\r\n    name: '{$sep}[&5NBTTagLong{$sep}]'\r\n  nbt-NBTTagDouble:\r\n    posx: 8\r\n    posy: 2\r\n    material: CYAN_WOOL\r\n    name: '{$sep}[&3NBTTagDouble{$sep}]'\r\n  nbt-NBTTagList:\r\n    posx: 5\r\n    posy: 3\r\n    material: GRAY_WOOL\r\n    name: '{$sep}[&8NBTTagList{$sep}]'",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back"
+      ],
+      "source": "\r\n    posx: 1\r\n    posy: 1\r\n    material: PLAYER_HEAD\r\n    name: '{$p}Back'\r\n    skull: \"{$gui-back}\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "posx"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "material"
+      ],
+      "source": "PLAYER_HEAD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "name"
+      ],
+      "source": "'{$p}Back'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "skull"
+      ],
+      "source": "\"{$gui-back}\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "black-stained-glass-pane"
+      ],
+      "source": "\r\n    slots: [ 1, 2, 3, 5, 6, 7, 8, 9, 13, 17, 18, 19, 20, 21, 23, 24, 25, 26 ]\r\n    material: BLACK_STAINED_GLASS_PANE\r\n    name: ''\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "black-stained-glass-pane",
+        "slots"
+      ],
+      "source": "[ 1, 2, 3, 5, 6, 7, 8, 9, 13, 17, 18, 19, 20, 21, 23, 24, 25, 26 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "1",
+        "2",
+        "3",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "13",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "23",
+        "24",
+        "25",
+        "26"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "black-stained-glass-pane",
+        "material"
+      ],
+      "source": "BLACK_STAINED_GLASS_PANE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "black-stained-glass-pane",
+        "name"
+      ],
+      "source": "''",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "nbt-NBTTagCompound"
+      ],
+      "source": "\r\n    posx: 5\r\n    posy: 1\r\n    material: WHITE_WOOL\r\n    name: '{$sep}[&fNBTTagCompound{$sep}]'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "nbt-NBTTagCompound",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "nbt-NBTTagCompound",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "nbt-NBTTagCompound",
+        "material"
+      ],
+      "source": "WHITE_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "nbt-NBTTagCompound",
+        "name"
+      ],
+      "source": "'{$sep}[&fNBTTagCompound{$sep}]'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "nbt-NBTTagString"
+      ],
+      "source": "\r\n    posx: 2\r\n    posy: 2\r\n    material: GREEN_WOOL\r\n    name: '{$sep}[{$p}NBTTagString{$sep}]'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "nbt-NBTTagString",
+        "posx"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "nbt-NBTTagString",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "nbt-NBTTagString",
+        "material"
+      ],
+      "source": "GREEN_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "nbt-NBTTagString",
+        "name"
+      ],
+      "source": "'{$sep}[{$p}NBTTagString{$sep}]'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "nbt-NBTTagInt"
+      ],
+      "source": "\r\n    posx: 3\r\n    posy: 2\r\n    material: BLUE_WOOL\r\n    name: '{$sep}[{$sp}NBTTagInt{$sep}]'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "nbt-NBTTagInt",
+        "posx"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "nbt-NBTTagInt",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "nbt-NBTTagInt",
+        "material"
+      ],
+      "source": "BLUE_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "nbt-NBTTagInt",
+        "name"
+      ],
+      "source": "'{$sep}[{$sp}NBTTagInt{$sep}]'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "nbt-NBTTagByte"
+      ],
+      "source": "\r\n    posx: 4\r\n    posy: 2\r\n    material: LIME_WOOL\r\n    name: '{$sep}[&aNBTTagByte{$sep}]'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "nbt-NBTTagByte",
+        "posx"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "nbt-NBTTagByte",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "nbt-NBTTagByte",
+        "material"
+      ],
+      "source": "LIME_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "nbt-NBTTagByte",
+        "name"
+      ],
+      "source": "'{$sep}[&aNBTTagByte{$sep}]'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "nbt-NBTTagShort"
+      ],
+      "source": "\r\n    posx: 6\r\n    posy: 2\r\n    material: YELLOW_WOOL\r\n    name: '{$sep}[&eNBTTagShort{$sep}]'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "nbt-NBTTagShort",
+        "posx"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "nbt-NBTTagShort",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "nbt-NBTTagShort",
+        "material"
+      ],
+      "source": "YELLOW_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "nbt-NBTTagShort",
+        "name"
+      ],
+      "source": "'{$sep}[&eNBTTagShort{$sep}]'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "nbt-NBTTagLong"
+      ],
+      "source": "\r\n    posx: 7\r\n    posy: 2\r\n    material: PURPLE_WOOL\r\n    name: '{$sep}[&5NBTTagLong{$sep}]'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "nbt-NBTTagLong",
+        "posx"
+      ],
+      "source": "7",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "nbt-NBTTagLong",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "nbt-NBTTagLong",
+        "material"
+      ],
+      "source": "PURPLE_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "nbt-NBTTagLong",
+        "name"
+      ],
+      "source": "'{$sep}[&5NBTTagLong{$sep}]'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "nbt-NBTTagDouble"
+      ],
+      "source": "\r\n    posx: 8\r\n    posy: 2\r\n    material: CYAN_WOOL\r\n    name: '{$sep}[&3NBTTagDouble{$sep}]'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "nbt-NBTTagDouble",
+        "posx"
+      ],
+      "source": "8",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "nbt-NBTTagDouble",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "nbt-NBTTagDouble",
+        "material"
+      ],
+      "source": "CYAN_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "nbt-NBTTagDouble",
+        "name"
+      ],
+      "source": "'{$sep}[&3NBTTagDouble{$sep}]'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "nbt-NBTTagList"
+      ],
+      "source": "\r\n    posx: 5\r\n    posy: 3\r\n    material: GRAY_WOOL\r\n    name: '{$sep}[&8NBTTagList{$sep}]'",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "nbt-NBTTagList",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "nbt-NBTTagList",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "nbt-NBTTagList",
+        "material"
+      ],
+      "source": "GRAY_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "nbt-NBTTagList",
+        "name"
+      ],
+      "source": "'{$sep}[&8NBTTagList{$sep}]'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

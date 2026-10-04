@@ -1,0 +1,761 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "guis/structures/nexus/nation/settings/settings.yml",
+  "schemaId": "guis/schema",
+  "options": [
+    {
+      "path": [
+        "title"
+      ],
+      "source": "\"{$sep}-=( {$sep}Settings {$sep})=-\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "rows"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sound"
+      ],
+      "source": "ITEM_BOOK_PAGE_TURN",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options"
+      ],
+      "source": "\r\n  back:\r\n    posx: 1\r\n    posy: 1\r\n    material: PLAYER_HEAD\r\n    name: '{$p}Back'\r\n    lore: [ '{$s}Go back to nexus menu.' ]\r\n    skull: \"{$gui-back}\"\r\n  light-blue-stained-glass-pane:\r\n    slots: [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 17, 18, 21, 23, 26, 27, 29, 30, 31, 32, 33, 35, 36, 39, 41, 44, 45, 53 ]\r\n    material: LIGHT_BLUE_STAINED_GLASS_PANE\r\n    name: ''\r\n  public-home:\r\n    posx: 3\r\n    posy: 5\r\n    material: DARK_OAK_DOOR\r\n    name: \"{$s}Public Home{$colon} %bool@kingdoms_nation_home_is_public%\"\r\n    lore: |\r\n      {$sep}When your home is public, anyone\r\n      can teleport to it using\r\n      {$p}/k nation home %kingdoms_nation_name%\r\n  tax:\r\n    posx: 7\r\n    posy: 5\r\n    material: PAPER\r\n    name: '{$s}Tax'\r\n    lore: |\r\n      {$sep}Change your nation taxes\r\n      for members.\r\n\r\n      {$s}Member Tax Equation{$colon}\r\n      {$p}%tax_equation%\r\n      {$s}Your Member Tax{$colon} {$p}$%fancy@kingdoms_nation_tax%\r\n\r\n      {$s}Nation Server Tax{$colon} {$p}$%fancy@kingdoms_nation_tax%\r\n  blue-stained-glass-pane:\r\n    slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 25, 28, 34, 37, 43, 46, 47, 48, 49, 50, 51, 52 ]\r\n    material: BLUE_STAINED_GLASS_PANE\r\n    name: ''\r\n  relations:\r\n    posx: 3\r\n    posy: 3\r\n    material: WRITABLE_BOOK\r\n    name: '{$s}Relations'\r\n    lore: |\r\n      {$sep}Change your relation attributes\r\n      for other nations.\r\n\r\n      {$sep}[&e!{$sep}] {$es}In order for some attributes\r\n      to work, both kingdoms need to have the\r\n      attribute enabled for the relationship.\r\n\r\n      For example, if you have the {$e}BUILD {$es}attribute\r\n      enabled for allies, and then try to\r\n      build in an ally's land that doesn't also\r\n      have the same attribute enabled for allies,\r\n      it won't work. Said ally won't be able to\r\n      build in your land either.\r\n  banners:\r\n    posx: 5\r\n    posy: 3\r\n    material: BLACK_BANNER\r\n    name: '{$s}Flag'\r\n    lore: |\r\n      {$sep}Set your nation's flag for online maps.\r\n      Click to see your flag URL.\r\n      This won't update the map instantly.\r\n  color:\r\n    posx: 5\r\n    posy: 5\r\n    material: LIME_DYE\r\n    name: '{$s}Color{$colon} &c%r%{$sep}, {$p}%g%{$sep}, {$sp}%b% {$sep}(%hex@kingdoms_nation_color%%kingdoms_nation_color%{$sep})'\r\n    lore: |\r\n      {$sep}Set your nation marker\r\n      color for chat and online land maps.\r\n  shields:\r\n    posx: 7\r\n    posy: 3\r\n    material: SHIELD\r\n    name: '{$s}Shield{$colon} {$p}%time@kingdoms_nation_shield_time_left%'\r\n    lore: |\r\n      {$sep}Buy a shield for your\r\n      nation to protect your kingdom\r\n      against invades.\r\n\r\n      Kingdom members who invade when\r\n      nation shields are enabled, will\r\n      temporarily lose access to nation's\r\n      shield.",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back"
+      ],
+      "source": "\r\n    posx: 1\r\n    posy: 1\r\n    material: PLAYER_HEAD\r\n    name: '{$p}Back'\r\n    lore: [ '{$s}Go back to nexus menu.' ]\r\n    skull: \"{$gui-back}\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "posx"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "material"
+      ],
+      "source": "PLAYER_HEAD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "name"
+      ],
+      "source": "'{$p}Back'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "lore"
+      ],
+      "source": "[ '{$s}Go back to nexus menu.' ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "'{$s}Go back to nexus menu.'"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "skull"
+      ],
+      "source": "\"{$gui-back}\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "light-blue-stained-glass-pane"
+      ],
+      "source": "\r\n    slots: [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 17, 18, 21, 23, 26, 27, 29, 30, 31, 32, 33, 35, 36, 39, 41, 44, 45, 53 ]\r\n    material: LIGHT_BLUE_STAINED_GLASS_PANE\r\n    name: ''\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "light-blue-stained-glass-pane",
+        "slots"
+      ],
+      "source": "[ 1, 2, 3, 4, 5, 6, 7, 8, 9, 17, 18, 21, 23, 26, 27, 29, 30, 31, 32, 33, 35, 36, 39, 41, 44, 45, 53 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "17",
+        "18",
+        "21",
+        "23",
+        "26",
+        "27",
+        "29",
+        "30",
+        "31",
+        "32",
+        "33",
+        "35",
+        "36",
+        "39",
+        "41",
+        "44",
+        "45",
+        "53"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "light-blue-stained-glass-pane",
+        "material"
+      ],
+      "source": "LIGHT_BLUE_STAINED_GLASS_PANE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "light-blue-stained-glass-pane",
+        "name"
+      ],
+      "source": "''",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "public-home"
+      ],
+      "source": "\r\n    posx: 3\r\n    posy: 5\r\n    material: DARK_OAK_DOOR\r\n    name: \"{$s}Public Home{$colon} %bool@kingdoms_nation_home_is_public%\"\r\n    lore: |\r\n      {$sep}When your home is public, anyone\r\n      can teleport to it using\r\n      {$p}/k nation home %kingdoms_nation_name%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "public-home",
+        "posx"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "public-home",
+        "posy"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "public-home",
+        "material"
+      ],
+      "source": "DARK_OAK_DOOR",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "public-home",
+        "name"
+      ],
+      "source": "\"{$s}Public Home{$colon} %bool@kingdoms_nation_home_is_public%\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "public-home",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}When your home is public, anyone\r\n      can teleport to it using\r\n      {$p}/k nation home %kingdoms_nation_name%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "tax"
+      ],
+      "source": "\r\n    posx: 7\r\n    posy: 5\r\n    material: PAPER\r\n    name: '{$s}Tax'\r\n    lore: |\r\n      {$sep}Change your nation taxes\r\n      for members.\r\n\r\n      {$s}Member Tax Equation{$colon}\r\n      {$p}%tax_equation%\r\n      {$s}Your Member Tax{$colon} {$p}$%fancy@kingdoms_nation_tax%\r\n\r\n      {$s}Nation Server Tax{$colon} {$p}$%fancy@kingdoms_nation_tax%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "tax",
+        "posx"
+      ],
+      "source": "7",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "tax",
+        "posy"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "tax",
+        "material"
+      ],
+      "source": "PAPER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "tax",
+        "name"
+      ],
+      "source": "'{$s}Tax'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "tax",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}Change your nation taxes\r\n      for members.\r\n\r\n      {$s}Member Tax Equation{$colon}\r\n      {$p}%tax_equation%\r\n      {$s}Your Member Tax{$colon} {$p}$%fancy@kingdoms_nation_tax%\r\n\r\n      {$s}Nation Server Tax{$colon} {$p}$%fancy@kingdoms_nation_tax%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "blue-stained-glass-pane"
+      ],
+      "source": "\r\n    slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 25, 28, 34, 37, 43, 46, 47, 48, 49, 50, 51, 52 ]\r\n    material: BLUE_STAINED_GLASS_PANE\r\n    name: ''\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "blue-stained-glass-pane",
+        "slots"
+      ],
+      "source": "[ 10, 11, 12, 13, 14, 15, 16, 19, 25, 28, 34, 37, 43, 46, 47, 48, 49, 50, 51, 52 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "19",
+        "25",
+        "28",
+        "34",
+        "37",
+        "43",
+        "46",
+        "47",
+        "48",
+        "49",
+        "50",
+        "51",
+        "52"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "blue-stained-glass-pane",
+        "material"
+      ],
+      "source": "BLUE_STAINED_GLASS_PANE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "blue-stained-glass-pane",
+        "name"
+      ],
+      "source": "''",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "relations"
+      ],
+      "source": "\r\n    posx: 3\r\n    posy: 3\r\n    material: WRITABLE_BOOK\r\n    name: '{$s}Relations'\r\n    lore: |\r\n      {$sep}Change your relation attributes\r\n      for other nations.\r\n\r\n      {$sep}[&e!{$sep}] {$es}In order for some attributes\r\n      to work, both kingdoms need to have the\r\n      attribute enabled for the relationship.\r\n\r\n      For example, if you have the {$e}BUILD {$es}attribute\r\n      enabled for allies, and then try to\r\n      build in an ally's land that doesn't also\r\n      have the same attribute enabled for allies,\r\n      it won't work. Said ally won't be able to\r\n      build in your land either.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "relations",
+        "posx"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "relations",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "relations",
+        "material"
+      ],
+      "source": "WRITABLE_BOOK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "relations",
+        "name"
+      ],
+      "source": "'{$s}Relations'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "relations",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}Change your relation attributes\r\n      for other nations.\r\n\r\n      {$sep}[&e!{$sep}] {$es}In order for some attributes\r\n      to work, both kingdoms need to have the\r\n      attribute enabled for the relationship.\r\n\r\n      For example, if you have the {$e}BUILD {$es}attribute\r\n      enabled for allies, and then try to\r\n      build in an ally's land that doesn't also\r\n      have the same attribute enabled for allies,\r\n      it won't work. Said ally won't be able to\r\n      build in your land either.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "banners"
+      ],
+      "source": "\r\n    posx: 5\r\n    posy: 3\r\n    material: BLACK_BANNER\r\n    name: '{$s}Flag'\r\n    lore: |\r\n      {$sep}Set your nation's flag for online maps.\r\n      Click to see your flag URL.\r\n      This won't update the map instantly.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "banners",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "banners",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "banners",
+        "material"
+      ],
+      "source": "BLACK_BANNER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "banners",
+        "name"
+      ],
+      "source": "'{$s}Flag'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "banners",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}Set your nation's flag for online maps.\r\n      Click to see your flag URL.\r\n      This won't update the map instantly.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color"
+      ],
+      "source": "\r\n    posx: 5\r\n    posy: 5\r\n    material: LIME_DYE\r\n    name: '{$s}Color{$colon} &c%r%{$sep}, {$p}%g%{$sep}, {$sp}%b% {$sep}(%hex@kingdoms_nation_color%%kingdoms_nation_color%{$sep})'\r\n    lore: |\r\n      {$sep}Set your nation marker\r\n      color for chat and online land maps.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color",
+        "posy"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color",
+        "material"
+      ],
+      "source": "LIME_DYE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color",
+        "name"
+      ],
+      "source": "'{$s}Color{$colon} &c%r%{$sep}, {$p}%g%{$sep}, {$sp}%b% {$sep}(%hex@kingdoms_nation_color%%kingdoms_nation_color%{$sep})'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}Set your nation marker\r\n      color for chat and online land maps.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shields"
+      ],
+      "source": "\r\n    posx: 7\r\n    posy: 3\r\n    material: SHIELD\r\n    name: '{$s}Shield{$colon} {$p}%time@kingdoms_nation_shield_time_left%'\r\n    lore: |\r\n      {$sep}Buy a shield for your\r\n      nation to protect your kingdom\r\n      against invades.\r\n\r\n      Kingdom members who invade when\r\n      nation shields are enabled, will\r\n      temporarily lose access to nation's\r\n      shield.",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shields",
+        "posx"
+      ],
+      "source": "7",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shields",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shields",
+        "material"
+      ],
+      "source": "SHIELD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shields",
+        "name"
+      ],
+      "source": "'{$s}Shield{$colon} {$p}%time@kingdoms_nation_shield_time_left%'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shields",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}Buy a shield for your\r\n      nation to protect your kingdom\r\n      against invades.\r\n\r\n      Kingdom members who invade when\r\n      nation shields are enabled, will\r\n      temporarily lose access to nation's\r\n      shield.",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

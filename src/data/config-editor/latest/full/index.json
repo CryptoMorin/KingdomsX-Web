@@ -1,0 +1,624 @@
+{
+  "formatVersion": 1,
+  "source": {
+    "schema": {
+      "kind": "kingdomsx-jar",
+      "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+      "pluginVersion": "1.17.27.3"
+    },
+    "catalog": {
+      "core": {
+        "kind": "kingdomsx-github-languages",
+        "repository": "CryptoMorin/KingdomsX",
+        "ref": "master",
+        "commitSha": "b797369ffd59a2a42b9b3f2d30978683b839af7e",
+        "rootPath": "resources/languages",
+        "languages": [
+          {
+            "locale": "cs",
+            "path": "resources/languages/cs/cs.yml",
+            "blobSha": "a5b5d8d0378f8097f5225714856b98128f814497",
+            "sha256": "ee86c7b844793125d84f7b811b0a586d6350dee472df26e4037a4ab7301ce4a7"
+          },
+          {
+            "locale": "de",
+            "path": "resources/languages/de/de.yml",
+            "blobSha": "0d7f3e2b001c2d36cdc4ce5387d402c55083be40",
+            "sha256": "65d7fcb0290abae2ab1199bc93b044b0d4420439e54deb02eb2a524dfce59cc1"
+          },
+          {
+            "locale": "en",
+            "path": "resources/languages/en/en.yml",
+            "blobSha": "0ff6bf558c5d3cc0f089428683c6ea1f52b16f1a",
+            "sha256": "00c959a3feb53d0133f3cf4c0c86fe6ccc6fc8409da873ad3a1dfc8fefbcbed3"
+          },
+          {
+            "locale": "es",
+            "path": "resources/languages/es/es.yml",
+            "blobSha": "e88f2fbef0fa428870e62c6e2457e15791c6fd95",
+            "sha256": "cfb104fcd8f186aa0d5bdb96415e07f4e1c94d1df8d9583469ba9936d854d314"
+          },
+          {
+            "locale": "hu",
+            "path": "resources/languages/hu/hu.yml",
+            "blobSha": "5bea780f7f3fe86beb67e0d5dc0f72023087cd31",
+            "sha256": "6a79333d28a683fb3ec10b95ef7c381a028ac4daba262ad78c960ae6aff91e6c"
+          },
+          {
+            "locale": "it",
+            "path": "resources/languages/it/it.yml",
+            "blobSha": "3a86703b2481b7edd631f6e92d51d3ae24a0baff",
+            "sha256": "2cfcd9e06ed99301bb0de0825155f5aa471364058348eed76d60f9010f654777"
+          },
+          {
+            "locale": "pl",
+            "path": "resources/languages/pl/pl.yml",
+            "blobSha": "5b7fa377c23da6a9addff17e93aa1d370e972558",
+            "sha256": "5504178801a76cc509c682ae555148ab2db965a798c7ea2469497d6a64feeffa"
+          },
+          {
+            "locale": "pt",
+            "path": "resources/languages/pt/pt.yml",
+            "blobSha": "a06142b530d44c27e8acc207dd01d6e35a9700dc",
+            "sha256": "f2caca1dcb468c13061695cc912d84eaf292cb5db6ccf7d68db2c5a310410ca1"
+          },
+          {
+            "locale": "ru",
+            "path": "resources/languages/ru/ru.yml",
+            "blobSha": "154c0e8317d4bd421605e68a62bcc4ef4f43a680",
+            "sha256": "63aade07a9e9feb3096e480dc87d7aa2f973edda79a8a8931eada0431efdbcfb"
+          },
+          {
+            "locale": "tr",
+            "path": "resources/languages/tr/tr.yml",
+            "blobSha": "8fdd2020e5d51c9e33e76caf435ad3400bd3e514",
+            "sha256": "7b4c05fddbfcde9d806719eba5f777932ee29ad0672f393844f1216b556d992e"
+          },
+          {
+            "locale": "uk",
+            "path": "resources/languages/uk/uk.yml",
+            "blobSha": "d5f08924a8a0c9eece7a3425322228c4110db6e7",
+            "sha256": "c07043703ce9d8c534a329d3d60252850f8ce44b71f7ed7cd02707bb6f49f655"
+          },
+          {
+            "locale": "vi",
+            "path": "resources/languages/vi/vi.yml",
+            "blobSha": "973765f96b7df75bc6089fa885572fc5589572c5",
+            "sha256": "f1a49dff75bb9269389794198fe3d97a57454ee9279275cd729ba94e8ff9455d"
+          },
+          {
+            "locale": "zh",
+            "path": "resources/languages/zh/zh.yml",
+            "blobSha": "08dec830dbb4b06cb2f9329274c243ad8985a921",
+            "sha256": "709b25bb7f0172acc19df41feec18d1f7612b9c99efa471902f117b3d6a811dd"
+          }
+        ]
+      },
+      "addons": {
+        "kind": "kingdomsx-addon-jars",
+        "repository": "CryptoMorin/KingdomsX",
+        "ref": "master",
+        "commitSha": "b797369ffd59a2a42b9b3f2d30978683b839af7e",
+        "artifacts": [
+          {
+            "addonId": "admin-tools",
+            "artifactPath": "addons/Kingdoms-Addon-Admin-Tools-1.2.3.2.jar",
+            "artifactBlobSha": "c63f5eab8d950936ae09f12aed4ff1383c87cee2",
+            "artifactSha256": "c07ed8f5f52b657f57beca205d12755f0b4f94e26dfcd691834e2ad77043256f",
+            "addonVersion": "1.2.3.2"
+          },
+          {
+            "addonId": "enginehub",
+            "artifactPath": "addons/Kingdoms-Addon-EngineHub-1.6.0.jar",
+            "artifactBlobSha": "67f070da4d22ca24adbed543854603585d031d35",
+            "artifactSha256": "5031072f65ae645269301935d8b38dcf26df31572b420e3f437dc8042d2a0423",
+            "addonVersion": "1.6.0"
+          },
+          {
+            "addonId": "map-viewers",
+            "artifactPath": "addons/Kingdoms-Addon-Map-Viewers-3.2.2.jar",
+            "artifactBlobSha": "29aaabc3ae8f20ecc1fe6ff4ea14652e4f5e96ac",
+            "artifactSha256": "b169a040912e6c578a6092569ea0e64e092b530f846bbb40b9f56f11104dcf4e",
+            "addonVersion": "3.2.2"
+          },
+          {
+            "addonId": "outposts",
+            "artifactPath": "addons/Kingdoms-Addon-Outposts-3.1.2.4.jar",
+            "artifactBlobSha": "831afdbcfedd0d7574337c93a662b58e51186ee0",
+            "artifactSha256": "37567955a0194f18a5eed5b11631d4e1225cc927605e183d3a438ca9469ac633",
+            "addonVersion": "3.1.2.4"
+          },
+          {
+            "addonId": "peace-treaties",
+            "artifactPath": "addons/Kingdoms-Addon-Peace-Treaties-1.2.8.3.jar",
+            "artifactBlobSha": "65c542bd55dc6dfed6e222f079d37971fd24a682",
+            "artifactSha256": "54b2f1a879e10403200f218d852deb8d80c721cc933777812bbdcfcac5ca9f03",
+            "addonVersion": "1.2.8.3"
+          }
+        ]
+      }
+    },
+    "runtime": {
+      "kind": "kingdomsx-jar",
+      "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+      "pluginVersion": "1.17.27.3"
+    }
+  },
+  "schemaCount": 28,
+  "schemas": [
+    {
+      "id": "champion-upgrades",
+      "resourceName": "champion-upgrades.yml",
+      "fileName": "champion-upgrades.json",
+      "coverage": {
+        "defaultPathCount": 312,
+        "rawDefaultPathCount": 312,
+        "activeRuntimePathCount": 0,
+        "fieldCount": 163,
+        "capabilitySourceCounts": {
+          "jar-schema": 96,
+          "jar-default": 62,
+          "editor-overlay": 152
+        },
+        "commonSettingCount": 0
+      }
+    },
+    {
+      "id": "chat",
+      "resourceName": "chat.yml",
+      "fileName": "chat.json",
+      "coverage": {
+        "defaultPathCount": 109,
+        "rawDefaultPathCount": 109,
+        "activeRuntimePathCount": 0,
+        "fieldCount": 247,
+        "capabilitySourceCounts": {
+          "jar-schema": 109,
+          "jar-default": 77,
+          "editor-overlay": 314
+        },
+        "commonSettingCount": 1
+      }
+    },
+    {
+      "id": "claims",
+      "resourceName": "claims.yml",
+      "fileName": "claims.json",
+      "coverage": {
+        "defaultPathCount": 186,
+        "rawDefaultPathCount": 186,
+        "activeRuntimePathCount": 1,
+        "fieldCount": 118,
+        "capabilitySourceCounts": {
+          "jar-schema": 126,
+          "jar-default": 105,
+          "editor-overlay": 25,
+          "jar-runtime": 3
+        },
+        "commonSettingCount": 3
+      }
+    },
+    {
+      "id": "commands",
+      "resourceName": "commands.yml",
+      "fileName": "commands.json",
+      "coverage": {
+        "defaultPathCount": 0,
+        "rawDefaultPathCount": 0,
+        "activeRuntimePathCount": 0,
+        "fieldCount": 4,
+        "capabilitySourceCounts": {
+          "jar-schema": 9
+        },
+        "commonSettingCount": 0
+      }
+    },
+    {
+      "id": "config",
+      "resourceName": "config.yml",
+      "fileName": "config.json",
+      "coverage": {
+        "defaultPathCount": 630,
+        "rawDefaultPathCount": 630,
+        "activeRuntimePathCount": 6,
+        "fieldCount": 542,
+        "capabilitySourceCounts": {
+          "jar-schema": 459,
+          "jar-default": 495,
+          "editor-overlay": 223,
+          "jar-runtime": 6
+        },
+        "commonSettingCount": 4
+      }
+    },
+    {
+      "id": "entity",
+      "resourceName": "entity.yml",
+      "fileName": "entity.json",
+      "coverage": {
+        "defaultPathCount": 0,
+        "rawDefaultPathCount": 0,
+        "activeRuntimePathCount": 0,
+        "fieldCount": 89,
+        "capabilitySourceCounts": {
+          "jar-schema": 15
+        },
+        "commonSettingCount": 0
+      }
+    },
+    {
+      "id": "guis/schema",
+      "resourceName": "guis/schema.yml",
+      "fileName": "guis__schema.json",
+      "coverage": {
+        "defaultPathCount": 786,
+        "rawDefaultPathCount": 6394,
+        "activeRuntimePathCount": 0,
+        "fieldCount": 743,
+        "capabilitySourceCounts": {
+          "jar-schema": 33,
+          "editor-overlay": 732,
+          "jar-default": 500
+        },
+        "commonSettingCount": 6
+      }
+    },
+    {
+      "id": "invasions",
+      "resourceName": "invasions.yml",
+      "fileName": "invasions.json",
+      "coverage": {
+        "defaultPathCount": 390,
+        "rawDefaultPathCount": 390,
+        "activeRuntimePathCount": 10,
+        "fieldCount": 294,
+        "capabilitySourceCounts": {
+          "jar-schema": 206,
+          "jar-default": 239,
+          "editor-overlay": 162,
+          "jar-runtime": 10
+        },
+        "commonSettingCount": 0
+      }
+    },
+    {
+      "id": "item-matcher",
+      "resourceName": "item-matcher.yml",
+      "fileName": "item-matcher.json",
+      "coverage": {
+        "defaultPathCount": 0,
+        "rawDefaultPathCount": 0,
+        "activeRuntimePathCount": 0,
+        "fieldCount": 6,
+        "capabilitySourceCounts": {
+          "jar-schema": 1,
+          "editor-overlay": 8
+        },
+        "commonSettingCount": 0
+      }
+    },
+    {
+      "id": "item-stack",
+      "resourceName": "item-stack.yml",
+      "fileName": "item-stack.json",
+      "coverage": {
+        "defaultPathCount": 0,
+        "rawDefaultPathCount": 0,
+        "activeRuntimePathCount": 0,
+        "fieldCount": 116,
+        "capabilitySourceCounts": {
+          "jar-schema": 1,
+          "editor-overlay": 98
+        },
+        "commonSettingCount": 0
+      }
+    },
+    {
+      "id": "map",
+      "resourceName": "map.yml",
+      "fileName": "map.json",
+      "coverage": {
+        "defaultPathCount": 279,
+        "rawDefaultPathCount": 279,
+        "activeRuntimePathCount": 1,
+        "fieldCount": 546,
+        "capabilitySourceCounts": {
+          "jar-schema": 21,
+          "jar-default": 212,
+          "editor-overlay": 873,
+          "jar-runtime": 1
+        },
+        "commonSettingCount": 0
+      }
+    },
+    {
+      "id": "misc-upgrades",
+      "resourceName": "misc-upgrades.yml",
+      "fileName": "misc-upgrades.json",
+      "coverage": {
+        "defaultPathCount": 260,
+        "rawDefaultPathCount": 260,
+        "activeRuntimePathCount": 1,
+        "fieldCount": 273,
+        "capabilitySourceCounts": {
+          "jar-schema": 156,
+          "jar-default": 129,
+          "editor-overlay": 386,
+          "jar-runtime": 1
+        },
+        "commonSettingCount": 0
+      }
+    },
+    {
+      "id": "permission",
+      "resourceName": "permission.yml",
+      "fileName": "permission.json",
+      "coverage": {
+        "defaultPathCount": 0,
+        "rawDefaultPathCount": 0,
+        "activeRuntimePathCount": 0,
+        "fieldCount": 8,
+        "capabilitySourceCounts": {
+          "jar-schema": 11
+        },
+        "commonSettingCount": 0
+      }
+    },
+    {
+      "id": "powers",
+      "resourceName": "powers.yml",
+      "fileName": "powers.json",
+      "coverage": {
+        "defaultPathCount": 50,
+        "rawDefaultPathCount": 50,
+        "activeRuntimePathCount": 1,
+        "fieldCount": 26,
+        "capabilitySourceCounts": {
+          "jar-schema": 26,
+          "jar-default": 24,
+          "editor-overlay": 8,
+          "jar-runtime": 1
+        },
+        "commonSettingCount": 0
+      }
+    },
+    {
+      "id": "protection-signs",
+      "resourceName": "protection-signs.yml",
+      "fileName": "protection-signs.json",
+      "coverage": {
+        "defaultPathCount": 39,
+        "rawDefaultPathCount": 39,
+        "activeRuntimePathCount": 0,
+        "fieldCount": 42,
+        "capabilitySourceCounts": {
+          "jar-schema": 47,
+          "jar-default": 39,
+          "editor-overlay": 13
+        },
+        "commonSettingCount": 0
+      }
+    },
+    {
+      "id": "ranks",
+      "resourceName": "ranks.yml",
+      "fileName": "ranks.json",
+      "coverage": {
+        "defaultPathCount": 113,
+        "rawDefaultPathCount": 113,
+        "activeRuntimePathCount": 2,
+        "fieldCount": 60,
+        "capabilitySourceCounts": {
+          "jar-schema": 31,
+          "jar-default": 34,
+          "editor-overlay": 64,
+          "jar-runtime": 2
+        },
+        "commonSettingCount": 3
+      }
+    },
+    {
+      "id": "relations",
+      "resourceName": "relations.yml",
+      "fileName": "relations.json",
+      "coverage": {
+        "defaultPathCount": 96,
+        "rawDefaultPathCount": 96,
+        "activeRuntimePathCount": 1,
+        "fieldCount": 151,
+        "capabilitySourceCounts": {
+          "jar-schema": 117,
+          "jar-default": 94,
+          "editor-overlay": 151,
+          "jar-runtime": 6
+        },
+        "commonSettingCount": 0
+      }
+    },
+    {
+      "id": "resource-points",
+      "resourceName": "resource-points.yml",
+      "fileName": "resource-points.json",
+      "coverage": {
+        "defaultPathCount": 56,
+        "rawDefaultPathCount": 56,
+        "activeRuntimePathCount": 0,
+        "fieldCount": 45,
+        "capabilitySourceCounts": {
+          "jar-schema": 46,
+          "jar-default": 29,
+          "editor-overlay": 53
+        },
+        "commonSettingCount": 0
+      }
+    },
+    {
+      "id": "structures",
+      "resourceName": "structures.yml",
+      "fileName": "structures.json",
+      "coverage": {
+        "defaultPathCount": 6,
+        "rawDefaultPathCount": 6,
+        "activeRuntimePathCount": 0,
+        "fieldCount": 7,
+        "capabilitySourceCounts": {
+          "jar-schema": 5,
+          "jar-default": 4,
+          "editor-overlay": 3
+        },
+        "commonSettingCount": 0
+      }
+    },
+    {
+      "id": "Structures/structure",
+      "resourceName": "Structures/structure.yml",
+      "fileName": "Structures__structure.json",
+      "coverage": {
+        "defaultPathCount": 427,
+        "rawDefaultPathCount": 751,
+        "activeRuntimePathCount": 0,
+        "fieldCount": 312,
+        "capabilitySourceCounts": {
+          "jar-schema": 49,
+          "editor-overlay": 308,
+          "jar-default": 108
+        },
+        "commonSettingCount": 3
+      }
+    },
+    {
+      "id": "turrets",
+      "resourceName": "turrets.yml",
+      "fileName": "turrets.json",
+      "coverage": {
+        "defaultPathCount": 60,
+        "rawDefaultPathCount": 60,
+        "activeRuntimePathCount": 0,
+        "fieldCount": 28,
+        "capabilitySourceCounts": {
+          "jar-schema": 18,
+          "jar-default": 18,
+          "editor-overlay": 16
+        },
+        "commonSettingCount": 0
+      }
+    },
+    {
+      "id": "Turrets/turret",
+      "resourceName": "Turrets/turret.yml",
+      "fileName": "Turrets__turret.json",
+      "coverage": {
+        "defaultPathCount": 160,
+        "rawDefaultPathCount": 613,
+        "activeRuntimePathCount": 0,
+        "fieldCount": 307,
+        "capabilitySourceCounts": {
+          "jar-schema": 59,
+          "editor-overlay": 285,
+          "jar-default": 87
+        },
+        "commonSettingCount": 4
+      }
+    },
+    {
+      "id": "addons/enginehub",
+      "resourceName": "enginehub.yml",
+      "fileName": "addons__enginehub.json",
+      "coverage": {
+        "defaultPathCount": 16,
+        "rawDefaultPathCount": 16,
+        "activeRuntimePathCount": 0,
+        "fieldCount": 16,
+        "capabilitySourceCounts": {
+          "jar-schema": 1,
+          "editor-overlay": 20,
+          "jar-default": 16
+        },
+        "commonSettingCount": 0
+      }
+    },
+    {
+      "id": "addons/maps/map",
+      "resourceName": "schemas/maps/map.yml",
+      "fileName": "addons__maps__map.json",
+      "coverage": {
+        "defaultPathCount": 43,
+        "rawDefaultPathCount": 43,
+        "activeRuntimePathCount": 0,
+        "fieldCount": 26,
+        "capabilitySourceCounts": {
+          "jar-schema": 23,
+          "jar-default": 16,
+          "editor-overlay": 12
+        },
+        "commonSettingCount": 0
+      }
+    },
+    {
+      "id": "addons/maps/marker",
+      "resourceName": "schemas/maps/marker.yml",
+      "fileName": "addons__maps__marker.json",
+      "coverage": {
+        "defaultPathCount": 119,
+        "rawDefaultPathCount": 119,
+        "activeRuntimePathCount": 0,
+        "fieldCount": 83,
+        "capabilitySourceCounts": {
+          "jar-schema": 32,
+          "jar-default": 83,
+          "editor-overlay": 62
+        },
+        "commonSettingCount": 0
+      }
+    },
+    {
+      "id": "addons/outposts",
+      "resourceName": "outposts.yml",
+      "fileName": "addons__outposts.json",
+      "coverage": {
+        "defaultPathCount": 0,
+        "rawDefaultPathCount": 0,
+        "activeRuntimePathCount": 0,
+        "fieldCount": 24,
+        "capabilitySourceCounts": {
+          "editor-overlay": 33
+        },
+        "commonSettingCount": 0
+      }
+    },
+    {
+      "id": "addons/peace-treaties",
+      "resourceName": "schemas/peace-treaties.yml",
+      "fileName": "addons__peace-treaties.json",
+      "coverage": {
+        "defaultPathCount": 30,
+        "rawDefaultPathCount": 71,
+        "activeRuntimePathCount": 0,
+        "fieldCount": 24,
+        "capabilitySourceCounts": {
+          "jar-schema": 31,
+          "jar-default": 23,
+          "editor-overlay": 15
+        },
+        "commonSettingCount": 0
+      }
+    },
+    {
+      "id": "language",
+      "resourceName": "languages/en.yml",
+      "fileName": "language.json",
+      "coverage": {
+        "defaultPathCount": 3222,
+        "rawDefaultPathCount": 3222,
+        "activeRuntimePathCount": 0,
+        "fieldCount": 3410,
+        "capabilitySourceCounts": {
+          "jar-schema": 1,
+          "editor-overlay": 3416,
+          "jar-default": 3175
+        },
+        "commonSettingCount": 0
+      }
+    }
+  ]
+}

@@ -1,0 +1,354 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "guis/invites.yml",
+  "schemaId": "guis/schema",
+  "options": [
+    {
+      "path": [
+        "title"
+      ],
+      "source": "\"&0-=( &aInvitations &0)=-\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "rows"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sound"
+      ],
+      "source": "ENTITY_EXPERIENCE_ORB_PICKUP",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options"
+      ],
+      "source": "\r\n  invite:\r\n    material: PLAYER_HEAD\r\n\r\n    valid:\r\n      condition: expired\r\n      name: \"EXPIRED &8[%kingdoms_rank_color%%kingdoms_rank_symbol%&8] {$p}%player%\"\r\n      lore: |\r\n        {$p}Sent{$colon} {$s}%timestamp%\r\n        &cClick to delete\r\n    else:\r\n      name: \"&8[%kingdoms_rank_color%%kingdoms_rank_symbol%&8] {$p}%player%\"\r\n      lore: |\r\n        {$p}Expires in{$colon} {$s}%time-left-to-accpet%\r\n        {$p}Sent{$colon} {$s}%timestamp%\r\n        {$p}Time Passed{$colon} {$s}%time-passed%\r\n\r\n        {$p}&lLeft-click to accept\r\n        &c&lRight-click to reject\r\n    slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20 ]\r\n  decline-all:\r\n    name: \"&cDecline All\"\r\n    material: RED_WOOL\r\n    lore: \"&4Decline all invites\"\r\n    posx: 5\r\n    posy: 1\r\n  blue-glass:\r\n    name: ''\r\n    material: BLUE_STAINED_GLASS_PANE\r\n    slots: [ 0, 1, 2, 3, 5, 6, 7, 8, 9, 17, 18, 26, 27, 35, 36, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53 ]\r\n\r\n#  next-page:\r\n#    name: '{$s}Next Page {$sep}- &e%page%&8/&e%pages%'\r\n#    material: PLAYER_HEAD\r\n#    skull: \"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjgyYWQxYjljYjRkZDIxMjU5YzBkNzVhYTMxNWZmMzg5YzNjZWY3NTJiZTM5NDkzMzgxNjRiYWM4NGE5NmUifX19\"\r\n#    slot: 8\r\n#  previous-page:\r\n#    name: '{$s}Previous Page {$sep}- &e%page%&8/&e%pages%'\r\n#    material: PLAYER_HEAD\r\n#    skull: \"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzdhZWU5YTc1YmYwZGY3ODk3MTgzMDE1Y2NhMGIyYTdkNzU1YzYzMzg4ZmYwMTc1MmQ1ZjQ0MTlmYzY0NSJ9fX0=\"\r\n#    slot: 0",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "invite"
+      ],
+      "source": "\r\n    material: PLAYER_HEAD\r\n\r\n    valid:\r\n      condition: expired\r\n      name: \"EXPIRED &8[%kingdoms_rank_color%%kingdoms_rank_symbol%&8] {$p}%player%\"\r\n      lore: |\r\n        {$p}Sent{$colon} {$s}%timestamp%\r\n        &cClick to delete\r\n    else:\r\n      name: \"&8[%kingdoms_rank_color%%kingdoms_rank_symbol%&8] {$p}%player%\"\r\n      lore: |\r\n        {$p}Expires in{$colon} {$s}%time-left-to-accpet%\r\n        {$p}Sent{$colon} {$s}%timestamp%\r\n        {$p}Time Passed{$colon} {$s}%time-passed%\r\n\r\n        {$p}&lLeft-click to accept\r\n        &c&lRight-click to reject\r\n    slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20 ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "invite",
+        "material"
+      ],
+      "source": "PLAYER_HEAD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "invite",
+        "valid"
+      ],
+      "source": "\r\n      condition: expired\r\n      name: \"EXPIRED &8[%kingdoms_rank_color%%kingdoms_rank_symbol%&8] {$p}%player%\"\r\n      lore: |\r\n        {$p}Sent{$colon} {$s}%timestamp%\r\n        &cClick to delete\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "invite",
+        "valid",
+        "condition"
+      ],
+      "source": "expired",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "invite",
+        "valid",
+        "name"
+      ],
+      "source": "\"EXPIRED &8[%kingdoms_rank_color%%kingdoms_rank_symbol%&8] {$p}%player%\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "invite",
+        "valid",
+        "lore"
+      ],
+      "source": "|\r\n        {$p}Sent{$colon} {$s}%timestamp%\r\n        &cClick to delete\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "invite",
+        "else"
+      ],
+      "source": "\r\n      name: \"&8[%kingdoms_rank_color%%kingdoms_rank_symbol%&8] {$p}%player%\"\r\n      lore: |\r\n        {$p}Expires in{$colon} {$s}%time-left-to-accpet%\r\n        {$p}Sent{$colon} {$s}%timestamp%\r\n        {$p}Time Passed{$colon} {$s}%time-passed%\r\n\r\n        {$p}&lLeft-click to accept\r\n        &c&lRight-click to reject\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "invite",
+        "else",
+        "name"
+      ],
+      "source": "\"&8[%kingdoms_rank_color%%kingdoms_rank_symbol%&8] {$p}%player%\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "invite",
+        "else",
+        "lore"
+      ],
+      "source": "|\r\n        {$p}Expires in{$colon} {$s}%time-left-to-accpet%\r\n        {$p}Sent{$colon} {$s}%timestamp%\r\n        {$p}Time Passed{$colon} {$s}%time-passed%\r\n\r\n        {$p}&lLeft-click to accept\r\n        &c&lRight-click to reject\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "invite",
+        "slots"
+      ],
+      "source": "[ 10, 11, 12, 13, 14, 15, 16, 19, 20 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "19",
+        "20"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "decline-all"
+      ],
+      "source": "\r\n    name: \"&cDecline All\"\r\n    material: RED_WOOL\r\n    lore: \"&4Decline all invites\"\r\n    posx: 5\r\n    posy: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "decline-all",
+        "name"
+      ],
+      "source": "\"&cDecline All\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "decline-all",
+        "material"
+      ],
+      "source": "RED_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "decline-all",
+        "lore"
+      ],
+      "source": "\"&4Decline all invites\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "decline-all",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "decline-all",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "blue-glass"
+      ],
+      "source": "\r\n    name: ''\r\n    material: BLUE_STAINED_GLASS_PANE\r\n    slots: [ 0, 1, 2, 3, 5, 6, 7, 8, 9, 17, 18, 26, 27, 35, 36, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53 ]\r\n\r\n#  next-page:\r\n#    name: '{$s}Next Page {$sep}- &e%page%&8/&e%pages%'\r\n#    material: PLAYER_HEAD\r\n#    skull: \"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjgyYWQxYjljYjRkZDIxMjU5YzBkNzVhYTMxNWZmMzg5YzNjZWY3NTJiZTM5NDkzMzgxNjRiYWM4NGE5NmUifX19\"\r\n#    slot: 8\r\n#  previous-page:\r\n#    name: '{$s}Previous Page {$sep}- &e%page%&8/&e%pages%'\r\n#    material: PLAYER_HEAD\r\n#    skull: \"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzdhZWU5YTc1YmYwZGY3ODk3MTgzMDE1Y2NhMGIyYTdkNzU1YzYzMzg4ZmYwMTc1MmQ1ZjQ0MTlmYzY0NSJ9fX0=\"\r\n#    slot: 0",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "blue-glass",
+        "name"
+      ],
+      "source": "''",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "blue-glass",
+        "material"
+      ],
+      "source": "BLUE_STAINED_GLASS_PANE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "blue-glass",
+        "slots"
+      ],
+      "source": "[ 0, 1, 2, 3, 5, 6, 7, 8, 9, 17, 18, 26, 27, 35, 36, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "17",
+        "18",
+        "26",
+        "27",
+        "35",
+        "36",
+        "44",
+        "45",
+        "46",
+        "47",
+        "48",
+        "49",
+        "50",
+        "51",
+        "52",
+        "53"
+      ]
+    }
+  ]
+}

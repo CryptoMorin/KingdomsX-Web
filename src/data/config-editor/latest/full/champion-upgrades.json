@@ -1,0 +1,2997 @@
+{
+  "formatVersion": 1,
+  "id": "champion-upgrades",
+  "resourceName": "champion-upgrades.yml",
+  "sources": {
+    "schema": {
+      "kind": "kingdomsx-jar",
+      "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+      "pluginVersion": "1.17.27.3",
+      "fileName": "champion-upgrades.json"
+    },
+    "defaults": [
+      "default--champion-upgrades.json"
+    ],
+    "runtime": {
+      "kind": "kingdomsx-jar",
+      "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+      "pluginVersion": "1.17.27.3"
+    }
+  },
+  "coverage": {
+    "defaultPathCount": 312,
+    "rawDefaultPathCount": 312,
+    "activeRuntimePathCount": 0,
+    "fieldCount": 163,
+    "capabilitySourceCounts": {
+      "jar-schema": 96,
+      "jar-default": 62,
+      "editor-overlay": 152
+    },
+    "commonSettingCount": 0
+  },
+  "schema": {
+    "kind": "mapping",
+    "keys": {
+      "kind": "enum",
+      "values": [
+        "reinforcements",
+        "champions",
+        "focus",
+        "fangs",
+        "plow",
+        "thor",
+        "damage-cap",
+        "death-duel",
+        "drag",
+        "throw",
+        "strength",
+        "speed",
+        "resistance",
+        "health",
+        "burst"
+      ],
+      "allowCustom": false,
+      "capability": {
+        "sources": [
+          "jar-schema"
+        ]
+      }
+    },
+    "values": {
+      "kind": "object",
+      "fields": [
+        {
+          "key": "enabled",
+          "type": {
+            "kind": "boolean",
+            "capability": {
+              "sources": [
+                "jar-schema",
+                "jar-default"
+              ]
+            },
+            "optional": true
+          }
+        },
+        {
+          "key": "max-level",
+          "type": {
+            "kind": "expression",
+            "language": "math",
+            "capability": {
+              "sources": [
+                "jar-schema",
+                "jar-default"
+              ]
+            },
+            "optional": true
+          }
+        },
+        {
+          "key": "radius",
+          "type": {
+            "kind": "expression",
+            "language": "math",
+            "capability": {
+              "sources": [
+                "jar-schema",
+                "jar-default"
+              ]
+            },
+            "description": "How close the players should be for this ability to activate.",
+            "optional": true
+          }
+        },
+        {
+          "key": "cooldown",
+          "type": {
+            "kind": "duration",
+            "typeName": "Period",
+            "capability": {
+              "sources": [
+                "jar-schema",
+                "jar-default"
+              ]
+            },
+            "optional": true
+          }
+        },
+        {
+          "key": "chance",
+          "type": {
+            "kind": "expression",
+            "language": "math",
+            "capability": {
+              "sources": [
+                "jar-schema",
+                "jar-default"
+              ]
+            },
+            "optional": true
+          }
+        },
+        {
+          "key": "scaling",
+          "type": {
+            "kind": "expression",
+            "language": "math",
+            "capability": {
+              "sources": [
+                "jar-schema",
+                "jar-default"
+              ]
+            },
+            "description": "Max health is 2048, but you can change that in your server settings.",
+            "optional": true
+          }
+        },
+        {
+          "key": "cost",
+          "type": {
+            "kind": "expression",
+            "language": "math",
+            "capability": {
+              "sources": [
+                "jar-schema",
+                "jar-default"
+              ]
+            },
+            "optional": true
+          }
+        },
+        {
+          "key": "default-level",
+          "type": {
+            "kind": "expression",
+            "language": "math",
+            "capability": {
+              "sources": [
+                "jar-schema"
+              ]
+            },
+            "optional": true
+          }
+        }
+      ],
+      "capability": {
+        "sources": [
+          "jar-schema"
+        ]
+      }
+    },
+    "fields": [
+      {
+        "key": "champions",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "string",
+            "typeName": "str",
+            "capability": {
+              "sources": [
+                "jar-schema"
+              ]
+            }
+          },
+          "values": {
+            "kind": "object",
+            "fields": [
+              {
+                "key": "base",
+                "type": {
+                  "kind": "object",
+                  "fields": [
+                    {
+                      "key": "type",
+                      "type": {
+                        "kind": "suggestion",
+                        "typeName": "EntityType",
+                        "description": "Vanilla entity type for this champion.",
+                        "optional": true,
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        },
+                        "allowCustom": true
+                      }
+                    },
+                    {
+                      "key": "baby",
+                      "type": {
+                        "kind": "boolean",
+                        "description": "Whether the champion spawns as a baby variant.",
+                        "optional": true,
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "key": "name",
+                      "type": {
+                        "kind": "string",
+                        "typeName": "Message",
+                        "description": "Champion display name.",
+                        "optional": true,
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "key": "mythicmob",
+                      "type": {
+                        "kind": "string",
+                        "typeName": "str",
+                        "description": "Optional MythicMobs mob id used instead of the vanilla champion entity. MM level follows equipment level.",
+                        "optional": true,
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        }
+                      }
+                    }
+                  ],
+                  "description": "Champion entity definition. Do not set max health here. The health upgrade overrides it.",
+                  "optional": true,
+                  "required": [],
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                }
+              },
+              {
+                "key": "levels",
+                "type": {
+                  "kind": "mapping",
+                  "keys": {
+                    "kind": "integer",
+                    "description": "Equipment level",
+                    "optional": true,
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    }
+                  },
+                  "values": {
+                    "kind": "object",
+                    "fields": [
+                      {
+                        "key": "equipment",
+                        "type": {
+                          "kind": "mapping",
+                          "keys": {
+                            "kind": "string",
+                            "typeName": "str",
+                            "description": "Equipment slot such as main-hand, helmet, chestplate, leggings, boots",
+                            "optional": true,
+                            "capability": {
+                              "sources": [
+                                "editor-overlay"
+                              ]
+                            }
+                          },
+                          "values": {
+                            "kind": "object",
+                            "fields": [
+                              {
+                                "key": "item",
+                                "type": {
+                                  "kind": "reference",
+                                  "typeName": "ItemStack",
+                                  "description": "Item worn or held in this slot."
+                                }
+                              }
+                            ],
+                            "description": "Equipment slot entry.",
+                            "optional": true,
+                            "required": [],
+                            "capability": {
+                              "sources": [
+                                "editor-overlay"
+                              ]
+                            }
+                          },
+                          "description": "Equipment slots for this champion level.",
+                          "optional": true,
+                          "capability": {
+                            "sources": [
+                              "editor-overlay"
+                            ]
+                          }
+                        }
+                      }
+                    ],
+                    "description": "Champion level definition.",
+                    "optional": true,
+                    "required": [],
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    }
+                  },
+                  "description": "Per-level champion equipment.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay",
+                      "jar-schema",
+                      "jar-default"
+                    ]
+                  }
+                }
+              },
+              {
+                "key": "cost",
+                "type": {
+                  "kind": "expression",
+                  "language": "math",
+                  "capability": {
+                    "sources": [
+                      "jar-schema",
+                      "editor-overlay"
+                    ]
+                  },
+                  "description": "Resource-point cost formula. Usually uses lvl.",
+                  "optional": true
+                }
+              },
+              {
+                "key": "max-level",
+                "type": {
+                  "kind": "integer",
+                  "minimum": 1,
+                  "capability": {
+                    "sources": [
+                      "jar-schema",
+                      "editor-overlay"
+                    ]
+                  },
+                  "description": "Maximum equipment level.",
+                  "optional": true
+                }
+              },
+              {
+                "key": "name",
+                "type": {
+                  "kind": "string",
+                  "typeName": "Message",
+                  "description": "Champion type display name used in messages.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                }
+              }
+            ],
+            "capability": {
+              "sources": [
+                "jar-schema"
+              ]
+            },
+            "description": "Champion type definition.",
+            "optional": true,
+            "required": []
+          },
+          "fields": [
+            {
+              "key": "default",
+              "type": {
+                "kind": "string",
+                "typeName": "str",
+                "description": "Default champion type id. Requires a restart to apply.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay",
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                }
+              }
+            },
+            {
+              "key": "zombie",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "base",
+                    "type": {
+                      "kind": "object",
+                      "fields": [
+                        {
+                          "key": "type",
+                          "type": {
+                            "kind": "suggestion",
+                            "typeName": "EntityType",
+                            "description": "Vanilla entity type for this champion.",
+                            "optional": true,
+                            "capability": {
+                              "sources": [
+                                "editor-overlay"
+                              ]
+                            },
+                            "allowCustom": true
+                          }
+                        },
+                        {
+                          "key": "baby",
+                          "type": {
+                            "kind": "boolean",
+                            "description": "Whether the champion spawns as a baby variant.",
+                            "optional": true,
+                            "capability": {
+                              "sources": [
+                                "editor-overlay"
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "key": "name",
+                          "type": {
+                            "kind": "string",
+                            "typeName": "Message",
+                            "description": "Champion display name.",
+                            "optional": true,
+                            "capability": {
+                              "sources": [
+                                "editor-overlay"
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "key": "mythicmob",
+                          "type": {
+                            "kind": "string",
+                            "typeName": "str",
+                            "description": "Optional MythicMobs mob id used instead of the vanilla champion entity. MM level follows equipment level.",
+                            "optional": true,
+                            "capability": {
+                              "sources": [
+                                "editor-overlay"
+                              ]
+                            }
+                          }
+                        }
+                      ],
+                      "description": "Champion entity definition. Do not set max health here. The health upgrade overrides it.",
+                      "optional": true,
+                      "required": [],
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "key": "levels",
+                    "type": {
+                      "kind": "mapping",
+                      "keys": {
+                        "kind": "integer",
+                        "description": "Equipment level",
+                        "optional": true,
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        }
+                      },
+                      "values": {
+                        "kind": "object",
+                        "fields": [
+                          {
+                            "key": "equipment",
+                            "type": {
+                              "kind": "mapping",
+                              "keys": {
+                                "kind": "string",
+                                "typeName": "str",
+                                "description": "Equipment slot such as main-hand, helmet, chestplate, leggings, boots",
+                                "optional": true,
+                                "capability": {
+                                  "sources": [
+                                    "editor-overlay"
+                                  ]
+                                }
+                              },
+                              "values": {
+                                "kind": "object",
+                                "fields": [
+                                  {
+                                    "key": "item",
+                                    "type": {
+                                      "kind": "reference",
+                                      "typeName": "ItemStack",
+                                      "description": "Item worn or held in this slot."
+                                    }
+                                  }
+                                ],
+                                "description": "Equipment slot entry.",
+                                "optional": true,
+                                "required": [],
+                                "capability": {
+                                  "sources": [
+                                    "editor-overlay"
+                                  ]
+                                }
+                              },
+                              "description": "Equipment slots for this champion level.",
+                              "optional": true,
+                              "capability": {
+                                "sources": [
+                                  "editor-overlay"
+                                ]
+                              }
+                            }
+                          }
+                        ],
+                        "description": "Champion level definition.",
+                        "optional": true,
+                        "required": [],
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        }
+                      },
+                      "description": "Per-level champion equipment.",
+                      "optional": true,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "key": "cost",
+                    "type": {
+                      "kind": "expression",
+                      "language": "math",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Resource-point cost formula. Usually uses lvl.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "max-level",
+                    "type": {
+                      "kind": "integer",
+                      "minimum": 1,
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Maximum equipment level.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "name",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "Message",
+                      "description": "Champion type display name used in messages.",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  }
+                ],
+                "capability": {
+                  "sources": [
+                    "jar-schema"
+                  ]
+                },
+                "description": "Champion type definition.",
+                "optional": true,
+                "required": []
+              }
+            },
+            {
+              "key": "skeleton",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "base",
+                    "type": {
+                      "kind": "object",
+                      "fields": [
+                        {
+                          "key": "type",
+                          "type": {
+                            "kind": "suggestion",
+                            "typeName": "EntityType",
+                            "description": "Vanilla entity type for this champion.",
+                            "optional": true,
+                            "capability": {
+                              "sources": [
+                                "editor-overlay"
+                              ]
+                            },
+                            "allowCustom": true
+                          }
+                        },
+                        {
+                          "key": "baby",
+                          "type": {
+                            "kind": "boolean",
+                            "description": "Whether the champion spawns as a baby variant.",
+                            "optional": true,
+                            "capability": {
+                              "sources": [
+                                "editor-overlay"
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "key": "name",
+                          "type": {
+                            "kind": "string",
+                            "typeName": "Message",
+                            "description": "Champion display name.",
+                            "optional": true,
+                            "capability": {
+                              "sources": [
+                                "editor-overlay"
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "key": "mythicmob",
+                          "type": {
+                            "kind": "string",
+                            "typeName": "str",
+                            "description": "Optional MythicMobs mob id used instead of the vanilla champion entity. MM level follows equipment level.",
+                            "optional": true,
+                            "capability": {
+                              "sources": [
+                                "editor-overlay"
+                              ]
+                            }
+                          }
+                        }
+                      ],
+                      "description": "Champion entity definition. Do not set max health here. The health upgrade overrides it.",
+                      "optional": true,
+                      "required": [],
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "key": "levels",
+                    "type": {
+                      "kind": "mapping",
+                      "keys": {
+                        "kind": "integer",
+                        "description": "Equipment level",
+                        "optional": true,
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        }
+                      },
+                      "values": {
+                        "kind": "object",
+                        "fields": [
+                          {
+                            "key": "equipment",
+                            "type": {
+                              "kind": "mapping",
+                              "keys": {
+                                "kind": "string",
+                                "typeName": "str",
+                                "description": "Equipment slot such as main-hand, helmet, chestplate, leggings, boots",
+                                "optional": true,
+                                "capability": {
+                                  "sources": [
+                                    "editor-overlay"
+                                  ]
+                                }
+                              },
+                              "values": {
+                                "kind": "object",
+                                "fields": [
+                                  {
+                                    "key": "item",
+                                    "type": {
+                                      "kind": "reference",
+                                      "typeName": "ItemStack",
+                                      "description": "Item worn or held in this slot."
+                                    }
+                                  }
+                                ],
+                                "description": "Equipment slot entry.",
+                                "optional": true,
+                                "required": [],
+                                "capability": {
+                                  "sources": [
+                                    "editor-overlay"
+                                  ]
+                                }
+                              },
+                              "description": "Equipment slots for this champion level.",
+                              "optional": true,
+                              "capability": {
+                                "sources": [
+                                  "editor-overlay"
+                                ]
+                              }
+                            }
+                          }
+                        ],
+                        "description": "Champion level definition.",
+                        "optional": true,
+                        "required": [],
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        }
+                      },
+                      "description": "Per-level champion equipment.",
+                      "optional": true,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "key": "cost",
+                    "type": {
+                      "kind": "expression",
+                      "language": "math",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Resource-point cost formula. Usually uses lvl.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "max-level",
+                    "type": {
+                      "kind": "integer",
+                      "minimum": 1,
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Maximum equipment level.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "name",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "Message",
+                      "description": "Champion type display name used in messages.",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  }
+                ],
+                "capability": {
+                  "sources": [
+                    "jar-schema"
+                  ]
+                },
+                "description": "Champion type definition.",
+                "optional": true,
+                "required": []
+              }
+            }
+          ],
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          }
+        }
+      },
+      {
+        "key": "health",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "enabled",
+              "type": {
+                "kind": "boolean",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default",
+                    "editor-overlay"
+                  ]
+                },
+                "description": "Whether players can buy this champion upgrade.",
+                "optional": true
+              }
+            },
+            {
+              "key": "max-level",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default",
+                    "editor-overlay"
+                  ]
+                },
+                "description": "Maximum purchasable level.",
+                "minimum": 0,
+                "optional": true
+              }
+            },
+            {
+              "key": "radius",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "editor-overlay"
+                  ]
+                },
+                "description": "Ability radius. Enter a number or formula.",
+                "optional": true
+              }
+            },
+            {
+              "key": "cooldown",
+              "type": {
+                "kind": "duration",
+                "typeName": "Period",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "editor-overlay"
+                  ]
+                },
+                "description": "Fixed ability cooldown or a formula that returns milliseconds.",
+                "optional": true
+              }
+            },
+            {
+              "key": "chance",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "editor-overlay"
+                  ]
+                },
+                "description": "Activation chance formula for chance-based upgrades.",
+                "optional": true
+              }
+            },
+            {
+              "key": "scaling",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default",
+                    "editor-overlay"
+                  ]
+                },
+                "description": "Max health is 2048, but you can change that in your server settings.",
+                "optional": true
+              }
+            },
+            {
+              "key": "cost",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default",
+                    "editor-overlay"
+                  ]
+                },
+                "description": "Resource-point cost formula. Usually uses lvl.",
+                "optional": true
+              }
+            },
+            {
+              "key": "default-level",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "capability": {
+                  "sources": [
+                    "jar-schema"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "conditions",
+              "type": {
+                "kind": "mapping",
+                "keys": {
+                  "kind": "expression",
+                  "language": "condition",
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  },
+                  "allowFallback": true,
+                  "description": "A Kingdoms condition, or else for the optional fallback."
+                },
+                "values": {
+                  "kind": "string",
+                  "typeName": "Message",
+                  "description": "Message shown when the condition fails.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                },
+                "description": "Optional upgrade-tree requirements.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            },
+            {
+              "key": "name",
+              "type": {
+                "kind": "string",
+                "typeName": "Message",
+                "description": "Optional upgrade name used in messages.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            },
+            {
+              "key": "range",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "description": "Ability range formula.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            },
+            {
+              "key": "min-targets",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "description": "Minimum targets required before the ability activates.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            },
+            {
+              "key": "champion-damage-boost",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "description": "Damage multiplier or formula applied to the champion.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            },
+            {
+              "key": "champion-damage-reduction",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "description": "Incoming damage reduction formula for the champion.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            },
+            {
+              "key": "condition",
+              "type": {
+                "kind": "expression",
+                "language": "condition",
+                "optional": true,
+                "description": "Single condition required before this upgrade can be bought.",
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            }
+          ],
+          "capability": {
+            "sources": [
+              "jar-schema"
+            ]
+          },
+          "description": "Champion upgrade definition. Optional keys vary by upgrade.",
+          "optional": true,
+          "required": []
+        }
+      },
+      {
+        "key": "throw",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "enabled",
+              "type": {
+                "kind": "boolean",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default",
+                    "editor-overlay"
+                  ]
+                },
+                "description": "Whether players can buy this champion upgrade.",
+                "optional": true
+              }
+            },
+            {
+              "key": "max-level",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default",
+                    "editor-overlay"
+                  ]
+                },
+                "description": "Maximum purchasable level.",
+                "minimum": 0,
+                "optional": true
+              }
+            },
+            {
+              "key": "radius",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "editor-overlay"
+                  ]
+                },
+                "description": "Ability radius. Enter a number or formula.",
+                "optional": true
+              }
+            },
+            {
+              "key": "cooldown",
+              "type": {
+                "kind": "duration",
+                "typeName": "Period",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "editor-overlay"
+                  ]
+                },
+                "description": "Fixed ability cooldown or a formula that returns milliseconds.",
+                "optional": true
+              }
+            },
+            {
+              "key": "chance",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default",
+                    "editor-overlay"
+                  ]
+                },
+                "description": "Activation chance formula for chance-based upgrades.",
+                "optional": true
+              }
+            },
+            {
+              "key": "scaling",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default",
+                    "editor-overlay"
+                  ]
+                },
+                "description": "Max health is 2048, but you can change that in your server settings.",
+                "optional": true
+              }
+            },
+            {
+              "key": "cost",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default",
+                    "editor-overlay"
+                  ]
+                },
+                "description": "Resource-point cost formula. Usually uses lvl.",
+                "optional": true
+              }
+            },
+            {
+              "key": "default-level",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "capability": {
+                  "sources": [
+                    "jar-schema"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "conditions",
+              "type": {
+                "kind": "mapping",
+                "keys": {
+                  "kind": "expression",
+                  "language": "condition",
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  },
+                  "allowFallback": true,
+                  "description": "A Kingdoms condition, or else for the optional fallback."
+                },
+                "values": {
+                  "kind": "string",
+                  "typeName": "Message",
+                  "description": "Message shown when the condition fails.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                },
+                "description": "Optional upgrade-tree requirements.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            },
+            {
+              "key": "name",
+              "type": {
+                "kind": "string",
+                "typeName": "Message",
+                "description": "Optional upgrade name used in messages.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            },
+            {
+              "key": "range",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "description": "Ability range formula.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            },
+            {
+              "key": "min-targets",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "description": "Minimum targets required before the ability activates.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            },
+            {
+              "key": "champion-damage-boost",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "description": "Damage multiplier or formula applied to the champion.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            },
+            {
+              "key": "champion-damage-reduction",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "description": "Incoming damage reduction formula for the champion.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            },
+            {
+              "key": "condition",
+              "type": {
+                "kind": "expression",
+                "language": "condition",
+                "optional": true,
+                "description": "Single condition required before this upgrade can be bought.",
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            }
+          ],
+          "capability": {
+            "sources": [
+              "jar-schema"
+            ]
+          },
+          "description": "Champion upgrade definition. Optional keys vary by upgrade.",
+          "optional": true,
+          "required": []
+        }
+      },
+      {
+        "key": "drag",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "enabled",
+              "type": {
+                "kind": "boolean",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default",
+                    "editor-overlay"
+                  ]
+                },
+                "description": "Whether players can buy this champion upgrade.",
+                "optional": true
+              }
+            },
+            {
+              "key": "max-level",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default",
+                    "editor-overlay"
+                  ]
+                },
+                "description": "Maximum purchasable level.",
+                "minimum": 0,
+                "optional": true
+              }
+            },
+            {
+              "key": "radius",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "editor-overlay"
+                  ]
+                },
+                "description": "Ability radius. Enter a number or formula.",
+                "optional": true
+              }
+            },
+            {
+              "key": "cooldown",
+              "type": {
+                "kind": "duration",
+                "typeName": "Period",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "editor-overlay"
+                  ]
+                },
+                "description": "Fixed ability cooldown or a formula that returns milliseconds.",
+                "optional": true
+              }
+            },
+            {
+              "key": "chance",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default",
+                    "editor-overlay"
+                  ]
+                },
+                "description": "Activation chance formula for chance-based upgrades.",
+                "optional": true
+              }
+            },
+            {
+              "key": "scaling",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default",
+                    "editor-overlay"
+                  ]
+                },
+                "description": "Max health is 2048, but you can change that in your server settings.",
+                "optional": true
+              }
+            },
+            {
+              "key": "cost",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default",
+                    "editor-overlay"
+                  ]
+                },
+                "description": "Resource-point cost formula. Usually uses lvl.",
+                "optional": true
+              }
+            },
+            {
+              "key": "default-level",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "capability": {
+                  "sources": [
+                    "jar-schema"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "conditions",
+              "type": {
+                "kind": "mapping",
+                "keys": {
+                  "kind": "expression",
+                  "language": "condition",
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  },
+                  "allowFallback": true,
+                  "description": "A Kingdoms condition, or else for the optional fallback."
+                },
+                "values": {
+                  "kind": "string",
+                  "typeName": "Message",
+                  "description": "Message shown when the condition fails.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                },
+                "description": "Optional upgrade-tree requirements.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            },
+            {
+              "key": "name",
+              "type": {
+                "kind": "string",
+                "typeName": "Message",
+                "description": "Optional upgrade name used in messages.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            },
+            {
+              "key": "range",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "description": "Ability range formula.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            },
+            {
+              "key": "min-targets",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "description": "Minimum targets required before the ability activates.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            },
+            {
+              "key": "champion-damage-boost",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "description": "Damage multiplier or formula applied to the champion.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            },
+            {
+              "key": "champion-damage-reduction",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "description": "Incoming damage reduction formula for the champion.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            },
+            {
+              "key": "condition",
+              "type": {
+                "kind": "expression",
+                "language": "condition",
+                "optional": true,
+                "description": "Single condition required before this upgrade can be bought.",
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            }
+          ],
+          "capability": {
+            "sources": [
+              "jar-schema"
+            ]
+          },
+          "description": "Champion upgrade definition. Optional keys vary by upgrade.",
+          "optional": true,
+          "required": []
+        }
+      },
+      {
+        "key": "death-duel",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "enabled",
+              "type": {
+                "kind": "boolean",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default",
+                    "editor-overlay"
+                  ]
+                },
+                "description": "Whether players can buy this champion upgrade.",
+                "optional": true
+              }
+            },
+            {
+              "key": "max-level",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default",
+                    "editor-overlay"
+                  ]
+                },
+                "description": "Maximum purchasable level.",
+                "minimum": 0,
+                "optional": true
+              }
+            },
+            {
+              "key": "radius",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "editor-overlay"
+                  ]
+                },
+                "description": "Ability radius. Enter a number or formula.",
+                "optional": true
+              }
+            },
+            {
+              "key": "cooldown",
+              "type": {
+                "kind": "duration",
+                "typeName": "Period",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "editor-overlay"
+                  ]
+                },
+                "description": "Fixed ability cooldown or a formula that returns milliseconds.",
+                "optional": true
+              }
+            },
+            {
+              "key": "chance",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default",
+                    "editor-overlay"
+                  ]
+                },
+                "description": "Activation chance formula for chance-based upgrades.",
+                "optional": true
+              }
+            },
+            {
+              "key": "scaling",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default",
+                    "editor-overlay"
+                  ]
+                },
+                "description": "Max health is 2048, but you can change that in your server settings.",
+                "optional": true
+              }
+            },
+            {
+              "key": "cost",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default",
+                    "editor-overlay"
+                  ]
+                },
+                "description": "Resource-point cost formula. Usually uses lvl.",
+                "optional": true
+              }
+            },
+            {
+              "key": "default-level",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "capability": {
+                  "sources": [
+                    "jar-schema"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "champion-damage-boost",
+              "type": {
+                "kind": "expression",
+                "typeName": "str",
+                "description": "Damage multiplier or formula applied to the champion.",
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                },
+                "language": "math",
+                "optional": true
+              }
+            },
+            {
+              "key": "champion-damage-reduction",
+              "type": {
+                "kind": "expression",
+                "typeName": "str",
+                "description": "Incoming damage reduction formula for the champion.",
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                },
+                "language": "math",
+                "optional": true
+              }
+            },
+            {
+              "key": "name",
+              "type": {
+                "kind": "string",
+                "typeName": "Message",
+                "description": "Optional upgrade name used in messages.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            },
+            {
+              "key": "range",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "description": "Ability range formula.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            },
+            {
+              "key": "min-targets",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "description": "Minimum targets required before the ability activates.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            },
+            {
+              "key": "condition",
+              "type": {
+                "kind": "expression",
+                "language": "condition",
+                "optional": true,
+                "description": "Single condition required before this upgrade can be bought.",
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            },
+            {
+              "key": "conditions",
+              "type": {
+                "kind": "mapping",
+                "keys": {
+                  "kind": "expression",
+                  "language": "condition",
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  },
+                  "allowFallback": true,
+                  "description": "A Kingdoms condition, or else for the optional fallback."
+                },
+                "values": {
+                  "kind": "string",
+                  "typeName": "Message",
+                  "description": "Message shown when the condition fails.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                },
+                "description": "Optional upgrade-tree requirements.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            }
+          ],
+          "capability": {
+            "sources": [
+              "jar-schema"
+            ]
+          },
+          "description": "Champion upgrade definition. Optional keys vary by upgrade.",
+          "optional": true,
+          "required": []
+        }
+      },
+      {
+        "key": "damage-cap",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "enabled",
+              "type": {
+                "kind": "boolean",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default",
+                    "editor-overlay"
+                  ]
+                },
+                "description": "Whether players can buy this champion upgrade.",
+                "optional": true
+              }
+            },
+            {
+              "key": "max-level",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default",
+                    "editor-overlay"
+                  ]
+                },
+                "description": "Maximum purchasable level.",
+                "minimum": 0,
+                "optional": true
+              }
+            },
+            {
+              "key": "radius",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "editor-overlay"
+                  ]
+                },
+                "description": "Ability radius. Enter a number or formula.",
+                "optional": true
+              }
+            },
+            {
+              "key": "cooldown",
+              "type": {
+                "kind": "duration",
+                "typeName": "Period",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "editor-overlay"
+                  ]
+                },
+                "description": "Fixed ability cooldown or a formula that returns milliseconds.",
+                "optional": true
+              }
+            },
+            {
+              "key": "chance",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default",
+                    "editor-overlay"
+                  ]
+                },
+                "description": "Activation chance formula for chance-based upgrades.",
+                "optional": true
+              }
+            },
+            {
+              "key": "scaling",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default",
+                    "editor-overlay"
+                  ]
+                },
+                "description": "Max health is 2048, but you can change that in your server settings.",
+                "optional": true
+              }
+            },
+            {
+              "key": "cost",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default",
+                    "editor-overlay"
+                  ]
+                },
+                "description": "Resource-point cost formula. Usually uses lvl.",
+                "optional": true
+              }
+            },
+            {
+              "key": "default-level",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "capability": {
+                  "sources": [
+                    "jar-schema"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "conditions",
+              "type": {
+                "kind": "mapping",
+                "keys": {
+                  "kind": "expression",
+                  "language": "condition",
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  },
+                  "allowFallback": true,
+                  "description": "A Kingdoms condition, or else for the optional fallback."
+                },
+                "values": {
+                  "kind": "string",
+                  "typeName": "Message",
+                  "description": "Message shown when the condition fails.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                },
+                "description": "Optional upgrade-tree requirements.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            },
+            {
+              "key": "name",
+              "type": {
+                "kind": "string",
+                "typeName": "Message",
+                "description": "Optional upgrade name used in messages.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            },
+            {
+              "key": "range",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "description": "Ability range formula.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            },
+            {
+              "key": "min-targets",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "description": "Minimum targets required before the ability activates.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            },
+            {
+              "key": "champion-damage-boost",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "description": "Damage multiplier or formula applied to the champion.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            },
+            {
+              "key": "champion-damage-reduction",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "description": "Incoming damage reduction formula for the champion.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            },
+            {
+              "key": "condition",
+              "type": {
+                "kind": "expression",
+                "language": "condition",
+                "optional": true,
+                "description": "Single condition required before this upgrade can be bought.",
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            }
+          ],
+          "capability": {
+            "sources": [
+              "jar-schema"
+            ]
+          },
+          "description": "Champion upgrade definition. Optional keys vary by upgrade.",
+          "optional": true,
+          "required": []
+        }
+      },
+      {
+        "key": "thor",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "enabled",
+              "type": {
+                "kind": "boolean",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default",
+                    "editor-overlay"
+                  ]
+                },
+                "description": "Whether players can buy this champion upgrade.",
+                "optional": true
+              }
+            },
+            {
+              "key": "max-level",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default",
+                    "editor-overlay"
+                  ]
+                },
+                "description": "Maximum purchasable level.",
+                "minimum": 0,
+                "optional": true
+              }
+            },
+            {
+              "key": "radius",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "editor-overlay"
+                  ]
+                },
+                "description": "Ability radius. Enter a number or formula.",
+                "optional": true
+              }
+            },
+            {
+              "key": "cooldown",
+              "type": {
+                "kind": "duration",
+                "typeName": "Period",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default",
+                    "editor-overlay"
+                  ]
+                },
+                "description": "Fixed ability cooldown or a formula that returns milliseconds.",
+                "optional": true
+              }
+            },
+            {
+              "key": "chance",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default",
+                    "editor-overlay"
+                  ]
+                },
+                "description": "Activation chance formula for chance-based upgrades.",
+                "optional": true
+              }
+            },
+            {
+              "key": "scaling",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default",
+                    "editor-overlay"
+                  ]
+                },
+                "description": "Max health is 2048, but you can change that in your server settings.",
+                "optional": true
+              }
+            },
+            {
+              "key": "cost",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default",
+                    "editor-overlay"
+                  ]
+                },
+                "description": "Resource-point cost formula. Usually uses lvl.",
+                "optional": true
+              }
+            },
+            {
+              "key": "default-level",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "capability": {
+                  "sources": [
+                    "jar-schema"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "conditions",
+              "type": {
+                "kind": "mapping",
+                "keys": {
+                  "kind": "expression",
+                  "language": "condition",
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  },
+                  "allowFallback": true,
+                  "description": "A Kingdoms condition, or else for the optional fallback."
+                },
+                "values": {
+                  "kind": "string",
+                  "typeName": "Message",
+                  "description": "Message shown when the condition fails.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                },
+                "description": "Optional upgrade-tree requirements.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            },
+            {
+              "key": "name",
+              "type": {
+                "kind": "string",
+                "typeName": "Message",
+                "description": "Optional upgrade name used in messages.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            },
+            {
+              "key": "range",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "description": "Ability range formula.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            },
+            {
+              "key": "min-targets",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "description": "Minimum targets required before the ability activates.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            },
+            {
+              "key": "champion-damage-boost",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "description": "Damage multiplier or formula applied to the champion.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            },
+            {
+              "key": "champion-damage-reduction",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "description": "Incoming damage reduction formula for the champion.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            },
+            {
+              "key": "condition",
+              "type": {
+                "kind": "expression",
+                "language": "condition",
+                "optional": true,
+                "description": "Single condition required before this upgrade can be bought.",
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            }
+          ],
+          "capability": {
+            "sources": [
+              "jar-schema"
+            ]
+          },
+          "description": "Champion upgrade definition. Optional keys vary by upgrade.",
+          "optional": true,
+          "required": []
+        }
+      },
+      {
+        "key": "reinforcements",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "enabled",
+              "type": {
+                "kind": "boolean",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default",
+                    "editor-overlay"
+                  ]
+                },
+                "description": "Whether players can buy this champion upgrade.",
+                "optional": true
+              }
+            },
+            {
+              "key": "max-level",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default",
+                    "editor-overlay"
+                  ]
+                },
+                "description": "Maximum purchasable level.",
+                "minimum": 0,
+                "optional": true
+              }
+            },
+            {
+              "key": "radius",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default",
+                    "editor-overlay"
+                  ]
+                },
+                "description": "How close the players should be for this ability to activate.",
+                "optional": true
+              }
+            },
+            {
+              "key": "cooldown",
+              "type": {
+                "kind": "duration",
+                "typeName": "Period",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default",
+                    "editor-overlay"
+                  ]
+                },
+                "description": "Fixed ability cooldown or a formula that returns milliseconds.",
+                "optional": true
+              }
+            },
+            {
+              "key": "chance",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default",
+                    "editor-overlay"
+                  ]
+                },
+                "description": "Activation chance formula for chance-based upgrades.",
+                "optional": true
+              }
+            },
+            {
+              "key": "scaling",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default",
+                    "editor-overlay"
+                  ]
+                },
+                "description": "Max health is 2048, but you can change that in your server settings.",
+                "optional": true
+              }
+            },
+            {
+              "key": "cost",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default",
+                    "editor-overlay"
+                  ]
+                },
+                "description": "Resource-point cost formula. Usually uses lvl.",
+                "optional": true
+              }
+            },
+            {
+              "key": "default-level",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "capability": {
+                  "sources": [
+                    "jar-schema"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "conditions",
+              "type": {
+                "kind": "mapping",
+                "keys": {
+                  "kind": "expression",
+                  "language": "condition",
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  },
+                  "allowFallback": true,
+                  "description": "A Kingdoms condition, or else for the optional fallback."
+                },
+                "values": {
+                  "kind": "string",
+                  "typeName": "Message",
+                  "description": "Message shown when the condition fails.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                },
+                "description": "Optional upgrade-tree requirements.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            },
+            {
+              "key": "name",
+              "type": {
+                "kind": "string",
+                "typeName": "Message",
+                "description": "Optional upgrade name used in messages.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            },
+            {
+              "key": "range",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "description": "Ability range formula.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            },
+            {
+              "key": "min-targets",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "description": "Minimum targets required before the ability activates.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            },
+            {
+              "key": "champion-damage-boost",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "description": "Damage multiplier or formula applied to the champion.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            },
+            {
+              "key": "champion-damage-reduction",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "description": "Incoming damage reduction formula for the champion.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            },
+            {
+              "key": "condition",
+              "type": {
+                "kind": "expression",
+                "language": "condition",
+                "optional": true,
+                "description": "Single condition required before this upgrade can be bought.",
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            }
+          ],
+          "capability": {
+            "sources": [
+              "jar-schema"
+            ]
+          },
+          "description": "Champion upgrade definition. Optional keys vary by upgrade.",
+          "optional": true,
+          "required": []
+        }
+      },
+      {
+        "key": "burst",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "enabled",
+              "type": {
+                "kind": "boolean",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default",
+                    "editor-overlay"
+                  ]
+                },
+                "description": "Whether players can buy this champion upgrade.",
+                "optional": true
+              }
+            },
+            {
+              "key": "max-level",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default",
+                    "editor-overlay"
+                  ]
+                },
+                "description": "Maximum purchasable level.",
+                "minimum": 0,
+                "optional": true
+              }
+            },
+            {
+              "key": "radius",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default",
+                    "editor-overlay"
+                  ]
+                },
+                "description": "How close the players should be for this ability to activate.",
+                "optional": true
+              }
+            },
+            {
+              "key": "cooldown",
+              "type": {
+                "kind": "duration",
+                "typeName": "Period",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default",
+                    "editor-overlay"
+                  ]
+                },
+                "description": "Fixed ability cooldown or a formula that returns milliseconds.",
+                "optional": true
+              }
+            },
+            {
+              "key": "chance",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default",
+                    "editor-overlay"
+                  ]
+                },
+                "description": "Activation chance formula for chance-based upgrades.",
+                "optional": true
+              }
+            },
+            {
+              "key": "scaling",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default",
+                    "editor-overlay"
+                  ]
+                },
+                "description": "Max health is 2048, but you can change that in your server settings.",
+                "optional": true
+              }
+            },
+            {
+              "key": "cost",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default",
+                    "editor-overlay"
+                  ]
+                },
+                "description": "Resource-point cost formula. Usually uses lvl.",
+                "optional": true
+              }
+            },
+            {
+              "key": "default-level",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "capability": {
+                  "sources": [
+                    "jar-schema"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "conditions",
+              "type": {
+                "kind": "mapping",
+                "keys": {
+                  "kind": "expression",
+                  "language": "condition",
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  },
+                  "allowFallback": true,
+                  "description": "A Kingdoms condition, or else for the optional fallback."
+                },
+                "values": {
+                  "kind": "string",
+                  "typeName": "Message",
+                  "description": "Message shown when the condition fails.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                },
+                "description": "Optional upgrade-tree requirements.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            },
+            {
+              "key": "range",
+              "type": {
+                "kind": "expression",
+                "typeName": "str",
+                "description": "Ability range formula.",
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                },
+                "language": "math",
+                "optional": true
+              }
+            },
+            {
+              "key": "min-targets",
+              "type": {
+                "kind": "expression",
+                "typeName": "str",
+                "description": "Minimum targets required before the ability activates.",
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                },
+                "language": "math",
+                "optional": true
+              }
+            },
+            {
+              "key": "damage",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "description": "Math formula.",
+                "capability": {
+                  "sources": [
+                    "editor-overlay",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "knockback",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "description": "Math formula.",
+                "capability": {
+                  "sources": [
+                    "editor-overlay",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "name",
+              "type": {
+                "kind": "string",
+                "typeName": "Message",
+                "description": "Optional upgrade name used in messages.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            },
+            {
+              "key": "champion-damage-boost",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "description": "Damage multiplier or formula applied to the champion.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            },
+            {
+              "key": "champion-damage-reduction",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "description": "Incoming damage reduction formula for the champion.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            },
+            {
+              "key": "condition",
+              "type": {
+                "kind": "expression",
+                "language": "condition",
+                "optional": true,
+                "description": "Single condition required before this upgrade can be bought.",
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            }
+          ],
+          "capability": {
+            "sources": [
+              "jar-schema"
+            ]
+          },
+          "description": "Champion upgrade definition. Optional keys vary by upgrade.",
+          "optional": true,
+          "required": []
+        }
+      }
+    ],
+    "required": [
+      "reinforcements",
+      "champions",
+      "focus",
+      "fangs",
+      "plow",
+      "thor",
+      "damage-cap",
+      "death-duel",
+      "drag",
+      "throw",
+      "strength",
+      "speed",
+      "resistance",
+      "health",
+      "burst"
+    ],
+    "capability": {
+      "sources": [
+        "jar-schema"
+      ]
+    }
+  }
+}

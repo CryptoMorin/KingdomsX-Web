@@ -1,0 +1,469 @@
+{
+  "formatVersion": 1,
+  "id": "powers",
+  "resourceName": "powers.yml",
+  "sources": {
+    "schema": {
+      "kind": "kingdomsx-jar",
+      "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+      "pluginVersion": "1.17.27.3",
+      "fileName": "powers.json"
+    },
+    "defaults": [
+      "default--powers.json"
+    ],
+    "runtime": {
+      "kind": "kingdomsx-jar",
+      "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+      "pluginVersion": "1.17.27.3"
+    }
+  },
+  "coverage": {
+    "defaultPathCount": 50,
+    "rawDefaultPathCount": 50,
+    "activeRuntimePathCount": 1,
+    "fieldCount": 26,
+    "capabilitySourceCounts": {
+      "jar-schema": 26,
+      "jar-default": 24,
+      "editor-overlay": 8,
+      "jar-runtime": 1
+    },
+    "commonSettingCount": 0
+  },
+  "schema": {
+    "kind": "object",
+    "fields": [
+      {
+        "key": "powerups",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "enum",
+            "values": [
+              "damage-boost",
+              "damage-reduction",
+              "arrow-boost",
+              "regeneration-boost"
+            ],
+            "allowCustom": false,
+            "capability": {
+              "sources": [
+                "jar-schema"
+              ]
+            }
+          },
+          "values": {
+            "kind": "object",
+            "fields": [
+              {
+                "key": "enabled",
+                "type": {
+                  "kind": "boolean",
+                  "capability": {
+                    "sources": [
+                      "jar-schema",
+                      "jar-default",
+                      "editor-overlay"
+                    ]
+                  },
+                  "description": "Whether this powerup can be purchased.",
+                  "optional": true
+                }
+              },
+              {
+                "key": "cost",
+                "type": {
+                  "kind": "expression",
+                  "language": "math",
+                  "capability": {
+                    "sources": [
+                      "jar-schema",
+                      "jar-default",
+                      "editor-overlay"
+                    ]
+                  },
+                  "description": "Resource-point cost formula. Usually uses lvl.",
+                  "optional": true
+                }
+              },
+              {
+                "key": "scaling",
+                "type": {
+                  "kind": "expression",
+                  "language": "math",
+                  "capability": {
+                    "sources": [
+                      "jar-schema",
+                      "jar-default",
+                      "editor-overlay"
+                    ]
+                  },
+                  "description": "In this case, \"amount\" refers to the regeneration amount. This is normally a half heart every 0.5 seconds which comes from eating normal food. This option changes the amount, not the 0.5sec interval. https://minecraft.fandom.com/wiki/Hunger",
+                  "optional": true
+                }
+              },
+              {
+                "key": "max-level",
+                "type": {
+                  "kind": "expression",
+                  "language": "math",
+                  "capability": {
+                    "sources": [
+                      "jar-schema",
+                      "jar-default",
+                      "editor-overlay"
+                    ]
+                  },
+                  "description": "Maximum purchasable level. Lowering this does not reduce existing kingdom levels.",
+                  "minimum": 0,
+                  "optional": true
+                }
+              },
+              {
+                "key": "own-land-only",
+                "type": {
+                  "kind": "boolean",
+                  "capability": {
+                    "sources": [
+                      "jar-schema",
+                      "jar-default",
+                      "editor-overlay"
+                    ]
+                  },
+                  "description": "Whether this powerup only works inside the kingdom's own lands.",
+                  "optional": true
+                }
+              },
+              {
+                "key": "conditions",
+                "type": {
+                  "kind": "mapping",
+                  "keys": {
+                    "kind": "expression",
+                    "language": "condition",
+                    "description": "Condition that must be met before this powerup level is available.",
+                    "allowFallback": true
+                  },
+                  "values": {
+                    "kind": "string",
+                    "typeName": "Message",
+                    "description": "Message shown when this condition is not met.",
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    }
+                  },
+                  "description": "Ordered powerup requirements. Both the condition and its message are editable.",
+                  "capability": {
+                    "sources": [
+                      "editor-overlay",
+                      "jar-default"
+                    ]
+                  },
+                  "optional": true
+                }
+              },
+              {
+                "key": "default-level",
+                "type": {
+                  "kind": "integer",
+                  "minimum": 0,
+                  "description": "Starting level for a powerup when a kingdom is created.",
+                  "capability": {
+                    "sources": [
+                      "jar-runtime"
+                    ],
+                    "tier": "advanced",
+                    "runtimeField": "POWERUPS_DEFAULT_LEVEL",
+                    "consumers": [
+                      "org/kingdoms/constants/group/upgradable/Powerup"
+                    ]
+                  },
+                  "optional": true
+                }
+              },
+              {
+                "key": "name",
+                "type": {
+                  "kind": "string",
+                  "typeName": "Message",
+                  "description": "Name used in messages. Not used for GUIs.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                }
+              }
+            ],
+            "capability": {
+              "sources": [
+                "jar-schema"
+              ]
+            },
+            "description": "Powerup definition.",
+            "optional": true,
+            "required": []
+          },
+          "fields": [],
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "name: The name used in messages (such as upgrading), this name is not used for any GUI. cost: Resource points required each time you upgrade. scaling: This depends on what the powerup does. max-level: If you decrease the max-level, kingdoms that already upgraded that specific upgrade beyond the new value will keep their level, and it won't affect them. Unfortunately, you can't fix this unless you manually edit their data file. own-land-only: Powerups should only work in your own kingdom lands.",
+          "optional": true
+        }
+      },
+      {
+        "key": "power",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "enabled",
+              "type": {
+                "kind": "boolean",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "player",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "max",
+                    "type": {
+                      "kind": "decimal",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "min",
+                    "type": {
+                      "kind": "decimal",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "initial",
+                    "type": {
+                      "kind": "decimal",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "description": "When a player first joins a kingdom.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "regeneration",
+                    "type": {
+                      "kind": "object",
+                      "fields": [
+                        {
+                          "key": "every",
+                          "type": {
+                            "kind": "duration",
+                            "typeName": "Period",
+                            "capability": {
+                              "sources": [
+                                "jar-schema",
+                                "jar-default"
+                              ]
+                            },
+                            "optional": true
+                          }
+                        },
+                        {
+                          "key": "charge",
+                          "type": {
+                            "kind": "decimal",
+                            "capability": {
+                              "sources": [
+                                "jar-schema",
+                                "jar-default"
+                              ]
+                            },
+                            "optional": true
+                          }
+                        }
+                      ],
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "description": "When the player is online.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "loss",
+                    "type": {
+                      "kind": "object",
+                      "fields": [
+                        {
+                          "key": "death",
+                          "type": {
+                            "kind": "decimal",
+                            "capability": {
+                              "sources": [
+                                "jar-schema",
+                                "jar-default"
+                              ]
+                            },
+                            "description": "Amount of power lost when the player dies in any way.",
+                            "optional": true
+                          }
+                        },
+                        {
+                          "key": "offline",
+                          "type": {
+                            "kind": "object",
+                            "fields": [
+                              {
+                                "key": "every",
+                                "type": {
+                                  "kind": "duration",
+                                  "typeName": "Period",
+                                  "capability": {
+                                    "sources": [
+                                      "jar-schema",
+                                      "jar-default"
+                                    ]
+                                  },
+                                  "optional": true
+                                }
+                              },
+                              {
+                                "key": "lose",
+                                "type": {
+                                  "kind": "decimal",
+                                  "capability": {
+                                    "sources": [
+                                      "jar-schema",
+                                      "jar-default"
+                                    ]
+                                  },
+                                  "optional": true
+                                }
+                              },
+                              {
+                                "key": "min",
+                                "type": {
+                                  "kind": "decimal",
+                                  "capability": {
+                                    "sources": [
+                                      "jar-schema",
+                                      "jar-default"
+                                    ]
+                                  },
+                                  "description": "The minimum amount that the offline power loss works for.",
+                                  "optional": true
+                                }
+                              }
+                            ],
+                            "capability": {
+                              "sources": [
+                                "jar-schema",
+                                "jar-default"
+                              ]
+                            },
+                            "optional": true
+                          }
+                        }
+                      ],
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  }
+                ],
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "faction",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "max",
+                    "type": {
+                      "kind": "decimal",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  }
+                ],
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            }
+          ],
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "Factions-like power system. This feature is still experimental and may not function properly. In order to change the max claims of a kingdom, you need to change the max-claims option in claims.yml",
+          "optional": true
+        }
+      }
+    ],
+    "capability": {
+      "sources": [
+        "jar-schema"
+      ]
+    }
+  }
+}

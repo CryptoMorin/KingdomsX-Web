@@ -1,0 +1,189 @@
+{
+  "formatVersion": 2,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "id": "relations",
+  "resourceName": "relations.yml",
+  "schema": {
+    "kind": "object",
+    "fields": [
+      {
+        "key": "request-expiration",
+        "type": {
+          "kind": "duration",
+          "typeName": "Period"
+        }
+      },
+      {
+        "key": "prioritize-kingdom-relations",
+        "type": {
+          "kind": "boolean"
+        }
+      },
+      {
+        "key": "allow-relations-between-nation-kingdoms",
+        "type": {
+          "kind": "boolean"
+        }
+      },
+      {
+        "key": "pvp",
+        "type": {
+          "kind": "suggestion",
+          "typeName": "Enum<org.kingdoms.managers.pvp.PvPManager$PvPType>",
+          "allowCustom": true
+        }
+      },
+      {
+        "key": "agreements",
+        "type": {
+          "kind": "boolean"
+        }
+      },
+      {
+        "key": "force-survival-mode",
+        "type": {
+          "kind": "boolean"
+        }
+      },
+      {
+        "key": "relations",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "enum",
+            "values": [
+              "self",
+              "neutral",
+              "truce",
+              "ally",
+              "enemy",
+              "nation"
+            ],
+            "allowCustom": false
+          },
+          "values": {
+            "kind": "object",
+            "fields": [
+              {
+                "key": "color",
+                "type": {
+                  "kind": "string",
+                  "typeName": "str"
+                }
+              },
+              {
+                "key": "ceasefire",
+                "type": {
+                  "kind": "boolean"
+                }
+              },
+              {
+                "key": "donate",
+                "type": {
+                  "kind": "boolean"
+                }
+              },
+              {
+                "key": "build",
+                "type": {
+                  "kind": "boolean"
+                }
+              },
+              {
+                "key": "use",
+                "type": {
+                  "kind": "boolean"
+                }
+              },
+              {
+                "key": "fly",
+                "type": {
+                  "kind": "boolean"
+                }
+              },
+              {
+                "key": "home",
+                "type": {
+                  "kind": "boolean"
+                }
+              },
+              {
+                "key": "interact",
+                "type": {
+                  "kind": "boolean"
+                }
+              },
+              {
+                "key": "invade",
+                "type": {
+                  "kind": "boolean"
+                }
+              },
+              {
+                "key": "turret-ceasefire",
+                "type": {
+                  "kind": "boolean"
+                }
+              },
+              {
+                "key": "manage-turrets",
+                "type": {
+                  "kind": "boolean"
+                }
+              },
+              {
+                "key": "manage-structures",
+                "type": {
+                  "kind": "boolean"
+                }
+              },
+              {
+                "key": "customizable",
+                "type": {
+                  "kind": "boolean"
+                }
+              },
+              {
+                "key": "show-holograms",
+                "type": {
+                  "kind": "boolean"
+                }
+              },
+              {
+                "key": "pvp",
+                "type": {
+                  "kind": "suggestion",
+                  "typeName": "Enum<org.kingdoms.managers.pvp.PvPManager$PvPType>",
+                  "allowCustom": true
+                }
+              },
+              {
+                "key": "effects",
+                "type": {
+                  "kind": "list",
+                  "elements": {
+                    "kind": "advanced",
+                    "typeName": "Potion"
+                  }
+                }
+              }
+            ]
+          },
+          "fields": [],
+          "required": [
+            "self",
+            "neutral",
+            "truce",
+            "ally",
+            "enemy",
+            "nation"
+          ]
+        }
+      }
+    ]
+  }
+}

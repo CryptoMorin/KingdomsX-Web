@@ -1,0 +1,1836 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "guis/color-picker/color-picker.yml",
+  "schemaId": "guis/schema",
+  "options": [
+    {
+      "path": [
+        "title"
+      ],
+      "source": "\"{$sep}-=( {$p}C&4o{$sp}l&eo&1r &0Picker {$sep})=-\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sound"
+      ],
+      "source": "ITEM_BOOK_PAGE_TURN",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "rows"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[color]"
+      ],
+      "source": "&color\r\n  disallowed:\r\n    condition: '!color_allowed'\r\n    lore: \"{$warning} &eYou cannot pick this color.\"\r\n    sound: BLOCK_NOTE_BLOCK_BASS\r\n\r\n# https://minecraft.fandom.com/wiki/Formatting_codes\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[color]",
+        "disallowed"
+      ],
+      "source": "\r\n    condition: '!color_allowed'\r\n    lore: \"{$warning} &eYou cannot pick this color.\"\r\n    sound: BLOCK_NOTE_BLOCK_BASS\r\n\r\n# https://minecraft.fandom.com/wiki/Formatting_codes\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[color]",
+        "disallowed",
+        "condition"
+      ],
+      "source": "'!color_allowed'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[color]",
+        "disallowed",
+        "lore"
+      ],
+      "source": "\"{$warning} &eYou cannot pick this color.\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[color]",
+        "disallowed",
+        "sound"
+      ],
+      "source": "BLOCK_NOTE_BLOCK_BASS",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options"
+      ],
+      "source": "\r\n  info:\r\n    posx: 5\r\n    posy: 1\r\n    material: PLAYER_HEAD\r\n    skull: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDAxYWZlOTczYzU0ODJmZGM3MWU2YWExMDY5ODgzM2M3OWM0MzdmMjEzMDhlYTlhMWEwOTU3NDZlYzI3NGEwZiJ9fX0='\r\n    name: '{$p}Info'\r\n    lore: |\r\n      {$desc}You're currently changing the\r\n      color for {$p}%color_displayname%{$colon}\r\n\r\n      {$s}%color_description%\r\n\r\n      {$p}Current Color{$colon} &r%color_value%%color_value_name%\r\n\r\n  # Only options starting with \"color\" will be interpreted as predefined colors.\r\n  # You can add your own colors, just don't forget the \"color\" option AND the GUI option entry name itself\r\n  # must begin with the word \"color\"\r\n  separator:\r\n    slots: [ 0, 1, 2, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 ]\r\n    material: GRAY_STAINED_GLASS_PANE\r\n  back:\r\n    posx: 4\r\n    posy: 1\r\n    material: BARRIER\r\n    name: '&cBack'\r\n  hex-picker:\r\n    posx: 6\r\n    posy: 1\r\n    material: PAPER\r\n    name: '{$p}Enter a hex color'\r\n  color-dark-red:\r\n    posx: 2\r\n    posy: 3\r\n    material: REDSTONE_BLOCK\r\n    name: '&4Dark Red #AA0000'\r\n    color: '#AA0000'\r\n    <<: *color\r\n  color-red:\r\n    posx: 2\r\n    posy: 4\r\n    material: RED_WOOL\r\n    name: '&cRed #FF5555'\r\n    color: '#FF5555'\r\n    <<: *color\r\n  color-dark-blue:\r\n    posx: 3\r\n    posy: 3\r\n    material: LAPIS_BLOCK\r\n    name: '&1Dark Blue #0000AA'\r\n    color: '#0000AA'\r\n    <<: *color\r\n  color-light-blue:\r\n    posx: 3\r\n    posy: 4\r\n    material: BLUE_WOOL\r\n    name: '{$sp}Light Blue #5555FF'\r\n    color: '#5555FF'\r\n    <<: *color\r\n  color-black:\r\n    posx: 5\r\n    posy: 4\r\n    material: BLACK_WOOL\r\n    name: '&0Black #000000'\r\n    <<: *color\r\n    color: '#000000'\r\n  color-gray:\r\n    posx: 6\r\n    posy: 4\r\n    material: GRAY_WOOL\r\n    name: '&8Gray #555555'\r\n    <<: *color\r\n    color: '#555555'\r\n  color-purple:\r\n    posx: 7\r\n    posy: 4\r\n    material: PURPLE_WOOL\r\n    name: '&5Dark Purple #AA00AA'\r\n    <<: *color\r\n    color: '#AA00AA'\r\n  color-dark-green:\r\n    posx: 8\r\n    posy: 4\r\n    material: GREEN_WOOL\r\n    name: '{$p}Dark Green #00AA00'\r\n    <<: *color\r\n    color: '#00AA00'\r\n  color-orange:\r\n    posx: 2\r\n    posy: 5\r\n    material: ORANGE_WOOL\r\n    name: '{$s}Minecoin Gold #DDD605'\r\n    <<: *color\r\n    color: '#DDD605'\r\n  color-dark-aqua:\r\n    posx: 3\r\n    posy: 5\r\n    material: CYAN_WOOL\r\n    name: '&3Dark Aqua #00AAAA'\r\n    <<: *color\r\n    color: '#00AAAA'\r\n  color-white:\r\n    posx: 5\r\n    posy: 5\r\n    material: WHITE_WOOL\r\n    name: '&fWhite #FFFFFF'\r\n    <<: *color\r\n    color: '#FFFFFF'\r\n  color-light-gray:\r\n    posx: 6\r\n    posy: 5\r\n    material: LIGHT_GRAY_WOOL\r\n    name: '{$sep}Light Gray #AAAAAA'\r\n    <<: *color\r\n    color: '#AAAAAA'\r\n  color-light-purple:\r\n    posx: 7\r\n    posy: 5\r\n    material: MAGENTA_WOOL\r\n    name: '&dLight Purple #FF55FF'\r\n    <<: *color\r\n    color: '#FF55FF'\r\n  color-green:\r\n    posx: 8\r\n    posy: 5\r\n    material: LIME_WOOL\r\n    name: '&aGreen #55FF55'\r\n    <<: *color\r\n    color: '#55FF55'\r\n  color-yellow:\r\n    posx: 2\r\n    posy: 6\r\n    material: YELLOW_WOOL\r\n    name: '&eYellow #FFFF55'\r\n    <<: *color\r\n    color: '#FFFF55'\r\n  color-aqua:\r\n    posx: 3\r\n    posy: 6\r\n    material: LIGHT_BLUE_WOOL\r\n    name: '&bAqua #55FFFF'\r\n    <<: *color\r\n    color: '#55FFFF'\r\n",
+      "comments": [
+        "https://minecraft.fandom.com/wiki/Formatting_codes"
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "info"
+      ],
+      "source": "\r\n    posx: 5\r\n    posy: 1\r\n    material: PLAYER_HEAD\r\n    skull: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDAxYWZlOTczYzU0ODJmZGM3MWU2YWExMDY5ODgzM2M3OWM0MzdmMjEzMDhlYTlhMWEwOTU3NDZlYzI3NGEwZiJ9fX0='\r\n    name: '{$p}Info'\r\n    lore: |\r\n      {$desc}You're currently changing the\r\n      color for {$p}%color_displayname%{$colon}\r\n\r\n      {$s}%color_description%\r\n\r\n      {$p}Current Color{$colon} &r%color_value%%color_value_name%\r\n\r\n  # Only options starting with \"color\" will be interpreted as predefined colors.\r\n  # You can add your own colors, just don't forget the \"color\" option AND the GUI option entry name itself\r\n  # must begin with the word \"color\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "info",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "info",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "info",
+        "material"
+      ],
+      "source": "PLAYER_HEAD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "info",
+        "skull"
+      ],
+      "source": "'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDAxYWZlOTczYzU0ODJmZGM3MWU2YWExMDY5ODgzM2M3OWM0MzdmMjEzMDhlYTlhMWEwOTU3NDZlYzI3NGEwZiJ9fX0='",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "info",
+        "name"
+      ],
+      "source": "'{$p}Info'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "info",
+        "lore"
+      ],
+      "source": "|\r\n      {$desc}You're currently changing the\r\n      color for {$p}%color_displayname%{$colon}\r\n\r\n      {$s}%color_description%\r\n\r\n      {$p}Current Color{$colon} &r%color_value%%color_value_name%\r\n\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "separator"
+      ],
+      "source": "\r\n    slots: [ 0, 1, 2, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 ]\r\n    material: GRAY_STAINED_GLASS_PANE\r\n",
+      "comments": [
+        "Only options starting with \"color\" will be interpreted as predefined colors.",
+        "You can add your own colors, just don't forget the \"color\" option AND the GUI option entry name itself",
+        "must begin with the word \"color\""
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "separator",
+        "slots"
+      ],
+      "source": "[ 0, 1, 2, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "0",
+        "1",
+        "2",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "separator",
+        "material"
+      ],
+      "source": "GRAY_STAINED_GLASS_PANE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back"
+      ],
+      "source": "\r\n    posx: 4\r\n    posy: 1\r\n    material: BARRIER\r\n    name: '&cBack'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "posx"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "material"
+      ],
+      "source": "BARRIER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "name"
+      ],
+      "source": "'&cBack'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "hex-picker"
+      ],
+      "source": "\r\n    posx: 6\r\n    posy: 1\r\n    material: PAPER\r\n    name: '{$p}Enter a hex color'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "hex-picker",
+        "posx"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "hex-picker",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "hex-picker",
+        "material"
+      ],
+      "source": "PAPER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "hex-picker",
+        "name"
+      ],
+      "source": "'{$p}Enter a hex color'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-dark-red"
+      ],
+      "source": "\r\n    posx: 2\r\n    posy: 3\r\n    material: REDSTONE_BLOCK\r\n    name: '&4Dark Red #AA0000'\r\n    color: '#AA0000'\r\n    <<: *color\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-dark-red",
+        "posx"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-dark-red",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-dark-red",
+        "material"
+      ],
+      "source": "REDSTONE_BLOCK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-dark-red",
+        "name"
+      ],
+      "source": "'&4Dark Red #AA0000'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-dark-red",
+        "color"
+      ],
+      "source": "'#AA0000'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-dark-red",
+        "<<"
+      ],
+      "source": "*color",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-red"
+      ],
+      "source": "\r\n    posx: 2\r\n    posy: 4\r\n    material: RED_WOOL\r\n    name: '&cRed #FF5555'\r\n    color: '#FF5555'\r\n    <<: *color\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-red",
+        "posx"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-red",
+        "posy"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-red",
+        "material"
+      ],
+      "source": "RED_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-red",
+        "name"
+      ],
+      "source": "'&cRed #FF5555'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-red",
+        "color"
+      ],
+      "source": "'#FF5555'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-red",
+        "<<"
+      ],
+      "source": "*color",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-dark-blue"
+      ],
+      "source": "\r\n    posx: 3\r\n    posy: 3\r\n    material: LAPIS_BLOCK\r\n    name: '&1Dark Blue #0000AA'\r\n    color: '#0000AA'\r\n    <<: *color\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-dark-blue",
+        "posx"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-dark-blue",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-dark-blue",
+        "material"
+      ],
+      "source": "LAPIS_BLOCK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-dark-blue",
+        "name"
+      ],
+      "source": "'&1Dark Blue #0000AA'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-dark-blue",
+        "color"
+      ],
+      "source": "'#0000AA'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-dark-blue",
+        "<<"
+      ],
+      "source": "*color",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-light-blue"
+      ],
+      "source": "\r\n    posx: 3\r\n    posy: 4\r\n    material: BLUE_WOOL\r\n    name: '{$sp}Light Blue #5555FF'\r\n    color: '#5555FF'\r\n    <<: *color\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-light-blue",
+        "posx"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-light-blue",
+        "posy"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-light-blue",
+        "material"
+      ],
+      "source": "BLUE_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-light-blue",
+        "name"
+      ],
+      "source": "'{$sp}Light Blue #5555FF'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-light-blue",
+        "color"
+      ],
+      "source": "'#5555FF'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-light-blue",
+        "<<"
+      ],
+      "source": "*color",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-black"
+      ],
+      "source": "\r\n    posx: 5\r\n    posy: 4\r\n    material: BLACK_WOOL\r\n    name: '&0Black #000000'\r\n    <<: *color\r\n    color: '#000000'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-black",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-black",
+        "posy"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-black",
+        "material"
+      ],
+      "source": "BLACK_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-black",
+        "name"
+      ],
+      "source": "'&0Black #000000'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-black",
+        "<<"
+      ],
+      "source": "*color",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-black",
+        "color"
+      ],
+      "source": "'#000000'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-gray"
+      ],
+      "source": "\r\n    posx: 6\r\n    posy: 4\r\n    material: GRAY_WOOL\r\n    name: '&8Gray #555555'\r\n    <<: *color\r\n    color: '#555555'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-gray",
+        "posx"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-gray",
+        "posy"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-gray",
+        "material"
+      ],
+      "source": "GRAY_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-gray",
+        "name"
+      ],
+      "source": "'&8Gray #555555'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-gray",
+        "<<"
+      ],
+      "source": "*color",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-gray",
+        "color"
+      ],
+      "source": "'#555555'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-purple"
+      ],
+      "source": "\r\n    posx: 7\r\n    posy: 4\r\n    material: PURPLE_WOOL\r\n    name: '&5Dark Purple #AA00AA'\r\n    <<: *color\r\n    color: '#AA00AA'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-purple",
+        "posx"
+      ],
+      "source": "7",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-purple",
+        "posy"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-purple",
+        "material"
+      ],
+      "source": "PURPLE_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-purple",
+        "name"
+      ],
+      "source": "'&5Dark Purple #AA00AA'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-purple",
+        "<<"
+      ],
+      "source": "*color",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-purple",
+        "color"
+      ],
+      "source": "'#AA00AA'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-dark-green"
+      ],
+      "source": "\r\n    posx: 8\r\n    posy: 4\r\n    material: GREEN_WOOL\r\n    name: '{$p}Dark Green #00AA00'\r\n    <<: *color\r\n    color: '#00AA00'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-dark-green",
+        "posx"
+      ],
+      "source": "8",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-dark-green",
+        "posy"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-dark-green",
+        "material"
+      ],
+      "source": "GREEN_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-dark-green",
+        "name"
+      ],
+      "source": "'{$p}Dark Green #00AA00'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-dark-green",
+        "<<"
+      ],
+      "source": "*color",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-dark-green",
+        "color"
+      ],
+      "source": "'#00AA00'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-orange"
+      ],
+      "source": "\r\n    posx: 2\r\n    posy: 5\r\n    material: ORANGE_WOOL\r\n    name: '{$s}Minecoin Gold #DDD605'\r\n    <<: *color\r\n    color: '#DDD605'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-orange",
+        "posx"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-orange",
+        "posy"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-orange",
+        "material"
+      ],
+      "source": "ORANGE_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-orange",
+        "name"
+      ],
+      "source": "'{$s}Minecoin Gold #DDD605'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-orange",
+        "<<"
+      ],
+      "source": "*color",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-orange",
+        "color"
+      ],
+      "source": "'#DDD605'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-dark-aqua"
+      ],
+      "source": "\r\n    posx: 3\r\n    posy: 5\r\n    material: CYAN_WOOL\r\n    name: '&3Dark Aqua #00AAAA'\r\n    <<: *color\r\n    color: '#00AAAA'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-dark-aqua",
+        "posx"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-dark-aqua",
+        "posy"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-dark-aqua",
+        "material"
+      ],
+      "source": "CYAN_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-dark-aqua",
+        "name"
+      ],
+      "source": "'&3Dark Aqua #00AAAA'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-dark-aqua",
+        "<<"
+      ],
+      "source": "*color",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-dark-aqua",
+        "color"
+      ],
+      "source": "'#00AAAA'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-white"
+      ],
+      "source": "\r\n    posx: 5\r\n    posy: 5\r\n    material: WHITE_WOOL\r\n    name: '&fWhite #FFFFFF'\r\n    <<: *color\r\n    color: '#FFFFFF'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-white",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-white",
+        "posy"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-white",
+        "material"
+      ],
+      "source": "WHITE_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-white",
+        "name"
+      ],
+      "source": "'&fWhite #FFFFFF'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-white",
+        "<<"
+      ],
+      "source": "*color",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-white",
+        "color"
+      ],
+      "source": "'#FFFFFF'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-light-gray"
+      ],
+      "source": "\r\n    posx: 6\r\n    posy: 5\r\n    material: LIGHT_GRAY_WOOL\r\n    name: '{$sep}Light Gray #AAAAAA'\r\n    <<: *color\r\n    color: '#AAAAAA'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-light-gray",
+        "posx"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-light-gray",
+        "posy"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-light-gray",
+        "material"
+      ],
+      "source": "LIGHT_GRAY_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-light-gray",
+        "name"
+      ],
+      "source": "'{$sep}Light Gray #AAAAAA'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-light-gray",
+        "<<"
+      ],
+      "source": "*color",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-light-gray",
+        "color"
+      ],
+      "source": "'#AAAAAA'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-light-purple"
+      ],
+      "source": "\r\n    posx: 7\r\n    posy: 5\r\n    material: MAGENTA_WOOL\r\n    name: '&dLight Purple #FF55FF'\r\n    <<: *color\r\n    color: '#FF55FF'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-light-purple",
+        "posx"
+      ],
+      "source": "7",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-light-purple",
+        "posy"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-light-purple",
+        "material"
+      ],
+      "source": "MAGENTA_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-light-purple",
+        "name"
+      ],
+      "source": "'&dLight Purple #FF55FF'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-light-purple",
+        "<<"
+      ],
+      "source": "*color",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-light-purple",
+        "color"
+      ],
+      "source": "'#FF55FF'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-green"
+      ],
+      "source": "\r\n    posx: 8\r\n    posy: 5\r\n    material: LIME_WOOL\r\n    name: '&aGreen #55FF55'\r\n    <<: *color\r\n    color: '#55FF55'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-green",
+        "posx"
+      ],
+      "source": "8",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-green",
+        "posy"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-green",
+        "material"
+      ],
+      "source": "LIME_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-green",
+        "name"
+      ],
+      "source": "'&aGreen #55FF55'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-green",
+        "<<"
+      ],
+      "source": "*color",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-green",
+        "color"
+      ],
+      "source": "'#55FF55'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-yellow"
+      ],
+      "source": "\r\n    posx: 2\r\n    posy: 6\r\n    material: YELLOW_WOOL\r\n    name: '&eYellow #FFFF55'\r\n    <<: *color\r\n    color: '#FFFF55'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-yellow",
+        "posx"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-yellow",
+        "posy"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-yellow",
+        "material"
+      ],
+      "source": "YELLOW_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-yellow",
+        "name"
+      ],
+      "source": "'&eYellow #FFFF55'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-yellow",
+        "<<"
+      ],
+      "source": "*color",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-yellow",
+        "color"
+      ],
+      "source": "'#FFFF55'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-aqua"
+      ],
+      "source": "\r\n    posx: 3\r\n    posy: 6\r\n    material: LIGHT_BLUE_WOOL\r\n    name: '&bAqua #55FFFF'\r\n    <<: *color\r\n    color: '#55FFFF'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-aqua",
+        "posx"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-aqua",
+        "posy"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-aqua",
+        "material"
+      ],
+      "source": "LIGHT_BLUE_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-aqua",
+        "name"
+      ],
+      "source": "'&bAqua #55FFFF'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-aqua",
+        "<<"
+      ],
+      "source": "*color",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "color-aqua",
+        "color"
+      ],
+      "source": "'#55FFFF'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

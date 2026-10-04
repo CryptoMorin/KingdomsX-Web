@@ -1,0 +1,242 @@
+{
+  "formatVersion": 2,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "id": "ranks",
+  "resourceName": "ranks.yml",
+  "schema": {
+    "kind": "object",
+    "fields": [
+      {
+        "key": "custom-ranks",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "enabled",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "limits",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "ranks",
+                    "type": {
+                      "kind": "integer"
+                    }
+                  },
+                  {
+                    "key": "max-claims",
+                    "type": {
+                      "kind": "integer"
+                    }
+                  },
+                  {
+                    "key": "length",
+                    "type": {
+                      "kind": "object",
+                      "fields": [
+                        {
+                          "key": "ignore-colors",
+                          "type": {
+                            "kind": "boolean"
+                          }
+                        },
+                        {
+                          "key": "node",
+                          "type": {
+                            "kind": "integer"
+                          }
+                        },
+                        {
+                          "key": "name",
+                          "type": {
+                            "kind": "integer"
+                          }
+                        },
+                        {
+                          "key": "symbol",
+                          "type": {
+                            "kind": "integer"
+                          }
+                        },
+                        {
+                          "key": "color",
+                          "type": {
+                            "kind": "integer"
+                          }
+                        },
+                        {
+                          "key": "material",
+                          "type": {
+                            "kind": "object",
+                            "fields": [
+                              {
+                                "key": "whitelist",
+                                "type": {
+                                  "kind": "boolean"
+                                }
+                              },
+                              {
+                                "key": "list",
+                                "type": {
+                                  "kind": "set",
+                                  "elements": {
+                                    "kind": "suggestion",
+                                    "typeName": "Material",
+                                    "allowCustom": true
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "interact-blocks",
+        "type": {
+          "kind": "list",
+          "elements": {
+            "kind": "advanced",
+            "typeName": "StringMatcher<Material>"
+          }
+        }
+      },
+      {
+        "key": "new-rank",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "node",
+              "type": {
+                "kind": "string",
+                "typeName": "str"
+              }
+            },
+            {
+              "key": "name",
+              "type": {
+                "kind": "string",
+                "typeName": "str"
+              }
+            },
+            {
+              "key": "color",
+              "type": {
+                "kind": "string",
+                "typeName": "str"
+              }
+            },
+            {
+              "key": "symbol",
+              "type": {
+                "kind": "string",
+                "typeName": "str"
+              }
+            },
+            {
+              "key": "max-claims",
+              "type": {
+                "kind": "integer"
+              }
+            },
+            {
+              "key": "material",
+              "type": {
+                "kind": "string",
+                "typeName": "str"
+              }
+            },
+            {
+              "key": "permissions",
+              "type": {
+                "kind": "list",
+                "elements": {
+                  "kind": "string",
+                  "typeName": "str"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "ranks",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "string",
+            "typeName": "str"
+          },
+          "values": {
+            "kind": "object",
+            "fields": [
+              {
+                "key": "color",
+                "type": {
+                  "kind": "string",
+                  "typeName": "str"
+                }
+              },
+              {
+                "key": "symbol",
+                "type": {
+                  "kind": "string",
+                  "typeName": "str"
+                }
+              },
+              {
+                "key": "name",
+                "type": {
+                  "kind": "string",
+                  "typeName": "str"
+                }
+              },
+              {
+                "key": "material",
+                "type": {
+                  "kind": "suggestion",
+                  "typeName": "Material",
+                  "allowCustom": true
+                }
+              },
+              {
+                "key": "max-claims",
+                "type": {
+                  "kind": "integer"
+                }
+              },
+              {
+                "key": "permissions",
+                "type": {
+                  "kind": "list",
+                  "elements": {
+                    "kind": "advanced",
+                    "typeName": "KingdomPermission"
+                  }
+                }
+              }
+            ]
+          },
+          "fields": []
+        }
+      }
+    ]
+  }
+}

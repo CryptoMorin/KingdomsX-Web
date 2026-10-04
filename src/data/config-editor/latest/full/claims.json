@@ -1,0 +1,2002 @@
+{
+  "formatVersion": 1,
+  "id": "claims",
+  "resourceName": "claims.yml",
+  "sources": {
+    "schema": {
+      "kind": "kingdomsx-jar",
+      "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+      "pluginVersion": "1.17.27.3",
+      "fileName": "claims.json"
+    },
+    "defaults": [
+      "default--claims.json"
+    ],
+    "runtime": {
+      "kind": "kingdomsx-jar",
+      "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+      "pluginVersion": "1.17.27.3"
+    }
+  },
+  "coverage": {
+    "defaultPathCount": 186,
+    "rawDefaultPathCount": 186,
+    "activeRuntimePathCount": 1,
+    "fieldCount": 118,
+    "capabilitySourceCounts": {
+      "jar-schema": 126,
+      "jar-default": 105,
+      "editor-overlay": 25,
+      "jar-runtime": 3
+    },
+    "commonSettingCount": 3
+  },
+  "schema": {
+    "kind": "object",
+    "fields": [
+      {
+        "key": "disable-protection-system",
+        "type": {
+          "kind": "boolean",
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "Completely disables the protection system except for when placing turrets and structures. This can be useful if you want to customize the behavior using an addon. Requires a restart to change.",
+          "optional": true
+        }
+      },
+      {
+        "key": "disable-crops-physics",
+        "type": {
+          "kind": "boolean",
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "When true, crops will no longer break due to any natural/external sources. This includes placing blocks near them, but crop farms that rely on water should continue to work. This setting is here due to a server exploit in 1.18 which allows players to get infinite amount of plants by placing a bed next to them when they don't have kingdom build permission for their rank. This doesn't include normal grass. This will affect all crops regardless of where they're placed. Players will still be able to directly break these crops. This issue is only confirmed in 1.18, and confirmed to be fixed in 1.20 This issue has nothing to do with this plugin specifically, it's a global issue that affects all other plugins, this is just a simple option to fix it quickly. - Requires a restart to apply.",
+          "optional": true
+        }
+      },
+      {
+        "key": "connection-radius",
+        "type": {
+          "kind": "integer",
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "High numbers will lag the server. It's recommended to keep it under 3 if you're using this option. Anything above this is just pointless and will lag the server. You should turn off this option. This of course works when unclaiming and even in advanced situations. For example, if you claimed a square border (not filled) the plugin allows you to unclaim any land, as they're all connected in a loop, but if you try to unclaim your second land from somewhere other than the land next to your previously unclaimed land, that won't work, since it's like slicing a snake in half rather than eating it from its tail. (No this isn't MGS3) Set to 0 to disable.",
+          "optional": true
+        }
+      },
+      {
+        "key": "distance",
+        "type": {
+          "kind": "integer",
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "High numbers will lag the server. Set to 0 to disable.",
+          "optional": true
+        }
+      },
+      {
+        "key": "disabled-worlds",
+        "type": {
+          "kind": "set",
+          "elements": {
+            "kind": "suggestion",
+            "typeName": "World",
+            "allowCustom": true,
+            "capability": {
+              "sources": [
+                "jar-schema"
+              ]
+            }
+          },
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "Worlds that claiming is disabled in.",
+          "optional": true
+        }
+      },
+      {
+        "key": "biomes",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "string",
+            "typeName": "str",
+            "description": "Named biome rule set (for example default).",
+            "optional": true,
+            "capability": {
+              "sources": [
+                "editor-overlay"
+              ]
+            }
+          },
+          "values": {
+            "kind": "object",
+            "fields": [
+              {
+                "key": "whitelist",
+                "type": {
+                  "kind": "boolean",
+                  "capability": {
+                    "sources": [
+                      "jar-schema",
+                      "editor-overlay"
+                    ]
+                  },
+                  "description": "true = only listed biomes are claimable, false = listed biomes are blocked.",
+                  "optional": true
+                }
+              },
+              {
+                "key": "biomes",
+                "type": {
+                  "kind": "set",
+                  "elements": {
+                    "kind": "suggestion",
+                    "typeName": "Biome",
+                    "allowCustom": true,
+                    "capability": {
+                      "sources": [
+                        "jar-schema"
+                      ]
+                    },
+                    "description": "Spigot Biome."
+                  },
+                  "capability": {
+                    "sources": [
+                      "jar-schema",
+                      "editor-overlay"
+                    ]
+                  },
+                  "description": "Biomes affected by this rule set.",
+                  "optional": true
+                }
+              },
+              {
+                "key": "worlds",
+                "type": {
+                  "kind": "list",
+                  "elements": {
+                    "kind": "string",
+                    "typeName": "str",
+                    "description": "World name or String Matcher.",
+                    "optional": true,
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    }
+                  },
+                  "description": "Worlds this rule set applies to.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                }
+              },
+              {
+                "key": "cost-factor",
+                "type": {
+                  "kind": "mapping",
+                  "keys": {
+                    "kind": "suggestion",
+                    "typeName": "Biome",
+                    "allowCustom": true,
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    }
+                  },
+                  "values": {
+                    "kind": "integer",
+                    "description": "Claim cost factor for this biome.",
+                    "optional": true,
+                    "minimum": 0,
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    }
+                  },
+                  "description": "Optional per-biome cost factor used by %biome_cost_factor%.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                }
+              }
+            ],
+            "capability": {
+              "sources": [
+                "jar-schema"
+              ]
+            },
+            "description": "Named biome claim rule set. Keys under biomes can be any label (for example default). World and biome names support String Matchers.",
+            "optional": true,
+            "required": []
+          },
+          "fields": [
+            {
+              "key": "default",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "whitelist",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "List of biomes that cannot/can be claimed.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "biomes",
+                    "type": {
+                      "kind": "set",
+                      "elements": {
+                        "kind": "suggestion",
+                        "typeName": "Biome",
+                        "allowCustom": true,
+                        "capability": {
+                          "sources": [
+                            "jar-schema"
+                          ]
+                        },
+                        "description": "Spigot Biome."
+                      },
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Biomes affected by this rule set.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "worlds",
+                    "type": {
+                      "kind": "list",
+                      "elements": {
+                        "kind": "string",
+                        "typeName": "str",
+                        "description": "",
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        }
+                      },
+                      "description": "List of worlds that this set of settings apply to.",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "cost-factor",
+                    "type": {
+                      "kind": "mapping",
+                      "keys": {
+                        "kind": "suggestion",
+                        "typeName": "Biome",
+                        "allowCustom": true,
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        }
+                      },
+                      "values": {
+                        "kind": "integer",
+                        "description": "Claim cost factor for this biome.",
+                        "optional": true,
+                        "minimum": 0,
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        }
+                      },
+                      "description": "Optional per-biome cost factor used by %biome_cost_factor%.",
+                      "optional": true,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      }
+                    }
+                  }
+                ],
+                "capability": {
+                  "sources": [
+                    "jar-schema"
+                  ]
+                },
+                "description": "Named biome claim rule set. Keys under biomes can be any label (for example default). World and biome names support String Matchers.",
+                "optional": true,
+                "required": []
+              }
+            }
+          ],
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "Named biome claim rule set. Keys under biomes can be any label (for example default). World and biome names support String Matchers.",
+          "optional": true
+        }
+      },
+      {
+        "key": "claim-on-create",
+        "type": {
+          "kind": "integer",
+          "minimum": -1,
+          "maximum": 100,
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "Claims the lands around the player once the player created a kingdom if possible. Set to 0 to only claim the land that the player is standing in. Any number above 0 will determine the square radius of the claimed lands from the player's location. Set to -1 to disable. This process will not continue if the central chunk (the player's location) cannot be claimed. The hardlimit of this option is 100, because any value higher than this will just crash the server.",
+          "optional": true
+        }
+      },
+      {
+        "key": "starter-free",
+        "type": {
+          "kind": "integer",
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "How many claims should be free if the number of owned lands is lower than this number?",
+          "optional": true
+        }
+      },
+      {
+        "key": "confirmation",
+        "type": {
+          "kind": "duration",
+          "description": "How long a player has to repeat the claim command. Use 0 to disable.",
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default",
+              "editor-overlay"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "fill",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "max-iterations",
+              "type": {
+                "kind": "integer",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "The maximum iterations allowed to check for the shape borders to start filling. Each \"iteration\" consists of checking 4 chunks. The option below is another way to restrict this. For players in admin mode, this limit is increased to 500",
+                "optional": true
+              }
+            },
+            {
+              "key": "max-claims",
+              "type": {
+                "kind": "integer",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "The maximum lands allowed to claim when filling the shape. For players in admin mode, this limit will be removed. This isn't affected by the kingdom's max claims or the max rank claims. This option is prioritized over those.",
+                "optional": true
+              }
+            }
+          ],
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "/k claim fill https://github.com/CryptoMorin/KingdomsX/wiki/Commands#k-claim-autofillx-y",
+          "optional": true
+        }
+      },
+      {
+        "key": "unclaim-cooldown",
+        "type": {
+          "kind": "duration",
+          "typeName": "Period",
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ],
+            "tier": "common"
+          },
+          "description": "Cooldown before a land that was claimed, can be unclaimed again. This is useful when allowing building inside claims, in order to prevent players from temporary claiming a certain area just to build something and unclaim it again. This cooldown doesn't persist between restarts.",
+          "optional": true
+        }
+      },
+      {
+        "key": "square-max-radius",
+        "type": {
+          "kind": "integer",
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "/k claim square <radius> 5 = 5 * 5 = 25 chunks around the player.",
+          "optional": true
+        }
+      },
+      {
+        "key": "line-max-distance",
+        "type": {
+          "kind": "integer",
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "/k claim line <distance> The distance in chunks, not blocks.",
+          "optional": true
+        }
+      },
+      {
+        "key": "corner-max-claims",
+        "type": {
+          "kind": "integer",
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "Max claims per a /k claim corner.",
+          "optional": true
+        }
+      },
+      {
+        "key": "coordinates-claim-max-distance",
+        "type": {
+          "kind": "integer",
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "/k claim <x> <z> This is chunk distance, not block distance. Note that this will affect interactive claims from /k map",
+          "optional": true
+        }
+      },
+      {
+        "key": "protected-region-radius",
+        "type": {
+          "kind": "integer",
+          "capability": {
+            "sources": [
+              "jar-schema"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "history",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "enabled",
+              "type": {
+                "kind": "boolean",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "If you have the command disabled you should disable it here too to stop wasting memory.",
+                "optional": true
+              }
+            },
+            {
+              "key": "limit",
+              "type": {
+                "kind": "integer",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "The limit of history to keep for land claims. Older claim history will be deleted automatically.",
+                "optional": true
+              }
+            }
+          ],
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "History for undoing claims.",
+          "optional": true
+        }
+      },
+      {
+        "key": "max-claims",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "union",
+            "choices": [
+              {
+                "kind": "enum",
+                "values": [
+                  "default"
+                ],
+                "allowCustom": false,
+                "capability": {
+                  "sources": [
+                    "jar-schema"
+                  ]
+                }
+              },
+              {
+                "kind": "suggestion",
+                "typeName": "World",
+                "allowCustom": true,
+                "capability": {
+                  "sources": [
+                    "jar-schema"
+                  ]
+                }
+              }
+            ],
+            "capability": {
+              "sources": [
+                "jar-schema"
+              ]
+            }
+          },
+          "values": {
+            "kind": "expression",
+            "language": "math",
+            "capability": {
+              "sources": [
+                "jar-schema"
+              ]
+            }
+          },
+          "fields": [],
+          "required": [
+            "default"
+          ],
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "The equation used to calculate the maximum claims for kingdoms (%kingdoms_max_claims% placeholder). All the placeholders and math functions such as log() and round() can be used as well. Note that using %kingdoms_max_claims% here can cause a Stack Overflow error which can crash your server. No player placeholders can be used here of course. Only kingdom and nation placeholders. You can also use the \"max_claims\" placeholder for the max-claims misc upgrade scaling which can be found in misc-upgrades.yml config.",
+          "optional": true
+        }
+      },
+      {
+        "key": "build-in-claimed-only",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "place",
+              "type": {
+                "kind": "boolean",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "These two options are required to be set to true for any of these options below to work.",
+                "optional": true
+              }
+            },
+            {
+              "key": "break",
+              "type": {
+                "kind": "boolean",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "whitelist",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "place",
+                    "type": {
+                      "kind": "set",
+                      "elements": {
+                        "kind": "advanced",
+                        "typeName": "StringMatcher<Material>",
+                        "capability": {
+                          "sources": [
+                            "jar-schema"
+                          ]
+                        }
+                      },
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "break",
+                    "type": {
+                      "kind": "set",
+                      "elements": {
+                        "kind": "advanced",
+                        "typeName": "StringMatcher<Material>",
+                        "capability": {
+                          "sources": [
+                            "jar-schema"
+                          ]
+                        }
+                      },
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  }
+                ],
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "If the above options are enabled, breaking/placing these blocks are allowed even in unclaimed lands.",
+                "optional": true
+              }
+            },
+            {
+              "key": "unclaimed-build-radius",
+              "type": {
+                "kind": "integer",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "This option can significantly affect server's performance. The radius that players are allowed to build if there are nearby claims that belong to their kingdom. Set to 0 to disable.",
+                "optional": true
+              }
+            },
+            {
+              "key": "charges",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "enabled",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "in-range",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "description": "true:  If the player should be charged when building within the \"unclaimed-build-radius\" this will competely disable building for outside the radius tho. false: If the player should be charged when building outside of the \"unclaimed-build-radius\" this will allow building inside the radius without charges. if \"unclaimed-build-radius\" is disabled, this will charge players in any unclaimed land.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "placing",
+                    "type": {
+                      "kind": "object",
+                      "fields": [
+                        {
+                          "key": "resource-points",
+                          "type": {
+                            "kind": "integer",
+                            "capability": {
+                              "sources": [
+                                "jar-schema",
+                                "jar-default"
+                              ]
+                            },
+                            "optional": true
+                          }
+                        },
+                        {
+                          "key": "money",
+                          "type": {
+                            "kind": "integer",
+                            "capability": {
+                              "sources": [
+                                "jar-schema",
+                                "jar-default"
+                              ]
+                            },
+                            "optional": true
+                          }
+                        }
+                      ],
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "description": "Note that resource points comes from the player's kingdom, but the money is taken directly from the player's balance.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "breaking",
+                    "type": {
+                      "kind": "object",
+                      "fields": [
+                        {
+                          "key": "resource-points",
+                          "type": {
+                            "kind": "integer",
+                            "capability": {
+                              "sources": [
+                                "jar-schema",
+                                "jar-default"
+                              ]
+                            },
+                            "optional": true
+                          }
+                        },
+                        {
+                          "key": "money",
+                          "type": {
+                            "kind": "integer",
+                            "capability": {
+                              "sources": [
+                                "jar-schema",
+                                "jar-default"
+                              ]
+                            },
+                            "optional": true
+                          }
+                        }
+                      ],
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  }
+                ],
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "If players should be charged for building instead of completely disabling building.",
+                "optional": true
+              }
+            }
+          ],
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "You can only build in claims that the relation attribute allows building. This function can be disabled for specific worlds in config.yml \"disabled-worlds\" option.",
+          "optional": true
+        }
+      },
+      {
+        "key": "actionbar",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "auto-claim",
+              "type": {
+                "kind": "boolean",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "auto-unclaim",
+              "type": {
+                "kind": "boolean",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "keep",
+              "type": {
+                "kind": "boolean",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            }
+          ],
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "Show action bar when auto claim/unclaim is enabled.",
+          "optional": true
+        }
+      },
+      {
+        "key": "beacon-protected-effects",
+        "type": {
+          "kind": "boolean",
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "Activated beacons in a land will only affect players who their kingdom has the \"ceasefire\" attribute with the kingdom that owns the land.",
+          "optional": true
+        }
+      },
+      {
+        "key": "potion-protected-effects",
+        "type": {
+          "kind": "set",
+          "elements": {
+            "kind": "suggestion",
+            "typeName": "PotionEffectType",
+            "allowCustom": true,
+            "capability": {
+              "sources": [
+                "jar-schema"
+              ]
+            },
+            "description": "Spigot PotionEffectType."
+          },
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "Throwing these potions at a player who has ceasefire attribute with you, is disallowed.",
+          "optional": true
+        }
+      },
+      {
+        "key": "resource-points",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "refund-unclaim",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "The amount of resource points to give back to the player after unclaiming a land. Set to 0 to disable. Or you can set it to a negative value to take resource points instead.",
+                "optional": true
+              }
+            },
+            {
+              "key": "refund-auto-unclaim",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "claims",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ],
+                  "tier": "common"
+                },
+                "description": "The amount of resource points needed to claim a land.",
+                "optional": true
+              }
+            },
+            {
+              "key": "auto-claims",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            }
+          ],
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "They support equations.",
+          "optional": true
+        }
+      },
+      {
+        "key": "money",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "refund-unclaim",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "The amount of money to give back to the player after unclaiming a land. Set to 0 to disable. Or you can set it to a negative value to take resource points instead.",
+                "optional": true
+              }
+            },
+            {
+              "key": "refund-auto-unclaim",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "claims",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ],
+                  "tier": "common"
+                },
+                "description": "The amount of money needed to claim a land.",
+                "optional": true
+              }
+            },
+            {
+              "key": "auto-claims",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            }
+          ],
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "unclaim-confirmation",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "turrets",
+              "type": {
+                "kind": "boolean",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "structures",
+              "type": {
+                "kind": "boolean",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "home",
+              "type": {
+                "kind": "boolean",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "nexus",
+              "type": {
+                "kind": "boolean",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            }
+          ],
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "Sends a confirmation message before unclaiming certain lands that contain one of elements below. priority: Nexus -> Home -> Structures -> Turrets",
+          "optional": true
+        }
+      },
+      {
+        "key": "unclaim-all",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "announce",
+              "type": {
+                "kind": "boolean",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "keep-nexus-land",
+              "type": {
+                "kind": "boolean",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "cost",
+              "type": {
+                "kind": "integer",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "confirm",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "enabled",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "time",
+                    "type": {
+                      "kind": "integer",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "gui",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  }
+                ],
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            }
+          ],
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "/k unclaimall",
+          "optional": true
+        }
+      },
+      {
+        "key": "restoration",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "enabled",
+              "type": {
+                "kind": "boolean",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "ignored-blocks",
+              "type": {
+                "kind": "set",
+                "elements": {
+                  "kind": "advanced",
+                  "typeName": "StringMatcher<Material>",
+                  "capability": {
+                    "sources": [
+                      "jar-schema"
+                    ]
+                  },
+                  "description": "Material name or matcher."
+                },
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "Doesn't restore the following materials. In order to protect from other blocks, you might consider enabling unclaiming cooldown.",
+                "optional": true
+              }
+            },
+            {
+              "key": "max-active-restoring-chunks",
+              "type": {
+                "kind": "integer",
+                "minimum": 1,
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "Maximum amount of chunks that can be actively restored at once. Other chunks are queued to be restored later.",
+                "optional": true
+              }
+            },
+            {
+              "key": "block-restoration-rate",
+              "type": {
+                "kind": "integer",
+                "minimum": 1,
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "The rate which a single block of every active chunk that's being restored gets restored in ticks. Higher values will improve performance. Note that restoration include every single block, even the air blocks.",
+                "optional": true
+              }
+            }
+          ],
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "The plugin will restore a chunk back to its original status once it has been unclaimed. All the options below require a restart to apply.",
+          "optional": true
+        }
+      },
+      {
+        "key": "indicator",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "enum",
+            "values": [
+              "wilderness",
+              "no-kingdom",
+              "nation-zone",
+              "neutral",
+              "truce",
+              "self",
+              "ally",
+              "kingdom",
+              "nation",
+              "enemy"
+            ],
+            "allowCustom": false,
+            "capability": {
+              "sources": [
+                "jar-schema"
+              ]
+            }
+          },
+          "values": {
+            "kind": "object",
+            "fields": [
+              {
+                "key": "particles",
+                "type": {
+                  "kind": "object",
+                  "fields": [
+                    {
+                      "key": "horizontal",
+                      "type": {
+                        "kind": "object",
+                        "fields": [
+                          {
+                            "key": "color",
+                            "type": {
+                              "kind": "advanced",
+                              "typeName": "RgbColor",
+                              "optional": true,
+                              "description": "RGB particle color, with each red, green, and blue channel from 0 to 255.",
+                              "capability": {
+                                "sources": [
+                                  "jar-schema",
+                                  "jar-default",
+                                  "editor-overlay"
+                                ]
+                              }
+                            }
+                          }
+                        ],
+                        "capability": {
+                          "sources": [
+                            "jar-schema",
+                            "jar-default"
+                          ]
+                        },
+                        "optional": true
+                      }
+                    },
+                    {
+                      "key": "vertical",
+                      "type": {
+                        "kind": "object",
+                        "fields": [
+                          {
+                            "key": "color",
+                            "type": {
+                              "kind": "advanced",
+                              "typeName": "RgbColor",
+                              "optional": true,
+                              "description": "RGB particle color, with each red, green, and blue channel from 0 to 255.",
+                              "capability": {
+                                "sources": [
+                                  "jar-schema",
+                                  "jar-default",
+                                  "editor-overlay"
+                                ]
+                              }
+                            }
+                          }
+                        ],
+                        "capability": {
+                          "sources": [
+                            "jar-schema",
+                            "jar-default"
+                          ]
+                        },
+                        "optional": true
+                      }
+                    }
+                  ],
+                  "capability": {
+                    "sources": [
+                      "jar-schema",
+                      "jar-default",
+                      "editor-overlay"
+                    ]
+                  },
+                  "description": "Particle style or particle entry name.",
+                  "optional": true
+                }
+              },
+              {
+                "key": "send-messages-for-same-chunk-type",
+                "type": {
+                  "kind": "boolean",
+                  "capability": {
+                    "sources": [
+                      "jar-schema",
+                      "editor-overlay"
+                    ]
+                  },
+                  "description": "Send enter/leave messages when moving between matching land types.",
+                  "optional": true
+                }
+              },
+              {
+                "key": "corner-block",
+                "type": {
+                  "kind": "suggestion",
+                  "typeName": "Material",
+                  "allowCustom": true,
+                  "capability": {
+                    "sources": [
+                      "jar-schema",
+                      "jar-default",
+                      "editor-overlay"
+                    ]
+                  },
+                  "description": "Corner block material for this land type.",
+                  "optional": true
+                }
+              },
+              {
+                "key": "two-block",
+                "type": {
+                  "kind": "suggestion",
+                  "typeName": "Material",
+                  "allowCustom": true,
+                  "capability": {
+                    "sources": [
+                      "jar-schema",
+                      "jar-default"
+                    ]
+                  },
+                  "description": "Minecraft material.",
+                  "optional": true
+                }
+              },
+              {
+                "key": "send-messages-for-same-land-type",
+                "type": {
+                  "kind": "boolean",
+                  "description": "Send land-change messages when moving between lands with the same relation type.",
+                  "capability": {
+                    "sources": [
+                      "jar-runtime"
+                    ],
+                    "tier": "advanced",
+                    "runtimeField": "INDICATOR_SEND_MESSAGES_FOR_SAME_LAND_TYPE",
+                    "consumers": [
+                      "org/kingdoms/managers/land/LandChangeWatcher"
+                    ]
+                  },
+                  "optional": true
+                }
+              },
+              {
+                "key": "two-blocks",
+                "type": {
+                  "kind": "boolean",
+                  "description": "Whether two blocks are used for the indicator pillar.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                }
+              }
+            ],
+            "capability": {
+              "sources": [
+                "jar-schema"
+              ]
+            },
+            "description": "Claim indicator visuals for one land type. Optional keys: corner-block, two-blocks, particles, send-messages-for-same-chunk-type.",
+            "optional": true,
+            "required": []
+          },
+          "fields": [
+            {
+              "key": "ignore-worldguard-regions",
+              "type": {
+                "kind": "boolean",
+                "capability": {
+                  "sources": [
+                    "jar-schema"
+                  ]
+                }
+              }
+            },
+            {
+              "key": "kingdomless-enabled",
+              "type": {
+                "kind": "boolean",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "Display these indicators for players that don't have a kingdom."
+              }
+            },
+            {
+              "key": "default",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "name",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "str",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "description": "The name of the default option used for /k visual markers",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "method",
+                    "type": {
+                      "kind": "suggestion",
+                      "typeName": "ClaimIndicatorMethod",
+                      "values": [
+                        "blocks",
+                        "horizontal",
+                        "vertical"
+                      ],
+                      "allowCustom": true,
+                      "description": "Use blocks or the key of a configured particle entry.",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "send-messages-for-same-land-type",
+                    "type": {
+                      "kind": "boolean",
+                      "description": "Send land-change messages when moving between lands with the same relation type.",
+                      "capability": {
+                        "sources": [
+                          "jar-runtime"
+                        ],
+                        "tier": "advanced",
+                        "runtimeField": "INDICATOR_SEND_MESSAGES_FOR_SAME_LAND_TYPE",
+                        "consumers": [
+                          "org/kingdoms/managers/land/LandChangeWatcher"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  }
+                ],
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "The default settings for land indicators (visualizers)"
+              }
+            },
+            {
+              "key": "particles",
+              "type": {
+                "kind": "mapping",
+                "keys": {
+                  "kind": "string",
+                  "typeName": "str",
+                  "capability": {
+                    "sources": [
+                      "jar-schema"
+                    ]
+                  }
+                },
+                "values": {
+                  "kind": "object",
+                  "fields": [
+                    {
+                      "key": "name",
+                      "type": {
+                        "kind": "string",
+                        "typeName": "str",
+                        "capability": {
+                          "sources": [
+                            "jar-schema",
+                            "jar-default"
+                          ]
+                        },
+                        "optional": true
+                      }
+                    },
+                    {
+                      "key": "particle",
+                      "type": {
+                        "kind": "suggestion",
+                        "typeName": "Particle",
+                        "capability": {
+                          "sources": [
+                            "jar-schema",
+                            "jar-default"
+                          ]
+                        },
+                        "allowCustom": true,
+                        "description": "Spigot particle or a custom particle name.",
+                        "optional": true
+                      }
+                    },
+                    {
+                      "key": "count",
+                      "type": {
+                        "kind": "integer",
+                        "capability": {
+                          "sources": [
+                            "jar-schema",
+                            "jar-default"
+                          ]
+                        },
+                        "optional": true
+                      }
+                    },
+                    {
+                      "key": "height",
+                      "type": {
+                        "kind": "integer",
+                        "capability": {
+                          "sources": [
+                            "jar-schema",
+                            "jar-default"
+                          ]
+                        },
+                        "optional": true
+                      }
+                    },
+                    {
+                      "key": "delay",
+                      "type": {
+                        "kind": "integer",
+                        "capability": {
+                          "sources": [
+                            "jar-schema",
+                            "jar-default"
+                          ]
+                        },
+                        "optional": true
+                      }
+                    },
+                    {
+                      "key": "duration",
+                      "type": {
+                        "kind": "integer",
+                        "capability": {
+                          "sources": [
+                            "jar-schema",
+                            "jar-default"
+                          ]
+                        },
+                        "optional": true
+                      }
+                    },
+                    {
+                      "key": "rates",
+                      "type": {
+                        "kind": "object",
+                        "fields": [
+                          {
+                            "key": "vertical",
+                            "type": {
+                              "kind": "integer",
+                              "capability": {
+                                "sources": [
+                                  "jar-schema",
+                                  "jar-default"
+                                ]
+                              },
+                              "optional": true
+                            }
+                          },
+                          {
+                            "key": "horizontal",
+                            "type": {
+                              "kind": "integer",
+                              "capability": {
+                                "sources": [
+                                  "jar-schema",
+                                  "jar-default"
+                                ]
+                              },
+                              "optional": true
+                            }
+                          }
+                        ],
+                        "capability": {
+                          "sources": [
+                            "jar-schema",
+                            "jar-default"
+                          ]
+                        },
+                        "optional": true
+                      }
+                    }
+                  ],
+                  "capability": {
+                    "sources": [
+                      "jar-schema"
+                    ]
+                  }
+                },
+                "fields": [],
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                }
+              }
+            },
+            {
+              "key": "visualizer",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "enabled",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "description": "If visualizers should be enabled for players by default. They can disable it using /k visualize toggle",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "name",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "str",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "description": "The name for the markers type /k visual markers",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "floor-check-height",
+                    "type": {
+                      "kind": "integer",
+                      "minimum": 0,
+                      "maximum": 160,
+                      "description": "Maximum downward floor-check distance, with a hard limit of 160 blocks.",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "border",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "description": "If the blocks should visualize all the border blocks around the chunk. This will usually cause a lot of lag. Not recommended. The material used for these blocks is \"two-block\". You can change them below.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "on-claim",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "description": "Ignores enabled option. Should indicators be shown when a land is claimed or unclaimed?",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "stay",
+                    "type": {
+                      "kind": "integer",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "description": "The amount of time the indicator blocks should stay. In seconds.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "all-stay",
+                    "type": {
+                      "kind": "integer",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "description": "/k visualize all",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "send-messages-for-same-land-type",
+                    "type": {
+                      "kind": "boolean",
+                      "description": "Send land-change messages when moving between lands with the same relation type.",
+                      "capability": {
+                        "sources": [
+                          "jar-runtime"
+                        ],
+                        "tier": "advanced",
+                        "runtimeField": "INDICATOR_SEND_MESSAGES_FOR_SAME_LAND_TYPE",
+                        "consumers": [
+                          "org/kingdoms/managers/land/LandChangeWatcher"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  }
+                ],
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "Adds a block visualizer to separate chunks. It's similar to F3+G Chunk Border. Players can control their visualizers behaviour from /k visualize"
+              }
+            }
+          ],
+          "optional": true,
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          }
+        }
+      },
+      {
+        "key": "requires-outpost-for-other-worlds",
+        "type": {
+          "kind": "boolean",
+          "description": "You will need to place an outpost if you want to claim in another world if your nexus is not in that world.",
+          "capability": {
+            "sources": [
+              "editor-overlay",
+              "jar-default"
+            ]
+          },
+          "optional": true
+        }
+      }
+    ],
+    "capability": {
+      "sources": [
+        "jar-schema"
+      ]
+    }
+  }
+}

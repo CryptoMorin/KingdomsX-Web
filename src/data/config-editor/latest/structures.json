@@ -1,0 +1,39 @@
+{
+  "formatVersion": 2,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "id": "structures",
+  "resourceName": "structures.yml",
+  "schema": {
+    "kind": "object",
+    "fields": [
+      {
+        "key": "disable-shift-click",
+        "type": {
+          "kind": "boolean"
+        }
+      },
+      {
+        "key": "remove-unclaimed",
+        "type": {
+          "kind": "boolean"
+        }
+      },
+      {
+        "key": "to-inventory-on-break",
+        "type": {
+          "kind": "boolean"
+        }
+      },
+      {
+        "key": "total-limit-per-land",
+        "type": {
+          "kind": "integer"
+        }
+      }
+    ]
+  }
+}

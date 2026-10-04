@@ -14,7 +14,7 @@ import {
 beforeEach(resetDatabase);
 
 describe("Public server APIs", () => {
-  it("bounds public pagination and negatively caches missing server slugs", async () => {
+  it("limits public pages and caches missing server slugs", async () => {
     const page = await api("/api/servers?page=10000&limit=8");
 
     expect(page.status).toBe(200);

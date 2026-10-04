@@ -1,0 +1,642 @@
+{
+  "formatVersion": 1,
+  "source": {
+    "addonId": "admin-tools",
+    "artifactPath": "addons/Kingdoms-Addon-Admin-Tools-1.2.3.2.jar",
+    "artifactBlobSha": "c63f5eab8d950936ae09f12aed4ff1383c87cee2",
+    "artifactSha256": "c07ed8f5f52b657f57beca205d12755f0b4f94e26dfcd691834e2ad77043256f",
+    "addonVersion": "1.2.3.2"
+  },
+  "resourceName": "guis/item-editor/attributes/editor.yml",
+  "schemaId": "guis/schema",
+  "sha256": "dc435b9b64d7cfb63f60ba4da1d763897be94b0d20c443db7b8744c0a3f9122d",
+  "options": [
+    {
+      "path": [
+        "title"
+      ],
+      "source": "\"{$sep}-=( {$p}Attribute Editor {$sep})=-\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "rows"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options"
+      ],
+      "source": "\r\n  decoration:\r\n    slots: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26 ]\r\n    material: BLUE_STAINED_GLASS_PANE\r\n    name: ''\r\n  back:\r\n    posx: 1\r\n    posy: 2\r\n    material: PLAYER_HEAD\r\n    skull: \"{$gui-back}\"\r\n    name: '&cBack'\r\n  type:\r\n    posx: 3\r\n    posy: 2\r\n    # This is a template. It'll get replaced.\r\n    # The lore is also set automatically\r\n    material: STONE\r\n    name: '{$p}Attribute{$colon} {$s}%attribute_type%'\r\n  uuid:\r\n    posx: 4\r\n    posy: 2\r\n    material: PAPER\r\n    name: '{$p}UUID{$colon} {$s}%attribute_uuid%'\r\n    lore: |\r\n      {$sep}This is the unique ID for this modifier.\r\n      Since items can have multiple attributes\r\n      of the same type, this is used to identify\r\n      specific modifiers.\r\n      You almost never need to change this manually\r\n      yourself since they're automatically\r\n      generated with minimal conflict.\r\n  name:\r\n    posx: 5\r\n    posy: 2\r\n    material: PAPER\r\n    name: '{$p}Name{$colon} {$s}%attribute_name%'\r\n    lore: |\r\n      {$sep}This is more like a small description\r\n      for this modifier, mostly for human-readable\r\n      identification purposes.\r\n  amount:\r\n    posx: 6\r\n    posy: 2\r\n    material: PAPER\r\n    name: '{$p}Amount{$colon} {$s}%attribute_amount%'\r\n  operation:\r\n    posx: 7\r\n    posy: 2\r\n    # This is a template. It'll get replaced.\r\n    # The lore is also set automatically\r\n    material: STONE\r\n    name: '{$p}Operation{$colon} {$s}%attribute_operation%'\r\n    lore: |\r\n      {$sep}How this attribute affects\r\n      other attributes with the\r\n      same type with the given amount.\r\n  equipment-slot:\r\n    posx: 8\r\n    posy: 2\r\n    # This is a template. It'll get replaced.\r\n    # The lore is also set automatically\r\n    material: STONE\r\n    name: '{$p}Equipment Slot{$colon} {$s}%attribute_equipment_slot%'\r\n    lore: |\r\n      {$sep}The slot which this\r\n      attribute takes effect\r\n      when placed in.",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "decoration"
+      ],
+      "source": "\r\n    slots: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26 ]\r\n    material: BLUE_STAINED_GLASS_PANE\r\n    name: ''\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "decoration",
+        "slots"
+      ],
+      "source": "[ 0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "10",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "decoration",
+        "material"
+      ],
+      "source": "BLUE_STAINED_GLASS_PANE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "decoration",
+        "name"
+      ],
+      "source": "''",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back"
+      ],
+      "source": "\r\n    posx: 1\r\n    posy: 2\r\n    material: PLAYER_HEAD\r\n    skull: \"{$gui-back}\"\r\n    name: '&cBack'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "posx"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "material"
+      ],
+      "source": "PLAYER_HEAD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "skull"
+      ],
+      "source": "\"{$gui-back}\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "name"
+      ],
+      "source": "'&cBack'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "type"
+      ],
+      "source": "\r\n    posx: 3\r\n    posy: 2\r\n    # This is a template. It'll get replaced.\r\n    # The lore is also set automatically\r\n    material: STONE\r\n    name: '{$p}Attribute{$colon} {$s}%attribute_type%'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "type",
+        "posx"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "type",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "type",
+        "material"
+      ],
+      "source": "STONE",
+      "comments": [
+        "This is a template. It'll get replaced.",
+        "The lore is also set automatically"
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "type",
+        "name"
+      ],
+      "source": "'{$p}Attribute{$colon} {$s}%attribute_type%'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "uuid"
+      ],
+      "source": "\r\n    posx: 4\r\n    posy: 2\r\n    material: PAPER\r\n    name: '{$p}UUID{$colon} {$s}%attribute_uuid%'\r\n    lore: |\r\n      {$sep}This is the unique ID for this modifier.\r\n      Since items can have multiple attributes\r\n      of the same type, this is used to identify\r\n      specific modifiers.\r\n      You almost never need to change this manually\r\n      yourself since they're automatically\r\n      generated with minimal conflict.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "uuid",
+        "posx"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "uuid",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "uuid",
+        "material"
+      ],
+      "source": "PAPER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "uuid",
+        "name"
+      ],
+      "source": "'{$p}UUID{$colon} {$s}%attribute_uuid%'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "uuid",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}This is the unique ID for this modifier.\r\n      Since items can have multiple attributes\r\n      of the same type, this is used to identify\r\n      specific modifiers.\r\n      You almost never need to change this manually\r\n      yourself since they're automatically\r\n      generated with minimal conflict.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "name"
+      ],
+      "source": "\r\n    posx: 5\r\n    posy: 2\r\n    material: PAPER\r\n    name: '{$p}Name{$colon} {$s}%attribute_name%'\r\n    lore: |\r\n      {$sep}This is more like a small description\r\n      for this modifier, mostly for human-readable\r\n      identification purposes.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "name",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "name",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "name",
+        "material"
+      ],
+      "source": "PAPER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "name",
+        "name"
+      ],
+      "source": "'{$p}Name{$colon} {$s}%attribute_name%'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "name",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}This is more like a small description\r\n      for this modifier, mostly for human-readable\r\n      identification purposes.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "amount"
+      ],
+      "source": "\r\n    posx: 6\r\n    posy: 2\r\n    material: PAPER\r\n    name: '{$p}Amount{$colon} {$s}%attribute_amount%'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "amount",
+        "posx"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "amount",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "amount",
+        "material"
+      ],
+      "source": "PAPER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "amount",
+        "name"
+      ],
+      "source": "'{$p}Amount{$colon} {$s}%attribute_amount%'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "operation"
+      ],
+      "source": "\r\n    posx: 7\r\n    posy: 2\r\n    # This is a template. It'll get replaced.\r\n    # The lore is also set automatically\r\n    material: STONE\r\n    name: '{$p}Operation{$colon} {$s}%attribute_operation%'\r\n    lore: |\r\n      {$sep}How this attribute affects\r\n      other attributes with the\r\n      same type with the given amount.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "operation",
+        "posx"
+      ],
+      "source": "7",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "operation",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "operation",
+        "material"
+      ],
+      "source": "STONE",
+      "comments": [
+        "This is a template. It'll get replaced.",
+        "The lore is also set automatically"
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "operation",
+        "name"
+      ],
+      "source": "'{$p}Operation{$colon} {$s}%attribute_operation%'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "operation",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}How this attribute affects\r\n      other attributes with the\r\n      same type with the given amount.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "equipment-slot"
+      ],
+      "source": "\r\n    posx: 8\r\n    posy: 2\r\n    # This is a template. It'll get replaced.\r\n    # The lore is also set automatically\r\n    material: STONE\r\n    name: '{$p}Equipment Slot{$colon} {$s}%attribute_equipment_slot%'\r\n    lore: |\r\n      {$sep}The slot which this\r\n      attribute takes effect\r\n      when placed in.",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "equipment-slot",
+        "posx"
+      ],
+      "source": "8",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "equipment-slot",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "equipment-slot",
+        "material"
+      ],
+      "source": "STONE",
+      "comments": [
+        "This is a template. It'll get replaced.",
+        "The lore is also set automatically"
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "equipment-slot",
+        "name"
+      ],
+      "source": "'{$p}Equipment Slot{$colon} {$s}%attribute_equipment_slot%'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "equipment-slot",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}The slot which this\r\n      attribute takes effect\r\n      when placed in.",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

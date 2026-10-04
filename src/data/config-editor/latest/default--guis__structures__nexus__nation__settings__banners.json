@@ -1,0 +1,430 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "guis/structures/nexus/nation/settings/banners.yml",
+  "schemaId": "guis/schema",
+  "options": [
+    {
+      "path": [
+        "title"
+      ],
+      "source": "\"{$sep}-=( &6Banners {$sep})=-\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "rows"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sound"
+      ],
+      "source": "ITEM_BOOK_PAGE_TURN",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options"
+      ],
+      "source": "\r\n  back:\r\n    posx: 1\r\n    posy: 1\r\n    material: PLAYER_HEAD\r\n    name: '{$p}Back'\r\n    lore: [ '{$s}Go back to nexus menu.' ]\r\n    skull: \"{$gui-back}\"\r\n  flag:\r\n    posx: 4\r\n    posy: 2\r\n    material: FILLED_MAP\r\n    name: \"{$p}Flag\"\r\n    lore: |\r\n      {$desc}Sets the your nation flag\r\n      that may appear on online web maps\r\n      when someone clicks your nation\r\n      to see the description.\r\n\r\n      %banner_description%\r\n  banner:\r\n    posx: 6\r\n    posy: 2\r\n    material: WHITE_BANNER\r\n    name: \"{$p}Banner\"\r\n    lore: |\r\n      {$desc}Sets the your nation banner\r\n      that may appear as icons inside\r\n      online web maps, also used for\r\n      your main nation flag if a flag\r\n      is not set for the other option.\r\n\r\n      %banner_description%\r\n\r\n  blue-stained-glass-pane:\r\n    slots: [ 1, 2, 6, 7, 8, 9, 10, 16, 17, 18, 19, 20, 24, 25, 26 ]\r\n    material: BLUE_STAINED_GLASS_PANE\r\n    name: ''\r\n  orange-stained-glass-pane:\r\n    slots: [ 3, 4, 5, 11, 13, 15, 21, 22, 23 ]\r\n    material: ORANGE_STAINED_GLASS_PANE\r\n    name: ''\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back"
+      ],
+      "source": "\r\n    posx: 1\r\n    posy: 1\r\n    material: PLAYER_HEAD\r\n    name: '{$p}Back'\r\n    lore: [ '{$s}Go back to nexus menu.' ]\r\n    skull: \"{$gui-back}\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "posx"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "material"
+      ],
+      "source": "PLAYER_HEAD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "name"
+      ],
+      "source": "'{$p}Back'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "lore"
+      ],
+      "source": "[ '{$s}Go back to nexus menu.' ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "'{$s}Go back to nexus menu.'"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "skull"
+      ],
+      "source": "\"{$gui-back}\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag"
+      ],
+      "source": "\r\n    posx: 4\r\n    posy: 2\r\n    material: FILLED_MAP\r\n    name: \"{$p}Flag\"\r\n    lore: |\r\n      {$desc}Sets the your nation flag\r\n      that may appear on online web maps\r\n      when someone clicks your nation\r\n      to see the description.\r\n\r\n      %banner_description%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag",
+        "posx"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag",
+        "material"
+      ],
+      "source": "FILLED_MAP",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag",
+        "name"
+      ],
+      "source": "\"{$p}Flag\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag",
+        "lore"
+      ],
+      "source": "|\r\n      {$desc}Sets the your nation flag\r\n      that may appear on online web maps\r\n      when someone clicks your nation\r\n      to see the description.\r\n\r\n      %banner_description%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "banner"
+      ],
+      "source": "\r\n    posx: 6\r\n    posy: 2\r\n    material: WHITE_BANNER\r\n    name: \"{$p}Banner\"\r\n    lore: |\r\n      {$desc}Sets the your nation banner\r\n      that may appear as icons inside\r\n      online web maps, also used for\r\n      your main nation flag if a flag\r\n      is not set for the other option.\r\n\r\n      %banner_description%\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "banner",
+        "posx"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "banner",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "banner",
+        "material"
+      ],
+      "source": "WHITE_BANNER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "banner",
+        "name"
+      ],
+      "source": "\"{$p}Banner\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "banner",
+        "lore"
+      ],
+      "source": "|\r\n      {$desc}Sets the your nation banner\r\n      that may appear as icons inside\r\n      online web maps, also used for\r\n      your main nation flag if a flag\r\n      is not set for the other option.\r\n\r\n      %banner_description%\r\n\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "blue-stained-glass-pane"
+      ],
+      "source": "\r\n    slots: [ 1, 2, 6, 7, 8, 9, 10, 16, 17, 18, 19, 20, 24, 25, 26 ]\r\n    material: BLUE_STAINED_GLASS_PANE\r\n    name: ''\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "blue-stained-glass-pane",
+        "slots"
+      ],
+      "source": "[ 1, 2, 6, 7, 8, 9, 10, 16, 17, 18, 19, 20, 24, 25, 26 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "1",
+        "2",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "24",
+        "25",
+        "26"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "blue-stained-glass-pane",
+        "material"
+      ],
+      "source": "BLUE_STAINED_GLASS_PANE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "blue-stained-glass-pane",
+        "name"
+      ],
+      "source": "''",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "orange-stained-glass-pane"
+      ],
+      "source": "\r\n    slots: [ 3, 4, 5, 11, 13, 15, 21, 22, 23 ]\r\n    material: ORANGE_STAINED_GLASS_PANE\r\n    name: ''\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "orange-stained-glass-pane",
+        "slots"
+      ],
+      "source": "[ 3, 4, 5, 11, 13, 15, 21, 22, 23 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "3",
+        "4",
+        "5",
+        "11",
+        "13",
+        "15",
+        "21",
+        "22",
+        "23"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "orange-stained-glass-pane",
+        "material"
+      ],
+      "source": "ORANGE_STAINED_GLASS_PANE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "orange-stained-glass-pane",
+        "name"
+      ],
+      "source": "''",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

@@ -1,0 +1,549 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "guis/protection-signs/protected-sign.yml",
+  "schemaId": "guis/schema",
+  "options": [
+    {
+      "path": [
+        "title"
+      ],
+      "source": "\"{$sep}-=[ &5Protection {$sep}]=-\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "rows"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sound"
+      ],
+      "source": "BLOCK_CHEST_OPEN",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options"
+      ],
+      "source": "\r\n  access-entries:\r\n    name: \"{$p}Access Entries\"\r\n    lore: |-\r\n      {$s}Add different privileges to\r\n      certain players based on a filter.\r\n    material: PLAYER_HEAD\r\n    skull: '%owner%'\r\n    posx: 3\r\n    posy: 2\r\n  info:\r\n    name: \"&5Protection Signs\"\r\n    lore: |-\r\n      {$s}Protected blocks are protected\r\n      against griefs and no player can use it\r\n      without permission.\r\n\r\n      If a player has access to this block,\r\n      they still cannot change the sign settings\r\n      or break the sign or the block.\r\n\r\n      {$sep}Click here to set a password on the block.\r\n      This only works if the block being protected\r\n      is a container such as a chest.\r\n    material: NETHER_STAR\r\n    posx: 4\r\n    posy: 2\r\n  protection-type:\r\n    name: \"{$p}Protection Type{$colon} {$sp}%protection_type%\"\r\n    lore: |-\r\n      {$s}Change the method of how\r\n      this block is protected from\r\n      other players by default.\r\n    material: CHEST\r\n    posx: 6\r\n    posy: 2\r\n  automatic-state-toggle-duration:\r\n    name: \"&5Automatic State Toggle Duration\"\r\n    supported:\r\n      condition: 'openable'\r\n      lore: |\r\n        {$desc}Closes the door automatically after\r\n        it was opened.\r\n\r\n        {$p}Duration{$colon} {$s}%time@automatic_state_toggle_duration%\r\n    else:\r\n      lore: |\r\n        {$desc}The protected block doesn't support\r\n        this feature. Only works with doors.\r\n    material: COMPARATOR\r\n    posx: 7\r\n    posy: 2\r\n\r\n  decoration-light-blue:\r\n    slots: [ 0, 4, 8, 18, 22, 26 ]\r\n    material: LIGHT_BLUE_STAINED_GLASS_PANE\r\n    name: ''\r\n  decoration-blue:\r\n    slots: [ 1, 7, 9, 13, 17, 19, 25 ]\r\n    material: BLUE_STAINED_GLASS_PANE\r\n    name: ''\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "access-entries"
+      ],
+      "source": "\r\n    name: \"{$p}Access Entries\"\r\n    lore: |-\r\n      {$s}Add different privileges to\r\n      certain players based on a filter.\r\n    material: PLAYER_HEAD\r\n    skull: '%owner%'\r\n    posx: 3\r\n    posy: 2\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "access-entries",
+        "name"
+      ],
+      "source": "\"{$p}Access Entries\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "access-entries",
+        "lore"
+      ],
+      "source": "|-\r\n      {$s}Add different privileges to\r\n      certain players based on a filter.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "access-entries",
+        "material"
+      ],
+      "source": "PLAYER_HEAD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "access-entries",
+        "skull"
+      ],
+      "source": "'%owner%'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "access-entries",
+        "posx"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "access-entries",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "info"
+      ],
+      "source": "\r\n    name: \"&5Protection Signs\"\r\n    lore: |-\r\n      {$s}Protected blocks are protected\r\n      against griefs and no player can use it\r\n      without permission.\r\n\r\n      If a player has access to this block,\r\n      they still cannot change the sign settings\r\n      or break the sign or the block.\r\n\r\n      {$sep}Click here to set a password on the block.\r\n      This only works if the block being protected\r\n      is a container such as a chest.\r\n    material: NETHER_STAR\r\n    posx: 4\r\n    posy: 2\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "info",
+        "name"
+      ],
+      "source": "\"&5Protection Signs\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "info",
+        "lore"
+      ],
+      "source": "|-\r\n      {$s}Protected blocks are protected\r\n      against griefs and no player can use it\r\n      without permission.\r\n\r\n      If a player has access to this block,\r\n      they still cannot change the sign settings\r\n      or break the sign or the block.\r\n\r\n      {$sep}Click here to set a password on the block.\r\n      This only works if the block being protected\r\n      is a container such as a chest.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "info",
+        "material"
+      ],
+      "source": "NETHER_STAR",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "info",
+        "posx"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "info",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "protection-type"
+      ],
+      "source": "\r\n    name: \"{$p}Protection Type{$colon} {$sp}%protection_type%\"\r\n    lore: |-\r\n      {$s}Change the method of how\r\n      this block is protected from\r\n      other players by default.\r\n    material: CHEST\r\n    posx: 6\r\n    posy: 2\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "protection-type",
+        "name"
+      ],
+      "source": "\"{$p}Protection Type{$colon} {$sp}%protection_type%\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "protection-type",
+        "lore"
+      ],
+      "source": "|-\r\n      {$s}Change the method of how\r\n      this block is protected from\r\n      other players by default.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "protection-type",
+        "material"
+      ],
+      "source": "CHEST",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "protection-type",
+        "posx"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "protection-type",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "automatic-state-toggle-duration"
+      ],
+      "source": "\r\n    name: \"&5Automatic State Toggle Duration\"\r\n    supported:\r\n      condition: 'openable'\r\n      lore: |\r\n        {$desc}Closes the door automatically after\r\n        it was opened.\r\n\r\n        {$p}Duration{$colon} {$s}%time@automatic_state_toggle_duration%\r\n    else:\r\n      lore: |\r\n        {$desc}The protected block doesn't support\r\n        this feature. Only works with doors.\r\n    material: COMPARATOR\r\n    posx: 7\r\n    posy: 2\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "automatic-state-toggle-duration",
+        "name"
+      ],
+      "source": "\"&5Automatic State Toggle Duration\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "automatic-state-toggle-duration",
+        "supported"
+      ],
+      "source": "\r\n      condition: 'openable'\r\n      lore: |\r\n        {$desc}Closes the door automatically after\r\n        it was opened.\r\n\r\n        {$p}Duration{$colon} {$s}%time@automatic_state_toggle_duration%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "automatic-state-toggle-duration",
+        "supported",
+        "condition"
+      ],
+      "source": "'openable'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "automatic-state-toggle-duration",
+        "supported",
+        "lore"
+      ],
+      "source": "|\r\n        {$desc}Closes the door automatically after\r\n        it was opened.\r\n\r\n        {$p}Duration{$colon} {$s}%time@automatic_state_toggle_duration%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "automatic-state-toggle-duration",
+        "else"
+      ],
+      "source": "\r\n      lore: |\r\n        {$desc}The protected block doesn't support\r\n        this feature. Only works with doors.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "automatic-state-toggle-duration",
+        "else",
+        "lore"
+      ],
+      "source": "|\r\n        {$desc}The protected block doesn't support\r\n        this feature. Only works with doors.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "automatic-state-toggle-duration",
+        "material"
+      ],
+      "source": "COMPARATOR",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "automatic-state-toggle-duration",
+        "posx"
+      ],
+      "source": "7",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "automatic-state-toggle-duration",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "decoration-light-blue"
+      ],
+      "source": "\r\n    slots: [ 0, 4, 8, 18, 22, 26 ]\r\n    material: LIGHT_BLUE_STAINED_GLASS_PANE\r\n    name: ''\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "decoration-light-blue",
+        "slots"
+      ],
+      "source": "[ 0, 4, 8, 18, 22, 26 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "0",
+        "4",
+        "8",
+        "18",
+        "22",
+        "26"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "decoration-light-blue",
+        "material"
+      ],
+      "source": "LIGHT_BLUE_STAINED_GLASS_PANE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "decoration-light-blue",
+        "name"
+      ],
+      "source": "''",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "decoration-blue"
+      ],
+      "source": "\r\n    slots: [ 1, 7, 9, 13, 17, 19, 25 ]\r\n    material: BLUE_STAINED_GLASS_PANE\r\n    name: ''\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "decoration-blue",
+        "slots"
+      ],
+      "source": "[ 1, 7, 9, 13, 17, 19, 25 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "1",
+        "7",
+        "9",
+        "13",
+        "17",
+        "19",
+        "25"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "decoration-blue",
+        "material"
+      ],
+      "source": "BLUE_STAINED_GLASS_PANE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "decoration-blue",
+        "name"
+      ],
+      "source": "''",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

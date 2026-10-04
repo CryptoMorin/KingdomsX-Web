@@ -1,0 +1,173 @@
+{
+  "formatVersion": 4,
+  "source": {
+    "kind": "kingdomsx-github-languages",
+    "repository": "CryptoMorin/KingdomsX",
+    "ref": "master",
+    "commitSha": "b797369ffd59a2a42b9b3f2d30978683b839af7e",
+    "rootPath": "resources/languages",
+    "languages": [
+      {
+        "locale": "cs",
+        "path": "resources/languages/cs/cs.yml",
+        "blobSha": "a5b5d8d0378f8097f5225714856b98128f814497",
+        "sha256": "ee86c7b844793125d84f7b811b0a586d6350dee472df26e4037a4ab7301ce4a7"
+      },
+      {
+        "locale": "de",
+        "path": "resources/languages/de/de.yml",
+        "blobSha": "0d7f3e2b001c2d36cdc4ce5387d402c55083be40",
+        "sha256": "65d7fcb0290abae2ab1199bc93b044b0d4420439e54deb02eb2a524dfce59cc1"
+      },
+      {
+        "locale": "en",
+        "path": "resources/languages/en/en.yml",
+        "blobSha": "0ff6bf558c5d3cc0f089428683c6ea1f52b16f1a",
+        "sha256": "00c959a3feb53d0133f3cf4c0c86fe6ccc6fc8409da873ad3a1dfc8fefbcbed3"
+      },
+      {
+        "locale": "es",
+        "path": "resources/languages/es/es.yml",
+        "blobSha": "e88f2fbef0fa428870e62c6e2457e15791c6fd95",
+        "sha256": "cfb104fcd8f186aa0d5bdb96415e07f4e1c94d1df8d9583469ba9936d854d314"
+      },
+      {
+        "locale": "hu",
+        "path": "resources/languages/hu/hu.yml",
+        "blobSha": "5bea780f7f3fe86beb67e0d5dc0f72023087cd31",
+        "sha256": "6a79333d28a683fb3ec10b95ef7c381a028ac4daba262ad78c960ae6aff91e6c"
+      },
+      {
+        "locale": "it",
+        "path": "resources/languages/it/it.yml",
+        "blobSha": "3a86703b2481b7edd631f6e92d51d3ae24a0baff",
+        "sha256": "2cfcd9e06ed99301bb0de0825155f5aa471364058348eed76d60f9010f654777"
+      },
+      {
+        "locale": "pl",
+        "path": "resources/languages/pl/pl.yml",
+        "blobSha": "5b7fa377c23da6a9addff17e93aa1d370e972558",
+        "sha256": "5504178801a76cc509c682ae555148ab2db965a798c7ea2469497d6a64feeffa"
+      },
+      {
+        "locale": "pt",
+        "path": "resources/languages/pt/pt.yml",
+        "blobSha": "a06142b530d44c27e8acc207dd01d6e35a9700dc",
+        "sha256": "f2caca1dcb468c13061695cc912d84eaf292cb5db6ccf7d68db2c5a310410ca1"
+      },
+      {
+        "locale": "ru",
+        "path": "resources/languages/ru/ru.yml",
+        "blobSha": "154c0e8317d4bd421605e68a62bcc4ef4f43a680",
+        "sha256": "63aade07a9e9feb3096e480dc87d7aa2f973edda79a8a8931eada0431efdbcfb"
+      },
+      {
+        "locale": "tr",
+        "path": "resources/languages/tr/tr.yml",
+        "blobSha": "8fdd2020e5d51c9e33e76caf435ad3400bd3e514",
+        "sha256": "7b4c05fddbfcde9d806719eba5f777932ee29ad0672f393844f1216b556d992e"
+      },
+      {
+        "locale": "uk",
+        "path": "resources/languages/uk/uk.yml",
+        "blobSha": "d5f08924a8a0c9eece7a3425322228c4110db6e7",
+        "sha256": "c07043703ce9d8c534a329d3d60252850f8ce44b71f7ed7cd02707bb6f49f655"
+      },
+      {
+        "locale": "vi",
+        "path": "resources/languages/vi/vi.yml",
+        "blobSha": "973765f96b7df75bc6089fa885572fc5589572c5",
+        "sha256": "f1a49dff75bb9269389794198fe3d97a57454ee9279275cd729ba94e8ff9455d"
+      },
+      {
+        "locale": "zh",
+        "path": "resources/languages/zh/zh.yml",
+        "blobSha": "08dec830dbb4b06cb2f9329274c243ad8985a921",
+        "sha256": "709b25bb7f0172acc19df41feec18d1f7612b9c99efa471902f117b3d6a811dd"
+      }
+    ]
+  },
+  "catalogs": {
+    "kingdomCommandIds": "kingdom-command-ids.json"
+  },
+  "defaults": [
+    {
+      "resourceName": "languages/cs.yml",
+      "schemaId": "language",
+      "fileName": "default--languages__cs.json",
+      "sha256": "ee86c7b844793125d84f7b811b0a586d6350dee472df26e4037a4ab7301ce4a7"
+    },
+    {
+      "resourceName": "languages/de.yml",
+      "schemaId": "language",
+      "fileName": "default--languages__de.json",
+      "sha256": "65d7fcb0290abae2ab1199bc93b044b0d4420439e54deb02eb2a524dfce59cc1"
+    },
+    {
+      "resourceName": "languages/en.yml",
+      "schemaId": "language",
+      "fileName": "default--languages__en.json",
+      "sha256": "00c959a3feb53d0133f3cf4c0c86fe6ccc6fc8409da873ad3a1dfc8fefbcbed3"
+    },
+    {
+      "resourceName": "languages/es.yml",
+      "schemaId": "language",
+      "fileName": "default--languages__es.json",
+      "sha256": "cfb104fcd8f186aa0d5bdb96415e07f4e1c94d1df8d9583469ba9936d854d314"
+    },
+    {
+      "resourceName": "languages/hu.yml",
+      "schemaId": "language",
+      "fileName": "default--languages__hu.json",
+      "sha256": "6a79333d28a683fb3ec10b95ef7c381a028ac4daba262ad78c960ae6aff91e6c"
+    },
+    {
+      "resourceName": "languages/it.yml",
+      "schemaId": "language",
+      "fileName": "default--languages__it.json",
+      "sha256": "2cfcd9e06ed99301bb0de0825155f5aa471364058348eed76d60f9010f654777"
+    },
+    {
+      "resourceName": "languages/pl.yml",
+      "schemaId": "language",
+      "fileName": "default--languages__pl.json",
+      "sha256": "5504178801a76cc509c682ae555148ab2db965a798c7ea2469497d6a64feeffa"
+    },
+    {
+      "resourceName": "languages/pt.yml",
+      "schemaId": "language",
+      "fileName": "default--languages__pt.json",
+      "sha256": "f2caca1dcb468c13061695cc912d84eaf292cb5db6ccf7d68db2c5a310410ca1"
+    },
+    {
+      "resourceName": "languages/ru.yml",
+      "schemaId": "language",
+      "fileName": "default--languages__ru.json",
+      "sha256": "63aade07a9e9feb3096e480dc87d7aa2f973edda79a8a8931eada0431efdbcfb"
+    },
+    {
+      "resourceName": "languages/tr.yml",
+      "schemaId": "language",
+      "fileName": "default--languages__tr.json",
+      "sha256": "7b4c05fddbfcde9d806719eba5f777932ee29ad0672f393844f1216b556d992e"
+    },
+    {
+      "resourceName": "languages/uk.yml",
+      "schemaId": "language",
+      "fileName": "default--languages__uk.json",
+      "sha256": "c07043703ce9d8c534a329d3d60252850f8ce44b71f7ed7cd02707bb6f49f655"
+    },
+    {
+      "resourceName": "languages/vi.yml",
+      "schemaId": "language",
+      "fileName": "default--languages__vi.json",
+      "sha256": "f1a49dff75bb9269389794198fe3d97a57454ee9279275cd729ba94e8ff9455d"
+    },
+    {
+      "resourceName": "languages/zh.yml",
+      "schemaId": "language",
+      "fileName": "default--languages__zh.json",
+      "sha256": "709b25bb7f0172acc19df41feec18d1f7612b9c99efa471902f117b3d6a811dd"
+    }
+  ]
+}

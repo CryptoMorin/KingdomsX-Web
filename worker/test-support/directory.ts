@@ -1,7 +1,8 @@
 import { createExecutionContext, waitOnExecutionContext } from "cloudflare:test";
 import { env } from "cloudflare:workers";
 import { expect, vi } from "vitest";
-import worker from "../index";
+import webWorker from "../index";
+import worker from "../server-directory/worker";
 import {
   buildDiscordServerMessage,
   handleServerDirectoryRequest,
@@ -16,8 +17,7 @@ const testEnv = env as DirectoryEnv;
 const origin = "https://servers.kingdomsx.com";
 let challengeIpCounter = 1;
 
-const TEST_SERVER_DESCRIPTION =
-  "This test description is long enough for server verification.";
+const TEST_SERVER_DESCRIPTION = "This test description is long enough for server verification.";
 
 interface ApiOptions {
   cookie?: string;
@@ -121,10 +121,14 @@ async function jsonApi(
 ): Promise<Response> {
   const headers = new Headers(options.headers);
   headers.set("content-type", "application/json");
-  if (options.cookie)
+
+  if (options.cookie) {
     headers.set("cookie", options.cookie);
-  if (options.clientIp)
+  }
+
+  if (options.clientIp) {
     headers.set("cf-connecting-ip", options.clientIp);
+  }
 
   return api(pathname, { method, headers, body: JSON.stringify(body) });
 }
@@ -243,8 +247,9 @@ function captureDiscordRequests(messageIds: string[]): CapturedRequest[] {
 
     requests.push({ url: request.url, method, body });
 
-    if (method === "DELETE")
+    if (method === "DELETE") {
       return new Response(null, { status: 204 });
+    }
 
     return Response.json({
       id: method === "POST" ? messageIds.shift() : (messageIds[0] ?? "555555555555555555"),
@@ -256,28 +261,68 @@ function captureDiscordRequests(messageIds: string[]): CapturedRequest[] {
   return requests;
 }
 
-async function workerRoute(url: string, requestedAssets: string[]): Promise<Response> {
-  const routeEnv = {
-    APP_ENVIRONMENT: "production",
-    DB: testEnv.DB,
-    ASSETS: {
-      async fetch(input: RequestInfo | URL): Promise<Response> {
-        const request = input instanceof Request ? input : new Request(input);
+function assetBinding(requestedAssets: string[]): Fetcher {
+  return {
+    async fetch(input: RequestInfo | URL): Promise<Response> {
+      const request = input instanceof Request ? input : new Request(input);
+      const pathname = new URL(request.url).pathname;
 
-        requestedAssets.push(new URL(request.url).pathname);
+      requestedAssets.push(pathname);
 
-        return new Response(
-          `<!doctype html><html><head><title>Test</title></head><body>Asset</body></html>`,
-          {
-            headers: { "content-type": "text/html; charset=utf-8" }
-          }
-        );
+      const available = pathname === "/403"
+        || pathname === "/404"
+        || pathname === "/apple-touch-icon.png"
+        || pathname === "/build/example.js"
+        || pathname === "/servers.html"
+        || pathname === "/servers/submit.html"
+        || pathname === "/servers/admin.html";
+
+      if (!available) {
+        return new Response("Missing test asset", { status: 404 });
       }
+
+      return new Response(
+        `<!doctype html><html><head>
+          <title>Test</title>
+          <meta name="description" content="Test description">
+          <link rel="canonical" href="https://kingdomsx.com/servers">
+          <link rel="alternate" hreflang="en" href="https://kingdomsx.com/servers">
+          <meta property="og:url" content="https://kingdomsx.com/servers">
+          <meta property="og:title" content="Test">
+          <meta property="og:description" content="Test description">
+          <meta name="twitter:title" content="Test">
+          <meta name="twitter:description" content="Test description">
+          <script type="application/ld+json" data-structured-data="webpage">{"@context":"https://schema.org","@type":"WebPage","url":"https://kingdomsx.com/servers","name":"Test"}</script>
+        </head><body>Asset</body></html>`,
+        {
+          headers: { "content-type": "text/html; charset=utf-8" }
+        }
+      );
     }
+  } as Fetcher;
+}
+
+async function workerRoute(
+  url: string,
+  requestedAssets: string[],
+  appEnvironment: "local" | "production" = "production"
+): Promise<Response> {
+  const routeEnv = {
+    APP_ENVIRONMENT: appEnvironment,
+    DB: testEnv.DB,
+    ASSETS: assetBinding(requestedAssets)
   } as Parameters<typeof worker.fetch>[1];
   const ctx = createExecutionContext();
 
   return worker.fetch(new Request(url), routeEnv, ctx);
+}
+
+function webWorkerRoute(url: string, requestedAssets: string[]): Promise<Response> {
+  const routeEnv = {
+    ASSETS: assetBinding(requestedAssets)
+  } as Parameters<typeof webWorker.fetch>[1];
+
+  return webWorker.fetch(new Request(url), routeEnv);
 }
 
 // Server/submission seed helpers
@@ -328,6 +373,7 @@ async function seedDiscordEmbed(
     .bind(serverId, messageId, syncedAt, syncedAt, syncedAt)
     .run();
 }
+
 export {
   createExecutionContext,
   waitOnExecutionContext,
@@ -355,6 +401,7 @@ export {
   stubSubmissionServices,
   captureDiscordRequests,
   workerRoute,
+  webWorkerRoute,
   seedOwnedServer,
   seedDiscordEmbed
 };

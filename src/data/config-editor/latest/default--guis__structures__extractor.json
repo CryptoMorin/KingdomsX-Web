@@ -1,0 +1,697 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "guis/structures/extractor.yml",
+  "schemaId": "guis/schema",
+  "options": [
+    {
+      "path": [
+        "title"
+      ],
+      "source": "\"{$p}Extractor\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "type"
+      ],
+      "source": "HOPPER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sound"
+      ],
+      "source": "BLOCK_ANVIL_USE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options"
+      ],
+      "source": "\r\n  collect:\r\n    outOfFuel:\r\n      condition: 'needs_fuel && fuel <= 0'\r\n      name: \"{$e}Out of fuel {$sp}%extractor-last-collected-time-passed% {$sep}- {$sp}%fancy@extractor_collected_resource_points%\"\r\n      material: RED_WOOL\r\n    nothing-to-collect:\r\n      condition: 'amount <= 0'\r\n      name: \"{$e}Nothing to collect {$sp}%extractor-last-collected-time-passed%\"\r\n      material: RED_WOOL\r\n    else:\r\n      name: \"{$p}Collect{$colon} {$sp}%extractor-last-collected-time-passed% {$sep}- {$sp}%fancy@extractor_collected_resource_points%\"\r\n      material: GREEN_WOOL\r\n    sound: ENTITY_EXPERIENCE_ORB_PICKUP\r\n    lore:\r\n      - \"{$s}Collect all the generated\"\r\n      - \"resource points.\"\r\n      - \"Last collected by{$colon} {$p}%extractor-last-collector%\"\r\n    slot: 0\r\n  fuel:\r\n    name: \"{$p}Fuel{$colon} {$s}%fancy@fuel%&8/{$s}%fancy@max_fuel%\"\r\n    material: COAL\r\n    refresh: true\r\n    slot: 1\r\n    lore: |\r\n      {$sep}To fill the fuel, simply drop\r\n      one of the fuel items on the\r\n      extractor block.\r\n\r\n      {$sep}Additionally, you can place a {$p}hopper\r\n      {$sep}facing into the extractor with the following items.\r\n      {$note} This only works once the extractor's\r\n      fuel is almost at zero.\r\n\r\n      {$p}Coal{$colon} {$sp}5\r\n      {$p}Charcoal{$colon} {$sp}3\r\n      {$p}Blaze Rods{$colon} {$sp}100\r\n  repair:\r\n    material: ANVIL\r\n    name: \"{$sp}Repair\"\r\n    slot: 2\r\n    upgrade:\r\n      condition: \"building_durability <= 0\"\r\n      lore: |\r\n        {$desc}This building is completely\r\n        destroyed and needs a full repair\r\n        to fix it.\r\n\r\n        {$p}Cost{$colon}\r\n        {? repair_cost_rp != 0 ? \" {$dot} {$p}Resource Points{$colon} {$s}%fancy@repair_cost_rp%\" }\r\n        {? repair_cost_money != 0 ? \" {$dot} {$p}Money{$colon} {$s}$%fancy@repair_cost_money%\" }\r\n    else:\r\n      lore: |\r\n        {$desc}You can repair this building by\r\n        throwing the following items at it{$colon}\r\n\r\n          {$dot} {$p}Iron{$colon} {$s}10\r\n          {$dot} {$p}Gold{$colon} {$s}15\r\n          {$dot} {$p}Diamonds{$colon} {$s}50\r\n\r\n        {$info-sign} &9If your building's durability hits {$e}0&9,\r\n        you'll have to do a full repair using\r\n        this button.\r\n  upgrade:\r\n    slot: 3\r\n    upgrade:\r\n      condition: level < max_level\r\n      name: \"{$sp}Upgrade{$colon} {$s}%roman@level% {$sep}➛ {$s}%roman@next_level%\"\r\n      material: NETHER_STAR\r\n      lore:\r\n        - \"{$dot} {$p}Every{$colon} {$s}%every% {$sep}➔ {$s}%next-every%\"\r\n        - \"{$dot} {$p}Resource Points{$colon} {$s}%fancy@resource-points% {$sep}➔ {$s}%fancy@next-resource-points%\"\r\n        - \"{$dot} {$p}Fuel Consumption{$colon} {$s}%extractor_needed_fuel% {$sep}➔ {$s}%next_extractor_needed_fuel%\"\r\n        - \"\"\r\n        - \"{$dot} {$p}Max Level{$colon} {$s}%roman@max_level%\"\r\n        - \"{$dot} {$p}Cost{$colon} {$s}%upgrade_cost%\"\r\n    maxxed:\r\n      name: \"{$sp}Level{$colon} {$s}%roman@level%\"\r\n      material: NETHER_STAR\r\n      lore:\r\n        - \"{$dot} {$p}Every{$colon} {$s}%every%\"\r\n        - \"{$dot} {$p}Resource Points{$colon} {$s}%fancy@resource-points%\"\r\n        - \"{$dot} {$p}Fuel Consumption{$colon} {$s}%extractor_needed_fuel%\"\r\n  break:\r\n    name: \"&4Break\"\r\n    material: REDSTONE_BLOCK\r\n    sound: ENTITY_ITEM_BREAK\r\n    lore:\r\n      - \"{$s}Breaks the structure.\"\r\n    slot: 4\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "collect"
+      ],
+      "source": "\r\n    outOfFuel:\r\n      condition: 'needs_fuel && fuel <= 0'\r\n      name: \"{$e}Out of fuel {$sp}%extractor-last-collected-time-passed% {$sep}- {$sp}%fancy@extractor_collected_resource_points%\"\r\n      material: RED_WOOL\r\n    nothing-to-collect:\r\n      condition: 'amount <= 0'\r\n      name: \"{$e}Nothing to collect {$sp}%extractor-last-collected-time-passed%\"\r\n      material: RED_WOOL\r\n    else:\r\n      name: \"{$p}Collect{$colon} {$sp}%extractor-last-collected-time-passed% {$sep}- {$sp}%fancy@extractor_collected_resource_points%\"\r\n      material: GREEN_WOOL\r\n    sound: ENTITY_EXPERIENCE_ORB_PICKUP\r\n    lore:\r\n      - \"{$s}Collect all the generated\"\r\n      - \"resource points.\"\r\n      - \"Last collected by{$colon} {$p}%extractor-last-collector%\"\r\n    slot: 0\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "collect",
+        "outOfFuel"
+      ],
+      "source": "\r\n      condition: 'needs_fuel && fuel <= 0'\r\n      name: \"{$e}Out of fuel {$sp}%extractor-last-collected-time-passed% {$sep}- {$sp}%fancy@extractor_collected_resource_points%\"\r\n      material: RED_WOOL\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "collect",
+        "outOfFuel",
+        "condition"
+      ],
+      "source": "'needs_fuel && fuel <= 0'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "collect",
+        "outOfFuel",
+        "name"
+      ],
+      "source": "\"{$e}Out of fuel {$sp}%extractor-last-collected-time-passed% {$sep}- {$sp}%fancy@extractor_collected_resource_points%\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "collect",
+        "outOfFuel",
+        "material"
+      ],
+      "source": "RED_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "collect",
+        "nothing-to-collect"
+      ],
+      "source": "\r\n      condition: 'amount <= 0'\r\n      name: \"{$e}Nothing to collect {$sp}%extractor-last-collected-time-passed%\"\r\n      material: RED_WOOL\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "collect",
+        "nothing-to-collect",
+        "condition"
+      ],
+      "source": "'amount <= 0'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "collect",
+        "nothing-to-collect",
+        "name"
+      ],
+      "source": "\"{$e}Nothing to collect {$sp}%extractor-last-collected-time-passed%\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "collect",
+        "nothing-to-collect",
+        "material"
+      ],
+      "source": "RED_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "collect",
+        "else"
+      ],
+      "source": "\r\n      name: \"{$p}Collect{$colon} {$sp}%extractor-last-collected-time-passed% {$sep}- {$sp}%fancy@extractor_collected_resource_points%\"\r\n      material: GREEN_WOOL\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "collect",
+        "else",
+        "name"
+      ],
+      "source": "\"{$p}Collect{$colon} {$sp}%extractor-last-collected-time-passed% {$sep}- {$sp}%fancy@extractor_collected_resource_points%\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "collect",
+        "else",
+        "material"
+      ],
+      "source": "GREEN_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "collect",
+        "sound"
+      ],
+      "source": "ENTITY_EXPERIENCE_ORB_PICKUP",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "collect",
+        "lore"
+      ],
+      "source": "\r\n      - \"{$s}Collect all the generated\"\r\n      - \"resource points.\"\r\n      - \"Last collected by{$colon} {$p}%extractor-last-collector%\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$s}Collect all the generated\"",
+        "\"resource points.\"",
+        "\"Last collected by{$colon} {$p}%extractor-last-collector%\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "collect",
+        "slot"
+      ],
+      "source": "0",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "fuel"
+      ],
+      "source": "\r\n    name: \"{$p}Fuel{$colon} {$s}%fancy@fuel%&8/{$s}%fancy@max_fuel%\"\r\n    material: COAL\r\n    refresh: true\r\n    slot: 1\r\n    lore: |\r\n      {$sep}To fill the fuel, simply drop\r\n      one of the fuel items on the\r\n      extractor block.\r\n\r\n      {$sep}Additionally, you can place a {$p}hopper\r\n      {$sep}facing into the extractor with the following items.\r\n      {$note} This only works once the extractor's\r\n      fuel is almost at zero.\r\n\r\n      {$p}Coal{$colon} {$sp}5\r\n      {$p}Charcoal{$colon} {$sp}3\r\n      {$p}Blaze Rods{$colon} {$sp}100\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "fuel",
+        "name"
+      ],
+      "source": "\"{$p}Fuel{$colon} {$s}%fancy@fuel%&8/{$s}%fancy@max_fuel%\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "fuel",
+        "material"
+      ],
+      "source": "COAL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "fuel",
+        "refresh"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "fuel",
+        "slot"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "fuel",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}To fill the fuel, simply drop\r\n      one of the fuel items on the\r\n      extractor block.\r\n\r\n      {$sep}Additionally, you can place a {$p}hopper\r\n      {$sep}facing into the extractor with the following items.\r\n      {$note} This only works once the extractor's\r\n      fuel is almost at zero.\r\n\r\n      {$p}Coal{$colon} {$sp}5\r\n      {$p}Charcoal{$colon} {$sp}3\r\n      {$p}Blaze Rods{$colon} {$sp}100\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "repair"
+      ],
+      "source": "\r\n    material: ANVIL\r\n    name: \"{$sp}Repair\"\r\n    slot: 2\r\n    upgrade:\r\n      condition: \"building_durability <= 0\"\r\n      lore: |\r\n        {$desc}This building is completely\r\n        destroyed and needs a full repair\r\n        to fix it.\r\n\r\n        {$p}Cost{$colon}\r\n        {? repair_cost_rp != 0 ? \" {$dot} {$p}Resource Points{$colon} {$s}%fancy@repair_cost_rp%\" }\r\n        {? repair_cost_money != 0 ? \" {$dot} {$p}Money{$colon} {$s}$%fancy@repair_cost_money%\" }\r\n    else:\r\n      lore: |\r\n        {$desc}You can repair this building by\r\n        throwing the following items at it{$colon}\r\n\r\n          {$dot} {$p}Iron{$colon} {$s}10\r\n          {$dot} {$p}Gold{$colon} {$s}15\r\n          {$dot} {$p}Diamonds{$colon} {$s}50\r\n\r\n        {$info-sign} &9If your building's durability hits {$e}0&9,\r\n        you'll have to do a full repair using\r\n        this button.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "repair",
+        "material"
+      ],
+      "source": "ANVIL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "repair",
+        "name"
+      ],
+      "source": "\"{$sp}Repair\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "repair",
+        "slot"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "repair",
+        "upgrade"
+      ],
+      "source": "\r\n      condition: \"building_durability <= 0\"\r\n      lore: |\r\n        {$desc}This building is completely\r\n        destroyed and needs a full repair\r\n        to fix it.\r\n\r\n        {$p}Cost{$colon}\r\n        {? repair_cost_rp != 0 ? \" {$dot} {$p}Resource Points{$colon} {$s}%fancy@repair_cost_rp%\" }\r\n        {? repair_cost_money != 0 ? \" {$dot} {$p}Money{$colon} {$s}$%fancy@repair_cost_money%\" }\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "repair",
+        "upgrade",
+        "condition"
+      ],
+      "source": "\"building_durability <= 0\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "repair",
+        "upgrade",
+        "lore"
+      ],
+      "source": "|\r\n        {$desc}This building is completely\r\n        destroyed and needs a full repair\r\n        to fix it.\r\n\r\n        {$p}Cost{$colon}\r\n        {? repair_cost_rp != 0 ? \" {$dot} {$p}Resource Points{$colon} {$s}%fancy@repair_cost_rp%\" }\r\n        {? repair_cost_money != 0 ? \" {$dot} {$p}Money{$colon} {$s}$%fancy@repair_cost_money%\" }\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "repair",
+        "else"
+      ],
+      "source": "\r\n      lore: |\r\n        {$desc}You can repair this building by\r\n        throwing the following items at it{$colon}\r\n\r\n          {$dot} {$p}Iron{$colon} {$s}10\r\n          {$dot} {$p}Gold{$colon} {$s}15\r\n          {$dot} {$p}Diamonds{$colon} {$s}50\r\n\r\n        {$info-sign} &9If your building's durability hits {$e}0&9,\r\n        you'll have to do a full repair using\r\n        this button.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "repair",
+        "else",
+        "lore"
+      ],
+      "source": "|\r\n        {$desc}You can repair this building by\r\n        throwing the following items at it{$colon}\r\n\r\n          {$dot} {$p}Iron{$colon} {$s}10\r\n          {$dot} {$p}Gold{$colon} {$s}15\r\n          {$dot} {$p}Diamonds{$colon} {$s}50\r\n\r\n        {$info-sign} &9If your building's durability hits {$e}0&9,\r\n        you'll have to do a full repair using\r\n        this button.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "upgrade"
+      ],
+      "source": "\r\n    slot: 3\r\n    upgrade:\r\n      condition: level < max_level\r\n      name: \"{$sp}Upgrade{$colon} {$s}%roman@level% {$sep}➛ {$s}%roman@next_level%\"\r\n      material: NETHER_STAR\r\n      lore:\r\n        - \"{$dot} {$p}Every{$colon} {$s}%every% {$sep}➔ {$s}%next-every%\"\r\n        - \"{$dot} {$p}Resource Points{$colon} {$s}%fancy@resource-points% {$sep}➔ {$s}%fancy@next-resource-points%\"\r\n        - \"{$dot} {$p}Fuel Consumption{$colon} {$s}%extractor_needed_fuel% {$sep}➔ {$s}%next_extractor_needed_fuel%\"\r\n        - \"\"\r\n        - \"{$dot} {$p}Max Level{$colon} {$s}%roman@max_level%\"\r\n        - \"{$dot} {$p}Cost{$colon} {$s}%upgrade_cost%\"\r\n    maxxed:\r\n      name: \"{$sp}Level{$colon} {$s}%roman@level%\"\r\n      material: NETHER_STAR\r\n      lore:\r\n        - \"{$dot} {$p}Every{$colon} {$s}%every%\"\r\n        - \"{$dot} {$p}Resource Points{$colon} {$s}%fancy@resource-points%\"\r\n        - \"{$dot} {$p}Fuel Consumption{$colon} {$s}%extractor_needed_fuel%\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "upgrade",
+        "slot"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "upgrade",
+        "upgrade"
+      ],
+      "source": "\r\n      condition: level < max_level\r\n      name: \"{$sp}Upgrade{$colon} {$s}%roman@level% {$sep}➛ {$s}%roman@next_level%\"\r\n      material: NETHER_STAR\r\n      lore:\r\n        - \"{$dot} {$p}Every{$colon} {$s}%every% {$sep}➔ {$s}%next-every%\"\r\n        - \"{$dot} {$p}Resource Points{$colon} {$s}%fancy@resource-points% {$sep}➔ {$s}%fancy@next-resource-points%\"\r\n        - \"{$dot} {$p}Fuel Consumption{$colon} {$s}%extractor_needed_fuel% {$sep}➔ {$s}%next_extractor_needed_fuel%\"\r\n        - \"\"\r\n        - \"{$dot} {$p}Max Level{$colon} {$s}%roman@max_level%\"\r\n        - \"{$dot} {$p}Cost{$colon} {$s}%upgrade_cost%\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "upgrade",
+        "upgrade",
+        "condition"
+      ],
+      "source": "level < max_level",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "upgrade",
+        "upgrade",
+        "name"
+      ],
+      "source": "\"{$sp}Upgrade{$colon} {$s}%roman@level% {$sep}➛ {$s}%roman@next_level%\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "upgrade",
+        "upgrade",
+        "material"
+      ],
+      "source": "NETHER_STAR",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "upgrade",
+        "upgrade",
+        "lore"
+      ],
+      "source": "\r\n        - \"{$dot} {$p}Every{$colon} {$s}%every% {$sep}➔ {$s}%next-every%\"\r\n        - \"{$dot} {$p}Resource Points{$colon} {$s}%fancy@resource-points% {$sep}➔ {$s}%fancy@next-resource-points%\"\r\n        - \"{$dot} {$p}Fuel Consumption{$colon} {$s}%extractor_needed_fuel% {$sep}➔ {$s}%next_extractor_needed_fuel%\"\r\n        - \"\"\r\n        - \"{$dot} {$p}Max Level{$colon} {$s}%roman@max_level%\"\r\n        - \"{$dot} {$p}Cost{$colon} {$s}%upgrade_cost%\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$dot} {$p}Every{$colon} {$s}%every% {$sep}➔ {$s}%next-every%\"",
+        "\"{$dot} {$p}Resource Points{$colon} {$s}%fancy@resource-points% {$sep}➔ {$s}%fancy@next-resource-points%\"",
+        "\"{$dot} {$p}Fuel Consumption{$colon} {$s}%extractor_needed_fuel% {$sep}➔ {$s}%next_extractor_needed_fuel%\"",
+        "\"\"",
+        "\"{$dot} {$p}Max Level{$colon} {$s}%roman@max_level%\"",
+        "\"{$dot} {$p}Cost{$colon} {$s}%upgrade_cost%\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "upgrade",
+        "maxxed"
+      ],
+      "source": "\r\n      name: \"{$sp}Level{$colon} {$s}%roman@level%\"\r\n      material: NETHER_STAR\r\n      lore:\r\n        - \"{$dot} {$p}Every{$colon} {$s}%every%\"\r\n        - \"{$dot} {$p}Resource Points{$colon} {$s}%fancy@resource-points%\"\r\n        - \"{$dot} {$p}Fuel Consumption{$colon} {$s}%extractor_needed_fuel%\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "upgrade",
+        "maxxed",
+        "name"
+      ],
+      "source": "\"{$sp}Level{$colon} {$s}%roman@level%\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "upgrade",
+        "maxxed",
+        "material"
+      ],
+      "source": "NETHER_STAR",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "upgrade",
+        "maxxed",
+        "lore"
+      ],
+      "source": "\r\n        - \"{$dot} {$p}Every{$colon} {$s}%every%\"\r\n        - \"{$dot} {$p}Resource Points{$colon} {$s}%fancy@resource-points%\"\r\n        - \"{$dot} {$p}Fuel Consumption{$colon} {$s}%extractor_needed_fuel%\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$dot} {$p}Every{$colon} {$s}%every%\"",
+        "\"{$dot} {$p}Resource Points{$colon} {$s}%fancy@resource-points%\"",
+        "\"{$dot} {$p}Fuel Consumption{$colon} {$s}%extractor_needed_fuel%\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "break"
+      ],
+      "source": "\r\n    name: \"&4Break\"\r\n    material: REDSTONE_BLOCK\r\n    sound: ENTITY_ITEM_BREAK\r\n    lore:\r\n      - \"{$s}Breaks the structure.\"\r\n    slot: 4\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "break",
+        "name"
+      ],
+      "source": "\"&4Break\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "break",
+        "material"
+      ],
+      "source": "REDSTONE_BLOCK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "break",
+        "sound"
+      ],
+      "source": "ENTITY_ITEM_BREAK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "break",
+        "lore"
+      ],
+      "source": "\r\n      - \"{$s}Breaks the structure.\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$s}Breaks the structure.\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "break",
+        "slot"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

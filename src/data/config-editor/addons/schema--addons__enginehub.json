@@ -1,0 +1,17 @@
+{
+  "formatVersion": 1,
+  "source": {
+    "addonId": "enginehub",
+    "artifactPath": "addons/Kingdoms-Addon-EngineHub-1.6.0.jar",
+    "artifactBlobSha": "67f070da4d22ca24adbed543854603585d031d35",
+    "artifactSha256": "5031072f65ae645269301935d8b38dcf26df31572b420e3f437dc8042d2a0423",
+    "addonVersion": "1.6.0"
+  },
+  "id": "addons/enginehub",
+  "resourceName": "enginehub.yml",
+  "reason": "The addon ships a default file without a schema. Its typed fields are derived from that default and its comments.",
+  "schema": {
+    "kind": "object",
+    "fields": []
+  }
+}

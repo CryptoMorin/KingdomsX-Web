@@ -1,0 +1,88 @@
+{
+  "formatVersion": 2,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "id": "item-matcher",
+  "resourceName": "item-matcher.yml",
+  "schema": {
+    "kind": "object",
+    "fields": [
+      {
+        "key": "name",
+        "type": {
+          "kind": "advanced",
+          "typeName": "StringMatcher"
+        }
+      },
+      {
+        "key": "lore",
+        "type": {
+          "kind": "advanced",
+          "typeName": "StringMatcher"
+        }
+      },
+      {
+        "key": "material",
+        "type": {
+          "kind": "advanced",
+          "typeName": "StringMatcher<Material>"
+        }
+      },
+      {
+        "key": "custom-model-data",
+        "type": {
+          "kind": "integer"
+        }
+      },
+      {
+        "key": "enchants",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "suggestion",
+            "typeName": "Enchant",
+            "allowCustom": true
+          },
+          "values": {
+            "kind": "union",
+            "choices": [
+              {
+                "kind": "enum",
+                "values": [
+                  "*"
+                ],
+                "allowCustom": false
+              },
+              {
+                "kind": "integer"
+              },
+              {
+                "kind": "expression",
+                "language": "condition"
+              }
+            ]
+          },
+          "fields": []
+        }
+      },
+      {
+        "key": "nbt",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "string",
+            "typeName": "str"
+          },
+          "values": {
+            "kind": "advanced",
+            "typeName": "StringMatcher"
+          },
+          "fields": []
+        }
+      }
+    ]
+  }
+}

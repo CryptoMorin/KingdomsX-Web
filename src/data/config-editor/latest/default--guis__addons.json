@@ -1,0 +1,805 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "guis/addons.yml",
+  "schemaId": "guis/schema",
+  "options": [
+    {
+      "path": [
+        "title"
+      ],
+      "source": "\"{$sep}-=( {$p}Addons {$sep})=-\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "rows"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options"
+      ],
+      "source": "\r\n  decoration:\r\n    slots: [ 0, 1, 2, 3, 5, 6, 7, 8, 9, 17, 18, 26, 27, 35, 36, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53 ]\r\n    material: PURPLE_STAINED_GLASS_PANE\r\n    name: ''\r\n  info:\r\n    posx: 5\r\n    posy: 1\r\n    material: NETHER_STAR\r\n    name: '{$sp}Info'\r\n    lore: |\r\n      {$sep}Addons are additional\r\n      downloadable content that\r\n      can be installed separately.\r\n\r\n      The reason why addons exist in\r\n      the first place, is because of\r\n      {$p}performance{$sep}, {$p}modularization\r\n      {$sep}and {$p}file size limits.\r\n\r\n      {$sep}[{$s}!{$sep}] {$sep}In order to be\r\n      able to install addons, you need to\r\n      have a internet connection that's\r\n      able to connect to {$p}GitHub.com\r\n      {$sep}({$sep}not blocked by firewall,\r\n      country censoreship and etc.{$sep})\r\n  addons:\r\n    slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43 ]\r\n    installing:\r\n      condition: installing\r\n      name: '{$sep}[&3Installing...{$sep}] {$sp}%addon-name%'\r\n      lore: |\r\n        %description%\r\n\r\n        {$p}Version{$colon} {$sp}%latest-version%\r\n      material: CYAN_WOOL\r\n    pending-restart:\r\n      condition: waiting_to_restart\r\n      name: '{$sep}[&5Pending Restart{$sep}] {$sp}%addon-name%'\r\n      lore: |\r\n        %description%\r\n\r\n        {$p}Version{$colon} {$sp}%latest-version%\r\n        &5The addon is downloaded. Waiting\r\n        for the server to be restarted to\r\n        enable the addon.\r\n      material: PURPLE_WOOL\r\n    failed-to-load:\r\n      condition: 'installed && failed_to_load'\r\n      name: '{$sep}[&4Failed to load{$sep}] {$sp}%addon-name%'\r\n      lore: |\r\n        %description%\r\n\r\n        &cThis addon failed to load. Check your\r\n        console for errors.\r\n\r\n        &4Installed Version{$colon} {$sp}%installed-version%\r\n        {$p}Latest Version{$colon} {$sp}%latest-version%\r\n        {$p}Left-click to update\r\n        &4Right-click to uninstall\r\n      material: RED_WOOL\r\n    outdated-and-outdated-core-version:\r\n      condition: 'installed && max_outdated_core_version'\r\n      name: '{$sep}[&eOutdated Core Version{$sep}] {$sp}%addon-name%'\r\n      lore: |\r\n        %description%\r\n\r\n        &4Installed Version{$colon} {$sp}%installed-version%\r\n        {$p}Latest Version{$colon} {$sp}%max_version%\r\n\r\n        {$warning} {$desc}This update requires\r\n        kingdoms {$p}v%max_supported-core-version% {$desc}to work.\r\n        Current version{$colon} {$e}%current-core-version%\r\n\r\n        {$p}Left-click to update\r\n        &4Right-click to uninstall\r\n      material: YELLOW_WOOL\r\n    up-to-date:\r\n      condition: 'installed && !outdated'\r\n      name: '{$sep}[{$p}Up to date{$sep}] {$sp}%addon-name%'\r\n      lore: |\r\n        %description%\r\n        {$p}Version{$colon} {$sp}%installed-version%\r\n        &4Right-click to uninstall\r\n      material: GREEN_WOOL\r\n    outdated:\r\n      condition: 'installed && outdated'\r\n      name: '{$sep}[&6Outdated{$sep}] {$sp}%addon-name%'\r\n      lore: |\r\n        %description%\r\n        &4Installed Version{$colon} {$sp}%installed-version%\r\n        {$p}Latest Version{$colon} {$sp}%latest-version%\r\n        {$p}Left-click to update\r\n        &4Right-click to uninstall\r\n      material: ORANGE_WOOL\r\n    not-installed-outdated-core-version:\r\n      condition: '!installed && outdated_core_version'\r\n      name: '{$sep}[&4Outdated Core{$sep}] {$sp}%addon-name%'\r\n      lore: |\r\n        %description%\r\n\r\n        {$p}Version{$colon} {$sp}%min_version%\r\n\r\n        {$warning} {$desc}This addon requires at least\r\n        kingdoms {$p}v%min_supported-core-version% {$desc}to work.\r\n        Current version{$colon} {$e}%current-core-version%\r\n      material: GRAY_WOOL\r\n    not-installed:\r\n      name: '{$sep}[&7Not installed{$sep}] {$sp}%addon-name%'\r\n      lore: |\r\n        %description%\r\n        {$p}Version{$colon} {$sp}%latest-version%\r\n        {$p}Left-click to install\r\n      condition: '!installed'\r\n      material: GRAY_WOOL\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "decoration"
+      ],
+      "source": "\r\n    slots: [ 0, 1, 2, 3, 5, 6, 7, 8, 9, 17, 18, 26, 27, 35, 36, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53 ]\r\n    material: PURPLE_STAINED_GLASS_PANE\r\n    name: ''\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "decoration",
+        "slots"
+      ],
+      "source": "[ 0, 1, 2, 3, 5, 6, 7, 8, 9, 17, 18, 26, 27, 35, 36, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "17",
+        "18",
+        "26",
+        "27",
+        "35",
+        "36",
+        "44",
+        "45",
+        "46",
+        "47",
+        "48",
+        "49",
+        "50",
+        "51",
+        "52",
+        "53"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "decoration",
+        "material"
+      ],
+      "source": "PURPLE_STAINED_GLASS_PANE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "decoration",
+        "name"
+      ],
+      "source": "''",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "info"
+      ],
+      "source": "\r\n    posx: 5\r\n    posy: 1\r\n    material: NETHER_STAR\r\n    name: '{$sp}Info'\r\n    lore: |\r\n      {$sep}Addons are additional\r\n      downloadable content that\r\n      can be installed separately.\r\n\r\n      The reason why addons exist in\r\n      the first place, is because of\r\n      {$p}performance{$sep}, {$p}modularization\r\n      {$sep}and {$p}file size limits.\r\n\r\n      {$sep}[{$s}!{$sep}] {$sep}In order to be\r\n      able to install addons, you need to\r\n      have a internet connection that's\r\n      able to connect to {$p}GitHub.com\r\n      {$sep}({$sep}not blocked by firewall,\r\n      country censoreship and etc.{$sep})\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "info",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "info",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "info",
+        "material"
+      ],
+      "source": "NETHER_STAR",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "info",
+        "name"
+      ],
+      "source": "'{$sp}Info'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "info",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}Addons are additional\r\n      downloadable content that\r\n      can be installed separately.\r\n\r\n      The reason why addons exist in\r\n      the first place, is because of\r\n      {$p}performance{$sep}, {$p}modularization\r\n      {$sep}and {$p}file size limits.\r\n\r\n      {$sep}[{$s}!{$sep}] {$sep}In order to be\r\n      able to install addons, you need to\r\n      have a internet connection that's\r\n      able to connect to {$p}GitHub.com\r\n      {$sep}({$sep}not blocked by firewall,\r\n      country censoreship and etc.{$sep})\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "addons"
+      ],
+      "source": "\r\n    slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43 ]\r\n    installing:\r\n      condition: installing\r\n      name: '{$sep}[&3Installing...{$sep}] {$sp}%addon-name%'\r\n      lore: |\r\n        %description%\r\n\r\n        {$p}Version{$colon} {$sp}%latest-version%\r\n      material: CYAN_WOOL\r\n    pending-restart:\r\n      condition: waiting_to_restart\r\n      name: '{$sep}[&5Pending Restart{$sep}] {$sp}%addon-name%'\r\n      lore: |\r\n        %description%\r\n\r\n        {$p}Version{$colon} {$sp}%latest-version%\r\n        &5The addon is downloaded. Waiting\r\n        for the server to be restarted to\r\n        enable the addon.\r\n      material: PURPLE_WOOL\r\n    failed-to-load:\r\n      condition: 'installed && failed_to_load'\r\n      name: '{$sep}[&4Failed to load{$sep}] {$sp}%addon-name%'\r\n      lore: |\r\n        %description%\r\n\r\n        &cThis addon failed to load. Check your\r\n        console for errors.\r\n\r\n        &4Installed Version{$colon} {$sp}%installed-version%\r\n        {$p}Latest Version{$colon} {$sp}%latest-version%\r\n        {$p}Left-click to update\r\n        &4Right-click to uninstall\r\n      material: RED_WOOL\r\n    outdated-and-outdated-core-version:\r\n      condition: 'installed && max_outdated_core_version'\r\n      name: '{$sep}[&eOutdated Core Version{$sep}] {$sp}%addon-name%'\r\n      lore: |\r\n        %description%\r\n\r\n        &4Installed Version{$colon} {$sp}%installed-version%\r\n        {$p}Latest Version{$colon} {$sp}%max_version%\r\n\r\n        {$warning} {$desc}This update requires\r\n        kingdoms {$p}v%max_supported-core-version% {$desc}to work.\r\n        Current version{$colon} {$e}%current-core-version%\r\n\r\n        {$p}Left-click to update\r\n        &4Right-click to uninstall\r\n      material: YELLOW_WOOL\r\n    up-to-date:\r\n      condition: 'installed && !outdated'\r\n      name: '{$sep}[{$p}Up to date{$sep}] {$sp}%addon-name%'\r\n      lore: |\r\n        %description%\r\n        {$p}Version{$colon} {$sp}%installed-version%\r\n        &4Right-click to uninstall\r\n      material: GREEN_WOOL\r\n    outdated:\r\n      condition: 'installed && outdated'\r\n      name: '{$sep}[&6Outdated{$sep}] {$sp}%addon-name%'\r\n      lore: |\r\n        %description%\r\n        &4Installed Version{$colon} {$sp}%installed-version%\r\n        {$p}Latest Version{$colon} {$sp}%latest-version%\r\n        {$p}Left-click to update\r\n        &4Right-click to uninstall\r\n      material: ORANGE_WOOL\r\n    not-installed-outdated-core-version:\r\n      condition: '!installed && outdated_core_version'\r\n      name: '{$sep}[&4Outdated Core{$sep}] {$sp}%addon-name%'\r\n      lore: |\r\n        %description%\r\n\r\n        {$p}Version{$colon} {$sp}%min_version%\r\n\r\n        {$warning} {$desc}This addon requires at least\r\n        kingdoms {$p}v%min_supported-core-version% {$desc}to work.\r\n        Current version{$colon} {$e}%current-core-version%\r\n      material: GRAY_WOOL\r\n    not-installed:\r\n      name: '{$sep}[&7Not installed{$sep}] {$sp}%addon-name%'\r\n      lore: |\r\n        %description%\r\n        {$p}Version{$colon} {$sp}%latest-version%\r\n        {$p}Left-click to install\r\n      condition: '!installed'\r\n      material: GRAY_WOOL\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "addons",
+        "slots"
+      ],
+      "source": "[ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "28",
+        "29",
+        "30",
+        "31",
+        "32",
+        "33",
+        "34",
+        "37",
+        "38",
+        "39",
+        "40",
+        "41",
+        "42",
+        "43"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "addons",
+        "installing"
+      ],
+      "source": "\r\n      condition: installing\r\n      name: '{$sep}[&3Installing...{$sep}] {$sp}%addon-name%'\r\n      lore: |\r\n        %description%\r\n\r\n        {$p}Version{$colon} {$sp}%latest-version%\r\n      material: CYAN_WOOL\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "addons",
+        "installing",
+        "condition"
+      ],
+      "source": "installing",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "addons",
+        "installing",
+        "name"
+      ],
+      "source": "'{$sep}[&3Installing...{$sep}] {$sp}%addon-name%'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "addons",
+        "installing",
+        "lore"
+      ],
+      "source": "|\r\n        %description%\r\n\r\n        {$p}Version{$colon} {$sp}%latest-version%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "addons",
+        "installing",
+        "material"
+      ],
+      "source": "CYAN_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "addons",
+        "pending-restart"
+      ],
+      "source": "\r\n      condition: waiting_to_restart\r\n      name: '{$sep}[&5Pending Restart{$sep}] {$sp}%addon-name%'\r\n      lore: |\r\n        %description%\r\n\r\n        {$p}Version{$colon} {$sp}%latest-version%\r\n        &5The addon is downloaded. Waiting\r\n        for the server to be restarted to\r\n        enable the addon.\r\n      material: PURPLE_WOOL\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "addons",
+        "pending-restart",
+        "condition"
+      ],
+      "source": "waiting_to_restart",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "addons",
+        "pending-restart",
+        "name"
+      ],
+      "source": "'{$sep}[&5Pending Restart{$sep}] {$sp}%addon-name%'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "addons",
+        "pending-restart",
+        "lore"
+      ],
+      "source": "|\r\n        %description%\r\n\r\n        {$p}Version{$colon} {$sp}%latest-version%\r\n        &5The addon is downloaded. Waiting\r\n        for the server to be restarted to\r\n        enable the addon.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "addons",
+        "pending-restart",
+        "material"
+      ],
+      "source": "PURPLE_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "addons",
+        "failed-to-load"
+      ],
+      "source": "\r\n      condition: 'installed && failed_to_load'\r\n      name: '{$sep}[&4Failed to load{$sep}] {$sp}%addon-name%'\r\n      lore: |\r\n        %description%\r\n\r\n        &cThis addon failed to load. Check your\r\n        console for errors.\r\n\r\n        &4Installed Version{$colon} {$sp}%installed-version%\r\n        {$p}Latest Version{$colon} {$sp}%latest-version%\r\n        {$p}Left-click to update\r\n        &4Right-click to uninstall\r\n      material: RED_WOOL\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "addons",
+        "failed-to-load",
+        "condition"
+      ],
+      "source": "'installed && failed_to_load'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "addons",
+        "failed-to-load",
+        "name"
+      ],
+      "source": "'{$sep}[&4Failed to load{$sep}] {$sp}%addon-name%'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "addons",
+        "failed-to-load",
+        "lore"
+      ],
+      "source": "|\r\n        %description%\r\n\r\n        &cThis addon failed to load. Check your\r\n        console for errors.\r\n\r\n        &4Installed Version{$colon} {$sp}%installed-version%\r\n        {$p}Latest Version{$colon} {$sp}%latest-version%\r\n        {$p}Left-click to update\r\n        &4Right-click to uninstall\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "addons",
+        "failed-to-load",
+        "material"
+      ],
+      "source": "RED_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "addons",
+        "outdated-and-outdated-core-version"
+      ],
+      "source": "\r\n      condition: 'installed && max_outdated_core_version'\r\n      name: '{$sep}[&eOutdated Core Version{$sep}] {$sp}%addon-name%'\r\n      lore: |\r\n        %description%\r\n\r\n        &4Installed Version{$colon} {$sp}%installed-version%\r\n        {$p}Latest Version{$colon} {$sp}%max_version%\r\n\r\n        {$warning} {$desc}This update requires\r\n        kingdoms {$p}v%max_supported-core-version% {$desc}to work.\r\n        Current version{$colon} {$e}%current-core-version%\r\n\r\n        {$p}Left-click to update\r\n        &4Right-click to uninstall\r\n      material: YELLOW_WOOL\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "addons",
+        "outdated-and-outdated-core-version",
+        "condition"
+      ],
+      "source": "'installed && max_outdated_core_version'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "addons",
+        "outdated-and-outdated-core-version",
+        "name"
+      ],
+      "source": "'{$sep}[&eOutdated Core Version{$sep}] {$sp}%addon-name%'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "addons",
+        "outdated-and-outdated-core-version",
+        "lore"
+      ],
+      "source": "|\r\n        %description%\r\n\r\n        &4Installed Version{$colon} {$sp}%installed-version%\r\n        {$p}Latest Version{$colon} {$sp}%max_version%\r\n\r\n        {$warning} {$desc}This update requires\r\n        kingdoms {$p}v%max_supported-core-version% {$desc}to work.\r\n        Current version{$colon} {$e}%current-core-version%\r\n\r\n        {$p}Left-click to update\r\n        &4Right-click to uninstall\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "addons",
+        "outdated-and-outdated-core-version",
+        "material"
+      ],
+      "source": "YELLOW_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "addons",
+        "up-to-date"
+      ],
+      "source": "\r\n      condition: 'installed && !outdated'\r\n      name: '{$sep}[{$p}Up to date{$sep}] {$sp}%addon-name%'\r\n      lore: |\r\n        %description%\r\n        {$p}Version{$colon} {$sp}%installed-version%\r\n        &4Right-click to uninstall\r\n      material: GREEN_WOOL\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "addons",
+        "up-to-date",
+        "condition"
+      ],
+      "source": "'installed && !outdated'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "addons",
+        "up-to-date",
+        "name"
+      ],
+      "source": "'{$sep}[{$p}Up to date{$sep}] {$sp}%addon-name%'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "addons",
+        "up-to-date",
+        "lore"
+      ],
+      "source": "|\r\n        %description%\r\n        {$p}Version{$colon} {$sp}%installed-version%\r\n        &4Right-click to uninstall\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "addons",
+        "up-to-date",
+        "material"
+      ],
+      "source": "GREEN_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "addons",
+        "outdated"
+      ],
+      "source": "\r\n      condition: 'installed && outdated'\r\n      name: '{$sep}[&6Outdated{$sep}] {$sp}%addon-name%'\r\n      lore: |\r\n        %description%\r\n        &4Installed Version{$colon} {$sp}%installed-version%\r\n        {$p}Latest Version{$colon} {$sp}%latest-version%\r\n        {$p}Left-click to update\r\n        &4Right-click to uninstall\r\n      material: ORANGE_WOOL\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "addons",
+        "outdated",
+        "condition"
+      ],
+      "source": "'installed && outdated'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "addons",
+        "outdated",
+        "name"
+      ],
+      "source": "'{$sep}[&6Outdated{$sep}] {$sp}%addon-name%'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "addons",
+        "outdated",
+        "lore"
+      ],
+      "source": "|\r\n        %description%\r\n        &4Installed Version{$colon} {$sp}%installed-version%\r\n        {$p}Latest Version{$colon} {$sp}%latest-version%\r\n        {$p}Left-click to update\r\n        &4Right-click to uninstall\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "addons",
+        "outdated",
+        "material"
+      ],
+      "source": "ORANGE_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "addons",
+        "not-installed-outdated-core-version"
+      ],
+      "source": "\r\n      condition: '!installed && outdated_core_version'\r\n      name: '{$sep}[&4Outdated Core{$sep}] {$sp}%addon-name%'\r\n      lore: |\r\n        %description%\r\n\r\n        {$p}Version{$colon} {$sp}%min_version%\r\n\r\n        {$warning} {$desc}This addon requires at least\r\n        kingdoms {$p}v%min_supported-core-version% {$desc}to work.\r\n        Current version{$colon} {$e}%current-core-version%\r\n      material: GRAY_WOOL\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "addons",
+        "not-installed-outdated-core-version",
+        "condition"
+      ],
+      "source": "'!installed && outdated_core_version'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "addons",
+        "not-installed-outdated-core-version",
+        "name"
+      ],
+      "source": "'{$sep}[&4Outdated Core{$sep}] {$sp}%addon-name%'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "addons",
+        "not-installed-outdated-core-version",
+        "lore"
+      ],
+      "source": "|\r\n        %description%\r\n\r\n        {$p}Version{$colon} {$sp}%min_version%\r\n\r\n        {$warning} {$desc}This addon requires at least\r\n        kingdoms {$p}v%min_supported-core-version% {$desc}to work.\r\n        Current version{$colon} {$e}%current-core-version%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "addons",
+        "not-installed-outdated-core-version",
+        "material"
+      ],
+      "source": "GRAY_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "addons",
+        "not-installed"
+      ],
+      "source": "\r\n      name: '{$sep}[&7Not installed{$sep}] {$sp}%addon-name%'\r\n      lore: |\r\n        %description%\r\n        {$p}Version{$colon} {$sp}%latest-version%\r\n        {$p}Left-click to install\r\n      condition: '!installed'\r\n      material: GRAY_WOOL\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "addons",
+        "not-installed",
+        "name"
+      ],
+      "source": "'{$sep}[&7Not installed{$sep}] {$sp}%addon-name%'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "addons",
+        "not-installed",
+        "lore"
+      ],
+      "source": "|\r\n        %description%\r\n        {$p}Version{$colon} {$sp}%latest-version%\r\n        {$p}Left-click to install\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "addons",
+        "not-installed",
+        "condition"
+      ],
+      "source": "'!installed'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "addons",
+        "not-installed",
+        "material"
+      ],
+      "source": "GRAY_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

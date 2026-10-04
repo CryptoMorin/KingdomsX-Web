@@ -1,0 +1,1577 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "guis/structures/nexus/nation/ranks/permissions/permissions.yml",
+  "schemaId": "guis/schema",
+  "options": [
+    {
+      "path": [
+        "title"
+      ],
+      "source": "'{$sep}-=( {$p}%permission_category_name% {$sep})=-'",
+      "comments": [
+        "%permission_category_name% is the item name used",
+        "for categories in categories.yml"
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "rows"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)"
+      ],
+      "source": "\r\n  pagination: { }\r\n\r\n# Don't remove \"[NoSync]\" from below.\r\n# [NoSync]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "pagination"
+      ],
+      "source": "{ }",
+      "comments": [],
+      "container": false,
+      "emptyMapping": true,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-std-perm]"
+      ],
+      "source": "&fn-std-perm\r\n  args: [ \"<x>\" ]\r\n  return:\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$enabled} <x>\"\r\n      material: GREEN_WOOL\r\n    else:\r\n      name: \"{$disabled} <x>\"\r\n      material: RED_WOOL\r\n\r\n# [NoSync]\r\n",
+      "comments": [
+        "Don't remove \"[NoSync]\" from below.",
+        "[NoSync]"
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-std-perm]",
+        "args"
+      ],
+      "source": "[ \"<x>\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"<x>\""
+      ]
+    },
+    {
+      "path": [
+        "[fn-std-perm]",
+        "return"
+      ],
+      "source": "\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$enabled} <x>\"\r\n      material: GREEN_WOOL\r\n    else:\r\n      name: \"{$disabled} <x>\"\r\n      material: RED_WOOL\r\n\r\n# [NoSync]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-std-perm]",
+        "return",
+        "enabled"
+      ],
+      "source": "\r\n      condition: enabled\r\n      name: \"{$enabled} <x>\"\r\n      material: GREEN_WOOL\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-std-perm]",
+        "return",
+        "enabled",
+        "condition"
+      ],
+      "source": "enabled",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-std-perm]",
+        "return",
+        "enabled",
+        "name"
+      ],
+      "source": "\"{$enabled} <x>\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-std-perm]",
+        "return",
+        "enabled",
+        "material"
+      ],
+      "source": "GREEN_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-std-perm]",
+        "return",
+        "else"
+      ],
+      "source": "\r\n      name: \"{$disabled} <x>\"\r\n      material: RED_WOOL\r\n\r\n# [NoSync]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-std-perm]",
+        "return",
+        "else",
+        "name"
+      ],
+      "source": "\"{$disabled} <x>\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-std-perm]",
+        "return",
+        "else",
+        "material"
+      ],
+      "source": "RED_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-perm]"
+      ],
+      "source": "&fn-perm\r\n  args: [ \"<x>\", \"<material>\" ]\r\n  return:\r\n    material: <material>\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$enabled} <x>\"\r\n      glow: true\r\n    else:\r\n      name: \"{$disabled} <x>\"\r\n\r\n# [NoSync]\r\n",
+      "comments": [
+        "[NoSync]"
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-perm]",
+        "args"
+      ],
+      "source": "[ \"<x>\", \"<material>\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"<x>\"",
+        "\"<material>\""
+      ]
+    },
+    {
+      "path": [
+        "[fn-perm]",
+        "return"
+      ],
+      "source": "\r\n    material: <material>\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$enabled} <x>\"\r\n      glow: true\r\n    else:\r\n      name: \"{$disabled} <x>\"\r\n\r\n# [NoSync]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-perm]",
+        "return",
+        "material"
+      ],
+      "source": "<material>",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-perm]",
+        "return",
+        "enabled"
+      ],
+      "source": "\r\n      condition: enabled\r\n      name: \"{$enabled} <x>\"\r\n      glow: true\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-perm]",
+        "return",
+        "enabled",
+        "condition"
+      ],
+      "source": "enabled",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-perm]",
+        "return",
+        "enabled",
+        "name"
+      ],
+      "source": "\"{$enabled} <x>\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-perm]",
+        "return",
+        "enabled",
+        "glow"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-perm]",
+        "return",
+        "else"
+      ],
+      "source": "\r\n      name: \"{$disabled} <x>\"\r\n\r\n# [NoSync]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-perm]",
+        "return",
+        "else",
+        "name"
+      ],
+      "source": "\"{$disabled} <x>\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]"
+      ],
+      "source": "\r\n  alliance:\r\n    <<: *fn-std-perm [ \"Alliance\" ]\r\n    lore: |\r\n      {$sep}Permission for using\r\n      {$s}/k ally {$sep}command.\r\n  broadcast:\r\n    <<: *fn-std-perm [ \"Broadcast\" ]\r\n    lore: |\r\n      {$sep}Permission for using\r\n      {$s}/k nation broadcast {$sep}command.\r\n  build:\r\n    <<: *fn-perm [ 'Build', DIAMOND_PICKAXE ]\r\n    lore: |\r\n      {$sep}Permission to build anywhere\r\n      in the kingdom.\r\n\r\n      For the difference between this\r\n      and {$p}BUILD_OWNED {$sep}permission\r\n      refer to the other permission.\r\n  edit-ranks:\r\n    <<: *fn-std-perm [ \"Edit Ranks\" ]\r\n    lore: |\r\n      {$sep}Permission for creating, deleting\r\n      and modifying ranks including their\r\n      symbols, names and permissions.\r\n\r\n      They will not be able to modify\r\n      their own rank or a rank of\r\n      someone with higher priority.\r\n\r\n      This does not give them permission\r\n      to demote or promote other players.\r\n  enemy:\r\n    <<: *fn-std-perm [ \"Enemy\" ]\r\n    lore: |\r\n      {$sep}Permission for using\r\n      {$s}/k enemy {$sep}command.\r\n  home:\r\n    <<: *fn-std-perm [ \"Home\" ]\r\n    lore: |\r\n      {$sep}Permission for using\r\n      {$s}/k home {$sep}command.\r\n  invade:\r\n    <<: *fn-std-perm [ \"Invade\" ]\r\n    lore: |\r\n      {$sep}Permission for using\r\n      {$s}/k invade {$sep}command.\r\n  invite:\r\n    <<: *fn-std-perm [ \"Invite\" ]\r\n    lore: |\r\n      {$sep}Permission for using\r\n      {$s}/k invite {$sep}command and\r\n      for making invite codes from\r\n      {$s}/k invitecodes\r\n  kick:\r\n    <<: *fn-std-perm [ \"Kick\" ]\r\n    lore: |\r\n      {$sep}Permission for using\r\n      {$s}/k kick {$sep}command.\r\n\r\n      {$sep}Players with this\r\n      permission will not be\r\n      able to kick players with\r\n      the same or higher ranks.\r\n  lore:\r\n    <<: *fn-std-perm [ \"Lore\" ]\r\n    lore: |\r\n      {$sep}Permission for using\r\n      {$s}/k nation lore\r\n      {$s}/k nation rename\r\n  withdraw:\r\n    <<: *fn-std-perm [ \"Withdraw\" ]\r\n    lore: |\r\n      {$sep}Permission for using\r\n      {$s}/k rp withdraw {$sep}command\r\n      and withdrawing resource points\r\n      in exchange for money by other\r\n      means like the option in\r\n      resource points converter inside\r\n      nexus GUI.\r\n  nexus:\r\n    <<: *fn-perm [ \"Nexus\", BEACON ]\r\n    lore: |\r\n      {$sep}Permission for moving the\r\n      national nexus using\r\n      {$s}/k nation nexus {$sep}command.\r\n  nexus-build:\r\n    <<: *fn-perm [ \"Nexus Build\", BEACON ]\r\n    lore: |\r\n      {$sep}Permission for building\r\n      in the nexus land\r\n  nexus-chest:\r\n    <<: *fn-perm [ \"Nexus Chest\", CHEST ]\r\n    lore: |\r\n      {$sep}Permission for modifying\r\n      the kingdom's nexus chest.\r\n  set-home:\r\n    <<: *fn-std-perm [ \"Set Home\" ]\r\n    lore: |\r\n      {$sep}Permission for using\r\n      {$s}/k nation sethome {$sep}command.\r\n  upgrade:\r\n    <<: *fn-std-perm [ \"Upgrade\" ]\r\n    lore: |\r\n      {$sep}Permission for upgrading\r\n      anything that can be upgraded\r\n      inside the kingdom such as\r\n      misc-upgrades, champion upgrades,\r\n      powerups, turrets and structures.\r\n  truce:\r\n    <<: *fn-std-perm [ \"Truce\" ]\r\n    lore: |\r\n      {$sep}Permission for using\r\n      {$s}/k truce {$sep}command.\r\n  manage-ranks:\r\n    <<: *fn-std-perm [ \"Manage Ranks\" ]\r\n    lore: |\r\n      {$sep}Permission for promoting\r\n      and demoting members with\r\n      lower rank than the player.\r\n\r\n      This does not give them\r\n      permission to modify rank\r\n      settings.\r\n  nation:\r\n    <<: *fn-perm [ \"Nation\", BLUE_WOOL ]\r\n    lore: |\r\n      {$sep}Permission for joining\r\n      or leaving nations.\r\n  exclude-tax:\r\n    <<: *fn-std-perm [ \"Tax Exclusion\" ]\r\n    lore: |\r\n      {$sep}Kings with this\r\n      permission are not required\r\n      to pay taxes to the nation.\r\n  relation-attributes:\r\n    <<: *fn-std-perm [ \"Relationship Attributes\" ]\r\n    lore: |\r\n      {$sep}Permission for editing\r\n      relationship attributes.\r\n  settings:\r\n    <<: *fn-std-perm [ \"Settings\" ]\r\n    lore: |\r\n      {$sep}Permission for editing general\r\n      kingdom settings located inside\r\n      nexus GUI.\r\n  view-logs:\r\n    <<: *fn-perm [ \"View Logs\", KNOWLEDGE_BOOK ]\r\n    lore: |\r\n      {$sep}View your nation audit logs\r\n      which can be accessed from\r\n      your nexus.\r\n  read-mails:\r\n    <<: *fn-perm [ \"Read Mails\", PLAYER_HEAD ]\r\n    lore: |\r\n      {$sep}Permission for reading\r\n      nation mails located inside\r\n      nexus GUI.\r\n    skull: \"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTVmYmJjNjI1ZmE0ZWI2NDk2YmU4ZGJiZjBhYTJiMjhmMTAyOTdjZmZiY2Y1ZTBhYWY2Y2IxMWU4ZjI2MTZlZCJ9fX0=\"\r\n  manage-mails:\r\n    <<: *fn-perm [ \"Manage Mails\", PLAYER_HEAD ]\r\n    lore: |\r\n      {$sep}Send new mails and reply.\r\n    skull: \"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTVmYmJjNjI1ZmE0ZWI2NDk2YmU4ZGJiZjBhYTJiMjhmMTAyOTdjZmZiY2Y1ZTBhYWY2Y2IxMWU4ZjI2MTZlZCJ9fX0=\"\r\n  \"[else]\":\r\n    name: \"&4Unknown: %permission%\"\r\n    material: BARRIER\r\n\r\n",
+      "comments": [
+        "[NoSync]"
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "alliance"
+      ],
+      "source": "\r\n    <<: *fn-std-perm [ \"Alliance\" ]\r\n    lore: |\r\n      {$sep}Permission for using\r\n      {$s}/k ally {$sep}command.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "alliance",
+        "<<"
+      ],
+      "source": "*fn-std-perm [ \"Alliance\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "alliance",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}Permission for using\r\n      {$s}/k ally {$sep}command.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "broadcast"
+      ],
+      "source": "\r\n    <<: *fn-std-perm [ \"Broadcast\" ]\r\n    lore: |\r\n      {$sep}Permission for using\r\n      {$s}/k nation broadcast {$sep}command.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "broadcast",
+        "<<"
+      ],
+      "source": "*fn-std-perm [ \"Broadcast\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "broadcast",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}Permission for using\r\n      {$s}/k nation broadcast {$sep}command.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "build"
+      ],
+      "source": "\r\n    <<: *fn-perm [ 'Build', DIAMOND_PICKAXE ]\r\n    lore: |\r\n      {$sep}Permission to build anywhere\r\n      in the kingdom.\r\n\r\n      For the difference between this\r\n      and {$p}BUILD_OWNED {$sep}permission\r\n      refer to the other permission.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "build",
+        "<<"
+      ],
+      "source": "*fn-perm [ 'Build', DIAMOND_PICKAXE ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "build",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}Permission to build anywhere\r\n      in the kingdom.\r\n\r\n      For the difference between this\r\n      and {$p}BUILD_OWNED {$sep}permission\r\n      refer to the other permission.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "edit-ranks"
+      ],
+      "source": "\r\n    <<: *fn-std-perm [ \"Edit Ranks\" ]\r\n    lore: |\r\n      {$sep}Permission for creating, deleting\r\n      and modifying ranks including their\r\n      symbols, names and permissions.\r\n\r\n      They will not be able to modify\r\n      their own rank or a rank of\r\n      someone with higher priority.\r\n\r\n      This does not give them permission\r\n      to demote or promote other players.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "edit-ranks",
+        "<<"
+      ],
+      "source": "*fn-std-perm [ \"Edit Ranks\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "edit-ranks",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}Permission for creating, deleting\r\n      and modifying ranks including their\r\n      symbols, names and permissions.\r\n\r\n      They will not be able to modify\r\n      their own rank or a rank of\r\n      someone with higher priority.\r\n\r\n      This does not give them permission\r\n      to demote or promote other players.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "enemy"
+      ],
+      "source": "\r\n    <<: *fn-std-perm [ \"Enemy\" ]\r\n    lore: |\r\n      {$sep}Permission for using\r\n      {$s}/k enemy {$sep}command.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "enemy",
+        "<<"
+      ],
+      "source": "*fn-std-perm [ \"Enemy\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "enemy",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}Permission for using\r\n      {$s}/k enemy {$sep}command.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "home"
+      ],
+      "source": "\r\n    <<: *fn-std-perm [ \"Home\" ]\r\n    lore: |\r\n      {$sep}Permission for using\r\n      {$s}/k home {$sep}command.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "home",
+        "<<"
+      ],
+      "source": "*fn-std-perm [ \"Home\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "home",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}Permission for using\r\n      {$s}/k home {$sep}command.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "invade"
+      ],
+      "source": "\r\n    <<: *fn-std-perm [ \"Invade\" ]\r\n    lore: |\r\n      {$sep}Permission for using\r\n      {$s}/k invade {$sep}command.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "invade",
+        "<<"
+      ],
+      "source": "*fn-std-perm [ \"Invade\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "invade",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}Permission for using\r\n      {$s}/k invade {$sep}command.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "invite"
+      ],
+      "source": "\r\n    <<: *fn-std-perm [ \"Invite\" ]\r\n    lore: |\r\n      {$sep}Permission for using\r\n      {$s}/k invite {$sep}command and\r\n      for making invite codes from\r\n      {$s}/k invitecodes\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "invite",
+        "<<"
+      ],
+      "source": "*fn-std-perm [ \"Invite\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "invite",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}Permission for using\r\n      {$s}/k invite {$sep}command and\r\n      for making invite codes from\r\n      {$s}/k invitecodes\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "kick"
+      ],
+      "source": "\r\n    <<: *fn-std-perm [ \"Kick\" ]\r\n    lore: |\r\n      {$sep}Permission for using\r\n      {$s}/k kick {$sep}command.\r\n\r\n      {$sep}Players with this\r\n      permission will not be\r\n      able to kick players with\r\n      the same or higher ranks.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "kick",
+        "<<"
+      ],
+      "source": "*fn-std-perm [ \"Kick\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "kick",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}Permission for using\r\n      {$s}/k kick {$sep}command.\r\n\r\n      {$sep}Players with this\r\n      permission will not be\r\n      able to kick players with\r\n      the same or higher ranks.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "lore"
+      ],
+      "source": "\r\n    <<: *fn-std-perm [ \"Lore\" ]\r\n    lore: |\r\n      {$sep}Permission for using\r\n      {$s}/k nation lore\r\n      {$s}/k nation rename\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "lore",
+        "<<"
+      ],
+      "source": "*fn-std-perm [ \"Lore\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "lore",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}Permission for using\r\n      {$s}/k nation lore\r\n      {$s}/k nation rename\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "withdraw"
+      ],
+      "source": "\r\n    <<: *fn-std-perm [ \"Withdraw\" ]\r\n    lore: |\r\n      {$sep}Permission for using\r\n      {$s}/k rp withdraw {$sep}command\r\n      and withdrawing resource points\r\n      in exchange for money by other\r\n      means like the option in\r\n      resource points converter inside\r\n      nexus GUI.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "withdraw",
+        "<<"
+      ],
+      "source": "*fn-std-perm [ \"Withdraw\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "withdraw",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}Permission for using\r\n      {$s}/k rp withdraw {$sep}command\r\n      and withdrawing resource points\r\n      in exchange for money by other\r\n      means like the option in\r\n      resource points converter inside\r\n      nexus GUI.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "nexus"
+      ],
+      "source": "\r\n    <<: *fn-perm [ \"Nexus\", BEACON ]\r\n    lore: |\r\n      {$sep}Permission for moving the\r\n      national nexus using\r\n      {$s}/k nation nexus {$sep}command.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "nexus",
+        "<<"
+      ],
+      "source": "*fn-perm [ \"Nexus\", BEACON ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "nexus",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}Permission for moving the\r\n      national nexus using\r\n      {$s}/k nation nexus {$sep}command.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "nexus-build"
+      ],
+      "source": "\r\n    <<: *fn-perm [ \"Nexus Build\", BEACON ]\r\n    lore: |\r\n      {$sep}Permission for building\r\n      in the nexus land\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "nexus-build",
+        "<<"
+      ],
+      "source": "*fn-perm [ \"Nexus Build\", BEACON ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "nexus-build",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}Permission for building\r\n      in the nexus land\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "nexus-chest"
+      ],
+      "source": "\r\n    <<: *fn-perm [ \"Nexus Chest\", CHEST ]\r\n    lore: |\r\n      {$sep}Permission for modifying\r\n      the kingdom's nexus chest.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "nexus-chest",
+        "<<"
+      ],
+      "source": "*fn-perm [ \"Nexus Chest\", CHEST ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "nexus-chest",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}Permission for modifying\r\n      the kingdom's nexus chest.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "set-home"
+      ],
+      "source": "\r\n    <<: *fn-std-perm [ \"Set Home\" ]\r\n    lore: |\r\n      {$sep}Permission for using\r\n      {$s}/k nation sethome {$sep}command.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "set-home",
+        "<<"
+      ],
+      "source": "*fn-std-perm [ \"Set Home\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "set-home",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}Permission for using\r\n      {$s}/k nation sethome {$sep}command.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "upgrade"
+      ],
+      "source": "\r\n    <<: *fn-std-perm [ \"Upgrade\" ]\r\n    lore: |\r\n      {$sep}Permission for upgrading\r\n      anything that can be upgraded\r\n      inside the kingdom such as\r\n      misc-upgrades, champion upgrades,\r\n      powerups, turrets and structures.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "upgrade",
+        "<<"
+      ],
+      "source": "*fn-std-perm [ \"Upgrade\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "upgrade",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}Permission for upgrading\r\n      anything that can be upgraded\r\n      inside the kingdom such as\r\n      misc-upgrades, champion upgrades,\r\n      powerups, turrets and structures.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "truce"
+      ],
+      "source": "\r\n    <<: *fn-std-perm [ \"Truce\" ]\r\n    lore: |\r\n      {$sep}Permission for using\r\n      {$s}/k truce {$sep}command.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "truce",
+        "<<"
+      ],
+      "source": "*fn-std-perm [ \"Truce\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "truce",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}Permission for using\r\n      {$s}/k truce {$sep}command.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "manage-ranks"
+      ],
+      "source": "\r\n    <<: *fn-std-perm [ \"Manage Ranks\" ]\r\n    lore: |\r\n      {$sep}Permission for promoting\r\n      and demoting members with\r\n      lower rank than the player.\r\n\r\n      This does not give them\r\n      permission to modify rank\r\n      settings.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "manage-ranks",
+        "<<"
+      ],
+      "source": "*fn-std-perm [ \"Manage Ranks\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "manage-ranks",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}Permission for promoting\r\n      and demoting members with\r\n      lower rank than the player.\r\n\r\n      This does not give them\r\n      permission to modify rank\r\n      settings.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "nation"
+      ],
+      "source": "\r\n    <<: *fn-perm [ \"Nation\", BLUE_WOOL ]\r\n    lore: |\r\n      {$sep}Permission for joining\r\n      or leaving nations.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "nation",
+        "<<"
+      ],
+      "source": "*fn-perm [ \"Nation\", BLUE_WOOL ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "nation",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}Permission for joining\r\n      or leaving nations.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "exclude-tax"
+      ],
+      "source": "\r\n    <<: *fn-std-perm [ \"Tax Exclusion\" ]\r\n    lore: |\r\n      {$sep}Kings with this\r\n      permission are not required\r\n      to pay taxes to the nation.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "exclude-tax",
+        "<<"
+      ],
+      "source": "*fn-std-perm [ \"Tax Exclusion\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "exclude-tax",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}Kings with this\r\n      permission are not required\r\n      to pay taxes to the nation.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "relation-attributes"
+      ],
+      "source": "\r\n    <<: *fn-std-perm [ \"Relationship Attributes\" ]\r\n    lore: |\r\n      {$sep}Permission for editing\r\n      relationship attributes.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "relation-attributes",
+        "<<"
+      ],
+      "source": "*fn-std-perm [ \"Relationship Attributes\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "relation-attributes",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}Permission for editing\r\n      relationship attributes.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "settings"
+      ],
+      "source": "\r\n    <<: *fn-std-perm [ \"Settings\" ]\r\n    lore: |\r\n      {$sep}Permission for editing general\r\n      kingdom settings located inside\r\n      nexus GUI.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "settings",
+        "<<"
+      ],
+      "source": "*fn-std-perm [ \"Settings\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "settings",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}Permission for editing general\r\n      kingdom settings located inside\r\n      nexus GUI.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "view-logs"
+      ],
+      "source": "\r\n    <<: *fn-perm [ \"View Logs\", KNOWLEDGE_BOOK ]\r\n    lore: |\r\n      {$sep}View your nation audit logs\r\n      which can be accessed from\r\n      your nexus.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "view-logs",
+        "<<"
+      ],
+      "source": "*fn-perm [ \"View Logs\", KNOWLEDGE_BOOK ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "view-logs",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}View your nation audit logs\r\n      which can be accessed from\r\n      your nexus.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "read-mails"
+      ],
+      "source": "\r\n    <<: *fn-perm [ \"Read Mails\", PLAYER_HEAD ]\r\n    lore: |\r\n      {$sep}Permission for reading\r\n      nation mails located inside\r\n      nexus GUI.\r\n    skull: \"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTVmYmJjNjI1ZmE0ZWI2NDk2YmU4ZGJiZjBhYTJiMjhmMTAyOTdjZmZiY2Y1ZTBhYWY2Y2IxMWU4ZjI2MTZlZCJ9fX0=\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "read-mails",
+        "<<"
+      ],
+      "source": "*fn-perm [ \"Read Mails\", PLAYER_HEAD ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "read-mails",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}Permission for reading\r\n      nation mails located inside\r\n      nexus GUI.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "read-mails",
+        "skull"
+      ],
+      "source": "\"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTVmYmJjNjI1ZmE0ZWI2NDk2YmU4ZGJiZjBhYTJiMjhmMTAyOTdjZmZiY2Y1ZTBhYWY2Y2IxMWU4ZjI2MTZlZCJ9fX0=\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "manage-mails"
+      ],
+      "source": "\r\n    <<: *fn-perm [ \"Manage Mails\", PLAYER_HEAD ]\r\n    lore: |\r\n      {$sep}Send new mails and reply.\r\n    skull: \"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTVmYmJjNjI1ZmE0ZWI2NDk2YmU4ZGJiZjBhYTJiMjhmMTAyOTdjZmZiY2Y1ZTBhYWY2Y2IxMWU4ZjI2MTZlZCJ9fX0=\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "manage-mails",
+        "<<"
+      ],
+      "source": "*fn-perm [ \"Manage Mails\", PLAYER_HEAD ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "manage-mails",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}Send new mails and reply.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "manage-mails",
+        "skull"
+      ],
+      "source": "\"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTVmYmJjNjI1ZmE0ZWI2NDk2YmU4ZGJiZjBhYTJiMjhmMTAyOTdjZmZiY2Y1ZTBhYWY2Y2IxMWU4ZjI2MTZlZCJ9fX0=\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "[else]"
+      ],
+      "source": "\r\n    name: \"&4Unknown: %permission%\"\r\n    material: BARRIER\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "[else]",
+        "name"
+      ],
+      "source": "\"&4Unknown: %permission%\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[permission]",
+        "[else]",
+        "material"
+      ],
+      "source": "BARRIER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options"
+      ],
+      "source": "\r\n  decoration:\r\n    slots: [ 1, 2, 3, 4, 5, 6, 7, 9, 17, 18, 26, 27, 35, 36, 44, 45, 46, 47, 48, 50, 51, 52, 53 ]\r\n    material: BLACK_STAINED_GLASS_PANE\r\n    name: ''\r\n\r\n  permissions:\r\n    slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43 ]\r\n    # This is a special feature\r\n    '[switch]': permission\r\n\r\n  back:\r\n    posx: 5\r\n    posy: 6\r\n    material: BARRIER\r\n    name: '{$p}Back'",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "decoration"
+      ],
+      "source": "\r\n    slots: [ 1, 2, 3, 4, 5, 6, 7, 9, 17, 18, 26, 27, 35, 36, 44, 45, 46, 47, 48, 50, 51, 52, 53 ]\r\n    material: BLACK_STAINED_GLASS_PANE\r\n    name: ''\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "decoration",
+        "slots"
+      ],
+      "source": "[ 1, 2, 3, 4, 5, 6, 7, 9, 17, 18, 26, 27, 35, 36, 44, 45, 46, 47, 48, 50, 51, 52, 53 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "9",
+        "17",
+        "18",
+        "26",
+        "27",
+        "35",
+        "36",
+        "44",
+        "45",
+        "46",
+        "47",
+        "48",
+        "50",
+        "51",
+        "52",
+        "53"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "decoration",
+        "material"
+      ],
+      "source": "BLACK_STAINED_GLASS_PANE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "decoration",
+        "name"
+      ],
+      "source": "''",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "permissions"
+      ],
+      "source": "\r\n    slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43 ]\r\n    # This is a special feature\r\n    '[switch]': permission\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "permissions",
+        "slots"
+      ],
+      "source": "[ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "28",
+        "29",
+        "30",
+        "31",
+        "32",
+        "33",
+        "34",
+        "37",
+        "38",
+        "39",
+        "40",
+        "41",
+        "42",
+        "43"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "permissions",
+        "[switch]"
+      ],
+      "source": "permission",
+      "comments": [
+        "This is a special feature"
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back"
+      ],
+      "source": "\r\n    posx: 5\r\n    posy: 6\r\n    material: BARRIER\r\n    name: '{$p}Back'",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "posy"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "material"
+      ],
+      "source": "BARRIER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "name"
+      ],
+      "source": "'{$p}Back'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

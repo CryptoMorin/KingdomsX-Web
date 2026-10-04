@@ -1,0 +1,1001 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "guis/templates/turretgui.yml",
+  "schemaId": "guis/schema",
+  "options": [
+    {
+      "path": [
+        "(module)"
+      ],
+      "source": "\r\n  description: 'Base settings for turret GUIs.'\r\n  parameters:\r\n    <name>: str\r\n\r\n",
+      "comments": [
+        "Shared turret GUIs ###"
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(module)",
+        "description"
+      ],
+      "source": "'Base settings for turret GUIs.'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(module)",
+        "parameters"
+      ],
+      "source": "\r\n    <name>: str\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(module)",
+        "parameters",
+        "<name>"
+      ],
+      "source": "str",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "title"
+      ],
+      "source": "\"&a<name> Turret\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "rows"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sound"
+      ],
+      "source": "ITEM_ARMOR_EQUIP_DIAMOND",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options"
+      ],
+      "source": "\r\n  ammo:\r\n    name: \"{$sp}Ammo{$colon} {$p}%ammo%\"\r\n    material: ARROW\r\n    ammo: 100\r\n    cost: 10\r\n    # Set to 0 to disable.\r\n    fill-cost: 'neededAmmo / 8'\r\n    lore: |\r\n      {$p}Buy {$s}%ammo-buy-amount% {$p}ammo for {$s}%cost% {$p}resource points.\r\n      {? {fill-cost} > 0 ? \"{$p}Fully fill ammo by {$s}shift clicking\r\n      {$p}for {$s}%fill-cost% {$p}resource points.\" }\r\n    posx: 2\r\n    posy: 2\r\n  upgrade:\r\n    material: NETHER_STAR\r\n    upgrade:\r\n      condition: \"level < max_level\"\r\n      name: \"{$sp}Upgrade{$colon} {$s}%roman@level% {$arrow} {$s}%roman@next_level%\"\r\n      lore: |\r\n        {? building_is_under_construction ? \"{$err-sign} &cYou currently can't upgrade this\r\n        turret because it's under construction.\r\n        \"}\r\n        {$dot} {$p}Range{$colon} {$s}%range% {$sep}➔ {$s}%next_range%\r\n        {$dot} {$p}Max Ammo{$colon} {$s}%max_ammo% {$sep}➔ {$s}%next_max_ammo%\r\n        {$dot} {$p}Cooldown{$colon} {$s}%cooldown% {$sep}➔ {$s}%next_cooldown%\r\n        {$dot} {$p}Max Targets{$colon} {$s}%max_targets% {$sep}➔ {$s}%next_max_targets%\r\n        {$dot} {$p}Speed{$colon} {$s}%fancy@speed% {$sep}➔ {$s}%fancy@next_speed%\r\n        {$dot} {$p}Damage{$colon} {$s}%damage% {$sep}➔ {$s}%next_damage%\r\n\r\n        {$dot} {$p}Max Level{$colon} {$s}III\r\n        {$dot} {$p}Cost{$colon} {$s}%upgrade_cost%\r\n    maxxed:\r\n      name: \"{$sp}Level{$colon} {$s}%roman@level%\"\r\n      lore: |\r\n        {$dot} {$p}Range{$colon} {$s}%range%\r\n        {$dot} {$p}Max Ammo{$colon} {$s}%max_ammo%\r\n        {$dot} {$p}Cooldown{$colon} {$s}%cooldown%\r\n        {$dot} {$p}Max Targets{$colon} {$s}%max_targets%\r\n        {$dot} {$p}Speed{$colon} {$s}%fancy@speed%\r\n        {$dot} {$p}Damage{$colon} {$s}%damage%\r\n    posx: 3\r\n    posy: 2\r\n  manual:\r\n    manual:\r\n      condition: \"manual\"\r\n      name: \"{$p}Manual\"\r\n      material: LEVER\r\n      lore: |\r\n        {$sep}Manual mode allows you\r\n        to disable turrets from\r\n        activating automatically and\r\n        you can take control of them instead.\r\n\r\n        {$p}Left-click to go into\r\n        {$sp}automatic mode\r\n\r\n        {$p}Right-click to start\r\n        operating the turret\r\n    automatic:\r\n      name: \"{$sp}Automatic\"\r\n      material: COMPARATOR\r\n      lore: |\r\n        {$sep}Automatic mode will make\r\n        turrets automatically detect\r\n        nearby enemies and shoot at them.\r\n\r\n        {$p}Left-click to go into\r\n        {$sp}manual mode\r\n    posx: 4\r\n    posy: 2\r\n  repair:\r\n    material: ANVIL\r\n    name: \"{$sp}Repair\"\r\n    upgrade:\r\n      condition: \"building_durability <= 0\"\r\n      lore: |\r\n        {$desc}Your current turret is completely\r\n        destroyed and needs a full repair\r\n        to fix it.\r\n\r\n        {$p}Cost{$colon}\r\n        {? repair_cost_rp != 0 ? \" {$dot} {$p}Resource Points{$colon} {$s}%fancy@repair_cost_rp%\" }\r\n        {? repair_cost_money != 0 ? \" {$dot} {$p}Money{$colon} {$s}$%fancy@repair_cost_money%\" }\r\n    else:\r\n      lore: |\r\n        {$desc}You can repair your building by\r\n        throwing the following items at it{$colon}\r\n\r\n          {$dot} {$p}Iron{$colon} {$s}10\r\n          {$dot} {$p}Gold{$colon} {$s}15\r\n          {$dot} {$p}Diamonds{$colon} {$s}50\r\n\r\n        {$info-sign} &9If your building's durability hits {$e}0&9,\r\n        you'll have to do a full repair using\r\n        this button.\r\n    posx: 6\r\n    posy: 2\r\n  break:\r\n    name: \"&cBreak\"\r\n    material: REDSTONE_BLOCK\r\n    under-construction:\r\n      condition: \"building_is_under_construction\"\r\n      lore: |\r\n        &4Breaks this turret.\r\n\r\n        {$err-sign} {$e}This turret is currently under\r\n        construction, breaking this turret\r\n        will revert all progress.\r\n    else:\r\n      lore: |\r\n        &4Breaks this turret.\r\n    posx: 7\r\n    posy: 2\r\n  close:\r\n    name: \"&cClose\"\r\n    material: BARRIER\r\n    lore:\r\n      - \"{$s}Close the GUI\"\r\n    posx: 8\r\n    posy: 2\r\n\r\n  lime-stained-glass-pane:\r\n    slots: [ 0, 2, 4, 6, 8, 18, 20, 22, 24, 26 ]\r\n    material: LIME_STAINED_GLASS_PANE\r\n    name: ''\r\n  black-stained-glass-pane:\r\n    slots: [ 1, 3, 5, 7, 9, 13, 17, 19, 21, 23, 25 ]\r\n    material: BLACK_STAINED_GLASS_PANE\r\n    name: ''\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "ammo"
+      ],
+      "source": "\r\n    name: \"{$sp}Ammo{$colon} {$p}%ammo%\"\r\n    material: ARROW\r\n    ammo: 100\r\n    cost: 10\r\n    # Set to 0 to disable.\r\n    fill-cost: 'neededAmmo / 8'\r\n    lore: |\r\n      {$p}Buy {$s}%ammo-buy-amount% {$p}ammo for {$s}%cost% {$p}resource points.\r\n      {? {fill-cost} > 0 ? \"{$p}Fully fill ammo by {$s}shift clicking\r\n      {$p}for {$s}%fill-cost% {$p}resource points.\" }\r\n    posx: 2\r\n    posy: 2\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "ammo",
+        "name"
+      ],
+      "source": "\"{$sp}Ammo{$colon} {$p}%ammo%\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "ammo",
+        "material"
+      ],
+      "source": "ARROW",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "ammo",
+        "ammo"
+      ],
+      "source": "100",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "ammo",
+        "cost"
+      ],
+      "source": "10",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "ammo",
+        "fill-cost"
+      ],
+      "source": "'neededAmmo / 8'",
+      "comments": [
+        "Set to 0 to disable."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "ammo",
+        "lore"
+      ],
+      "source": "|\r\n      {$p}Buy {$s}%ammo-buy-amount% {$p}ammo for {$s}%cost% {$p}resource points.\r\n      {? {fill-cost} > 0 ? \"{$p}Fully fill ammo by {$s}shift clicking\r\n      {$p}for {$s}%fill-cost% {$p}resource points.\" }\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "ammo",
+        "posx"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "ammo",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "upgrade"
+      ],
+      "source": "\r\n    material: NETHER_STAR\r\n    upgrade:\r\n      condition: \"level < max_level\"\r\n      name: \"{$sp}Upgrade{$colon} {$s}%roman@level% {$arrow} {$s}%roman@next_level%\"\r\n      lore: |\r\n        {? building_is_under_construction ? \"{$err-sign} &cYou currently can't upgrade this\r\n        turret because it's under construction.\r\n        \"}\r\n        {$dot} {$p}Range{$colon} {$s}%range% {$sep}➔ {$s}%next_range%\r\n        {$dot} {$p}Max Ammo{$colon} {$s}%max_ammo% {$sep}➔ {$s}%next_max_ammo%\r\n        {$dot} {$p}Cooldown{$colon} {$s}%cooldown% {$sep}➔ {$s}%next_cooldown%\r\n        {$dot} {$p}Max Targets{$colon} {$s}%max_targets% {$sep}➔ {$s}%next_max_targets%\r\n        {$dot} {$p}Speed{$colon} {$s}%fancy@speed% {$sep}➔ {$s}%fancy@next_speed%\r\n        {$dot} {$p}Damage{$colon} {$s}%damage% {$sep}➔ {$s}%next_damage%\r\n\r\n        {$dot} {$p}Max Level{$colon} {$s}III\r\n        {$dot} {$p}Cost{$colon} {$s}%upgrade_cost%\r\n    maxxed:\r\n      name: \"{$sp}Level{$colon} {$s}%roman@level%\"\r\n      lore: |\r\n        {$dot} {$p}Range{$colon} {$s}%range%\r\n        {$dot} {$p}Max Ammo{$colon} {$s}%max_ammo%\r\n        {$dot} {$p}Cooldown{$colon} {$s}%cooldown%\r\n        {$dot} {$p}Max Targets{$colon} {$s}%max_targets%\r\n        {$dot} {$p}Speed{$colon} {$s}%fancy@speed%\r\n        {$dot} {$p}Damage{$colon} {$s}%damage%\r\n    posx: 3\r\n    posy: 2\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "upgrade",
+        "material"
+      ],
+      "source": "NETHER_STAR",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "upgrade",
+        "upgrade"
+      ],
+      "source": "\r\n      condition: \"level < max_level\"\r\n      name: \"{$sp}Upgrade{$colon} {$s}%roman@level% {$arrow} {$s}%roman@next_level%\"\r\n      lore: |\r\n        {? building_is_under_construction ? \"{$err-sign} &cYou currently can't upgrade this\r\n        turret because it's under construction.\r\n        \"}\r\n        {$dot} {$p}Range{$colon} {$s}%range% {$sep}➔ {$s}%next_range%\r\n        {$dot} {$p}Max Ammo{$colon} {$s}%max_ammo% {$sep}➔ {$s}%next_max_ammo%\r\n        {$dot} {$p}Cooldown{$colon} {$s}%cooldown% {$sep}➔ {$s}%next_cooldown%\r\n        {$dot} {$p}Max Targets{$colon} {$s}%max_targets% {$sep}➔ {$s}%next_max_targets%\r\n        {$dot} {$p}Speed{$colon} {$s}%fancy@speed% {$sep}➔ {$s}%fancy@next_speed%\r\n        {$dot} {$p}Damage{$colon} {$s}%damage% {$sep}➔ {$s}%next_damage%\r\n\r\n        {$dot} {$p}Max Level{$colon} {$s}III\r\n        {$dot} {$p}Cost{$colon} {$s}%upgrade_cost%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "upgrade",
+        "upgrade",
+        "condition"
+      ],
+      "source": "\"level < max_level\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "upgrade",
+        "upgrade",
+        "name"
+      ],
+      "source": "\"{$sp}Upgrade{$colon} {$s}%roman@level% {$arrow} {$s}%roman@next_level%\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "upgrade",
+        "upgrade",
+        "lore"
+      ],
+      "source": "|\r\n        {? building_is_under_construction ? \"{$err-sign} &cYou currently can't upgrade this\r\n        turret because it's under construction.\r\n        \"}\r\n        {$dot} {$p}Range{$colon} {$s}%range% {$sep}➔ {$s}%next_range%\r\n        {$dot} {$p}Max Ammo{$colon} {$s}%max_ammo% {$sep}➔ {$s}%next_max_ammo%\r\n        {$dot} {$p}Cooldown{$colon} {$s}%cooldown% {$sep}➔ {$s}%next_cooldown%\r\n        {$dot} {$p}Max Targets{$colon} {$s}%max_targets% {$sep}➔ {$s}%next_max_targets%\r\n        {$dot} {$p}Speed{$colon} {$s}%fancy@speed% {$sep}➔ {$s}%fancy@next_speed%\r\n        {$dot} {$p}Damage{$colon} {$s}%damage% {$sep}➔ {$s}%next_damage%\r\n\r\n        {$dot} {$p}Max Level{$colon} {$s}III\r\n        {$dot} {$p}Cost{$colon} {$s}%upgrade_cost%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "upgrade",
+        "maxxed"
+      ],
+      "source": "\r\n      name: \"{$sp}Level{$colon} {$s}%roman@level%\"\r\n      lore: |\r\n        {$dot} {$p}Range{$colon} {$s}%range%\r\n        {$dot} {$p}Max Ammo{$colon} {$s}%max_ammo%\r\n        {$dot} {$p}Cooldown{$colon} {$s}%cooldown%\r\n        {$dot} {$p}Max Targets{$colon} {$s}%max_targets%\r\n        {$dot} {$p}Speed{$colon} {$s}%fancy@speed%\r\n        {$dot} {$p}Damage{$colon} {$s}%damage%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "upgrade",
+        "maxxed",
+        "name"
+      ],
+      "source": "\"{$sp}Level{$colon} {$s}%roman@level%\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "upgrade",
+        "maxxed",
+        "lore"
+      ],
+      "source": "|\r\n        {$dot} {$p}Range{$colon} {$s}%range%\r\n        {$dot} {$p}Max Ammo{$colon} {$s}%max_ammo%\r\n        {$dot} {$p}Cooldown{$colon} {$s}%cooldown%\r\n        {$dot} {$p}Max Targets{$colon} {$s}%max_targets%\r\n        {$dot} {$p}Speed{$colon} {$s}%fancy@speed%\r\n        {$dot} {$p}Damage{$colon} {$s}%damage%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "upgrade",
+        "posx"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "upgrade",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "manual"
+      ],
+      "source": "\r\n    manual:\r\n      condition: \"manual\"\r\n      name: \"{$p}Manual\"\r\n      material: LEVER\r\n      lore: |\r\n        {$sep}Manual mode allows you\r\n        to disable turrets from\r\n        activating automatically and\r\n        you can take control of them instead.\r\n\r\n        {$p}Left-click to go into\r\n        {$sp}automatic mode\r\n\r\n        {$p}Right-click to start\r\n        operating the turret\r\n    automatic:\r\n      name: \"{$sp}Automatic\"\r\n      material: COMPARATOR\r\n      lore: |\r\n        {$sep}Automatic mode will make\r\n        turrets automatically detect\r\n        nearby enemies and shoot at them.\r\n\r\n        {$p}Left-click to go into\r\n        {$sp}manual mode\r\n    posx: 4\r\n    posy: 2\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "manual",
+        "manual"
+      ],
+      "source": "\r\n      condition: \"manual\"\r\n      name: \"{$p}Manual\"\r\n      material: LEVER\r\n      lore: |\r\n        {$sep}Manual mode allows you\r\n        to disable turrets from\r\n        activating automatically and\r\n        you can take control of them instead.\r\n\r\n        {$p}Left-click to go into\r\n        {$sp}automatic mode\r\n\r\n        {$p}Right-click to start\r\n        operating the turret\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "manual",
+        "manual",
+        "condition"
+      ],
+      "source": "\"manual\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "manual",
+        "manual",
+        "name"
+      ],
+      "source": "\"{$p}Manual\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "manual",
+        "manual",
+        "material"
+      ],
+      "source": "LEVER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "manual",
+        "manual",
+        "lore"
+      ],
+      "source": "|\r\n        {$sep}Manual mode allows you\r\n        to disable turrets from\r\n        activating automatically and\r\n        you can take control of them instead.\r\n\r\n        {$p}Left-click to go into\r\n        {$sp}automatic mode\r\n\r\n        {$p}Right-click to start\r\n        operating the turret\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "manual",
+        "automatic"
+      ],
+      "source": "\r\n      name: \"{$sp}Automatic\"\r\n      material: COMPARATOR\r\n      lore: |\r\n        {$sep}Automatic mode will make\r\n        turrets automatically detect\r\n        nearby enemies and shoot at them.\r\n\r\n        {$p}Left-click to go into\r\n        {$sp}manual mode\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "manual",
+        "automatic",
+        "name"
+      ],
+      "source": "\"{$sp}Automatic\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "manual",
+        "automatic",
+        "material"
+      ],
+      "source": "COMPARATOR",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "manual",
+        "automatic",
+        "lore"
+      ],
+      "source": "|\r\n        {$sep}Automatic mode will make\r\n        turrets automatically detect\r\n        nearby enemies and shoot at them.\r\n\r\n        {$p}Left-click to go into\r\n        {$sp}manual mode\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "manual",
+        "posx"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "manual",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "repair"
+      ],
+      "source": "\r\n    material: ANVIL\r\n    name: \"{$sp}Repair\"\r\n    upgrade:\r\n      condition: \"building_durability <= 0\"\r\n      lore: |\r\n        {$desc}Your current turret is completely\r\n        destroyed and needs a full repair\r\n        to fix it.\r\n\r\n        {$p}Cost{$colon}\r\n        {? repair_cost_rp != 0 ? \" {$dot} {$p}Resource Points{$colon} {$s}%fancy@repair_cost_rp%\" }\r\n        {? repair_cost_money != 0 ? \" {$dot} {$p}Money{$colon} {$s}$%fancy@repair_cost_money%\" }\r\n    else:\r\n      lore: |\r\n        {$desc}You can repair your building by\r\n        throwing the following items at it{$colon}\r\n\r\n          {$dot} {$p}Iron{$colon} {$s}10\r\n          {$dot} {$p}Gold{$colon} {$s}15\r\n          {$dot} {$p}Diamonds{$colon} {$s}50\r\n\r\n        {$info-sign} &9If your building's durability hits {$e}0&9,\r\n        you'll have to do a full repair using\r\n        this button.\r\n    posx: 6\r\n    posy: 2\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "repair",
+        "material"
+      ],
+      "source": "ANVIL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "repair",
+        "name"
+      ],
+      "source": "\"{$sp}Repair\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "repair",
+        "upgrade"
+      ],
+      "source": "\r\n      condition: \"building_durability <= 0\"\r\n      lore: |\r\n        {$desc}Your current turret is completely\r\n        destroyed and needs a full repair\r\n        to fix it.\r\n\r\n        {$p}Cost{$colon}\r\n        {? repair_cost_rp != 0 ? \" {$dot} {$p}Resource Points{$colon} {$s}%fancy@repair_cost_rp%\" }\r\n        {? repair_cost_money != 0 ? \" {$dot} {$p}Money{$colon} {$s}$%fancy@repair_cost_money%\" }\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "repair",
+        "upgrade",
+        "condition"
+      ],
+      "source": "\"building_durability <= 0\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "repair",
+        "upgrade",
+        "lore"
+      ],
+      "source": "|\r\n        {$desc}Your current turret is completely\r\n        destroyed and needs a full repair\r\n        to fix it.\r\n\r\n        {$p}Cost{$colon}\r\n        {? repair_cost_rp != 0 ? \" {$dot} {$p}Resource Points{$colon} {$s}%fancy@repair_cost_rp%\" }\r\n        {? repair_cost_money != 0 ? \" {$dot} {$p}Money{$colon} {$s}$%fancy@repair_cost_money%\" }\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "repair",
+        "else"
+      ],
+      "source": "\r\n      lore: |\r\n        {$desc}You can repair your building by\r\n        throwing the following items at it{$colon}\r\n\r\n          {$dot} {$p}Iron{$colon} {$s}10\r\n          {$dot} {$p}Gold{$colon} {$s}15\r\n          {$dot} {$p}Diamonds{$colon} {$s}50\r\n\r\n        {$info-sign} &9If your building's durability hits {$e}0&9,\r\n        you'll have to do a full repair using\r\n        this button.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "repair",
+        "else",
+        "lore"
+      ],
+      "source": "|\r\n        {$desc}You can repair your building by\r\n        throwing the following items at it{$colon}\r\n\r\n          {$dot} {$p}Iron{$colon} {$s}10\r\n          {$dot} {$p}Gold{$colon} {$s}15\r\n          {$dot} {$p}Diamonds{$colon} {$s}50\r\n\r\n        {$info-sign} &9If your building's durability hits {$e}0&9,\r\n        you'll have to do a full repair using\r\n        this button.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "repair",
+        "posx"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "repair",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "break"
+      ],
+      "source": "\r\n    name: \"&cBreak\"\r\n    material: REDSTONE_BLOCK\r\n    under-construction:\r\n      condition: \"building_is_under_construction\"\r\n      lore: |\r\n        &4Breaks this turret.\r\n\r\n        {$err-sign} {$e}This turret is currently under\r\n        construction, breaking this turret\r\n        will revert all progress.\r\n    else:\r\n      lore: |\r\n        &4Breaks this turret.\r\n    posx: 7\r\n    posy: 2\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "break",
+        "name"
+      ],
+      "source": "\"&cBreak\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "break",
+        "material"
+      ],
+      "source": "REDSTONE_BLOCK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "break",
+        "under-construction"
+      ],
+      "source": "\r\n      condition: \"building_is_under_construction\"\r\n      lore: |\r\n        &4Breaks this turret.\r\n\r\n        {$err-sign} {$e}This turret is currently under\r\n        construction, breaking this turret\r\n        will revert all progress.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "break",
+        "under-construction",
+        "condition"
+      ],
+      "source": "\"building_is_under_construction\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "break",
+        "under-construction",
+        "lore"
+      ],
+      "source": "|\r\n        &4Breaks this turret.\r\n\r\n        {$err-sign} {$e}This turret is currently under\r\n        construction, breaking this turret\r\n        will revert all progress.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "break",
+        "else"
+      ],
+      "source": "\r\n      lore: |\r\n        &4Breaks this turret.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "break",
+        "else",
+        "lore"
+      ],
+      "source": "|\r\n        &4Breaks this turret.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "break",
+        "posx"
+      ],
+      "source": "7",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "break",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "close"
+      ],
+      "source": "\r\n    name: \"&cClose\"\r\n    material: BARRIER\r\n    lore:\r\n      - \"{$s}Close the GUI\"\r\n    posx: 8\r\n    posy: 2\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "close",
+        "name"
+      ],
+      "source": "\"&cClose\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "close",
+        "material"
+      ],
+      "source": "BARRIER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "close",
+        "lore"
+      ],
+      "source": "\r\n      - \"{$s}Close the GUI\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$s}Close the GUI\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "close",
+        "posx"
+      ],
+      "source": "8",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "close",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "lime-stained-glass-pane"
+      ],
+      "source": "\r\n    slots: [ 0, 2, 4, 6, 8, 18, 20, 22, 24, 26 ]\r\n    material: LIME_STAINED_GLASS_PANE\r\n    name: ''\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "lime-stained-glass-pane",
+        "slots"
+      ],
+      "source": "[ 0, 2, 4, 6, 8, 18, 20, 22, 24, 26 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "0",
+        "2",
+        "4",
+        "6",
+        "8",
+        "18",
+        "20",
+        "22",
+        "24",
+        "26"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "lime-stained-glass-pane",
+        "material"
+      ],
+      "source": "LIME_STAINED_GLASS_PANE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "lime-stained-glass-pane",
+        "name"
+      ],
+      "source": "''",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "black-stained-glass-pane"
+      ],
+      "source": "\r\n    slots: [ 1, 3, 5, 7, 9, 13, 17, 19, 21, 23, 25 ]\r\n    material: BLACK_STAINED_GLASS_PANE\r\n    name: ''\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "black-stained-glass-pane",
+        "slots"
+      ],
+      "source": "[ 1, 3, 5, 7, 9, 13, 17, 19, 21, 23, 25 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "1",
+        "3",
+        "5",
+        "7",
+        "9",
+        "13",
+        "17",
+        "19",
+        "21",
+        "23",
+        "25"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "black-stained-glass-pane",
+        "material"
+      ],
+      "source": "BLACK_STAINED_GLASS_PANE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "black-stained-glass-pane",
+        "name"
+      ],
+      "source": "''",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

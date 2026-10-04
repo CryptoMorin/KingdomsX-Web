@@ -1,0 +1,996 @@
+{
+  "formatVersion": 1,
+  "source": {
+    "addonId": "peace-treaties",
+    "artifactPath": "addons/Kingdoms-Addon-Peace-Treaties-1.2.8.3.jar",
+    "artifactBlobSha": "65c542bd55dc6dfed6e222f079d37971fd24a682",
+    "artifactSha256": "54b2f1a879e10403200f218d852deb8d80c721cc933777812bbdcfcac5ca9f03",
+    "addonVersion": "1.2.8.3"
+  },
+  "resourceName": "guis/peace-treaties/editor.yml",
+  "schemaId": "guis/schema",
+  "sha256": "2be835aed4d42ce14ea3e7408486c1e81e20c72f95832fcf98b73f4c767a1b13",
+  "options": [
+    {
+      "path": [
+        "title"
+      ],
+      "source": "'{$sep}-=( {$p}Peace Treaty {$sep})=-'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "rows"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options"
+      ],
+      "source": "\r\n  pause:\r\n    posx: 1\r\n    posy: 1\r\n    material: PLAYER_HEAD\r\n    # https://minecraft-heads.com/custom-heads/miscellaneous/2299-stop\r\n    skull: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTYxMzlmZDFjNTY1NGU1NmU5ZTRlMmM4YmU3ZWIyYmQ1YjQ5OWQ2MzM2MTY2NjNmZWVlOTliNzQzNTJhZDY0In19fQ=='\r\n    name: '{$e}Pause'\r\n    lore: |\r\n      &7Pauses the current contract\r\n      editing session. You can resume\r\n      it later with {$p}/k peacetreaty resume\r\n      &7command, but this expires after\r\n      the server goes offline.\r\n  cancel:\r\n    material: BARRIER\r\n    name: \"{$e}Cancel\"\r\n    posx: 5\r\n    posy: 1\r\n  lime-stained-glass-pane:\r\n    slots: [ 1, 2, 6, 7, 9, 10, 12, 13, 14, 16, 17, 18, 21, 22, 23, 26, 28, 29, 30, 32, 33, 34, 36, 39, 40, 41, 44, 46, 48, 50, 52 ]\r\n    material: LIME_STAINED_GLASS_PANE\r\n    name: ''\r\n  blue-stained-glass-pane:\r\n    slots: [ 3, 5, 11, 15, 19, 25, 27, 35, 37, 43, 45, 47, 49, 51, 53 ]\r\n    material: BLUE_STAINED_GLASS_PANE\r\n    name: ''\r\n  send:\r\n    posx: 9\r\n    posy: 1\r\n    material: PLAYER_HEAD\r\n    # https://minecraft-heads.com/custom-heads/alphabet/21778-blue-checkmark\r\n    skull: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTZmNDQzMWU5ODNiM2M4NTQwNDRiYzAwYjdjNTQ4MDAyNDNjZDdkYmY5NGRlMzM5YjhjMmY3YjI1NjZhNTIwMSJ9fX0='\r\n    name: '{$p}Send'\r\n    can-force-accpet:\r\n      condition: peacetreaty_can_enforce_acceptance\r\n      lore: |\r\n        &7Sends the proposal to the other\r\n        kingdom. You'd have to wait for\r\n        the to review and accept it.\r\n        \r\n        {$p}Used War Points{$colon} {$s}%peacetreaty_war_points%\r\n        {$p}War Points{$colon} {$s}%other*kingdoms_war_points%\r\n        \r\n        {$p}Your kingdom is able to enforce an \r\n        contract on this kingdom. Right-click to \r\n        force the peace treaty on the other kingdom. \r\n        This will take {$s}%peacetreaty_force_acceptance_war_points% {$p}war points.\r\n    else:\r\n      lore: |\r\n        &7Sends the proposal to the other\r\n        kingdom. You'd have to wait for\r\n        the to review and accept it.\r\n\r\n        {$p}Used War Points{$colon} {$s}%peacetreaty_war_points%\r\n        {$p}War Points{$colon} {$s}%other*kingdoms_war_points%\r\n  term-take-rp:\r\n    posx: 3\r\n    posy: 3\r\n    material: DIAMOND\r\n    name: '%bool@term_take_rp% {$p}Take Resource Points'\r\n    enabled:\r\n      condition: term_take_rp\r\n      lore: |\r\n        &7Require a certain amount of\r\n        resource points to be taken from\r\n        the kingdom and transferred to your kingdom.\r\n\r\n        {$p}Amount{$colon} {$s}%fancy@term_take_resource_points_amount%\r\n        {$p}War Points{$colon} {$s}%war_points%\r\n    else:\r\n      lore: |\r\n        &7Require a certain amount of\r\n        resource points to be taken from\r\n        the kingdom and transferred to your kingdom.\r\n\r\n        {$p}War Points{$colon} {$s}%war_points%\r\n  term-war-reparation:\r\n    posx: 7\r\n    posy: 3\r\n    material: EMERALD\r\n    name: '%bool@term_war_reparation% {$p}War Reparation'\r\n    enabled:\r\n      condition: term_war_reparation\r\n      lore: |\r\n        &7Require a certain amount of\r\n        money to be taken from the kingdom's\r\n        bank and transferred to your kingdom.\r\n\r\n        {$p}Amount{$colon} {$s}%fancy@term_take_money_amount%\r\n        {$p}War Points{$colon} {$s}%war_points%\r\n    else:\r\n      lore: |\r\n        &7Require a certain amount of\r\n        money to be taken from the kingdom's\r\n        bank and transferred to your kingdom.\r\n\r\n        {$p}War Points{$colon} {$s}%war_points%\r\n  term-vassalization:\r\n    posx: 5\r\n    posy: 4\r\n    material: WRITABLE_BOOK\r\n    name: '%bool@term_vassalization% &cVassalization'\r\n    lore: |\r\n      &7Impose certain restrictions/rules on\r\n      your vassal kingdom as an overlord kingdom\r\n      such as relationships, misc-upgrades etc.\r\n\r\n      {$p}War Points{$colon} {$s}%war_points%\r\n  term-leave-nation:\r\n    posx: 3\r\n    posy: 5\r\n    material: IRON_DOOR\r\n    name: '%bool@term_leave_nation% {$p}Leave Nation'\r\n    lore: |\r\n      &7Require the kingdom to\r\n      leave the nation that they're\r\n      currently in or disband it if\r\n      they're the capital of the nation.\r\n\r\n      This also forces them to not be able\r\n      to join any nations until the peace\r\n      treaty duration.\r\n\r\n      {$p}War Points{$colon} {$s}%war_points%\r\n  term-keep-lands:\r\n    posx: 7\r\n    posy: 5\r\n    material: GRASS_BLOCK\r\n    name: '%bool@term_keep_lands% {$p}Keep Lands'\r\n    lore: |\r\n      &7Keep certain lands that you've\r\n      invaded from this kingdom and give\r\n      the rest back to the kingdom.\r\n\r\n      {$p}War Points{$colon} {$s}%war_points%",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "pause"
+      ],
+      "source": "\r\n    posx: 1\r\n    posy: 1\r\n    material: PLAYER_HEAD\r\n    # https://minecraft-heads.com/custom-heads/miscellaneous/2299-stop\r\n    skull: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTYxMzlmZDFjNTY1NGU1NmU5ZTRlMmM4YmU3ZWIyYmQ1YjQ5OWQ2MzM2MTY2NjNmZWVlOTliNzQzNTJhZDY0In19fQ=='\r\n    name: '{$e}Pause'\r\n    lore: |\r\n      &7Pauses the current contract\r\n      editing session. You can resume\r\n      it later with {$p}/k peacetreaty resume\r\n      &7command, but this expires after\r\n      the server goes offline.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "pause",
+        "posx"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "pause",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "pause",
+        "material"
+      ],
+      "source": "PLAYER_HEAD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "pause",
+        "skull"
+      ],
+      "source": "'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTYxMzlmZDFjNTY1NGU1NmU5ZTRlMmM4YmU3ZWIyYmQ1YjQ5OWQ2MzM2MTY2NjNmZWVlOTliNzQzNTJhZDY0In19fQ=='",
+      "comments": [
+        "https://minecraft-heads.com/custom-heads/miscellaneous/2299-stop"
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "pause",
+        "name"
+      ],
+      "source": "'{$e}Pause'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "pause",
+        "lore"
+      ],
+      "source": "|\r\n      &7Pauses the current contract\r\n      editing session. You can resume\r\n      it later with {$p}/k peacetreaty resume\r\n      &7command, but this expires after\r\n      the server goes offline.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "cancel"
+      ],
+      "source": "\r\n    material: BARRIER\r\n    name: \"{$e}Cancel\"\r\n    posx: 5\r\n    posy: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "cancel",
+        "material"
+      ],
+      "source": "BARRIER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "cancel",
+        "name"
+      ],
+      "source": "\"{$e}Cancel\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "cancel",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "cancel",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "lime-stained-glass-pane"
+      ],
+      "source": "\r\n    slots: [ 1, 2, 6, 7, 9, 10, 12, 13, 14, 16, 17, 18, 21, 22, 23, 26, 28, 29, 30, 32, 33, 34, 36, 39, 40, 41, 44, 46, 48, 50, 52 ]\r\n    material: LIME_STAINED_GLASS_PANE\r\n    name: ''\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "lime-stained-glass-pane",
+        "slots"
+      ],
+      "source": "[ 1, 2, 6, 7, 9, 10, 12, 13, 14, 16, 17, 18, 21, 22, 23, 26, 28, 29, 30, 32, 33, 34, 36, 39, 40, 41, 44, 46, 48, 50, 52 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "1",
+        "2",
+        "6",
+        "7",
+        "9",
+        "10",
+        "12",
+        "13",
+        "14",
+        "16",
+        "17",
+        "18",
+        "21",
+        "22",
+        "23",
+        "26",
+        "28",
+        "29",
+        "30",
+        "32",
+        "33",
+        "34",
+        "36",
+        "39",
+        "40",
+        "41",
+        "44",
+        "46",
+        "48",
+        "50",
+        "52"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "lime-stained-glass-pane",
+        "material"
+      ],
+      "source": "LIME_STAINED_GLASS_PANE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "lime-stained-glass-pane",
+        "name"
+      ],
+      "source": "''",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "blue-stained-glass-pane"
+      ],
+      "source": "\r\n    slots: [ 3, 5, 11, 15, 19, 25, 27, 35, 37, 43, 45, 47, 49, 51, 53 ]\r\n    material: BLUE_STAINED_GLASS_PANE\r\n    name: ''\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "blue-stained-glass-pane",
+        "slots"
+      ],
+      "source": "[ 3, 5, 11, 15, 19, 25, 27, 35, 37, 43, 45, 47, 49, 51, 53 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "3",
+        "5",
+        "11",
+        "15",
+        "19",
+        "25",
+        "27",
+        "35",
+        "37",
+        "43",
+        "45",
+        "47",
+        "49",
+        "51",
+        "53"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "blue-stained-glass-pane",
+        "material"
+      ],
+      "source": "BLUE_STAINED_GLASS_PANE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "blue-stained-glass-pane",
+        "name"
+      ],
+      "source": "''",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "send"
+      ],
+      "source": "\r\n    posx: 9\r\n    posy: 1\r\n    material: PLAYER_HEAD\r\n    # https://minecraft-heads.com/custom-heads/alphabet/21778-blue-checkmark\r\n    skull: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTZmNDQzMWU5ODNiM2M4NTQwNDRiYzAwYjdjNTQ4MDAyNDNjZDdkYmY5NGRlMzM5YjhjMmY3YjI1NjZhNTIwMSJ9fX0='\r\n    name: '{$p}Send'\r\n    can-force-accpet:\r\n      condition: peacetreaty_can_enforce_acceptance\r\n      lore: |\r\n        &7Sends the proposal to the other\r\n        kingdom. You'd have to wait for\r\n        the to review and accept it.\r\n        \r\n        {$p}Used War Points{$colon} {$s}%peacetreaty_war_points%\r\n        {$p}War Points{$colon} {$s}%other*kingdoms_war_points%\r\n        \r\n        {$p}Your kingdom is able to enforce an \r\n        contract on this kingdom. Right-click to \r\n        force the peace treaty on the other kingdom. \r\n        This will take {$s}%peacetreaty_force_acceptance_war_points% {$p}war points.\r\n    else:\r\n      lore: |\r\n        &7Sends the proposal to the other\r\n        kingdom. You'd have to wait for\r\n        the to review and accept it.\r\n\r\n        {$p}Used War Points{$colon} {$s}%peacetreaty_war_points%\r\n        {$p}War Points{$colon} {$s}%other*kingdoms_war_points%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "send",
+        "posx"
+      ],
+      "source": "9",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "send",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "send",
+        "material"
+      ],
+      "source": "PLAYER_HEAD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "send",
+        "skull"
+      ],
+      "source": "'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTZmNDQzMWU5ODNiM2M4NTQwNDRiYzAwYjdjNTQ4MDAyNDNjZDdkYmY5NGRlMzM5YjhjMmY3YjI1NjZhNTIwMSJ9fX0='",
+      "comments": [
+        "https://minecraft-heads.com/custom-heads/alphabet/21778-blue-checkmark"
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "send",
+        "name"
+      ],
+      "source": "'{$p}Send'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "send",
+        "can-force-accpet"
+      ],
+      "source": "\r\n      condition: peacetreaty_can_enforce_acceptance\r\n      lore: |\r\n        &7Sends the proposal to the other\r\n        kingdom. You'd have to wait for\r\n        the to review and accept it.\r\n        \r\n        {$p}Used War Points{$colon} {$s}%peacetreaty_war_points%\r\n        {$p}War Points{$colon} {$s}%other*kingdoms_war_points%\r\n        \r\n        {$p}Your kingdom is able to enforce an \r\n        contract on this kingdom. Right-click to \r\n        force the peace treaty on the other kingdom. \r\n        This will take {$s}%peacetreaty_force_acceptance_war_points% {$p}war points.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "send",
+        "can-force-accpet",
+        "condition"
+      ],
+      "source": "peacetreaty_can_enforce_acceptance",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "send",
+        "can-force-accpet",
+        "lore"
+      ],
+      "source": "|\r\n        &7Sends the proposal to the other\r\n        kingdom. You'd have to wait for\r\n        the to review and accept it.\r\n        \r\n        {$p}Used War Points{$colon} {$s}%peacetreaty_war_points%\r\n        {$p}War Points{$colon} {$s}%other*kingdoms_war_points%\r\n        \r\n        {$p}Your kingdom is able to enforce an \r\n        contract on this kingdom. Right-click to \r\n        force the peace treaty on the other kingdom. \r\n        This will take {$s}%peacetreaty_force_acceptance_war_points% {$p}war points.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "send",
+        "else"
+      ],
+      "source": "\r\n      lore: |\r\n        &7Sends the proposal to the other\r\n        kingdom. You'd have to wait for\r\n        the to review and accept it.\r\n\r\n        {$p}Used War Points{$colon} {$s}%peacetreaty_war_points%\r\n        {$p}War Points{$colon} {$s}%other*kingdoms_war_points%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "send",
+        "else",
+        "lore"
+      ],
+      "source": "|\r\n        &7Sends the proposal to the other\r\n        kingdom. You'd have to wait for\r\n        the to review and accept it.\r\n\r\n        {$p}Used War Points{$colon} {$s}%peacetreaty_war_points%\r\n        {$p}War Points{$colon} {$s}%other*kingdoms_war_points%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-take-rp"
+      ],
+      "source": "\r\n    posx: 3\r\n    posy: 3\r\n    material: DIAMOND\r\n    name: '%bool@term_take_rp% {$p}Take Resource Points'\r\n    enabled:\r\n      condition: term_take_rp\r\n      lore: |\r\n        &7Require a certain amount of\r\n        resource points to be taken from\r\n        the kingdom and transferred to your kingdom.\r\n\r\n        {$p}Amount{$colon} {$s}%fancy@term_take_resource_points_amount%\r\n        {$p}War Points{$colon} {$s}%war_points%\r\n    else:\r\n      lore: |\r\n        &7Require a certain amount of\r\n        resource points to be taken from\r\n        the kingdom and transferred to your kingdom.\r\n\r\n        {$p}War Points{$colon} {$s}%war_points%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-take-rp",
+        "posx"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-take-rp",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-take-rp",
+        "material"
+      ],
+      "source": "DIAMOND",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-take-rp",
+        "name"
+      ],
+      "source": "'%bool@term_take_rp% {$p}Take Resource Points'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-take-rp",
+        "enabled"
+      ],
+      "source": "\r\n      condition: term_take_rp\r\n      lore: |\r\n        &7Require a certain amount of\r\n        resource points to be taken from\r\n        the kingdom and transferred to your kingdom.\r\n\r\n        {$p}Amount{$colon} {$s}%fancy@term_take_resource_points_amount%\r\n        {$p}War Points{$colon} {$s}%war_points%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-take-rp",
+        "enabled",
+        "condition"
+      ],
+      "source": "term_take_rp",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-take-rp",
+        "enabled",
+        "lore"
+      ],
+      "source": "|\r\n        &7Require a certain amount of\r\n        resource points to be taken from\r\n        the kingdom and transferred to your kingdom.\r\n\r\n        {$p}Amount{$colon} {$s}%fancy@term_take_resource_points_amount%\r\n        {$p}War Points{$colon} {$s}%war_points%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-take-rp",
+        "else"
+      ],
+      "source": "\r\n      lore: |\r\n        &7Require a certain amount of\r\n        resource points to be taken from\r\n        the kingdom and transferred to your kingdom.\r\n\r\n        {$p}War Points{$colon} {$s}%war_points%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-take-rp",
+        "else",
+        "lore"
+      ],
+      "source": "|\r\n        &7Require a certain amount of\r\n        resource points to be taken from\r\n        the kingdom and transferred to your kingdom.\r\n\r\n        {$p}War Points{$colon} {$s}%war_points%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-war-reparation"
+      ],
+      "source": "\r\n    posx: 7\r\n    posy: 3\r\n    material: EMERALD\r\n    name: '%bool@term_war_reparation% {$p}War Reparation'\r\n    enabled:\r\n      condition: term_war_reparation\r\n      lore: |\r\n        &7Require a certain amount of\r\n        money to be taken from the kingdom's\r\n        bank and transferred to your kingdom.\r\n\r\n        {$p}Amount{$colon} {$s}%fancy@term_take_money_amount%\r\n        {$p}War Points{$colon} {$s}%war_points%\r\n    else:\r\n      lore: |\r\n        &7Require a certain amount of\r\n        money to be taken from the kingdom's\r\n        bank and transferred to your kingdom.\r\n\r\n        {$p}War Points{$colon} {$s}%war_points%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-war-reparation",
+        "posx"
+      ],
+      "source": "7",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-war-reparation",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-war-reparation",
+        "material"
+      ],
+      "source": "EMERALD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-war-reparation",
+        "name"
+      ],
+      "source": "'%bool@term_war_reparation% {$p}War Reparation'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-war-reparation",
+        "enabled"
+      ],
+      "source": "\r\n      condition: term_war_reparation\r\n      lore: |\r\n        &7Require a certain amount of\r\n        money to be taken from the kingdom's\r\n        bank and transferred to your kingdom.\r\n\r\n        {$p}Amount{$colon} {$s}%fancy@term_take_money_amount%\r\n        {$p}War Points{$colon} {$s}%war_points%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-war-reparation",
+        "enabled",
+        "condition"
+      ],
+      "source": "term_war_reparation",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-war-reparation",
+        "enabled",
+        "lore"
+      ],
+      "source": "|\r\n        &7Require a certain amount of\r\n        money to be taken from the kingdom's\r\n        bank and transferred to your kingdom.\r\n\r\n        {$p}Amount{$colon} {$s}%fancy@term_take_money_amount%\r\n        {$p}War Points{$colon} {$s}%war_points%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-war-reparation",
+        "else"
+      ],
+      "source": "\r\n      lore: |\r\n        &7Require a certain amount of\r\n        money to be taken from the kingdom's\r\n        bank and transferred to your kingdom.\r\n\r\n        {$p}War Points{$colon} {$s}%war_points%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-war-reparation",
+        "else",
+        "lore"
+      ],
+      "source": "|\r\n        &7Require a certain amount of\r\n        money to be taken from the kingdom's\r\n        bank and transferred to your kingdom.\r\n\r\n        {$p}War Points{$colon} {$s}%war_points%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-vassalization"
+      ],
+      "source": "\r\n    posx: 5\r\n    posy: 4\r\n    material: WRITABLE_BOOK\r\n    name: '%bool@term_vassalization% &cVassalization'\r\n    lore: |\r\n      &7Impose certain restrictions/rules on\r\n      your vassal kingdom as an overlord kingdom\r\n      such as relationships, misc-upgrades etc.\r\n\r\n      {$p}War Points{$colon} {$s}%war_points%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-vassalization",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-vassalization",
+        "posy"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-vassalization",
+        "material"
+      ],
+      "source": "WRITABLE_BOOK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-vassalization",
+        "name"
+      ],
+      "source": "'%bool@term_vassalization% &cVassalization'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-vassalization",
+        "lore"
+      ],
+      "source": "|\r\n      &7Impose certain restrictions/rules on\r\n      your vassal kingdom as an overlord kingdom\r\n      such as relationships, misc-upgrades etc.\r\n\r\n      {$p}War Points{$colon} {$s}%war_points%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-leave-nation"
+      ],
+      "source": "\r\n    posx: 3\r\n    posy: 5\r\n    material: IRON_DOOR\r\n    name: '%bool@term_leave_nation% {$p}Leave Nation'\r\n    lore: |\r\n      &7Require the kingdom to\r\n      leave the nation that they're\r\n      currently in or disband it if\r\n      they're the capital of the nation.\r\n\r\n      This also forces them to not be able\r\n      to join any nations until the peace\r\n      treaty duration.\r\n\r\n      {$p}War Points{$colon} {$s}%war_points%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-leave-nation",
+        "posx"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-leave-nation",
+        "posy"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-leave-nation",
+        "material"
+      ],
+      "source": "IRON_DOOR",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-leave-nation",
+        "name"
+      ],
+      "source": "'%bool@term_leave_nation% {$p}Leave Nation'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-leave-nation",
+        "lore"
+      ],
+      "source": "|\r\n      &7Require the kingdom to\r\n      leave the nation that they're\r\n      currently in or disband it if\r\n      they're the capital of the nation.\r\n\r\n      This also forces them to not be able\r\n      to join any nations until the peace\r\n      treaty duration.\r\n\r\n      {$p}War Points{$colon} {$s}%war_points%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-keep-lands"
+      ],
+      "source": "\r\n    posx: 7\r\n    posy: 5\r\n    material: GRASS_BLOCK\r\n    name: '%bool@term_keep_lands% {$p}Keep Lands'\r\n    lore: |\r\n      &7Keep certain lands that you've\r\n      invaded from this kingdom and give\r\n      the rest back to the kingdom.\r\n\r\n      {$p}War Points{$colon} {$s}%war_points%",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-keep-lands",
+        "posx"
+      ],
+      "source": "7",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-keep-lands",
+        "posy"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-keep-lands",
+        "material"
+      ],
+      "source": "GRASS_BLOCK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-keep-lands",
+        "name"
+      ],
+      "source": "'%bool@term_keep_lands% {$p}Keep Lands'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-keep-lands",
+        "lore"
+      ],
+      "source": "|\r\n      &7Keep certain lands that you've\r\n      invaded from this kingdom and give\r\n      the rest back to the kingdom.\r\n\r\n      {$p}War Points{$colon} {$s}%war_points%",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

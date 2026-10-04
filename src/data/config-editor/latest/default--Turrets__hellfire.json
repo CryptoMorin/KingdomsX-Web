@@ -1,0 +1,659 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "Turrets/hellfire.yml",
+  "schemaId": "Turrets/turret",
+  "options": [
+    {
+      "path": [
+        "(import)"
+      ],
+      "source": "\r\n  turret:\r\n    parameters:\r\n      <name>: hellfire\r\n      <build-duration-factor>: '0'\r\n      <durability-factor>: 100\r\n\r\n      # https://minecraft-heads.com/custom-heads/humanoid/47657-volcanic-golem\r\n      # https://minecraft-heads.com/custom-heads/monsters/5999-lava-monster\r\n      <skull-1>: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzQ2NDljNmMyMmNiMjQ4MGExNDAwZmI3ZTg0NWJkZGYzNmZmY2QzMDExZGQ1MWE4ZTlhYWJlYmVhZTkxOGJiNiJ9fX0='\r\n      <skull-2>: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTAwZjYwNzI4NDZhMjhmOWNkZDE5YmIwY2E2MTQyMDljZWI1MWZiYzI4Mzc2ZmM4ZTU4M2JkMThjYzk1N2ZkOSJ9fX0='\r\n      <skull-3>: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmIxYTUxZmE2ZGE1M2VlNjg5MWRkYjE2ZGI0Yjc5MzY5MTRmOGRhZDQwMWI3YTBiN2QwZDhiZWU2YmE0ZDY1OSJ9fX0='\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "turret"
+      ],
+      "source": "\r\n    parameters:\r\n      <name>: hellfire\r\n      <build-duration-factor>: '0'\r\n      <durability-factor>: 100\r\n\r\n      # https://minecraft-heads.com/custom-heads/humanoid/47657-volcanic-golem\r\n      # https://minecraft-heads.com/custom-heads/monsters/5999-lava-monster\r\n      <skull-1>: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzQ2NDljNmMyMmNiMjQ4MGExNDAwZmI3ZTg0NWJkZGYzNmZmY2QzMDExZGQ1MWE4ZTlhYWJlYmVhZTkxOGJiNiJ9fX0='\r\n      <skull-2>: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTAwZjYwNzI4NDZhMjhmOWNkZDE5YmIwY2E2MTQyMDljZWI1MWZiYzI4Mzc2ZmM4ZTU4M2JkMThjYzk1N2ZkOSJ9fX0='\r\n      <skull-3>: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmIxYTUxZmE2ZGE1M2VlNjg5MWRkYjE2ZGI0Yjc5MzY5MTRmOGRhZDQwMWI3YTBiN2QwZDhiZWU2YmE0ZDY1OSJ9fX0='\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "turret",
+        "parameters"
+      ],
+      "source": "\r\n      <name>: hellfire\r\n      <build-duration-factor>: '0'\r\n      <durability-factor>: 100\r\n\r\n      # https://minecraft-heads.com/custom-heads/humanoid/47657-volcanic-golem\r\n      # https://minecraft-heads.com/custom-heads/monsters/5999-lava-monster\r\n      <skull-1>: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzQ2NDljNmMyMmNiMjQ4MGExNDAwZmI3ZTg0NWJkZGYzNmZmY2QzMDExZGQ1MWE4ZTlhYWJlYmVhZTkxOGJiNiJ9fX0='\r\n      <skull-2>: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTAwZjYwNzI4NDZhMjhmOWNkZDE5YmIwY2E2MTQyMDljZWI1MWZiYzI4Mzc2ZmM4ZTU4M2JkMThjYzk1N2ZkOSJ9fX0='\r\n      <skull-3>: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmIxYTUxZmE2ZGE1M2VlNjg5MWRkYjE2ZGI0Yjc5MzY5MTRmOGRhZDQwMWI3YTBiN2QwZDhiZWU2YmE0ZDY1OSJ9fX0='\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "turret",
+        "parameters",
+        "<name>"
+      ],
+      "source": "hellfire",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "turret",
+        "parameters",
+        "<build-duration-factor>"
+      ],
+      "source": "'0'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "turret",
+        "parameters",
+        "<durability-factor>"
+      ],
+      "source": "100",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "turret",
+        "parameters",
+        "<skull-1>"
+      ],
+      "source": "'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzQ2NDljNmMyMmNiMjQ4MGExNDAwZmI3ZTg0NWJkZGYzNmZmY2QzMDExZGQ1MWE4ZTlhYWJlYmVhZTkxOGJiNiJ9fX0='",
+      "comments": [
+        "https://minecraft-heads.com/custom-heads/humanoid/47657-volcanic-golem",
+        "https://minecraft-heads.com/custom-heads/monsters/5999-lava-monster"
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "turret",
+        "parameters",
+        "<skull-2>"
+      ],
+      "source": "'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTAwZjYwNzI4NDZhMjhmOWNkZDE5YmIwY2E2MTQyMDljZWI1MWZiYzI4Mzc2ZmM4ZTU4M2JkMThjYzk1N2ZkOSJ9fX0='",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "turret",
+        "parameters",
+        "<skull-3>"
+      ],
+      "source": "'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmIxYTUxZmE2ZGE1M2VlNjg5MWRkYjE2ZGI0Yjc5MzY5MTRmOGRhZDQwMWI3YTBiN2QwZDhiZWU2YmE0ZDY1OSJ9fX0='",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "name"
+      ],
+      "source": "\"&4HellFire\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "type"
+      ],
+      "source": "arrow",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "cost"
+      ],
+      "source": "300",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sell"
+      ],
+      "source": "100",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "max-level"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "conditions"
+      ],
+      "source": "\r\n  purchase:\r\n    'kingdoms_kingdom_level < 3': '{$$kingdom-levels.III}'\r\n  upgrade:\r\n    'level == 1 && kingdoms_kingdom_level < 4': '{$$kingdom-levels.IV}'\r\n    'level == 2 && kingdoms_kingdom_level < 5': '{$$kingdom-levels.V}'\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "conditions",
+        "purchase"
+      ],
+      "source": "\r\n    'kingdoms_kingdom_level < 3': '{$$kingdom-levels.III}'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "conditions",
+        "purchase",
+        "kingdoms_kingdom_level < 3"
+      ],
+      "source": "'{$$kingdom-levels.III}'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "conditions",
+        "upgrade"
+      ],
+      "source": "\r\n    'level == 1 && kingdoms_kingdom_level < 4': '{$$kingdom-levels.IV}'\r\n    'level == 2 && kingdoms_kingdom_level < 5': '{$$kingdom-levels.V}'\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "conditions",
+        "upgrade",
+        "level == 1 && kingdoms_kingdom_level < 4"
+      ],
+      "source": "'{$$kingdom-levels.IV}'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "conditions",
+        "upgrade",
+        "level == 2 && kingdoms_kingdom_level < 5"
+      ],
+      "source": "'{$$kingdom-levels.V}'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sounds"
+      ],
+      "source": "\r\n  1:\r\n    opening:\r\n      started: &start-sound ITEM_FLINTANDSTEEL_USE\r\n      finished: *start-sound\r\n      stopped: &stop-sound BLOCK_FIRE_EXTINGUISH\r\n    upgrading:\r\n      started: *start-sound\r\n      finished: *start-sound\r\n      stopped: *stop-sound\r\n    demolition:\r\n      started: *stop-sound\r\n      finished: *stop-sound\r\n      stopped: *stop-sound\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sounds",
+        "1"
+      ],
+      "source": "\r\n    opening:\r\n      started: &start-sound ITEM_FLINTANDSTEEL_USE\r\n      finished: *start-sound\r\n      stopped: &stop-sound BLOCK_FIRE_EXTINGUISH\r\n    upgrading:\r\n      started: *start-sound\r\n      finished: *start-sound\r\n      stopped: *stop-sound\r\n    demolition:\r\n      started: *stop-sound\r\n      finished: *stop-sound\r\n      stopped: *stop-sound\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sounds",
+        "1",
+        "opening"
+      ],
+      "source": "\r\n      started: &start-sound ITEM_FLINTANDSTEEL_USE\r\n      finished: *start-sound\r\n      stopped: &stop-sound BLOCK_FIRE_EXTINGUISH\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sounds",
+        "1",
+        "opening",
+        "started"
+      ],
+      "source": "&start-sound ITEM_FLINTANDSTEEL_USE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sounds",
+        "1",
+        "opening",
+        "finished"
+      ],
+      "source": "*start-sound",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sounds",
+        "1",
+        "opening",
+        "stopped"
+      ],
+      "source": "&stop-sound BLOCK_FIRE_EXTINGUISH",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sounds",
+        "1",
+        "upgrading"
+      ],
+      "source": "\r\n      started: *start-sound\r\n      finished: *start-sound\r\n      stopped: *stop-sound\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sounds",
+        "1",
+        "upgrading",
+        "started"
+      ],
+      "source": "*start-sound",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sounds",
+        "1",
+        "upgrading",
+        "finished"
+      ],
+      "source": "*start-sound",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sounds",
+        "1",
+        "upgrading",
+        "stopped"
+      ],
+      "source": "*stop-sound",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sounds",
+        "1",
+        "demolition"
+      ],
+      "source": "\r\n      started: *stop-sound\r\n      finished: *stop-sound\r\n      stopped: *stop-sound\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sounds",
+        "1",
+        "demolition",
+        "started"
+      ],
+      "source": "*stop-sound",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sounds",
+        "1",
+        "demolition",
+        "finished"
+      ],
+      "source": "*stop-sound",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sounds",
+        "1",
+        "demolition",
+        "stopped"
+      ],
+      "source": "*stop-sound",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "range"
+      ],
+      "source": "7 + lvl",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "cooldown"
+      ],
+      "source": "8 - lvl",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "max-targets"
+      ],
+      "source": "min(2, 1 + (lvl + 1))",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "max-ammo"
+      ],
+      "source": "lvl * 2000",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "upgrade-cost"
+      ],
+      "source": "lvl * 80",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "fire"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particle"
+      ],
+      "source": "~",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "effects"
+      ],
+      "source": "\r\n  1: [ ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "effects",
+        "1"
+      ],
+      "source": "[ ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": []
+    },
+    {
+      "path": [
+        "projectile"
+      ],
+      "source": "\r\n  1: SPECTRAL_ARROW\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "projectile",
+        "1"
+      ],
+      "source": "SPECTRAL_ARROW",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "speed"
+      ],
+      "source": "1 + (lvl * 0.8)",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damage"
+      ],
+      "source": "lvl * 4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "item"
+      ],
+      "source": "\r\n  1:\r\n    name: \"&4HellFire Turret\"\r\n    material: FIRE_CHARGE\r\n    lore: |\r\n      {$desc}A similar turret as flame\r\n      turret but really fast with multiple targets.\r\n\r\n      {$sp}Attributes{$colon}\r\n      {$dot} {$p}Level{$colon} {$s}%roman@level%\r\n      {$dot} {$p}Ammo{$colon} {$s}%ammo%\r\n      {$dot} {$p}Durability{$colon} {? building_max_durability > 0 && building_durability <= 0 ? \"&4Broken\" : \"{$s}%building_durability%{$sep}/{$s}%building_max_durability%\" }\r\n      {$dot} {$p}Range{$colon} {$s}%range%\r\n      {$dot} {$p}Max Targets{$colon} {$s}%max_targets%\r\n      {$dot} {$p}Max Ammo{$colon} {$s}%max_ammo%\r\n      {$dot} {$p}Cooldown{$colon} {$s}%cooldown%\r\n      {$dot} {$p}Speed{$colon} {$s}%fancy@speed%\r\n      {$dot} {$p}Damage{$colon} {$s}%damage%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "item",
+        "1"
+      ],
+      "source": "\r\n    name: \"&4HellFire Turret\"\r\n    material: FIRE_CHARGE\r\n    lore: |\r\n      {$desc}A similar turret as flame\r\n      turret but really fast with multiple targets.\r\n\r\n      {$sp}Attributes{$colon}\r\n      {$dot} {$p}Level{$colon} {$s}%roman@level%\r\n      {$dot} {$p}Ammo{$colon} {$s}%ammo%\r\n      {$dot} {$p}Durability{$colon} {? building_max_durability > 0 && building_durability <= 0 ? \"&4Broken\" : \"{$s}%building_durability%{$sep}/{$s}%building_max_durability%\" }\r\n      {$dot} {$p}Range{$colon} {$s}%range%\r\n      {$dot} {$p}Max Targets{$colon} {$s}%max_targets%\r\n      {$dot} {$p}Max Ammo{$colon} {$s}%max_ammo%\r\n      {$dot} {$p}Cooldown{$colon} {$s}%cooldown%\r\n      {$dot} {$p}Speed{$colon} {$s}%fancy@speed%\r\n      {$dot} {$p}Damage{$colon} {$s}%damage%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "item",
+        "1",
+        "name"
+      ],
+      "source": "\"&4HellFire Turret\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "item",
+        "1",
+        "material"
+      ],
+      "source": "FIRE_CHARGE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "item",
+        "1",
+        "lore"
+      ],
+      "source": "|\r\n      {$desc}A similar turret as flame\r\n      turret but really fast with multiple targets.\r\n\r\n      {$sp}Attributes{$colon}\r\n      {$dot} {$p}Level{$colon} {$s}%roman@level%\r\n      {$dot} {$p}Ammo{$colon} {$s}%ammo%\r\n      {$dot} {$p}Durability{$colon} {? building_max_durability > 0 && building_durability <= 0 ? \"&4Broken\" : \"{$s}%building_durability%{$sep}/{$s}%building_max_durability%\" }\r\n      {$dot} {$p}Range{$colon} {$s}%range%\r\n      {$dot} {$p}Max Targets{$colon} {$s}%max_targets%\r\n      {$dot} {$p}Max Ammo{$colon} {$s}%max_ammo%\r\n      {$dot} {$p}Cooldown{$colon} {$s}%cooldown%\r\n      {$dot} {$p}Speed{$colon} {$s}%fancy@speed%\r\n      {$dot} {$p}Damage{$colon} {$s}%damage%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

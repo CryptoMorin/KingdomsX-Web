@@ -1,0 +1,1526 @@
+{
+  "formatVersion": 2,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "id": "invasions",
+  "resourceName": "invasions.yml",
+  "schema": {
+    "kind": "object",
+    "fields": [
+      {
+        "key": "strength-comparison",
+        "type": {
+          "kind": "expression",
+          "language": "condition"
+        }
+      },
+      {
+        "key": "simultaneous-invasions",
+        "type": {
+          "kind": "integer"
+        }
+      },
+      {
+        "key": "multi-chunk-invasion",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "radius",
+              "type": {
+                "kind": "integer"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "adjoining-protection",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "radius",
+              "type": {
+                "kind": "integer"
+              }
+            },
+            {
+              "key": "marginal-error-limit",
+              "type": {
+                "kind": "integer"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "bonus",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "resource-points",
+              "type": {
+                "kind": "expression",
+                "language": "math"
+              }
+            },
+            {
+              "key": "bank",
+              "type": {
+                "kind": "expression",
+                "language": "math"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "on-nexus-loss",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "disband",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "drop-nexus-chest-items",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "resource-points",
+              "type": {
+                "kind": "expression",
+                "language": "math"
+              }
+            },
+            {
+              "key": "bank",
+              "type": {
+                "kind": "expression",
+                "language": "math"
+              }
+            },
+            {
+              "key": "lightning",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "times",
+                    "type": {
+                      "kind": "integer"
+                    }
+                  },
+                  {
+                    "key": "interval",
+                    "type": {
+                      "kind": "integer"
+                    }
+                  },
+                  {
+                    "key": "amount",
+                    "type": {
+                      "kind": "integer"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "costs",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "resource-points",
+              "type": {
+                "kind": "expression",
+                "language": "math"
+              }
+            },
+            {
+              "key": "money",
+              "type": {
+                "kind": "expression",
+                "language": "math"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "pacifism",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "enabled",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "disable-pvp",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "cooldowns",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "general",
+                    "type": {
+                      "kind": "duration",
+                      "typeName": "Period"
+                    }
+                  },
+                  {
+                    "key": "after-invasion",
+                    "type": {
+                      "kind": "duration",
+                      "typeName": "Period"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "shields",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "disallow-invasions",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "purchase-cooldown",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "last-siege-cannon-hit",
+                    "type": {
+                      "kind": "duration",
+                      "typeName": "Period"
+                    }
+                  },
+                  {
+                    "key": "last-invasion",
+                    "type": {
+                      "kind": "object",
+                      "fields": [
+                        {
+                          "key": "attacked",
+                          "type": {
+                            "kind": "duration",
+                            "typeName": "Period"
+                          }
+                        },
+                        {
+                          "key": "defended",
+                          "type": {
+                            "kind": "duration",
+                            "typeName": "Period"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "key": "disable-pvp",
+              "type": {
+                "kind": "boolean"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "champions",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "disable-friendly-damage",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "disabled-damages",
+              "type": {
+                "kind": "list",
+                "elements": {
+                  "kind": "string",
+                  "typeName": "str"
+                }
+              }
+            },
+            {
+              "key": "death-messages",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "defaults",
+                    "type": {
+                      "kind": "list",
+                      "elements": {
+                        "kind": "string",
+                        "typeName": "str"
+                      }
+                    }
+                  },
+                  {
+                    "key": "projectile",
+                    "type": {
+                      "kind": "list",
+                      "elements": {
+                        "kind": "string",
+                        "typeName": "str"
+                      }
+                    }
+                  },
+                  {
+                    "key": "void",
+                    "type": {
+                      "kind": "list",
+                      "elements": {
+                        "kind": "string",
+                        "typeName": "str"
+                      }
+                    }
+                  },
+                  {
+                    "key": "entity-attack",
+                    "type": {
+                      "kind": "list",
+                      "elements": {
+                        "kind": "string",
+                        "typeName": "str"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "masswar",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "enabled",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "during-masswar-only",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "disable-turrets",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "allow-siege-cannons",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "disable-misc-upgrades",
+              "type": {
+                "kind": "set",
+                "elements": {
+                  "kind": "advanced",
+                  "typeName": "any"
+                }
+              }
+            },
+            {
+              "key": "commands",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "whitelist",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  },
+                  {
+                    "key": "list",
+                    "type": {
+                      "kind": "set",
+                      "elements": {
+                        "kind": "advanced",
+                        "typeName": "any"
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "key": "allow-invading",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "pacifists",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  },
+                  {
+                    "key": "shields",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "key": "start",
+              "type": {
+                "kind": "nullable",
+                "value": {
+                  "kind": "duration",
+                  "typeName": "Time"
+                }
+              }
+            },
+            {
+              "key": "interval",
+              "type": {
+                "kind": "duration",
+                "typeName": "Period"
+              }
+            },
+            {
+              "key": "time",
+              "type": {
+                "kind": "duration",
+                "typeName": "Period"
+              }
+            },
+            {
+              "key": "bossbar",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "enabled",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  },
+                  {
+                    "key": "title",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "str"
+                    }
+                  },
+                  {
+                    "key": "color",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "str"
+                    }
+                  },
+                  {
+                    "key": "style",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "str"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "key": "titles",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "start",
+                    "type": {
+                      "kind": "object",
+                      "fields": [
+                        {
+                          "key": "title",
+                          "type": {
+                            "kind": "string",
+                            "typeName": "str"
+                          }
+                        },
+                        {
+                          "key": "subtitle",
+                          "type": {
+                            "kind": "string",
+                            "typeName": "str"
+                          }
+                        },
+                        {
+                          "key": "fade-in",
+                          "type": {
+                            "kind": "integer"
+                          }
+                        },
+                        {
+                          "key": "stay",
+                          "type": {
+                            "kind": "integer"
+                          }
+                        },
+                        {
+                          "key": "fade-out",
+                          "type": {
+                            "kind": "integer"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "key": "end",
+                    "type": {
+                      "kind": "object",
+                      "fields": [
+                        {
+                          "key": "title",
+                          "type": {
+                            "kind": "string",
+                            "typeName": "str"
+                          }
+                        },
+                        {
+                          "key": "subtitle",
+                          "type": {
+                            "kind": "string",
+                            "typeName": "str"
+                          }
+                        },
+                        {
+                          "key": "fade-in",
+                          "type": {
+                            "kind": "integer"
+                          }
+                        },
+                        {
+                          "key": "stay",
+                          "type": {
+                            "kind": "integer"
+                          }
+                        },
+                        {
+                          "key": "fade-out",
+                          "type": {
+                            "kind": "integer"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "teleportation",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "teleport-delay",
+              "type": {
+                "kind": "integer"
+              }
+            },
+            {
+              "key": "use-timer-message",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "should-not-move",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "should-not-be-damaged",
+              "type": {
+                "kind": "boolean"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "bossbar",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "enabled",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "range",
+              "type": {
+                "kind": "integer"
+              }
+            },
+            {
+              "key": "reverse-progress",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "title",
+              "type": {
+                "kind": "string",
+                "typeName": "str"
+              }
+            },
+            {
+              "key": "color",
+              "type": {
+                "kind": "string",
+                "typeName": "str"
+              }
+            },
+            {
+              "key": "style",
+              "type": {
+                "kind": "string",
+                "typeName": "str"
+              }
+            },
+            {
+              "key": "flags",
+              "type": {
+                "kind": "list",
+                "elements": {
+                  "kind": "string",
+                  "typeName": "str"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "nations",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "use-capital-champion",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "use-shield",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "nation-zone-radius",
+              "type": {
+                "kind": "integer"
+              }
+            },
+            {
+              "key": "capital-protection",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "radius",
+                    "type": {
+                      "kind": "integer"
+                    }
+                  },
+                  {
+                    "key": "nexus-invasion-cooldown",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "str"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "home",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "remove",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "move",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "disallow-public-teleportation",
+              "type": {
+                "kind": "boolean"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "initial-location",
+        "type": {
+          "kind": "boolean"
+        }
+      },
+      {
+        "key": "countdown",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "seconds",
+              "type": {
+                "kind": "integer"
+              }
+            },
+            {
+              "key": "show-to-defender",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "sound",
+              "type": {
+                "kind": "mapping",
+                "keys": {
+                  "kind": "integer"
+                },
+                "values": {
+                  "kind": "advanced",
+                  "typeName": "any"
+                },
+                "fields": [
+                  {
+                    "key": "0",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "str"
+                    }
+                  },
+                  {
+                    "key": "1",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "str"
+                    }
+                  },
+                  {
+                    "key": "2",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "str"
+                    }
+                  },
+                  {
+                    "key": "3",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "str"
+                    }
+                  },
+                  {
+                    "key": "4",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "str"
+                    }
+                  },
+                  {
+                    "key": "5",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "str"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "cooldowns",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "failed",
+              "type": {
+                "kind": "duration",
+                "typeName": "Period"
+              }
+            },
+            {
+              "key": "successful",
+              "type": {
+                "kind": "duration",
+                "typeName": "Period"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "unclaim-cooldown",
+        "type": {
+          "kind": "integer"
+        }
+      },
+      {
+        "key": "items",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "whitelist",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "list",
+              "type": {
+                "kind": "list",
+                "elements": {
+                  "kind": "string",
+                  "typeName": "str"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "allow",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "teleportation",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "elytra",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "explosion",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "building",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "enabled",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  },
+                  {
+                    "key": "own-only",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "key": "moving-nexus",
+              "type": {
+                "kind": "boolean"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "commands",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "execute",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "before",
+                    "type": {
+                      "kind": "list",
+                      "elements": {
+                        "kind": "string",
+                        "typeName": "str"
+                      }
+                    }
+                  },
+                  {
+                    "key": "after-successful",
+                    "type": {
+                      "kind": "list",
+                      "elements": {
+                        "kind": "string",
+                        "typeName": "str"
+                      }
+                    }
+                  },
+                  {
+                    "key": "after-fail",
+                    "type": {
+                      "kind": "list",
+                      "elements": {
+                        "kind": "string",
+                        "typeName": "str"
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "key": "smart-command",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "invader",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "whitelist",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  },
+                  {
+                    "key": "kingdom-wide",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  },
+                  {
+                    "key": "list",
+                    "type": {
+                      "kind": "list",
+                      "elements": {
+                        "kind": "string",
+                        "typeName": "str"
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "key": "defender",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "whitelist",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  },
+                  {
+                    "key": "list",
+                    "type": {
+                      "kind": "list",
+                      "elements": {
+                        "kind": "string",
+                        "typeName": "str"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "surrender",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "attacker",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "defender",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "refund",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "resource-points",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  },
+                  {
+                    "key": "money",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "time-limit",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "default",
+              "type": {
+                "kind": "duration",
+                "typeName": "Period"
+              }
+            },
+            {
+              "key": "nexus",
+              "type": {
+                "kind": "duration",
+                "typeName": "Period"
+              }
+            },
+            {
+              "key": "bossbar",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "enabled",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  },
+                  {
+                    "key": "title",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "str"
+                    }
+                  },
+                  {
+                    "key": "color",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "str"
+                    }
+                  },
+                  {
+                    "key": "style",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "str"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "online-members",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "invader",
+              "type": {
+                "kind": "expression",
+                "language": "math"
+              }
+            },
+            {
+              "key": "defender",
+              "type": {
+                "kind": "expression",
+                "language": "math"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "player-deaths",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "defender",
+              "type": {
+                "kind": "expression",
+                "language": "math"
+              }
+            },
+            {
+              "key": "attacker",
+              "type": {
+                "kind": "expression",
+                "language": "math"
+              }
+            },
+            {
+              "key": "keep",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "enabled",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  },
+                  {
+                    "key": "inventory",
+                    "type": {
+                      "kind": "object",
+                      "fields": [
+                        {
+                          "key": "defenders",
+                          "type": {
+                            "kind": "expression",
+                            "language": "condition"
+                          }
+                        },
+                        {
+                          "key": "attackers",
+                          "type": {
+                            "kind": "expression",
+                            "language": "condition"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "key": "xp",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "plunder",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "enabled",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "keep-champion",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "vertical-boundaries",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "enabled",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  },
+                  {
+                    "key": "upwards",
+                    "type": {
+                      "kind": "integer"
+                    }
+                  },
+                  {
+                    "key": "downwards",
+                    "type": {
+                      "kind": "integer"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "key": "participants",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "nation",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  },
+                  {
+                    "key": "allies",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  },
+                  {
+                    "key": "truces",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "key": "particles",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "enabled",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  },
+                  {
+                    "key": "states",
+                    "type": {
+                      "kind": "object",
+                      "fields": [
+                        {
+                          "key": "capturing",
+                          "type": {
+                            "kind": "object",
+                            "fields": [
+                              {
+                                "key": "particle",
+                                "type": {
+                                  "kind": "string",
+                                  "typeName": "str"
+                                }
+                              },
+                              {
+                                "key": "count",
+                                "type": {
+                                  "kind": "integer"
+                                }
+                              },
+                              {
+                                "key": "color",
+                                "type": {
+                                  "kind": "string",
+                                  "typeName": "str"
+                                }
+                              },
+                              {
+                                "key": "size",
+                                "type": {
+                                  "kind": "integer"
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "key": "protected",
+                          "type": {
+                            "kind": "object",
+                            "fields": [
+                              {
+                                "key": "particle",
+                                "type": {
+                                  "kind": "string",
+                                  "typeName": "str"
+                                }
+                              },
+                              {
+                                "key": "count",
+                                "type": {
+                                  "kind": "integer"
+                                }
+                              },
+                              {
+                                "key": "offset",
+                                "type": {
+                                  "kind": "string",
+                                  "typeName": "str"
+                                }
+                              },
+                              {
+                                "key": "color",
+                                "type": {
+                                  "kind": "string",
+                                  "typeName": "str"
+                                }
+                              },
+                              {
+                                "key": "extra",
+                                "type": {
+                                  "kind": "integer"
+                                }
+                              },
+                              {
+                                "key": "size",
+                                "type": {
+                                  "kind": "integer"
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "key": "capture-progress",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "increment",
+                    "type": {
+                      "kind": "expression",
+                      "language": "math"
+                    }
+                  },
+                  {
+                    "key": "goal",
+                    "type": {
+                      "kind": "expression",
+                      "language": "math"
+                    }
+                  },
+                  {
+                    "key": "tug-of-war",
+                    "type": {
+                      "kind": "object",
+                      "fields": [
+                        {
+                          "key": "enabled",
+                          "type": {
+                            "kind": "boolean"
+                          }
+                        },
+                        {
+                          "key": "initial-goal",
+                          "type": {
+                            "kind": "expression",
+                            "language": "math"
+                          }
+                        },
+                        {
+                          "key": "defenders-decrement",
+                          "type": {
+                            "kind": "expression",
+                            "language": "math"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "key": "consider-kingdom-mobs",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  },
+                  {
+                    "key": "bossbar",
+                    "type": {
+                      "kind": "object",
+                      "fields": [
+                        {
+                          "key": "use",
+                          "type": {
+                            "kind": "string",
+                            "typeName": "str"
+                          }
+                        },
+                        {
+                          "key": "state-colors",
+                          "type": {
+                            "kind": "object",
+                            "fields": [
+                              {
+                                "key": "capturing",
+                                "type": {
+                                  "kind": "string",
+                                  "typeName": "str"
+                                }
+                              },
+                              {
+                                "key": "protected",
+                                "type": {
+                                  "kind": "string",
+                                  "typeName": "str"
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "key": "defender-bossbar",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "title",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "str"
+                    }
+                  },
+                  {
+                    "key": "color",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "str"
+                    }
+                  },
+                  {
+                    "key": "style",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "str"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "challenges",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "enabled",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "duration",
+              "type": {
+                "kind": "duration",
+                "typeName": "Period"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

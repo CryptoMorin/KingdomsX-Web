@@ -1,0 +1,338 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "Structures/regulator.yml",
+  "schemaId": "Structures/structure",
+  "options": [
+    {
+      "path": [
+        "(import)"
+      ],
+      "source": "\r\n  structure:\r\n    parameters:\r\n      <name>: regulator\r\n      <build-duration-factor>: '+5 minutes'\r\n      <durability-factor>: 100\r\n      <material-1>: LECTERN\r\n      <material-2>: LECTERN\r\n      <material-3>: LECTERN\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "structure"
+      ],
+      "source": "\r\n    parameters:\r\n      <name>: regulator\r\n      <build-duration-factor>: '+5 minutes'\r\n      <durability-factor>: 100\r\n      <material-1>: LECTERN\r\n      <material-2>: LECTERN\r\n      <material-3>: LECTERN\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "structure",
+        "parameters"
+      ],
+      "source": "\r\n      <name>: regulator\r\n      <build-duration-factor>: '+5 minutes'\r\n      <durability-factor>: 100\r\n      <material-1>: LECTERN\r\n      <material-2>: LECTERN\r\n      <material-3>: LECTERN\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "structure",
+        "parameters",
+        "<name>"
+      ],
+      "source": "regulator",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "structure",
+        "parameters",
+        "<build-duration-factor>"
+      ],
+      "source": "'+5 minutes'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "structure",
+        "parameters",
+        "<durability-factor>"
+      ],
+      "source": "100",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "structure",
+        "parameters",
+        "<material-1>"
+      ],
+      "source": "LECTERN",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "structure",
+        "parameters",
+        "<material-2>"
+      ],
+      "source": "LECTERN",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "structure",
+        "parameters",
+        "<material-3>"
+      ],
+      "source": "LECTERN",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "name"
+      ],
+      "source": "\"&3Regulator\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "default-name"
+      ],
+      "source": "'Regulator'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "type"
+      ],
+      "source": "regulator",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "auto-fill-cost"
+      ],
+      "source": "\"maxAmmo / 3\"",
+      "comments": [
+        "Regulators only refill if ammo reached 0",
+        "so this cost is for a full refill."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "conditions"
+      ],
+      "source": "\r\n  purchase:\r\n    'kingdoms_kingdom_level < 4': '{$$kingdom-levels.IV}'\r\n\r\n# The default option values when a new entry (player/kingdom)\r\n# is added to the regulator.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "conditions",
+        "purchase"
+      ],
+      "source": "\r\n    'kingdoms_kingdom_level < 4': '{$$kingdom-levels.IV}'\r\n\r\n# The default option values when a new entry (player/kingdom)\r\n# is added to the regulator.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "conditions",
+        "purchase",
+        "kingdoms_kingdom_level < 4"
+      ],
+      "source": "'{$$kingdom-levels.IV}'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "defaults"
+      ],
+      "source": "\r\n  attributes:\r\n    BUILD: false\r\n\r\n",
+      "comments": [
+        "The default option values when a new entry (player/kingdom)",
+        "is added to the regulator."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "defaults",
+        "attributes"
+      ],
+      "source": "\r\n    BUILD: false\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "defaults",
+        "attributes",
+        "BUILD"
+      ],
+      "source": "false",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "cost"
+      ],
+      "source": "5000",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sell"
+      ],
+      "source": "4000",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "item"
+      ],
+      "source": "\r\n  1:\r\n    name: \"&3Regulator\"\r\n    material: LECTERN\r\n    lore: |\r\n      {$s}Manage player attributes such as building,\r\n      turret ceasefire and etc...\r\n      Change which player can interact with what block.\r\n      Disable mob or animal spawning and turrets.\r\n      Enable explosions.\r\n      Auto fill turrets ammo.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "item",
+        "1"
+      ],
+      "source": "\r\n    name: \"&3Regulator\"\r\n    material: LECTERN\r\n    lore: |\r\n      {$s}Manage player attributes such as building,\r\n      turret ceasefire and etc...\r\n      Change which player can interact with what block.\r\n      Disable mob or animal spawning and turrets.\r\n      Enable explosions.\r\n      Auto fill turrets ammo.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "item",
+        "1",
+        "name"
+      ],
+      "source": "\"&3Regulator\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "item",
+        "1",
+        "material"
+      ],
+      "source": "LECTERN",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "item",
+        "1",
+        "lore"
+      ],
+      "source": "|\r\n      {$s}Manage player attributes such as building,\r\n      turret ceasefire and etc...\r\n      Change which player can interact with what block.\r\n      Disable mob or animal spawning and turrets.\r\n      Enable explosions.\r\n      Auto fill turrets ammo.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

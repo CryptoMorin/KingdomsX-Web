@@ -22,7 +22,7 @@ describe("Plugin verification API", () => {
     {
       name: "malformed code",
       contentType: "application/json",
-      body: { code: "invalid" },
+      body: pluginPayload("invalid"),
       expectedStatus: 400,
       expectedApiStatus: "invalid_request"
     },
@@ -103,7 +103,7 @@ describe("Plugin verification API", () => {
   });
 });
 
-describe("Verification challenge input", () => {
+describe("Verification code input", () => {
   it("accepts server descriptions up to 240 characters", async () => {
     const cookie = await seedSubmitter("description-limit");
     const headers = {
@@ -137,8 +137,8 @@ describe("Verification challenge input", () => {
   });
 });
 
-describe("Verification challenges and quotas", () => {
-  it("reuses, verifies, and expires a challenge consistently", async () => {
+describe("Verification codes and daily limits", () => {
+  it("reuses, verifies, and expires a code consistently", async () => {
     const cookie = await seedSubmitter();
     const created = await createChallenge(cookie, "mc.hypixel.net", "127.0.0.1");
     const reusedPending = await createChallenge(cookie);
@@ -207,7 +207,7 @@ describe("Verification challenges and quotas", () => {
     expect(replacement.id).not.toBe(created.id);
   });
 
-  it("rate-limits challenge generation by Discord account before further D1 reads", async () => {
+  it("rate-limits new verification codes by Discord account before further D1 reads", async () => {
     const cookie = await seedSubmitter("create-limit");
     const createdIds: unknown[] = [];
 
@@ -267,7 +267,7 @@ describe("Verification challenges and quotas", () => {
     expect(accountBlocked.status).toBe(429);
   });
 
-  it("keeps challenges isolated by Discord account and server address", async () => {
+  it("keeps verification codes separate for each Discord account and server address", async () => {
     const ownerCookie = await seedSubmitter("owner");
     const otherCookie = await seedSubmitter("other");
     const created = await createChallenge(ownerCookie);
@@ -289,7 +289,7 @@ describe("Verification challenges and quotas", () => {
         name: "Verification Test",
         address: "play.cubecraft.net",
         port: 25565,
-      description: "This test description is long enough for server verification.",
+        description: "This test description is long enough for server verification.",
         verificationChallengeId: created.id,
         turnstileToken: "test-token",
         socialLinks: []
@@ -301,7 +301,7 @@ describe("Verification challenges and quotas", () => {
     expect((await mismatch.json<{ error: string }>()).error).toContain("does not match");
   });
 
-  it("does not accept or reuse a consumed challenge", async () => {
+  it("does not accept or reuse a used verification code", async () => {
     const cookie = await seedSubmitter();
     const created = await createChallenge(cookie);
 
@@ -329,7 +329,7 @@ describe("Verification challenges and quotas", () => {
     expect(replacement.status).toBe("pending");
   });
 
-  it("keeps daily submission quotas after listing data is deleted", async () => {
+  it("keeps daily submission limits after listing data is deleted", async () => {
     const cookie = await seedSubmitter("quota");
     const timestamp = new Date().toISOString();
     const ipHash = await sha256("verification-test-rate-limit-salt:127.0.0.1");
@@ -370,7 +370,7 @@ describe("Verification challenges and quotas", () => {
         name: "Verification Test",
         address: "mc.hypixel.net",
         port: 25565,
-      description: "This test description is long enough for server verification.",
+        description: "This test description is long enough for server verification.",
         verificationChallengeId: created.id,
         turnstileToken: "test-token",
         socialLinks: {}
@@ -388,7 +388,7 @@ describe("Verification challenges and quotas", () => {
     expect(current?.status).toBe("verified");
   });
 
-  it("retains consumed verification proof after owner deletion for durable quotas", async () => {
+  it("keeps used verification records after owner deletion so daily limits still work", async () => {
     const cookie = await seedSubmitter("delete-proof");
 
     await seedOwnedServer("delete-proof");

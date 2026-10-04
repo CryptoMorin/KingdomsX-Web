@@ -41,10 +41,11 @@ export async function refreshApprovedServers(env: DirectoryEnv): Promise<void> {
 }
 
 export async function refreshLocalApprovedStatuses(env: DirectoryEnv): Promise<void> {
-  if (env.APP_ENVIRONMENT !== "local")
+  if (env.APP_ENVIRONMENT !== "local") {
     return;
+  }
 
-  // Local page loads may refresh stale data but they must never trigger the scheduled auto-hide policy
+  // Local page loads may refresh stale data but they must never trigger the scheduled auto-hide rule
   await refreshStatusRows(env, await localStatusRows(env), {
     failureEvent: "status.local_refresh_failed",
     logFailure: logWarn
@@ -70,6 +71,7 @@ export async function refreshStatusRows(
         id: row.id,
         address: `${row.normalized_host}:${row.port}`
       });
+
       const timestamp = nowIso();
 
       await runD1Batch(
@@ -83,8 +85,9 @@ export async function refreshStatusRows(
 export async function maybeHideOffline(env: DirectoryEnv, serverId: string): Promise<void> {
   const offlineTimestamp = await offlineSince(env, serverId);
 
-  if (!offlineTimestamp || offlineTimestamp > daysAgoIso(14))
+  if (!offlineTimestamp || offlineTimestamp > daysAgoIso(14)) {
     return;
+  }
 
   const timestamp = nowIso();
 
@@ -92,8 +95,9 @@ export async function maybeHideOffline(env: DirectoryEnv, serverId: string): Pro
 }
 
 export function isStatusStale(value: string | null): boolean {
-  if (!value)
+  if (!value) {
     return true;
+  }
 
   const timestamp = Date.parse(value);
 

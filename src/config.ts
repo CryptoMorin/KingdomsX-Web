@@ -1,6 +1,7 @@
 const trimTrailingSlash = (value: string) => value.replace(/\/+$/, "");
 const getGitSha = (value: string | undefined) => {
   const sha = value?.trim() ?? "";
+
   return /^[0-9a-f]{7,40}$/i.test(sha) ? sha : "";
 };
 
@@ -14,11 +15,16 @@ const gitSha = getGitSha(
 const shortGitSha = gitSha.slice(0, 7);
 const siteUrl = trimTrailingSlash(import.meta.env.PUBLIC_SITE_URL ?? "");
 const serverDirectoryUrl = trimTrailingSlash(import.meta.env.PUBLIC_SERVERS_SITE_URL ?? "");
-const isLocalBuild = !serverDirectoryUrl;
+const editorUrl = trimTrailingSlash(import.meta.env.PUBLIC_EDITOR_SITE_URL ?? "");
+const isStandaloneServerDirectory = import.meta.env.PUBLIC_SERVER_DIRECTORY_STANDALONE_BUILD === "true";
+const isLocalBuild = import.meta.env.PUBLIC_LOCAL_BUILD === "true" || !serverDirectoryUrl;
 const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? (isLocalBuild ? "1x00000000000000000000AA" : "");
+
 const serverPath = (path = "") => {
   const normalizedPath = path ? `/${path.replace(/^\/+/, "")}` : "";
-  return serverDirectoryUrl ? `${serverDirectoryUrl}${normalizedPath}` : `/servers${normalizedPath}`;
+  const basePath = serverDirectoryUrl || (isStandaloneServerDirectory ? "" : "/servers");
+
+  return `${basePath}${normalizedPath}` || "/";
 };
 
 export const SITE = {
@@ -28,6 +34,8 @@ export const SITE = {
   discord: "https://discord.kingdomsx.com",
   download: "https://download.kingdomsx.com",
   serverDirectoryUrl,
+  isStandaloneServerDirectory,
+  editor: editorUrl || "/editor",
   servers: serverPath(),
   serverSubmit: serverPath("submit"),
   serverAdmin: serverPath("admin"),

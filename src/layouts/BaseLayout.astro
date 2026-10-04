@@ -14,6 +14,10 @@ interface Props {
   robots?: string;
   preloadHeroImage?: boolean;
   includeStructuredData?: boolean;
+  includeSiteScript?: boolean;
+  includeEditorFont?: boolean;
+  editorFontLicenseUrl?: string;
+  publicAssetsSameOrigin?: boolean;
 }
 
 const defaultTitle = "KingdomsX | Battles for might, land and glory";
@@ -25,7 +29,11 @@ const {
   canonicalUrl: canonicalUrlOverride = "",
   robots = "index, follow, max-image-preview:large",
   preloadHeroImage = true,
-  includeStructuredData = true
+  includeStructuredData = true,
+  includeSiteScript = true,
+  includeEditorFont = false,
+  editorFontLicenseUrl = "",
+  publicAssetsSameOrigin = false
 } = Astro.props;
 const normalizedCanonicalPath = canonicalPath === "/" ? "/" : `/${canonicalPath.replace(/^\/+|\/+$/g, "")}`;
 const siteUrl = SITE.url || "";
@@ -33,7 +41,8 @@ const shouldIncludeStructuredData = includeStructuredData && siteUrl;
 const canonicalUrl = canonicalUrlOverride || (siteUrl ? `${siteUrl}${normalizedCanonicalPath}` : normalizedCanonicalPath);
 const publicUrl = (path: string) => {
   const normalizedPath = `/${path.replace(/^\/+/, "")}`;
-  return siteUrl ? `${siteUrl}${normalizedPath}` : normalizedPath;
+
+  return siteUrl && !publicAssetsSameOrigin ? `${siteUrl}${normalizedPath}` : normalizedPath;
 };
 const heroBannerUrl = typeof heroBanner === "string" ? heroBanner : heroBanner.src;
 const faviconPngUrl = publicUrl("favicon-96x96.png");
@@ -89,64 +98,73 @@ const ogImageUrl = publicUrl("og-img.png");
     <meta name="twitter:image:alt" content="KingdomsX plugin banner" />
     {preloadHeroImage && <link rel="preload" as="image" href={heroBannerUrl} fetchpriority="high" />}
     <Font cssVariable="--font-lora" preload />
+    {includeEditorFont && <Font cssVariable="--font-minecraft-ui" />}
+    {editorFontLicenseUrl && <link rel="license" href={editorFontLicenseUrl} type="text/plain" />}
     {shouldIncludeStructuredData && (
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "WebSite",
-          "@id": `${siteUrl}/#website`,
-          "name": SITE.name,
-          "url": `${siteUrl}/`,
-          "description": defaultDescription,
-          "inLanguage": "en",
-          "publisher": { "@id": `${siteUrl}/#organization` }
-        },
-        {
-          "@type": "WebPage",
-          "@id": `${canonicalUrl}#webpage`,
-          "url": canonicalUrl,
-          "name": title,
-          "description": description,
-          "isPartOf": { "@id": `${siteUrl}/#website` },
-          "about": { "@id": `${siteUrl}/#software` },
-          "inLanguage": "en"
-        },
-        {
-          "@type": "Organization",
-          "@id": `${siteUrl}/#organization`,
-          "name": SITE.name,
-          "url": `${siteUrl}/`,
-          "logo": {
-            "@type": "ImageObject",
-            "url": manifestIconUrl,
-            "width": 512,
-            "height": 512
+      <script type="application/ld+json" data-structured-data="site" set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": `${siteUrl}/#website`,
+            "name": SITE.name,
+            "url": `${siteUrl}/`,
+            "description": defaultDescription,
+            "inLanguage": "en",
+            "publisher": { "@id": `${siteUrl}/#organization` }
           },
-          "sameAs": [SITE.github, SITE.spigot, SITE.modrinth, SITE.discord, SITE.wiki]
-        },
-        {
-          "@type": "SoftwareApplication",
-          "@id": `${siteUrl}/#software`,
-          "name": SITE.name,
-          "applicationCategory": "GameApplication",
-          "operatingSystem": "Minecraft server",
-          "url": `${siteUrl}/`,
-          "downloadUrl": SITE.spigot,
-          "softwareHelp": SITE.wiki,
-          "image": ogImageUrl,
-          "description": defaultDescription,
-          "author": { "@type": "Person", "name": "Crypto Morin", "url": SITE.author },
-          "publisher": { "@id": `${siteUrl}/#organization` },
-          "offers": { "@type": "Offer", "url": SITE.spigot, "availability": "https://schema.org/InStock" }
-        }
-      ]
-    })} />)}
+          {
+            "@type": "Organization",
+            "@id": `${siteUrl}/#organization`,
+            "name": SITE.name,
+            "url": `${siteUrl}/`,
+            "logo": {
+              "@type": "ImageObject",
+              "url": manifestIconUrl,
+              "width": 512,
+              "height": 512
+            },
+            "sameAs": [SITE.github, SITE.spigot, SITE.modrinth, SITE.discord, SITE.wiki]
+          },
+          {
+            "@type": "SoftwareApplication",
+            "@id": `${siteUrl}/#software`,
+            "name": SITE.name,
+            "applicationCategory": "GameApplication",
+            "operatingSystem": "Minecraft server",
+            "url": `${siteUrl}/`,
+            "downloadUrl": SITE.spigot,
+            "softwareHelp": SITE.wiki,
+            "image": ogImageUrl,
+            "description": defaultDescription,
+            "author": { "@type": "Person", "name": "Crypto Morin", "url": SITE.author },
+            "publisher": { "@id": `${siteUrl}/#organization` },
+            "offers": { "@type": "Offer", "url": SITE.spigot, "availability": "https://schema.org/InStock" }
+          }
+        ]
+      })} />
+    )}
+    {shouldIncludeStructuredData && (
+      <script type="application/ld+json" data-structured-data="webpage" set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "@id": `${canonicalUrl}#webpage`,
+        "url": canonicalUrl,
+        "name": title,
+        "description": description,
+        "isPartOf": { "@id": `${siteUrl}/#website` },
+        "about": { "@id": `${siteUrl}/#software` },
+        "inLanguage": "en"
+      })} />
+    )}
+    <slot name="head" />
   </head>
   <body>
     <slot />
-    <script>
-      import "../assets/scripts/site.js";
-    </script>
+    {includeSiteScript && (
+      <script>
+        import "../assets/scripts/site.js";
+      </script>
+    )}
   </body>
 </html>

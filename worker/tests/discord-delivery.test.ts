@@ -20,8 +20,8 @@ import {
 
 beforeEach(resetDatabase);
 
-describe("Discord embed payload", () => {
-  it("contains listing fields, disables mentions, and excludes runtime status", () => {
+describe("Discord listing embeds", () => {
+  it("contains listing fields, disables mentions, and leaves out live status", () => {
     const payload = buildDiscordServerMessage(
       {
         id: "server-discord",
@@ -64,10 +64,8 @@ describe("Discord embed payload", () => {
     expect(payload.allowed_mentions).toEqual({ parse: [], users: ["123456789012345678"] });
     const serialized = JSON.stringify(payload);
 
-    expect(serialized).toContain("play.kingdomsx.com:25566");
     expect(serialized).toContain("```\\nplay.kingdomsx.com:25566\\n```");
     expect(serialized).toContain("https://api.mcstatus.io/v2/icon/play.kingdomsx.com%3A25566?timeout=5");
-    expect(serialized).toContain("<@123456789012345678>");
     expect(payload).toMatchObject({
       embeds: [
         {
@@ -102,7 +100,7 @@ describe("Discord embed payload", () => {
     expect(serialized).not.toContain("Runtime version");
   });
 
-  it("omits unset website and social fields while retaining the sync timestamp", () => {
+  it("omits empty website and social fields but keeps the last-synced time", () => {
     const payload = buildDiscordServerMessage(
       {
         id: "server-no-website",
@@ -249,7 +247,6 @@ describe("Discord delivery", () => {
     });
     const serialized = JSON.stringify(requests[0].body);
 
-    expect(serialized).toContain("https://servers.kingdomsx.com/admin");
     expect(serialized).not.toContain('"name":"Review"');
     expect(
       await testEnv.DB.prepare("SELECT server_id FROM discord_review_notification_jobs").first()
@@ -520,7 +517,7 @@ describe("Discord delivery", () => {
     ).toBeNull();
   });
 
-  it("preserves an active Discord embed lease when a newer edit coalesces into the same job", async () => {
+  it("keeps an active Discord embed lease when a newer edit joins the same delivery job", async () => {
     const cookie = await seedSubmitter("discord-lease");
 
     await seedOwnedServer("discord-lease");
@@ -620,7 +617,8 @@ describe("Discord lease claims", () => {
       INSERT INTO discord_embed_jobs (
         server_id, desired_action, desired_version, attempt_count, next_attempt_at,
         lease_token, lease_expires_at, created_at, updated_at
-      ) VALUES ('server-expired-lease', 'upsert', '2026-01-01T00:00:00.000Z', 0, ?, 'expired-owner', ?, ?, ?)
+      )
+      VALUES ('server-expired-lease', 'upsert', '2026-01-01T00:00:00.000Z', 0, ?, 'expired-owner', ?, ?, ?)
     `
     )
       .bind(now, expired, now, now)

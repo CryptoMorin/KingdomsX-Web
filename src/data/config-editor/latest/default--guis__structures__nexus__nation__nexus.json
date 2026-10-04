@@ -1,0 +1,410 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "guis/structures/nexus/nation/nexus.yml",
+  "schemaId": "guis/schema",
+  "options": [
+    {
+      "path": [
+        "title"
+      ],
+      "source": "\"{$p}&l%kingdoms_nation_name%'s {$s}&lNation Nexus\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "rows"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sound"
+      ],
+      "source": "BLOCK_BEACON_ACTIVATE, 0.3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options"
+      ],
+      "source": "\r\n  settings:\r\n    name: \"{$sep}Settings\"\r\n    material: NETHER_STAR\r\n    lore:\r\n      - \"{$s}Change your nation settings.\"\r\n    posx: 5\r\n    posy: 2\r\n  resource-points:\r\n    name: \"&eResource Points Converter\"\r\n    material: HAY_BLOCK\r\n    lore:\r\n      - \"{$s}Convert your items to\"\r\n      - \"resource points.\"\r\n      - \"Your nation has &e%fancy@kingdoms_nation_resource_points% {$s}resource points.\"\r\n    posx: 4\r\n    posy: 2\r\n  ranks:\r\n    name: \"&5Ranks & Permissions\"\r\n    material: BOOKSHELF\r\n    lore:\r\n      - \"{$s}Modify ranks and permissions for\"\r\n      - \"your nation.\"\r\n    posx: 6\r\n    posy: 2\r\n\r\n  red-glass:\r\n    name: \"\"\r\n    material: RED_STAINED_GLASS_PANE\r\n    slots: [ 1, 7, 9, 17, 19, 25 ]\r\n  black-glass:\r\n    name: \"\"\r\n    material: BLACK_STAINED_GLASS_PANE\r\n    slots: [ 0, 8, 18, 26 ]",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "settings"
+      ],
+      "source": "\r\n    name: \"{$sep}Settings\"\r\n    material: NETHER_STAR\r\n    lore:\r\n      - \"{$s}Change your nation settings.\"\r\n    posx: 5\r\n    posy: 2\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "settings",
+        "name"
+      ],
+      "source": "\"{$sep}Settings\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "settings",
+        "material"
+      ],
+      "source": "NETHER_STAR",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "settings",
+        "lore"
+      ],
+      "source": "\r\n      - \"{$s}Change your nation settings.\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$s}Change your nation settings.\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "settings",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "settings",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "resource-points"
+      ],
+      "source": "\r\n    name: \"&eResource Points Converter\"\r\n    material: HAY_BLOCK\r\n    lore:\r\n      - \"{$s}Convert your items to\"\r\n      - \"resource points.\"\r\n      - \"Your nation has &e%fancy@kingdoms_nation_resource_points% {$s}resource points.\"\r\n    posx: 4\r\n    posy: 2\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "resource-points",
+        "name"
+      ],
+      "source": "\"&eResource Points Converter\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "resource-points",
+        "material"
+      ],
+      "source": "HAY_BLOCK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "resource-points",
+        "lore"
+      ],
+      "source": "\r\n      - \"{$s}Convert your items to\"\r\n      - \"resource points.\"\r\n      - \"Your nation has &e%fancy@kingdoms_nation_resource_points% {$s}resource points.\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$s}Convert your items to\"",
+        "\"resource points.\"",
+        "\"Your nation has &e%fancy@kingdoms_nation_resource_points% {$s}resource points.\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "resource-points",
+        "posx"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "resource-points",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "ranks"
+      ],
+      "source": "\r\n    name: \"&5Ranks & Permissions\"\r\n    material: BOOKSHELF\r\n    lore:\r\n      - \"{$s}Modify ranks and permissions for\"\r\n      - \"your nation.\"\r\n    posx: 6\r\n    posy: 2\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "ranks",
+        "name"
+      ],
+      "source": "\"&5Ranks & Permissions\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "ranks",
+        "material"
+      ],
+      "source": "BOOKSHELF",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "ranks",
+        "lore"
+      ],
+      "source": "\r\n      - \"{$s}Modify ranks and permissions for\"\r\n      - \"your nation.\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$s}Modify ranks and permissions for\"",
+        "\"your nation.\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "ranks",
+        "posx"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "ranks",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "red-glass"
+      ],
+      "source": "\r\n    name: \"\"\r\n    material: RED_STAINED_GLASS_PANE\r\n    slots: [ 1, 7, 9, 17, 19, 25 ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "red-glass",
+        "name"
+      ],
+      "source": "\"\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "red-glass",
+        "material"
+      ],
+      "source": "RED_STAINED_GLASS_PANE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "red-glass",
+        "slots"
+      ],
+      "source": "[ 1, 7, 9, 17, 19, 25 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "1",
+        "7",
+        "9",
+        "17",
+        "19",
+        "25"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "black-glass"
+      ],
+      "source": "\r\n    name: \"\"\r\n    material: BLACK_STAINED_GLASS_PANE\r\n    slots: [ 0, 8, 18, 26 ]",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "black-glass",
+        "name"
+      ],
+      "source": "\"\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "black-glass",
+        "material"
+      ],
+      "source": "BLACK_STAINED_GLASS_PANE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "black-glass",
+        "slots"
+      ],
+      "source": "[ 0, 8, 18, 26 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "0",
+        "8",
+        "18",
+        "26"
+      ]
+    }
+  ]
+}

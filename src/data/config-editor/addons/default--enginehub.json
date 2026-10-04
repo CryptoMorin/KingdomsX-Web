@@ -1,0 +1,290 @@
+{
+  "formatVersion": 1,
+  "source": {
+    "addonId": "enginehub",
+    "artifactPath": "addons/Kingdoms-Addon-EngineHub-1.6.0.jar",
+    "artifactBlobSha": "67f070da4d22ca24adbed543854603585d031d35",
+    "artifactSha256": "5031072f65ae645269301935d8b38dcf26df31572b420e3f437dc8042d2a0423",
+    "addonVersion": "1.6.0"
+  },
+  "resourceName": "enginehub.yml",
+  "schemaId": "addons/enginehub",
+  "sha256": "cd594850478ebf1eaba4421d3192230e561454e19f144525cd4700c4b57091a0",
+  "options": [
+    {
+      "path": [
+        "worldedit"
+      ],
+      "source": "\r\n  schematics:\r\n    # Should WorldEdit schematics be used for buildings instead of single blocks?\r\n    # Disabling this will not reverse changes done by \"/k admin schematic setup\"\r\n    # you'd have to reset your building configs.\r\n    # * Requires a restart to change.\r\n    enabled: true\r\n\r\n    # Default format used for \"/k admin schematic save\"\r\n    # If set to ~, it uses the newest/best format supported\r\n    # by your current WorldEdit installation.\r\n    #\r\n    # - Possible Available Formats:\r\n    #  * MCEDIT_SCHEMATIC    (mcedit, mce, schematic)\r\n    #  * SPONGE_SCHEMATIC    [old name for SPONGE_V1_SCHEMATIC]\r\n    #  * SPONGE_V1_SCHEMATIC (sponge.1)\r\n    #  * SPONGE_V2_SCHEMATIC (sponge.2, slow.2, safe.2)\r\n    #  * SPONGE_V3_SCHEMATIC (sponge.3, slow,   safe)\r\n    #  ------------------------------------------------\r\n    #  * FAST_V3             (fawe,   fast,   schem)   [FAWE Only]\r\n    #  * FAST_V2             (fawe.2, fast.2, schem.2) [FAWE Only]\r\n    #  * PNG                 (image)                   [FAWE Only]\r\n    #  * MINECRAFT_STRUCTURE (structure)               [FAWE Only]\r\n    #  * BROKENENTITY        (brokenentity)            [FAWE Only]\r\n    default-save-format: ~\r\n\r\n    loading-mechanism:\r\n      # Should a certain format be forced to be used while loading\r\n      # all schematics or should we let the WorldEdit implementation\r\n      # decide what format the file uses? This is mostly for debugging\r\n      # purposes.\r\n      # * Uses the same names as 'default-save-format' option.\r\n      forced-format: ~\r\n\r\n      # FastAsyncWorldEdit (FAWE) additionally checks the file's\r\n      # extension before checking the file format and may ignore\r\n      # the file completely, this check doesn't exist in WorldEdit\r\n      # and is problematic.\r\n      bypass-fawe-extension-check: true\r\n\r\n    # The default built-in schematics shipped with this addon are made\r\n    # using the old original \"MCEDIT_SCHEMATIC\" (.mcedit) format so\r\n    # that both old and newer versions support these schematics.\r\n    #\r\n    # However, for some reason, FastAsyncWorldEdit (FAWE) doesn't\r\n    # recognize files with \".schematic\" extension as any valid schematic format.\r\n    # They require \".schem\" instead without even checking the file content.\r\n    # It even accepts random extensions that don't even exist,\r\n    # but it's not okay with .schematic which doesn't make sense.\r\n    # This option renames all schematics in the \"Kingdoms/schematics\" folder\r\n    # to have this extension before being loaded.\r\n    # If set to ~, then the plugin will automatically apply fixes when needed\r\n    # and the format used is the preferred format extension by the format implementation\r\n    # provided by WorldEdit.\r\n    force-extension: ~\r\n\r\n  # Some server owners give players access to WorldEdit,\r\n  # should the plugin prevent players from editing in unauthorized claimed lands?\r\n  # The players will be notified of the blocks that couldn't be changed. If a single\r\n  # session changed multiple chunks, the allowed chunks will have their blocks changed.\r\n  # * You can bypass this using this permission: kingdoms.worldedit.bypass.edit-protection\r\n  # * Requires a restar to change.\r\n  edit-protection: true\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "worldedit",
+        "schematics"
+      ],
+      "source": "\r\n    # Should WorldEdit schematics be used for buildings instead of single blocks?\r\n    # Disabling this will not reverse changes done by \"/k admin schematic setup\"\r\n    # you'd have to reset your building configs.\r\n    # * Requires a restart to change.\r\n    enabled: true\r\n\r\n    # Default format used for \"/k admin schematic save\"\r\n    # If set to ~, it uses the newest/best format supported\r\n    # by your current WorldEdit installation.\r\n    #\r\n    # - Possible Available Formats:\r\n    #  * MCEDIT_SCHEMATIC    (mcedit, mce, schematic)\r\n    #  * SPONGE_SCHEMATIC    [old name for SPONGE_V1_SCHEMATIC]\r\n    #  * SPONGE_V1_SCHEMATIC (sponge.1)\r\n    #  * SPONGE_V2_SCHEMATIC (sponge.2, slow.2, safe.2)\r\n    #  * SPONGE_V3_SCHEMATIC (sponge.3, slow,   safe)\r\n    #  ------------------------------------------------\r\n    #  * FAST_V3             (fawe,   fast,   schem)   [FAWE Only]\r\n    #  * FAST_V2             (fawe.2, fast.2, schem.2) [FAWE Only]\r\n    #  * PNG                 (image)                   [FAWE Only]\r\n    #  * MINECRAFT_STRUCTURE (structure)               [FAWE Only]\r\n    #  * BROKENENTITY        (brokenentity)            [FAWE Only]\r\n    default-save-format: ~\r\n\r\n    loading-mechanism:\r\n      # Should a certain format be forced to be used while loading\r\n      # all schematics or should we let the WorldEdit implementation\r\n      # decide what format the file uses? This is mostly for debugging\r\n      # purposes.\r\n      # * Uses the same names as 'default-save-format' option.\r\n      forced-format: ~\r\n\r\n      # FastAsyncWorldEdit (FAWE) additionally checks the file's\r\n      # extension before checking the file format and may ignore\r\n      # the file completely, this check doesn't exist in WorldEdit\r\n      # and is problematic.\r\n      bypass-fawe-extension-check: true\r\n\r\n    # The default built-in schematics shipped with this addon are made\r\n    # using the old original \"MCEDIT_SCHEMATIC\" (.mcedit) format so\r\n    # that both old and newer versions support these schematics.\r\n    #\r\n    # However, for some reason, FastAsyncWorldEdit (FAWE) doesn't\r\n    # recognize files with \".schematic\" extension as any valid schematic format.\r\n    # They require \".schem\" instead without even checking the file content.\r\n    # It even accepts random extensions that don't even exist,\r\n    # but it's not okay with .schematic which doesn't make sense.\r\n    # This option renames all schematics in the \"Kingdoms/schematics\" folder\r\n    # to have this extension before being loaded.\r\n    # If set to ~, then the plugin will automatically apply fixes when needed\r\n    # and the format used is the preferred format extension by the format implementation\r\n    # provided by WorldEdit.\r\n    force-extension: ~\r\n\r\n  # Some server owners give players access to WorldEdit,\r\n  # should the plugin prevent players from editing in unauthorized claimed lands?\r\n  # The players will be notified of the blocks that couldn't be changed. If a single\r\n  # session changed multiple chunks, the allowed chunks will have their blocks changed.\r\n  # * You can bypass this using this permission: kingdoms.worldedit.bypass.edit-protection\r\n  # * Requires a restar to change.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "worldedit",
+        "schematics",
+        "enabled"
+      ],
+      "source": "true",
+      "comments": [
+        "Should WorldEdit schematics be used for buildings instead of single blocks?",
+        "Disabling this will not reverse changes done by \"/k admin schematic setup\"",
+        "you'd have to reset your building configs.",
+        "* Requires a restart to change."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "worldedit",
+        "schematics",
+        "default-save-format"
+      ],
+      "source": "~",
+      "comments": [
+        "Default format used for \"/k admin schematic save\"",
+        "If set to ~, it uses the newest/best format supported",
+        "by your current WorldEdit installation.",
+        "- Possible Available Formats:",
+        "* MCEDIT_SCHEMATIC    (mcedit, mce, schematic)",
+        "* SPONGE_SCHEMATIC    [old name for SPONGE_V1_SCHEMATIC]",
+        "* SPONGE_V1_SCHEMATIC (sponge.1)",
+        "* SPONGE_V2_SCHEMATIC (sponge.2, slow.2, safe.2)",
+        "* SPONGE_V3_SCHEMATIC (sponge.3, slow,   safe)",
+        "------------------------------------------------",
+        "* FAST_V3             (fawe,   fast,   schem)   [FAWE Only]",
+        "* FAST_V2             (fawe.2, fast.2, schem.2) [FAWE Only]",
+        "* PNG                 (image)                   [FAWE Only]",
+        "* MINECRAFT_STRUCTURE (structure)               [FAWE Only]",
+        "* BROKENENTITY        (brokenentity)            [FAWE Only]"
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "worldedit",
+        "schematics",
+        "loading-mechanism"
+      ],
+      "source": "\r\n      # Should a certain format be forced to be used while loading\r\n      # all schematics or should we let the WorldEdit implementation\r\n      # decide what format the file uses? This is mostly for debugging\r\n      # purposes.\r\n      # * Uses the same names as 'default-save-format' option.\r\n      forced-format: ~\r\n\r\n      # FastAsyncWorldEdit (FAWE) additionally checks the file's\r\n      # extension before checking the file format and may ignore\r\n      # the file completely, this check doesn't exist in WorldEdit\r\n      # and is problematic.\r\n      bypass-fawe-extension-check: true\r\n\r\n    # The default built-in schematics shipped with this addon are made\r\n    # using the old original \"MCEDIT_SCHEMATIC\" (.mcedit) format so\r\n    # that both old and newer versions support these schematics.\r\n    #\r\n    # However, for some reason, FastAsyncWorldEdit (FAWE) doesn't\r\n    # recognize files with \".schematic\" extension as any valid schematic format.\r\n    # They require \".schem\" instead without even checking the file content.\r\n    # It even accepts random extensions that don't even exist,\r\n    # but it's not okay with .schematic which doesn't make sense.\r\n    # This option renames all schematics in the \"Kingdoms/schematics\" folder\r\n    # to have this extension before being loaded.\r\n    # If set to ~, then the plugin will automatically apply fixes when needed\r\n    # and the format used is the preferred format extension by the format implementation\r\n    # provided by WorldEdit.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "worldedit",
+        "schematics",
+        "loading-mechanism",
+        "forced-format"
+      ],
+      "source": "~",
+      "comments": [
+        "Should a certain format be forced to be used while loading",
+        "all schematics or should we let the WorldEdit implementation",
+        "decide what format the file uses? This is mostly for debugging",
+        "purposes.",
+        "* Uses the same names as 'default-save-format' option."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "worldedit",
+        "schematics",
+        "loading-mechanism",
+        "bypass-fawe-extension-check"
+      ],
+      "source": "true",
+      "comments": [
+        "FastAsyncWorldEdit (FAWE) additionally checks the file's",
+        "extension before checking the file format and may ignore",
+        "the file completely, this check doesn't exist in WorldEdit",
+        "and is problematic."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "worldedit",
+        "schematics",
+        "force-extension"
+      ],
+      "source": "~",
+      "comments": [
+        "The default built-in schematics shipped with this addon are made",
+        "using the old original \"MCEDIT_SCHEMATIC\" (.mcedit) format so",
+        "that both old and newer versions support these schematics.",
+        "However, for some reason, FastAsyncWorldEdit (FAWE) doesn't",
+        "recognize files with \".schematic\" extension as any valid schematic format.",
+        "They require \".schem\" instead without even checking the file content.",
+        "It even accepts random extensions that don't even exist,",
+        "but it's not okay with .schematic which doesn't make sense.",
+        "This option renames all schematics in the \"Kingdoms/schematics\" folder",
+        "to have this extension before being loaded.",
+        "If set to ~, then the plugin will automatically apply fixes when needed",
+        "and the format used is the preferred format extension by the format implementation",
+        "provided by WorldEdit."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "worldedit",
+        "edit-protection"
+      ],
+      "source": "true",
+      "comments": [
+        "Some server owners give players access to WorldEdit,",
+        "should the plugin prevent players from editing in unauthorized claimed lands?",
+        "The players will be notified of the blocks that couldn't be changed. If a single",
+        "session changed multiple chunks, the allowed chunks will have their blocks changed.",
+        "* You can bypass this using this permission: kingdoms.worldedit.bypass.edit-protection",
+        "* Requires a restar to change."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "worldguard"
+      ],
+      "source": "\r\n  # Should the plugin register WorldGuard flags?\r\n  # * Requires a restart to change.\r\n  register-flags: true\r\n\r\n  # Should claiming in any WorldGuard regions be prevented?\r\n  # * Permission to bypass: kingdoms.worldguard.bypass.claim-protection\r\n  region-claim-protection: true\r\n\r\n  # The radius that players aren't allowd to claim lands in that are protected by WorldGuard.\r\n  # Note that this feature is still experimental and only works for single claims (not bulk claims like clipboards)\r\n  # High numbers might cause lag spikes.\r\n  # The number specified here is based on lands, not blocks.\r\n  protected-region-radius: 3\r\n\r\n  # Wilderness regions that are protected will not have indicators.\r\n  # * Requires a restart to change.\r\n  indicator-ignore-regions: true\r\n\r\n  # Should WorldGuard regions be shown on /k map?\r\n  # * Requires a restart to change.\r\n  map-markers: true\r\n\r\n  # When the player is in a WorldGuard region with the given flag,\r\n  # they'll be able to keep their flight even if they leave their land.\r\n  # The default flag used here is not available in WorldGuard plugin itself,\r\n  # but it's provided in WorldGuardExtraFlags plugin.\r\n  # Set to ~ to disable this feature.\r\n  # * Requires a restart to apply changes.\r\n  keep-kingdoms-flight-with-flag: 'flag'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "worldguard",
+        "register-flags"
+      ],
+      "source": "true",
+      "comments": [
+        "Should the plugin register WorldGuard flags?",
+        "* Requires a restart to change."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "worldguard",
+        "region-claim-protection"
+      ],
+      "source": "true",
+      "comments": [
+        "Should claiming in any WorldGuard regions be prevented?",
+        "* Permission to bypass: kingdoms.worldguard.bypass.claim-protection"
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "worldguard",
+        "protected-region-radius"
+      ],
+      "source": "3",
+      "comments": [
+        "The radius that players aren't allowd to claim lands in that are protected by WorldGuard.",
+        "Note that this feature is still experimental and only works for single claims (not bulk claims like clipboards)",
+        "High numbers might cause lag spikes.",
+        "The number specified here is based on lands, not blocks."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "worldguard",
+        "indicator-ignore-regions"
+      ],
+      "source": "true",
+      "comments": [
+        "Wilderness regions that are protected will not have indicators.",
+        "* Requires a restart to change."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "worldguard",
+        "map-markers"
+      ],
+      "source": "true",
+      "comments": [
+        "Should WorldGuard regions be shown on /k map?",
+        "* Requires a restart to change."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "worldguard",
+        "keep-kingdoms-flight-with-flag"
+      ],
+      "source": "'flag'",
+      "comments": [
+        "When the player is in a WorldGuard region with the given flag,",
+        "they'll be able to keep their flight even if they leave their land.",
+        "The default flag used here is not available in WorldGuard plugin itself,",
+        "but it's provided in WorldGuardExtraFlags plugin.",
+        "Set to ~ to disable this feature.",
+        "* Requires a restart to apply changes."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

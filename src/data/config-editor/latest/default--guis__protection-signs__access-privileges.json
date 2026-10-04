@@ -1,0 +1,422 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "guis/protection-signs/access-privileges.yml",
+  "schemaId": "guis/schema",
+  "options": [
+    {
+      "path": [
+        "title"
+      ],
+      "source": "\"{$sep}-=[ &5Access Privileges {$sep}]=-\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "type"
+      ],
+      "source": "HOPPER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sound"
+      ],
+      "source": "BLOCK_CHEST_OPEN",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options"
+      ],
+      "source": "\r\n  privilege-allowed:\r\n    name: \"&aAllowed\"\r\n    material: GREEN_WOOL\r\n    lore: |-\r\n      {$desc}Players are allowed to\r\n      open/use and put/take items from\r\n      this container without limitation.\r\n    slot: 1\r\n    enabled:\r\n      condition: selected\r\n      glow: true\r\n  privilege-disallowed:\r\n    name: \"&cDisallowed\"\r\n    material: RED_WOOL\r\n    lore: |-\r\n      {$desc}Players are now allowed\r\n      to interact or use this block\r\n      at all.\r\n    slot: 2\r\n    enabled:\r\n      condition: selected\r\n      glow: true\r\n  privilege-password:\r\n    name: \"&9Password\"\r\n    material: BLUE_WOOL\r\n    lore: |-\r\n      {$desc}Players are only allowed\r\n      to interact or use this block if\r\n      they enter the password for it.\r\n    slot: 3\r\n    enabled:\r\n      condition: selected\r\n      glow: true\r\n  back:\r\n    name: \"&cBack\"\r\n    material: BARRIER\r\n    slot: 0\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "privilege-allowed"
+      ],
+      "source": "\r\n    name: \"&aAllowed\"\r\n    material: GREEN_WOOL\r\n    lore: |-\r\n      {$desc}Players are allowed to\r\n      open/use and put/take items from\r\n      this container without limitation.\r\n    slot: 1\r\n    enabled:\r\n      condition: selected\r\n      glow: true\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "privilege-allowed",
+        "name"
+      ],
+      "source": "\"&aAllowed\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "privilege-allowed",
+        "material"
+      ],
+      "source": "GREEN_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "privilege-allowed",
+        "lore"
+      ],
+      "source": "|-\r\n      {$desc}Players are allowed to\r\n      open/use and put/take items from\r\n      this container without limitation.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "privilege-allowed",
+        "slot"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "privilege-allowed",
+        "enabled"
+      ],
+      "source": "\r\n      condition: selected\r\n      glow: true\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "privilege-allowed",
+        "enabled",
+        "condition"
+      ],
+      "source": "selected",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "privilege-allowed",
+        "enabled",
+        "glow"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "privilege-disallowed"
+      ],
+      "source": "\r\n    name: \"&cDisallowed\"\r\n    material: RED_WOOL\r\n    lore: |-\r\n      {$desc}Players are now allowed\r\n      to interact or use this block\r\n      at all.\r\n    slot: 2\r\n    enabled:\r\n      condition: selected\r\n      glow: true\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "privilege-disallowed",
+        "name"
+      ],
+      "source": "\"&cDisallowed\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "privilege-disallowed",
+        "material"
+      ],
+      "source": "RED_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "privilege-disallowed",
+        "lore"
+      ],
+      "source": "|-\r\n      {$desc}Players are now allowed\r\n      to interact or use this block\r\n      at all.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "privilege-disallowed",
+        "slot"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "privilege-disallowed",
+        "enabled"
+      ],
+      "source": "\r\n      condition: selected\r\n      glow: true\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "privilege-disallowed",
+        "enabled",
+        "condition"
+      ],
+      "source": "selected",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "privilege-disallowed",
+        "enabled",
+        "glow"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "privilege-password"
+      ],
+      "source": "\r\n    name: \"&9Password\"\r\n    material: BLUE_WOOL\r\n    lore: |-\r\n      {$desc}Players are only allowed\r\n      to interact or use this block if\r\n      they enter the password for it.\r\n    slot: 3\r\n    enabled:\r\n      condition: selected\r\n      glow: true\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "privilege-password",
+        "name"
+      ],
+      "source": "\"&9Password\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "privilege-password",
+        "material"
+      ],
+      "source": "BLUE_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "privilege-password",
+        "lore"
+      ],
+      "source": "|-\r\n      {$desc}Players are only allowed\r\n      to interact or use this block if\r\n      they enter the password for it.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "privilege-password",
+        "slot"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "privilege-password",
+        "enabled"
+      ],
+      "source": "\r\n      condition: selected\r\n      glow: true\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "privilege-password",
+        "enabled",
+        "condition"
+      ],
+      "source": "selected",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "privilege-password",
+        "enabled",
+        "glow"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back"
+      ],
+      "source": "\r\n    name: \"&cBack\"\r\n    material: BARRIER\r\n    slot: 0\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "name"
+      ],
+      "source": "\"&cBack\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "material"
+      ],
+      "source": "BARRIER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "slot"
+      ],
+      "source": "0",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

@@ -1,0 +1,524 @@
+{
+  "formatVersion": 1,
+  "id": "turrets",
+  "resourceName": "turrets.yml",
+  "sources": {
+    "schema": {
+      "kind": "kingdomsx-jar",
+      "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+      "pluginVersion": "1.17.27.3",
+      "fileName": "turrets.json"
+    },
+    "defaults": [
+      "default--turrets.json"
+    ],
+    "runtime": {
+      "kind": "kingdomsx-jar",
+      "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+      "pluginVersion": "1.17.27.3"
+    }
+  },
+  "coverage": {
+    "defaultPathCount": 60,
+    "rawDefaultPathCount": 60,
+    "activeRuntimePathCount": 0,
+    "fieldCount": 28,
+    "capabilitySourceCounts": {
+      "jar-schema": 18,
+      "jar-default": 18,
+      "editor-overlay": 16
+    },
+    "commonSettingCount": 0
+  },
+  "schema": {
+    "kind": "object",
+    "fields": [
+      {
+        "key": "enabled",
+        "type": {
+          "kind": "boolean",
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "If you don't want to use turrets, set this to false. It'll increase the performance drastically. But you still need to remove the option from the nexus GUI so people can't buy any. Needs a restart to work.",
+          "optional": true
+        }
+      },
+      {
+        "key": "limit",
+        "type": {
+          "kind": "expression",
+          "language": "math",
+          "capability": {
+            "sources": [
+              "jar-schema"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "disable-shift-click",
+        "type": {
+          "kind": "boolean",
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "Don't open the GUI when shift right-clicking (useful for placing blocks)",
+          "optional": true
+        }
+      },
+      {
+        "key": "remove-unclaimed",
+        "type": {
+          "kind": "boolean",
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "Remove turrets when lands are unclaimed automatically? This will simply break the turret naturally as if it was broken by a player.",
+          "optional": true
+        }
+      },
+      {
+        "key": "to-inventory-on-break",
+        "type": {
+          "kind": "boolean",
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "Should turrets go directly to the player's inventory who broke the turret.",
+          "optional": true
+        }
+      },
+      {
+        "key": "teleportation-invulnerability",
+        "type": {
+          "kind": "integer",
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "Seconds before turrets can shoot players after they've been teleported. Set to 0 to disable",
+          "optional": true
+        }
+      },
+      {
+        "key": "pacifists",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "target",
+              "type": {
+                "kind": "boolean",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "Should turrets target pacifist players?",
+                "optional": true
+              }
+            },
+            {
+              "key": "enabled",
+              "type": {
+                "kind": "boolean",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "Should turrets placed inside pacifist kingdoms shoot players?",
+                "optional": true
+              }
+            }
+          ],
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "* These options require a restart to change.",
+          "optional": true
+        }
+      },
+      {
+        "key": "disallow-accidental-mob-damage",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "friendly",
+              "type": {
+                "kind": "set",
+                "elements": {
+                  "kind": "suggestion",
+                  "typeName": "Enum<org.bukkit.entity.EntityType>",
+                  "allowCustom": true,
+                  "capability": {
+                    "sources": [
+                      "jar-schema"
+                    ]
+                  }
+                },
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "Disallow for friendly mobs. Mobs that are inside a kingdom are considered to be owned by them, and are friendly. Or more specifically, any mob that's inside any land that the owning kingdom of that land has CEASEFIRE attribute with the owning kingdom of the turret.",
+                "optional": true
+              }
+            },
+            {
+              "key": "others",
+              "type": {
+                "kind": "set",
+                "elements": {
+                  "kind": "suggestion",
+                  "typeName": "Enum<org.bukkit.entity.EntityType>",
+                  "allowCustom": true,
+                  "capability": {
+                    "sources": [
+                      "jar-schema"
+                    ]
+                  }
+                },
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "Disallow for mobs that are outside friendly lands.",
+                "optional": true
+              }
+            }
+          ],
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "Disallow these mobs from being damage if a turret's shot was meant to target another entity, but hit them instead. This includes players as well.",
+          "optional": true
+        }
+      },
+      {
+        "key": "temporary-hologram-display",
+        "type": {
+          "kind": "duration",
+          "typeName": "Period",
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "Temporarily shows a turret's hologram to a player once it starts shooting at that player.",
+          "optional": true
+        }
+      },
+      {
+        "key": "accuracy",
+        "type": {
+          "kind": "integer",
+          "minimum": 1,
+          "description": "Ticks between turret target-data refreshes.",
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default",
+              "editor-overlay"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "update-ticks",
+        "type": {
+          "kind": "integer",
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "WARNING: BE VERY CAREFUL WHEN CHANGING THIS OPTION: - By changing this option you're changing how often turrets perform checks and activate. - By default, it's every 1 tick. Meaning every 1 second, 20 checks are performed. - If you change it to 2 ticks for instance, all the turrets will be affected. Meaning if the turret's cooldown was \"10\" ticks now it's \"10 * 2 = 20\" ticks. For example, if you set this to 20, all turrets are limited to shoot every second, no matter how long the cooldown is. - Every single number of this option matters up to 100 ticks for performance. After 100 ticks the performance is just not noticable anymore, unless you have an unusual high number of turrets. - While this option and \"accuracy\" are very similar, this option has more impact on performance compared to \"accuracy\" option. Since the previous option removed some of the checks for performance, but this option will entirely put the turrets into a \"sleeping\" state which causes them to not shoot at all. * Requires a restart to update.",
+          "optional": true
+        }
+      },
+      {
+        "key": "limits",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "total",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "description": "Kingdom-wide placement limit. Enter a static number or formula. 0, -1, or omission disables it.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            },
+            {
+              "key": "per-land",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "description": "Per-land placement limit. Enter a static number or formula. 0, -1, or omission disables it.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            }
+          ],
+          "description": "Optional placement limits for this catalog file. Set total/per-land to 0 or -1, or omit the key, to disable that limit. Individual Turrets/*.yml and Structures/*.yml entries may override these.",
+          "optional": true,
+          "capability": {
+            "sources": [
+              "editor-overlay",
+              "jar-default"
+            ]
+          }
+        }
+      },
+      {
+        "key": "allow-targetting-npcs",
+        "type": {
+          "kind": "boolean",
+          "description": "Whether turrets may damage NPCs (for example Citizens). Requires a restart.",
+          "optional": true,
+          "capability": {
+            "sources": [
+              "editor-overlay",
+              "jar-default"
+            ]
+          }
+        }
+      },
+      {
+        "key": "manual-by-default",
+        "type": {
+          "kind": "boolean",
+          "description": "Whether turrets start in manual mode. See the turret GUI description for manual vs automatic.",
+          "optional": true,
+          "capability": {
+            "sources": [
+              "editor-overlay",
+              "jar-default"
+            ]
+          }
+        }
+      },
+      {
+        "key": "effects",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "string",
+            "typeName": "str",
+            "description": "Effect name such as damage, paralysis, hypnosis, slowness, weakness",
+            "optional": true,
+            "capability": {
+              "sources": [
+                "editor-overlay"
+              ]
+            }
+          },
+          "values": {
+            "kind": "object",
+            "fields": [
+              {
+                "key": "sound",
+                "type": {
+                  "kind": "suggestion",
+                  "typeName": "Sound",
+                  "description": "Sound played when this effect triggers.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  },
+                  "allowCustom": true
+                }
+              },
+              {
+                "key": "particles",
+                "type": {
+                  "kind": "object",
+                  "fields": [
+                    {
+                      "key": "particle",
+                      "type": {
+                        "kind": "suggestion",
+                        "typeName": "Particle",
+                        "description": "Spigot particle or custom particle name.",
+                        "optional": true,
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        },
+                        "allowCustom": true
+                      }
+                    },
+                    {
+                      "key": "count",
+                      "type": {
+                        "kind": "integer",
+                        "description": "Number of particles spawned.",
+                        "optional": true,
+                        "minimum": 0,
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "key": "offset",
+                      "type": {
+                        "kind": "string",
+                        "typeName": "str",
+                        "description": "Particle X, Y, Z spread.",
+                        "optional": true,
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "key": "color",
+                      "type": {
+                        "kind": "string",
+                        "typeName": "Color",
+                        "description": "Particle RGB/hex color.",
+                        "optional": true,
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "key": "size",
+                      "type": {
+                        "kind": "decimal",
+                        "description": "Particle size.",
+                        "optional": true,
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        }
+                      }
+                    }
+                  ],
+                  "description": "Turret effect particle display.",
+                  "optional": true,
+                  "required": [],
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                }
+              }
+            ],
+            "description": "Turret hit effect.",
+            "optional": true,
+            "required": [],
+            "capability": {
+              "sources": [
+                "editor-overlay"
+              ]
+            }
+          },
+          "description": "Global turret hit effects. Keys are effect names used by turret damaging factors.",
+          "optional": true,
+          "capability": {
+            "sources": [
+              "editor-overlay",
+              "jar-default"
+            ]
+          },
+          "creation": {
+            "entryLabel": "effect",
+            "starter": [
+              {
+                "key": "sound",
+                "source": "\"\""
+              },
+              {
+                "key": "particles",
+                "children": [
+                  {
+                    "key": "particle",
+                    "source": "\"\""
+                  },
+                  {
+                    "key": "count",
+                    "source": "0"
+                  },
+                  {
+                    "key": "offset",
+                    "source": "\"\""
+                  },
+                  {
+                    "key": "color",
+                    "source": "\"\""
+                  },
+                  {
+                    "key": "size",
+                    "source": "0"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "capability": {
+      "sources": [
+        "jar-schema"
+      ]
+    }
+  }
+}

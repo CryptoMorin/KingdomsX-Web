@@ -1,0 +1,161 @@
+{
+  "formatVersion": 1,
+  "id": "permission",
+  "resourceName": "permission.yml",
+  "sources": {
+    "schema": {
+      "kind": "kingdomsx-jar",
+      "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+      "pluginVersion": "1.17.27.3",
+      "fileName": "permission.json"
+    },
+    "defaults": [],
+    "runtime": {
+      "kind": "kingdomsx-jar",
+      "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+      "pluginVersion": "1.17.27.3"
+    }
+  },
+  "coverage": {
+    "defaultPathCount": 0,
+    "rawDefaultPathCount": 0,
+    "activeRuntimePathCount": 0,
+    "fieldCount": 8,
+    "capabilitySourceCounts": {
+      "jar-schema": 11
+    },
+    "commonSettingCount": 0
+  },
+  "schema": {
+    "kind": "object",
+    "fields": [
+      {
+        "key": "permission",
+        "type": {
+          "kind": "string",
+          "typeName": "str",
+          "capability": {
+            "sources": [
+              "jar-schema"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "expiry",
+        "type": {
+          "kind": "duration",
+          "typeName": "Period",
+          "capability": {
+            "sources": [
+              "jar-schema"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "value",
+        "type": {
+          "kind": "boolean",
+          "capability": {
+            "sources": [
+              "jar-schema"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "context",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "string",
+            "typeName": "str",
+            "capability": {
+              "sources": [
+                "jar-schema"
+              ]
+            }
+          },
+          "values": {
+            "kind": "string",
+            "typeName": "str",
+            "capability": {
+              "sources": [
+                "jar-schema"
+              ]
+            }
+          },
+          "fields": [],
+          "capability": {
+            "sources": [
+              "jar-schema"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "metadata",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "name",
+              "type": {
+                "kind": "string",
+                "typeName": "str",
+                "capability": {
+                  "sources": [
+                    "jar-schema"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "class",
+              "type": {
+                "kind": "advanced",
+                "typeName": "Class",
+                "capability": {
+                  "sources": [
+                    "jar-schema"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "value",
+              "type": {
+                "kind": "advanced",
+                "typeName": "any",
+                "capability": {
+                  "sources": [
+                    "jar-schema"
+                  ]
+                },
+                "optional": true
+              }
+            }
+          ],
+          "capability": {
+            "sources": [
+              "jar-schema"
+            ]
+          },
+          "optional": true
+        }
+      }
+    ],
+    "capability": {
+      "sources": [
+        "jar-schema"
+      ]
+    }
+  }
+}

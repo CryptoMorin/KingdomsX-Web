@@ -10,63 +10,70 @@ const { homeUrl = "" } = Astro.props;
 const sectionHref = (id: string) => `${homeUrl}#${id}`;
 ---
 <header class="site-header sticky-top">
-  <nav class="navbar navbar-expand-xl user-select-none" aria-label="Main navigation">
+  <nav class="navbar navbar-expand-xxl user-select-none" aria-label="Main navigation">
     <div class="container">
       <a class="navbar-brand brand d-inline-flex align-items-center gap-3 mb-0 fw-bold" href={sectionHref("home")} aria-label="KingdomsX home">
         <img src={siteImages.logo} alt="" width="256" height="256" draggable="false" />
         <span>KingdomsX</span>
       </a>
-      <button class="navbar-toggler d-inline-grid d-xl-none ms-auto" type="button" data-bs-toggle="offcanvas" data-bs-target="#main-navigation" aria-controls="main-navigation" aria-label="Toggle navigation">
+      <button class="navbar-toggler d-inline-grid d-xxl-none ms-auto" type="button" data-bs-toggle="offcanvas" data-bs-target="#main-navigation" aria-controls="main-navigation" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="offcanvas-xl offcanvas-end main-navigation flex-xl-grow-1" tabindex="-1" id="main-navigation" aria-labelledby="main-navigation-title">
-        <div class="offcanvas-header d-xl-none position-relative z-1 justify-content-between gap-3">
-          <h2 class="offcanvas-title brand d-inline-flex align-items-center gap-3 mb-0 fw-bold" id="main-navigation-title">
+      <div class="offcanvas-xxl offcanvas-end main-navigation flex-xxl-grow-1" tabindex="-1" id="main-navigation" aria-labelledby="main-navigation-title">
+        <div class="navigation-drawer-header offcanvas-header d-xxl-none position-relative z-1 justify-content-between gap-3">
+          <h2 class="navigation-drawer-title offcanvas-title brand d-inline-flex align-items-center gap-3 mb-0 fw-bold" id="main-navigation-title">
             <img src={siteImages.logo} alt="" width="256" height="256" draggable="false" />
             <span>KingdomsX</span>
           </h2>
-          <button type="button" class="btn-close d-grid" data-bs-dismiss="offcanvas" data-bs-target="#main-navigation" aria-label="Close navigation"></button>
+          <button type="button" class="navigation-close btn-close d-grid" data-bs-dismiss="offcanvas" data-bs-target="#main-navigation" aria-label="Close navigation"></button>
         </div>
-        <div class="offcanvas-body position-relative z-1 d-flex flex-column flex-xl-row justify-content-start justify-content-xl-between text-center align-items-xl-center w-100">
-          <div class="navbar-nav nav-links flex-xl-grow-1 justify-content-xl-center align-items-stretch align-items-xl-center gap-2 gap-xl-4" aria-label="Page sections">
-            <a class="nav-link d-flex d-xl-block align-items-center justify-content-center fw-bold" href={sectionHref("home")}><i class="fa-solid fa-house fa-fw me-2 d-xl-none" aria-hidden="true"></i>Home</a>
-            <a class="nav-link d-flex d-xl-block align-items-center justify-content-center fw-bold" href={sectionHref("features")}><i class="fa-solid fa-star fa-fw me-2 d-xl-none" aria-hidden="true"></i>Features</a>
-            <a class="nav-link d-flex d-xl-block align-items-center justify-content-center fw-bold" href={sectionHref("preview")}><i class="fa-solid fa-eye fa-fw me-2 d-xl-none" aria-hidden="true"></i>Preview</a>
-            <a class="nav-link d-flex d-xl-block align-items-center justify-content-center fw-bold" href={sectionHref("comparison")}><i class="fa-solid fa-scale-balanced fa-fw me-2 d-xl-none" aria-hidden="true"></i>Compare</a>
-            <a class="nav-link d-flex d-xl-block align-items-center justify-content-center fw-bold" href={sectionHref("gallery")}><i class="fa-solid fa-images fa-fw me-2 d-xl-none" aria-hidden="true"></i>Gallery</a>
-            <a class="nav-link d-flex d-xl-block align-items-center justify-content-center fw-bold" href={sectionHref("addons")}><i class="fa-solid fa-puzzle-piece fa-fw me-2 d-xl-none" aria-hidden="true"></i>Addons</a>
+        <div class="offcanvas-body position-relative z-1 d-flex flex-column flex-xxl-row justify-content-start justify-content-xxl-between text-center align-items-xxl-center w-100">
+          <div class="navbar-nav nav-links flex-xxl-grow-1 justify-content-xxl-center align-items-stretch align-items-xxl-center gap-2 gap-xxl-4" aria-label="Page sections">
+            <a class="nav-link d-flex d-xxl-block align-items-center justify-content-center fw-bold" href={sectionHref("home")}><i class="fa-solid fa-house fa-fw me-2 d-xxl-none" aria-hidden="true"></i>Home</a>
+            <a class="nav-link d-flex d-xxl-block align-items-center justify-content-center fw-bold" href={sectionHref("features")}><i class="fa-solid fa-star fa-fw me-2 d-xxl-none" aria-hidden="true"></i>Features</a>
+            <a class="nav-link d-flex d-xxl-block align-items-center justify-content-center fw-bold" href={sectionHref("preview")}><i class="fa-solid fa-eye fa-fw me-2 d-xxl-none" aria-hidden="true"></i>Preview</a>
+            <a class="nav-link d-flex d-xxl-block align-items-center justify-content-center fw-bold" href={sectionHref("comparison")}><i class="fa-solid fa-scale-balanced fa-fw me-2 d-xxl-none" aria-hidden="true"></i>Compare</a>
+            <a class="nav-link d-flex d-xxl-block align-items-center justify-content-center fw-bold" href={sectionHref("gallery")}><i class="fa-solid fa-images fa-fw me-2 d-xxl-none" aria-hidden="true"></i>Gallery</a>
+            <a class="nav-link d-flex d-xxl-block align-items-center justify-content-center fw-bold" href={sectionHref("addons")}><i class="fa-solid fa-puzzle-piece fa-fw me-2 d-xxl-none" aria-hidden="true"></i>Addons</a>
           </div>
-          <div class="header-actions position-relative flex-xl-shrink-0 mt-3 mt-xl-0">
-            <div class="header-action-buttons d-flex flex-column flex-xl-row align-items-stretch align-items-xl-center justify-content-center justify-content-xl-end gap-2 w-100 top-0 end-0 bottom-0 start-0">
-              <a class="btn btn-site btn-servers d-inline-flex align-items-center justify-content-center gap-2 gap-xl-0 fw-bold py-2 px-3 overflow-hidden flex-xl-shrink-0" href={SITE.servers} aria-label="Browse KingdomsX servers">
+          <div class="header-actions position-relative flex-xxl-shrink-0 mt-3 mt-xxl-0">
+            <div class="header-action-buttons d-flex flex-column flex-xxl-row align-items-stretch align-items-xxl-center justify-content-center justify-content-xxl-end gap-2 w-100 top-0 end-0 bottom-0 start-0">
+              <a class="btn btn-site btn-servers d-inline-flex align-items-center justify-content-center gap-2 gap-xxl-0 fw-bold py-2 px-3 overflow-hidden flex-xxl-shrink-0" href={SITE.servers} aria-label="Browse KingdomsX servers">
                 <span class="header-action-icon d-inline-flex align-items-center justify-content-center flex-shrink-0" aria-hidden="true"><i class="fa-solid fa-server"></i></span>
-                <span class="header-action-label d-xl-inline-grid overflow-hidden text-nowrap"><span>Servers</span></span>
+                <span class="header-action-label d-xxl-inline-grid overflow-hidden text-nowrap"><span>Servers</span></span>
               </a>
-              <a class="btn btn-site btn-discord d-inline-flex align-items-center justify-content-center gap-2 gap-xl-0 fw-bold py-2 px-3 overflow-hidden flex-xl-shrink-0" href={SITE.discord} target="_blank" rel="noopener noreferrer" aria-label="Join Discord">
+              <a class="btn btn-site btn-editor d-inline-flex align-items-center justify-content-center gap-2 gap-xxl-0 fw-bold py-2 px-3 overflow-hidden flex-xxl-shrink-0" href={SITE.editor} aria-label="Open the config editor">
+                <span class="header-action-icon d-inline-flex align-items-center justify-content-center flex-shrink-0" aria-hidden="true"><i class="fa-solid fa-sliders"></i></span>
+                <span class="header-action-label d-xxl-inline-grid overflow-hidden text-nowrap"><span>Editor</span></span>
+              </a>
+              <a class="btn btn-site btn-discord d-inline-flex align-items-center justify-content-center gap-2 gap-xxl-0 fw-bold py-2 px-3 overflow-hidden flex-xxl-shrink-0" href={SITE.discord} target="_blank" rel="noopener noreferrer" aria-label="Join Discord">
                 <span class="header-action-icon d-inline-flex align-items-center justify-content-center flex-shrink-0" aria-hidden="true"><i class="fa-brands fa-discord"></i></span>
-                <span class="header-action-label d-xl-inline-grid overflow-hidden text-nowrap"><span>Discord</span></span>
+                <span class="header-action-label d-xxl-inline-grid overflow-hidden text-nowrap"><span>Discord</span></span>
               </a>
-              <a class="btn btn-site btn-wiki d-inline-flex align-items-center justify-content-center gap-2 gap-xl-0 fw-bold py-2 px-3 overflow-hidden flex-xl-shrink-0" href={SITE.wiki} target="_blank" rel="noopener noreferrer" aria-label="Read the Wiki">
+              <a class="btn btn-site btn-wiki d-inline-flex align-items-center justify-content-center gap-2 gap-xxl-0 fw-bold py-2 px-3 overflow-hidden flex-xxl-shrink-0" href={SITE.wiki} target="_blank" rel="noopener noreferrer" aria-label="Read the Wiki">
                 <span class="header-action-icon d-inline-flex align-items-center justify-content-center flex-shrink-0" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span>
-                <span class="header-action-label d-xl-inline-grid overflow-hidden text-nowrap"><span>Wiki</span></span>
+                <span class="header-action-label d-xxl-inline-grid overflow-hidden text-nowrap"><span>Wiki</span></span>
               </a>
-              <a class="btn btn-site btn-download d-inline-flex align-items-center justify-content-center gap-2 gap-xl-0 fw-bold py-2 px-3 overflow-hidden flex-xl-shrink-0" href={SITE.download} target="_blank" rel="noopener noreferrer" aria-label="Download KingdomsX">
+              <a class="btn btn-site btn-download d-inline-flex align-items-center justify-content-center gap-2 gap-xxl-0 fw-bold py-2 px-3 overflow-hidden flex-xxl-shrink-0" href={SITE.download} target="_blank" rel="noopener noreferrer" aria-label="Download KingdomsX">
                 <span class="header-action-icon d-inline-flex align-items-center justify-content-center flex-shrink-0" aria-hidden="true"><i class="fa-solid fa-download"></i></span>
-                <span class="header-action-label d-xl-inline-grid overflow-hidden text-nowrap"><span>Download</span></span>
+                <span class="header-action-label d-xxl-inline-grid overflow-hidden text-nowrap"><span>Download</span></span>
               </a>
             </div>
-            <div class="header-action-sizer d-none d-xl-flex align-items-center justify-content-end gap-2 invisible pe-none" aria-hidden="true">
-              <span class="btn btn-site btn-servers d-inline-flex align-items-center justify-content-center fw-bold py-2 px-3 flex-xl-shrink-0">
+            <div class="header-action-sizer d-none d-xxl-flex align-items-center justify-content-end gap-2 invisible pe-none" aria-hidden="true">
+              <span class="btn btn-site btn-servers d-inline-flex align-items-center justify-content-center fw-bold py-2 px-3 flex-xxl-shrink-0">
                 <span class="header-action-icon d-inline-flex align-items-center justify-content-center flex-shrink-0"><i class="fa-solid fa-server"></i></span>
                 <span class="header-action-label d-inline-grid overflow-hidden text-nowrap ms-2"><span>Servers</span></span>
               </span>
-              <span class="btn btn-site btn-discord d-inline-flex align-items-center justify-content-center fw-bold py-2 px-3 flex-xl-shrink-0">
+              <span class="btn btn-site btn-editor d-inline-flex align-items-center justify-content-center fw-bold py-2 px-3 flex-xxl-shrink-0">
+                <span class="header-action-icon d-inline-flex align-items-center justify-content-center flex-shrink-0"><i class="fa-solid fa-sliders"></i></span>
+              </span>
+              <span class="btn btn-site btn-discord d-inline-flex align-items-center justify-content-center fw-bold py-2 px-3 flex-xxl-shrink-0">
                 <span class="header-action-icon d-inline-flex align-items-center justify-content-center flex-shrink-0"><i class="fa-brands fa-discord"></i></span>
               </span>
-              <span class="btn btn-site btn-wiki d-inline-flex align-items-center justify-content-center fw-bold py-2 px-3 flex-xl-shrink-0">
+              <span class="btn btn-site btn-wiki d-inline-flex align-items-center justify-content-center fw-bold py-2 px-3 flex-xxl-shrink-0">
                 <span class="header-action-icon d-inline-flex align-items-center justify-content-center flex-shrink-0"><i class="fa-solid fa-book-open"></i></span>
               </span>
-              <span class="btn btn-site btn-download d-inline-flex align-items-center justify-content-center fw-bold py-2 px-3 flex-xl-shrink-0">
+              <span class="btn btn-site btn-download d-inline-flex align-items-center justify-content-center fw-bold py-2 px-3 flex-xxl-shrink-0">
                 <span class="header-action-icon d-inline-flex align-items-center justify-content-center flex-shrink-0"><i class="fa-solid fa-download"></i></span>
               </span>
             </div>

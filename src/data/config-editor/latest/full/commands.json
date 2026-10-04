@@ -1,0 +1,125 @@
+{
+  "formatVersion": 1,
+  "id": "commands",
+  "resourceName": "commands.yml",
+  "sources": {
+    "schema": {
+      "kind": "kingdomsx-jar",
+      "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+      "pluginVersion": "1.17.27.3",
+      "fileName": "commands.json"
+    },
+    "defaults": [],
+    "runtime": {
+      "kind": "kingdomsx-jar",
+      "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+      "pluginVersion": "1.17.27.3"
+    }
+  },
+  "coverage": {
+    "defaultPathCount": 0,
+    "rawDefaultPathCount": 0,
+    "activeRuntimePathCount": 0,
+    "fieldCount": 4,
+    "capabilitySourceCounts": {
+      "jar-schema": 9
+    },
+    "commonSettingCount": 0
+  },
+  "schema": {
+    "kind": "mapping",
+    "keys": {
+      "kind": "string",
+      "typeName": "str",
+      "capability": {
+        "sources": [
+          "jar-schema"
+        ]
+      }
+    },
+    "values": {
+      "kind": "object",
+      "fields": [
+        {
+          "key": "aliases",
+          "type": {
+            "kind": "list",
+            "elements": {
+              "kind": "string",
+              "typeName": "str",
+              "capability": {
+                "sources": [
+                  "jar-schema"
+                ]
+              }
+            },
+            "capability": {
+              "sources": [
+                "jar-schema"
+              ]
+            },
+            "optional": true
+          }
+        },
+        {
+          "key": "disabled",
+          "type": {
+            "kind": "boolean",
+            "capability": {
+              "sources": [
+                "jar-schema"
+              ]
+            },
+            "optional": true
+          }
+        },
+        {
+          "key": "cooldown",
+          "type": {
+            "kind": "duration",
+            "typeName": "Period",
+            "capability": {
+              "sources": [
+                "jar-schema"
+              ]
+            },
+            "optional": true
+          }
+        },
+        {
+          "key": "disabled-worlds",
+          "type": {
+            "kind": "set",
+            "elements": {
+              "kind": "suggestion",
+              "typeName": "World",
+              "allowCustom": true,
+              "capability": {
+                "sources": [
+                  "jar-schema"
+                ]
+              }
+            },
+            "capability": {
+              "sources": [
+                "jar-schema"
+              ]
+            },
+            "optional": true
+          }
+        }
+      ],
+      "capability": {
+        "sources": [
+          "jar-schema"
+        ]
+      }
+    },
+    "fields": [],
+    "capability": {
+      "sources": [
+        "jar-schema"
+      ]
+    }
+  }
+}

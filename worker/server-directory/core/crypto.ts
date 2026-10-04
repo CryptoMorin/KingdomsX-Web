@@ -53,7 +53,7 @@ export async function secureCompareString(expected: string, actual: string): Pro
     return false;
   }
 
-  // Hash both values first to keep the comparison at a fixed lnegth
+  // Hash both values first to keep the comparison at a fixed length
   return constantTimeEqual(await sha256(expected), await sha256(actual));
 }
 

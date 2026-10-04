@@ -60,11 +60,13 @@ export async function routeVerificationChallenges(
 ): Promise<Response | null> {
   const { request, url, env } = context;
 
-  if (request.method === "POST" && url.pathname === "/api/servers/verification-challenges")
+  if (request.method === "POST" && url.pathname === "/api/servers/verification-challenges") {
     return createVerificationChallenge(request, env);
+  }
 
-  if (request.method === "GET" && url.pathname.startsWith("/api/servers/verification-challenges/"))
+  if (request.method === "GET" && url.pathname.startsWith("/api/servers/verification-challenges/")) {
     return getVerificationChallenge(request, url, env);
+  }
 
   return null;
 }
@@ -74,11 +76,13 @@ export async function routePluginVerification(
 ): Promise<Response | null> {
   const { request, url, env } = context;
 
-  if (request.method !== "POST")
+  if (request.method !== "POST") {
     return null;
+  }
 
-  if (url.pathname === PLUGIN_VERIFY_PATH)
+  if (url.pathname === PLUGIN_VERIFY_PATH) {
     return verifyPluginChallenge(request, env);
+  }
 
   const requestedVersion = pluginApiVersion(url.pathname);
 
@@ -88,8 +92,9 @@ export async function routePluginVerification(
 }
 
 function pluginApiVersion(pathname: string): number | null {
-  if (pathname === "/api/plugin/verify")
+  if (pathname === "/api/plugin/verify") {
     return 0;
+  }
 
   const match = pathname.match(/^\/api\/v(\d+)\/plugin\/verify$/);
 
@@ -133,18 +138,21 @@ async function createVerificationChallenge(
 
   const generationRateLimit = await verificationCreateRateLimit(request, env);
 
-  if (!generationRateLimit.ok)
+  if (!generationRateLimit.ok) {
     return verificationRateLimitResponse(generationRateLimit.error);
+  }
 
   const session = await requireSubmitter(request, env);
 
-  if (!session.ok)
+  if (!session.ok) {
     return json({ error: session.error }, session.status, NO_STORE_JSON_HEADERS);
+  }
 
   const accountRateLimit = await verificationCreateAccountRateLimit(session.account.id, env);
 
-  if (!accountRateLimit.ok)
+  if (!accountRateLimit.ok) {
     return rateLimitResponse(accountRateLimit.error);
+  }
 
   const body = await readJsonObject(request);
   const name = stringField(body, "name", 80);
@@ -155,8 +163,9 @@ async function createVerificationChallenge(
 
   validateListingNameAndDescription(name, description);
 
-  if (!normalized.ok)
+  if (!normalized.ok) {
     throw new ApiError(400, normalized.error);
+  }
 
   const timestamp = nowIso();
   const ownedServer = await getOwnedVerificationContext(env, session.account.id);
@@ -275,28 +284,33 @@ async function getVerificationChallenge(
 ): Promise<Response> {
   const readRateLimit = await verificationStatusRateLimit(request, env);
 
-  if (!readRateLimit.ok)
+  if (!readRateLimit.ok) {
     return rateLimitResponse(readRateLimit.error);
+  }
 
   const session = await requireSubmitter(request, env);
 
-  if (!session.ok)
+  if (!session.ok) {
     return json({ error: session.error }, session.status, NO_STORE_JSON_HEADERS);
+  }
 
   const id = url.pathname.replace("/api/servers/verification-challenges/", "").replace(/\/+$/, "");
 
-  if (!isUuidLike(id))
+  if (!isUuidLike(id)) {
     return json({ error: "Verification code not found." }, 404, NO_STORE_JSON_HEADERS);
+  }
 
   const accountRateLimit = await verificationStatusAccountRateLimit(session.account.id, env);
 
-  if (!accountRateLimit.ok)
+  if (!accountRateLimit.ok) {
     return rateLimitResponse(accountRateLimit.error);
+  }
 
   const row = await getChallengeForOwner(env, id, session.account.id);
 
-  if (!row)
+  if (!row) {
     return json({ error: "Verification code not found." }, 404, NO_STORE_JSON_HEADERS);
+  }
 
   return json(
     { ok: true, challenge: publicVerificationChallenge(row) },
@@ -329,8 +343,9 @@ async function verifyPluginChallenge(
     const body = await readJsonObject(request, false, PLUGIN_VERIFY_MAX_JSON_BODY_BYTES);
     const code = normalizeVerificationCode(stringField(body, "code", 64));
 
-    if (!code)
+    if (!code) {
       return pluginVerifyErrorResponse("invalid_request", "Invalid request.", 400);
+    }
 
     const callbackPayload = pluginCallbackPayload(body);
 
@@ -338,8 +353,9 @@ async function verifyPluginChallenge(
       !callbackPayload.pluginVersion ||
       !callbackPayload.serverSoftware ||
       !callbackPayload.minecraftVersion
-    )
+    ) {
       return pluginVerifyErrorResponse("invalid_request", "Invalid request.", 400);
+    }
 
     const rateLimit = await pluginVerifyRateLimit(request, env);
 
@@ -353,13 +369,15 @@ async function verifyPluginChallenge(
     const timestamp = nowIso();
     const row = await getChallengeByCodeHash(env, codeHash);
 
-    if (!row)
+    if (!row) {
       return invalidVerificationCodeResponse();
+    }
 
     const visibleStatus = verificationChallengeStatus(row, timestamp);
 
-    if (visibleStatus === "expired" || visibleStatus === "consumed")
+    if (visibleStatus === "expired" || visibleStatus === "consumed") {
       return invalidVerificationCodeResponse();
+    }
 
     if (visibleStatus === "verified") {
       const message = "Server verification is already complete. Return to the submission page.";
@@ -392,8 +410,9 @@ async function verifyPluginChallenge(
       userAgentHash
     });
 
-    if (!updated)
+    if (!updated) {
       return invalidVerificationCodeResponse();
+    }
 
     return json(
       {
@@ -437,7 +456,7 @@ async function insertVerificationChallenge(
     createdAt: string;
   }
 ): Promise<{ id: string; code: string; createdAt: string; expiresAt: string; reused: boolean }> {
-  // Unique pending challenge constraint also closes races between simultaneous create requests
+  // The unique pending challenge also closes the race between simultaneous requests
   for (let attempt = 0; attempt < 3; attempt += 1) {
     const id = crypto.randomUUID();
     const code = await verificationCodeForChallenge(id, env);
@@ -454,13 +473,15 @@ async function insertVerificationChallenge(
         reused: false
       };
     } catch (error) {
-      if (attempt >= 2 || !isD1UniqueConstraintError(error))
+      if (attempt >= 2 || !isD1UniqueConstraintError(error)) {
         throw error;
+      }
 
       const existing = await getPendingChallenge(env, challenge.ownerAccountId);
 
-      if (!existing)
+      if (!existing) {
         continue;
+      }
 
       const sameTarget = existing.normalized_host === challenge.host && existing.port === challenge.port;
 

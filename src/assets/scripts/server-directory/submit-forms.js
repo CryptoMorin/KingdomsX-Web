@@ -17,6 +17,7 @@ export const createSubmitFormKit = ({
 
   const initTooltips = (container) => {
     disposeTooltips();
+
     const tooltips = Array.from(container.querySelectorAll('[data-bs-toggle="tooltip"]')).map(
       (element) =>
         Tooltip.getOrCreateInstance(element, {
@@ -159,11 +160,13 @@ export const createSubmitFormKit = ({
 
   const renderLoggedOut = () => {
     setSubmitView("logged-out");
+
     const panel = document.createElement("div");
     panel.className = "server-submit-login text-center";
 
     const process = document.createElement("div");
     process.className = "server-submit-process feature-band";
+
     messages.submit.loggedOutSteps.forEach((step) => {
       const column = document.createElement("article");
       column.className = "server-submit-process-column";
@@ -306,6 +309,7 @@ export const createSubmitFormKit = ({
       counter.className = "server-submit-counter pe-none";
       counter.id = `${control.id}-counter`;
       control.setAttribute("aria-describedby", counter.id);
+
       const updateCounter = () => {
         counter.textContent = `${control.value.length}/${maxLength}`;
         const overLimit = control.value.length > maxLength;
@@ -367,7 +371,7 @@ export const createSubmitFormKit = ({
   };
 
   const isValidPublicServerAddress = (value) => {
-    // Fast feedback only: the Worker normalizes and makes the final decision.
+    // The Worker handles final address validation
     const host = String(value ?? "")
       .trim()
       .toLowerCase()
@@ -605,9 +609,10 @@ export const createSubmitFormKit = ({
 
     return "Save Changes";
   };
+
   return {
     initTooltips,
-    disposeTooltips: () => disposeTooltips(),
+    disposeTooltips,
     statePanel,
     createSubmitLoadingSkeleton,
     renderSubmitLoading,

@@ -1,0 +1,365 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "guis/mails/editor.yml",
+  "schemaId": "guis/schema",
+  "options": [
+    {
+      "path": [
+        "title"
+      ],
+      "source": "\"{$sep}-=( {$p}Mail {$sep})=-\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "type"
+      ],
+      "source": "HOPPER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options"
+      ],
+      "source": "\r\n  subject:\r\n    slot: 0\r\n    material: NAME_TAG\r\n    name: '{$p}Subject{$colon}'\r\n    lore: '&f%subject%'\r\n  recipients:\r\n    slot: 1\r\n    material: BOOK\r\n    name: '{$p}Recipients{$colon}'\r\n    lore: |\r\n      {$s}To{$colon} {$sp}%to%\r\n      {$s}CC{$colon} {$sp}%cc%\r\n  summary:\r\n    slot: 2\r\n    material: PAPER\r\n    name: '{$p}Summary{$colon}'\r\n    lore: '&f%summary%'\r\n  reset:\r\n    slot: 3\r\n    material: RED_WOOL\r\n    name: '&cReset'\r\n    lore: |\r\n      {$sep}Resets all mail properties such\r\n      as the subject, recipients and\r\n      the content.\r\n  preview:\r\n    slot: 4\r\n    material: WRITTEN_BOOK\r\n    name: '{$sp}Preview'\r\n    lore: |\r\n      {$sep}Shows how this mail would\r\n      look like when people read it.",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "subject"
+      ],
+      "source": "\r\n    slot: 0\r\n    material: NAME_TAG\r\n    name: '{$p}Subject{$colon}'\r\n    lore: '&f%subject%'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "subject",
+        "slot"
+      ],
+      "source": "0",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "subject",
+        "material"
+      ],
+      "source": "NAME_TAG",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "subject",
+        "name"
+      ],
+      "source": "'{$p}Subject{$colon}'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "subject",
+        "lore"
+      ],
+      "source": "'&f%subject%'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "recipients"
+      ],
+      "source": "\r\n    slot: 1\r\n    material: BOOK\r\n    name: '{$p}Recipients{$colon}'\r\n    lore: |\r\n      {$s}To{$colon} {$sp}%to%\r\n      {$s}CC{$colon} {$sp}%cc%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "recipients",
+        "slot"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "recipients",
+        "material"
+      ],
+      "source": "BOOK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "recipients",
+        "name"
+      ],
+      "source": "'{$p}Recipients{$colon}'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "recipients",
+        "lore"
+      ],
+      "source": "|\r\n      {$s}To{$colon} {$sp}%to%\r\n      {$s}CC{$colon} {$sp}%cc%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "summary"
+      ],
+      "source": "\r\n    slot: 2\r\n    material: PAPER\r\n    name: '{$p}Summary{$colon}'\r\n    lore: '&f%summary%'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "summary",
+        "slot"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "summary",
+        "material"
+      ],
+      "source": "PAPER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "summary",
+        "name"
+      ],
+      "source": "'{$p}Summary{$colon}'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "summary",
+        "lore"
+      ],
+      "source": "'&f%summary%'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "reset"
+      ],
+      "source": "\r\n    slot: 3\r\n    material: RED_WOOL\r\n    name: '&cReset'\r\n    lore: |\r\n      {$sep}Resets all mail properties such\r\n      as the subject, recipients and\r\n      the content.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "reset",
+        "slot"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "reset",
+        "material"
+      ],
+      "source": "RED_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "reset",
+        "name"
+      ],
+      "source": "'&cReset'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "reset",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}Resets all mail properties such\r\n      as the subject, recipients and\r\n      the content.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "preview"
+      ],
+      "source": "\r\n    slot: 4\r\n    material: WRITTEN_BOOK\r\n    name: '{$sp}Preview'\r\n    lore: |\r\n      {$sep}Shows how this mail would\r\n      look like when people read it.",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "preview",
+        "slot"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "preview",
+        "material"
+      ],
+      "source": "WRITTEN_BOOK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "preview",
+        "name"
+      ],
+      "source": "'{$sp}Preview'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "preview",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}Shows how this mail would\r\n      look like when people read it.",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

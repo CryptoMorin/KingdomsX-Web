@@ -1,0 +1,805 @@
+{
+  "formatVersion": 1,
+  "source": {
+    "addonId": "outposts",
+    "artifactPath": "addons/Kingdoms-Addon-Outposts-3.1.2.4.jar",
+    "artifactBlobSha": "831afdbcfedd0d7574337c93a662b58e51186ee0",
+    "artifactSha256": "37567955a0194f18a5eed5b11631d4e1225cc927605e183d3a438ca9469ac633",
+    "addonVersion": "3.1.2.4"
+  },
+  "resourceName": "guis/outposts/editor.yml",
+  "schemaId": "guis/schema",
+  "sha256": "c663cbd98df724862213e15b3155732bd6d33ebe1a8f941e898c8800e471e908",
+  "options": [
+    {
+      "path": [
+        "title"
+      ],
+      "source": "\"{$sep}-=[ {$p}%outpost-name% {$sep}]=-\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "rows"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options"
+      ],
+      "source": "\r\n  decoration:\r\n    slots: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 17, 18, 19, 20, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35 ]\r\n    material: BLACK_STAINED_GLASS_PANE\r\n    name: ''\r\n  name:\r\n    posx: 2\r\n    posy: 2\r\n    material: PAPER\r\n    name: '{$p}Name{$colon} {$s}%outpost-name%'\r\n  region:\r\n    posx: 3\r\n    posy: 2\r\n    material: ENDER_EYE\r\n    name: '{$p}Region{$colon} {$s}%outpost-region%'\r\n  center:\r\n    posx: 4\r\n    posy: 2\r\n    material: COMPASS\r\n    name: '{$p}Center'\r\n    lore: |\r\n      %outpost-center%\r\n      {$sep}The location where the rewards\r\n      are dropped and fireworks are spawned.\r\n\r\n      {$p}Left-Click to set to your\r\n      current location.\r\n\r\n      {$sp}Right-click to teleport to\r\n      the set location.\r\n  arena-mobs:\r\n    posx: 5\r\n    posy: 2\r\n    material: ZOMBIE_HEAD\r\n    name: '{$p}Arena Mobs'\r\n    lore: |\r\n      {$sep}Configure what types of\r\n      mobs and bosses spawn during\r\n      the event in the area.\r\n  spawn:\r\n    posx: 6\r\n    posy: 2\r\n    material: ENDER_PEARL\r\n    name: '{$p}Spawn'\r\n    lore: |\r\n      %outpost-spawn%\r\n      {$sep}Where the players get teleported\r\n      to when they join the event.\r\n\r\n      {$p}Left-Click to set to your\r\n      current location.\r\n\r\n      {$sp}Right-click to teleport to\r\n      the set location.\r\n  bossbar:\r\n    posx: 7\r\n    posy: 2\r\n    material: BREWING_STAND\r\n    name: '{$p}BossBar Settings'\r\n  delete:\r\n    posx: 8\r\n    posy: 2\r\n    material: BARRIER\r\n    name: '&cDelete this outpost'\r\n  entrance-money:\r\n    posx: 4\r\n    posy: 3\r\n    material: DIAMOND\r\n    name: '{$p}Entrance Money Fee{$colon} {$s}$%outpost-entrance-money%'\r\n  rewards:\r\n    posx: 5\r\n    posy: 3\r\n    material: BOOK\r\n    name: '{$p}Rewards'\r\n  entrance-resource-points-fee:\r\n    posx: 6\r\n    posy: 3\r\n    material: EMERALD\r\n    name: '{$p}Entrance Resource Points Fee{$colon} {$s}%outpost-entrance-resource-points-fee%'",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "decoration"
+      ],
+      "source": "\r\n    slots: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 17, 18, 19, 20, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35 ]\r\n    material: BLACK_STAINED_GLASS_PANE\r\n    name: ''\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "decoration",
+        "slots"
+      ],
+      "source": "[ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 17, 18, 19, 20, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "17",
+        "18",
+        "19",
+        "20",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30",
+        "31",
+        "32",
+        "33",
+        "34",
+        "35"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "decoration",
+        "material"
+      ],
+      "source": "BLACK_STAINED_GLASS_PANE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "decoration",
+        "name"
+      ],
+      "source": "''",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "name"
+      ],
+      "source": "\r\n    posx: 2\r\n    posy: 2\r\n    material: PAPER\r\n    name: '{$p}Name{$colon} {$s}%outpost-name%'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "name",
+        "posx"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "name",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "name",
+        "material"
+      ],
+      "source": "PAPER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "name",
+        "name"
+      ],
+      "source": "'{$p}Name{$colon} {$s}%outpost-name%'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "region"
+      ],
+      "source": "\r\n    posx: 3\r\n    posy: 2\r\n    material: ENDER_EYE\r\n    name: '{$p}Region{$colon} {$s}%outpost-region%'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "region",
+        "posx"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "region",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "region",
+        "material"
+      ],
+      "source": "ENDER_EYE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "region",
+        "name"
+      ],
+      "source": "'{$p}Region{$colon} {$s}%outpost-region%'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "center"
+      ],
+      "source": "\r\n    posx: 4\r\n    posy: 2\r\n    material: COMPASS\r\n    name: '{$p}Center'\r\n    lore: |\r\n      %outpost-center%\r\n      {$sep}The location where the rewards\r\n      are dropped and fireworks are spawned.\r\n\r\n      {$p}Left-Click to set to your\r\n      current location.\r\n\r\n      {$sp}Right-click to teleport to\r\n      the set location.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "center",
+        "posx"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "center",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "center",
+        "material"
+      ],
+      "source": "COMPASS",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "center",
+        "name"
+      ],
+      "source": "'{$p}Center'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "center",
+        "lore"
+      ],
+      "source": "|\r\n      %outpost-center%\r\n      {$sep}The location where the rewards\r\n      are dropped and fireworks are spawned.\r\n\r\n      {$p}Left-Click to set to your\r\n      current location.\r\n\r\n      {$sp}Right-click to teleport to\r\n      the set location.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "arena-mobs"
+      ],
+      "source": "\r\n    posx: 5\r\n    posy: 2\r\n    material: ZOMBIE_HEAD\r\n    name: '{$p}Arena Mobs'\r\n    lore: |\r\n      {$sep}Configure what types of\r\n      mobs and bosses spawn during\r\n      the event in the area.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "arena-mobs",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "arena-mobs",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "arena-mobs",
+        "material"
+      ],
+      "source": "ZOMBIE_HEAD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "arena-mobs",
+        "name"
+      ],
+      "source": "'{$p}Arena Mobs'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "arena-mobs",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}Configure what types of\r\n      mobs and bosses spawn during\r\n      the event in the area.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "spawn"
+      ],
+      "source": "\r\n    posx: 6\r\n    posy: 2\r\n    material: ENDER_PEARL\r\n    name: '{$p}Spawn'\r\n    lore: |\r\n      %outpost-spawn%\r\n      {$sep}Where the players get teleported\r\n      to when they join the event.\r\n\r\n      {$p}Left-Click to set to your\r\n      current location.\r\n\r\n      {$sp}Right-click to teleport to\r\n      the set location.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "spawn",
+        "posx"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "spawn",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "spawn",
+        "material"
+      ],
+      "source": "ENDER_PEARL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "spawn",
+        "name"
+      ],
+      "source": "'{$p}Spawn'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "spawn",
+        "lore"
+      ],
+      "source": "|\r\n      %outpost-spawn%\r\n      {$sep}Where the players get teleported\r\n      to when they join the event.\r\n\r\n      {$p}Left-Click to set to your\r\n      current location.\r\n\r\n      {$sp}Right-click to teleport to\r\n      the set location.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "bossbar"
+      ],
+      "source": "\r\n    posx: 7\r\n    posy: 2\r\n    material: BREWING_STAND\r\n    name: '{$p}BossBar Settings'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "bossbar",
+        "posx"
+      ],
+      "source": "7",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "bossbar",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "bossbar",
+        "material"
+      ],
+      "source": "BREWING_STAND",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "bossbar",
+        "name"
+      ],
+      "source": "'{$p}BossBar Settings'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "delete"
+      ],
+      "source": "\r\n    posx: 8\r\n    posy: 2\r\n    material: BARRIER\r\n    name: '&cDelete this outpost'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "delete",
+        "posx"
+      ],
+      "source": "8",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "delete",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "delete",
+        "material"
+      ],
+      "source": "BARRIER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "delete",
+        "name"
+      ],
+      "source": "'&cDelete this outpost'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "entrance-money"
+      ],
+      "source": "\r\n    posx: 4\r\n    posy: 3\r\n    material: DIAMOND\r\n    name: '{$p}Entrance Money Fee{$colon} {$s}$%outpost-entrance-money%'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "entrance-money",
+        "posx"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "entrance-money",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "entrance-money",
+        "material"
+      ],
+      "source": "DIAMOND",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "entrance-money",
+        "name"
+      ],
+      "source": "'{$p}Entrance Money Fee{$colon} {$s}$%outpost-entrance-money%'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "rewards"
+      ],
+      "source": "\r\n    posx: 5\r\n    posy: 3\r\n    material: BOOK\r\n    name: '{$p}Rewards'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "rewards",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "rewards",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "rewards",
+        "material"
+      ],
+      "source": "BOOK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "rewards",
+        "name"
+      ],
+      "source": "'{$p}Rewards'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "entrance-resource-points-fee"
+      ],
+      "source": "\r\n    posx: 6\r\n    posy: 3\r\n    material: EMERALD\r\n    name: '{$p}Entrance Resource Points Fee{$colon} {$s}%outpost-entrance-resource-points-fee%'",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "entrance-resource-points-fee",
+        "posx"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "entrance-resource-points-fee",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "entrance-resource-points-fee",
+        "material"
+      ],
+      "source": "EMERALD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "entrance-resource-points-fee",
+        "name"
+      ],
+      "source": "'{$p}Entrance Resource Points Fee{$colon} {$s}%outpost-entrance-resource-points-fee%'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

@@ -1,0 +1,4919 @@
+{
+  "formatVersion": 1,
+  "id": "invasions",
+  "resourceName": "invasions.yml",
+  "sources": {
+    "schema": {
+      "kind": "kingdomsx-jar",
+      "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+      "pluginVersion": "1.17.27.3",
+      "fileName": "invasions.json"
+    },
+    "defaults": [
+      "default--invasions.json"
+    ],
+    "runtime": {
+      "kind": "kingdomsx-jar",
+      "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+      "pluginVersion": "1.17.27.3"
+    }
+  },
+  "coverage": {
+    "defaultPathCount": 390,
+    "rawDefaultPathCount": 390,
+    "activeRuntimePathCount": 10,
+    "fieldCount": 294,
+    "capabilitySourceCounts": {
+      "jar-schema": 206,
+      "jar-default": 239,
+      "editor-overlay": 162,
+      "jar-runtime": 10
+    },
+    "commonSettingCount": 0
+  },
+  "schema": {
+    "kind": "object",
+    "fields": [
+      {
+        "key": "strength-comparison",
+        "type": {
+          "kind": "union",
+          "description": "Set to false to disable, or enter a condition that blocks an invasion when it evaluates to true.",
+          "choices": [
+            {
+              "kind": "literal",
+              "value": false,
+              "label": "Disabled (false)",
+              "capability": {
+                "sources": [
+                  "editor-overlay"
+                ]
+              }
+            },
+            {
+              "kind": "expression",
+              "language": "condition",
+              "label": "Condition formula",
+              "description": "The invader is the primary context and the target is the secondary context.",
+              "capability": {
+                "sources": [
+                  "editor-overlay"
+                ]
+              }
+            }
+          ],
+          "optional": true,
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default",
+              "editor-overlay"
+            ]
+          }
+        }
+      },
+      {
+        "key": "simultaneous-invasions",
+        "type": {
+          "kind": "integer",
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "By default, your kingdom can only invade one kingdom at a time. 0 means no limit.",
+          "optional": true
+        }
+      },
+      {
+        "key": "multi-chunk-invasion",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "radius",
+              "type": {
+                "kind": "integer",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "Ignores unclaimed lands and searches the lands with a simple square algorithm. This ignores any land that doesn't belong to the kingdom which the player is standing on. So 3 means 3x3 = 9 chunks around the player This also ignores any chunks protected by powercells. Set to 1 or 0 to disable",
+                "optional": true
+              }
+            }
+          ],
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "Whether doing \"/k invade\" invades multiple lands or just one that the player is currently standing in.",
+          "optional": true
+        }
+      },
+      {
+        "key": "adjoining-protection",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "radius",
+              "type": {
+                "kind": "integer",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "The chunk radius of the protection. This controls the amount of square ring layers around the chunk that the player wants to invade. If the chunk that the player wants to invade is fully surrounded by the amount of rings specified here (to relax this option, check the option below) then the player won't be able to invade that specific chunk. E.g. 1 -> 3x3 = 9 (including the center chunk), 2 -> 5x5 = 25 Set to 0 to completely disable this protection system.",
+                "optional": true
+              }
+            },
+            {
+              "key": "marginal-error-limit",
+              "type": {
+                "kind": "integer",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "The best way to explain this option is with an example: E.g. When the radius is set to 1 and this is set to 1: If a land has 7 claims around it, it'll still protect this land since it only has 1 missing surrounding claims. (1 radius -> 1 land surrounding each side of a chunk -> 3x3 = 9 -> excluding the target land itself -> 8 lands -> out of these 8 lands around the target chunk one is not claimed -> 7 claimed lands) Be careful with this value as you can technically make a kingdom completely immune to invasions.",
+                "optional": true
+              }
+            }
+          ],
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "This prevents players from running straight to the center of claims and invading that area. Players will be forced to invade neighboring chunks and fight their way through their targetted land. This protection only works for lands that have all their sides surrounded by another claim. Using this option makes powercells useless for the most part.",
+          "optional": true
+        }
+      },
+      {
+        "key": "bonus",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "resource-points",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "The bonuses get smaller and smaller every time you invade a new land from the same kingdom. These are different when invading the nexus chunk, check below section. You can also use the \"ransack\" boolean placeholder here.",
+                "optional": true
+              }
+            },
+            {
+              "key": "bank",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "item-rewards",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "enabled",
+                    "type": {
+                      "kind": "boolean",
+                      "description": "Whether invasion win chests spawn at all.",
+                      "optional": true,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "key": "chance",
+                    "type": {
+                      "kind": "decimal",
+                      "description": "Overall chance to spawn reward chests.",
+                      "optional": true,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "key": "total",
+                    "type": {
+                      "kind": "integer",
+                      "description": "Maximum chests spawned for a win.",
+                      "optional": true,
+                      "minimum": 0,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "key": "chests",
+                    "type": {
+                      "kind": "mapping",
+                      "keys": {
+                        "kind": "string",
+                        "typeName": "str",
+                        "description": "Chest tier id such as common or rare",
+                        "optional": true,
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        }
+                      },
+                      "values": {
+                        "kind": "object",
+                        "fields": [
+                          {
+                            "key": "total",
+                            "type": {
+                              "kind": "integer",
+                              "description": "How many chests of this tier may spawn.",
+                              "optional": true,
+                              "minimum": 0,
+                              "capability": {
+                                "sources": [
+                                  "editor-overlay"
+                                ]
+                              }
+                            }
+                          },
+                          {
+                            "key": "chance",
+                            "type": {
+                              "kind": "decimal",
+                              "description": "Chance for this tier to be selected.",
+                              "optional": true,
+                              "capability": {
+                                "sources": [
+                                  "editor-overlay"
+                                ]
+                              }
+                            }
+                          },
+                          {
+                            "key": "display-name",
+                            "type": {
+                              "kind": "string",
+                              "typeName": "Message",
+                              "description": "Tier display name.",
+                              "optional": true,
+                              "capability": {
+                                "sources": [
+                                  "editor-overlay"
+                                ]
+                              }
+                            }
+                          },
+                          {
+                            "key": "hologram",
+                            "type": {
+                              "kind": "object",
+                              "fields": [
+                                {
+                                  "key": "lines",
+                                  "type": {
+                                    "kind": "list",
+                                    "elements": {
+                                      "kind": "string",
+                                      "typeName": "Message",
+                                      "description": "",
+                                      "optional": true,
+                                      "capability": {
+                                        "sources": [
+                                          "editor-overlay"
+                                        ]
+                                      }
+                                    },
+                                    "description": "Hologram lines shown above the reward chest.",
+                                    "optional": true,
+                                    "capability": {
+                                      "sources": [
+                                        "editor-overlay"
+                                      ]
+                                    }
+                                  }
+                                }
+                              ],
+                              "description": "Optional chest hologram.",
+                              "optional": true,
+                              "required": [],
+                              "capability": {
+                                "sources": [
+                                  "editor-overlay"
+                                ]
+                              }
+                            }
+                          },
+                          {
+                            "key": "content",
+                            "type": {
+                              "kind": "mapping",
+                              "keys": {
+                                "kind": "string",
+                                "typeName": "str",
+                                "description": "Reward entry id",
+                                "optional": true,
+                                "capability": {
+                                  "sources": [
+                                    "editor-overlay"
+                                  ]
+                                }
+                              },
+                              "values": {
+                                "kind": "object",
+                                "fields": [
+                                  {
+                                    "key": "chance",
+                                    "type": {
+                                      "kind": "decimal",
+                                      "description": "Drop chance for this reward entry.",
+                                      "optional": true,
+                                      "capability": {
+                                        "sources": [
+                                          "editor-overlay"
+                                        ]
+                                      }
+                                    }
+                                  },
+                                  {
+                                    "key": "chances",
+                                    "type": {
+                                      "kind": "decimal",
+                                      "description": "Alternate spelling of chance used by some default tiers.",
+                                      "optional": true,
+                                      "capability": {
+                                        "sources": [
+                                          "editor-overlay"
+                                        ]
+                                      }
+                                    }
+                                  },
+                                  {
+                                    "key": "tries",
+                                    "type": {
+                                      "kind": "integer",
+                                      "description": "How many times this entry may roll.",
+                                      "optional": true,
+                                      "minimum": 1,
+                                      "capability": {
+                                        "sources": [
+                                          "editor-overlay"
+                                        ]
+                                      }
+                                    }
+                                  },
+                                  {
+                                    "key": "display-name",
+                                    "type": {
+                                      "kind": "string",
+                                      "typeName": "Message",
+                                      "description": "Optional hologram or list display name.",
+                                      "optional": true,
+                                      "capability": {
+                                        "sources": [
+                                          "editor-overlay"
+                                        ]
+                                      }
+                                    }
+                                  },
+                                  {
+                                    "key": "hologram",
+                                    "type": {
+                                      "kind": "object",
+                                      "fields": [
+                                        {
+                                          "key": "lines",
+                                          "type": {
+                                            "kind": "list",
+                                            "elements": {
+                                              "kind": "string",
+                                              "typeName": "Message",
+                                              "description": "",
+                                              "optional": true,
+                                              "capability": {
+                                                "sources": [
+                                                  "editor-overlay"
+                                                ]
+                                              }
+                                            },
+                                            "description": "Hologram lines shown above the reward chest.",
+                                            "optional": true,
+                                            "capability": {
+                                              "sources": [
+                                                "editor-overlay"
+                                              ]
+                                            }
+                                          }
+                                        }
+                                      ],
+                                      "description": "Optional reward hologram.",
+                                      "optional": true,
+                                      "required": [],
+                                      "capability": {
+                                        "sources": [
+                                          "editor-overlay"
+                                        ]
+                                      }
+                                    }
+                                  },
+                                  {
+                                    "key": "item",
+                                    "type": {
+                                      "kind": "object",
+                                      "fields": [
+                                        {
+                                          "key": "material",
+                                          "type": {
+                                            "kind": "suggestion",
+                                            "typeName": "Material",
+                                            "description": "Reward item material.",
+                                            "optional": true,
+                                            "capability": {
+                                              "sources": [
+                                                "editor-overlay"
+                                              ]
+                                            },
+                                            "allowCustom": true
+                                          }
+                                        },
+                                        {
+                                          "key": "amount",
+                                          "type": {
+                                            "kind": "integer",
+                                            "description": "Stack amount.",
+                                            "optional": true,
+                                            "minimum": 1,
+                                            "capability": {
+                                              "sources": [
+                                                "editor-overlay"
+                                              ]
+                                            }
+                                          }
+                                        },
+                                        {
+                                          "key": "enchants",
+                                          "type": {
+                                            "kind": "mapping",
+                                            "keys": {
+                                              "kind": "suggestion",
+                                              "typeName": "Enchant",
+                                              "description": "Spigot Enchant.",
+                                              "optional": true,
+                                              "capability": {
+                                                "sources": [
+                                                  "editor-overlay"
+                                                ]
+                                              },
+                                              "allowCustom": true
+                                            },
+                                            "values": {
+                                              "kind": "integer",
+                                              "description": "Level",
+                                              "optional": true,
+                                              "capability": {
+                                                "sources": [
+                                                  "editor-overlay"
+                                                ]
+                                              }
+                                            },
+                                            "description": "Enchantments.",
+                                            "optional": true,
+                                            "capability": {
+                                              "sources": [
+                                                "editor-overlay"
+                                              ]
+                                            }
+                                          }
+                                        },
+                                        {
+                                          "key": "effects",
+                                          "type": {
+                                            "kind": "list",
+                                            "elements": {
+                                              "kind": "string",
+                                              "typeName": "str",
+                                              "description": "",
+                                              "optional": true,
+                                              "capability": {
+                                                "sources": [
+                                                  "editor-overlay"
+                                                ]
+                                              }
+                                            },
+                                            "description": "Potion effect specs.",
+                                            "optional": true,
+                                            "capability": {
+                                              "sources": [
+                                                "editor-overlay"
+                                              ]
+                                            }
+                                          }
+                                        }
+                                      ],
+                                      "description": "Reward item definition.",
+                                      "optional": true,
+                                      "required": [],
+                                      "capability": {
+                                        "sources": [
+                                          "editor-overlay"
+                                        ]
+                                      }
+                                    }
+                                  }
+                                ],
+                                "description": "Invasion chest reward entry. chance and chances are interchangeable.",
+                                "optional": true,
+                                "required": [],
+                                "capability": {
+                                  "sources": [
+                                    "editor-overlay"
+                                  ]
+                                }
+                              },
+                              "description": "Reward rolls inside this chest tier.",
+                              "optional": true,
+                              "capability": {
+                                "sources": [
+                                  "editor-overlay"
+                                ]
+                              }
+                            }
+                          },
+                          {
+                            "key": "chances",
+                            "type": {
+                              "kind": "decimal",
+                              "description": "Alternate spelling of chance used by some default tiers.",
+                              "optional": true,
+                              "capability": {
+                                "sources": [
+                                  "editor-overlay"
+                                ]
+                              }
+                            }
+                          },
+                          {
+                            "key": "tries",
+                            "type": {
+                              "kind": "integer",
+                              "description": "How many times this entry may roll.",
+                              "optional": true,
+                              "minimum": 1,
+                              "capability": {
+                                "sources": [
+                                  "editor-overlay"
+                                ]
+                              }
+                            }
+                          },
+                          {
+                            "key": "item",
+                            "type": {
+                              "kind": "object",
+                              "fields": [
+                                {
+                                  "key": "material",
+                                  "type": {
+                                    "kind": "suggestion",
+                                    "typeName": "Material",
+                                    "description": "Reward item material.",
+                                    "optional": true,
+                                    "capability": {
+                                      "sources": [
+                                        "editor-overlay"
+                                      ]
+                                    },
+                                    "allowCustom": true
+                                  }
+                                },
+                                {
+                                  "key": "amount",
+                                  "type": {
+                                    "kind": "integer",
+                                    "description": "Stack amount.",
+                                    "optional": true,
+                                    "minimum": 1,
+                                    "capability": {
+                                      "sources": [
+                                        "editor-overlay"
+                                      ]
+                                    }
+                                  }
+                                },
+                                {
+                                  "key": "enchants",
+                                  "type": {
+                                    "kind": "mapping",
+                                    "keys": {
+                                      "kind": "suggestion",
+                                      "typeName": "Enchant",
+                                      "description": "Spigot Enchant.",
+                                      "optional": true,
+                                      "capability": {
+                                        "sources": [
+                                          "editor-overlay"
+                                        ]
+                                      },
+                                      "allowCustom": true
+                                    },
+                                    "values": {
+                                      "kind": "integer",
+                                      "description": "Level",
+                                      "optional": true,
+                                      "capability": {
+                                        "sources": [
+                                          "editor-overlay"
+                                        ]
+                                      }
+                                    },
+                                    "description": "Enchantments.",
+                                    "optional": true,
+                                    "capability": {
+                                      "sources": [
+                                        "editor-overlay"
+                                      ]
+                                    }
+                                  }
+                                },
+                                {
+                                  "key": "effects",
+                                  "type": {
+                                    "kind": "list",
+                                    "elements": {
+                                      "kind": "string",
+                                      "typeName": "str",
+                                      "description": "",
+                                      "optional": true,
+                                      "capability": {
+                                        "sources": [
+                                          "editor-overlay"
+                                        ]
+                                      }
+                                    },
+                                    "description": "Potion effect specs.",
+                                    "optional": true,
+                                    "capability": {
+                                      "sources": [
+                                        "editor-overlay"
+                                      ]
+                                    }
+                                  }
+                                }
+                              ],
+                              "description": "Reward item definition.",
+                              "optional": true,
+                              "required": [],
+                              "capability": {
+                                "sources": [
+                                  "editor-overlay"
+                                ]
+                              }
+                            }
+                          }
+                        ],
+                        "description": "Invasion chest reward entry. chance and chances are interchangeable.",
+                        "optional": true,
+                        "required": [],
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        }
+                      },
+                      "description": "Named chest tiers for invasion item rewards.",
+                      "optional": true,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "key": "chances",
+                    "type": {
+                      "kind": "decimal",
+                      "description": "Alternate spelling of chance used by some default tiers.",
+                      "optional": true,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "key": "tries",
+                    "type": {
+                      "kind": "integer",
+                      "description": "How many times this entry may roll.",
+                      "optional": true,
+                      "minimum": 1,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "key": "display-name",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "Message",
+                      "description": "Optional hologram or list display name.",
+                      "optional": true,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "key": "hologram",
+                    "type": {
+                      "kind": "object",
+                      "fields": [
+                        {
+                          "key": "lines",
+                          "type": {
+                            "kind": "list",
+                            "elements": {
+                              "kind": "string",
+                              "typeName": "Message",
+                              "description": "",
+                              "optional": true,
+                              "capability": {
+                                "sources": [
+                                  "editor-overlay"
+                                ]
+                              }
+                            },
+                            "description": "Hologram lines shown above the reward chest.",
+                            "optional": true,
+                            "capability": {
+                              "sources": [
+                                "editor-overlay"
+                              ]
+                            }
+                          }
+                        }
+                      ],
+                      "description": "Optional reward hologram.",
+                      "optional": true,
+                      "required": [],
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "key": "item",
+                    "type": {
+                      "kind": "object",
+                      "fields": [
+                        {
+                          "key": "material",
+                          "type": {
+                            "kind": "suggestion",
+                            "typeName": "Material",
+                            "description": "Reward item material.",
+                            "optional": true,
+                            "capability": {
+                              "sources": [
+                                "editor-overlay"
+                              ]
+                            },
+                            "allowCustom": true
+                          }
+                        },
+                        {
+                          "key": "amount",
+                          "type": {
+                            "kind": "integer",
+                            "description": "Stack amount.",
+                            "optional": true,
+                            "minimum": 1,
+                            "capability": {
+                              "sources": [
+                                "editor-overlay"
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "key": "enchants",
+                          "type": {
+                            "kind": "mapping",
+                            "keys": {
+                              "kind": "suggestion",
+                              "typeName": "Enchant",
+                              "description": "Spigot Enchant.",
+                              "optional": true,
+                              "capability": {
+                                "sources": [
+                                  "editor-overlay"
+                                ]
+                              },
+                              "allowCustom": true
+                            },
+                            "values": {
+                              "kind": "integer",
+                              "description": "Level",
+                              "optional": true,
+                              "capability": {
+                                "sources": [
+                                  "editor-overlay"
+                                ]
+                              }
+                            },
+                            "description": "Enchantments.",
+                            "optional": true,
+                            "capability": {
+                              "sources": [
+                                "editor-overlay"
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "key": "effects",
+                          "type": {
+                            "kind": "list",
+                            "elements": {
+                              "kind": "string",
+                              "typeName": "str",
+                              "description": "",
+                              "optional": true,
+                              "capability": {
+                                "sources": [
+                                  "editor-overlay"
+                                ]
+                              }
+                            },
+                            "description": "Potion effect specs.",
+                            "optional": true,
+                            "capability": {
+                              "sources": [
+                                "editor-overlay"
+                              ]
+                            }
+                          }
+                        }
+                      ],
+                      "description": "Reward item definition.",
+                      "optional": true,
+                      "required": [],
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      }
+                    }
+                  }
+                ],
+                "description": "Invasion chest reward entry. chance and chances are interchangeable.",
+                "optional": true,
+                "required": [],
+                "capability": {
+                  "sources": [
+                    "editor-overlay",
+                    "jar-default"
+                  ]
+                }
+              }
+            }
+          ],
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "Resources taken after invading a normal land. For nexus land resources there's a separate section. Refer to \"on-nexus-loss\"",
+          "optional": true
+        }
+      },
+      {
+        "key": "on-nexus-loss",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "disband",
+              "type": {
+                "kind": "boolean",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "drop-nexus-chest-items",
+              "type": {
+                "kind": "boolean",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "resource-points",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "Bonuses given to the invader",
+                "optional": true
+              }
+            },
+            {
+              "key": "bank",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "lightning",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "times",
+                    "type": {
+                      "kind": "integer",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "interval",
+                    "type": {
+                      "kind": "integer",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "description": "In ticks",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "amount",
+                    "type": {
+                      "kind": "integer",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  }
+                ],
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "For cosmetic purposes only.",
+                "optional": true
+              }
+            },
+            {
+              "key": "alternate-to-home",
+              "type": {
+                "kind": "boolean",
+                "description": "Should the options below apply to the land that /k home is set in if no nexus is set?",
+                "capability": {
+                  "sources": [
+                    "editor-overlay",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "unclaim-all",
+              "type": {
+                "kind": "boolean",
+                "description": "",
+                "capability": {
+                  "sources": [
+                    "editor-overlay",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "money",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "description": "Money removed or transferred when an invasion destroys the nexus.",
+                "capability": {
+                  "sources": [
+                    "jar-runtime"
+                  ],
+                  "tier": "advanced",
+                  "runtimeField": "ON_NEXUS_LOSS_MONEY",
+                  "consumers": [
+                    "org/kingdoms/managers/invasions/Invasion"
+                  ]
+                },
+                "optional": true
+              }
+            }
+          ],
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "Options for when a nexus land is invaded.",
+          "optional": true
+        }
+      },
+      {
+        "key": "costs",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "resource-points",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "money",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            }
+          ],
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "Required resource points to invade a kingdom. This is different when using ransack mode, check above. You can also use the \"ransack\" and kingdoms_masswar_is_running boolean placeholders here.",
+          "optional": true
+        }
+      },
+      {
+        "key": "pacifism",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "enabled",
+              "type": {
+                "kind": "boolean",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "If pacifism system should work at all. Kingdoms that have this option enabled, will keep it, but it'll not have any effects. Note that the option in the nexus settings will still work, so you might want to remove that as well.",
+                "optional": true
+              }
+            },
+            {
+              "key": "disable-pvp",
+              "type": {
+                "kind": "boolean",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "Disable PvP for pacifist kingdoms. This also protects against potion throwing.",
+                "optional": true
+              }
+            },
+            {
+              "key": "cooldowns",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "general",
+                    "type": {
+                      "kind": "duration",
+                      "typeName": "Period",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "after-invasion",
+                    "type": {
+                      "kind": "duration",
+                      "typeName": "Period",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  }
+                ],
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "Cooldown before kingdoms can be a pacifist again. Set to 0 to disable. Note: These options check the kingdom audit logs, so make sure that the value you set here is lower than that specific log's expiry, or just increase the log expiration time.",
+                "optional": true
+              }
+            }
+          ],
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "To set whether kingdoms are pacifist by default, go to \"config.yml -> default-flags\" option",
+          "optional": true
+        }
+      },
+      {
+        "key": "shields",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "disallow-invasions",
+              "type": {
+                "kind": "boolean",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "You'll lose your kingdom shield if you invade and cannot invade at all if your nation has a shield active.",
+                "optional": true
+              }
+            },
+            {
+              "key": "purchase-cooldown",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "last-siege-cannon-hit",
+                    "type": {
+                      "kind": "duration",
+                      "typeName": "Period",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "description": "Requires a restart to update Since the last time the kingdom was hit by a Siege cannon.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "last-invasion",
+                    "type": {
+                      "kind": "object",
+                      "fields": [
+                        {
+                          "key": "attacked",
+                          "type": {
+                            "kind": "duration",
+                            "typeName": "Period",
+                            "capability": {
+                              "sources": [
+                                "jar-schema",
+                                "jar-default"
+                              ]
+                            },
+                            "description": "The last invasion whether it failed or not.",
+                            "optional": true
+                          }
+                        },
+                        {
+                          "key": "defended",
+                          "type": {
+                            "kind": "duration",
+                            "typeName": "Period",
+                            "capability": {
+                              "sources": [
+                                "jar-schema",
+                                "jar-default"
+                              ]
+                            },
+                            "description": "The last defended invasion only if it suceeded.",
+                            "optional": true
+                          }
+                        }
+                      ],
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  }
+                ],
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "disable-pvp",
+              "type": {
+                "kind": "boolean",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "Disable pvp for kingdoms with shields.",
+                "optional": true
+              }
+            },
+            {
+              "key": "refund",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "description": "Amount of resource points refunded for the shield. Here we convert the remaining time shield to 1 minute (since it's milliseconds by default) and then refund 2rp for every 1min the shield has left. ┗━━━━━━━━━━━━━┓",
+                "capability": {
+                  "sources": [
+                    "editor-overlay",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "extra-deny-conditions",
+              "type": {
+                "kind": "object",
+                "fields": [],
+                "description": "Extra conditions that prevent kingdoms from buying shields other than the default ones configurable above.",
+                "capability": {
+                  "sources": [
+                    "editor-overlay",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "nation-shield-access-loss",
+              "type": {
+                "kind": "duration",
+                "description": "How long an invading kingdom loses access to its nation's active shield.",
+                "capability": {
+                  "sources": [
+                    "editor-overlay",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            }
+          ],
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "champions",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "disable-friendly-damage",
+              "type": {
+                "kind": "boolean",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "Players with ceasefire attribute with the kingdom that the champion belongs to, can't damage the champion.",
+                "optional": true
+              }
+            },
+            {
+              "key": "disabled-damages",
+              "type": {
+                "kind": "list",
+                "elements": {
+                  "kind": "suggestion",
+                  "typeName": "DamageCause",
+                  "capability": {
+                    "sources": [
+                      "jar-schema"
+                    ]
+                  },
+                  "allowCustom": true,
+                  "description": "Spigot DamageCause."
+                },
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "https://hub.spigotmc.org/javadocs/spigot/org/bukkit/event/entity/EntityDamageEvent.DamageCause.html",
+                "optional": true
+              }
+            },
+            {
+              "key": "death-messages",
+              "type": {
+                "kind": "mapping",
+                "keys": {
+                  "kind": "suggestion",
+                  "typeName": "DamageCause",
+                  "allowCustom": true,
+                  "description": "Champion death cause, or defaults for the fallback messages.",
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                },
+                "values": {
+                  "kind": "list",
+                  "elements": {
+                    "kind": "string",
+                    "typeName": "Message",
+                    "description": "Message announced when the champion dies from this cause.",
+                    "optional": true,
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    }
+                  },
+                  "description": "Possible messages for this death cause.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                },
+                "description": "Champion death messages grouped by damage cause. One matching message is chosen at random.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay",
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                }
+              }
+            }
+          ],
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "masswar",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "enabled",
+              "type": {
+                "kind": "boolean",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "Disables automatic MassWars. You can still manage them manually.",
+                "optional": true
+              }
+            },
+            {
+              "key": "during-masswar-only",
+              "type": {
+                "kind": "boolean",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "You can only invade during MassWar events.",
+                "optional": true
+              }
+            },
+            {
+              "key": "disable-turrets",
+              "type": {
+                "kind": "boolean",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "Disable turrets during masswar.",
+                "optional": true
+              }
+            },
+            {
+              "key": "allow-siege-cannons",
+              "type": {
+                "kind": "boolean",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "Allow siege cannons to be used only during masswars. If false, this would prevent players from sitting on the cannon altogether.",
+                "optional": true
+              }
+            },
+            {
+              "key": "disable-misc-upgrades",
+              "type": {
+                "kind": "set",
+                "elements": {
+                  "kind": "advanced",
+                  "typeName": "any",
+                  "capability": {
+                    "sources": [
+                      "jar-schema"
+                    ]
+                  }
+                },
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "Should misc upgrades be disabled during masswars? The names are the same as the ones in misc-upgrades.yml (the config names, not the 'name' option)",
+                "optional": true
+              }
+            },
+            {
+              "key": "commands",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "whitelist",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "list",
+                    "type": {
+                      "kind": "set",
+                      "elements": {
+                        "kind": "advanced",
+                        "typeName": "any",
+                        "capability": {
+                          "sources": [
+                            "jar-schema"
+                          ]
+                        }
+                      },
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  }
+                ],
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "Allowed/Disallowed commands during the event.",
+                "optional": true
+              }
+            },
+            {
+              "key": "allow-invading",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "pacifists",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "description": "Allows the following during MassWar: * Invading pacifist kingdoms with /k invade. * Using siege cannons on pacifist kingdoms. * PvPing with pacifist kingdom members.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "shields",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "description": "Allow invading shielded kingdoms during Mass Wars.",
+                      "optional": true
+                    }
+                  }
+                ],
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "start",
+              "type": {
+                "kind": "union",
+                "description": "Daily MassWar start time in 24-hour hour:minute format. Use ~ to schedule from the interval instead.",
+                "choices": [
+                  {
+                    "kind": "string",
+                    "typeName": "TimeOfDay",
+                    "label": "Daily start time",
+                    "description": "A 24-hour time such as 13:00.",
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    }
+                  },
+                  {
+                    "kind": "null",
+                    "label": "Use interval (~)",
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    }
+                  }
+                ],
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default",
+                    "editor-overlay"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "interval",
+              "type": {
+                "kind": "duration",
+                "typeName": "Period",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "* When \"start\" option is used: - This option has to be defined in days. (E.g. 1 day, 2 days, 3 days, ...) - If the server was offline and skipped an event, it will start immediatelly after the next start. * When \"start\" option isn't used: - This option can be any time. (E.g. 30mins or 5 days.) - Will be preserved after restarts, meaning the time that the server is offline will count too.",
+                "optional": true
+              }
+            },
+            {
+              "key": "time",
+              "type": {
+                "kind": "duration",
+                "typeName": "Period",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "The duration of the MassWar. The interval starts after this time has ended. Must at least 5mins shorter than the interval, or it will cause issues.",
+                "optional": true
+              }
+            },
+            {
+              "key": "bossbar",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "enabled",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "title",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "Message",
+                      "description": "Formatted text shown on the boss bar.",
+                      "optional": true,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "key": "color",
+                    "type": {
+                      "kind": "enum",
+                      "values": [
+                        "BLUE",
+                        "GREEN",
+                        "PINK",
+                        "PURPLE",
+                        "RED",
+                        "WHITE",
+                        "YELLOW"
+                      ],
+                      "description": "Boss bar color.",
+                      "optional": true,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "key": "style",
+                    "type": {
+                      "kind": "enum",
+                      "values": [
+                        "SEGMENTED_10",
+                        "SEGMENTED_12",
+                        "SEGMENTED_20",
+                        "SEGMENTED_6",
+                        "SOLID"
+                      ],
+                      "description": "Boss bar segment style.",
+                      "optional": true,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      }
+                    }
+                  }
+                ],
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "titles",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "start",
+                    "type": {
+                      "kind": "object",
+                      "fields": [
+                        {
+                          "key": "title",
+                          "type": {
+                            "kind": "string",
+                            "typeName": "Message",
+                            "description": "Formatted title text.",
+                            "optional": true,
+                            "capability": {
+                              "sources": [
+                                "editor-overlay",
+                                "jar-schema",
+                                "jar-default"
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "key": "subtitle",
+                          "type": {
+                            "kind": "string",
+                            "typeName": "Message",
+                            "description": "Formatted subtitle text.",
+                            "optional": true,
+                            "capability": {
+                              "sources": [
+                                "editor-overlay",
+                                "jar-schema",
+                                "jar-default"
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "key": "fade-in",
+                          "type": {
+                            "kind": "integer",
+                            "description": "Duration in Minecraft ticks. 20 ticks equal 1 second.",
+                            "optional": true,
+                            "minimum": 0,
+                            "suffix": "ticks",
+                            "capability": {
+                              "sources": [
+                                "editor-overlay",
+                                "jar-schema",
+                                "jar-default"
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "key": "stay",
+                          "type": {
+                            "kind": "integer",
+                            "description": "Duration in Minecraft ticks. 20 ticks equal 1 second.",
+                            "optional": true,
+                            "minimum": 0,
+                            "suffix": "ticks",
+                            "capability": {
+                              "sources": [
+                                "editor-overlay",
+                                "jar-schema",
+                                "jar-default"
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "key": "fade-out",
+                          "type": {
+                            "kind": "integer",
+                            "description": "Duration in Minecraft ticks. 20 ticks equal 1 second.",
+                            "optional": true,
+                            "minimum": 0,
+                            "suffix": "ticks",
+                            "capability": {
+                              "sources": [
+                                "editor-overlay",
+                                "jar-schema",
+                                "jar-default"
+                              ]
+                            }
+                          }
+                        }
+                      ],
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "end",
+                    "type": {
+                      "kind": "object",
+                      "fields": [
+                        {
+                          "key": "title",
+                          "type": {
+                            "kind": "string",
+                            "typeName": "Message",
+                            "description": "Formatted title text.",
+                            "optional": true,
+                            "capability": {
+                              "sources": [
+                                "editor-overlay",
+                                "jar-schema",
+                                "jar-default"
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "key": "subtitle",
+                          "type": {
+                            "kind": "string",
+                            "typeName": "Message",
+                            "description": "Formatted subtitle text.",
+                            "optional": true,
+                            "capability": {
+                              "sources": [
+                                "editor-overlay",
+                                "jar-schema",
+                                "jar-default"
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "key": "fade-in",
+                          "type": {
+                            "kind": "integer",
+                            "description": "Duration in Minecraft ticks. 20 ticks equal 1 second.",
+                            "optional": true,
+                            "minimum": 0,
+                            "suffix": "ticks",
+                            "capability": {
+                              "sources": [
+                                "editor-overlay",
+                                "jar-schema",
+                                "jar-default"
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "key": "stay",
+                          "type": {
+                            "kind": "integer",
+                            "description": "Duration in Minecraft ticks. 20 ticks equal 1 second.",
+                            "optional": true,
+                            "minimum": 0,
+                            "suffix": "ticks",
+                            "capability": {
+                              "sources": [
+                                "editor-overlay",
+                                "jar-schema",
+                                "jar-default"
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "key": "fade-out",
+                          "type": {
+                            "kind": "integer",
+                            "description": "Duration in Minecraft ticks. 20 ticks equal 1 second.",
+                            "optional": true,
+                            "minimum": 0,
+                            "suffix": "ticks",
+                            "capability": {
+                              "sources": [
+                                "editor-overlay",
+                                "jar-schema",
+                                "jar-default"
+                              ]
+                            }
+                          }
+                        }
+                      ],
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "pause",
+                    "type": {
+                      "kind": "object",
+                      "fields": [
+                        {
+                          "key": "title",
+                          "type": {
+                            "kind": "string",
+                            "typeName": "Message",
+                            "description": "Formatted title text.",
+                            "optional": true,
+                            "capability": {
+                              "sources": [
+                                "editor-overlay",
+                                "jar-default"
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "key": "subtitle",
+                          "type": {
+                            "kind": "string",
+                            "typeName": "Message",
+                            "description": "Formatted subtitle text.",
+                            "optional": true,
+                            "capability": {
+                              "sources": [
+                                "editor-overlay",
+                                "jar-default"
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "key": "fade-in",
+                          "type": {
+                            "kind": "integer",
+                            "description": "Duration in Minecraft ticks. 20 ticks equal 1 second.",
+                            "optional": true,
+                            "minimum": 0,
+                            "suffix": "ticks",
+                            "capability": {
+                              "sources": [
+                                "editor-overlay",
+                                "jar-default"
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "key": "stay",
+                          "type": {
+                            "kind": "integer",
+                            "description": "Duration in Minecraft ticks. 20 ticks equal 1 second.",
+                            "optional": true,
+                            "minimum": 0,
+                            "suffix": "ticks",
+                            "capability": {
+                              "sources": [
+                                "editor-overlay",
+                                "jar-default"
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "key": "fade-out",
+                          "type": {
+                            "kind": "integer",
+                            "description": "Duration in Minecraft ticks. 20 ticks equal 1 second.",
+                            "optional": true,
+                            "minimum": 0,
+                            "suffix": "ticks",
+                            "capability": {
+                              "sources": [
+                                "editor-overlay",
+                                "jar-default"
+                              ]
+                            }
+                          }
+                        }
+                      ],
+                      "description": "",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "resume",
+                    "type": {
+                      "kind": "object",
+                      "fields": [
+                        {
+                          "key": "title",
+                          "type": {
+                            "kind": "string",
+                            "typeName": "Message",
+                            "description": "Formatted title text.",
+                            "optional": true,
+                            "capability": {
+                              "sources": [
+                                "editor-overlay",
+                                "jar-default"
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "key": "subtitle",
+                          "type": {
+                            "kind": "string",
+                            "typeName": "Message",
+                            "description": "Formatted subtitle text.",
+                            "optional": true,
+                            "capability": {
+                              "sources": [
+                                "editor-overlay",
+                                "jar-default"
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "key": "fade-in",
+                          "type": {
+                            "kind": "integer",
+                            "description": "Duration in Minecraft ticks. 20 ticks equal 1 second.",
+                            "optional": true,
+                            "minimum": 0,
+                            "suffix": "ticks",
+                            "capability": {
+                              "sources": [
+                                "editor-overlay",
+                                "jar-default"
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "key": "stay",
+                          "type": {
+                            "kind": "integer",
+                            "description": "Duration in Minecraft ticks. 20 ticks equal 1 second.",
+                            "optional": true,
+                            "minimum": 0,
+                            "suffix": "ticks",
+                            "capability": {
+                              "sources": [
+                                "editor-overlay",
+                                "jar-default"
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "key": "fade-out",
+                          "type": {
+                            "kind": "integer",
+                            "description": "Duration in Minecraft ticks. 20 ticks equal 1 second.",
+                            "optional": true,
+                            "minimum": 0,
+                            "suffix": "ticks",
+                            "capability": {
+                              "sources": [
+                                "editor-overlay",
+                                "jar-default"
+                              ]
+                            }
+                          }
+                        }
+                      ],
+                      "description": "",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  }
+                ],
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "break-times",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "first",
+                    "type": {
+                      "kind": "object",
+                      "fields": [
+                        {
+                          "key": "after",
+                          "type": {
+                            "kind": "duration",
+                            "description": "When to start the break time? The time passed since MassWar started.",
+                            "capability": {
+                              "sources": [
+                                "editor-overlay",
+                                "jar-default"
+                              ]
+                            },
+                            "optional": true
+                          }
+                        },
+                        {
+                          "key": "duration",
+                          "type": {
+                            "kind": "duration",
+                            "description": "The duration of this break.",
+                            "capability": {
+                              "sources": [
+                                "editor-overlay",
+                                "jar-default"
+                              ]
+                            },
+                            "optional": true
+                          }
+                        }
+                      ],
+                      "description": "You can add multiple break times like this.",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  }
+                ],
+                "description": "A break time, as its name implies, are certain durings in the middle of masswar that behaves as if masswar isn't running. So all masswar related features during these periods are disabled. This is for players to prepare themselves for further conflicts. - To disable break times entirely, you can simply delete the \"first\" entry and change this whole option to \"break-times: {}\"",
+                "capability": {
+                  "sources": [
+                    "editor-overlay",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            }
+          ],
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "https://github.com/CryptoMorin/KingdomsX/wiki/Mechanics#Masswar",
+          "optional": true
+        }
+      },
+      {
+        "key": "teleportation",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "teleport-delay",
+              "type": {
+                "kind": "integer",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "Used to prevent players from escaping PvP in seconds. Teleportation will be cancelled if the player gets damaged. Set to 0 to disable. This can also be upgraded as a misc upgrade. Note that this option is in seconds and doesn't support time suffixes like other config options.",
+                "optional": true
+              }
+            },
+            {
+              "key": "use-timer-message",
+              "type": {
+                "kind": "boolean",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "If true, it'll send the message every one second with the new timer otherwise it'll only send the message once.",
+                "optional": true
+              }
+            },
+            {
+              "key": "should-not-move",
+              "type": {
+                "kind": "boolean",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "If the player should stand still without moving when teleporting to home, otherwise cancels the teleportation.",
+                "optional": true
+              }
+            },
+            {
+              "key": "should-not-be-damaged",
+              "type": {
+                "kind": "boolean",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "If the player should not take damage when teleporting to home.",
+                "optional": true
+              }
+            }
+          ],
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "/k tp",
+          "optional": true
+        }
+      },
+      {
+        "key": "bossbar",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "enabled",
+              "type": {
+                "kind": "boolean",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "range",
+              "type": {
+                "kind": "integer",
+                "capability": {
+                  "sources": [
+                    "jar-schema"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "reverse-progress",
+              "type": {
+                "kind": "boolean",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "For champion invasions if set to true, this will keep increasing the progress bar, and the champion is dead once the bar is full, otherwise if set to false, the champion is dead once the progress bar is empty. Same for plunder invasions, but for your opponent's lives.",
+                "optional": true
+              }
+            },
+            {
+              "key": "title",
+              "type": {
+                "kind": "string",
+                "typeName": "Message",
+                "description": "Formatted text shown on the boss bar.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay",
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                }
+              }
+            },
+            {
+              "key": "color",
+              "type": {
+                "kind": "enum",
+                "values": [
+                  "BLUE",
+                  "GREEN",
+                  "PINK",
+                  "PURPLE",
+                  "RED",
+                  "WHITE",
+                  "YELLOW"
+                ],
+                "description": "Boss bar color.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay",
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                }
+              }
+            },
+            {
+              "key": "style",
+              "type": {
+                "kind": "enum",
+                "values": [
+                  "SEGMENTED_10",
+                  "SEGMENTED_12",
+                  "SEGMENTED_20",
+                  "SEGMENTED_6",
+                  "SOLID"
+                ],
+                "description": "Boss bar segment style.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay",
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                }
+              }
+            },
+            {
+              "key": "flags",
+              "type": {
+                "kind": "list",
+                "elements": {
+                  "kind": "enum",
+                  "values": [
+                    "CREATE_FOG",
+                    "DARKEN_SKY",
+                    "PLAY_BOSS_MUSIC"
+                  ],
+                  "description": "Boss bar display effect.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                },
+                "description": "Optional boss bar display effects.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay",
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                }
+              }
+            }
+          ],
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "The BossBar shown to nearby players for the chmapion. This bossbar is also used for attackers during plunder invasions. Multiple champions will show multiple bossbars of course.",
+          "optional": true
+        }
+      },
+      {
+        "key": "nations",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "use-capital-champion",
+              "type": {
+                "kind": "boolean",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "If a kingodm is in a nation, it'll use the capital's champion for invasions.",
+                "optional": true
+              }
+            },
+            {
+              "key": "use-shield",
+              "type": {
+                "kind": "boolean",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "Force nation members (kingdoms) to use nation shields instead. If this is enabled and a nation doesn't have a shield, but the kingdom does, players will be still able to invade the kingdom. If this is false, kingdoms will use their own shield if they have one otherwise they will use the nations shield.",
+                "optional": true
+              }
+            },
+            {
+              "key": "nation-zone-radius",
+              "type": {
+                "kind": "integer",
+                "capability": {
+                  "sources": [
+                    "jar-schema"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "capital-protection",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "radius",
+                    "type": {
+                      "kind": "integer",
+                      "minimum": -1,
+                      "description": "Capital protection radius. 0 protects all capital lands. -1 disables the protection.",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "nexus-invasion-cooldown",
+                    "type": {
+                      "kind": "duration",
+                      "description": "The cooldown for each invaded kingdom nexus land.",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  }
+                ],
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "requires-national-enemyship",
+              "type": {
+                "kind": "boolean",
+                "description": "If a kingdom is in a nation and they want to invade another kingdom, should all kingdoms in the attacker's nation be enemies with the other kingdom?",
+                "capability": {
+                  "sources": [
+                    "editor-overlay",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "nation-zone",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "enabled",
+                    "type": {
+                      "kind": "boolean",
+                      "description": "",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "capital-only",
+                    "type": {
+                      "kind": "boolean",
+                      "description": "Should the nation zone only be around the capital kingdom's claims only or all kingdoms that are member of a nation.",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "radius",
+                    "type": {
+                      "kind": "integer",
+                      "description": "The radius in chunks. (2 = 2 chunks around every claimed land, e.g. 1 chunk = 25 nation zone chunks)",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  }
+                ],
+                "description": "https://github.com/CryptoMorin/KingdomsX/wiki/Introduction#nation-zones",
+                "capability": {
+                  "sources": [
+                    "editor-overlay",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            }
+          ],
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "https://github.com/CryptoMorin/KingdomsX/wiki/Introductions#nations",
+          "optional": true
+        }
+      },
+      {
+        "key": "home",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "remove",
+              "type": {
+                "kind": "boolean",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "Remove home if it's set on the invaded land.",
+                "optional": true
+              }
+            },
+            {
+              "key": "move",
+              "type": {
+                "kind": "boolean",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "Move the home as far as possible from the invaded land.",
+                "optional": true
+              }
+            },
+            {
+              "key": "disallow-public-teleportation",
+              "type": {
+                "kind": "boolean",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "Disallow teleports when a kingdoms home is being invaded and the home is open to public.",
+                "optional": true
+              }
+            }
+          ],
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "initial-location",
+        "type": {
+          "kind": "boolean",
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "Should the champion spawn where the player did \"/k invade\" If set to false, the champion will spawn near the player wherever they currently are after the countdown ends.",
+          "optional": true
+        }
+      },
+      {
+        "key": "countdown",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "seconds",
+              "type": {
+                "kind": "integer",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "Countdown before the champion spawns or the invasion starts in general in seconds. Set to 0 to disable.",
+                "optional": true
+              }
+            },
+            {
+              "key": "show-to-defender",
+              "type": {
+                "kind": "boolean",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "Should a countdown message be also displayed for the defending kingdom?",
+                "optional": true
+              }
+            },
+            {
+              "key": "sound",
+              "type": {
+                "kind": "mapping",
+                "keys": {
+                  "kind": "integer",
+                  "description": "Countdown second.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                },
+                "values": {
+                  "kind": "union",
+                  "optional": true,
+                  "description": "Sound played at this countdown second. Set to ~ for silence.",
+                  "choices": [
+                    {
+                      "kind": "string",
+                      "typeName": "Sound",
+                      "description": "Minecraft or resource-pack sound with optional volume, pitch, category, and seed.",
+                      "optional": true,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      }
+                    },
+                    {
+                      "kind": "null",
+                      "description": "Do not play a sound at this second (~).",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      }
+                    }
+                  ],
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                },
+                "description": "Sounds played at user-defined countdown seconds.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay",
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                }
+              }
+            }
+          ],
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "cooldowns",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "failed",
+              "type": {
+                "kind": "duration",
+                "typeName": "Period",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "successful",
+              "type": {
+                "kind": "duration",
+                "typeName": "Period",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            }
+          ],
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "The cooldown for a kingdom when they fail to invade a kingdom, and they want to try again. Set to 0 to disable.",
+          "optional": true
+        }
+      },
+      {
+        "key": "unclaim-cooldown",
+        "type": {
+          "kind": "integer",
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "The amount of time that the invader kingdom needs to wait before unclaiming the land they invaded. This only applies to /k unclaim, they can still do /k disband and /k unclaimall",
+          "optional": true
+        }
+      },
+      {
+        "key": "items",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "whitelist",
+              "type": {
+                "kind": "boolean",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "list",
+              "type": {
+                "kind": "list",
+                "elements": {
+                  "kind": "suggestion",
+                  "typeName": "Material",
+                  "allowCustom": false,
+                  "description": "Spigot material blocked or allowed during invasions.",
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                },
+                "description": "Materials controlled by the invasion item whitelist setting.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay",
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                }
+              }
+            }
+          ],
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "Disallowed items during an invasion for the invader.",
+          "optional": true
+        }
+      },
+      {
+        "key": "allow",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "teleportation",
+              "type": {
+                "kind": "boolean",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "Disallows any teleportation. Whether it's from commands, plugins, portals and etc... Note that the player still can't teleport to other worlds if this option is true. This is used to prevent people from using end and nether portals, which can cause some issues due to the player world and the champion's world differing.",
+                "optional": true
+              }
+            },
+            {
+              "key": "elytra",
+              "type": {
+                "kind": "boolean",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "Allow the invader to use elytra during invasions. It's possible to use this to escape without the drag event. But this is also useful for other invasion systems.",
+                "optional": true
+              }
+            },
+            {
+              "key": "explosion",
+              "type": {
+                "kind": "boolean",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "Allow block explosion during invasions only on the invading land? This will not break turrets, structures or protected chests.",
+                "optional": true
+              }
+            },
+            {
+              "key": "building",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "enabled",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "own-only",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "description": "Allow players to place blocks, but only allow breaking blocks that the player placed themselves.",
+                      "optional": true
+                    }
+                  }
+                ],
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "Allow building in invading lands during invasions. This does not allow interactions (such as opening chests) This only applies to the invader player (who did /k invade) only.",
+                "optional": true
+              }
+            },
+            {
+              "key": "moving-nexus",
+              "type": {
+                "kind": "boolean",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "Disallow kingdoms to move their kingdom nexus when their nexus land is being invaded.",
+                "optional": true
+              }
+            },
+            {
+              "key": "interactable",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "whitelist",
+                    "type": {
+                      "kind": "boolean",
+                      "description": "",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "blocks",
+                    "type": {
+                      "kind": "list",
+                      "elements": {
+                        "kind": "advanced",
+                        "typeName": "StringMatcher<Material>",
+                        "description": "Material name or matcher.",
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        }
+                      },
+                      "description": "Material names or material matchers.",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  }
+                ],
+                "description": "List of blocks that the invader player (who did /k invade) can interact with during invasions.",
+                "capability": {
+                  "sources": [
+                    "editor-overlay",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "building-enabled",
+              "type": {
+                "kind": "boolean",
+                "description": "Whether building rules are changed while an invasion is active.",
+                "capability": {
+                  "sources": [
+                    "jar-runtime"
+                  ],
+                  "tier": "advanced",
+                  "runtimeField": "ALLOW_BUILDING_ENABLED",
+                  "consumers": [
+                    "org/kingdoms/managers/land/BuildingProcessor"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "building-own-only",
+              "type": {
+                "kind": "boolean",
+                "description": "Restrict invasion building to the participant's own side.",
+                "capability": {
+                  "sources": [
+                    "jar-runtime"
+                  ],
+                  "tier": "advanced",
+                  "runtimeField": "ALLOW_BUILDING_OWN_ONLY",
+                  "consumers": [
+                    "org/kingdoms/managers/invasions/Invasion",
+                    "org/kingdoms/managers/land/BuildingProcessor"
+                  ]
+                },
+                "optional": true
+              }
+            }
+          ],
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "commands",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "execute",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "before",
+                    "type": {
+                      "kind": "list",
+                      "elements": {
+                        "kind": "string",
+                        "typeName": "str",
+                        "capability": {
+                          "sources": [
+                            "jar-schema"
+                          ]
+                        }
+                      },
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "after-successful",
+                    "type": {
+                      "kind": "list",
+                      "elements": {
+                        "kind": "string",
+                        "typeName": "str",
+                        "capability": {
+                          "sources": [
+                            "jar-schema"
+                          ]
+                        }
+                      },
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "after-fail",
+                    "type": {
+                      "kind": "list",
+                      "elements": {
+                        "kind": "string",
+                        "typeName": "str",
+                        "capability": {
+                          "sources": [
+                            "jar-schema"
+                          ]
+                        }
+                      },
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  }
+                ],
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "smart-command",
+              "type": {
+                "kind": "boolean",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "This option can detect main command aliases and block them all as a part of the list below. Note that subcommands cannot be detected as they're registered on the plugin, not on the server.",
+                "optional": true
+              }
+            },
+            {
+              "key": "invader",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "whitelist",
+                    "type": {
+                      "kind": "boolean",
+                      "description": "true = allow-list, false = block-list.",
+                      "optional": true,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "key": "kingdom-wide",
+                    "type": {
+                      "kind": "boolean",
+                      "description": "Apply this restriction to the entire kingdom, not only the invading player.",
+                      "optional": true,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "key": "list",
+                    "type": {
+                      "kind": "list",
+                      "elements": {
+                        "kind": "string",
+                        "typeName": "str",
+                        "description": "Command prefix",
+                        "optional": true,
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        }
+                      },
+                      "description": "Commands matched by prefix (aliases should be listed too).",
+                      "optional": true,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      }
+                    }
+                  }
+                ],
+                "description": "Invasion command restriction list. whitelist: true allows only listed commands, false blocks listed commands. Commands are matched by prefix without the leading slash.",
+                "optional": true,
+                "required": [],
+                "capability": {
+                  "sources": [
+                    "editor-overlay",
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                }
+              }
+            },
+            {
+              "key": "defender",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "whitelist",
+                    "type": {
+                      "kind": "boolean",
+                      "description": "true = allow-list, false = block-list.",
+                      "optional": true,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "key": "list",
+                    "type": {
+                      "kind": "list",
+                      "elements": {
+                        "kind": "string",
+                        "typeName": "str",
+                        "description": "Command prefix",
+                        "optional": true,
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        }
+                      },
+                      "description": "Commands matched by prefix (aliases should be listed too).",
+                      "optional": true,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      }
+                    }
+                  }
+                ],
+                "description": "Invasion command restriction list. whitelist: true allows only listed commands, false blocks listed commands. Commands are matched by prefix without the leading slash.",
+                "optional": true,
+                "required": [],
+                "capability": {
+                  "sources": [
+                    "editor-overlay",
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                }
+              }
+            }
+          ],
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "Invasion command restrictions and execute hooks.",
+          "optional": true
+        }
+      },
+      {
+        "key": "surrender",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "attacker",
+              "type": {
+                "kind": "boolean",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "If the attacker can surrender. The champion will despawn.",
+                "optional": true
+              }
+            },
+            {
+              "key": "defender",
+              "type": {
+                "kind": "boolean",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "If the defender kingdom can surrender. The champion will despawn and the land that's being invaded will be for the invaders.",
+                "optional": true
+              }
+            },
+            {
+              "key": "refund",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "resource-points",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "money",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "moeny",
+                    "type": {
+                      "kind": "boolean",
+                      "description": "Whether surrender refunds the invasion money cost.",
+                      "capability": {
+                        "sources": [
+                          "jar-runtime"
+                        ],
+                        "tier": "advanced",
+                        "runtimeField": "SURRENDER_REFUND_MOENY",
+                        "consumers": [
+                          "org/kingdoms/managers/invasions/Invasion"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  }
+                ],
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "Return resource points of the invader surrendered?",
+                "optional": true
+              }
+            }
+          ],
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "/k surrender",
+          "optional": true
+        }
+      },
+      {
+        "key": "time-limit",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "default",
+              "type": {
+                "kind": "duration",
+                "typeName": "Period",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "nexus",
+              "type": {
+                "kind": "duration",
+                "typeName": "Period",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "For defeating the nexus champion.",
+                "optional": true
+              }
+            },
+            {
+              "key": "bossbar",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "enabled",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "title",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "Message",
+                      "description": "Formatted text shown on the boss bar.",
+                      "optional": true,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "key": "color",
+                    "type": {
+                      "kind": "enum",
+                      "values": [
+                        "BLUE",
+                        "GREEN",
+                        "PINK",
+                        "PURPLE",
+                        "RED",
+                        "WHITE",
+                        "YELLOW"
+                      ],
+                      "description": "Boss bar color.",
+                      "optional": true,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "key": "style",
+                    "type": {
+                      "kind": "enum",
+                      "values": [
+                        "SEGMENTED_10",
+                        "SEGMENTED_12",
+                        "SEGMENTED_20",
+                        "SEGMENTED_6",
+                        "SOLID"
+                      ],
+                      "description": "Boss bar segment style.",
+                      "optional": true,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      }
+                    }
+                  }
+                ],
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "Show the time limit progress with a bossbar. Read the previous bossbar for more info. The \"range\" of this bossbar is always the same as the previous one.",
+                "optional": true
+              }
+            }
+          ],
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "Time limit for defeating the champion. Set to 0 to disable. If this time limit ends, the champion will despawn and invaders will lose. Default time unit is minutes.",
+          "optional": true
+        }
+      },
+      {
+        "key": "online-members",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "invader",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "defender",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "session-duration",
+              "type": {
+                "kind": "duration",
+                "description": "This option works by keeping track of online defenders of a kingdom. If for example, min online defenders is set to 2 and there are exactly 2 defenders online and one of them logs out, the attackers can continue to invade the kingdom for 30 more minutes. Unless this requirement is met again with another defender logging in again which resets this timer.",
+                "capability": {
+                  "sources": [
+                    "editor-overlay",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            }
+          ],
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "Minimium members needed to be online to start the invasion. This supports AuthMe authentication system. For a better experience consider using the %kingdoms_members% placeholder as a fraction and with conditional functions to prevent players from abusing this feature.",
+          "optional": true
+        }
+      },
+      {
+        "key": "player-deaths",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "defender",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "Amount of attackers the defenders have to kill.",
+                "optional": true
+              }
+            },
+            {
+              "key": "attacker",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "Amount of defenders the attackers have to kill. This option has no effect for the standard invasion method.",
+                "optional": true
+              }
+            },
+            {
+              "key": "keep",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "enabled",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "description": "Changing the enabled option to false stops kingdoms from interfering with these other options, so other plugins can handle them.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "inventory",
+                    "type": {
+                      "kind": "object",
+                      "fields": [
+                        {
+                          "key": "defenders",
+                          "type": {
+                            "kind": "union",
+                            "description": "The following options support conditions. E.g. if you wanted to only keep inventory if the player died in their own land, you could use the condition \"{kingdoms_land:info name=relation_name} == 'SELF'\"",
+                            "choices": [
+                              {
+                                "kind": "boolean",
+                                "label": "Always on or off",
+                                "capability": {
+                                  "sources": [
+                                    "editor-overlay"
+                                  ]
+                                }
+                              },
+                              {
+                                "kind": "expression",
+                                "language": "condition",
+                                "capability": {
+                                  "sources": [
+                                    "jar-schema",
+                                    "jar-default",
+                                    "editor-overlay"
+                                  ]
+                                },
+                                "description": "The following options support conditions. E.g. if you wanted to only keep inventory if the player died in their own land, you could use the condition \"{kingdoms_land:info name=relation_name} == 'SELF'\"",
+                                "label": "Condition"
+                              }
+                            ],
+                            "capability": {
+                              "sources": [
+                                "jar-schema",
+                                "jar-default",
+                                "editor-overlay"
+                              ]
+                            },
+                            "optional": true
+                          }
+                        },
+                        {
+                          "key": "attackers",
+                          "type": {
+                            "kind": "union",
+                            "description": "Use a toggle or a condition.",
+                            "choices": [
+                              {
+                                "kind": "boolean",
+                                "label": "Always on or off",
+                                "capability": {
+                                  "sources": [
+                                    "editor-overlay"
+                                  ]
+                                }
+                              },
+                              {
+                                "kind": "expression",
+                                "language": "condition",
+                                "capability": {
+                                  "sources": [
+                                    "jar-schema",
+                                    "jar-default",
+                                    "editor-overlay"
+                                  ]
+                                },
+                                "label": "Condition"
+                              }
+                            ],
+                            "capability": {
+                              "sources": [
+                                "jar-schema",
+                                "jar-default",
+                                "editor-overlay"
+                              ]
+                            },
+                            "optional": true
+                          }
+                        }
+                      ],
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "xp",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "level",
+                    "type": {
+                      "kind": "boolean",
+                      "description": "Keep the player's experience level when they die during an invasion.",
+                      "capability": {
+                        "sources": [
+                          "jar-runtime"
+                        ],
+                        "tier": "advanced",
+                        "runtimeField": "PLAYER_DEATHS_KEEP_LEVEL",
+                        "consumers": [
+                          "org/kingdoms/managers/invasions/InvasionManager"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  }
+                ],
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "Should the defender keep these when they die? This works for both attackers and defenders for plunders.",
+                "optional": true
+              }
+            }
+          ],
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "Only stop invasion if the defending kingdom members die the amount of times. The invaders will win by default. This is not recommended as members in the defending kingdom can betray. For plunders, This number is the amount of kills a kingdom has to get in order to win the battle. Set to 0 to disable.",
+          "optional": true
+        }
+      },
+      {
+        "key": "plunder",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "enabled",
+              "type": {
+                "kind": "boolean",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "keep-champion",
+              "type": {
+                "kind": "boolean",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "The champion mechanics will stay the same. Meaning if the champion is killed the invasion ends and the invaders win, however the champion doesn't need to be killed if the defenders or attackers get enough kills for the invasion to end.",
+                "optional": true
+              }
+            },
+            {
+              "key": "vertical-boundaries",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "enabled",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "upwards",
+                    "type": {
+                      "kind": "integer",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "description": "These are calculated from the place where the player used /k invade It's recommended to keep these values above 10 to account for steep mountains. If the invasion is taken place on a cliff, players will have to go where the invader initially started.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "downwards",
+                    "type": {
+                      "kind": "integer",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  }
+                ],
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "The allowed y range which the players need to stand on for it to count towards the caputre progress.",
+                "optional": true
+              }
+            },
+            {
+              "key": "participants",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "nation",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "allies",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "truces",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  }
+                ],
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "Whether killing these players during plunder invasions increases the score of the other team and vice versa.",
+                "optional": true
+              }
+            },
+            {
+              "key": "particles",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "enabled",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "states",
+                    "type": {
+                      "kind": "object",
+                      "fields": [
+                        {
+                          "key": "capturing",
+                          "type": {
+                            "kind": "object",
+                            "fields": [
+                              {
+                                "key": "particle",
+                                "type": {
+                                  "kind": "suggestion",
+                                  "typeName": "Particle",
+                                  "capability": {
+                                    "sources": [
+                                      "jar-schema",
+                                      "jar-default"
+                                    ]
+                                  },
+                                  "allowCustom": true,
+                                  "description": "Spigot particle or a custom particle name.",
+                                  "optional": true
+                                }
+                              },
+                              {
+                                "key": "count",
+                                "type": {
+                                  "kind": "integer",
+                                  "capability": {
+                                    "sources": [
+                                      "jar-schema",
+                                      "jar-default"
+                                    ]
+                                  },
+                                  "optional": true
+                                }
+                              },
+                              {
+                                "key": "color",
+                                "type": {
+                                  "kind": "advanced",
+                                  "typeName": "RgbColor",
+                                  "optional": true,
+                                  "description": "Particle color as red, green, and blue channels from 0 to 255.",
+                                  "capability": {
+                                    "sources": [
+                                      "jar-schema",
+                                      "jar-default",
+                                      "editor-overlay"
+                                    ]
+                                  }
+                                }
+                              },
+                              {
+                                "key": "size",
+                                "type": {
+                                  "kind": "integer",
+                                  "capability": {
+                                    "sources": [
+                                      "jar-schema",
+                                      "jar-default"
+                                    ]
+                                  },
+                                  "optional": true
+                                }
+                              }
+                            ],
+                            "capability": {
+                              "sources": [
+                                "jar-schema",
+                                "jar-default"
+                              ]
+                            },
+                            "optional": true
+                          }
+                        },
+                        {
+                          "key": "protected",
+                          "type": {
+                            "kind": "object",
+                            "fields": [
+                              {
+                                "key": "particle",
+                                "type": {
+                                  "kind": "suggestion",
+                                  "typeName": "Particle",
+                                  "capability": {
+                                    "sources": [
+                                      "jar-schema",
+                                      "jar-default"
+                                    ]
+                                  },
+                                  "allowCustom": true,
+                                  "description": "Spigot particle or a custom particle name.",
+                                  "optional": true
+                                }
+                              },
+                              {
+                                "key": "count",
+                                "type": {
+                                  "kind": "integer",
+                                  "capability": {
+                                    "sources": [
+                                      "jar-schema",
+                                      "jar-default"
+                                    ]
+                                  },
+                                  "optional": true
+                                }
+                              },
+                              {
+                                "key": "offset",
+                                "type": {
+                                  "kind": "string",
+                                  "typeName": "str",
+                                  "capability": {
+                                    "sources": [
+                                      "jar-schema",
+                                      "jar-default"
+                                    ]
+                                  },
+                                  "optional": true
+                                }
+                              },
+                              {
+                                "key": "color",
+                                "type": {
+                                  "kind": "advanced",
+                                  "typeName": "RgbColor",
+                                  "optional": true,
+                                  "description": "Particle color as red, green, and blue channels from 0 to 255.",
+                                  "capability": {
+                                    "sources": [
+                                      "jar-schema",
+                                      "jar-default",
+                                      "editor-overlay"
+                                    ]
+                                  }
+                                }
+                              },
+                              {
+                                "key": "extra",
+                                "type": {
+                                  "kind": "integer",
+                                  "capability": {
+                                    "sources": [
+                                      "jar-schema",
+                                      "jar-default"
+                                    ]
+                                  },
+                                  "optional": true
+                                }
+                              },
+                              {
+                                "key": "size",
+                                "type": {
+                                  "kind": "integer",
+                                  "capability": {
+                                    "sources": [
+                                      "jar-schema",
+                                      "jar-default"
+                                    ]
+                                  },
+                                  "optional": true
+                                }
+                              }
+                            ],
+                            "capability": {
+                              "sources": [
+                                "jar-schema",
+                                "jar-default"
+                              ]
+                            },
+                            "optional": true
+                          }
+                        }
+                      ],
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  }
+                ],
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "capture-progress",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "increment",
+                    "type": {
+                      "kind": "expression",
+                      "language": "math",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "goal",
+                    "type": {
+                      "kind": "expression",
+                      "language": "math",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "tug-of-war",
+                    "type": {
+                      "kind": "object",
+                      "fields": [
+                        {
+                          "key": "enabled",
+                          "type": {
+                            "kind": "boolean",
+                            "capability": {
+                              "sources": [
+                                "jar-schema",
+                                "jar-default"
+                              ]
+                            },
+                            "optional": true
+                          }
+                        },
+                        {
+                          "key": "initial-goal",
+                          "type": {
+                            "kind": "expression",
+                            "language": "math",
+                            "capability": {
+                              "sources": [
+                                "jar-schema",
+                                "jar-default"
+                              ]
+                            },
+                            "optional": true
+                          }
+                        },
+                        {
+                          "key": "defenders-decrement",
+                          "type": {
+                            "kind": "expression",
+                            "language": "math",
+                            "capability": {
+                              "sources": [
+                                "jar-schema",
+                                "jar-default"
+                              ]
+                            },
+                            "optional": true
+                          }
+                        }
+                      ],
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "description": "The defenders need to also participate in the capture progress. The attackers capture progress mechanics stay the same, however in this plunder, the capture progress has an initial progess (start-goal option) and this time, if the defenders outnumber the attackers, it doesn't just simply stop the attackers capture progress, but also decrements it backwards (defenders-decrement option). If the defenders manage to decrement the capture progress to zero, they win and keep their land.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "consider-kingdom-mobs",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "description": "Should the capture progress ratio consider kingdom guards and soldiers of the defender?",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "bossbar",
+                    "type": {
+                      "kind": "object",
+                      "fields": [
+                        {
+                          "key": "use",
+                          "type": {
+                            "kind": "string",
+                            "typeName": "str",
+                            "capability": {
+                              "sources": [
+                                "jar-schema",
+                                "jar-default"
+                              ]
+                            },
+                            "description": "Which boss bar should the capture progress use to show the progress since it doesn't have its own bossbar? none: None of the bossbars if you want to use the placeholders instead. timer: The time limit bossbar. normal: Use the progress on the normal bossbar of defender and attackers",
+                            "optional": true
+                          }
+                        },
+                        {
+                          "key": "state-colors",
+                          "type": {
+                            "kind": "object",
+                            "fields": [
+                              {
+                                "key": "capturing",
+                                "type": {
+                                  "kind": "enum",
+                                  "values": [
+                                    "BLUE",
+                                    "GREEN",
+                                    "PINK",
+                                    "PURPLE",
+                                    "RED",
+                                    "WHITE",
+                                    "YELLOW"
+                                  ],
+                                  "description": "Boss bar color for this state.",
+                                  "optional": true,
+                                  "capability": {
+                                    "sources": [
+                                      "editor-overlay",
+                                      "jar-schema",
+                                      "jar-default"
+                                    ]
+                                  }
+                                }
+                              },
+                              {
+                                "key": "protected",
+                                "type": {
+                                  "kind": "enum",
+                                  "values": [
+                                    "BLUE",
+                                    "GREEN",
+                                    "PINK",
+                                    "PURPLE",
+                                    "RED",
+                                    "WHITE",
+                                    "YELLOW"
+                                  ],
+                                  "description": "Boss bar color for this state.",
+                                  "optional": true,
+                                  "capability": {
+                                    "sources": [
+                                      "editor-overlay",
+                                      "jar-schema",
+                                      "jar-default"
+                                    ]
+                                  }
+                                }
+                              }
+                            ],
+                            "capability": {
+                              "sources": [
+                                "jar-schema",
+                                "jar-default"
+                              ]
+                            },
+                            "description": "This color is applied to whichever bossbar the above option points to.",
+                            "optional": true
+                          }
+                        }
+                      ],
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "endless-mode",
+                    "type": {
+                      "kind": "object",
+                      "fields": [
+                        {
+                          "key": "enabled",
+                          "type": {
+                            "kind": "boolean",
+                            "description": "",
+                            "capability": {
+                              "sources": [
+                                "editor-overlay",
+                                "jar-default"
+                              ]
+                            },
+                            "optional": true
+                          }
+                        },
+                        {
+                          "key": "max",
+                          "type": {
+                            "kind": "integer",
+                            "description": "The maximum capture progress that the attackers can keep.",
+                            "capability": {
+                              "sources": [
+                                "editor-overlay",
+                                "jar-default"
+                              ]
+                            },
+                            "optional": true
+                          }
+                        }
+                      ],
+                      "description": "Instead of ending the invasion instantly after reaching the \"goal\" capture progress, the invasion continues until the timer runs out. At the end of the timer, if the attackers managed to keep their capture progress above the goal, they'll win.",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "endless",
+                    "type": {
+                      "kind": "object",
+                      "fields": [
+                        {
+                          "key": "mode-enabled",
+                          "type": {
+                            "kind": "boolean",
+                            "description": "Allow plunder capture progress to continue in endless mode.",
+                            "capability": {
+                              "sources": [
+                                "jar-runtime"
+                              ],
+                              "tier": "advanced",
+                              "runtimeField": "PLUNDER_CAPTURE_PROGRESS_ENDLESS_MODE_ENABLED",
+                              "consumers": [
+                                "org/kingdoms/managers/invasions/Plunder"
+                              ]
+                            },
+                            "optional": true
+                          }
+                        },
+                        {
+                          "key": "mode-max",
+                          "type": {
+                            "kind": "decimal",
+                            "description": "Maximum capture progress used by endless plunder mode.",
+                            "capability": {
+                              "sources": [
+                                "jar-runtime"
+                              ],
+                              "tier": "advanced",
+                              "runtimeField": "PLUNDER_CAPTURE_PROGRESS_ENDLESS_MODE_MAX",
+                              "consumers": [
+                                "org/kingdoms/managers/invasions/Plunder"
+                              ]
+                            },
+                            "optional": true
+                          }
+                        }
+                      ],
+                      "description": "",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  }
+                ],
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "This is only for attackers. This is different from win by deaths. Read the wiki for more info.",
+                "optional": true
+              }
+            },
+            {
+              "key": "defender-bossbar",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "title",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "Message",
+                      "description": "Formatted text shown on the boss bar.",
+                      "optional": true,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "key": "color",
+                    "type": {
+                      "kind": "enum",
+                      "values": [
+                        "BLUE",
+                        "GREEN",
+                        "PINK",
+                        "PURPLE",
+                        "RED",
+                        "WHITE",
+                        "YELLOW"
+                      ],
+                      "description": "Boss bar color.",
+                      "optional": true,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "key": "style",
+                    "type": {
+                      "kind": "enum",
+                      "values": [
+                        "SEGMENTED_10",
+                        "SEGMENTED_12",
+                        "SEGMENTED_20",
+                        "SEGMENTED_6",
+                        "SOLID"
+                      ],
+                      "description": "Boss bar segment style.",
+                      "optional": true,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      }
+                    }
+                  }
+                ],
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "The enabled and range option are the same as the main bossbar option. The attacker's bossbar is the default bossbar used for champions. That means during plunder invasions attackers and invaders have different bossbars.",
+                "optional": true
+              }
+            },
+            {
+              "key": "continue-if-champion-dies",
+              "type": {
+                "kind": "boolean",
+                "description": "Only works if \"keep-champion\" is enabled The only way to win the invasion would be to get enough scores in the plunder invasion and killing the champion has no effect.",
+                "capability": {
+                  "sources": [
+                    "editor-overlay",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "keep-participants",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "nation",
+                    "type": {
+                      "kind": "boolean",
+                      "description": "Keep nation participants in the plunder participant set.",
+                      "capability": {
+                        "sources": [
+                          "jar-runtime"
+                        ],
+                        "tier": "advanced",
+                        "runtimeField": "PLUNDER_KEEP_PARTICIPANTS_NATION",
+                        "consumers": [
+                          "org/kingdoms/managers/invasions/InvasionManager"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "allies",
+                    "type": {
+                      "kind": "boolean",
+                      "description": "Keep allied participants in the plunder participant set.",
+                      "capability": {
+                        "sources": [
+                          "jar-runtime"
+                        ],
+                        "tier": "advanced",
+                        "runtimeField": "PLUNDER_KEEP_PARTICIPANTS_ALLIES",
+                        "consumers": [
+                          "org/kingdoms/managers/invasions/InvasionManager"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "truces",
+                    "type": {
+                      "kind": "boolean",
+                      "description": "Keep truce participants in the plunder participant set.",
+                      "capability": {
+                        "sources": [
+                          "jar-runtime"
+                        ],
+                        "tier": "advanced",
+                        "runtimeField": "PLUNDER_KEEP_PARTICIPANTS_TRUCES",
+                        "consumers": [
+                          "org/kingdoms/managers/invasions/InvasionManager"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  }
+                ],
+                "description": "",
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                },
+                "optional": true
+              }
+            }
+          ],
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "https://github.com/CryptoMorin/KingdomsX/wiki/Mechanics#plunders",
+          "optional": true
+        }
+      },
+      {
+        "key": "challenges",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "enabled",
+              "type": {
+                "kind": "boolean",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "duration",
+              "type": {
+                "kind": "duration",
+                "typeName": "Period",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "The duration which the kingdom can invade once the challenge time starts.",
+                "optional": true
+              }
+            }
+          ],
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "Read the /k challenge GUI for more info. Or read: https://github.com/CryptoMorin/KingdomsX/wiki/Commands#k-challenge If you set the minimum required defenders option, sending a challenge request is not needed if that requirement is met.",
+          "optional": true
+        }
+      },
+      {
+        "key": "ignore-land-connection-checks",
+        "type": {
+          "kind": "boolean",
+          "description": "Should connection radius and distance check be ignored if you're invading a kingdom? This will also automatically unclaim disconnected lands of the defender kingdom after their land is invaded. Note: \"connection-radius\" and \"distance\" are configured in claims.yml, they're disabled by default.",
+          "capability": {
+            "sources": [
+              "editor-overlay",
+              "jar-default"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "visual-range",
+        "type": {
+          "kind": "integer",
+          "description": "Should the bossbars/scoreboards be displayed only for nearby players around the champion/invasion area or set to 0 for all the online members of the defender and attacker kingdoms.",
+          "capability": {
+            "sources": [
+              "editor-overlay",
+              "jar-default"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "scoreboard",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "enabled",
+              "type": {
+                "kind": "boolean",
+                "description": "",
+                "capability": {
+                  "sources": [
+                    "editor-overlay",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "update-rate",
+              "type": {
+                "kind": "duration",
+                "description": "Kingdoms duration.",
+                "capability": {
+                  "sources": [
+                    "editor-overlay",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "title",
+              "type": {
+                "kind": "string",
+                "typeName": "Message",
+                "description": "Formatted scoreboard title.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay",
+                    "jar-default"
+                  ]
+                }
+              }
+            },
+            {
+              "key": "lines",
+              "type": {
+                "kind": "list",
+                "elements": {
+                  "kind": "string",
+                  "typeName": "Message",
+                  "description": "Formatted scoreboard line.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                },
+                "description": "",
+                "capability": {
+                  "sources": [
+                    "editor-overlay",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            }
+          ],
+          "description": "Scoreboard shown only when you're within the invasion area radius",
+          "capability": {
+            "sources": [
+              "editor-overlay",
+              "jar-default"
+            ]
+          },
+          "optional": true
+        }
+      }
+    ],
+    "capability": {
+      "sources": [
+        "jar-schema"
+      ]
+    }
+  }
+}

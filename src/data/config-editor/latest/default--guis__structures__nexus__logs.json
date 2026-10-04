@@ -1,0 +1,3082 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "guis/structures/nexus/logs.yml",
+  "schemaId": "guis/schema",
+  "options": [
+    {
+      "path": [
+        "title"
+      ],
+      "source": "\"{$sep}-=[ &4Audit Logs {$sep}]=-\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sound"
+      ],
+      "source": "ITEM_BOOK_PAGE_TURN",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "rows"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]"
+      ],
+      "source": "\r\n  kingdom-join:\r\n    material: GREEN_WOOL\r\n    name: '{$p}Player Joined{$colon} {$s}%player%'\r\n    lore: |\r\n      {$p}At{$colon} {$s}%time%\r\n      {$p}Invited By{$colon} {$s}%inviter%\r\n  kingdom-kick:\r\n    material: RED_WOOL\r\n    name: '{$p}Kicked Member{$colon} {$s}%player%'\r\n    lore: |\r\n      {$p}At{$colon} {$s}%time%\r\n      {$p}Kicker{$colon} {$s}%kicker%\r\n  kingdom-leave:\r\n    material: RED_WOOL\r\n    name: '{$p}Player Left{$colon} {$s}%player%'\r\n    lore: |\r\n      {$p}At{$colon} {$s}%time%\r\n      {$p}Reason{$colon} {$s}%reason%\r\n  kingdom-challenge-challenger:\r\n    material: GREEN_WOOL\r\n    name: '{$p}Challenged'\r\n    lore: |\r\n      &e%player% &chas challenged\r\n      &e%other*kingdoms_kingdom_name% &ckingdom.\r\n      {$p}At{$colon} {$s}%time%\r\n\r\n      {$sep}You have until &c%start_time%\r\n      {$sep}to prepare to attack.\r\n  kingdom-challenge-challenged:\r\n    material: RED_WOOL\r\n    name: '&cChallenged'\r\n    lore: |\r\n      &e%kingdoms_kingdom_name% &ckingdom has\r\n      &cchallenged your kingdom.\r\n      {$p}At{$colon} {$s}%time%\r\n\r\n      {$sep}You have until &c%start_time%\r\n      {$sep}to prepare before they attack.\r\n  kingdom-claim:\r\n    material: GRASS_BLOCK\r\n    name: '{$p}Claimed'\r\n    lore: |\r\n      {$s}%player% {$p}has claimed\r\n      the following lands{$colon}\r\n      %lands%\r\n      {$p}At{$colon} {$s}%time%\r\n  kingdom-unclaim:\r\n    material: GRASS_BLOCK\r\n    name: '&cUnclaimed'\r\n    lore: |\r\n      {$es}%player% {$e}has unclaimed\r\n      the following lands{$colon}\r\n      %lands%\r\n      {$p}At{$colon} {$s}%time%\r\n  kingdom-invasion-invader:\r\n    material: IRON_SWORD\r\n    name: '{$p}Invaded'\r\n    lore: |\r\n      {$s}%player% {$p}has invaded{$colon}\r\n      {$s}%chunk%\r\n      {$p}Kingdom{$colon} {$s}%kingdoms_kingdom_name%\r\n      {$p}Ransack Mode{$colon} %ransack-mode%\r\n      {$p}Result{$colon} {$s}%result%\r\n      {$p}At{$colon} {$s}%time%\r\n      {$p}Affected Lands{$colon}\r\n      %affected-lands%\r\n  kingdom-invasion-invaded:\r\n    material: GOLD_SWORD\r\n    name: '&cGot Invaded'\r\n    lore: |\r\n      {$s}%player% {$p}has invaded your kingdom at{$colon}\r\n      {$s}%chunk%\r\n      {$p}Kingdom{$colon} {$s}%kingdoms_kingdom_name%\r\n      {$p}Ransack Mode{$colon} %ransack-mode%\r\n      {$p}Result{$colon} {$s}%result%\r\n      {$p}At{$colon} {$s}%time%\r\n      {$p}Affected Lands{$colon}\r\n      %affected-lands%\r\n  kingdom-upgrade-misc:\r\n    material: DIAMOND_HOE\r\n    name: '{$sp}Misc Upgrade'\r\n    lore: |\r\n      {$s}%player% {$p}has upgraded\r\n      {$s}%upgrade% {$p}misc upgrade.\r\n      {$p}Level{$colon} {$s}%old_level% {$sep}➜ {$s}%new_level%\r\n      {$p}Resource Points Cost{$colon} {$s}%fancy@resource_points%\r\n      {$p}At{$colon} {$s}%time%\r\n  kingdom-upgrade-champion:\r\n    material: ZOMBIE_HEAD\r\n    name: '{$sp}Champion Upgrade'\r\n    lore: |\r\n      {$s}%player% {$p}has upgraded\r\n      {$s}%upgrade% {$p}champion upgrade.\r\n      {$p}Level{$colon} {$s}%old_level% {$sep}➜ {$s}%new_level%\r\n      {$p}Resource Points Cost{$colon} {$s}%fancy@resource_points%\r\n      {$p}At{$colon} {$s}%time%\r\n  kingdom-upgrade-powerup:\r\n    material: DIAMOND_SWORD\r\n    name: '{$sp}Powerup Upgrade'\r\n    lore: |\r\n      {$s}%player% {$p}has upgraded\r\n      {$s}%upgrade% {$p}powerup.\r\n      {$p}Level{$colon} {$s}%old_level% {$sep}➜ {$s}%new_level%\r\n      {$p}Resource Points Cost{$colon} {$s}%fancy@resource_points%\r\n      {$p}At{$colon} {$s}%time%\r\n  kingdom-structure-upgrade:\r\n    material: EMERALD_BLOCK\r\n    name: '&aStructure Upgrade'\r\n    lore: |\r\n      {$s}%player% {$p}has upgraded\r\n      {$s}%item_style_display_name% {$p}structure at\r\n      {$s}%location%\r\n      {$p}Level{$colon} {$s}%old_level% {$sep}➜ {$s}%new_level%\r\n      {$p}Resource Points Cost{$colon} {$s}%fancy@resource_points%\r\n      {$p}At{$colon} {$s}%time%\r\n  kingdom-structure-purchase:\r\n    material: EMERALD_BLOCK\r\n    name: '&aStructure Purchase'\r\n    lore: |\r\n      {$s}%player% {$p}has purchased {$s}%amount%\r\n      {$s}%item_style_display_name% {$p}structures.\r\n      {$p}Resource Points Cost{$colon} {$s}%fancy@resource_points%\r\n      {$p}At{$colon} {$s}%time%\r\n  kingdom-turret-purchase:\r\n    material: EMERALD_BLOCK\r\n    name: '&aTurret Purchase'\r\n    lore: |\r\n      {$s}%player% {$p}has purchased {$s}%amount%\r\n      {$s}%item_style_display_name% {$p}turrets.\r\n      {$p}Resource Points Cost{$colon} {$s}%fancy@resource_points%\r\n      {$p}At{$colon} {$s}%time%\r\n  kingdom-turret-purchase-ammo:\r\n    name: '&aTurret Ammo Purchase'\r\n    material: EMERALD_BLOCK\r\n    lore: |\r\n      {$s}%player% {$p}has purchased ammo for\r\n      {$s}%style% {$p}turret at {$s}%translated-world%{$sep}, {$s}%x%{$sep}, {$s}%y%{$sep}, {$s}%z%\r\n      {$s}%fancy@old_amount% {$sep}➜ {$s}%fancy@new_amount%\r\n      {$p}Resource Points Cost{$colon} {$s}%fancy@resource_points%\r\n      {$p}At{$colon} {$s}%time%\r\n  kingdom-turret-upgrade:\r\n    material: ARROW\r\n    name: '&aTurret Upgrade'\r\n    lore: |\r\n      {$s}%player% {$p}has upgraded\r\n      {$s}%item_style_display_name% {$p}turret at\r\n      {$s}%location%\r\n      {$p}Level{$colon} {$s}%old_level% {$sep}➜ {$s}%new_level%\r\n      {$p}Resource Points Cost{$colon} {$s}%fancy@resource_points%\r\n      {$p}At{$colon} {$s}%time%\r\n  kingdom-resource-points-convert:\r\n    material: HAY_BLOCK\r\n    name: '&aResource Points Convert'\r\n    lore: |\r\n      {$s}%player% {$p}has changed\r\n      resource points{$colon}\r\n      {$s}%fancy@amount-before% {$sep}➜ {$s}%fancy@amount-after%\r\n      {$p}At{$colon} {$s}%time%\r\n  extractor-collect:\r\n    material: EMERALD_BLOCK\r\n    name: '&aExtractor Collect'\r\n    lore: |\r\n      {$s}%player% {$p}has collected the\r\n      extractor located at{$colon}\r\n      {$s}%location%\r\n      {$p}Collected Resource Points{$colon} {$s}%fancy@resource_points%\r\n      {$p}At{$colon} {$s}%time%\r\n  warppad-teleport:\r\n    material: END_PORTAL_FRAME\r\n    name: '&3Warp Pad Teleport'\r\n    lore: |\r\n      {$s}%player% {$p}has teleported\r\n      using the Warp Pad located at\r\n      {$s}%from_location% {$p}to\r\n      {$s}%precise_location%\r\n      {$p}Fuel Cost{$colon} {$s}%fancy@fuel_cost%\r\n      {$p}At{$colon} {$s}%time%\r\n  outpost-item-purchase:\r\n    material: HAY_BLOCK\r\n    name: '&eOutpost Item Purchase'\r\n    lore: |\r\n      {$s}%player% {$p}has purchased\r\n      the following items from the\r\n      Outpost structure located at{$colon}\r\n      {$s}%location%\r\n      {$p}Total Resource Points{$colon} {$s}%fancy@resource_points%\r\n      {$p}At{$colon} {$s}%time%\r\n      %purchases%\r\n  kingdom-pacifism-change:\r\n    material: NETHER_STAR\r\n    name: '&5Pacifism Change'\r\n    lore: |\r\n      {$s}%player% {$p}has changed the\r\n      pacifism state of the kingdom.\r\n      {$p}Pacifist{$colon} {$s}%bool@pacifist%\r\n      {$p}At{$colon} {$s}%time%\r\n  shield-purchase:\r\n    material: SHIELD\r\n    name: '&5Shield Purchase'\r\n    lore: |\r\n      {$s}%player% {$p}has purchased\r\n      a shield for the kingdom.\r\n      {$p}Purchased Shield Duration{$colon} {$s}%purchased-shield-time%\r\n      {$p}Shield Duration{$colon} {$s}%old-shield-time% {$sep}➜ {$s}%new-shield-time%\r\n      {$p}Resource Points Cost{$colon} {$s}%fancy@resource_points%\r\n      {$p}At{$colon} {$s}%time%\r\n  shield-deactivation:\r\n    material: SHIELD\r\n    name: '&5Shield Deactivation'\r\n    lore: |\r\n      {$s}%player% {$p}has deactivated the\r\n      kingdom's shield.\r\n      {$p}Shield Duration{$colon} {$s}%old-shield-time%\r\n      {$p}At{$colon} {$s}%time%\r\n  kingdom-relation-change:\r\n    material: NETHER_STAR\r\n    name: '{$sp}Relationship Change'\r\n    lore: |\r\n      {$p}Kingdom's relationship has\r\n      changed with {$s}%kingdoms_kingdom_name% {$p}kingdom{$colon}\r\n      %old-relation% {$sep}➜ %new-relation%\r\n      {$p}At{$colon} {$s}%time%\r\n  kingdom-invite:\r\n    material: BOOK\r\n    name: '{$sp}Invite'\r\n    lore: |\r\n      {$s}%inviter% {$p}has invited {$s}%player%\r\n      {$p}to the kingdom. They have {$s}%accept-time%\r\n      {$p}to accept the request.\r\n      {$p}At{$colon} {$s}%time%\r\n  kingdom-king-change:\r\n    material: BOOK\r\n    name: '&4King Change'\r\n    lore: |\r\n      {$p}Kingdom's king has been changed{$colon}\r\n      {$s}%old-king% {$sep}➜ {$s}%new-king%\r\n      {$p}Reason{$colon} {$s}%reason%\r\n      {$p}At{$colon} {$s}%time%\r\n  player-rank-change:\r\n    lore: |\r\n      {$s}%old-rank% {$sep}➜ {$s}%new-rank%\r\n      {$p}By{$colon} {$s}%by-player%\r\n    promoted:\r\n      condition: 'old_rank_priority > new_rank_priority' # It's the opposite\r\n      material: GREEN_WOOL\r\n      name: '&aPlayer Promoted{$colon} {$s}%player%'\r\n    else: # demoted\r\n      material: RED_WOOL\r\n      name: '&cPlayer Demoted{$colon} {$s}%player%'\r\n  rank-create:\r\n    material: BOOK\r\n    name: '{$p}Rank Created'\r\n    lore: |\r\n      {$p}A rank was created by {$s}%player%{$colon}\r\n      {$p}Node{$colon} {$s}%rank_node%\r\n      {$p}Display Name{$colon} {$s}%rank_color%%rank_symbol% %rank_name%\r\n      {$p}Priority{$colon} {$s}%rank_priority%\r\n      {$p}Max Claims{$colon} {$s}%rank_max_claims%\r\n      {$p}Material{$colon} {$s}%rank_material%\r\n      {$p}At{$colon} {$s}%time%\r\n  rank-delete:\r\n    material: BOOK\r\n    name: '&cRank Deleted'\r\n    lore: |\r\n      {$p}Rank was deleted by {$s}%player%{$colon}\r\n      {$p}Node{$colon} {$s}%rank_node%\r\n      {$p}Display Name{$colon} {$s}%rank_color% %rank_symbol% %rank_name%\r\n      {$p}Priority{$colon} {$s}%rank_priority%\r\n      {$p}Max Claims{$colon} {$s}%rank_max_claims%\r\n      {$p}Material{$colon} {$s}%rank_material%\r\n      {$p}At{$colon} {$s}%time%\r\n  rank-change-name:\r\n    material: BOOK\r\n    name: '{$sp}Rank Name Changed'\r\n    lore: |\r\n      {$p}The rank %rank%\r\n      {$p}name was changed by {$s}%player%{$colon}\r\n      {$s}%old-name% {$sep}➜ {$s}%new-name%\r\n      {$p}At{$colon} {$s}%time%\r\n  rank-change-symbol:\r\n    material: BOOK\r\n    name: '{$sp}Rank Symbol Changed'\r\n    lore: |\r\n      {$p}The rank %rank%\r\n      {$p}symbol was changed by {$s}%player%{$colon}\r\n      {$s}%old-symbol% {$sep}➜ {$s}%new-symbol%\r\n      {$p}At{$colon} {$s}%time%\r\n  rank-change-color:\r\n    material: BOOK\r\n    name: '{$sp}Rank Color Changed'\r\n    lore: |\r\n      {$p}The rank %rank%\r\n      {$p}name was changed by {$s}%player%{$colon}\r\n      {$s}%old-color%color {$sep}➜ {$s}%new-color%color\r\n      {$p}At{$colon} {$s}%time%\r\n  rank-change-priority:\r\n    material: BOOK\r\n    name: '{$sp}Rank priority Changed'\r\n    lore: |\r\n      {$p}The rank %rank%\r\n      {$p}priority was changed by {$s}%player%{$colon}\r\n      {$s}%old-priority% {$sep}➜ {$s}%new-priority%\r\n      {$p}At{$colon} {$s}%time%\r\n  rank-change-max-claims:\r\n    material: BOOK\r\n    name: '{$sp}Rank Max Claims Changed'\r\n    lore: |\r\n      {$p}The rank %rank%\r\n      {$p}max claims was changed by {$s}%player%{$colon}\r\n      {$s}%old-max-claims% {$sep}➜ {$s}%new-max-claims%\r\n      {$p}At{$colon} {$s}%time%\r\n  rank-change-material:\r\n    material: BOOK\r\n    name: '{$sp}Rank Material Changed'\r\n    lore: |\r\n      {$p}The rank %rank%\r\n      {$p}material was changed by {$s}%player%{$colon}\r\n      {$s}%old-material% {$sep}➜ {$s}%new-material%\r\n      {$p}At{$colon} {$s}%time%\r\n  structures-nexus-move:\r\n    material: BEACON\r\n    name: '{$sp}Nexus Placed'\r\n    placed:\r\n      condition: placed\r\n      lore: |\r\n        {$p}The kingdom's nexus was\r\n        placed by {$s}%player%{$colon}\r\n        {$s}%to_translated-world%{$sep}, {$s}%to_x%{$sep}, {$s}%to_y%{$sep}, {$s}%to_z%\r\n        {$p}At{$colon} {$s}%time%\r\n    else:\r\n      lore: |\r\n        {$p}The kingdom's nexus was\r\n        moved by {$s}%player%{$colon}\r\n        {$s}%from_translated-world%{$sep}, {$s}%from_x%{$sep}, {$s}%from_y%{$sep}, {$s}%from_z% {$sep}➜ {$s}%to_translated-world%{$sep}, {$s}%to_x%{$sep}, {$s}%to_y%{$sep}, {$s}%to_z%\r\n        {$p}At{$colon} {$s}%time%\r\n  group-tax-server-pay:\r\n    material: PAPER\r\n    name: \"{$sp}Server Tax\"\r\n    lore: |\r\n      {$p}Server taxes paid.\r\n      {$p}Amount{$colon} {$s}%fancy@amount%\r\n      {$p}At{$colon} {$s}%time%\r\n  kingdom-champion-change:\r\n    material: ZOMBIE_HEAD\r\n    name: \"{$sp}Champion Change\"\r\n    lore: |\r\n      {$p}The champion was changed\r\n      by {$s}%player%{$colon}\r\n      {$s}%old% {$sep}➜ {$s}%new%\r\n      {$p}At{$colon} {$s}%time%\r\n  kingdom-change-lore:\r\n    material: PAPER\r\n    name: \"{$sp}Change Lore\"\r\n    lore: |\r\n      {$p}The kingdom's lore was changed\r\n      by {$s}%player%{$colon}\r\n      {$s}%old% {$sep}➜ {$s}%new%\r\n      {$p}At{$colon} {$s}%time%\r\n  kingdom-rename:\r\n    material: PAPER\r\n    name: \"{$sp}Rename\"\r\n    lore: |\r\n      {$p}The kingdom was renamed\r\n      by {$s}%player%{$colon}\r\n      {$s}%old% {$sep}➜ {$s}%new%\r\n      {$p}At{$colon} {$s}%time%\r\n  kingdom-change-tag:\r\n    material: PAPER\r\n    name: \"{$sp}Change Tag\"\r\n    lore: |\r\n      {$p}The kingdom's tag was changed\r\n      by {$s}%player%{$colon}\r\n      {$s}%old% {$sep}➜ {$s}%new%\r\n      {$p}At{$colon} {$s}%time%\r\n  kingdom-nation-join:\r\n    material: BEACON\r\n    name: \"{$sp}Nation Join\"\r\n    lore: |\r\n      {$p}Your kingdom has joined\r\n      {$s}%kingdoms_nation_name% {$p}nation.\r\n      {$p}At{$colon} {$s}%time%\r\n  kingdom-nation-leave:\r\n    material: BEACON\r\n    name: \"&cNation Leave\"\r\n    lore: |\r\n      {$p}Your kingdom has left\r\n      {$s}%kingdoms_nation_name% {$p}nation.\r\n      {$p}At{$colon} {$s}%time%\r\n  kingdom-vault-inventory-change:\r\n    material: PAPER\r\n    name: \"&cKingdom Vault Inventory Change\"\r\n    lore: |\r\n      {$p}Changes{$colon}\r\n      %changes%\r\n\r\n      {$p}At{$colon} {$s}%time%\r\n  'PeaceTreaties:received':\r\n    material: BOOK\r\n    name: \"{$sp}Received Peace Treaty\"\r\n    commands:\r\n      - 'k pt review %other*kingdoms_kingdom_name%'\r\n    lore: |\r\n      {$p}Proposer{$colon} {$s}%other*kingdoms_kingdom_name%\r\n      {$p}Contract Duration{$colon} {$s}%peacetreaty_duration%\r\n\r\n      {$p}For more information do{$colon}\r\n      {$s}/k pt review %other*kingdoms_kingdom_name%\r\n  'PeaceTreaties:sent':\r\n    material: BOOK\r\n    name: \"{$sp}Sent Peace Treaty\"\r\n    commands:\r\n      - 'k pt review %other*kingdoms_kingdom_name%'\r\n    lore: |\r\n      {$p}To{$colon} {$s}%kingdoms_kingdom_name%\r\n      {$p}Contract Duration{$colon} {$s}%peacetreaty_duration%\r\n\r\n      {$p}For more information do{$colon}\r\n      {$s}/k pt review %other*kingdoms_kingdom_name%\r\n  '[else]':\r\n    material: BARRIER\r\n    name: '{$e}Unknown log type{$colon}'\r\n    lore: '{$es}%type%'\r\n\r\n",
+      "comments": [
+        "[NoSync] Don't remove this comment"
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-join"
+      ],
+      "source": "\r\n    material: GREEN_WOOL\r\n    name: '{$p}Player Joined{$colon} {$s}%player%'\r\n    lore: |\r\n      {$p}At{$colon} {$s}%time%\r\n      {$p}Invited By{$colon} {$s}%inviter%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-join",
+        "material"
+      ],
+      "source": "GREEN_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-join",
+        "name"
+      ],
+      "source": "'{$p}Player Joined{$colon} {$s}%player%'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-join",
+        "lore"
+      ],
+      "source": "|\r\n      {$p}At{$colon} {$s}%time%\r\n      {$p}Invited By{$colon} {$s}%inviter%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-kick"
+      ],
+      "source": "\r\n    material: RED_WOOL\r\n    name: '{$p}Kicked Member{$colon} {$s}%player%'\r\n    lore: |\r\n      {$p}At{$colon} {$s}%time%\r\n      {$p}Kicker{$colon} {$s}%kicker%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-kick",
+        "material"
+      ],
+      "source": "RED_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-kick",
+        "name"
+      ],
+      "source": "'{$p}Kicked Member{$colon} {$s}%player%'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-kick",
+        "lore"
+      ],
+      "source": "|\r\n      {$p}At{$colon} {$s}%time%\r\n      {$p}Kicker{$colon} {$s}%kicker%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-leave"
+      ],
+      "source": "\r\n    material: RED_WOOL\r\n    name: '{$p}Player Left{$colon} {$s}%player%'\r\n    lore: |\r\n      {$p}At{$colon} {$s}%time%\r\n      {$p}Reason{$colon} {$s}%reason%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-leave",
+        "material"
+      ],
+      "source": "RED_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-leave",
+        "name"
+      ],
+      "source": "'{$p}Player Left{$colon} {$s}%player%'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-leave",
+        "lore"
+      ],
+      "source": "|\r\n      {$p}At{$colon} {$s}%time%\r\n      {$p}Reason{$colon} {$s}%reason%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-challenge-challenger"
+      ],
+      "source": "\r\n    material: GREEN_WOOL\r\n    name: '{$p}Challenged'\r\n    lore: |\r\n      &e%player% &chas challenged\r\n      &e%other*kingdoms_kingdom_name% &ckingdom.\r\n      {$p}At{$colon} {$s}%time%\r\n\r\n      {$sep}You have until &c%start_time%\r\n      {$sep}to prepare to attack.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-challenge-challenger",
+        "material"
+      ],
+      "source": "GREEN_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-challenge-challenger",
+        "name"
+      ],
+      "source": "'{$p}Challenged'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-challenge-challenger",
+        "lore"
+      ],
+      "source": "|\r\n      &e%player% &chas challenged\r\n      &e%other*kingdoms_kingdom_name% &ckingdom.\r\n      {$p}At{$colon} {$s}%time%\r\n\r\n      {$sep}You have until &c%start_time%\r\n      {$sep}to prepare to attack.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-challenge-challenged"
+      ],
+      "source": "\r\n    material: RED_WOOL\r\n    name: '&cChallenged'\r\n    lore: |\r\n      &e%kingdoms_kingdom_name% &ckingdom has\r\n      &cchallenged your kingdom.\r\n      {$p}At{$colon} {$s}%time%\r\n\r\n      {$sep}You have until &c%start_time%\r\n      {$sep}to prepare before they attack.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-challenge-challenged",
+        "material"
+      ],
+      "source": "RED_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-challenge-challenged",
+        "name"
+      ],
+      "source": "'&cChallenged'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-challenge-challenged",
+        "lore"
+      ],
+      "source": "|\r\n      &e%kingdoms_kingdom_name% &ckingdom has\r\n      &cchallenged your kingdom.\r\n      {$p}At{$colon} {$s}%time%\r\n\r\n      {$sep}You have until &c%start_time%\r\n      {$sep}to prepare before they attack.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-claim"
+      ],
+      "source": "\r\n    material: GRASS_BLOCK\r\n    name: '{$p}Claimed'\r\n    lore: |\r\n      {$s}%player% {$p}has claimed\r\n      the following lands{$colon}\r\n      %lands%\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-claim",
+        "material"
+      ],
+      "source": "GRASS_BLOCK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-claim",
+        "name"
+      ],
+      "source": "'{$p}Claimed'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-claim",
+        "lore"
+      ],
+      "source": "|\r\n      {$s}%player% {$p}has claimed\r\n      the following lands{$colon}\r\n      %lands%\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-unclaim"
+      ],
+      "source": "\r\n    material: GRASS_BLOCK\r\n    name: '&cUnclaimed'\r\n    lore: |\r\n      {$es}%player% {$e}has unclaimed\r\n      the following lands{$colon}\r\n      %lands%\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-unclaim",
+        "material"
+      ],
+      "source": "GRASS_BLOCK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-unclaim",
+        "name"
+      ],
+      "source": "'&cUnclaimed'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-unclaim",
+        "lore"
+      ],
+      "source": "|\r\n      {$es}%player% {$e}has unclaimed\r\n      the following lands{$colon}\r\n      %lands%\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-invasion-invader"
+      ],
+      "source": "\r\n    material: IRON_SWORD\r\n    name: '{$p}Invaded'\r\n    lore: |\r\n      {$s}%player% {$p}has invaded{$colon}\r\n      {$s}%chunk%\r\n      {$p}Kingdom{$colon} {$s}%kingdoms_kingdom_name%\r\n      {$p}Ransack Mode{$colon} %ransack-mode%\r\n      {$p}Result{$colon} {$s}%result%\r\n      {$p}At{$colon} {$s}%time%\r\n      {$p}Affected Lands{$colon}\r\n      %affected-lands%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-invasion-invader",
+        "material"
+      ],
+      "source": "IRON_SWORD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-invasion-invader",
+        "name"
+      ],
+      "source": "'{$p}Invaded'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-invasion-invader",
+        "lore"
+      ],
+      "source": "|\r\n      {$s}%player% {$p}has invaded{$colon}\r\n      {$s}%chunk%\r\n      {$p}Kingdom{$colon} {$s}%kingdoms_kingdom_name%\r\n      {$p}Ransack Mode{$colon} %ransack-mode%\r\n      {$p}Result{$colon} {$s}%result%\r\n      {$p}At{$colon} {$s}%time%\r\n      {$p}Affected Lands{$colon}\r\n      %affected-lands%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-invasion-invaded"
+      ],
+      "source": "\r\n    material: GOLD_SWORD\r\n    name: '&cGot Invaded'\r\n    lore: |\r\n      {$s}%player% {$p}has invaded your kingdom at{$colon}\r\n      {$s}%chunk%\r\n      {$p}Kingdom{$colon} {$s}%kingdoms_kingdom_name%\r\n      {$p}Ransack Mode{$colon} %ransack-mode%\r\n      {$p}Result{$colon} {$s}%result%\r\n      {$p}At{$colon} {$s}%time%\r\n      {$p}Affected Lands{$colon}\r\n      %affected-lands%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-invasion-invaded",
+        "material"
+      ],
+      "source": "GOLD_SWORD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-invasion-invaded",
+        "name"
+      ],
+      "source": "'&cGot Invaded'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-invasion-invaded",
+        "lore"
+      ],
+      "source": "|\r\n      {$s}%player% {$p}has invaded your kingdom at{$colon}\r\n      {$s}%chunk%\r\n      {$p}Kingdom{$colon} {$s}%kingdoms_kingdom_name%\r\n      {$p}Ransack Mode{$colon} %ransack-mode%\r\n      {$p}Result{$colon} {$s}%result%\r\n      {$p}At{$colon} {$s}%time%\r\n      {$p}Affected Lands{$colon}\r\n      %affected-lands%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-upgrade-misc"
+      ],
+      "source": "\r\n    material: DIAMOND_HOE\r\n    name: '{$sp}Misc Upgrade'\r\n    lore: |\r\n      {$s}%player% {$p}has upgraded\r\n      {$s}%upgrade% {$p}misc upgrade.\r\n      {$p}Level{$colon} {$s}%old_level% {$sep}➜ {$s}%new_level%\r\n      {$p}Resource Points Cost{$colon} {$s}%fancy@resource_points%\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-upgrade-misc",
+        "material"
+      ],
+      "source": "DIAMOND_HOE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-upgrade-misc",
+        "name"
+      ],
+      "source": "'{$sp}Misc Upgrade'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-upgrade-misc",
+        "lore"
+      ],
+      "source": "|\r\n      {$s}%player% {$p}has upgraded\r\n      {$s}%upgrade% {$p}misc upgrade.\r\n      {$p}Level{$colon} {$s}%old_level% {$sep}➜ {$s}%new_level%\r\n      {$p}Resource Points Cost{$colon} {$s}%fancy@resource_points%\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-upgrade-champion"
+      ],
+      "source": "\r\n    material: ZOMBIE_HEAD\r\n    name: '{$sp}Champion Upgrade'\r\n    lore: |\r\n      {$s}%player% {$p}has upgraded\r\n      {$s}%upgrade% {$p}champion upgrade.\r\n      {$p}Level{$colon} {$s}%old_level% {$sep}➜ {$s}%new_level%\r\n      {$p}Resource Points Cost{$colon} {$s}%fancy@resource_points%\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-upgrade-champion",
+        "material"
+      ],
+      "source": "ZOMBIE_HEAD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-upgrade-champion",
+        "name"
+      ],
+      "source": "'{$sp}Champion Upgrade'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-upgrade-champion",
+        "lore"
+      ],
+      "source": "|\r\n      {$s}%player% {$p}has upgraded\r\n      {$s}%upgrade% {$p}champion upgrade.\r\n      {$p}Level{$colon} {$s}%old_level% {$sep}➜ {$s}%new_level%\r\n      {$p}Resource Points Cost{$colon} {$s}%fancy@resource_points%\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-upgrade-powerup"
+      ],
+      "source": "\r\n    material: DIAMOND_SWORD\r\n    name: '{$sp}Powerup Upgrade'\r\n    lore: |\r\n      {$s}%player% {$p}has upgraded\r\n      {$s}%upgrade% {$p}powerup.\r\n      {$p}Level{$colon} {$s}%old_level% {$sep}➜ {$s}%new_level%\r\n      {$p}Resource Points Cost{$colon} {$s}%fancy@resource_points%\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-upgrade-powerup",
+        "material"
+      ],
+      "source": "DIAMOND_SWORD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-upgrade-powerup",
+        "name"
+      ],
+      "source": "'{$sp}Powerup Upgrade'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-upgrade-powerup",
+        "lore"
+      ],
+      "source": "|\r\n      {$s}%player% {$p}has upgraded\r\n      {$s}%upgrade% {$p}powerup.\r\n      {$p}Level{$colon} {$s}%old_level% {$sep}➜ {$s}%new_level%\r\n      {$p}Resource Points Cost{$colon} {$s}%fancy@resource_points%\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-structure-upgrade"
+      ],
+      "source": "\r\n    material: EMERALD_BLOCK\r\n    name: '&aStructure Upgrade'\r\n    lore: |\r\n      {$s}%player% {$p}has upgraded\r\n      {$s}%item_style_display_name% {$p}structure at\r\n      {$s}%location%\r\n      {$p}Level{$colon} {$s}%old_level% {$sep}➜ {$s}%new_level%\r\n      {$p}Resource Points Cost{$colon} {$s}%fancy@resource_points%\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-structure-upgrade",
+        "material"
+      ],
+      "source": "EMERALD_BLOCK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-structure-upgrade",
+        "name"
+      ],
+      "source": "'&aStructure Upgrade'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-structure-upgrade",
+        "lore"
+      ],
+      "source": "|\r\n      {$s}%player% {$p}has upgraded\r\n      {$s}%item_style_display_name% {$p}structure at\r\n      {$s}%location%\r\n      {$p}Level{$colon} {$s}%old_level% {$sep}➜ {$s}%new_level%\r\n      {$p}Resource Points Cost{$colon} {$s}%fancy@resource_points%\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-structure-purchase"
+      ],
+      "source": "\r\n    material: EMERALD_BLOCK\r\n    name: '&aStructure Purchase'\r\n    lore: |\r\n      {$s}%player% {$p}has purchased {$s}%amount%\r\n      {$s}%item_style_display_name% {$p}structures.\r\n      {$p}Resource Points Cost{$colon} {$s}%fancy@resource_points%\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-structure-purchase",
+        "material"
+      ],
+      "source": "EMERALD_BLOCK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-structure-purchase",
+        "name"
+      ],
+      "source": "'&aStructure Purchase'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-structure-purchase",
+        "lore"
+      ],
+      "source": "|\r\n      {$s}%player% {$p}has purchased {$s}%amount%\r\n      {$s}%item_style_display_name% {$p}structures.\r\n      {$p}Resource Points Cost{$colon} {$s}%fancy@resource_points%\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-turret-purchase"
+      ],
+      "source": "\r\n    material: EMERALD_BLOCK\r\n    name: '&aTurret Purchase'\r\n    lore: |\r\n      {$s}%player% {$p}has purchased {$s}%amount%\r\n      {$s}%item_style_display_name% {$p}turrets.\r\n      {$p}Resource Points Cost{$colon} {$s}%fancy@resource_points%\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-turret-purchase",
+        "material"
+      ],
+      "source": "EMERALD_BLOCK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-turret-purchase",
+        "name"
+      ],
+      "source": "'&aTurret Purchase'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-turret-purchase",
+        "lore"
+      ],
+      "source": "|\r\n      {$s}%player% {$p}has purchased {$s}%amount%\r\n      {$s}%item_style_display_name% {$p}turrets.\r\n      {$p}Resource Points Cost{$colon} {$s}%fancy@resource_points%\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-turret-purchase-ammo"
+      ],
+      "source": "\r\n    name: '&aTurret Ammo Purchase'\r\n    material: EMERALD_BLOCK\r\n    lore: |\r\n      {$s}%player% {$p}has purchased ammo for\r\n      {$s}%style% {$p}turret at {$s}%translated-world%{$sep}, {$s}%x%{$sep}, {$s}%y%{$sep}, {$s}%z%\r\n      {$s}%fancy@old_amount% {$sep}➜ {$s}%fancy@new_amount%\r\n      {$p}Resource Points Cost{$colon} {$s}%fancy@resource_points%\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-turret-purchase-ammo",
+        "name"
+      ],
+      "source": "'&aTurret Ammo Purchase'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-turret-purchase-ammo",
+        "material"
+      ],
+      "source": "EMERALD_BLOCK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-turret-purchase-ammo",
+        "lore"
+      ],
+      "source": "|\r\n      {$s}%player% {$p}has purchased ammo for\r\n      {$s}%style% {$p}turret at {$s}%translated-world%{$sep}, {$s}%x%{$sep}, {$s}%y%{$sep}, {$s}%z%\r\n      {$s}%fancy@old_amount% {$sep}➜ {$s}%fancy@new_amount%\r\n      {$p}Resource Points Cost{$colon} {$s}%fancy@resource_points%\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-turret-upgrade"
+      ],
+      "source": "\r\n    material: ARROW\r\n    name: '&aTurret Upgrade'\r\n    lore: |\r\n      {$s}%player% {$p}has upgraded\r\n      {$s}%item_style_display_name% {$p}turret at\r\n      {$s}%location%\r\n      {$p}Level{$colon} {$s}%old_level% {$sep}➜ {$s}%new_level%\r\n      {$p}Resource Points Cost{$colon} {$s}%fancy@resource_points%\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-turret-upgrade",
+        "material"
+      ],
+      "source": "ARROW",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-turret-upgrade",
+        "name"
+      ],
+      "source": "'&aTurret Upgrade'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-turret-upgrade",
+        "lore"
+      ],
+      "source": "|\r\n      {$s}%player% {$p}has upgraded\r\n      {$s}%item_style_display_name% {$p}turret at\r\n      {$s}%location%\r\n      {$p}Level{$colon} {$s}%old_level% {$sep}➜ {$s}%new_level%\r\n      {$p}Resource Points Cost{$colon} {$s}%fancy@resource_points%\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-resource-points-convert"
+      ],
+      "source": "\r\n    material: HAY_BLOCK\r\n    name: '&aResource Points Convert'\r\n    lore: |\r\n      {$s}%player% {$p}has changed\r\n      resource points{$colon}\r\n      {$s}%fancy@amount-before% {$sep}➜ {$s}%fancy@amount-after%\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-resource-points-convert",
+        "material"
+      ],
+      "source": "HAY_BLOCK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-resource-points-convert",
+        "name"
+      ],
+      "source": "'&aResource Points Convert'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-resource-points-convert",
+        "lore"
+      ],
+      "source": "|\r\n      {$s}%player% {$p}has changed\r\n      resource points{$colon}\r\n      {$s}%fancy@amount-before% {$sep}➜ {$s}%fancy@amount-after%\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "extractor-collect"
+      ],
+      "source": "\r\n    material: EMERALD_BLOCK\r\n    name: '&aExtractor Collect'\r\n    lore: |\r\n      {$s}%player% {$p}has collected the\r\n      extractor located at{$colon}\r\n      {$s}%location%\r\n      {$p}Collected Resource Points{$colon} {$s}%fancy@resource_points%\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "extractor-collect",
+        "material"
+      ],
+      "source": "EMERALD_BLOCK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "extractor-collect",
+        "name"
+      ],
+      "source": "'&aExtractor Collect'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "extractor-collect",
+        "lore"
+      ],
+      "source": "|\r\n      {$s}%player% {$p}has collected the\r\n      extractor located at{$colon}\r\n      {$s}%location%\r\n      {$p}Collected Resource Points{$colon} {$s}%fancy@resource_points%\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "warppad-teleport"
+      ],
+      "source": "\r\n    material: END_PORTAL_FRAME\r\n    name: '&3Warp Pad Teleport'\r\n    lore: |\r\n      {$s}%player% {$p}has teleported\r\n      using the Warp Pad located at\r\n      {$s}%from_location% {$p}to\r\n      {$s}%precise_location%\r\n      {$p}Fuel Cost{$colon} {$s}%fancy@fuel_cost%\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "warppad-teleport",
+        "material"
+      ],
+      "source": "END_PORTAL_FRAME",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "warppad-teleport",
+        "name"
+      ],
+      "source": "'&3Warp Pad Teleport'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "warppad-teleport",
+        "lore"
+      ],
+      "source": "|\r\n      {$s}%player% {$p}has teleported\r\n      using the Warp Pad located at\r\n      {$s}%from_location% {$p}to\r\n      {$s}%precise_location%\r\n      {$p}Fuel Cost{$colon} {$s}%fancy@fuel_cost%\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "outpost-item-purchase"
+      ],
+      "source": "\r\n    material: HAY_BLOCK\r\n    name: '&eOutpost Item Purchase'\r\n    lore: |\r\n      {$s}%player% {$p}has purchased\r\n      the following items from the\r\n      Outpost structure located at{$colon}\r\n      {$s}%location%\r\n      {$p}Total Resource Points{$colon} {$s}%fancy@resource_points%\r\n      {$p}At{$colon} {$s}%time%\r\n      %purchases%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "outpost-item-purchase",
+        "material"
+      ],
+      "source": "HAY_BLOCK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "outpost-item-purchase",
+        "name"
+      ],
+      "source": "'&eOutpost Item Purchase'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "outpost-item-purchase",
+        "lore"
+      ],
+      "source": "|\r\n      {$s}%player% {$p}has purchased\r\n      the following items from the\r\n      Outpost structure located at{$colon}\r\n      {$s}%location%\r\n      {$p}Total Resource Points{$colon} {$s}%fancy@resource_points%\r\n      {$p}At{$colon} {$s}%time%\r\n      %purchases%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-pacifism-change"
+      ],
+      "source": "\r\n    material: NETHER_STAR\r\n    name: '&5Pacifism Change'\r\n    lore: |\r\n      {$s}%player% {$p}has changed the\r\n      pacifism state of the kingdom.\r\n      {$p}Pacifist{$colon} {$s}%bool@pacifist%\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-pacifism-change",
+        "material"
+      ],
+      "source": "NETHER_STAR",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-pacifism-change",
+        "name"
+      ],
+      "source": "'&5Pacifism Change'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-pacifism-change",
+        "lore"
+      ],
+      "source": "|\r\n      {$s}%player% {$p}has changed the\r\n      pacifism state of the kingdom.\r\n      {$p}Pacifist{$colon} {$s}%bool@pacifist%\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "shield-purchase"
+      ],
+      "source": "\r\n    material: SHIELD\r\n    name: '&5Shield Purchase'\r\n    lore: |\r\n      {$s}%player% {$p}has purchased\r\n      a shield for the kingdom.\r\n      {$p}Purchased Shield Duration{$colon} {$s}%purchased-shield-time%\r\n      {$p}Shield Duration{$colon} {$s}%old-shield-time% {$sep}➜ {$s}%new-shield-time%\r\n      {$p}Resource Points Cost{$colon} {$s}%fancy@resource_points%\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "shield-purchase",
+        "material"
+      ],
+      "source": "SHIELD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "shield-purchase",
+        "name"
+      ],
+      "source": "'&5Shield Purchase'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "shield-purchase",
+        "lore"
+      ],
+      "source": "|\r\n      {$s}%player% {$p}has purchased\r\n      a shield for the kingdom.\r\n      {$p}Purchased Shield Duration{$colon} {$s}%purchased-shield-time%\r\n      {$p}Shield Duration{$colon} {$s}%old-shield-time% {$sep}➜ {$s}%new-shield-time%\r\n      {$p}Resource Points Cost{$colon} {$s}%fancy@resource_points%\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "shield-deactivation"
+      ],
+      "source": "\r\n    material: SHIELD\r\n    name: '&5Shield Deactivation'\r\n    lore: |\r\n      {$s}%player% {$p}has deactivated the\r\n      kingdom's shield.\r\n      {$p}Shield Duration{$colon} {$s}%old-shield-time%\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "shield-deactivation",
+        "material"
+      ],
+      "source": "SHIELD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "shield-deactivation",
+        "name"
+      ],
+      "source": "'&5Shield Deactivation'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "shield-deactivation",
+        "lore"
+      ],
+      "source": "|\r\n      {$s}%player% {$p}has deactivated the\r\n      kingdom's shield.\r\n      {$p}Shield Duration{$colon} {$s}%old-shield-time%\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-relation-change"
+      ],
+      "source": "\r\n    material: NETHER_STAR\r\n    name: '{$sp}Relationship Change'\r\n    lore: |\r\n      {$p}Kingdom's relationship has\r\n      changed with {$s}%kingdoms_kingdom_name% {$p}kingdom{$colon}\r\n      %old-relation% {$sep}➜ %new-relation%\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-relation-change",
+        "material"
+      ],
+      "source": "NETHER_STAR",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-relation-change",
+        "name"
+      ],
+      "source": "'{$sp}Relationship Change'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-relation-change",
+        "lore"
+      ],
+      "source": "|\r\n      {$p}Kingdom's relationship has\r\n      changed with {$s}%kingdoms_kingdom_name% {$p}kingdom{$colon}\r\n      %old-relation% {$sep}➜ %new-relation%\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-invite"
+      ],
+      "source": "\r\n    material: BOOK\r\n    name: '{$sp}Invite'\r\n    lore: |\r\n      {$s}%inviter% {$p}has invited {$s}%player%\r\n      {$p}to the kingdom. They have {$s}%accept-time%\r\n      {$p}to accept the request.\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-invite",
+        "material"
+      ],
+      "source": "BOOK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-invite",
+        "name"
+      ],
+      "source": "'{$sp}Invite'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-invite",
+        "lore"
+      ],
+      "source": "|\r\n      {$s}%inviter% {$p}has invited {$s}%player%\r\n      {$p}to the kingdom. They have {$s}%accept-time%\r\n      {$p}to accept the request.\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-king-change"
+      ],
+      "source": "\r\n    material: BOOK\r\n    name: '&4King Change'\r\n    lore: |\r\n      {$p}Kingdom's king has been changed{$colon}\r\n      {$s}%old-king% {$sep}➜ {$s}%new-king%\r\n      {$p}Reason{$colon} {$s}%reason%\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-king-change",
+        "material"
+      ],
+      "source": "BOOK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-king-change",
+        "name"
+      ],
+      "source": "'&4King Change'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-king-change",
+        "lore"
+      ],
+      "source": "|\r\n      {$p}Kingdom's king has been changed{$colon}\r\n      {$s}%old-king% {$sep}➜ {$s}%new-king%\r\n      {$p}Reason{$colon} {$s}%reason%\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "player-rank-change"
+      ],
+      "source": "\r\n    lore: |\r\n      {$s}%old-rank% {$sep}➜ {$s}%new-rank%\r\n      {$p}By{$colon} {$s}%by-player%\r\n    promoted:\r\n      condition: 'old_rank_priority > new_rank_priority' # It's the opposite\r\n      material: GREEN_WOOL\r\n      name: '&aPlayer Promoted{$colon} {$s}%player%'\r\n    else: # demoted\r\n      material: RED_WOOL\r\n      name: '&cPlayer Demoted{$colon} {$s}%player%'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "player-rank-change",
+        "lore"
+      ],
+      "source": "|\r\n      {$s}%old-rank% {$sep}➜ {$s}%new-rank%\r\n      {$p}By{$colon} {$s}%by-player%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "player-rank-change",
+        "promoted"
+      ],
+      "source": "\r\n      condition: 'old_rank_priority > new_rank_priority' # It's the opposite\r\n      material: GREEN_WOOL\r\n      name: '&aPlayer Promoted{$colon} {$s}%player%'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "player-rank-change",
+        "promoted",
+        "condition"
+      ],
+      "source": "'old_rank_priority > new_rank_priority'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "player-rank-change",
+        "promoted",
+        "material"
+      ],
+      "source": "GREEN_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "player-rank-change",
+        "promoted",
+        "name"
+      ],
+      "source": "'&aPlayer Promoted{$colon} {$s}%player%'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "player-rank-change",
+        "else"
+      ],
+      "source": "# demoted\r\n      material: RED_WOOL\r\n      name: '&cPlayer Demoted{$colon} {$s}%player%'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "player-rank-change",
+        "else",
+        "material"
+      ],
+      "source": "RED_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "player-rank-change",
+        "else",
+        "name"
+      ],
+      "source": "'&cPlayer Demoted{$colon} {$s}%player%'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "rank-create"
+      ],
+      "source": "\r\n    material: BOOK\r\n    name: '{$p}Rank Created'\r\n    lore: |\r\n      {$p}A rank was created by {$s}%player%{$colon}\r\n      {$p}Node{$colon} {$s}%rank_node%\r\n      {$p}Display Name{$colon} {$s}%rank_color%%rank_symbol% %rank_name%\r\n      {$p}Priority{$colon} {$s}%rank_priority%\r\n      {$p}Max Claims{$colon} {$s}%rank_max_claims%\r\n      {$p}Material{$colon} {$s}%rank_material%\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "rank-create",
+        "material"
+      ],
+      "source": "BOOK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "rank-create",
+        "name"
+      ],
+      "source": "'{$p}Rank Created'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "rank-create",
+        "lore"
+      ],
+      "source": "|\r\n      {$p}A rank was created by {$s}%player%{$colon}\r\n      {$p}Node{$colon} {$s}%rank_node%\r\n      {$p}Display Name{$colon} {$s}%rank_color%%rank_symbol% %rank_name%\r\n      {$p}Priority{$colon} {$s}%rank_priority%\r\n      {$p}Max Claims{$colon} {$s}%rank_max_claims%\r\n      {$p}Material{$colon} {$s}%rank_material%\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "rank-delete"
+      ],
+      "source": "\r\n    material: BOOK\r\n    name: '&cRank Deleted'\r\n    lore: |\r\n      {$p}Rank was deleted by {$s}%player%{$colon}\r\n      {$p}Node{$colon} {$s}%rank_node%\r\n      {$p}Display Name{$colon} {$s}%rank_color% %rank_symbol% %rank_name%\r\n      {$p}Priority{$colon} {$s}%rank_priority%\r\n      {$p}Max Claims{$colon} {$s}%rank_max_claims%\r\n      {$p}Material{$colon} {$s}%rank_material%\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "rank-delete",
+        "material"
+      ],
+      "source": "BOOK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "rank-delete",
+        "name"
+      ],
+      "source": "'&cRank Deleted'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "rank-delete",
+        "lore"
+      ],
+      "source": "|\r\n      {$p}Rank was deleted by {$s}%player%{$colon}\r\n      {$p}Node{$colon} {$s}%rank_node%\r\n      {$p}Display Name{$colon} {$s}%rank_color% %rank_symbol% %rank_name%\r\n      {$p}Priority{$colon} {$s}%rank_priority%\r\n      {$p}Max Claims{$colon} {$s}%rank_max_claims%\r\n      {$p}Material{$colon} {$s}%rank_material%\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "rank-change-name"
+      ],
+      "source": "\r\n    material: BOOK\r\n    name: '{$sp}Rank Name Changed'\r\n    lore: |\r\n      {$p}The rank %rank%\r\n      {$p}name was changed by {$s}%player%{$colon}\r\n      {$s}%old-name% {$sep}➜ {$s}%new-name%\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "rank-change-name",
+        "material"
+      ],
+      "source": "BOOK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "rank-change-name",
+        "name"
+      ],
+      "source": "'{$sp}Rank Name Changed'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "rank-change-name",
+        "lore"
+      ],
+      "source": "|\r\n      {$p}The rank %rank%\r\n      {$p}name was changed by {$s}%player%{$colon}\r\n      {$s}%old-name% {$sep}➜ {$s}%new-name%\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "rank-change-symbol"
+      ],
+      "source": "\r\n    material: BOOK\r\n    name: '{$sp}Rank Symbol Changed'\r\n    lore: |\r\n      {$p}The rank %rank%\r\n      {$p}symbol was changed by {$s}%player%{$colon}\r\n      {$s}%old-symbol% {$sep}➜ {$s}%new-symbol%\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "rank-change-symbol",
+        "material"
+      ],
+      "source": "BOOK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "rank-change-symbol",
+        "name"
+      ],
+      "source": "'{$sp}Rank Symbol Changed'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "rank-change-symbol",
+        "lore"
+      ],
+      "source": "|\r\n      {$p}The rank %rank%\r\n      {$p}symbol was changed by {$s}%player%{$colon}\r\n      {$s}%old-symbol% {$sep}➜ {$s}%new-symbol%\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "rank-change-color"
+      ],
+      "source": "\r\n    material: BOOK\r\n    name: '{$sp}Rank Color Changed'\r\n    lore: |\r\n      {$p}The rank %rank%\r\n      {$p}name was changed by {$s}%player%{$colon}\r\n      {$s}%old-color%color {$sep}➜ {$s}%new-color%color\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "rank-change-color",
+        "material"
+      ],
+      "source": "BOOK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "rank-change-color",
+        "name"
+      ],
+      "source": "'{$sp}Rank Color Changed'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "rank-change-color",
+        "lore"
+      ],
+      "source": "|\r\n      {$p}The rank %rank%\r\n      {$p}name was changed by {$s}%player%{$colon}\r\n      {$s}%old-color%color {$sep}➜ {$s}%new-color%color\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "rank-change-priority"
+      ],
+      "source": "\r\n    material: BOOK\r\n    name: '{$sp}Rank priority Changed'\r\n    lore: |\r\n      {$p}The rank %rank%\r\n      {$p}priority was changed by {$s}%player%{$colon}\r\n      {$s}%old-priority% {$sep}➜ {$s}%new-priority%\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "rank-change-priority",
+        "material"
+      ],
+      "source": "BOOK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "rank-change-priority",
+        "name"
+      ],
+      "source": "'{$sp}Rank priority Changed'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "rank-change-priority",
+        "lore"
+      ],
+      "source": "|\r\n      {$p}The rank %rank%\r\n      {$p}priority was changed by {$s}%player%{$colon}\r\n      {$s}%old-priority% {$sep}➜ {$s}%new-priority%\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "rank-change-max-claims"
+      ],
+      "source": "\r\n    material: BOOK\r\n    name: '{$sp}Rank Max Claims Changed'\r\n    lore: |\r\n      {$p}The rank %rank%\r\n      {$p}max claims was changed by {$s}%player%{$colon}\r\n      {$s}%old-max-claims% {$sep}➜ {$s}%new-max-claims%\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "rank-change-max-claims",
+        "material"
+      ],
+      "source": "BOOK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "rank-change-max-claims",
+        "name"
+      ],
+      "source": "'{$sp}Rank Max Claims Changed'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "rank-change-max-claims",
+        "lore"
+      ],
+      "source": "|\r\n      {$p}The rank %rank%\r\n      {$p}max claims was changed by {$s}%player%{$colon}\r\n      {$s}%old-max-claims% {$sep}➜ {$s}%new-max-claims%\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "rank-change-material"
+      ],
+      "source": "\r\n    material: BOOK\r\n    name: '{$sp}Rank Material Changed'\r\n    lore: |\r\n      {$p}The rank %rank%\r\n      {$p}material was changed by {$s}%player%{$colon}\r\n      {$s}%old-material% {$sep}➜ {$s}%new-material%\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "rank-change-material",
+        "material"
+      ],
+      "source": "BOOK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "rank-change-material",
+        "name"
+      ],
+      "source": "'{$sp}Rank Material Changed'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "rank-change-material",
+        "lore"
+      ],
+      "source": "|\r\n      {$p}The rank %rank%\r\n      {$p}material was changed by {$s}%player%{$colon}\r\n      {$s}%old-material% {$sep}➜ {$s}%new-material%\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "structures-nexus-move"
+      ],
+      "source": "\r\n    material: BEACON\r\n    name: '{$sp}Nexus Placed'\r\n    placed:\r\n      condition: placed\r\n      lore: |\r\n        {$p}The kingdom's nexus was\r\n        placed by {$s}%player%{$colon}\r\n        {$s}%to_translated-world%{$sep}, {$s}%to_x%{$sep}, {$s}%to_y%{$sep}, {$s}%to_z%\r\n        {$p}At{$colon} {$s}%time%\r\n    else:\r\n      lore: |\r\n        {$p}The kingdom's nexus was\r\n        moved by {$s}%player%{$colon}\r\n        {$s}%from_translated-world%{$sep}, {$s}%from_x%{$sep}, {$s}%from_y%{$sep}, {$s}%from_z% {$sep}➜ {$s}%to_translated-world%{$sep}, {$s}%to_x%{$sep}, {$s}%to_y%{$sep}, {$s}%to_z%\r\n        {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "structures-nexus-move",
+        "material"
+      ],
+      "source": "BEACON",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "structures-nexus-move",
+        "name"
+      ],
+      "source": "'{$sp}Nexus Placed'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "structures-nexus-move",
+        "placed"
+      ],
+      "source": "\r\n      condition: placed\r\n      lore: |\r\n        {$p}The kingdom's nexus was\r\n        placed by {$s}%player%{$colon}\r\n        {$s}%to_translated-world%{$sep}, {$s}%to_x%{$sep}, {$s}%to_y%{$sep}, {$s}%to_z%\r\n        {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "structures-nexus-move",
+        "placed",
+        "condition"
+      ],
+      "source": "placed",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "structures-nexus-move",
+        "placed",
+        "lore"
+      ],
+      "source": "|\r\n        {$p}The kingdom's nexus was\r\n        placed by {$s}%player%{$colon}\r\n        {$s}%to_translated-world%{$sep}, {$s}%to_x%{$sep}, {$s}%to_y%{$sep}, {$s}%to_z%\r\n        {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "structures-nexus-move",
+        "else"
+      ],
+      "source": "\r\n      lore: |\r\n        {$p}The kingdom's nexus was\r\n        moved by {$s}%player%{$colon}\r\n        {$s}%from_translated-world%{$sep}, {$s}%from_x%{$sep}, {$s}%from_y%{$sep}, {$s}%from_z% {$sep}➜ {$s}%to_translated-world%{$sep}, {$s}%to_x%{$sep}, {$s}%to_y%{$sep}, {$s}%to_z%\r\n        {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "structures-nexus-move",
+        "else",
+        "lore"
+      ],
+      "source": "|\r\n        {$p}The kingdom's nexus was\r\n        moved by {$s}%player%{$colon}\r\n        {$s}%from_translated-world%{$sep}, {$s}%from_x%{$sep}, {$s}%from_y%{$sep}, {$s}%from_z% {$sep}➜ {$s}%to_translated-world%{$sep}, {$s}%to_x%{$sep}, {$s}%to_y%{$sep}, {$s}%to_z%\r\n        {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "group-tax-server-pay"
+      ],
+      "source": "\r\n    material: PAPER\r\n    name: \"{$sp}Server Tax\"\r\n    lore: |\r\n      {$p}Server taxes paid.\r\n      {$p}Amount{$colon} {$s}%fancy@amount%\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "group-tax-server-pay",
+        "material"
+      ],
+      "source": "PAPER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "group-tax-server-pay",
+        "name"
+      ],
+      "source": "\"{$sp}Server Tax\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "group-tax-server-pay",
+        "lore"
+      ],
+      "source": "|\r\n      {$p}Server taxes paid.\r\n      {$p}Amount{$colon} {$s}%fancy@amount%\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-champion-change"
+      ],
+      "source": "\r\n    material: ZOMBIE_HEAD\r\n    name: \"{$sp}Champion Change\"\r\n    lore: |\r\n      {$p}The champion was changed\r\n      by {$s}%player%{$colon}\r\n      {$s}%old% {$sep}➜ {$s}%new%\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-champion-change",
+        "material"
+      ],
+      "source": "ZOMBIE_HEAD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-champion-change",
+        "name"
+      ],
+      "source": "\"{$sp}Champion Change\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-champion-change",
+        "lore"
+      ],
+      "source": "|\r\n      {$p}The champion was changed\r\n      by {$s}%player%{$colon}\r\n      {$s}%old% {$sep}➜ {$s}%new%\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-change-lore"
+      ],
+      "source": "\r\n    material: PAPER\r\n    name: \"{$sp}Change Lore\"\r\n    lore: |\r\n      {$p}The kingdom's lore was changed\r\n      by {$s}%player%{$colon}\r\n      {$s}%old% {$sep}➜ {$s}%new%\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-change-lore",
+        "material"
+      ],
+      "source": "PAPER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-change-lore",
+        "name"
+      ],
+      "source": "\"{$sp}Change Lore\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-change-lore",
+        "lore"
+      ],
+      "source": "|\r\n      {$p}The kingdom's lore was changed\r\n      by {$s}%player%{$colon}\r\n      {$s}%old% {$sep}➜ {$s}%new%\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-rename"
+      ],
+      "source": "\r\n    material: PAPER\r\n    name: \"{$sp}Rename\"\r\n    lore: |\r\n      {$p}The kingdom was renamed\r\n      by {$s}%player%{$colon}\r\n      {$s}%old% {$sep}➜ {$s}%new%\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-rename",
+        "material"
+      ],
+      "source": "PAPER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-rename",
+        "name"
+      ],
+      "source": "\"{$sp}Rename\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-rename",
+        "lore"
+      ],
+      "source": "|\r\n      {$p}The kingdom was renamed\r\n      by {$s}%player%{$colon}\r\n      {$s}%old% {$sep}➜ {$s}%new%\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-change-tag"
+      ],
+      "source": "\r\n    material: PAPER\r\n    name: \"{$sp}Change Tag\"\r\n    lore: |\r\n      {$p}The kingdom's tag was changed\r\n      by {$s}%player%{$colon}\r\n      {$s}%old% {$sep}➜ {$s}%new%\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-change-tag",
+        "material"
+      ],
+      "source": "PAPER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-change-tag",
+        "name"
+      ],
+      "source": "\"{$sp}Change Tag\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-change-tag",
+        "lore"
+      ],
+      "source": "|\r\n      {$p}The kingdom's tag was changed\r\n      by {$s}%player%{$colon}\r\n      {$s}%old% {$sep}➜ {$s}%new%\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-nation-join"
+      ],
+      "source": "\r\n    material: BEACON\r\n    name: \"{$sp}Nation Join\"\r\n    lore: |\r\n      {$p}Your kingdom has joined\r\n      {$s}%kingdoms_nation_name% {$p}nation.\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-nation-join",
+        "material"
+      ],
+      "source": "BEACON",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-nation-join",
+        "name"
+      ],
+      "source": "\"{$sp}Nation Join\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-nation-join",
+        "lore"
+      ],
+      "source": "|\r\n      {$p}Your kingdom has joined\r\n      {$s}%kingdoms_nation_name% {$p}nation.\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-nation-leave"
+      ],
+      "source": "\r\n    material: BEACON\r\n    name: \"&cNation Leave\"\r\n    lore: |\r\n      {$p}Your kingdom has left\r\n      {$s}%kingdoms_nation_name% {$p}nation.\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-nation-leave",
+        "material"
+      ],
+      "source": "BEACON",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-nation-leave",
+        "name"
+      ],
+      "source": "\"&cNation Leave\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-nation-leave",
+        "lore"
+      ],
+      "source": "|\r\n      {$p}Your kingdom has left\r\n      {$s}%kingdoms_nation_name% {$p}nation.\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-vault-inventory-change"
+      ],
+      "source": "\r\n    material: PAPER\r\n    name: \"&cKingdom Vault Inventory Change\"\r\n    lore: |\r\n      {$p}Changes{$colon}\r\n      %changes%\r\n\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-vault-inventory-change",
+        "material"
+      ],
+      "source": "PAPER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-vault-inventory-change",
+        "name"
+      ],
+      "source": "\"&cKingdom Vault Inventory Change\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "kingdom-vault-inventory-change",
+        "lore"
+      ],
+      "source": "|\r\n      {$p}Changes{$colon}\r\n      %changes%\r\n\r\n      {$p}At{$colon} {$s}%time%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "PeaceTreaties:received"
+      ],
+      "source": "\r\n    material: BOOK\r\n    name: \"{$sp}Received Peace Treaty\"\r\n    commands:\r\n      - 'k pt review %other*kingdoms_kingdom_name%'\r\n    lore: |\r\n      {$p}Proposer{$colon} {$s}%other*kingdoms_kingdom_name%\r\n      {$p}Contract Duration{$colon} {$s}%peacetreaty_duration%\r\n\r\n      {$p}For more information do{$colon}\r\n      {$s}/k pt review %other*kingdoms_kingdom_name%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "PeaceTreaties:received",
+        "material"
+      ],
+      "source": "BOOK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "PeaceTreaties:received",
+        "name"
+      ],
+      "source": "\"{$sp}Received Peace Treaty\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "PeaceTreaties:received",
+        "commands"
+      ],
+      "source": "\r\n      - 'k pt review %other*kingdoms_kingdom_name%'\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "'k pt review %other*kingdoms_kingdom_name%'"
+      ]
+    },
+    {
+      "path": [
+        "[type]",
+        "PeaceTreaties:received",
+        "lore"
+      ],
+      "source": "|\r\n      {$p}Proposer{$colon} {$s}%other*kingdoms_kingdom_name%\r\n      {$p}Contract Duration{$colon} {$s}%peacetreaty_duration%\r\n\r\n      {$p}For more information do{$colon}\r\n      {$s}/k pt review %other*kingdoms_kingdom_name%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "PeaceTreaties:sent"
+      ],
+      "source": "\r\n    material: BOOK\r\n    name: \"{$sp}Sent Peace Treaty\"\r\n    commands:\r\n      - 'k pt review %other*kingdoms_kingdom_name%'\r\n    lore: |\r\n      {$p}To{$colon} {$s}%kingdoms_kingdom_name%\r\n      {$p}Contract Duration{$colon} {$s}%peacetreaty_duration%\r\n\r\n      {$p}For more information do{$colon}\r\n      {$s}/k pt review %other*kingdoms_kingdom_name%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "PeaceTreaties:sent",
+        "material"
+      ],
+      "source": "BOOK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "PeaceTreaties:sent",
+        "name"
+      ],
+      "source": "\"{$sp}Sent Peace Treaty\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "PeaceTreaties:sent",
+        "commands"
+      ],
+      "source": "\r\n      - 'k pt review %other*kingdoms_kingdom_name%'\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "'k pt review %other*kingdoms_kingdom_name%'"
+      ]
+    },
+    {
+      "path": [
+        "[type]",
+        "PeaceTreaties:sent",
+        "lore"
+      ],
+      "source": "|\r\n      {$p}To{$colon} {$s}%kingdoms_kingdom_name%\r\n      {$p}Contract Duration{$colon} {$s}%peacetreaty_duration%\r\n\r\n      {$p}For more information do{$colon}\r\n      {$s}/k pt review %other*kingdoms_kingdom_name%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "[else]"
+      ],
+      "source": "\r\n    material: BARRIER\r\n    name: '{$e}Unknown log type{$colon}'\r\n    lore: '{$es}%type%'\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "[else]",
+        "material"
+      ],
+      "source": "BARRIER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "[else]",
+        "name"
+      ],
+      "source": "'{$e}Unknown log type{$colon}'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[type]",
+        "[else]",
+        "lore"
+      ],
+      "source": "'{$es}%type%'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options"
+      ],
+      "source": "\r\n  decoration:\r\n    slots: [ 1, 2, 3, 5, 6, 7, 9, 17, 18, 26, 27, 35, 36, 44, 45, 46, 47, 48, 50, 51, 52, 53 ]\r\n    material: RED_STAINED_GLASS_PANE\r\n    name: ''\r\n\r\n  filters-and-sorting:\r\n    posx: 5\r\n    posy: 1\r\n    material: BOOK\r\n    name: \"{$p}Filters & Sorting\"\r\n    lore: |\r\n      {$p}Filters{$colon}\r\n       {$dot} {$s}Player{$colon} %bool@filters_player%\r\n       {$dot} {$s}Time{$colon} %bool@filters_time%\r\n       {$dot} {$s}Type{$colon} %bool@filters_type%\r\n\r\n      {$p}Sorting{$colon}\r\n       {$dot} {$s}Ascending Time{$colon} %bool@sorting_time_ascending%\r\n       {$dot} {$s}Descending Time{$colon} %bool@sorting_time_descending%\r\n       {$dot} {$s}Type{$colon} %bool@sorting_type%\r\n\r\n  next-page:\r\n    name: '{$s}Next Page {$sep}- &e%page%{$sep}/&e%pages%'\r\n    material: PLAYER_HEAD\r\n    skull: \"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjgyYWQxYjljYjRkZDIxMjU5YzBkNzVhYTMxNWZmMzg5YzNjZWY3NTJiZTM5NDkzMzgxNjRiYWM4NGE5NmUifX19\"\r\n    slot: 8\r\n  previous-page:\r\n    name: '{$s}Previous Page {$sep}- &e%page%{$sep}/&e%pages%'\r\n    material: PLAYER_HEAD\r\n    skull: \"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzdhZWU5YTc1YmYwZGY3ODk3MTgzMDE1Y2NhMGIyYTdkNzU1YzYzMzg4ZmYwMTc1MmQ1ZjQ0MTlmYzY0NSJ9fX0=\"\r\n    slot: 0\r\n\r\n  entry:\r\n    slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43 ]\r\n    '[switch]': type\r\n\r\n  back:\r\n    posx: 5\r\n    posy: 6\r\n    material: BARRIER\r\n    name: '&cBack'",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "decoration"
+      ],
+      "source": "\r\n    slots: [ 1, 2, 3, 5, 6, 7, 9, 17, 18, 26, 27, 35, 36, 44, 45, 46, 47, 48, 50, 51, 52, 53 ]\r\n    material: RED_STAINED_GLASS_PANE\r\n    name: ''\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "decoration",
+        "slots"
+      ],
+      "source": "[ 1, 2, 3, 5, 6, 7, 9, 17, 18, 26, 27, 35, 36, 44, 45, 46, 47, 48, 50, 51, 52, 53 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "1",
+        "2",
+        "3",
+        "5",
+        "6",
+        "7",
+        "9",
+        "17",
+        "18",
+        "26",
+        "27",
+        "35",
+        "36",
+        "44",
+        "45",
+        "46",
+        "47",
+        "48",
+        "50",
+        "51",
+        "52",
+        "53"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "decoration",
+        "material"
+      ],
+      "source": "RED_STAINED_GLASS_PANE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "decoration",
+        "name"
+      ],
+      "source": "''",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "filters-and-sorting"
+      ],
+      "source": "\r\n    posx: 5\r\n    posy: 1\r\n    material: BOOK\r\n    name: \"{$p}Filters & Sorting\"\r\n    lore: |\r\n      {$p}Filters{$colon}\r\n       {$dot} {$s}Player{$colon} %bool@filters_player%\r\n       {$dot} {$s}Time{$colon} %bool@filters_time%\r\n       {$dot} {$s}Type{$colon} %bool@filters_type%\r\n\r\n      {$p}Sorting{$colon}\r\n       {$dot} {$s}Ascending Time{$colon} %bool@sorting_time_ascending%\r\n       {$dot} {$s}Descending Time{$colon} %bool@sorting_time_descending%\r\n       {$dot} {$s}Type{$colon} %bool@sorting_type%\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "filters-and-sorting",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "filters-and-sorting",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "filters-and-sorting",
+        "material"
+      ],
+      "source": "BOOK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "filters-and-sorting",
+        "name"
+      ],
+      "source": "\"{$p}Filters & Sorting\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "filters-and-sorting",
+        "lore"
+      ],
+      "source": "|\r\n      {$p}Filters{$colon}\r\n       {$dot} {$s}Player{$colon} %bool@filters_player%\r\n       {$dot} {$s}Time{$colon} %bool@filters_time%\r\n       {$dot} {$s}Type{$colon} %bool@filters_type%\r\n\r\n      {$p}Sorting{$colon}\r\n       {$dot} {$s}Ascending Time{$colon} %bool@sorting_time_ascending%\r\n       {$dot} {$s}Descending Time{$colon} %bool@sorting_time_descending%\r\n       {$dot} {$s}Type{$colon} %bool@sorting_type%\r\n\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "next-page"
+      ],
+      "source": "\r\n    name: '{$s}Next Page {$sep}- &e%page%{$sep}/&e%pages%'\r\n    material: PLAYER_HEAD\r\n    skull: \"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjgyYWQxYjljYjRkZDIxMjU5YzBkNzVhYTMxNWZmMzg5YzNjZWY3NTJiZTM5NDkzMzgxNjRiYWM4NGE5NmUifX19\"\r\n    slot: 8\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "next-page",
+        "name"
+      ],
+      "source": "'{$s}Next Page {$sep}- &e%page%{$sep}/&e%pages%'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "next-page",
+        "material"
+      ],
+      "source": "PLAYER_HEAD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "next-page",
+        "skull"
+      ],
+      "source": "\"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjgyYWQxYjljYjRkZDIxMjU5YzBkNzVhYTMxNWZmMzg5YzNjZWY3NTJiZTM5NDkzMzgxNjRiYWM4NGE5NmUifX19\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "next-page",
+        "slot"
+      ],
+      "source": "8",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "previous-page"
+      ],
+      "source": "\r\n    name: '{$s}Previous Page {$sep}- &e%page%{$sep}/&e%pages%'\r\n    material: PLAYER_HEAD\r\n    skull: \"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzdhZWU5YTc1YmYwZGY3ODk3MTgzMDE1Y2NhMGIyYTdkNzU1YzYzMzg4ZmYwMTc1MmQ1ZjQ0MTlmYzY0NSJ9fX0=\"\r\n    slot: 0\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "previous-page",
+        "name"
+      ],
+      "source": "'{$s}Previous Page {$sep}- &e%page%{$sep}/&e%pages%'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "previous-page",
+        "material"
+      ],
+      "source": "PLAYER_HEAD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "previous-page",
+        "skull"
+      ],
+      "source": "\"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzdhZWU5YTc1YmYwZGY3ODk3MTgzMDE1Y2NhMGIyYTdkNzU1YzYzMzg4ZmYwMTc1MmQ1ZjQ0MTlmYzY0NSJ9fX0=\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "previous-page",
+        "slot"
+      ],
+      "source": "0",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "entry"
+      ],
+      "source": "\r\n    slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43 ]\r\n    '[switch]': type\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "entry",
+        "slots"
+      ],
+      "source": "[ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "28",
+        "29",
+        "30",
+        "31",
+        "32",
+        "33",
+        "34",
+        "37",
+        "38",
+        "39",
+        "40",
+        "41",
+        "42",
+        "43"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "entry",
+        "[switch]"
+      ],
+      "source": "type",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back"
+      ],
+      "source": "\r\n    posx: 5\r\n    posy: 6\r\n    material: BARRIER\r\n    name: '&cBack'",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "posy"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "material"
+      ],
+      "source": "BARRIER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "name"
+      ],
+      "source": "'&cBack'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

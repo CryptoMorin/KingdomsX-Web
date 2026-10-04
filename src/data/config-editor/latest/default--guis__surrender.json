@@ -1,0 +1,736 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "guis/surrender.yml",
+  "schemaId": "guis/schema",
+  "options": [
+    {
+      "path": [
+        "title"
+      ],
+      "source": "'{$sep}-=( {$e}Surrender {$sep})=-'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "rows"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options"
+      ],
+      "source": "\r\n  purple-stained-glass-pane:\r\n    slots: [ 1, 2, 3, 5, 6, 7, 45, 46, 48, 49, 50, 52, 53 ]\r\n    material: PURPLE_STAINED_GLASS_PANE\r\n    name: ''\r\n  black-stained-glass-pane:\r\n    slots: [ 9, 13, 17, 18, 22, 26, 27, 31, 35, 36, 40, 44 ]\r\n    material: BLACK_STAINED_GLASS_PANE\r\n    name: ''\r\n\r\n  next-page:\r\n    name: '{$s}Next Page {$sep}- &e%page%&8/&e%pages%'\r\n    skull: \"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjgyYWQxYjljYjRkZDIxMjU5YzBkNzVhYTMxNWZmMzg5YzNjZWY3NTJiZTM5NDkzMzgxNjRiYWM4NGE5NmUifX19\"\r\n    sound: ITEM_BOOK_PAGE_TURN\r\n    slot: 8\r\n  previous-page:\r\n    name: '{$s}Previous Page {$sep}- &e%page%&8/&e%pages%'\r\n    sound: ITEM_BOOK_PAGE_TURN\r\n    skull: \"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzdhZWU5YTc1YmYwZGY3ODk3MTgzMDE1Y2NhMGIyYTdkNzU1YzYzMzg4ZmYwMTc1MmQ1ZjQ0MTlmYzY0NSJ9fX0=\"\r\n    slot: 0\r\n\r\n  invasion:\r\n    posx: 5\r\n    posy: 1\r\n    invading:\r\n      condition: kingdoms_is_invading\r\n      material: EMERALD_BLOCK\r\n      name: \"{$p}You are invading{$colon}\"\r\n      lore: &lore |\r\n        {$p}Land{$colon} {$s}%world%{$sep}, {$s}%x%{$sep}, {$s}%z%\r\n        {$p}Champion{$colon} {$s}%champion% {$sep}({$s}%champion_x%{$sep}, {$s}%champion_y%{$sep}, {$s}%champion_z%{$sep})\r\n        {$p}Since{$colon} {$s}%since%\r\n        {$p}Duration{$colon} {$s}%duration%\r\n        {$p}Passed{$colon} {$s}%passed%\r\n        {$p}Total Lands{$colon} {$s}%total_lands%\r\n    # These are for plunders only.\r\n    #        {$p}Attacker Score{$colon} {$s}%invasion_attacker_score%{$sep}/{$s}%invasion_defender_death_limit%\r\n    #        {$p}Defender Score{$colon} {$s}%invasion_defender_score%{$sep}/{$s}%invasion_attacker_death_limit%\r\n    else:\r\n      name: ''\r\n      material: PURPLE_STAINED_GLASS_PANE\r\n  attacking:\r\n    slots: [ 10, 11, 12, 19, 20, 21, 28, 29, 30, 37, 38, 39 ]\r\n    material: PLAYER_HEAD\r\n    name: '{$p}Defender{$colon} {$s}%other*kingdoms_kingdom_name%'\r\n    lore: *lore\r\n  defending:\r\n    slots: [ 14, 15, 16, 23, 24, 25, 32, 33, 34, 41, 42, 43 ]\r\n    material: PLAYER_HEAD\r\n    name: '{$e}Invader{$colon} {$es}%kingdoms_kingdom_name%'\r\n    lore: *lore\r\n  attacking-info:\r\n    posx: 3\r\n    posy: 6\r\n    name: '{$p}Lands that your kingdom is attacking'\r\n    skull: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNWRhMDI3NDc3MTk3YzZmZDdhZDMzMDE0NTQ2ZGUzOTJiNGE1MWM2MzRlYTY4YzhiN2JjYzAxMzFjODNlM2YifX19'\r\n  defending-info:\r\n    posx: 7\r\n    posy: 6\r\n    skull: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMmQ5Mjg3NjE2MzQzZDgzM2U5ZTczMTcxNTljYWEyY2IzZTU5NzQ1MTEzOTYyYzEzNzkwNTJjZTQ3ODg4NGZhIn19fQ=='\r\n    name: '{$es}Your kingdom lands that are under attack'",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "purple-stained-glass-pane"
+      ],
+      "source": "\r\n    slots: [ 1, 2, 3, 5, 6, 7, 45, 46, 48, 49, 50, 52, 53 ]\r\n    material: PURPLE_STAINED_GLASS_PANE\r\n    name: ''\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "purple-stained-glass-pane",
+        "slots"
+      ],
+      "source": "[ 1, 2, 3, 5, 6, 7, 45, 46, 48, 49, 50, 52, 53 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "1",
+        "2",
+        "3",
+        "5",
+        "6",
+        "7",
+        "45",
+        "46",
+        "48",
+        "49",
+        "50",
+        "52",
+        "53"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "purple-stained-glass-pane",
+        "material"
+      ],
+      "source": "PURPLE_STAINED_GLASS_PANE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "purple-stained-glass-pane",
+        "name"
+      ],
+      "source": "''",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "black-stained-glass-pane"
+      ],
+      "source": "\r\n    slots: [ 9, 13, 17, 18, 22, 26, 27, 31, 35, 36, 40, 44 ]\r\n    material: BLACK_STAINED_GLASS_PANE\r\n    name: ''\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "black-stained-glass-pane",
+        "slots"
+      ],
+      "source": "[ 9, 13, 17, 18, 22, 26, 27, 31, 35, 36, 40, 44 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "9",
+        "13",
+        "17",
+        "18",
+        "22",
+        "26",
+        "27",
+        "31",
+        "35",
+        "36",
+        "40",
+        "44"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "black-stained-glass-pane",
+        "material"
+      ],
+      "source": "BLACK_STAINED_GLASS_PANE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "black-stained-glass-pane",
+        "name"
+      ],
+      "source": "''",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "next-page"
+      ],
+      "source": "\r\n    name: '{$s}Next Page {$sep}- &e%page%&8/&e%pages%'\r\n    skull: \"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjgyYWQxYjljYjRkZDIxMjU5YzBkNzVhYTMxNWZmMzg5YzNjZWY3NTJiZTM5NDkzMzgxNjRiYWM4NGE5NmUifX19\"\r\n    sound: ITEM_BOOK_PAGE_TURN\r\n    slot: 8\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "next-page",
+        "name"
+      ],
+      "source": "'{$s}Next Page {$sep}- &e%page%&8/&e%pages%'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "next-page",
+        "skull"
+      ],
+      "source": "\"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjgyYWQxYjljYjRkZDIxMjU5YzBkNzVhYTMxNWZmMzg5YzNjZWY3NTJiZTM5NDkzMzgxNjRiYWM4NGE5NmUifX19\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "next-page",
+        "sound"
+      ],
+      "source": "ITEM_BOOK_PAGE_TURN",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "next-page",
+        "slot"
+      ],
+      "source": "8",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "previous-page"
+      ],
+      "source": "\r\n    name: '{$s}Previous Page {$sep}- &e%page%&8/&e%pages%'\r\n    sound: ITEM_BOOK_PAGE_TURN\r\n    skull: \"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzdhZWU5YTc1YmYwZGY3ODk3MTgzMDE1Y2NhMGIyYTdkNzU1YzYzMzg4ZmYwMTc1MmQ1ZjQ0MTlmYzY0NSJ9fX0=\"\r\n    slot: 0\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "previous-page",
+        "name"
+      ],
+      "source": "'{$s}Previous Page {$sep}- &e%page%&8/&e%pages%'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "previous-page",
+        "sound"
+      ],
+      "source": "ITEM_BOOK_PAGE_TURN",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "previous-page",
+        "skull"
+      ],
+      "source": "\"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzdhZWU5YTc1YmYwZGY3ODk3MTgzMDE1Y2NhMGIyYTdkNzU1YzYzMzg4ZmYwMTc1MmQ1ZjQ0MTlmYzY0NSJ9fX0=\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "previous-page",
+        "slot"
+      ],
+      "source": "0",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "invasion"
+      ],
+      "source": "\r\n    posx: 5\r\n    posy: 1\r\n    invading:\r\n      condition: kingdoms_is_invading\r\n      material: EMERALD_BLOCK\r\n      name: \"{$p}You are invading{$colon}\"\r\n      lore: &lore |\r\n        {$p}Land{$colon} {$s}%world%{$sep}, {$s}%x%{$sep}, {$s}%z%\r\n        {$p}Champion{$colon} {$s}%champion% {$sep}({$s}%champion_x%{$sep}, {$s}%champion_y%{$sep}, {$s}%champion_z%{$sep})\r\n        {$p}Since{$colon} {$s}%since%\r\n        {$p}Duration{$colon} {$s}%duration%\r\n        {$p}Passed{$colon} {$s}%passed%\r\n        {$p}Total Lands{$colon} {$s}%total_lands%\r\n    # These are for plunders only.\r\n    #        {$p}Attacker Score{$colon} {$s}%invasion_attacker_score%{$sep}/{$s}%invasion_defender_death_limit%\r\n    #        {$p}Defender Score{$colon} {$s}%invasion_defender_score%{$sep}/{$s}%invasion_attacker_death_limit%\r\n    else:\r\n      name: ''\r\n      material: PURPLE_STAINED_GLASS_PANE\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "invasion",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "invasion",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "invasion",
+        "invading"
+      ],
+      "source": "\r\n      condition: kingdoms_is_invading\r\n      material: EMERALD_BLOCK\r\n      name: \"{$p}You are invading{$colon}\"\r\n      lore: &lore |\r\n        {$p}Land{$colon} {$s}%world%{$sep}, {$s}%x%{$sep}, {$s}%z%\r\n        {$p}Champion{$colon} {$s}%champion% {$sep}({$s}%champion_x%{$sep}, {$s}%champion_y%{$sep}, {$s}%champion_z%{$sep})\r\n        {$p}Since{$colon} {$s}%since%\r\n        {$p}Duration{$colon} {$s}%duration%\r\n        {$p}Passed{$colon} {$s}%passed%\r\n        {$p}Total Lands{$colon} {$s}%total_lands%\r\n    # These are for plunders only.\r\n    #        {$p}Attacker Score{$colon} {$s}%invasion_attacker_score%{$sep}/{$s}%invasion_defender_death_limit%\r\n    #        {$p}Defender Score{$colon} {$s}%invasion_defender_score%{$sep}/{$s}%invasion_attacker_death_limit%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "invasion",
+        "invading",
+        "condition"
+      ],
+      "source": "kingdoms_is_invading",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "invasion",
+        "invading",
+        "material"
+      ],
+      "source": "EMERALD_BLOCK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "invasion",
+        "invading",
+        "name"
+      ],
+      "source": "\"{$p}You are invading{$colon}\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "invasion",
+        "invading",
+        "lore"
+      ],
+      "source": "&lore |\r\n        {$p}Land{$colon} {$s}%world%{$sep}, {$s}%x%{$sep}, {$s}%z%\r\n        {$p}Champion{$colon} {$s}%champion% {$sep}({$s}%champion_x%{$sep}, {$s}%champion_y%{$sep}, {$s}%champion_z%{$sep})\r\n        {$p}Since{$colon} {$s}%since%\r\n        {$p}Duration{$colon} {$s}%duration%\r\n        {$p}Passed{$colon} {$s}%passed%\r\n        {$p}Total Lands{$colon} {$s}%total_lands%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "invasion",
+        "else"
+      ],
+      "source": "\r\n      name: ''\r\n      material: PURPLE_STAINED_GLASS_PANE\r\n",
+      "comments": [
+        "These are for plunders only.",
+        "{$p}Attacker Score{$colon} {$s}%invasion_attacker_score%{$sep}/{$s}%invasion_defender_death_limit%",
+        "{$p}Defender Score{$colon} {$s}%invasion_defender_score%{$sep}/{$s}%invasion_attacker_death_limit%"
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "invasion",
+        "else",
+        "name"
+      ],
+      "source": "''",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "invasion",
+        "else",
+        "material"
+      ],
+      "source": "PURPLE_STAINED_GLASS_PANE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "attacking"
+      ],
+      "source": "\r\n    slots: [ 10, 11, 12, 19, 20, 21, 28, 29, 30, 37, 38, 39 ]\r\n    material: PLAYER_HEAD\r\n    name: '{$p}Defender{$colon} {$s}%other*kingdoms_kingdom_name%'\r\n    lore: *lore\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "attacking",
+        "slots"
+      ],
+      "source": "[ 10, 11, 12, 19, 20, 21, 28, 29, 30, 37, 38, 39 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "10",
+        "11",
+        "12",
+        "19",
+        "20",
+        "21",
+        "28",
+        "29",
+        "30",
+        "37",
+        "38",
+        "39"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "attacking",
+        "material"
+      ],
+      "source": "PLAYER_HEAD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "attacking",
+        "name"
+      ],
+      "source": "'{$p}Defender{$colon} {$s}%other*kingdoms_kingdom_name%'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "attacking",
+        "lore"
+      ],
+      "source": "*lore",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "defending"
+      ],
+      "source": "\r\n    slots: [ 14, 15, 16, 23, 24, 25, 32, 33, 34, 41, 42, 43 ]\r\n    material: PLAYER_HEAD\r\n    name: '{$e}Invader{$colon} {$es}%kingdoms_kingdom_name%'\r\n    lore: *lore\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "defending",
+        "slots"
+      ],
+      "source": "[ 14, 15, 16, 23, 24, 25, 32, 33, 34, 41, 42, 43 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "14",
+        "15",
+        "16",
+        "23",
+        "24",
+        "25",
+        "32",
+        "33",
+        "34",
+        "41",
+        "42",
+        "43"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "defending",
+        "material"
+      ],
+      "source": "PLAYER_HEAD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "defending",
+        "name"
+      ],
+      "source": "'{$e}Invader{$colon} {$es}%kingdoms_kingdom_name%'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "defending",
+        "lore"
+      ],
+      "source": "*lore",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "attacking-info"
+      ],
+      "source": "\r\n    posx: 3\r\n    posy: 6\r\n    name: '{$p}Lands that your kingdom is attacking'\r\n    skull: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNWRhMDI3NDc3MTk3YzZmZDdhZDMzMDE0NTQ2ZGUzOTJiNGE1MWM2MzRlYTY4YzhiN2JjYzAxMzFjODNlM2YifX19'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "attacking-info",
+        "posx"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "attacking-info",
+        "posy"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "attacking-info",
+        "name"
+      ],
+      "source": "'{$p}Lands that your kingdom is attacking'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "attacking-info",
+        "skull"
+      ],
+      "source": "'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNWRhMDI3NDc3MTk3YzZmZDdhZDMzMDE0NTQ2ZGUzOTJiNGE1MWM2MzRlYTY4YzhiN2JjYzAxMzFjODNlM2YifX19'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "defending-info"
+      ],
+      "source": "\r\n    posx: 7\r\n    posy: 6\r\n    skull: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMmQ5Mjg3NjE2MzQzZDgzM2U5ZTczMTcxNTljYWEyY2IzZTU5NzQ1MTEzOTYyYzEzNzkwNTJjZTQ3ODg4NGZhIn19fQ=='\r\n    name: '{$es}Your kingdom lands that are under attack'",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "defending-info",
+        "posx"
+      ],
+      "source": "7",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "defending-info",
+        "posy"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "defending-info",
+        "skull"
+      ],
+      "source": "'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMmQ5Mjg3NjE2MzQzZDgzM2U5ZTczMTcxNTljYWEyY2IzZTU5NzQ1MTEzOTYyYzEzNzkwNTJjZTQ3ODg4NGZhIn19fQ=='",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "defending-info",
+        "name"
+      ],
+      "source": "'{$es}Your kingdom lands that are under attack'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

@@ -1,0 +1,660 @@
+{
+  "formatVersion": 1,
+  "source": {
+    "addonId": "peace-treaties",
+    "artifactPath": "addons/Kingdoms-Addon-Peace-Treaties-1.2.8.3.jar",
+    "artifactBlobSha": "65c542bd55dc6dfed6e222f079d37971fd24a682",
+    "artifactSha256": "54b2f1a879e10403200f218d852deb8d80c721cc933777812bbdcfcac5ca9f03",
+    "addonVersion": "1.2.8.3"
+  },
+  "resourceName": "guis/peace-treaties/default-term-editor.yml",
+  "schemaId": "guis/schema",
+  "sha256": "a6518c4fcceeb2092774befa5132d29f1c5e787cf7c2baf7c2a61fe0e61f0a01",
+  "options": [
+    {
+      "path": [
+        "title"
+      ],
+      "source": "'{$sep}-=( {$p}Peace Treaty {$sep})=-'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "rows"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options"
+      ],
+      "source": "\r\n  back:\r\n    posx: 1\r\n    posy: 1\r\n    material: BARRIER\r\n    name: '{$e}Back'\r\n  lime-stained-glass-pane:\r\n    slots: [ 1, 2, 4, 6, 7, 9, 10, 12, 13, 14, 16, 17, 18, 21, 22, 23, 26, 28, 29, 30, 32, 33, 34, 36, 39, 40, 41, 44, 46, 48, 50, 52 ]\r\n    material: LIME_STAINED_GLASS_PANE\r\n    name: ''\r\n  blue-stained-glass-pane:\r\n    slots: [ 3, 5, 11, 15, 19, 25, 27, 35, 37, 43, 45, 47, 49, 51, 53 ]\r\n    material: BLUE_STAINED_GLASS_PANE\r\n    name: ''\r\n  send:\r\n    posx: 9\r\n    posy: 1\r\n    material: PLAYER_HEAD\r\n    name: '{$p}Send'\r\n    lore: |\r\n      &7Sends the proposal to the other\r\n      kingdom. You'd have to wait for\r\n      the to review and accept it.\r\n  term-take-resource-points:\r\n    posx: 3\r\n    posy: 3\r\n    material: DIAMOND\r\n    name: '{$p}Take Resource Points'\r\n  term-war-reparation:\r\n    posx: 7\r\n    posy: 3\r\n    material: EMERALD\r\n    name: 'War Reparation'\r\n  term-vassalization:\r\n    posx: 5\r\n    posy: 4\r\n    material: WRITABLE_BOOK\r\n    name: '{$e}Vassalization'\r\n  term-leave-nation:\r\n    posx: 3\r\n    posy: 5\r\n    material: IRON_DOOR\r\n    name: '{$p}Leave Nation'\r\n  term-keep-lands:\r\n    posx: 7\r\n    posy: 5\r\n    material: GRASS_BLOCK\r\n    name: '{$p}Take Lands'",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back"
+      ],
+      "source": "\r\n    posx: 1\r\n    posy: 1\r\n    material: BARRIER\r\n    name: '{$e}Back'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "posx"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "material"
+      ],
+      "source": "BARRIER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "name"
+      ],
+      "source": "'{$e}Back'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "lime-stained-glass-pane"
+      ],
+      "source": "\r\n    slots: [ 1, 2, 4, 6, 7, 9, 10, 12, 13, 14, 16, 17, 18, 21, 22, 23, 26, 28, 29, 30, 32, 33, 34, 36, 39, 40, 41, 44, 46, 48, 50, 52 ]\r\n    material: LIME_STAINED_GLASS_PANE\r\n    name: ''\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "lime-stained-glass-pane",
+        "slots"
+      ],
+      "source": "[ 1, 2, 4, 6, 7, 9, 10, 12, 13, 14, 16, 17, 18, 21, 22, 23, 26, 28, 29, 30, 32, 33, 34, 36, 39, 40, 41, 44, 46, 48, 50, 52 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "1",
+        "2",
+        "4",
+        "6",
+        "7",
+        "9",
+        "10",
+        "12",
+        "13",
+        "14",
+        "16",
+        "17",
+        "18",
+        "21",
+        "22",
+        "23",
+        "26",
+        "28",
+        "29",
+        "30",
+        "32",
+        "33",
+        "34",
+        "36",
+        "39",
+        "40",
+        "41",
+        "44",
+        "46",
+        "48",
+        "50",
+        "52"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "lime-stained-glass-pane",
+        "material"
+      ],
+      "source": "LIME_STAINED_GLASS_PANE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "lime-stained-glass-pane",
+        "name"
+      ],
+      "source": "''",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "blue-stained-glass-pane"
+      ],
+      "source": "\r\n    slots: [ 3, 5, 11, 15, 19, 25, 27, 35, 37, 43, 45, 47, 49, 51, 53 ]\r\n    material: BLUE_STAINED_GLASS_PANE\r\n    name: ''\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "blue-stained-glass-pane",
+        "slots"
+      ],
+      "source": "[ 3, 5, 11, 15, 19, 25, 27, 35, 37, 43, 45, 47, 49, 51, 53 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "3",
+        "5",
+        "11",
+        "15",
+        "19",
+        "25",
+        "27",
+        "35",
+        "37",
+        "43",
+        "45",
+        "47",
+        "49",
+        "51",
+        "53"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "blue-stained-glass-pane",
+        "material"
+      ],
+      "source": "BLUE_STAINED_GLASS_PANE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "blue-stained-glass-pane",
+        "name"
+      ],
+      "source": "''",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "send"
+      ],
+      "source": "\r\n    posx: 9\r\n    posy: 1\r\n    material: PLAYER_HEAD\r\n    name: '{$p}Send'\r\n    lore: |\r\n      &7Sends the proposal to the other\r\n      kingdom. You'd have to wait for\r\n      the to review and accept it.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "send",
+        "posx"
+      ],
+      "source": "9",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "send",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "send",
+        "material"
+      ],
+      "source": "PLAYER_HEAD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "send",
+        "name"
+      ],
+      "source": "'{$p}Send'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "send",
+        "lore"
+      ],
+      "source": "|\r\n      &7Sends the proposal to the other\r\n      kingdom. You'd have to wait for\r\n      the to review and accept it.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-take-resource-points"
+      ],
+      "source": "\r\n    posx: 3\r\n    posy: 3\r\n    material: DIAMOND\r\n    name: '{$p}Take Resource Points'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-take-resource-points",
+        "posx"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-take-resource-points",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-take-resource-points",
+        "material"
+      ],
+      "source": "DIAMOND",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-take-resource-points",
+        "name"
+      ],
+      "source": "'{$p}Take Resource Points'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-war-reparation"
+      ],
+      "source": "\r\n    posx: 7\r\n    posy: 3\r\n    material: EMERALD\r\n    name: 'War Reparation'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-war-reparation",
+        "posx"
+      ],
+      "source": "7",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-war-reparation",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-war-reparation",
+        "material"
+      ],
+      "source": "EMERALD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-war-reparation",
+        "name"
+      ],
+      "source": "'War Reparation'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-vassalization"
+      ],
+      "source": "\r\n    posx: 5\r\n    posy: 4\r\n    material: WRITABLE_BOOK\r\n    name: '{$e}Vassalization'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-vassalization",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-vassalization",
+        "posy"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-vassalization",
+        "material"
+      ],
+      "source": "WRITABLE_BOOK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-vassalization",
+        "name"
+      ],
+      "source": "'{$e}Vassalization'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-leave-nation"
+      ],
+      "source": "\r\n    posx: 3\r\n    posy: 5\r\n    material: IRON_DOOR\r\n    name: '{$p}Leave Nation'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-leave-nation",
+        "posx"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-leave-nation",
+        "posy"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-leave-nation",
+        "material"
+      ],
+      "source": "IRON_DOOR",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-leave-nation",
+        "name"
+      ],
+      "source": "'{$p}Leave Nation'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-keep-lands"
+      ],
+      "source": "\r\n    posx: 7\r\n    posy: 5\r\n    material: GRASS_BLOCK\r\n    name: '{$p}Take Lands'",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-keep-lands",
+        "posx"
+      ],
+      "source": "7",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-keep-lands",
+        "posy"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-keep-lands",
+        "material"
+      ],
+      "source": "GRASS_BLOCK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "term-keep-lands",
+        "name"
+      ],
+      "source": "'{$p}Take Lands'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

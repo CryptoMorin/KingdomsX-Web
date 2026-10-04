@@ -27,7 +27,7 @@ function oauthCallback(search: string, cookie: string, env = oauthEnv()): Promis
 }
 
 describe("Submitter authentication", () => {
-  it("rejects cross-origin mutations before authentication routing", async () => {
+  it("rejects cross-origin writes before sign-in routes run", async () => {
     const response = await api("/api/auth/logout", {
       method: "POST",
       headers: { origin: "https://attacker.example" }
@@ -46,7 +46,7 @@ describe("Submitter authentication", () => {
     );
 
     expect(denied.status).toBe(302);
-    expect(denied.headers.get("location")).toBe("/servers/submit?auth=denied");
+    expect(denied.headers.get("location")).toBe("/submit?auth=denied");
     expect(denied.headers.get("set-cookie")).toContain("kingdomsx_oauth_state=");
     expect(denied.headers.get("set-cookie")).toContain("Max-Age=0");
 
@@ -56,26 +56,29 @@ describe("Submitter authentication", () => {
     );
 
     expect(invalid.status).toBe(302);
-    expect(invalid.headers.get("location")).toBe("/servers/submit?auth=invalid");
+    expect(invalid.headers.get("location")).toBe("/submit?auth=invalid");
   });
 
   it("creates a session after membership verification and rejects non-members", async () => {
     stubFetch((request) => {
       const url = new URL(request.url);
 
-      if (url.pathname.endsWith("/oauth2/token"))
+      if (url.pathname.endsWith("/oauth2/token")) {
         return Response.json({ access_token: "token" });
+      }
 
-      if (url.pathname.endsWith("/users/@me"))
+      if (url.pathname.endsWith("/users/@me")) {
         return Response.json({
           id: "333333333333333333",
           username: "Tester",
           global_name: "Test User",
           avatar: null
         });
+      }
 
-      if (url.pathname.includes("/member"))
+      if (url.pathname.includes("/member")) {
         return Response.json({ roles: [] });
+      }
 
       throw new Error(`Unexpected OAuth request: ${request.url}`);
     });
@@ -85,7 +88,7 @@ describe("Submitter authentication", () => {
     );
 
     expect(success.status).toBe(302);
-    expect(success.headers.get("location")).toBe(`${origin}/servers/submit?auth=ok`);
+    expect(success.headers.get("location")).toBe(`${origin}/submit?auth=ok`);
     expect(success.headers.get("set-cookie")).toContain("kingdomsx_submit_session=");
     expect(
       await testEnv.DB.prepare("SELECT COUNT(*) AS total FROM submitter_sessions").first<{
@@ -97,11 +100,13 @@ describe("Submitter authentication", () => {
     stubFetch((request) => {
       const url = new URL(request.url);
 
-      if (url.pathname.endsWith("/oauth2/token"))
+      if (url.pathname.endsWith("/oauth2/token")) {
         return Response.json({ access_token: "token" });
+      }
 
-      if (url.pathname.endsWith("/users/@me"))
+      if (url.pathname.endsWith("/users/@me")) {
         return Response.json({ id: "333333333333333333", username: "Tester" });
+      }
 
       return new Response(null, { status: 403 });
     });
@@ -111,10 +116,10 @@ describe("Submitter authentication", () => {
     );
 
     expect(rejected.status).toBe(302);
-    expect(rejected.headers.get("location")).toBe("/servers/submit?auth=not-member");
+    expect(rejected.headers.get("location")).toBe("/submit?auth=not-member");
   });
 
-  it("keeps local-token and production Access authorization paths separate", async () => {
+  it("keeps local-token authentication separate from Cloudflare Access", async () => {
     const local = await api("/api/admin/servers");
 
     expect(local.status).toBe(403);

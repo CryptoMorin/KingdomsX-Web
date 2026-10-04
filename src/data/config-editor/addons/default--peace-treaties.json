@@ -1,0 +1,1023 @@
+{
+  "formatVersion": 1,
+  "source": {
+    "addonId": "peace-treaties",
+    "artifactPath": "addons/Kingdoms-Addon-Peace-Treaties-1.2.8.3.jar",
+    "artifactBlobSha": "65c542bd55dc6dfed6e222f079d37971fd24a682",
+    "artifactSha256": "54b2f1a879e10403200f218d852deb8d80c721cc933777812bbdcfcac5ca9f03",
+    "addonVersion": "1.2.8.3"
+  },
+  "resourceName": "peace-treaties.yml",
+  "schemaId": "addons/peace-treaties",
+  "sha256": "06a2868222c7532cd02068a4ddf5a9fc18909c918654c979f6e478a7ab07fa19",
+  "options": [
+    {
+      "path": [
+        "duration"
+      ],
+      "source": "10 days",
+      "comments": [
+        "The duration for the contract to last if any long-term terms are selected."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "force-accept"
+      ],
+      "source": "\r\n  condition: 'kingdoms_war_points - {other*kingdoms_war_points} >= 100'\r\n\r\n  # Taken war points if acceptance is enforced.\r\n  war-points: 50\r\n\r\n",
+      "comments": [
+        "Based on what condition should the sender of a peace treaty should be able",
+        "to force the contract on the other side without concept?",
+        "This is useful for situations where the other side has completely lost everything",
+        "and are being stubborn to continue the war with nothing.",
+        "This default condition checks if the proposer has 100 more war points than the victim kingdom."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "force-accept",
+        "condition"
+      ],
+      "source": "'kingdoms_war_points - {other*kingdoms_war_points} >= 100'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "force-accept",
+        "war-points"
+      ],
+      "source": "50",
+      "comments": [
+        "Taken war points if acceptance is enforced."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "war-points"
+      ],
+      "source": "\r\n  allowed-relationships: [ ENEMY ]\r\n\r\n  # Initial war points given to a kingdom when created.\r\n  initial: 0\r\n  max: 100\r\n\r\n  # Amount of war points given per action.\r\n  # These actions must be performed against an enemy relationship.\r\n  scores:\r\n    gain:\r\n      kill: 1\r\n      invade: 5\r\n      break-turret: 2\r\n      break-structure: 3\r\n    lose: # The points lost from the enemy kingdom\r\n      kill: 0.5\r\n      invade: 2.5\r\n      break-turret: 1\r\n      break-structure: 1.5\r\n\r\n# The minimum amount of selected terms required to send a contract.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "war-points",
+        "allowed-relationships"
+      ],
+      "source": "[ ENEMY ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "ENEMY"
+      ]
+    },
+    {
+      "path": [
+        "war-points",
+        "initial"
+      ],
+      "source": "0",
+      "comments": [
+        "Initial war points given to a kingdom when created."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "war-points",
+        "max"
+      ],
+      "source": "100",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "war-points",
+        "scores"
+      ],
+      "source": "\r\n    gain:\r\n      kill: 1\r\n      invade: 5\r\n      break-turret: 2\r\n      break-structure: 3\r\n    lose: # The points lost from the enemy kingdom\r\n      kill: 0.5\r\n      invade: 2.5\r\n      break-turret: 1\r\n      break-structure: 1.5\r\n\r\n# The minimum amount of selected terms required to send a contract.\r\n",
+      "comments": [
+        "Amount of war points given per action.",
+        "These actions must be performed against an enemy relationship."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "war-points",
+        "scores",
+        "gain"
+      ],
+      "source": "\r\n      kill: 1\r\n      invade: 5\r\n      break-turret: 2\r\n      break-structure: 3\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "war-points",
+        "scores",
+        "gain",
+        "kill"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "war-points",
+        "scores",
+        "gain",
+        "invade"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "war-points",
+        "scores",
+        "gain",
+        "break-turret"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "war-points",
+        "scores",
+        "gain",
+        "break-structure"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "war-points",
+        "scores",
+        "lose"
+      ],
+      "source": "# The points lost from the enemy kingdom\r\n      kill: 0.5\r\n      invade: 2.5\r\n      break-turret: 1\r\n      break-structure: 1.5\r\n\r\n# The minimum amount of selected terms required to send a contract.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "war-points",
+        "scores",
+        "lose",
+        "kill"
+      ],
+      "source": "0.5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "war-points",
+        "scores",
+        "lose",
+        "invade"
+      ],
+      "source": "2.5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "war-points",
+        "scores",
+        "lose",
+        "break-turret"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "war-points",
+        "scores",
+        "lose",
+        "break-structure"
+      ],
+      "source": "1.5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "min-terms"
+      ],
+      "source": "1",
+      "comments": [
+        "The minimum amount of selected terms required to send a contract."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "unfinished-contract-reminder"
+      ],
+      "source": "5min",
+      "comments": [
+        "Remind players that they have an unfinished contract every once in a while."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "terms"
+      ],
+      "source": "\r\n  # The names here should only use alphabets and dashes.\r\n  vassalization:\r\n    condition: # Used when selecting the term\r\n      # if the victim kingdom meets the condition below, selecting the term will fail\r\n      # and the specified message will be sent to the player.\r\n      # Note that these don't have any effect once the contract is sent.\r\n      \"kingdoms_members >= 50\": 'peace-treaties.vassalization.limits.members'\r\n      \"kingdoms_lands >= 30\": 'peace-treaties.vassalization.limits.lands'\r\n    terms: [ 'scutage', 'annul-treaties', 'limit-structures', 'limit-turrets', 'limit-claims', 'misc-upgrades' ]\r\n\r\n    # This GUI will be opened to change sub-terms.\r\n    # If none is specified, \"default-term-editor\" GUI will be opened.\r\n    # No GUI will be opened if none of the sub-terms require user input.\r\n    gui: 'peace-treaties/vassalization'\r\n\r\n    # Required war points to select this term.\r\n    war-points: 10\r\n\r\n    # Options that control each sub-term.\r\n    term-options:\r\n      scutage:\r\n        amount: 'percentOf(30, kingdoms_bank)'\r\n      limit-turrets:\r\n        amount: 30\r\n        min: 5\r\n      limit-structures:\r\n        amount: 50\r\n        min: 10\r\n      limit-claims:\r\n        amount: 50\r\n        min: 30\r\n\r\n  war-reparation:\r\n    war-points: 3\r\n    terms: [ \"take-money\" ]\r\n    gui: ~\r\n    term-options:\r\n      take-money:\r\n        # true means prompt the user for the value.\r\n        amount: true\r\n\r\n        min: 1000\r\n        max: 10000\r\n\r\n        conditions:\r\n          'amount > kingdoms_money': 'peace-treaties.take-money.high'\r\n\r\n  take-rp:\r\n    war-points: 3\r\n    terms: [ \"take-resource-points\" ]\r\n    term-options:\r\n      take-resource-points:\r\n        # true means prompt the user for the value.\r\n        amount: true\r\n        min: 1000\r\n        max: 100000\r\n\r\n  keep-lands:\r\n    war-points: 1\r\n    terms: [ \"keep-lands\" ]\r\n    term-options:\r\n      keep-lands:\r\n        amount: true\r\n        max: 10\r\n        min: 5\r\n\r\n  leave-nation:\r\n    war-points: 5\r\n    terms: [ \"leave-nation\" ]",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "terms",
+        "vassalization"
+      ],
+      "source": "\r\n    condition: # Used when selecting the term\r\n      # if the victim kingdom meets the condition below, selecting the term will fail\r\n      # and the specified message will be sent to the player.\r\n      # Note that these don't have any effect once the contract is sent.\r\n      \"kingdoms_members >= 50\": 'peace-treaties.vassalization.limits.members'\r\n      \"kingdoms_lands >= 30\": 'peace-treaties.vassalization.limits.lands'\r\n    terms: [ 'scutage', 'annul-treaties', 'limit-structures', 'limit-turrets', 'limit-claims', 'misc-upgrades' ]\r\n\r\n    # This GUI will be opened to change sub-terms.\r\n    # If none is specified, \"default-term-editor\" GUI will be opened.\r\n    # No GUI will be opened if none of the sub-terms require user input.\r\n    gui: 'peace-treaties/vassalization'\r\n\r\n    # Required war points to select this term.\r\n    war-points: 10\r\n\r\n    # Options that control each sub-term.\r\n    term-options:\r\n      scutage:\r\n        amount: 'percentOf(30, kingdoms_bank)'\r\n      limit-turrets:\r\n        amount: 30\r\n        min: 5\r\n      limit-structures:\r\n        amount: 50\r\n        min: 10\r\n      limit-claims:\r\n        amount: 50\r\n        min: 30\r\n\r\n",
+      "comments": [
+        "The names here should only use alphabets and dashes."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "terms",
+        "vassalization",
+        "condition"
+      ],
+      "source": "# Used when selecting the term\r\n      # if the victim kingdom meets the condition below, selecting the term will fail\r\n      # and the specified message will be sent to the player.\r\n      # Note that these don't have any effect once the contract is sent.\r\n      \"kingdoms_members >= 50\": 'peace-treaties.vassalization.limits.members'\r\n      \"kingdoms_lands >= 30\": 'peace-treaties.vassalization.limits.lands'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "terms",
+        "vassalization",
+        "condition",
+        "kingdoms_members >= 50"
+      ],
+      "source": "'peace-treaties.vassalization.limits.members'",
+      "comments": [
+        "if the victim kingdom meets the condition below, selecting the term will fail",
+        "and the specified message will be sent to the player.",
+        "Note that these don't have any effect once the contract is sent."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "terms",
+        "vassalization",
+        "condition",
+        "kingdoms_lands >= 30"
+      ],
+      "source": "'peace-treaties.vassalization.limits.lands'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "terms",
+        "vassalization",
+        "terms"
+      ],
+      "source": "[ 'scutage', 'annul-treaties', 'limit-structures', 'limit-turrets', 'limit-claims', 'misc-upgrades' ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "'scutage'",
+        "'annul-treaties'",
+        "'limit-structures'",
+        "'limit-turrets'",
+        "'limit-claims'",
+        "'misc-upgrades'"
+      ]
+    },
+    {
+      "path": [
+        "terms",
+        "vassalization",
+        "gui"
+      ],
+      "source": "'peace-treaties/vassalization'",
+      "comments": [
+        "This GUI will be opened to change sub-terms.",
+        "If none is specified, \"default-term-editor\" GUI will be opened.",
+        "No GUI will be opened if none of the sub-terms require user input."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "terms",
+        "vassalization",
+        "war-points"
+      ],
+      "source": "10",
+      "comments": [
+        "Required war points to select this term."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "terms",
+        "vassalization",
+        "term-options"
+      ],
+      "source": "\r\n      scutage:\r\n        amount: 'percentOf(30, kingdoms_bank)'\r\n      limit-turrets:\r\n        amount: 30\r\n        min: 5\r\n      limit-structures:\r\n        amount: 50\r\n        min: 10\r\n      limit-claims:\r\n        amount: 50\r\n        min: 30\r\n\r\n",
+      "comments": [
+        "Options that control each sub-term."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "terms",
+        "vassalization",
+        "term-options",
+        "scutage"
+      ],
+      "source": "\r\n        amount: 'percentOf(30, kingdoms_bank)'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "terms",
+        "vassalization",
+        "term-options",
+        "scutage",
+        "amount"
+      ],
+      "source": "'percentOf(30, kingdoms_bank)'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "terms",
+        "vassalization",
+        "term-options",
+        "limit-turrets"
+      ],
+      "source": "\r\n        amount: 30\r\n        min: 5\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "terms",
+        "vassalization",
+        "term-options",
+        "limit-turrets",
+        "amount"
+      ],
+      "source": "30",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "terms",
+        "vassalization",
+        "term-options",
+        "limit-turrets",
+        "min"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "terms",
+        "vassalization",
+        "term-options",
+        "limit-structures"
+      ],
+      "source": "\r\n        amount: 50\r\n        min: 10\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "terms",
+        "vassalization",
+        "term-options",
+        "limit-structures",
+        "amount"
+      ],
+      "source": "50",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "terms",
+        "vassalization",
+        "term-options",
+        "limit-structures",
+        "min"
+      ],
+      "source": "10",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "terms",
+        "vassalization",
+        "term-options",
+        "limit-claims"
+      ],
+      "source": "\r\n        amount: 50\r\n        min: 30\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "terms",
+        "vassalization",
+        "term-options",
+        "limit-claims",
+        "amount"
+      ],
+      "source": "50",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "terms",
+        "vassalization",
+        "term-options",
+        "limit-claims",
+        "min"
+      ],
+      "source": "30",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "terms",
+        "war-reparation"
+      ],
+      "source": "\r\n    war-points: 3\r\n    terms: [ \"take-money\" ]\r\n    gui: ~\r\n    term-options:\r\n      take-money:\r\n        # true means prompt the user for the value.\r\n        amount: true\r\n\r\n        min: 1000\r\n        max: 10000\r\n\r\n        conditions:\r\n          'amount > kingdoms_money': 'peace-treaties.take-money.high'\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "terms",
+        "war-reparation",
+        "war-points"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "terms",
+        "war-reparation",
+        "terms"
+      ],
+      "source": "[ \"take-money\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"take-money\""
+      ]
+    },
+    {
+      "path": [
+        "terms",
+        "war-reparation",
+        "gui"
+      ],
+      "source": "~",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "terms",
+        "war-reparation",
+        "term-options"
+      ],
+      "source": "\r\n      take-money:\r\n        # true means prompt the user for the value.\r\n        amount: true\r\n\r\n        min: 1000\r\n        max: 10000\r\n\r\n        conditions:\r\n          'amount > kingdoms_money': 'peace-treaties.take-money.high'\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "terms",
+        "war-reparation",
+        "term-options",
+        "take-money"
+      ],
+      "source": "\r\n        # true means prompt the user for the value.\r\n        amount: true\r\n\r\n        min: 1000\r\n        max: 10000\r\n\r\n        conditions:\r\n          'amount > kingdoms_money': 'peace-treaties.take-money.high'\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "terms",
+        "war-reparation",
+        "term-options",
+        "take-money",
+        "amount"
+      ],
+      "source": "true",
+      "comments": [
+        "true means prompt the user for the value."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "terms",
+        "war-reparation",
+        "term-options",
+        "take-money",
+        "min"
+      ],
+      "source": "1000",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "terms",
+        "war-reparation",
+        "term-options",
+        "take-money",
+        "max"
+      ],
+      "source": "10000",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "terms",
+        "war-reparation",
+        "term-options",
+        "take-money",
+        "conditions"
+      ],
+      "source": "\r\n          'amount > kingdoms_money': 'peace-treaties.take-money.high'\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "terms",
+        "war-reparation",
+        "term-options",
+        "take-money",
+        "conditions",
+        "amount > kingdoms_money"
+      ],
+      "source": "'peace-treaties.take-money.high'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "terms",
+        "take-rp"
+      ],
+      "source": "\r\n    war-points: 3\r\n    terms: [ \"take-resource-points\" ]\r\n    term-options:\r\n      take-resource-points:\r\n        # true means prompt the user for the value.\r\n        amount: true\r\n        min: 1000\r\n        max: 100000\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "terms",
+        "take-rp",
+        "war-points"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "terms",
+        "take-rp",
+        "terms"
+      ],
+      "source": "[ \"take-resource-points\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"take-resource-points\""
+      ]
+    },
+    {
+      "path": [
+        "terms",
+        "take-rp",
+        "term-options"
+      ],
+      "source": "\r\n      take-resource-points:\r\n        # true means prompt the user for the value.\r\n        amount: true\r\n        min: 1000\r\n        max: 100000\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "terms",
+        "take-rp",
+        "term-options",
+        "take-resource-points"
+      ],
+      "source": "\r\n        # true means prompt the user for the value.\r\n        amount: true\r\n        min: 1000\r\n        max: 100000\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "terms",
+        "take-rp",
+        "term-options",
+        "take-resource-points",
+        "amount"
+      ],
+      "source": "true",
+      "comments": [
+        "true means prompt the user for the value."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "terms",
+        "take-rp",
+        "term-options",
+        "take-resource-points",
+        "min"
+      ],
+      "source": "1000",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "terms",
+        "take-rp",
+        "term-options",
+        "take-resource-points",
+        "max"
+      ],
+      "source": "100000",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "terms",
+        "keep-lands"
+      ],
+      "source": "\r\n    war-points: 1\r\n    terms: [ \"keep-lands\" ]\r\n    term-options:\r\n      keep-lands:\r\n        amount: true\r\n        max: 10\r\n        min: 5\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "terms",
+        "keep-lands",
+        "war-points"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "terms",
+        "keep-lands",
+        "terms"
+      ],
+      "source": "[ \"keep-lands\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"keep-lands\""
+      ]
+    },
+    {
+      "path": [
+        "terms",
+        "keep-lands",
+        "term-options"
+      ],
+      "source": "\r\n      keep-lands:\r\n        amount: true\r\n        max: 10\r\n        min: 5\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "terms",
+        "keep-lands",
+        "term-options",
+        "keep-lands"
+      ],
+      "source": "\r\n        amount: true\r\n        max: 10\r\n        min: 5\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "terms",
+        "keep-lands",
+        "term-options",
+        "keep-lands",
+        "amount"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "terms",
+        "keep-lands",
+        "term-options",
+        "keep-lands",
+        "max"
+      ],
+      "source": "10",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "terms",
+        "keep-lands",
+        "term-options",
+        "keep-lands",
+        "min"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "terms",
+        "leave-nation"
+      ],
+      "source": "\r\n    war-points: 5\r\n    terms: [ \"leave-nation\" ]",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "terms",
+        "leave-nation",
+        "war-points"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "terms",
+        "leave-nation",
+        "terms"
+      ],
+      "source": "[ \"leave-nation\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"leave-nation\""
+      ]
+    }
+  ]
+}

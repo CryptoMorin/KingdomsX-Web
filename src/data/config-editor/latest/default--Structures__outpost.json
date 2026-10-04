@@ -1,0 +1,1244 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "Structures/outpost.yml",
+  "schemaId": "Structures/structure",
+  "options": [
+    {
+      "path": [
+        "(import)"
+      ],
+      "source": "\r\n  structure:\r\n    parameters:\r\n      <name>: outpost\r\n      <build-duration-factor>: '+1 minute'\r\n      <durability-factor>: 100\r\n      <material-1>: HAY_BLOCK\r\n      <material-2>: HAY_BLOCK\r\n      <material-3>: HAY_BLOCK\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "structure"
+      ],
+      "source": "\r\n    parameters:\r\n      <name>: outpost\r\n      <build-duration-factor>: '+1 minute'\r\n      <durability-factor>: 100\r\n      <material-1>: HAY_BLOCK\r\n      <material-2>: HAY_BLOCK\r\n      <material-3>: HAY_BLOCK\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "structure",
+        "parameters"
+      ],
+      "source": "\r\n      <name>: outpost\r\n      <build-duration-factor>: '+1 minute'\r\n      <durability-factor>: 100\r\n      <material-1>: HAY_BLOCK\r\n      <material-2>: HAY_BLOCK\r\n      <material-3>: HAY_BLOCK\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "structure",
+        "parameters",
+        "<name>"
+      ],
+      "source": "outpost",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "structure",
+        "parameters",
+        "<build-duration-factor>"
+      ],
+      "source": "'+1 minute'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "structure",
+        "parameters",
+        "<durability-factor>"
+      ],
+      "source": "100",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "structure",
+        "parameters",
+        "<material-1>"
+      ],
+      "source": "HAY_BLOCK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "structure",
+        "parameters",
+        "<material-2>"
+      ],
+      "source": "HAY_BLOCK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "structure",
+        "parameters",
+        "<material-3>"
+      ],
+      "source": "HAY_BLOCK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-base]"
+      ],
+      "source": "&fn-base\r\n  args: [ \"<cost>\", \"<material>\" ]\r\n  return:\r\n    buy: 'percentOf(10, <cost> * (initial / stock)) + (<cost> * (initial / stock))'\r\n    sell: 'min(buy, <cost> * (initial / stock))'\r\n    stock:\r\n      initial: 10000\r\n      max: 100000\r\n      min: 500\r\n    item:\r\n      material: <material>\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-base]",
+        "args"
+      ],
+      "source": "[ \"<cost>\", \"<material>\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"<cost>\"",
+        "\"<material>\""
+      ]
+    },
+    {
+      "path": [
+        "[fn-base]",
+        "return"
+      ],
+      "source": "\r\n    buy: 'percentOf(10, <cost> * (initial / stock)) + (<cost> * (initial / stock))'\r\n    sell: 'min(buy, <cost> * (initial / stock))'\r\n    stock:\r\n      initial: 10000\r\n      max: 100000\r\n      min: 500\r\n    item:\r\n      material: <material>\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-base]",
+        "return",
+        "buy"
+      ],
+      "source": "'percentOf(10, <cost> * (initial / stock)) + (<cost> * (initial / stock))'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-base]",
+        "return",
+        "sell"
+      ],
+      "source": "'min(buy, <cost> * (initial / stock))'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-base]",
+        "return",
+        "stock"
+      ],
+      "source": "\r\n      initial: 10000\r\n      max: 100000\r\n      min: 500\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-base]",
+        "return",
+        "stock",
+        "initial"
+      ],
+      "source": "10000",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-base]",
+        "return",
+        "stock",
+        "max"
+      ],
+      "source": "100000",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-base]",
+        "return",
+        "stock",
+        "min"
+      ],
+      "source": "500",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-base]",
+        "return",
+        "item"
+      ],
+      "source": "\r\n      material: <material>\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-base]",
+        "return",
+        "item",
+        "material"
+      ],
+      "source": "<material>",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "name"
+      ],
+      "source": "\"&eOutpost\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "default-name"
+      ],
+      "source": "'Outpost'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "type"
+      ],
+      "source": "outpost",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "conditions"
+      ],
+      "source": "\r\n  purchase:\r\n    'kingdoms_kingdom_level < 2': '{$$kingdom-levels.II}'\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "conditions",
+        "purchase"
+      ],
+      "source": "\r\n    'kingdoms_kingdom_level < 2': '{$$kingdom-levels.II}'\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "conditions",
+        "purchase",
+        "kingdoms_kingdom_level < 2"
+      ],
+      "source": "'{$$kingdom-levels.II}'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "limits"
+      ],
+      "source": "\r\n  per-land: 1\r\n  total: 10\r\n\r\n# The items that can be sold in the outpost structure.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "limits",
+        "per-land"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "limits",
+        "total"
+      ],
+      "source": "10",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "stocks"
+      ],
+      "source": "\r\n  # The name of each entry is basically the ID of the item,\r\n  # this ID is used for saving server-wide stock data and being\r\n  # used in the GUI with the \"stock-\" prefix.\r\n  # For example, this particular item will be referenced as \"stock-diamonds\" in the GUI.\r\n  diamonds: # <--- Note this name is important\r\n    # The amount of resource points used for buying this item from the structure.\r\n    # Here you can use the special placeholder \"stock\" which is the amount of this\r\n    # item that is held by the server-wide stock and can be used to adjust prices.\r\n    # Note: Other options below use the *fn-base function which basically repeats this\r\n    # equation for easier configuration.\r\n    buy: 'percentOf(10, 50 * (initial / stock)) + (60 * (initial / stock))'\r\n\r\n    # The amount of resource points used for selling this item to the structure.\r\n    # Supports \"stock\" placeholder just like the buy option.\r\n    # The selling price is always lower or equal to the buying price to avoid arbitrage transcations and exploits.\r\n    sell: 'min(buy, 50 * (initial / stock))'\r\n\r\n    # Settings for the \"stock\" variable used for buy/sell options\r\n    # This is a server-wide variable shared between all outpost structures.\r\n    # When players buy this item from an outpost, it'll decrease the amount\r\n    # of stock depending on how much they bought, when they sell the same item,\r\n    # the market stock will increase.\r\n    stock: &stock\r\n      # The initial value assigned. This is permanent and the server\r\n      # will save this data, so changing this option will not work\r\n      # unless you reset your data.\r\n      initial: 10000\r\n\r\n      # No matter how many items the players buy/sell the stock value\r\n      # will not go out of this range.\r\n      max: 100000\r\n      min: 500\r\n\r\n    # The item given to the player after they purchase it.\r\n    # (The amount is adjusted automatically)\r\n    # The items sold will have to match this exact same description.\r\n    item:\r\n      material: DIAMOND\r\n\r\n    # A kingdom-wide limit that prevents players from\r\n    # purchasing certain items after a certain amount is purchased.\r\n    purchase-limit:\r\n      # The cooldown doesn't persist between restarts.\r\n\r\n      # We're using math here to make it easier to understand.\r\n      # In this case, if you purchase 10 items together, you'll hit the limit.\r\n      cooldown-per-item: '[6hr] / 64' # = ~5mins %outpost_cooldown_per_item%\r\n\r\n      # When you purchase the items, the cooldown will accumulate,\r\n      # And once this limit is reached, they'll have to wait.\r\n      # Players will not be able to purchase items if the total cooldown\r\n      # is going to be more than this limit.\r\n      max-cooldown: 6hrs # %outpost_max_cooldown%\r\n\r\n  emerald: *fn-base [ 60, EMERALD ]\r\n  gold-ingot: *fn-base [ 40, GOLD_INGOT ]\r\n  iron-ingot: *fn-base [ 30, IRON_INGOT ]\r\n  nether-brick: *fn-base [ 30, NETHER_BRICK ]\r\n  brick: *fn-base [ 20, BRICK ]\r\n  lapis-lazuli: *fn-base [ 10, LAPIS_LAZULI ]\r\n  coal: *fn-base [ 2, COAL ]\r\n  charcoal: *fn-base [ 1, CHARCOAL ]\r\n\r\n  ender-eye: *fn-base [ 1000, ENDER_EYE ]\r\n  ender-pearl: *fn-base [ 100, ENDER_PEARL ]\r\n  dragon-breath: *fn-base [ 3000, DRAGON_BREATH ]\r\n  blaze-rod: *fn-base [ 40, BLAZE_ROD ]\r\n  blaze-powder: *fn-base [ 20, BLAZE_POWDER ]\r\n  prismarine-crystals: *fn-base [ 20, PRISMARINE_CRYSTALS ]\r\n\r\n  golden-carrot: *fn-base [ 50, GOLDEN_CARROT ]\r\n  magma-cream: *fn-base [ 50, MAGMA_CREAM ]\r\n  slime-ball: *fn-base [ 30, SLIME_BALL ]\r\n  flint: *fn-base [ 1, FLINT ]\r\n  book: *fn-base [ 10, BOOK ]\r\n\r\n  xp-bottle:\r\n    <<: *fn-base [ 30, EXPERIENCE_BOTTLE ]\r\n    purchase-limit:\r\n      cooldown-per-item: '[1hr] / 64'\r\n      max-cooldown: 1hrs\r\n\r\n  cooked-rabbit: *fn-base [ 3, COOKED_RABBIT ]\r\n  cooked-beef: *fn-base [ 2, COOKED_BEEF ]\r\n  cooked-porkchop: *fn-base [ 2, COOKED_PORKCHOP ]\r\n  cooked-chicken: *fn-base [ 1, COOKED_CHICKEN ]\r\n  cooked-fish: *fn-base [ 1, COOKED_COD ]\r\n  cooked-salmon: *fn-base [ 1, COOKED_SALMON ]\r\n  cooked-mutton: *fn-base [ 1, COOKED_MUTTON ]\r\n\r\n  wool: *fn-base [ 15, WHITE_WOOL ]\r\n  string: *fn-base [ 1, STRING ]\r\n  bucket: *fn-base [ 80, BUCKET ]\r\n  bone-meal: *fn-base [ 3, BONE_MEAL ]\r\n  rail: *fn-base [ 3, RAIL ]\r\n  glass: *fn-base [ 25, GLASS ]\r\n  ghast-tear: *fn-base [ 100, GHAST_TEAR ]\r\n\r\n  redstone-torch: *fn-base [ 5, REDSTONE_TORCH ]\r\n  repeater: *fn-base [ 10, REPEATER ]\r\n  comparator: *fn-base [ 15, COMPARATOR ]\r\n  dispenser: *fn-base [ 30, DISPENSER ]\r\n  dropper: *fn-base [ 20, DROPPER ]\r\n  hopper: *fn-base [ 200, HOPPER ]\r\n  piston: *fn-base [ 80, PISTON ]\r\n\r\n",
+      "comments": [
+        "The items that can be sold in the outpost structure."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "stocks",
+        "diamonds"
+      ],
+      "source": "# <--- Note this name is important\r\n    # The amount of resource points used for buying this item from the structure.\r\n    # Here you can use the special placeholder \"stock\" which is the amount of this\r\n    # item that is held by the server-wide stock and can be used to adjust prices.\r\n    # Note: Other options below use the *fn-base function which basically repeats this\r\n    # equation for easier configuration.\r\n    buy: 'percentOf(10, 50 * (initial / stock)) + (60 * (initial / stock))'\r\n\r\n    # The amount of resource points used for selling this item to the structure.\r\n    # Supports \"stock\" placeholder just like the buy option.\r\n    # The selling price is always lower or equal to the buying price to avoid arbitrage transcations and exploits.\r\n    sell: 'min(buy, 50 * (initial / stock))'\r\n\r\n    # Settings for the \"stock\" variable used for buy/sell options\r\n    # This is a server-wide variable shared between all outpost structures.\r\n    # When players buy this item from an outpost, it'll decrease the amount\r\n    # of stock depending on how much they bought, when they sell the same item,\r\n    # the market stock will increase.\r\n    stock: &stock\r\n      # The initial value assigned. This is permanent and the server\r\n      # will save this data, so changing this option will not work\r\n      # unless you reset your data.\r\n      initial: 10000\r\n\r\n      # No matter how many items the players buy/sell the stock value\r\n      # will not go out of this range.\r\n      max: 100000\r\n      min: 500\r\n\r\n    # The item given to the player after they purchase it.\r\n    # (The amount is adjusted automatically)\r\n    # The items sold will have to match this exact same description.\r\n    item:\r\n      material: DIAMOND\r\n\r\n    # A kingdom-wide limit that prevents players from\r\n    # purchasing certain items after a certain amount is purchased.\r\n    purchase-limit:\r\n      # The cooldown doesn't persist between restarts.\r\n\r\n      # We're using math here to make it easier to understand.\r\n      # In this case, if you purchase 10 items together, you'll hit the limit.\r\n      cooldown-per-item: '[6hr] / 64' # = ~5mins %outpost_cooldown_per_item%\r\n\r\n      # When you purchase the items, the cooldown will accumulate,\r\n      # And once this limit is reached, they'll have to wait.\r\n      # Players will not be able to purchase items if the total cooldown\r\n      # is going to be more than this limit.\r\n      max-cooldown: 6hrs # %outpost_max_cooldown%\r\n\r\n",
+      "comments": [
+        "The name of each entry is basically the ID of the item,",
+        "this ID is used for saving server-wide stock data and being",
+        "used in the GUI with the \"stock-\" prefix.",
+        "For example, this particular item will be referenced as \"stock-diamonds\" in the GUI."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "stocks",
+        "diamonds",
+        "buy"
+      ],
+      "source": "'percentOf(10, 50 * (initial / stock)) + (60 * (initial / stock))'",
+      "comments": [
+        "The amount of resource points used for buying this item from the structure.",
+        "Here you can use the special placeholder \"stock\" which is the amount of this",
+        "item that is held by the server-wide stock and can be used to adjust prices.",
+        "Note: Other options below use the *fn-base function which basically repeats this",
+        "equation for easier configuration."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "stocks",
+        "diamonds",
+        "sell"
+      ],
+      "source": "'min(buy, 50 * (initial / stock))'",
+      "comments": [
+        "The amount of resource points used for selling this item to the structure.",
+        "Supports \"stock\" placeholder just like the buy option.",
+        "The selling price is always lower or equal to the buying price to avoid arbitrage transcations and exploits."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "stocks",
+        "diamonds",
+        "stock"
+      ],
+      "source": "&stock\r\n      # The initial value assigned. This is permanent and the server\r\n      # will save this data, so changing this option will not work\r\n      # unless you reset your data.\r\n      initial: 10000\r\n\r\n      # No matter how many items the players buy/sell the stock value\r\n      # will not go out of this range.\r\n      max: 100000\r\n      min: 500\r\n\r\n    # The item given to the player after they purchase it.\r\n    # (The amount is adjusted automatically)\r\n    # The items sold will have to match this exact same description.\r\n",
+      "comments": [
+        "Settings for the \"stock\" variable used for buy/sell options",
+        "This is a server-wide variable shared between all outpost structures.",
+        "When players buy this item from an outpost, it'll decrease the amount",
+        "of stock depending on how much they bought, when they sell the same item,",
+        "the market stock will increase."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "stocks",
+        "diamonds",
+        "stock",
+        "initial"
+      ],
+      "source": "10000",
+      "comments": [
+        "The initial value assigned. This is permanent and the server",
+        "will save this data, so changing this option will not work",
+        "unless you reset your data."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "stocks",
+        "diamonds",
+        "stock",
+        "max"
+      ],
+      "source": "100000",
+      "comments": [
+        "No matter how many items the players buy/sell the stock value",
+        "will not go out of this range."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "stocks",
+        "diamonds",
+        "stock",
+        "min"
+      ],
+      "source": "500",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "stocks",
+        "diamonds",
+        "item"
+      ],
+      "source": "\r\n      material: DIAMOND\r\n\r\n    # A kingdom-wide limit that prevents players from\r\n    # purchasing certain items after a certain amount is purchased.\r\n",
+      "comments": [
+        "The item given to the player after they purchase it.",
+        "(The amount is adjusted automatically)",
+        "The items sold will have to match this exact same description."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "stocks",
+        "diamonds",
+        "item",
+        "material"
+      ],
+      "source": "DIAMOND",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "stocks",
+        "diamonds",
+        "purchase-limit"
+      ],
+      "source": "\r\n      # The cooldown doesn't persist between restarts.\r\n\r\n      # We're using math here to make it easier to understand.\r\n      # In this case, if you purchase 10 items together, you'll hit the limit.\r\n      cooldown-per-item: '[6hr] / 64' # = ~5mins %outpost_cooldown_per_item%\r\n\r\n      # When you purchase the items, the cooldown will accumulate,\r\n      # And once this limit is reached, they'll have to wait.\r\n      # Players will not be able to purchase items if the total cooldown\r\n      # is going to be more than this limit.\r\n      max-cooldown: 6hrs # %outpost_max_cooldown%\r\n\r\n",
+      "comments": [
+        "A kingdom-wide limit that prevents players from",
+        "purchasing certain items after a certain amount is purchased."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "stocks",
+        "diamonds",
+        "purchase-limit",
+        "cooldown-per-item"
+      ],
+      "source": "'[6hr] / 64'",
+      "comments": [
+        "We're using math here to make it easier to understand.",
+        "In this case, if you purchase 10 items together, you'll hit the limit."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "stocks",
+        "diamonds",
+        "purchase-limit",
+        "max-cooldown"
+      ],
+      "source": "6hrs",
+      "comments": [
+        "When you purchase the items, the cooldown will accumulate,",
+        "And once this limit is reached, they'll have to wait.",
+        "Players will not be able to purchase items if the total cooldown",
+        "is going to be more than this limit."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "stocks",
+        "emerald"
+      ],
+      "source": "*fn-base [ 60, EMERALD ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "stocks",
+        "gold-ingot"
+      ],
+      "source": "*fn-base [ 40, GOLD_INGOT ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "stocks",
+        "iron-ingot"
+      ],
+      "source": "*fn-base [ 30, IRON_INGOT ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "stocks",
+        "nether-brick"
+      ],
+      "source": "*fn-base [ 30, NETHER_BRICK ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "stocks",
+        "brick"
+      ],
+      "source": "*fn-base [ 20, BRICK ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "stocks",
+        "lapis-lazuli"
+      ],
+      "source": "*fn-base [ 10, LAPIS_LAZULI ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "stocks",
+        "coal"
+      ],
+      "source": "*fn-base [ 2, COAL ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "stocks",
+        "charcoal"
+      ],
+      "source": "*fn-base [ 1, CHARCOAL ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "stocks",
+        "ender-eye"
+      ],
+      "source": "*fn-base [ 1000, ENDER_EYE ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "stocks",
+        "ender-pearl"
+      ],
+      "source": "*fn-base [ 100, ENDER_PEARL ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "stocks",
+        "dragon-breath"
+      ],
+      "source": "*fn-base [ 3000, DRAGON_BREATH ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "stocks",
+        "blaze-rod"
+      ],
+      "source": "*fn-base [ 40, BLAZE_ROD ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "stocks",
+        "blaze-powder"
+      ],
+      "source": "*fn-base [ 20, BLAZE_POWDER ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "stocks",
+        "prismarine-crystals"
+      ],
+      "source": "*fn-base [ 20, PRISMARINE_CRYSTALS ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "stocks",
+        "golden-carrot"
+      ],
+      "source": "*fn-base [ 50, GOLDEN_CARROT ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "stocks",
+        "magma-cream"
+      ],
+      "source": "*fn-base [ 50, MAGMA_CREAM ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "stocks",
+        "slime-ball"
+      ],
+      "source": "*fn-base [ 30, SLIME_BALL ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "stocks",
+        "flint"
+      ],
+      "source": "*fn-base [ 1, FLINT ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "stocks",
+        "book"
+      ],
+      "source": "*fn-base [ 10, BOOK ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "stocks",
+        "xp-bottle"
+      ],
+      "source": "\r\n    <<: *fn-base [ 30, EXPERIENCE_BOTTLE ]\r\n    purchase-limit:\r\n      cooldown-per-item: '[1hr] / 64'\r\n      max-cooldown: 1hrs\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "stocks",
+        "xp-bottle",
+        "<<"
+      ],
+      "source": "*fn-base [ 30, EXPERIENCE_BOTTLE ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "stocks",
+        "xp-bottle",
+        "purchase-limit"
+      ],
+      "source": "\r\n      cooldown-per-item: '[1hr] / 64'\r\n      max-cooldown: 1hrs\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "stocks",
+        "xp-bottle",
+        "purchase-limit",
+        "cooldown-per-item"
+      ],
+      "source": "'[1hr] / 64'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "stocks",
+        "xp-bottle",
+        "purchase-limit",
+        "max-cooldown"
+      ],
+      "source": "1hrs",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "stocks",
+        "cooked-rabbit"
+      ],
+      "source": "*fn-base [ 3, COOKED_RABBIT ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "stocks",
+        "cooked-beef"
+      ],
+      "source": "*fn-base [ 2, COOKED_BEEF ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "stocks",
+        "cooked-porkchop"
+      ],
+      "source": "*fn-base [ 2, COOKED_PORKCHOP ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "stocks",
+        "cooked-chicken"
+      ],
+      "source": "*fn-base [ 1, COOKED_CHICKEN ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "stocks",
+        "cooked-fish"
+      ],
+      "source": "*fn-base [ 1, COOKED_COD ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "stocks",
+        "cooked-salmon"
+      ],
+      "source": "*fn-base [ 1, COOKED_SALMON ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "stocks",
+        "cooked-mutton"
+      ],
+      "source": "*fn-base [ 1, COOKED_MUTTON ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "stocks",
+        "wool"
+      ],
+      "source": "*fn-base [ 15, WHITE_WOOL ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "stocks",
+        "string"
+      ],
+      "source": "*fn-base [ 1, STRING ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "stocks",
+        "bucket"
+      ],
+      "source": "*fn-base [ 80, BUCKET ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "stocks",
+        "bone-meal"
+      ],
+      "source": "*fn-base [ 3, BONE_MEAL ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "stocks",
+        "rail"
+      ],
+      "source": "*fn-base [ 3, RAIL ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "stocks",
+        "glass"
+      ],
+      "source": "*fn-base [ 25, GLASS ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "stocks",
+        "ghast-tear"
+      ],
+      "source": "*fn-base [ 100, GHAST_TEAR ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "stocks",
+        "redstone-torch"
+      ],
+      "source": "*fn-base [ 5, REDSTONE_TORCH ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "stocks",
+        "repeater"
+      ],
+      "source": "*fn-base [ 10, REPEATER ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "stocks",
+        "comparator"
+      ],
+      "source": "*fn-base [ 15, COMPARATOR ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "stocks",
+        "dispenser"
+      ],
+      "source": "*fn-base [ 30, DISPENSER ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "stocks",
+        "dropper"
+      ],
+      "source": "*fn-base [ 20, DROPPER ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "stocks",
+        "hopper"
+      ],
+      "source": "*fn-base [ 200, HOPPER ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "stocks",
+        "piston"
+      ],
+      "source": "*fn-base [ 80, PISTON ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "cost"
+      ],
+      "source": "500",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sell"
+      ],
+      "source": "250",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "item"
+      ],
+      "source": "\r\n  1:\r\n    name: \"{$sp}Outpost\"\r\n    material: HAY_BLOCK\r\n    flags: [ ALL ]\r\n    lore: |\r\n      {$desc}The Outpost allows direct access to your Nexus.\r\n      It enables you to access turrets, upgrades,\r\n      and unlockable structures.\r\n      Outposts can produce exp bottles from\r\n      resource points aswell.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "item",
+        "1"
+      ],
+      "source": "\r\n    name: \"{$sp}Outpost\"\r\n    material: HAY_BLOCK\r\n    flags: [ ALL ]\r\n    lore: |\r\n      {$desc}The Outpost allows direct access to your Nexus.\r\n      It enables you to access turrets, upgrades,\r\n      and unlockable structures.\r\n      Outposts can produce exp bottles from\r\n      resource points aswell.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "item",
+        "1",
+        "name"
+      ],
+      "source": "\"{$sp}Outpost\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "item",
+        "1",
+        "material"
+      ],
+      "source": "HAY_BLOCK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "item",
+        "1",
+        "flags"
+      ],
+      "source": "[ ALL ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "ALL"
+      ]
+    },
+    {
+      "path": [
+        "item",
+        "1",
+        "lore"
+      ],
+      "source": "|\r\n      {$desc}The Outpost allows direct access to your Nexus.\r\n      It enables you to access turrets, upgrades,\r\n      and unlockable structures.\r\n      Outposts can produce exp bottles from\r\n      resource points aswell.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

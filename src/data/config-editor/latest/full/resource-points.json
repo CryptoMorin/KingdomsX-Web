@@ -1,0 +1,1135 @@
+{
+  "formatVersion": 1,
+  "id": "resource-points",
+  "resourceName": "resource-points.yml",
+  "sources": {
+    "schema": {
+      "kind": "kingdomsx-jar",
+      "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+      "pluginVersion": "1.17.27.3",
+      "fileName": "resource-points.json"
+    },
+    "defaults": [
+      "default--resource-points.json"
+    ],
+    "runtime": {
+      "kind": "kingdomsx-jar",
+      "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+      "pluginVersion": "1.17.27.3"
+    }
+  },
+  "coverage": {
+    "defaultPathCount": 56,
+    "rawDefaultPathCount": 56,
+    "activeRuntimePathCount": 0,
+    "fieldCount": 45,
+    "capabilitySourceCounts": {
+      "jar-schema": 46,
+      "jar-default": 29,
+      "editor-overlay": 53
+    },
+    "commonSettingCount": 0
+  },
+  "schema": {
+    "kind": "object",
+    "fields": [
+      {
+        "key": "last-donation-duration",
+        "type": {
+          "kind": "duration",
+          "typeName": "Period",
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "How should the %kingdoms_last_donation_time/amount% be parsed? This will gather the amount of rp player has collected since his last \"donation time\" If the donation time reaches this duration, it'll update their %kingdoms_last_donation_amount% player tries to donate again.",
+          "optional": true
+        }
+      },
+      {
+        "key": "death-penalty",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "amount",
+              "type": {
+                "kind": "integer",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "disabled-worlds",
+              "type": {
+                "kind": "set",
+                "elements": {
+                  "kind": "suggestion",
+                  "typeName": "World",
+                  "allowCustom": true,
+                  "capability": {
+                    "sources": [
+                      "jar-schema"
+                    ]
+                  }
+                },
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "disabled-causes",
+              "type": {
+                "kind": "set",
+                "elements": {
+                  "kind": "suggestion",
+                  "typeName": "DamageCause",
+                  "capability": {
+                    "sources": [
+                      "jar-schema"
+                    ]
+                  },
+                  "allowCustom": true,
+                  "description": "Spigot DamageCause."
+                },
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "Spigot entity damage causes.",
+                "optional": true
+              }
+            }
+          ],
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "Kingdom resource points lost when a member dies in any way. If the kingdom cannot afford this, simply nothing will happen.",
+          "optional": true
+        }
+      },
+      {
+        "key": "for-each",
+        "type": {
+          "kind": "integer",
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "For each 5 items that are in NOT in any of the lists below, give 1 resource point. Resource points are not doubles/decimals (rational numbers) they're integers. Set one of them to zero to disable this feature entirely.",
+          "optional": true
+        }
+      },
+      {
+        "key": "give",
+        "type": {
+          "kind": "integer",
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "general-filters",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "lore",
+              "type": {
+                "kind": "union",
+                "description": "general-filters lore/enchants accept true (whitelist), false (blacklist), or ~ (ignore that filter).",
+                "optional": true,
+                "choices": [
+                  {
+                    "kind": "boolean",
+                    "description": "true = whitelist matching items, false = blacklist matching items.",
+                    "optional": true,
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    }
+                  },
+                  {
+                    "kind": "null",
+                    "description": "Ignore this filter (~)."
+                  },
+                  {
+                    "kind": "list",
+                    "elements": {
+                      "kind": "string",
+                      "typeName": "str",
+                      "description": "",
+                      "optional": true,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      }
+                    },
+                    "description": "Explicit filter entries.",
+                    "optional": true,
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "key": "enchanted",
+              "type": {
+                "kind": "union",
+                "choices": [
+                  {
+                    "kind": "set",
+                    "elements": {
+                      "kind": "string",
+                      "typeName": "str",
+                      "capability": {
+                        "sources": [
+                          "jar-schema"
+                        ]
+                      }
+                    },
+                    "capability": {
+                      "sources": [
+                        "jar-schema"
+                      ]
+                    }
+                  },
+                  {
+                    "kind": "null",
+                    "capability": {
+                      "sources": [
+                        "jar-schema"
+                      ]
+                    }
+                  },
+                  {
+                    "kind": "boolean",
+                    "capability": {
+                      "sources": [
+                        "jar-schema"
+                      ]
+                    }
+                  }
+                ],
+                "capability": {
+                  "sources": [
+                    "jar-schema"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "material",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "blacklist",
+                    "type": {
+                      "kind": "boolean",
+                      "description": "true = listed materials are blocked, false = only listed materials are allowed.",
+                      "optional": true,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "key": "list",
+                    "type": {
+                      "kind": "list",
+                      "elements": {
+                        "kind": "advanced",
+                        "typeName": "StringMatcher<Material>",
+                        "description": "Material name or matcher.",
+                        "optional": true,
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        }
+                      },
+                      "description": "Materials matched by this filter.",
+                      "optional": true,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      }
+                    }
+                  }
+                ],
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "This option's format is different.",
+                "optional": true
+              }
+            },
+            {
+              "key": "enchants",
+              "type": {
+                "kind": "union",
+                "description": "general-filters lore/enchants accept true (whitelist), false (blacklist), or ~ (ignore that filter).",
+                "optional": true,
+                "choices": [
+                  {
+                    "kind": "boolean",
+                    "description": "true = whitelist matching items, false = blacklist matching items.",
+                    "optional": true,
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    }
+                  },
+                  {
+                    "kind": "null",
+                    "description": "Ignore this filter (~)."
+                  },
+                  {
+                    "kind": "list",
+                    "elements": {
+                      "kind": "string",
+                      "typeName": "str",
+                      "description": "",
+                      "optional": true,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      }
+                    },
+                    "description": "Explicit filter entries.",
+                    "optional": true,
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "key": "with-lore",
+              "type": {
+                "kind": "list",
+                "elements": {
+                  "kind": "string",
+                  "typeName": "str",
+                  "description": "",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                },
+                "description": "Optional with-lore filter list documented in comments.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            }
+          ],
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "general-filters lore/enchants accept true (whitelist), false (blacklist), or ~ (ignore that filter).",
+          "optional": true
+        }
+      },
+      {
+        "key": "custom",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "suggestion",
+            "typeName": "Material",
+            "allowCustom": true,
+            "capability": {
+              "sources": [
+                "jar-schema"
+              ]
+            }
+          },
+          "values": {
+            "kind": "integer",
+            "capability": {
+              "sources": [
+                "jar-schema"
+              ]
+            }
+          },
+          "fields": [],
+          "optional": true,
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "Resource points given per item. (for-each is not used here)"
+        }
+      },
+      {
+        "key": "advanced",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "string",
+            "typeName": "str",
+            "capability": {
+              "sources": [
+                "jar-schema"
+              ]
+            }
+          },
+          "values": {
+            "kind": "object",
+            "fields": [
+              {
+                "key": "resource-points",
+                "type": {
+                  "kind": "integer",
+                  "capability": {
+                    "sources": [
+                      "jar-schema",
+                      "jar-default",
+                      "editor-overlay"
+                    ]
+                  },
+                  "description": "Resource-point worth of a matching item.",
+                  "optional": true
+                }
+              },
+              {
+                "key": "name",
+                "type": {
+                  "kind": "advanced",
+                  "typeName": "StringMatcher",
+                  "description": "Displayed-name matcher.",
+                  "capability": {
+                    "sources": [
+                      "jar-default",
+                      "editor-overlay"
+                    ]
+                  },
+                  "optional": true
+                }
+              },
+              {
+                "key": "lore",
+                "type": {
+                  "kind": "advanced",
+                  "typeName": "StringMatcher",
+                  "description": "Lore matcher.",
+                  "capability": {
+                    "sources": [
+                      "jar-default",
+                      "editor-overlay"
+                    ]
+                  },
+                  "optional": true
+                }
+              },
+              {
+                "key": "material",
+                "type": {
+                  "kind": "advanced",
+                  "typeName": "StringMatcher<Material>",
+                  "description": "Material matcher.",
+                  "capability": {
+                    "sources": [
+                      "jar-default",
+                      "editor-overlay"
+                    ]
+                  },
+                  "optional": true
+                }
+              },
+              {
+                "key": "custom-model-data",
+                "type": {
+                  "kind": "union",
+                  "description": "Custom model data number, text, or color matcher.",
+                  "choices": [
+                    {
+                      "kind": "integer",
+                      "description": "",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      }
+                    },
+                    {
+                      "kind": "string",
+                      "typeName": "str",
+                      "description": "",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      }
+                    },
+                    {
+                      "kind": "advanced",
+                      "typeName": "Color",
+                      "description": "Minecraft RGB or hexadecimal color."
+                    }
+                  ],
+                  "optional": true
+                }
+              },
+              {
+                "key": "enchants",
+                "type": {
+                  "kind": "mapping",
+                  "keys": {
+                    "kind": "suggestion",
+                    "typeName": "Enchant",
+                    "allowCustom": true,
+                    "description": "Spigot Enchant.",
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    }
+                  },
+                  "values": {
+                    "kind": "union",
+                    "description": "Any level (*), an exact level, or a condition using the lvl variable.",
+                    "choices": [
+                      {
+                        "kind": "enum",
+                        "values": [
+                          "*"
+                        ],
+                        "allowCustom": false,
+                        "description": "",
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        }
+                      },
+                      {
+                        "kind": "integer",
+                        "description": "",
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        }
+                      },
+                      {
+                        "kind": "expression",
+                        "language": "condition"
+                      }
+                    ]
+                  },
+                  "description": "Enchantment requirements.",
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  },
+                  "optional": true
+                }
+              },
+              {
+                "key": "nbt",
+                "type": {
+                  "kind": "mapping",
+                  "keys": {
+                    "kind": "string",
+                    "typeName": "str",
+                    "description": "",
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    }
+                  },
+                  "values": {
+                    "kind": "advanced",
+                    "typeName": "StringMatcher"
+                  },
+                  "description": "NBT paths mapped to string matchers.",
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  },
+                  "optional": true
+                }
+              }
+            ],
+            "extends": [
+              "ItemMatcher"
+            ],
+            "capability": {
+              "sources": [
+                "jar-schema"
+              ]
+            },
+            "description": "Advanced custom-item detectors. Uses ItemMatcher fields plus resource-points worth.",
+            "optional": true,
+            "required": []
+          },
+          "fields": [],
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "Advanced custom-item detectors. Uses ItemMatcher fields plus resource-points worth.",
+          "optional": true
+        }
+      },
+      {
+        "key": "custom-items",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "string",
+            "typeName": "str",
+            "capability": {
+              "sources": [
+                "jar-schema"
+              ]
+            }
+          },
+          "values": {
+            "kind": "object",
+            "fields": [
+              {
+                "key": "name",
+                "type": {
+                  "kind": "string",
+                  "typeName": "Message",
+                  "description": "Formatted display name for this custom item.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay",
+                      "jar-schema",
+                      "jar-default"
+                    ]
+                  }
+                }
+              },
+              {
+                "key": "material",
+                "type": {
+                  "kind": "suggestion",
+                  "typeName": "Material",
+                  "allowCustom": true,
+                  "capability": {
+                    "sources": [
+                      "jar-schema",
+                      "jar-default",
+                      "editor-overlay"
+                    ]
+                  },
+                  "description": "Material matcher.",
+                  "optional": true
+                }
+              },
+              {
+                "key": "resource-points",
+                "type": {
+                  "kind": "integer",
+                  "capability": {
+                    "sources": [
+                      "jar-schema",
+                      "jar-default",
+                      "editor-overlay"
+                    ]
+                  },
+                  "description": "Resource-point worth of a matching item.",
+                  "optional": true
+                }
+              },
+              {
+                "key": "lore",
+                "type": {
+                  "kind": "list",
+                  "elements": {
+                    "kind": "string",
+                    "typeName": "str",
+                    "capability": {
+                      "sources": [
+                        "jar-schema"
+                      ]
+                    }
+                  },
+                  "capability": {
+                    "sources": [
+                      "jar-schema",
+                      "editor-overlay"
+                    ]
+                  },
+                  "description": "Lore matcher.",
+                  "optional": true
+                }
+              },
+              {
+                "key": "nbt",
+                "type": {
+                  "kind": "mapping",
+                  "keys": {
+                    "kind": "string",
+                    "typeName": "str",
+                    "description": "",
+                    "optional": true,
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    }
+                  },
+                  "values": {
+                    "kind": "advanced",
+                    "typeName": "StringMatcher",
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    }
+                  },
+                  "description": "NBT paths mapped to string matchers.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                }
+              },
+              {
+                "key": "enchants",
+                "type": {
+                  "kind": "mapping",
+                  "keys": {
+                    "kind": "suggestion",
+                    "typeName": "Enchant",
+                    "description": "Spigot Enchant.",
+                    "optional": true,
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    },
+                    "allowCustom": true
+                  },
+                  "values": {
+                    "kind": "integer",
+                    "description": "Level",
+                    "optional": true,
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    }
+                  },
+                  "description": "Optional enchant requirements.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                }
+              }
+            ],
+            "capability": {
+              "sources": [
+                "jar-schema"
+              ]
+            },
+            "description": "Custom items given by /k item. Uses ItemStack-like fields plus resource-points worth.",
+            "optional": true,
+            "required": []
+          },
+          "fields": [
+            {
+              "key": "crystal",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "name",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "Message",
+                      "description": "Formatted display name for this custom item.",
+                      "optional": true,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "key": "material",
+                    "type": {
+                      "kind": "suggestion",
+                      "typeName": "Material",
+                      "allowCustom": true,
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Material matcher.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "resource-points",
+                    "type": {
+                      "kind": "integer",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Resource-point worth of a matching item.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "lore",
+                    "type": {
+                      "kind": "list",
+                      "elements": {
+                        "kind": "string",
+                        "typeName": "str",
+                        "capability": {
+                          "sources": [
+                            "jar-schema"
+                          ]
+                        }
+                      },
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Lore matcher.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "enchants",
+                    "type": {
+                      "kind": "mapping",
+                      "keys": {
+                        "kind": "suggestion",
+                        "typeName": "Enchant",
+                        "description": "Spigot Enchant.",
+                        "optional": true,
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        },
+                        "allowCustom": true
+                      },
+                      "values": {
+                        "kind": "integer",
+                        "description": "Level",
+                        "optional": true,
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        }
+                      },
+                      "description": "Optional enchant requirements.",
+                      "optional": true,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "key": "nbt",
+                    "type": {
+                      "kind": "mapping",
+                      "keys": {
+                        "kind": "string",
+                        "typeName": "str",
+                        "description": "",
+                        "optional": true,
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        }
+                      },
+                      "values": {
+                        "kind": "advanced",
+                        "typeName": "StringMatcher",
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        }
+                      },
+                      "description": "NBT paths mapped to string matchers.",
+                      "optional": true,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      }
+                    }
+                  }
+                ],
+                "capability": {
+                  "sources": [
+                    "jar-schema"
+                  ]
+                },
+                "description": "Custom items given by /k item. Uses ItemStack-like fields plus resource-points worth.",
+                "optional": true,
+                "required": []
+              }
+            },
+            {
+              "key": "bush",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "name",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "Message",
+                      "description": "Formatted display name for this custom item.",
+                      "optional": true,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "key": "material",
+                    "type": {
+                      "kind": "suggestion",
+                      "typeName": "Material",
+                      "allowCustom": true,
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Material matcher.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "resource-points",
+                    "type": {
+                      "kind": "integer",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Resource-point worth of a matching item.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "lore",
+                    "type": {
+                      "kind": "list",
+                      "elements": {
+                        "kind": "string",
+                        "typeName": "str",
+                        "capability": {
+                          "sources": [
+                            "jar-schema"
+                          ]
+                        }
+                      },
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default",
+                          "editor-overlay"
+                        ]
+                      },
+                      "description": "Lore matcher.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "enchants",
+                    "type": {
+                      "kind": "mapping",
+                      "keys": {
+                        "kind": "suggestion",
+                        "typeName": "Enchant",
+                        "description": "Spigot Enchant.",
+                        "optional": true,
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        },
+                        "allowCustom": true
+                      },
+                      "values": {
+                        "kind": "integer",
+                        "description": "Level",
+                        "optional": true,
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        }
+                      },
+                      "description": "Optional enchant requirements.",
+                      "optional": true,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "key": "nbt",
+                    "type": {
+                      "kind": "mapping",
+                      "keys": {
+                        "kind": "string",
+                        "typeName": "str",
+                        "description": "",
+                        "optional": true,
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        }
+                      },
+                      "values": {
+                        "kind": "advanced",
+                        "typeName": "StringMatcher",
+                        "capability": {
+                          "sources": [
+                            "editor-overlay"
+                          ]
+                        }
+                      },
+                      "description": "NBT paths mapped to string matchers.",
+                      "optional": true,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay"
+                        ]
+                      }
+                    }
+                  }
+                ],
+                "capability": {
+                  "sources": [
+                    "jar-schema"
+                  ]
+                },
+                "description": "Custom items given by /k item. Uses ItemStack-like fields plus resource-points worth.",
+                "optional": true,
+                "required": []
+              }
+            }
+          ],
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "Custom items given by /k item. Uses ItemStack-like fields plus resource-points worth.",
+          "optional": true
+        }
+      }
+    ],
+    "capability": {
+      "sources": [
+        "jar-schema"
+      ]
+    }
+  }
+}

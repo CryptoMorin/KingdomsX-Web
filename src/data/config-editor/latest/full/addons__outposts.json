@@ -1,0 +1,478 @@
+{
+  "formatVersion": 1,
+  "id": "addons/outposts",
+  "resourceName": "outposts.yml",
+  "sources": {
+    "schema": {
+      "addonId": "outposts",
+      "artifactPath": "addons/Kingdoms-Addon-Outposts-3.1.2.4.jar",
+      "artifactBlobSha": "831afdbcfedd0d7574337c93a662b58e51186ee0",
+      "artifactSha256": "37567955a0194f18a5eed5b11631d4e1225cc927605e183d3a438ca9469ac633",
+      "addonVersion": "3.1.2.4",
+      "fileName": "schema--addons__outposts.json"
+    },
+    "defaults": [],
+    "runtime": null
+  },
+  "coverage": {
+    "defaultPathCount": 0,
+    "rawDefaultPathCount": 0,
+    "activeRuntimePathCount": 0,
+    "fieldCount": 24,
+    "capabilitySourceCounts": {
+      "editor-overlay": 33
+    },
+    "commonSettingCount": 0
+  },
+  "schema": {
+    "kind": "mapping",
+    "keys": {
+      "kind": "string",
+      "typeName": "str",
+      "description": "User-defined outpost name.",
+      "optional": true,
+      "capability": {
+        "sources": [
+          "editor-overlay"
+        ]
+      }
+    },
+    "values": {
+      "kind": "object",
+      "fields": [
+        {
+          "key": "region",
+          "type": {
+            "kind": "string",
+            "typeName": "str",
+            "description": "WorldGuard region used as the outpost arena.",
+            "optional": true,
+            "capability": {
+              "sources": [
+                "editor-overlay"
+              ]
+            }
+          }
+        },
+        {
+          "key": "spawn",
+          "type": {
+            "kind": "string",
+            "typeName": "Location",
+            "description": "Player spawn location. Use world,x,y,z,yaw,pitch, for example world,120.5,64,-32.5,90,0.",
+            "optional": true,
+            "capability": {
+              "sources": [
+                "editor-overlay"
+              ]
+            }
+          }
+        },
+        {
+          "key": "center",
+          "type": {
+            "kind": "string",
+            "typeName": "Location",
+            "description": "Reward and firework center location. Use world,x,y,z,yaw,pitch, for example world,120.5,64,-32.5,90,0.",
+            "optional": true,
+            "capability": {
+              "sources": [
+                "editor-overlay"
+              ]
+            }
+          }
+        },
+        {
+          "key": "cost",
+          "type": {
+            "kind": "expression",
+            "language": "math",
+            "description": "Money entrance cost formula.",
+            "optional": true,
+            "capability": {
+              "sources": [
+                "editor-overlay"
+              ]
+            }
+          }
+        },
+        {
+          "key": "resource-points-cost",
+          "type": {
+            "kind": "expression",
+            "language": "math",
+            "description": "Resource-point entrance cost formula.",
+            "optional": true,
+            "capability": {
+              "sources": [
+                "editor-overlay"
+              ]
+            }
+          }
+        },
+        {
+          "key": "max-participants",
+          "type": {
+            "kind": "integer",
+            "description": "Maximum event participants.",
+            "optional": true,
+            "minimum": 3,
+            "capability": {
+              "sources": [
+                "editor-overlay"
+              ]
+            }
+          }
+        },
+        {
+          "key": "min-online-members",
+          "type": {
+            "kind": "integer",
+            "description": "Minimum online members required to join.",
+            "optional": true,
+            "minimum": 2,
+            "capability": {
+              "sources": [
+                "editor-overlay"
+              ]
+            }
+          }
+        },
+        {
+          "key": "bossbar",
+          "type": {
+            "kind": "object",
+            "fields": [
+              {
+                "key": "title",
+                "type": {
+                  "kind": "string",
+                  "typeName": "Message",
+                  "description": "Formatted text shown on the boss bar.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                }
+              },
+              {
+                "key": "color",
+                "type": {
+                  "kind": "enum",
+                  "values": [
+                    "BLUE",
+                    "GREEN",
+                    "PINK",
+                    "PURPLE",
+                    "RED",
+                    "WHITE",
+                    "YELLOW"
+                  ],
+                  "description": "Boss bar color.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                }
+              },
+              {
+                "key": "style",
+                "type": {
+                  "kind": "enum",
+                  "values": [
+                    "SEGMENTED_10",
+                    "SEGMENTED_12",
+                    "SEGMENTED_20",
+                    "SEGMENTED_6",
+                    "SOLID"
+                  ],
+                  "description": "Boss bar segment style.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                }
+              },
+              {
+                "key": "flags",
+                "type": {
+                  "kind": "list",
+                  "elements": {
+                    "kind": "enum",
+                    "values": [
+                      "CREATE_FOG",
+                      "DARKEN_SKY",
+                      "PLAY_BOSS_MUSIC"
+                    ],
+                    "description": "Boss bar display effect.",
+                    "optional": true,
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    }
+                  },
+                  "description": "Optional boss bar display effects.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                }
+              }
+            ],
+            "description": "Boss bar shown while the outpost event is active.",
+            "optional": true,
+            "required": [],
+            "capability": {
+              "sources": [
+                "editor-overlay"
+              ]
+            }
+          }
+        },
+        {
+          "key": "rewards",
+          "type": {
+            "kind": "object",
+            "fields": [
+              {
+                "key": "resource-points",
+                "type": {
+                  "kind": "expression",
+                  "language": "math",
+                  "description": "Resource points awarded to the winner.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                }
+              },
+              {
+                "key": "money",
+                "type": {
+                  "kind": "expression",
+                  "language": "math",
+                  "description": "Money awarded to the winner.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                }
+              },
+              {
+                "key": "commands",
+                "type": {
+                  "kind": "list",
+                  "elements": {
+                    "kind": "string",
+                    "typeName": "Command",
+                    "description": "Command run for the winner.",
+                    "optional": true,
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    }
+                  },
+                  "description": "Commands run for the winner.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                }
+              },
+              {
+                "key": "items",
+                "type": {
+                  "kind": "mapping",
+                  "keys": {
+                    "kind": "string",
+                    "typeName": "str",
+                    "description": "Saved item index or custom item name.",
+                    "optional": true,
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    }
+                  },
+                  "values": {
+                    "kind": "reference",
+                    "typeName": "ItemStack",
+                    "description": "Item awarded to the winner."
+                  },
+                  "description": "Saved reward items. Entry names are preserved and may be numeric.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                }
+              }
+            ],
+            "description": "Rewards given to the outpost winner.",
+            "optional": true,
+            "required": [
+              "resource-points",
+              "money"
+            ],
+            "capability": {
+              "sources": [
+                "editor-overlay"
+              ]
+            }
+          }
+        },
+        {
+          "key": "arena-mobs",
+          "type": {
+            "kind": "mapping",
+            "keys": {
+              "kind": "string",
+              "typeName": "str",
+              "description": "Saved arena mob index or custom label.",
+              "optional": true,
+              "capability": {
+                "sources": [
+                  "editor-overlay"
+                ]
+              }
+            },
+            "values": {
+              "kind": "object",
+              "fields": [
+                {
+                  "key": "label",
+                  "type": {
+                    "kind": "string",
+                    "typeName": "Message",
+                    "description": "Optional player-facing name for this arena mob.",
+                    "optional": true,
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    }
+                  }
+                },
+                {
+                  "key": "max-spawn-count",
+                  "type": {
+                    "kind": "integer",
+                    "description": "Maximum number alive at once.",
+                    "optional": true,
+                    "minimum": 1,
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    }
+                  }
+                },
+                {
+                  "key": "spawn-interval",
+                  "type": {
+                    "kind": "duration",
+                    "description": "Delay between arena mob spawns.",
+                    "optional": true,
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    }
+                  }
+                },
+                {
+                  "key": "spawn-location",
+                  "type": {
+                    "kind": "string",
+                    "typeName": "Location",
+                    "description": "Arena mob spawn location. Use world,x,y,z,yaw,pitch, for example world,120.5,64,-32.5,90,0.",
+                    "optional": true,
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    }
+                  }
+                },
+                {
+                  "key": "damage-bonus",
+                  "type": {
+                    "kind": "expression",
+                    "language": "math",
+                    "description": "Damage formula. The dmg variable contains the original damage.",
+                    "optional": true,
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    }
+                  }
+                },
+                {
+                  "key": "entity",
+                  "type": {
+                    "kind": "reference",
+                    "typeName": "Entity",
+                    "description": "Entity settings used to spawn this arena mob."
+                  }
+                }
+              ],
+              "description": "One arena mob or boss definition.",
+              "optional": true,
+              "required": [],
+              "capability": {
+                "sources": [
+                  "editor-overlay"
+                ]
+              }
+            },
+            "description": "Saved arena mobs. Entry names are preserved and may be numeric.",
+            "optional": true,
+            "capability": {
+              "sources": [
+                "editor-overlay"
+              ]
+            }
+          }
+        }
+      ],
+      "description": "One configured Outposts addon arena.",
+      "optional": true,
+      "required": [
+        "region",
+        "spawn",
+        "center",
+        "rewards"
+      ],
+      "capability": {
+        "sources": [
+          "editor-overlay"
+        ]
+      }
+    },
+    "description": "Outpost arenas are listed here by name. KingdomsX adds them as they are configured, so there is no default file.",
+    "optional": true,
+    "capability": {
+      "sources": [
+        "editor-overlay"
+      ]
+    }
+  }
+}

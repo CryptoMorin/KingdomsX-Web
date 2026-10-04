@@ -1,0 +1,318 @@
+{
+  "formatVersion": 2,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "id": "protection-signs",
+  "resourceName": "protection-signs.yml",
+  "schema": {
+    "kind": "object",
+    "fields": [
+      {
+        "key": "enabled",
+        "type": {
+          "kind": "boolean"
+        }
+      },
+      {
+        "key": "protect-unclaimed",
+        "type": {
+          "kind": "boolean"
+        }
+      },
+      {
+        "key": "protections",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "explosion",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "piston",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "container-transfers",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "enabled",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  },
+                  {
+                    "key": "disallow-all",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  },
+                  {
+                    "key": "disallow-cross-origin-container-transfers",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "denied-sound",
+        "type": {
+          "kind": "suggestion",
+          "typeName": "Sound",
+          "allowCustom": true
+        }
+      },
+      {
+        "key": "passwords",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "length",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "min",
+                    "type": {
+                      "kind": "integer"
+                    }
+                  },
+                  {
+                    "key": "max",
+                    "type": {
+                      "kind": "integer"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "key": "max-attempts",
+              "type": {
+                "kind": "integer"
+              }
+            },
+            {
+              "key": "max-attempts-cooldown",
+              "type": {
+                "kind": "duration",
+                "typeName": "Period"
+              }
+            },
+            {
+              "key": "remove-keyword",
+              "type": {
+                "kind": "string",
+                "typeName": "str"
+              }
+            },
+            {
+              "key": "cookies",
+              "type": {
+                "kind": "duration",
+                "typeName": "Period"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "quick-protect",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "enabled",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "sneak",
+              "type": {
+                "kind": "boolean"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "blocks",
+        "type": {
+          "kind": "list",
+          "elements": {
+            "kind": "advanced",
+            "typeName": "StringMatcher<Material>"
+          }
+        }
+      },
+      {
+        "key": "signs",
+        "type": {
+          "kind": "set",
+          "elements": {
+            "kind": "suggestion",
+            "typeName": "Material",
+            "allowCustom": true
+          }
+        }
+      },
+      {
+        "key": "gui",
+        "type": {
+          "kind": "boolean"
+        }
+      },
+      {
+        "key": "limits",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "players",
+              "type": {
+                "kind": "integer"
+              }
+            },
+            {
+              "key": "kingdoms",
+              "type": {
+                "kind": "integer"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "case-sensitive-codes",
+        "type": {
+          "kind": "boolean"
+        }
+      },
+      {
+        "key": "displayname",
+        "type": {
+          "kind": "string",
+          "typeName": "str"
+        }
+      },
+      {
+        "key": "codes",
+        "type": {
+          "kind": "list",
+          "elements": {
+            "kind": "advanced",
+            "typeName": "any"
+          }
+        }
+      },
+      {
+        "key": "lines",
+        "type": {
+          "kind": "list",
+          "elements": {
+            "kind": "advanced",
+            "typeName": "any"
+          }
+        }
+      },
+      {
+        "key": "everyone-in-kingdom",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "enabled",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "displayname",
+              "type": {
+                "kind": "string",
+                "typeName": "str"
+              }
+            },
+            {
+              "key": "codes",
+              "type": {
+                "kind": "list",
+                "elements": {
+                  "kind": "advanced",
+                  "typeName": "any"
+                }
+              }
+            },
+            {
+              "key": "lines",
+              "type": {
+                "kind": "list",
+                "elements": {
+                  "kind": "advanced",
+                  "typeName": "any"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "everyone",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "enabled",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "displayname",
+              "type": {
+                "kind": "string",
+                "typeName": "str"
+              }
+            },
+            {
+              "key": "codes",
+              "type": {
+                "kind": "list",
+                "elements": {
+                  "kind": "advanced",
+                  "typeName": "any"
+                }
+              }
+            },
+            {
+              "key": "lines",
+              "type": {
+                "kind": "list",
+                "elements": {
+                  "kind": "advanced",
+                  "typeName": "any"
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

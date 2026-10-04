@@ -1,0 +1,62 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "guis/turrets/arrow.yml",
+  "schemaId": "guis/schema",
+  "options": [
+    {
+      "path": [
+        "(import)"
+      ],
+      "source": "\r\n  turretgui:\r\n    parameters:\r\n      <name>: Arrow\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "turretgui"
+      ],
+      "source": "\r\n    parameters:\r\n      <name>: Arrow\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "turretgui",
+        "parameters"
+      ],
+      "source": "\r\n      <name>: Arrow\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "turretgui",
+        "parameters",
+        "<name>"
+      ],
+      "source": "Arrow",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

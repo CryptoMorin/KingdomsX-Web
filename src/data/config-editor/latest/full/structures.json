@@ -1,0 +1,139 @@
+{
+  "formatVersion": 1,
+  "id": "structures",
+  "resourceName": "structures.yml",
+  "sources": {
+    "schema": {
+      "kind": "kingdomsx-jar",
+      "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+      "pluginVersion": "1.17.27.3",
+      "fileName": "structures.json"
+    },
+    "defaults": [
+      "default--structures.json"
+    ],
+    "runtime": {
+      "kind": "kingdomsx-jar",
+      "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+      "pluginVersion": "1.17.27.3"
+    }
+  },
+  "coverage": {
+    "defaultPathCount": 6,
+    "rawDefaultPathCount": 6,
+    "activeRuntimePathCount": 0,
+    "fieldCount": 7,
+    "capabilitySourceCounts": {
+      "jar-schema": 5,
+      "jar-default": 4,
+      "editor-overlay": 3
+    },
+    "commonSettingCount": 0
+  },
+  "schema": {
+    "kind": "object",
+    "fields": [
+      {
+        "key": "disable-shift-click",
+        "type": {
+          "kind": "boolean",
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "remove-unclaimed",
+        "type": {
+          "kind": "boolean",
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "to-inventory-on-break",
+        "type": {
+          "kind": "boolean",
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "Should structures go directly to the player's inventory who broke the structure.",
+          "optional": true
+        }
+      },
+      {
+        "key": "total-limit-per-land",
+        "type": {
+          "kind": "integer",
+          "capability": {
+            "sources": [
+              "jar-schema"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "limits",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "total",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "description": "Kingdom-wide placement limit. Enter a static number or formula. 0, -1, or omission disables it.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            },
+            {
+              "key": "per-land",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "description": "Per-land placement limit. Enter a static number or formula. 0, -1, or omission disables it.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay"
+                  ]
+                }
+              }
+            }
+          ],
+          "description": "Optional placement limits for this catalog file. Set total/per-land to 0 or -1, or omit the key, to disable that limit. Individual Turrets/*.yml and Structures/*.yml entries may override these.",
+          "optional": true,
+          "capability": {
+            "sources": [
+              "editor-overlay",
+              "jar-default"
+            ]
+          }
+        }
+      }
+    ],
+    "capability": {
+      "sources": [
+        "jar-schema"
+      ]
+    }
+  }
+}

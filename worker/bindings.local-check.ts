@@ -1,10 +1,6 @@
 import type { DirectoryEnv } from "./server-directory/contracts";
 
-declare global {
-  interface ProductionEnv extends LocalEnv {}
-}
-
-declare const localEnv: LocalEnv;
+declare const localEnv: ServerDirectoryLocalEnv;
 const directoryEnv: DirectoryEnv = localEnv;
 
 void directoryEnv;

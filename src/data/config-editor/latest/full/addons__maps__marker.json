@@ -1,0 +1,1311 @@
+{
+  "formatVersion": 1,
+  "id": "addons/maps/marker",
+  "resourceName": "schemas/maps/marker.yml",
+  "sources": {
+    "schema": {
+      "addonId": "map-viewers",
+      "artifactPath": "addons/Kingdoms-Addon-Map-Viewers-3.2.2.jar",
+      "artifactBlobSha": "29aaabc3ae8f20ecc1fe6ff4ea14652e4f5e96ac",
+      "artifactSha256": "b169a040912e6c578a6092569ea0e64e092b530f846bbb40b9f56f11104dcf4e",
+      "addonVersion": "3.2.2",
+      "fileName": "schema--addons__maps__marker.json"
+    },
+    "defaults": [
+      "default--maps__kingdoms.json",
+      "default--maps__nations.json",
+      "default--maps__top-kingdoms.json"
+    ],
+    "runtime": null
+  },
+  "coverage": {
+    "defaultPathCount": 119,
+    "rawDefaultPathCount": 119,
+    "activeRuntimePathCount": 0,
+    "fieldCount": 83,
+    "capabilitySourceCounts": {
+      "jar-schema": 32,
+      "jar-default": 83,
+      "editor-overlay": 62
+    },
+    "commonSettingCount": 0
+  },
+  "schema": {
+    "kind": "object",
+    "fields": [
+      {
+        "key": "persistent-data",
+        "type": {
+          "kind": "boolean",
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "WARNING: It's not recommneded to use this option as it might not remove some outdated markers in the future. If the marker data should be persistent. If enabled, all the land markers and icons will stay even after server restarts. This is useful when your server has a lot of claimed lands, or you want to avoid lag without using the auto update interval option. The data will be internally stored in Dynmap. Needs a restart to update. Note that if you change it from true to false, the old data will still stay. It's not recommended to use this, as it may no longer work with future updates. This currently only works with Dynmap.",
+          "optional": true
+        }
+      },
+      {
+        "key": "label",
+        "type": {
+          "kind": "string",
+          "typeName": "str",
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "The name shown on markers tab of map plugins on the web. Unfortunately none of the maps provide any translation capabilities.",
+          "optional": true
+        }
+      },
+      {
+        "key": "priority",
+        "type": {
+          "kind": "integer",
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "Priority of the marker visibility in the map. (See z-index for more info) Needs a restart to update.",
+          "optional": true
+        }
+      },
+      {
+        "key": "z-index",
+        "type": {
+          "kind": "integer",
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "The distinction between z-index and layer priority isn't exactly defined for all map plugins, but for some of them layer priority will completely hide overlapping layers with lower priority, but it'll move the layer behind the other layer with higher z-index. BlueMap doesn't have support for priority or z-index, but has support for \"sorting\" below.",
+          "optional": true
+        }
+      },
+      {
+        "key": "special-flag",
+        "type": {
+          "kind": "boolean",
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "For Dynmap this option will boost marker resolutions. For BlueMap, this option controls \"depth-test\" If the depth-test is disabled, you can see the marker fully through all objects on the map. If it is enabled, you'll only see the marker when it is not behind anything. This needs a restart to update.",
+          "optional": true
+        }
+      },
+      {
+        "key": "hide-by-default",
+        "type": {
+          "kind": "boolean",
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "If the kingdoms marker should be disabled by default. Needs a restart to update.",
+          "optional": true
+        }
+      },
+      {
+        "key": "zoom",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "max",
+              "type": {
+                "kind": "integer",
+                "description": "Maximum visible zoom percentage. Use -1 for no maximum.",
+                "optional": true,
+                "minimum": -1,
+                "maximum": 100,
+                "capability": {
+                  "sources": [
+                    "editor-overlay",
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                }
+              }
+            },
+            {
+              "key": "min",
+              "type": {
+                "kind": "integer",
+                "description": "Minimum visible zoom percentage. Use -1 for no minimum.",
+                "optional": true,
+                "minimum": -1,
+                "maximum": 100,
+                "capability": {
+                  "sources": [
+                    "editor-overlay",
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                }
+              }
+            }
+          ],
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "The zoom level range which the markers are visible at. set to -1 for no max/min limit. It starts from 0% to 100% All these values are normalized correctly according to the specific map system that your server is using. Only Dynmap and BlueMap support this feature. And even then, BlueMaps motion system in general is extremely unstable unlike Dynmap, certain values might act weird or lose change opacity depending on how you're looking at the map. Because it has a gradual opacity fading effect unlike Dynmap that immediatelly hides or shows the markers. * LiveAtlas is known to break zoom levels for Dynmap. Either adjust the value manually or diasble it.",
+          "optional": true
+        }
+      },
+      {
+        "key": "fill",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "opacity",
+              "type": {
+                "kind": "integer",
+                "description": "Marker opacity from 0 through 255.",
+                "optional": true,
+                "minimum": 0,
+                "maximum": 255,
+                "capability": {
+                  "sources": [
+                    "editor-overlay",
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                }
+              }
+            },
+            {
+              "key": "color",
+              "type": {
+                "kind": "string",
+                "typeName": "Color",
+                "description": "Six-digit RGB hexadecimal marker color.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay",
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                }
+              }
+            }
+          ],
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "The land chunk square fill options. Hex code follows RGBA format.",
+          "optional": true
+        }
+      },
+      {
+        "key": "line",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "weight",
+              "type": {
+                "kind": "integer",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "The size of the stroke.",
+                "optional": true
+              }
+            },
+            {
+              "key": "color",
+              "type": {
+                "kind": "string",
+                "typeName": "Color",
+                "description": "Six-digit RGB hexadecimal marker color.",
+                "optional": true,
+                "capability": {
+                  "sources": [
+                    "editor-overlay",
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                }
+              }
+            }
+          ],
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "The land chunk square stroke options.",
+          "optional": true
+        }
+      },
+      {
+        "key": "invasion",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "fill",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "opacity",
+                    "type": {
+                      "kind": "integer",
+                      "description": "Marker opacity from 0 through 255.",
+                      "optional": true,
+                      "minimum": 0,
+                      "maximum": 255,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "key": "color",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "Color",
+                      "description": "Six-digit RGB hexadecimal marker color.",
+                      "optional": true,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      }
+                    }
+                  }
+                ],
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "line",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "weight",
+                    "type": {
+                      "kind": "integer",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "opacity",
+                    "type": {
+                      "kind": "integer",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "color",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "Color",
+                      "description": "Six-digit RGB hexadecimal marker color.",
+                      "optional": true,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      }
+                    }
+                  }
+                ],
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            }
+          ],
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "The settings for the marker when a land is under attack.",
+          "optional": true
+        }
+      },
+      {
+        "key": "descriptions",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "flag",
+              "type": {
+                "kind": "string",
+                "typeName": "str",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "Used in the description below if the kingdom has a flag set, otherwise nothing.",
+                "optional": true
+              }
+            },
+            {
+              "key": "click",
+              "type": {
+                "kind": "string",
+                "typeName": "str",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "In order to change the default kingdom name color, refer to default placeholders in config.",
+                "optional": true
+              }
+            },
+            {
+              "key": "hover",
+              "type": {
+                "kind": "string",
+                "typeName": "str",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "Only Plx3Map and squaremap support hover descriptions.",
+                "optional": true
+              }
+            },
+            {
+              "key": "members",
+              "type": {
+                "kind": "string",
+                "typeName": "str",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "allies",
+              "type": {
+                "kind": "string",
+                "typeName": "str",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "truces",
+              "type": {
+                "kind": "string",
+                "typeName": "str",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "enemies",
+              "type": {
+                "kind": "string",
+                "typeName": "str",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "members-etc",
+              "type": {
+                "kind": "string",
+                "typeName": "str",
+                "description": "",
+                "capability": {
+                  "sources": [
+                    "editor-overlay",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            }
+          ],
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "Description shown when hovering over the chunks. All the descriptions are based on HTML markup. https://www.w3schools.com/html/html_intro.asp",
+          "optional": true
+        }
+      },
+      {
+        "key": "sorting",
+        "type": {
+          "kind": "integer",
+          "description": "Used by some maps like BlueMap to control the position of the marker in the \"Markers\" menu list. This doesn't affect how the marker itself is shown. A lower value makes the marker sorted first , a higher value makes it sorted later. If multiple markers have the same sorting-value, their order will be arbitrary. Other maps might not have a separate option for this and use the \"priority\" option instead.",
+          "capability": {
+            "sources": [
+              "editor-overlay",
+              "jar-default"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "show-controls",
+        "type": {
+          "kind": "boolean",
+          "description": "Show kingdoms marker toggle buttons.",
+          "capability": {
+            "sources": [
+              "editor-overlay",
+              "jar-default"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "[style]",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "args",
+              "type": {
+                "kind": "list",
+                "elements": {
+                  "kind": "string",
+                  "typeName": "str",
+                  "description": "",
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                },
+                "description": "",
+                "capability": {
+                  "sources": [
+                    "editor-overlay",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "return",
+              "type": {
+                "kind": "string",
+                "typeName": "str",
+                "description": "",
+                "capability": {
+                  "sources": [
+                    "editor-overlay",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            }
+          ],
+          "description": "",
+          "capability": {
+            "sources": [
+              "editor-overlay",
+              "jar-default"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "[fn-top]",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "args",
+              "type": {
+                "kind": "list",
+                "elements": {
+                  "kind": "string",
+                  "typeName": "str",
+                  "description": "",
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                },
+                "description": "",
+                "capability": {
+                  "sources": [
+                    "editor-overlay",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "return",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "label",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "str",
+                      "description": "",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "top",
+                    "type": {
+                      "kind": "integer",
+                      "description": "",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "z-index",
+                    "type": {
+                      "kind": "integer",
+                      "description": "",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "sorting",
+                    "type": {
+                      "kind": "integer",
+                      "description": "",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "hide-by-default",
+                    "type": {
+                      "kind": "boolean",
+                      "description": "",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "descriptions",
+                    "type": {
+                      "kind": "object",
+                      "fields": [
+                        {
+                          "key": "click",
+                          "type": {
+                            "kind": "object",
+                            "fields": [
+                              {
+                                "key": "[fn]",
+                                "type": {
+                                  "kind": "string",
+                                  "typeName": "str",
+                                  "description": "",
+                                  "capability": {
+                                    "sources": [
+                                      "editor-overlay",
+                                      "jar-default"
+                                    ]
+                                  },
+                                  "optional": true
+                                }
+                              },
+                              {
+                                "key": "{content}",
+                                "type": {
+                                  "kind": "string",
+                                  "typeName": "str",
+                                  "description": "",
+                                  "capability": {
+                                    "sources": [
+                                      "editor-overlay",
+                                      "jar-default"
+                                    ]
+                                  },
+                                  "optional": true
+                                }
+                              }
+                            ],
+                            "description": "",
+                            "capability": {
+                              "sources": [
+                                "editor-overlay",
+                                "jar-default"
+                              ]
+                            },
+                            "optional": true
+                          }
+                        }
+                      ],
+                      "description": "",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  }
+                ],
+                "description": "",
+                "capability": {
+                  "sources": [
+                    "editor-overlay",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            }
+          ],
+          "description": "All the following settings have the same options and follow the same rules as all the options shown above.",
+          "capability": {
+            "sources": [
+              "editor-overlay",
+              "jar-default"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "top-kingdoms",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "default",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "[fn]",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "str",
+                      "description": "",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "{label}",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "str",
+                      "description": "",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "{type}",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "str",
+                      "description": "",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  }
+                ],
+                "description": "",
+                "capability": {
+                  "sources": [
+                    "editor-overlay",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "resource-points",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "[fn]",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "str",
+                      "description": "",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "{label}",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "str",
+                      "description": "",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "{type}",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "str",
+                      "description": "",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  }
+                ],
+                "description": "",
+                "capability": {
+                  "sources": [
+                    "editor-overlay",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "lands",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "[fn]",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "str",
+                      "description": "",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "{label}",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "str",
+                      "description": "",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "{type}",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "str",
+                      "description": "",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  }
+                ],
+                "description": "",
+                "capability": {
+                  "sources": [
+                    "editor-overlay",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "members",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "[fn]",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "str",
+                      "description": "",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "{label}",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "str",
+                      "description": "",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "{type}",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "str",
+                      "description": "",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  }
+                ],
+                "description": "",
+                "capability": {
+                  "sources": [
+                    "editor-overlay",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            }
+          ],
+          "description": "",
+          "capability": {
+            "sources": [
+              "editor-overlay",
+              "jar-default"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "powercell",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "label",
+              "type": {
+                "kind": "string",
+                "typeName": "str",
+                "description": "",
+                "capability": {
+                  "sources": [
+                    "editor-overlay",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "z-index",
+              "type": {
+                "kind": "integer",
+                "description": "",
+                "capability": {
+                  "sources": [
+                    "editor-overlay",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "sorting",
+              "type": {
+                "kind": "integer",
+                "description": "",
+                "capability": {
+                  "sources": [
+                    "editor-overlay",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "hide-by-default",
+              "type": {
+                "kind": "boolean",
+                "description": "",
+                "capability": {
+                  "sources": [
+                    "editor-overlay",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "line",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "weight",
+                    "type": {
+                      "kind": "integer",
+                      "description": "",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "color",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "str",
+                      "description": "",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "force",
+                    "type": {
+                      "kind": "boolean",
+                      "description": "",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  }
+                ],
+                "description": "",
+                "capability": {
+                  "sources": [
+                    "editor-overlay",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "fill",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "opacity",
+                    "type": {
+                      "kind": "integer",
+                      "description": "",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "color",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "str",
+                      "description": "",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "force",
+                    "type": {
+                      "kind": "boolean",
+                      "description": "",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  }
+                ],
+                "description": "",
+                "capability": {
+                  "sources": [
+                    "editor-overlay",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "descriptions",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "click",
+                    "type": {
+                      "kind": "object",
+                      "fields": [
+                        {
+                          "key": "[fn]",
+                          "type": {
+                            "kind": "string",
+                            "typeName": "str",
+                            "description": "",
+                            "capability": {
+                              "sources": [
+                                "editor-overlay",
+                                "jar-default"
+                              ]
+                            },
+                            "optional": true
+                          }
+                        },
+                        {
+                          "key": "{content}",
+                          "type": {
+                            "kind": "string",
+                            "typeName": "str",
+                            "description": "",
+                            "capability": {
+                              "sources": [
+                                "editor-overlay",
+                                "jar-default"
+                              ]
+                            },
+                            "optional": true
+                          }
+                        }
+                      ],
+                      "description": "",
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  }
+                ],
+                "description": "",
+                "capability": {
+                  "sources": [
+                    "editor-overlay",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            }
+          ],
+          "description": "",
+          "capability": {
+            "sources": [
+              "editor-overlay",
+              "jar-default"
+            ]
+          },
+          "optional": true
+        }
+      }
+    ],
+    "capability": {
+      "sources": [
+        "jar-schema"
+      ]
+    }
+  }
+}

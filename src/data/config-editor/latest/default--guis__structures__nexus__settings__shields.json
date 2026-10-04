@@ -1,0 +1,1136 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "guis/structures/nexus/settings/shields.yml",
+  "schemaId": "guis/schema",
+  "options": [
+    {
+      "path": [
+        "title"
+      ],
+      "source": "\"{$sep}-=( {$p}Shields {$sep})=-\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "rows"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sound"
+      ],
+      "source": "ITEM_BOOK_PAGE_TURN",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options"
+      ],
+      "source": "\r\n  shield-6hr:\r\n    name: \"{$p}6 Hours Shield\"\r\n    lore: \"{$s}Cost{$colon} {$p}%cost%\"\r\n    material: SHIELD\r\n    cost: 1000\r\n    time: 6hr\r\n    flags: [ ALL ]\r\n    patterns:\r\n      BASE: BLACK\r\n    posx: 2\r\n    posy: 2\r\n  shield-12hr:\r\n    name: \"{$p}12 Hours Shield\"\r\n    lore: \"{$s}Cost{$colon} {$p}%cost%\"\r\n    material: SHIELD\r\n    flags: [ ALL ]\r\n    cost: 1900\r\n    time: 12hr\r\n    patterns:\r\n      BASE: BLACK\r\n      BORDER: RED\r\n    posx: 3\r\n    posy: 2\r\n  shield-1day:\r\n    name: \"{$p}1 Day Shield\"\r\n    lore: \"{$s}Cost{$colon} {$p}%cost%\"\r\n    material: SHIELD\r\n    cost: 4500\r\n    time: 1day\r\n    flags: [ ALL ]\r\n    patterns:\r\n      BASE: BLACK\r\n      BORDER: RED\r\n      CIRCULE_MIDDLE: RED\r\n    posx: 4\r\n    posy: 2\r\n  shield-1week:\r\n    name: \"{$p}1 Week Shield\"\r\n    lore: \"{$s}Cost{$colon} {$p}%cost%\"\r\n    material: SHIELD\r\n    flags: [ ALL ]\r\n    cost: 50000\r\n    time: 7 days\r\n    patterns:\r\n      BASE: BLACK\r\n      BORDER: RED\r\n      CROSS: RED\r\n    posx: 5\r\n    posy: 2\r\n  shield-1month:\r\n    name: \"{$p}1 Month Shield\"\r\n    lore: \"{$s}Cost{$colon} {$p}%cost%\"\r\n    material: SHIELD\r\n    flags: [ ALL ]\r\n    cost: 100000\r\n    time: 30days\r\n    patterns:\r\n      BASE: BLACK\r\n      BORDER: RED\r\n      MOJANG: RED\r\n    posx: 6\r\n    posy: 2\r\n  refund:\r\n    name: '&5Refund'\r\n    can-refund:\r\n      condition: 'refund != 0'\r\n      lore: |\r\n        {$desc}Deactivates all your shield\r\n        but will refund resource points back.\r\n\r\n        {$p}Shield{$colon} {$s}%time@kingdoms_shield_time_left%\r\n        {$p}Refund{$colon} {$s}%fancy@refund%\r\n    else:\r\n      lore: |\r\n        {$desc}You don't have a shield to refund.\r\n    material: PAPER\r\n    posx: 8\r\n    posy: 2\r\n\r\n  red-stained-glass-pane:\r\n    slots: [ 0, 2, 4, 6, 8, 18, 20, 22, 24, 26 ]\r\n    material: RED_STAINED_GLASS_PANE\r\n    name: ''\r\n  black-stained-glass-pane:\r\n    slots: [ 1, 3, 5, 7, 9, 15, 17, 19, 21, 23, 25 ]\r\n    material: BLACK_STAINED_GLASS_PANE\r\n    name: ''\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shield-6hr"
+      ],
+      "source": "\r\n    name: \"{$p}6 Hours Shield\"\r\n    lore: \"{$s}Cost{$colon} {$p}%cost%\"\r\n    material: SHIELD\r\n    cost: 1000\r\n    time: 6hr\r\n    flags: [ ALL ]\r\n    patterns:\r\n      BASE: BLACK\r\n    posx: 2\r\n    posy: 2\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shield-6hr",
+        "name"
+      ],
+      "source": "\"{$p}6 Hours Shield\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shield-6hr",
+        "lore"
+      ],
+      "source": "\"{$s}Cost{$colon} {$p}%cost%\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shield-6hr",
+        "material"
+      ],
+      "source": "SHIELD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shield-6hr",
+        "cost"
+      ],
+      "source": "1000",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shield-6hr",
+        "time"
+      ],
+      "source": "6hr",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shield-6hr",
+        "flags"
+      ],
+      "source": "[ ALL ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "ALL"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "shield-6hr",
+        "patterns"
+      ],
+      "source": "\r\n      BASE: BLACK\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shield-6hr",
+        "patterns",
+        "BASE"
+      ],
+      "source": "BLACK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shield-6hr",
+        "posx"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shield-6hr",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shield-12hr"
+      ],
+      "source": "\r\n    name: \"{$p}12 Hours Shield\"\r\n    lore: \"{$s}Cost{$colon} {$p}%cost%\"\r\n    material: SHIELD\r\n    flags: [ ALL ]\r\n    cost: 1900\r\n    time: 12hr\r\n    patterns:\r\n      BASE: BLACK\r\n      BORDER: RED\r\n    posx: 3\r\n    posy: 2\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shield-12hr",
+        "name"
+      ],
+      "source": "\"{$p}12 Hours Shield\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shield-12hr",
+        "lore"
+      ],
+      "source": "\"{$s}Cost{$colon} {$p}%cost%\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shield-12hr",
+        "material"
+      ],
+      "source": "SHIELD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shield-12hr",
+        "flags"
+      ],
+      "source": "[ ALL ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "ALL"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "shield-12hr",
+        "cost"
+      ],
+      "source": "1900",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shield-12hr",
+        "time"
+      ],
+      "source": "12hr",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shield-12hr",
+        "patterns"
+      ],
+      "source": "\r\n      BASE: BLACK\r\n      BORDER: RED\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shield-12hr",
+        "patterns",
+        "BASE"
+      ],
+      "source": "BLACK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shield-12hr",
+        "patterns",
+        "BORDER"
+      ],
+      "source": "RED",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shield-12hr",
+        "posx"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shield-12hr",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shield-1day"
+      ],
+      "source": "\r\n    name: \"{$p}1 Day Shield\"\r\n    lore: \"{$s}Cost{$colon} {$p}%cost%\"\r\n    material: SHIELD\r\n    cost: 4500\r\n    time: 1day\r\n    flags: [ ALL ]\r\n    patterns:\r\n      BASE: BLACK\r\n      BORDER: RED\r\n      CIRCULE_MIDDLE: RED\r\n    posx: 4\r\n    posy: 2\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shield-1day",
+        "name"
+      ],
+      "source": "\"{$p}1 Day Shield\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shield-1day",
+        "lore"
+      ],
+      "source": "\"{$s}Cost{$colon} {$p}%cost%\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shield-1day",
+        "material"
+      ],
+      "source": "SHIELD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shield-1day",
+        "cost"
+      ],
+      "source": "4500",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shield-1day",
+        "time"
+      ],
+      "source": "1day",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shield-1day",
+        "flags"
+      ],
+      "source": "[ ALL ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "ALL"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "shield-1day",
+        "patterns"
+      ],
+      "source": "\r\n      BASE: BLACK\r\n      BORDER: RED\r\n      CIRCULE_MIDDLE: RED\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shield-1day",
+        "patterns",
+        "BASE"
+      ],
+      "source": "BLACK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shield-1day",
+        "patterns",
+        "BORDER"
+      ],
+      "source": "RED",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shield-1day",
+        "patterns",
+        "CIRCULE_MIDDLE"
+      ],
+      "source": "RED",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shield-1day",
+        "posx"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shield-1day",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shield-1week"
+      ],
+      "source": "\r\n    name: \"{$p}1 Week Shield\"\r\n    lore: \"{$s}Cost{$colon} {$p}%cost%\"\r\n    material: SHIELD\r\n    flags: [ ALL ]\r\n    cost: 50000\r\n    time: 7 days\r\n    patterns:\r\n      BASE: BLACK\r\n      BORDER: RED\r\n      CROSS: RED\r\n    posx: 5\r\n    posy: 2\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shield-1week",
+        "name"
+      ],
+      "source": "\"{$p}1 Week Shield\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shield-1week",
+        "lore"
+      ],
+      "source": "\"{$s}Cost{$colon} {$p}%cost%\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shield-1week",
+        "material"
+      ],
+      "source": "SHIELD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shield-1week",
+        "flags"
+      ],
+      "source": "[ ALL ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "ALL"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "shield-1week",
+        "cost"
+      ],
+      "source": "50000",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shield-1week",
+        "time"
+      ],
+      "source": "7 days",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shield-1week",
+        "patterns"
+      ],
+      "source": "\r\n      BASE: BLACK\r\n      BORDER: RED\r\n      CROSS: RED\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shield-1week",
+        "patterns",
+        "BASE"
+      ],
+      "source": "BLACK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shield-1week",
+        "patterns",
+        "BORDER"
+      ],
+      "source": "RED",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shield-1week",
+        "patterns",
+        "CROSS"
+      ],
+      "source": "RED",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shield-1week",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shield-1week",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shield-1month"
+      ],
+      "source": "\r\n    name: \"{$p}1 Month Shield\"\r\n    lore: \"{$s}Cost{$colon} {$p}%cost%\"\r\n    material: SHIELD\r\n    flags: [ ALL ]\r\n    cost: 100000\r\n    time: 30days\r\n    patterns:\r\n      BASE: BLACK\r\n      BORDER: RED\r\n      MOJANG: RED\r\n    posx: 6\r\n    posy: 2\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shield-1month",
+        "name"
+      ],
+      "source": "\"{$p}1 Month Shield\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shield-1month",
+        "lore"
+      ],
+      "source": "\"{$s}Cost{$colon} {$p}%cost%\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shield-1month",
+        "material"
+      ],
+      "source": "SHIELD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shield-1month",
+        "flags"
+      ],
+      "source": "[ ALL ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "ALL"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "shield-1month",
+        "cost"
+      ],
+      "source": "100000",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shield-1month",
+        "time"
+      ],
+      "source": "30days",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shield-1month",
+        "patterns"
+      ],
+      "source": "\r\n      BASE: BLACK\r\n      BORDER: RED\r\n      MOJANG: RED\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shield-1month",
+        "patterns",
+        "BASE"
+      ],
+      "source": "BLACK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shield-1month",
+        "patterns",
+        "BORDER"
+      ],
+      "source": "RED",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shield-1month",
+        "patterns",
+        "MOJANG"
+      ],
+      "source": "RED",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shield-1month",
+        "posx"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "shield-1month",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "refund"
+      ],
+      "source": "\r\n    name: '&5Refund'\r\n    can-refund:\r\n      condition: 'refund != 0'\r\n      lore: |\r\n        {$desc}Deactivates all your shield\r\n        but will refund resource points back.\r\n\r\n        {$p}Shield{$colon} {$s}%time@kingdoms_shield_time_left%\r\n        {$p}Refund{$colon} {$s}%fancy@refund%\r\n    else:\r\n      lore: |\r\n        {$desc}You don't have a shield to refund.\r\n    material: PAPER\r\n    posx: 8\r\n    posy: 2\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "refund",
+        "name"
+      ],
+      "source": "'&5Refund'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "refund",
+        "can-refund"
+      ],
+      "source": "\r\n      condition: 'refund != 0'\r\n      lore: |\r\n        {$desc}Deactivates all your shield\r\n        but will refund resource points back.\r\n\r\n        {$p}Shield{$colon} {$s}%time@kingdoms_shield_time_left%\r\n        {$p}Refund{$colon} {$s}%fancy@refund%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "refund",
+        "can-refund",
+        "condition"
+      ],
+      "source": "'refund != 0'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "refund",
+        "can-refund",
+        "lore"
+      ],
+      "source": "|\r\n        {$desc}Deactivates all your shield\r\n        but will refund resource points back.\r\n\r\n        {$p}Shield{$colon} {$s}%time@kingdoms_shield_time_left%\r\n        {$p}Refund{$colon} {$s}%fancy@refund%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "refund",
+        "else"
+      ],
+      "source": "\r\n      lore: |\r\n        {$desc}You don't have a shield to refund.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "refund",
+        "else",
+        "lore"
+      ],
+      "source": "|\r\n        {$desc}You don't have a shield to refund.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "refund",
+        "material"
+      ],
+      "source": "PAPER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "refund",
+        "posx"
+      ],
+      "source": "8",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "refund",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "red-stained-glass-pane"
+      ],
+      "source": "\r\n    slots: [ 0, 2, 4, 6, 8, 18, 20, 22, 24, 26 ]\r\n    material: RED_STAINED_GLASS_PANE\r\n    name: ''\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "red-stained-glass-pane",
+        "slots"
+      ],
+      "source": "[ 0, 2, 4, 6, 8, 18, 20, 22, 24, 26 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "0",
+        "2",
+        "4",
+        "6",
+        "8",
+        "18",
+        "20",
+        "22",
+        "24",
+        "26"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "red-stained-glass-pane",
+        "material"
+      ],
+      "source": "RED_STAINED_GLASS_PANE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "red-stained-glass-pane",
+        "name"
+      ],
+      "source": "''",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "black-stained-glass-pane"
+      ],
+      "source": "\r\n    slots: [ 1, 3, 5, 7, 9, 15, 17, 19, 21, 23, 25 ]\r\n    material: BLACK_STAINED_GLASS_PANE\r\n    name: ''\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "black-stained-glass-pane",
+        "slots"
+      ],
+      "source": "[ 1, 3, 5, 7, 9, 15, 17, 19, 21, 23, 25 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "1",
+        "3",
+        "5",
+        "7",
+        "9",
+        "15",
+        "17",
+        "19",
+        "21",
+        "23",
+        "25"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "black-stained-glass-pane",
+        "material"
+      ],
+      "source": "BLACK_STAINED_GLASS_PANE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "black-stained-glass-pane",
+        "name"
+      ],
+      "source": "''",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

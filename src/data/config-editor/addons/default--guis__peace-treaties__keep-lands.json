@@ -1,0 +1,835 @@
+{
+  "formatVersion": 1,
+  "source": {
+    "addonId": "peace-treaties",
+    "artifactPath": "addons/Kingdoms-Addon-Peace-Treaties-1.2.8.3.jar",
+    "artifactBlobSha": "65c542bd55dc6dfed6e222f079d37971fd24a682",
+    "artifactSha256": "54b2f1a879e10403200f218d852deb8d80c721cc933777812bbdcfcac5ca9f03",
+    "addonVersion": "1.2.8.3"
+  },
+  "resourceName": "guis/peace-treaties/keep-lands.yml",
+  "schemaId": "guis/schema",
+  "sha256": "8abc7a81c9a94def42364eab8b740723cb452f40389f5b9decf98a61621ead3d",
+  "options": [
+    {
+      "path": [
+        "title"
+      ],
+      "source": "'{$sep}-=( {$p}Keep Lands {$sep})=-'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "rows"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options"
+      ],
+      "source": "\r\n  next-page:\r\n    name: '{$p}Next Page {$sep}- {$s}%page%{$sep}/{$s}%pages%'\r\n    material: PLAYER_HEAD\r\n    skull: \"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjgyYWQxYjljYjRkZDIxMjU5YzBkNzVhYTMxNWZmMzg5YzNjZWY3NTJiZTM5NDkzMzgxNjRiYWM4NGE5NmUifX19\"\r\n    slot: 8\r\n  previous-page:\r\n    name: '{$p}Previous Page {$sep}- {$s}%page%{$sep}/{$s}%pages%'\r\n    material: PLAYER_HEAD\r\n    skull: \"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzdhZWU5YTc1YmYwZGY3ODk3MTgzMDE1Y2NhMGIyYTdkNzU1YzYzMzg4ZmYwMTc1MmQ1ZjQ0MTlmYzY0NSJ9fX0=\"\r\n    slot: 0\r\n  cancel:\r\n    posx: 4\r\n    posy: 1\r\n    material: BARRIER\r\n    name: '{$e}Back'\r\n  done:\r\n    posx: 6\r\n    posy: 1\r\n    material: GREEN_WOOL\r\n    name: '{$p}Done'\r\n  magenta-stained-glass-pane:\r\n    slots: [ 1, 2, 6, 7, 9, 17, 18, 26, 27, 35, 36, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53 ]\r\n    material: MAGENTA_STAINED_GLASS_PANE\r\n    name: ''\r\n  display-mode:\r\n    posx: 5\r\n    posy: 1\r\n    grouped:\r\n      condition: displaymode_grouped\r\n      name: '{$p}Grouped'\r\n      material: BOOK\r\n      lore: |\r\n        &7The invaded lands will be\r\n        shown as a group of invaded\r\n        lands if that is an option.\r\n    else:\r\n      material: PAPER\r\n      name: '{$p}Individual'\r\n      lore: |\r\n        &7The invaded lands will be\r\n        shown as individually invaded\r\n        lands.\r\n  land:\r\n    displaymode-grouped:\r\n      added:\r\n        condition: added\r\n        material: GREEN_WOOL\r\n      else:\r\n        material: RED_WOOL\r\n      condition: displaymode_grouped\r\n      name: \"%bool@added%\"\r\n      lore: |\r\n        {$p}Player{$colon} {$s}%player%\r\n        {$p}Kingdom{$colon} {$s}%kingdoms_kingdom_name%\r\n        {$p}Ransack Mode{$colon} %ransack-mode%\r\n        {$p}Result{$colon} {$s}%result%\r\n        {$p}At{$colon} {$s}%time%\r\n        {$p}Affected Lands{$colon}\r\n        %affected-lands%\r\n\r\n        &9This invasion took place {$p}%distance_from_core% &9blocks away\r\n        from the kingdom's core (nexus or home)\r\n    else:\r\n      added:\r\n        condition: added\r\n        material: GREEN_WOOL\r\n      else:\r\n        material: RED_WOOL\r\n      name: \"%bool@added% {$p}%translated-world%{$sep}, {$p}%x%{$sep}, {$p}%z%\"\r\n      lore: |\r\n        {$p}Player{$colon} {$s}%player%\r\n        {$p}Kingdom{$colon} {$s}%kingdoms_kingdom_name%\r\n        {$p}Ransack Mode{$colon} %ransack-mode%\r\n        {$p}Result{$colon} {$s}%result%\r\n        {$p}At{$colon} {$s}%time%\r\n        \r\n        &9This invasion took place {$p}%distance_from_core% &9blocks away\r\n        from the kingdom's core (nexus or home)\r\n    slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43 ]",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "next-page"
+      ],
+      "source": "\r\n    name: '{$p}Next Page {$sep}- {$s}%page%{$sep}/{$s}%pages%'\r\n    material: PLAYER_HEAD\r\n    skull: \"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjgyYWQxYjljYjRkZDIxMjU5YzBkNzVhYTMxNWZmMzg5YzNjZWY3NTJiZTM5NDkzMzgxNjRiYWM4NGE5NmUifX19\"\r\n    slot: 8\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "next-page",
+        "name"
+      ],
+      "source": "'{$p}Next Page {$sep}- {$s}%page%{$sep}/{$s}%pages%'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "next-page",
+        "material"
+      ],
+      "source": "PLAYER_HEAD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "next-page",
+        "skull"
+      ],
+      "source": "\"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjgyYWQxYjljYjRkZDIxMjU5YzBkNzVhYTMxNWZmMzg5YzNjZWY3NTJiZTM5NDkzMzgxNjRiYWM4NGE5NmUifX19\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "next-page",
+        "slot"
+      ],
+      "source": "8",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "previous-page"
+      ],
+      "source": "\r\n    name: '{$p}Previous Page {$sep}- {$s}%page%{$sep}/{$s}%pages%'\r\n    material: PLAYER_HEAD\r\n    skull: \"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzdhZWU5YTc1YmYwZGY3ODk3MTgzMDE1Y2NhMGIyYTdkNzU1YzYzMzg4ZmYwMTc1MmQ1ZjQ0MTlmYzY0NSJ9fX0=\"\r\n    slot: 0\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "previous-page",
+        "name"
+      ],
+      "source": "'{$p}Previous Page {$sep}- {$s}%page%{$sep}/{$s}%pages%'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "previous-page",
+        "material"
+      ],
+      "source": "PLAYER_HEAD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "previous-page",
+        "skull"
+      ],
+      "source": "\"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzdhZWU5YTc1YmYwZGY3ODk3MTgzMDE1Y2NhMGIyYTdkNzU1YzYzMzg4ZmYwMTc1MmQ1ZjQ0MTlmYzY0NSJ9fX0=\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "previous-page",
+        "slot"
+      ],
+      "source": "0",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "cancel"
+      ],
+      "source": "\r\n    posx: 4\r\n    posy: 1\r\n    material: BARRIER\r\n    name: '{$e}Back'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "cancel",
+        "posx"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "cancel",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "cancel",
+        "material"
+      ],
+      "source": "BARRIER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "cancel",
+        "name"
+      ],
+      "source": "'{$e}Back'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "done"
+      ],
+      "source": "\r\n    posx: 6\r\n    posy: 1\r\n    material: GREEN_WOOL\r\n    name: '{$p}Done'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "done",
+        "posx"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "done",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "done",
+        "material"
+      ],
+      "source": "GREEN_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "done",
+        "name"
+      ],
+      "source": "'{$p}Done'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "magenta-stained-glass-pane"
+      ],
+      "source": "\r\n    slots: [ 1, 2, 6, 7, 9, 17, 18, 26, 27, 35, 36, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53 ]\r\n    material: MAGENTA_STAINED_GLASS_PANE\r\n    name: ''\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "magenta-stained-glass-pane",
+        "slots"
+      ],
+      "source": "[ 1, 2, 6, 7, 9, 17, 18, 26, 27, 35, 36, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "1",
+        "2",
+        "6",
+        "7",
+        "9",
+        "17",
+        "18",
+        "26",
+        "27",
+        "35",
+        "36",
+        "44",
+        "45",
+        "46",
+        "47",
+        "48",
+        "49",
+        "50",
+        "51",
+        "52",
+        "53"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "magenta-stained-glass-pane",
+        "material"
+      ],
+      "source": "MAGENTA_STAINED_GLASS_PANE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "magenta-stained-glass-pane",
+        "name"
+      ],
+      "source": "''",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "display-mode"
+      ],
+      "source": "\r\n    posx: 5\r\n    posy: 1\r\n    grouped:\r\n      condition: displaymode_grouped\r\n      name: '{$p}Grouped'\r\n      material: BOOK\r\n      lore: |\r\n        &7The invaded lands will be\r\n        shown as a group of invaded\r\n        lands if that is an option.\r\n    else:\r\n      material: PAPER\r\n      name: '{$p}Individual'\r\n      lore: |\r\n        &7The invaded lands will be\r\n        shown as individually invaded\r\n        lands.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "display-mode",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "display-mode",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "display-mode",
+        "grouped"
+      ],
+      "source": "\r\n      condition: displaymode_grouped\r\n      name: '{$p}Grouped'\r\n      material: BOOK\r\n      lore: |\r\n        &7The invaded lands will be\r\n        shown as a group of invaded\r\n        lands if that is an option.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "display-mode",
+        "grouped",
+        "condition"
+      ],
+      "source": "displaymode_grouped",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "display-mode",
+        "grouped",
+        "name"
+      ],
+      "source": "'{$p}Grouped'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "display-mode",
+        "grouped",
+        "material"
+      ],
+      "source": "BOOK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "display-mode",
+        "grouped",
+        "lore"
+      ],
+      "source": "|\r\n        &7The invaded lands will be\r\n        shown as a group of invaded\r\n        lands if that is an option.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "display-mode",
+        "else"
+      ],
+      "source": "\r\n      material: PAPER\r\n      name: '{$p}Individual'\r\n      lore: |\r\n        &7The invaded lands will be\r\n        shown as individually invaded\r\n        lands.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "display-mode",
+        "else",
+        "material"
+      ],
+      "source": "PAPER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "display-mode",
+        "else",
+        "name"
+      ],
+      "source": "'{$p}Individual'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "display-mode",
+        "else",
+        "lore"
+      ],
+      "source": "|\r\n        &7The invaded lands will be\r\n        shown as individually invaded\r\n        lands.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "land"
+      ],
+      "source": "\r\n    displaymode-grouped:\r\n      added:\r\n        condition: added\r\n        material: GREEN_WOOL\r\n      else:\r\n        material: RED_WOOL\r\n      condition: displaymode_grouped\r\n      name: \"%bool@added%\"\r\n      lore: |\r\n        {$p}Player{$colon} {$s}%player%\r\n        {$p}Kingdom{$colon} {$s}%kingdoms_kingdom_name%\r\n        {$p}Ransack Mode{$colon} %ransack-mode%\r\n        {$p}Result{$colon} {$s}%result%\r\n        {$p}At{$colon} {$s}%time%\r\n        {$p}Affected Lands{$colon}\r\n        %affected-lands%\r\n\r\n        &9This invasion took place {$p}%distance_from_core% &9blocks away\r\n        from the kingdom's core (nexus or home)\r\n    else:\r\n      added:\r\n        condition: added\r\n        material: GREEN_WOOL\r\n      else:\r\n        material: RED_WOOL\r\n      name: \"%bool@added% {$p}%translated-world%{$sep}, {$p}%x%{$sep}, {$p}%z%\"\r\n      lore: |\r\n        {$p}Player{$colon} {$s}%player%\r\n        {$p}Kingdom{$colon} {$s}%kingdoms_kingdom_name%\r\n        {$p}Ransack Mode{$colon} %ransack-mode%\r\n        {$p}Result{$colon} {$s}%result%\r\n        {$p}At{$colon} {$s}%time%\r\n        \r\n        &9This invasion took place {$p}%distance_from_core% &9blocks away\r\n        from the kingdom's core (nexus or home)\r\n    slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43 ]",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "land",
+        "displaymode-grouped"
+      ],
+      "source": "\r\n      added:\r\n        condition: added\r\n        material: GREEN_WOOL\r\n      else:\r\n        material: RED_WOOL\r\n      condition: displaymode_grouped\r\n      name: \"%bool@added%\"\r\n      lore: |\r\n        {$p}Player{$colon} {$s}%player%\r\n        {$p}Kingdom{$colon} {$s}%kingdoms_kingdom_name%\r\n        {$p}Ransack Mode{$colon} %ransack-mode%\r\n        {$p}Result{$colon} {$s}%result%\r\n        {$p}At{$colon} {$s}%time%\r\n        {$p}Affected Lands{$colon}\r\n        %affected-lands%\r\n\r\n        &9This invasion took place {$p}%distance_from_core% &9blocks away\r\n        from the kingdom's core (nexus or home)\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "land",
+        "displaymode-grouped",
+        "added"
+      ],
+      "source": "\r\n        condition: added\r\n        material: GREEN_WOOL\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "land",
+        "displaymode-grouped",
+        "added",
+        "condition"
+      ],
+      "source": "added",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "land",
+        "displaymode-grouped",
+        "added",
+        "material"
+      ],
+      "source": "GREEN_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "land",
+        "displaymode-grouped",
+        "else"
+      ],
+      "source": "\r\n        material: RED_WOOL\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "land",
+        "displaymode-grouped",
+        "else",
+        "material"
+      ],
+      "source": "RED_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "land",
+        "displaymode-grouped",
+        "condition"
+      ],
+      "source": "displaymode_grouped",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "land",
+        "displaymode-grouped",
+        "name"
+      ],
+      "source": "\"%bool@added%\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "land",
+        "displaymode-grouped",
+        "lore"
+      ],
+      "source": "|\r\n        {$p}Player{$colon} {$s}%player%\r\n        {$p}Kingdom{$colon} {$s}%kingdoms_kingdom_name%\r\n        {$p}Ransack Mode{$colon} %ransack-mode%\r\n        {$p}Result{$colon} {$s}%result%\r\n        {$p}At{$colon} {$s}%time%\r\n        {$p}Affected Lands{$colon}\r\n        %affected-lands%\r\n\r\n        &9This invasion took place {$p}%distance_from_core% &9blocks away\r\n        from the kingdom's core (nexus or home)\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "land",
+        "else"
+      ],
+      "source": "\r\n      added:\r\n        condition: added\r\n        material: GREEN_WOOL\r\n      else:\r\n        material: RED_WOOL\r\n      name: \"%bool@added% {$p}%translated-world%{$sep}, {$p}%x%{$sep}, {$p}%z%\"\r\n      lore: |\r\n        {$p}Player{$colon} {$s}%player%\r\n        {$p}Kingdom{$colon} {$s}%kingdoms_kingdom_name%\r\n        {$p}Ransack Mode{$colon} %ransack-mode%\r\n        {$p}Result{$colon} {$s}%result%\r\n        {$p}At{$colon} {$s}%time%\r\n        \r\n        &9This invasion took place {$p}%distance_from_core% &9blocks away\r\n        from the kingdom's core (nexus or home)\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "land",
+        "else",
+        "added"
+      ],
+      "source": "\r\n        condition: added\r\n        material: GREEN_WOOL\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "land",
+        "else",
+        "added",
+        "condition"
+      ],
+      "source": "added",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "land",
+        "else",
+        "added",
+        "material"
+      ],
+      "source": "GREEN_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "land",
+        "else",
+        "else"
+      ],
+      "source": "\r\n        material: RED_WOOL\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "land",
+        "else",
+        "else",
+        "material"
+      ],
+      "source": "RED_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "land",
+        "else",
+        "name"
+      ],
+      "source": "\"%bool@added% {$p}%translated-world%{$sep}, {$p}%x%{$sep}, {$p}%z%\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "land",
+        "else",
+        "lore"
+      ],
+      "source": "|\r\n        {$p}Player{$colon} {$s}%player%\r\n        {$p}Kingdom{$colon} {$s}%kingdoms_kingdom_name%\r\n        {$p}Ransack Mode{$colon} %ransack-mode%\r\n        {$p}Result{$colon} {$s}%result%\r\n        {$p}At{$colon} {$s}%time%\r\n        \r\n        &9This invasion took place {$p}%distance_from_core% &9blocks away\r\n        from the kingdom's core (nexus or home)\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "land",
+        "slots"
+      ],
+      "source": "[ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "28",
+        "29",
+        "30",
+        "31",
+        "32",
+        "33",
+        "34",
+        "37",
+        "38",
+        "39",
+        "40",
+        "41",
+        "42",
+        "43"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1405 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "guis/structures/outpost/1.yml",
+  "schemaId": "guis/schema",
+  "options": [
+    {
+      "path": [
+        "(import)"
+      ],
+      "source": "\r\n  outpost-page:\r\n    anchors: [ &base base ]\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "outpost-page"
+      ],
+      "source": "\r\n    anchors: [ &base base ]\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "outpost-page",
+        "anchors"
+      ],
+      "source": "[ &base base ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "&base base"
+      ]
+    },
+    {
+      "path": [
+        "options"
+      ],
+      "source": "\r\n  stock-coal:\r\n    posx: 2\r\n    posy: 2\r\n    material: COAL\r\n    <<: *base\r\n  stock-charcoal:\r\n    posx: 3\r\n    posy: 2\r\n    material: CHARCOAL\r\n    <<: *base\r\n  stock-flint:\r\n    posx: 4\r\n    posy: 2\r\n    material: FLINT\r\n    <<: *base\r\n  stock-ender-eye:\r\n    posx: 5\r\n    posy: 2\r\n    material: ENDER_EYE\r\n    <<: *base\r\n  stock-ender-pearl:\r\n    posx: 6\r\n    posy: 2\r\n    material: ENDER_PEARL\r\n    <<: *base\r\n  stock-slime-ball:\r\n    posx: 7\r\n    posy: 2\r\n    material: SLIME_BALL\r\n    <<: *base\r\n  stock-book:\r\n    posx: 8\r\n    posy: 2\r\n    material: BOOK\r\n    <<: *base\r\n  stock-emerald:\r\n    posx: 2\r\n    posy: 3\r\n    material: EMERALD\r\n    <<: *base\r\n  stock-diamonds:\r\n    posx: 3\r\n    posy: 3\r\n    material: DIAMOND\r\n    <<: *base\r\n  stock-gold-ingot:\r\n    posx: 4\r\n    posy: 3\r\n    material: GOLD_INGOT\r\n    <<: *base\r\n  stock-iron-ingot:\r\n    posx: 5\r\n    posy: 3\r\n    material: IRON_INGOT\r\n    <<: *base\r\n  stock-nether-brick:\r\n    posx: 6\r\n    posy: 3\r\n    material: NETHER_BRICK\r\n    <<: *base\r\n  stock-brick:\r\n    posx: 7\r\n    posy: 3\r\n    material: BRICK\r\n    <<: *base\r\n  stock-lapis-lazuli:\r\n    posx: 8\r\n    posy: 3\r\n    material: LAPIS_LAZULI\r\n    <<: *base\r\n  stock-xp-bottle:\r\n    posx: 2\r\n    posy: 4\r\n    material: EXPERIENCE_BOTTLE\r\n    <<: *base\r\n  stock-dragon-breath:\r\n    posx: 3\r\n    posy: 4\r\n    material: DRAGON_BREATH\r\n    <<: *base\r\n  stock-blaze-rod:\r\n    posx: 4\r\n    posy: 4\r\n    material: BLAZE_ROD\r\n    <<: *base\r\n  stock-prismarine-crystals:\r\n    posx: 5\r\n    posy: 4\r\n    material: PRISMARINE_CRYSTALS\r\n    <<: *base\r\n  stock-blaze-powder:\r\n    posx: 6\r\n    posy: 4\r\n    material: BLAZE_POWDER\r\n    <<: *base\r\n  stock-golden-carrot:\r\n    posx: 7\r\n    posy: 4\r\n    material: GOLDEN_CARROT\r\n    <<: *base\r\n  stock-magma-cream:\r\n    posx: 8\r\n    posy: 4\r\n    material: MAGMA_CREAM\r\n    <<: *base\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-coal"
+      ],
+      "source": "\r\n    posx: 2\r\n    posy: 2\r\n    material: COAL\r\n    <<: *base\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-coal",
+        "posx"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-coal",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-coal",
+        "material"
+      ],
+      "source": "COAL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-coal",
+        "<<"
+      ],
+      "source": "*base",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-charcoal"
+      ],
+      "source": "\r\n    posx: 3\r\n    posy: 2\r\n    material: CHARCOAL\r\n    <<: *base\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-charcoal",
+        "posx"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-charcoal",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-charcoal",
+        "material"
+      ],
+      "source": "CHARCOAL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-charcoal",
+        "<<"
+      ],
+      "source": "*base",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-flint"
+      ],
+      "source": "\r\n    posx: 4\r\n    posy: 2\r\n    material: FLINT\r\n    <<: *base\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-flint",
+        "posx"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-flint",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-flint",
+        "material"
+      ],
+      "source": "FLINT",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-flint",
+        "<<"
+      ],
+      "source": "*base",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-ender-eye"
+      ],
+      "source": "\r\n    posx: 5\r\n    posy: 2\r\n    material: ENDER_EYE\r\n    <<: *base\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-ender-eye",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-ender-eye",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-ender-eye",
+        "material"
+      ],
+      "source": "ENDER_EYE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-ender-eye",
+        "<<"
+      ],
+      "source": "*base",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-ender-pearl"
+      ],
+      "source": "\r\n    posx: 6\r\n    posy: 2\r\n    material: ENDER_PEARL\r\n    <<: *base\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-ender-pearl",
+        "posx"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-ender-pearl",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-ender-pearl",
+        "material"
+      ],
+      "source": "ENDER_PEARL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-ender-pearl",
+        "<<"
+      ],
+      "source": "*base",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-slime-ball"
+      ],
+      "source": "\r\n    posx: 7\r\n    posy: 2\r\n    material: SLIME_BALL\r\n    <<: *base\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-slime-ball",
+        "posx"
+      ],
+      "source": "7",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-slime-ball",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-slime-ball",
+        "material"
+      ],
+      "source": "SLIME_BALL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-slime-ball",
+        "<<"
+      ],
+      "source": "*base",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-book"
+      ],
+      "source": "\r\n    posx: 8\r\n    posy: 2\r\n    material: BOOK\r\n    <<: *base\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-book",
+        "posx"
+      ],
+      "source": "8",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-book",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-book",
+        "material"
+      ],
+      "source": "BOOK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-book",
+        "<<"
+      ],
+      "source": "*base",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-emerald"
+      ],
+      "source": "\r\n    posx: 2\r\n    posy: 3\r\n    material: EMERALD\r\n    <<: *base\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-emerald",
+        "posx"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-emerald",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-emerald",
+        "material"
+      ],
+      "source": "EMERALD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-emerald",
+        "<<"
+      ],
+      "source": "*base",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-diamonds"
+      ],
+      "source": "\r\n    posx: 3\r\n    posy: 3\r\n    material: DIAMOND\r\n    <<: *base\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-diamonds",
+        "posx"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-diamonds",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-diamonds",
+        "material"
+      ],
+      "source": "DIAMOND",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-diamonds",
+        "<<"
+      ],
+      "source": "*base",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-gold-ingot"
+      ],
+      "source": "\r\n    posx: 4\r\n    posy: 3\r\n    material: GOLD_INGOT\r\n    <<: *base\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-gold-ingot",
+        "posx"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-gold-ingot",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-gold-ingot",
+        "material"
+      ],
+      "source": "GOLD_INGOT",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-gold-ingot",
+        "<<"
+      ],
+      "source": "*base",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-iron-ingot"
+      ],
+      "source": "\r\n    posx: 5\r\n    posy: 3\r\n    material: IRON_INGOT\r\n    <<: *base\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-iron-ingot",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-iron-ingot",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-iron-ingot",
+        "material"
+      ],
+      "source": "IRON_INGOT",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-iron-ingot",
+        "<<"
+      ],
+      "source": "*base",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-nether-brick"
+      ],
+      "source": "\r\n    posx: 6\r\n    posy: 3\r\n    material: NETHER_BRICK\r\n    <<: *base\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-nether-brick",
+        "posx"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-nether-brick",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-nether-brick",
+        "material"
+      ],
+      "source": "NETHER_BRICK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-nether-brick",
+        "<<"
+      ],
+      "source": "*base",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-brick"
+      ],
+      "source": "\r\n    posx: 7\r\n    posy: 3\r\n    material: BRICK\r\n    <<: *base\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-brick",
+        "posx"
+      ],
+      "source": "7",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-brick",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-brick",
+        "material"
+      ],
+      "source": "BRICK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-brick",
+        "<<"
+      ],
+      "source": "*base",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-lapis-lazuli"
+      ],
+      "source": "\r\n    posx: 8\r\n    posy: 3\r\n    material: LAPIS_LAZULI\r\n    <<: *base\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-lapis-lazuli",
+        "posx"
+      ],
+      "source": "8",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-lapis-lazuli",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-lapis-lazuli",
+        "material"
+      ],
+      "source": "LAPIS_LAZULI",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-lapis-lazuli",
+        "<<"
+      ],
+      "source": "*base",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-xp-bottle"
+      ],
+      "source": "\r\n    posx: 2\r\n    posy: 4\r\n    material: EXPERIENCE_BOTTLE\r\n    <<: *base\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-xp-bottle",
+        "posx"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-xp-bottle",
+        "posy"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-xp-bottle",
+        "material"
+      ],
+      "source": "EXPERIENCE_BOTTLE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-xp-bottle",
+        "<<"
+      ],
+      "source": "*base",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-dragon-breath"
+      ],
+      "source": "\r\n    posx: 3\r\n    posy: 4\r\n    material: DRAGON_BREATH\r\n    <<: *base\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-dragon-breath",
+        "posx"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-dragon-breath",
+        "posy"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-dragon-breath",
+        "material"
+      ],
+      "source": "DRAGON_BREATH",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-dragon-breath",
+        "<<"
+      ],
+      "source": "*base",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-blaze-rod"
+      ],
+      "source": "\r\n    posx: 4\r\n    posy: 4\r\n    material: BLAZE_ROD\r\n    <<: *base\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-blaze-rod",
+        "posx"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-blaze-rod",
+        "posy"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-blaze-rod",
+        "material"
+      ],
+      "source": "BLAZE_ROD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-blaze-rod",
+        "<<"
+      ],
+      "source": "*base",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-prismarine-crystals"
+      ],
+      "source": "\r\n    posx: 5\r\n    posy: 4\r\n    material: PRISMARINE_CRYSTALS\r\n    <<: *base\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-prismarine-crystals",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-prismarine-crystals",
+        "posy"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-prismarine-crystals",
+        "material"
+      ],
+      "source": "PRISMARINE_CRYSTALS",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-prismarine-crystals",
+        "<<"
+      ],
+      "source": "*base",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-blaze-powder"
+      ],
+      "source": "\r\n    posx: 6\r\n    posy: 4\r\n    material: BLAZE_POWDER\r\n    <<: *base\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-blaze-powder",
+        "posx"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-blaze-powder",
+        "posy"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-blaze-powder",
+        "material"
+      ],
+      "source": "BLAZE_POWDER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-blaze-powder",
+        "<<"
+      ],
+      "source": "*base",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-golden-carrot"
+      ],
+      "source": "\r\n    posx: 7\r\n    posy: 4\r\n    material: GOLDEN_CARROT\r\n    <<: *base\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-golden-carrot",
+        "posx"
+      ],
+      "source": "7",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-golden-carrot",
+        "posy"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-golden-carrot",
+        "material"
+      ],
+      "source": "GOLDEN_CARROT",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-golden-carrot",
+        "<<"
+      ],
+      "source": "*base",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-magma-cream"
+      ],
+      "source": "\r\n    posx: 8\r\n    posy: 4\r\n    material: MAGMA_CREAM\r\n    <<: *base\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-magma-cream",
+        "posx"
+      ],
+      "source": "8",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-magma-cream",
+        "posy"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-magma-cream",
+        "material"
+      ],
+      "source": "MAGMA_CREAM",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "stock-magma-cream",
+        "<<"
+      ],
+      "source": "*base",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

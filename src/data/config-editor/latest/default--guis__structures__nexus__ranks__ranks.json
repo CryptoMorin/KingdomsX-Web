@@ -1,0 +1,506 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "guis/structures/nexus/ranks/ranks.yml",
+  "schemaId": "guis/schema",
+  "options": [
+    {
+      "path": [
+        "title"
+      ],
+      "source": "\"{$sep}-=( &5Ranks {$sep})=-\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "rows"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sound"
+      ],
+      "source": "ITEM_BOOK_PAGE_TURN",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options"
+      ],
+      "source": "\r\n  add:\r\n    name: \"{$p}Add Rank\"\r\n    material: GREEN_WOOL\r\n    posx: 1\r\n    posy: 1\r\n  reset:\r\n    name: \"&4Reset Ranks\"\r\n    material: RED_WOOL\r\n    lore:\r\n      - \"{$s}Use default ranks.\"\r\n      - \"All your current ranks\"\r\n      - \"will be deleted.\"\r\n    posx: 9\r\n    posy: 1\r\n  demote-all:\r\n    name: \"&4Demote All\"\r\n    material: ORANGE_WOOL\r\n    lore:\r\n      - \"{$s}Demotes everyone to member\"\r\n      - \"rank in your kingdom.\"\r\n    posx: 8\r\n    posy: 1\r\n  rank:\r\n    name: \"%rank_color%%rank_symbol% %rank_name%\"\r\n    material: PLAYER_HEAD\r\n    slots: [ 11, 12, 13, 14, 15,\r\n             20, 21, 22, 23, 24,\r\n             29, 30, 31, 32, 33,\r\n             38, 39, 40, 41, 42 ]\r\n  back:\r\n    name: \"{$p}Back\"\r\n    material: BARRIER\r\n    lore:\r\n      - \"{$s}Go back to nexus menu.\"\r\n    posx: 5\r\n    posy: 6\r\n  black-glass:\r\n    name: ''\r\n    material: BLACK_STAINED_GLASS_PANE\r\n    slots: [ 1, 2, 3, 4, 5, 6, 9, 17, 18, 26, 27, 35, 36, 44, 45, 46, 47, 48, 50, 51, 52, 53 ]",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "add"
+      ],
+      "source": "\r\n    name: \"{$p}Add Rank\"\r\n    material: GREEN_WOOL\r\n    posx: 1\r\n    posy: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "add",
+        "name"
+      ],
+      "source": "\"{$p}Add Rank\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "add",
+        "material"
+      ],
+      "source": "GREEN_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "add",
+        "posx"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "add",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "reset"
+      ],
+      "source": "\r\n    name: \"&4Reset Ranks\"\r\n    material: RED_WOOL\r\n    lore:\r\n      - \"{$s}Use default ranks.\"\r\n      - \"All your current ranks\"\r\n      - \"will be deleted.\"\r\n    posx: 9\r\n    posy: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "reset",
+        "name"
+      ],
+      "source": "\"&4Reset Ranks\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "reset",
+        "material"
+      ],
+      "source": "RED_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "reset",
+        "lore"
+      ],
+      "source": "\r\n      - \"{$s}Use default ranks.\"\r\n      - \"All your current ranks\"\r\n      - \"will be deleted.\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$s}Use default ranks.\"",
+        "\"All your current ranks\"",
+        "\"will be deleted.\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "reset",
+        "posx"
+      ],
+      "source": "9",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "reset",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "demote-all"
+      ],
+      "source": "\r\n    name: \"&4Demote All\"\r\n    material: ORANGE_WOOL\r\n    lore:\r\n      - \"{$s}Demotes everyone to member\"\r\n      - \"rank in your kingdom.\"\r\n    posx: 8\r\n    posy: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "demote-all",
+        "name"
+      ],
+      "source": "\"&4Demote All\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "demote-all",
+        "material"
+      ],
+      "source": "ORANGE_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "demote-all",
+        "lore"
+      ],
+      "source": "\r\n      - \"{$s}Demotes everyone to member\"\r\n      - \"rank in your kingdom.\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$s}Demotes everyone to member\"",
+        "\"rank in your kingdom.\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "demote-all",
+        "posx"
+      ],
+      "source": "8",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "demote-all",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "rank"
+      ],
+      "source": "\r\n    name: \"%rank_color%%rank_symbol% %rank_name%\"\r\n    material: PLAYER_HEAD\r\n    slots: [ 11, 12, 13, 14, 15,\r\n             20, 21, 22, 23, 24,\r\n             29, 30, 31, 32, 33,\r\n             38, 39, 40, 41, 42 ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "rank",
+        "name"
+      ],
+      "source": "\"%rank_color%%rank_symbol% %rank_name%\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "rank",
+        "material"
+      ],
+      "source": "PLAYER_HEAD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "rank",
+        "slots"
+      ],
+      "source": "[ 11, 12, 13, 14, 15,\r\n             20, 21, 22, 23, 24,\r\n             29, 30, 31, 32, 33,\r\n             38, 39, 40, 41, 42 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "29",
+        "30",
+        "31",
+        "32",
+        "33",
+        "38",
+        "39",
+        "40",
+        "41",
+        "42"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "back"
+      ],
+      "source": "\r\n    name: \"{$p}Back\"\r\n    material: BARRIER\r\n    lore:\r\n      - \"{$s}Go back to nexus menu.\"\r\n    posx: 5\r\n    posy: 6\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "name"
+      ],
+      "source": "\"{$p}Back\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "material"
+      ],
+      "source": "BARRIER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "lore"
+      ],
+      "source": "\r\n      - \"{$s}Go back to nexus menu.\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$s}Go back to nexus menu.\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "posy"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "black-glass"
+      ],
+      "source": "\r\n    name: ''\r\n    material: BLACK_STAINED_GLASS_PANE\r\n    slots: [ 1, 2, 3, 4, 5, 6, 9, 17, 18, 26, 27, 35, 36, 44, 45, 46, 47, 48, 50, 51, 52, 53 ]",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "black-glass",
+        "name"
+      ],
+      "source": "''",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "black-glass",
+        "material"
+      ],
+      "source": "BLACK_STAINED_GLASS_PANE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "black-glass",
+        "slots"
+      ],
+      "source": "[ 1, 2, 3, 4, 5, 6, 9, 17, 18, 26, 27, 35, 36, 44, 45, 46, 47, 48, 50, 51, 52, 53 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "9",
+        "17",
+        "18",
+        "26",
+        "27",
+        "35",
+        "36",
+        "44",
+        "45",
+        "46",
+        "47",
+        "48",
+        "50",
+        "51",
+        "52",
+        "53"
+      ]
+    }
+  ]
+}

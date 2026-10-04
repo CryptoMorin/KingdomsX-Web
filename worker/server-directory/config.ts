@@ -46,6 +46,7 @@ export const DISCORD_PUBLIC_MESSAGE_REPOST_AFTER_MS = 7 * 24 * 60 * 60 * 1000;
 export const DISCORD_EMBED_CRON = "1-56/5 * * * *";
 export const VERIFICATION_CHALLENGE_TTL_MS = 15 * 60 * 1000;
 export const VERIFICATION_PROOF_TTL_MS = 48 * 60 * 60 * 1000;
+
 const REJECTION_REASON_CODES: RejectionReasonCode[] = [
   "server_unreachable",
   "kingdomsx_not_verified",
@@ -64,6 +65,7 @@ export function isRejectionReasonCode(value: string | null): value is RejectionR
 export function rejectionRequiresReverification(value: string | null): boolean {
   return !isRejectionReasonCode(value) || !REJECTION_REVERIFICATION_EXEMPT_REASON_CODES.has(value);
 }
+
 export const VERIFICATION_CODE_ALPHABET = "abcdefghijklmnopqrstuvwxyz0123456789";
 export const VERIFICATION_CODE_LENGTH = 8;
 export const VERIFICATION_CODE_GROUP_LENGTH = 4;
@@ -78,6 +80,7 @@ export const SUBMISSION_ACCOUNT_LIMIT_PER_DAY = 3;
 export const SUBMISSION_IP_LIMIT_PER_DAY = 3;
 export const SUBMITTER_SESSION_CLEANUP_BATCH_LIMIT = 50;
 export const SUBMITTER_SESSION_MAX_ACTIVE_PER_ACCOUNT = 5;
+
 export const DISCORD_API_BASE = "https://discord.com/api/v10";
 export const DISCORD_AUTHORIZE_URL = "https://discord.com/oauth2/authorize";
 export const DISCORD_TOKEN_URL = "https://discord.com/api/oauth2/token";
@@ -86,13 +89,14 @@ export const OAUTH_STATE_COOKIE = "kingdomsx_oauth_state";
 export const OAUTH_VERIFIER_COOKIE = "kingdomsx_oauth_verifier";
 export const OAUTH_RETURN_COOKIE = "kingdomsx_oauth_return";
 export const SUBMITTER_SESSION_COOKIE = "kingdomsx_submit_session";
-export const LOCAL_SUBMITTER_RETURN_PATH = "/servers/submit";
-export const SERVER_SUBDOMAIN_SUBMITTER_RETURN_PATH = "/submit";
+export const SUBMITTER_RETURN_PATH = "/submit";
 export const OAUTH_COOKIE_MAX_AGE_SECONDS = 10 * 60;
 export const SUBMITTER_SESSION_MAX_AGE_SECONDS = 30 * 24 * 60 * 60;
 export const SUBMITTER_SESSION_TOUCH_INTERVAL_MS = 60 * 60 * 1000;
+
 export const PUBLIC_DIRECTORY_ORDER = "s.approved_at DESC, s.created_at DESC, s.id ASC";
 export const HOMEPAGE_DIRECTORY_ORDER = "COALESCE(ss.players_online, 0) DESC, COALESCE(ss.online, 0) DESC, s.approved_at DESC, s.created_at DESC, s.id ASC";
+
 export const PRIVATE_IPV4_RANGES = [
   /^10\./,
   /^127\./,

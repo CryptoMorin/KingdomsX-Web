@@ -1,0 +1,1792 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "Structures/siege-cannon.yml",
+  "schemaId": "Structures/structure",
+  "options": [
+    {
+      "path": [
+        "(import)"
+      ],
+      "source": "\r\n  structure:\r\n    parameters:\r\n      <name>: siege-cannon\r\n      <build-duration-factor>: '+2 minutes'\r\n      <durability-factor>: 100\r\n      <extra-holograms>: [ '{$$siege-cannon.holograms.ammo}' ]\r\n      <material-1>: DISPENSER\r\n      <material-2>: DISPENSER\r\n      <material-3>: DISPENSER\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "structure"
+      ],
+      "source": "\r\n    parameters:\r\n      <name>: siege-cannon\r\n      <build-duration-factor>: '+2 minutes'\r\n      <durability-factor>: 100\r\n      <extra-holograms>: [ '{$$siege-cannon.holograms.ammo}' ]\r\n      <material-1>: DISPENSER\r\n      <material-2>: DISPENSER\r\n      <material-3>: DISPENSER\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "structure",
+        "parameters"
+      ],
+      "source": "\r\n      <name>: siege-cannon\r\n      <build-duration-factor>: '+2 minutes'\r\n      <durability-factor>: 100\r\n      <extra-holograms>: [ '{$$siege-cannon.holograms.ammo}' ]\r\n      <material-1>: DISPENSER\r\n      <material-2>: DISPENSER\r\n      <material-3>: DISPENSER\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "structure",
+        "parameters",
+        "<name>"
+      ],
+      "source": "siege-cannon",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "structure",
+        "parameters",
+        "<build-duration-factor>"
+      ],
+      "source": "'+2 minutes'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "structure",
+        "parameters",
+        "<durability-factor>"
+      ],
+      "source": "100",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "structure",
+        "parameters",
+        "<extra-holograms>"
+      ],
+      "source": "[ '{$$siege-cannon.holograms.ammo}' ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "'{$$siege-cannon.holograms.ammo}'"
+      ]
+    },
+    {
+      "path": [
+        "(import)",
+        "structure",
+        "parameters",
+        "<material-1>"
+      ],
+      "source": "DISPENSER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "structure",
+        "parameters",
+        "<material-2>"
+      ],
+      "source": "DISPENSER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "structure",
+        "parameters",
+        "<material-3>"
+      ],
+      "source": "DISPENSER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "name"
+      ],
+      "source": "\"&5Siege Cannon\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "type"
+      ],
+      "source": "siege-cannon",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "default-name"
+      ],
+      "source": "'Cannon'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "durability"
+      ],
+      "source": "'100 * level'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "max-level"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "cost"
+      ],
+      "source": "5000",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sell"
+      ],
+      "source": "4000",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "upgrade-cost"
+      ],
+      "source": "lvl * 4000",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "tube-textures"
+      ],
+      "source": "\r\n  1: [ \"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYmIyYWJkNjY5MzlmNGNiNzI1N2E4OGNmNTJmYmM2ZmRjZWVjMTQzM2VjMmE2ZWYxNmQ2MmUzNGY2MjM4NzgxIn19fQ==\", \"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYmIyYWJkNjY5MzlmNGNiNzI1N2E4OGNmNTJmYmM2ZmRjZWVjMTQzM2VjMmE2ZWYxNmQ2MmUzNGY2MjM4NzgxIn19fQ==\", \"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNWYzYThjMTY4MWRkMjgzN2UyYjIyMzMxMGNjM2NjNjY1NWVlZDQ0NzRiYjZhNjNiZjJkZjViODc0MjlkZWJlMSJ9fX0=\" ]\r\n  2: [ \"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvN2Y5NzdlNjkxNjRlY2RkZGJkMWY5MzUzNjUzYjY5MDM1YWQyNTE3YjA4MjJjYTZiZTQwY2ZiYjdhYTIyMjdlNCJ9fX0=\", \"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvN2Y5NzdlNjkxNjRlY2RkZGJkMWY5MzUzNjUzYjY5MDM1YWQyNTE3YjA4MjJjYTZiZTQwY2ZiYjdhYTIyMjdlNCJ9fX0=\", \"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmQ4MDAwZDU0MTk4NjBmZjNkZTUzYmE1NTliOWVjZTc5ZmIxYjY0OGUwOTlmMDIzYmE0ODA4NGNkY2VmOGIwYyJ9fX0=\" ]\r\n  3: [ \"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZGRmZTVhOTYzODY5NDE1MzQwZDJjZWMwZjgyZDA4ZGY3M2RjYjE2ODQyODQ4N2I1MTRhYThkNGVjMTlmZTJjIn19fQ==\", \"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZGRmZTVhOTYzODY5NDE1MzQwZDJjZWMwZjgyZDA4ZGY3M2RjYjE2ODQyODQ4N2I1MTRhYThkNGVjMTlmZTJjIn19fQ==\", \"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjM5YzYxNDA4ODgxNDdmNWRjYTIzNjI0NTA4NWExNDRhYTU0NDEzZWZmMTNlMmE1N2ExZDMzYTgzMDUwOGFmOCJ9fX0=\" ]\r\n\r\n# Amount of blocks in each direction.\r\n",
+      "comments": [
+        "The texture of the skulls that make the cannon's tube."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "tube-textures",
+        "1"
+      ],
+      "source": "[ \"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYmIyYWJkNjY5MzlmNGNiNzI1N2E4OGNmNTJmYmM2ZmRjZWVjMTQzM2VjMmE2ZWYxNmQ2MmUzNGY2MjM4NzgxIn19fQ==\", \"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYmIyYWJkNjY5MzlmNGNiNzI1N2E4OGNmNTJmYmM2ZmRjZWVjMTQzM2VjMmE2ZWYxNmQ2MmUzNGY2MjM4NzgxIn19fQ==\", \"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNWYzYThjMTY4MWRkMjgzN2UyYjIyMzMxMGNjM2NjNjY1NWVlZDQ0NzRiYjZhNjNiZjJkZjViODc0MjlkZWJlMSJ9fX0=\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYmIyYWJkNjY5MzlmNGNiNzI1N2E4OGNmNTJmYmM2ZmRjZWVjMTQzM2VjMmE2ZWYxNmQ2MmUzNGY2MjM4NzgxIn19fQ==\"",
+        "\"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYmIyYWJkNjY5MzlmNGNiNzI1N2E4OGNmNTJmYmM2ZmRjZWVjMTQzM2VjMmE2ZWYxNmQ2MmUzNGY2MjM4NzgxIn19fQ==\"",
+        "\"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNWYzYThjMTY4MWRkMjgzN2UyYjIyMzMxMGNjM2NjNjY1NWVlZDQ0NzRiYjZhNjNiZjJkZjViODc0MjlkZWJlMSJ9fX0=\""
+      ]
+    },
+    {
+      "path": [
+        "tube-textures",
+        "2"
+      ],
+      "source": "[ \"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvN2Y5NzdlNjkxNjRlY2RkZGJkMWY5MzUzNjUzYjY5MDM1YWQyNTE3YjA4MjJjYTZiZTQwY2ZiYjdhYTIyMjdlNCJ9fX0=\", \"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvN2Y5NzdlNjkxNjRlY2RkZGJkMWY5MzUzNjUzYjY5MDM1YWQyNTE3YjA4MjJjYTZiZTQwY2ZiYjdhYTIyMjdlNCJ9fX0=\", \"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmQ4MDAwZDU0MTk4NjBmZjNkZTUzYmE1NTliOWVjZTc5ZmIxYjY0OGUwOTlmMDIzYmE0ODA4NGNkY2VmOGIwYyJ9fX0=\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvN2Y5NzdlNjkxNjRlY2RkZGJkMWY5MzUzNjUzYjY5MDM1YWQyNTE3YjA4MjJjYTZiZTQwY2ZiYjdhYTIyMjdlNCJ9fX0=\"",
+        "\"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvN2Y5NzdlNjkxNjRlY2RkZGJkMWY5MzUzNjUzYjY5MDM1YWQyNTE3YjA4MjJjYTZiZTQwY2ZiYjdhYTIyMjdlNCJ9fX0=\"",
+        "\"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmQ4MDAwZDU0MTk4NjBmZjNkZTUzYmE1NTliOWVjZTc5ZmIxYjY0OGUwOTlmMDIzYmE0ODA4NGNkY2VmOGIwYyJ9fX0=\""
+      ]
+    },
+    {
+      "path": [
+        "tube-textures",
+        "3"
+      ],
+      "source": "[ \"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZGRmZTVhOTYzODY5NDE1MzQwZDJjZWMwZjgyZDA4ZGY3M2RjYjE2ODQyODQ4N2I1MTRhYThkNGVjMTlmZTJjIn19fQ==\", \"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZGRmZTVhOTYzODY5NDE1MzQwZDJjZWMwZjgyZDA4ZGY3M2RjYjE2ODQyODQ4N2I1MTRhYThkNGVjMTlmZTJjIn19fQ==\", \"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjM5YzYxNDA4ODgxNDdmNWRjYTIzNjI0NTA4NWExNDRhYTU0NDEzZWZmMTNlMmE1N2ExZDMzYTgzMDUwOGFmOCJ9fX0=\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZGRmZTVhOTYzODY5NDE1MzQwZDJjZWMwZjgyZDA4ZGY3M2RjYjE2ODQyODQ4N2I1MTRhYThkNGVjMTlmZTJjIn19fQ==\"",
+        "\"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZGRmZTVhOTYzODY5NDE1MzQwZDJjZWMwZjgyZDA4ZGY3M2RjYjE2ODQyODQ4N2I1MTRhYThkNGVjMTlmZTJjIn19fQ==\"",
+        "\"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjM5YzYxNDA4ODgxNDdmNWRjYTIzNjI0NTA4NWExNDRhYTU0NDEzZWZmMTNlMmE1N2ExZDMzYTgzMDUwOGFmOCJ9fX0=\""
+      ]
+    },
+    {
+      "path": [
+        "explosion-radius"
+      ],
+      "source": "\r\n  1: 3\r\n  2: 4\r\n  3: 5\r\n\r\n# Damage to players\r\n",
+      "comments": [
+        "Amount of blocks in each direction."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "explosion-radius",
+        "1"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "explosion-radius",
+        "2"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "explosion-radius",
+        "3"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damage"
+      ],
+      "source": "\"lvl * 5\"",
+      "comments": [
+        "Damage to players"
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "knockback"
+      ],
+      "source": "\"lvl / 2\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "armor-damage"
+      ],
+      "source": "'lvl'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "shield-damage"
+      ],
+      "source": "\r\n  1: 5mins\r\n  2: 7mins\r\n  3: 10mins\r\n\r\n# Cooldown in seconds before the cannon can shoot again (can be reloaded during cooldown)\r\n# Note that this cooldown doesn't persist between restarts.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "shield-damage",
+        "1"
+      ],
+      "source": "5mins",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "shield-damage",
+        "2"
+      ],
+      "source": "7mins",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "shield-damage",
+        "3"
+      ],
+      "source": "10mins",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "cooldown"
+      ],
+      "source": "\r\n  1: 20 seconds\r\n  2: 15 seconds\r\n  3: 10 seconds\r\n\r\n# Should siege cannons only destroy blocks inside areas that are under attack?\r\n# If set to false, it can destroy blocks even if the land it hit isn't under attack.\r\n",
+      "comments": [
+        "Cooldown in seconds before the cannon can shoot again (can be reloaded during cooldown)",
+        "Note that this cooldown doesn't persist between restarts."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "cooldown",
+        "1"
+      ],
+      "source": "20 seconds",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "cooldown",
+        "2"
+      ],
+      "source": "15 seconds",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "cooldown",
+        "3"
+      ],
+      "source": "10 seconds",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "invasion-only"
+      ],
+      "source": "false",
+      "comments": [
+        "Should siege cannons only destroy blocks inside areas that are under attack?",
+        "If set to false, it can destroy blocks even if the land it hit isn't under attack."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "actionbar"
+      ],
+      "source": "\r\n  sit: \"{$p}Siege Cannon {$s}%roman@level% &8- {$p}Press {$s}SHIFT {$p}to leave\"\r\n  fire: '{$p}Fire'\r\n  cooldown: '&cCooldown{$colon} &e%cooldown%'\r\n  not-loaded: '&cCannon not loaded'\r\n\r\n# Should the shield of the kingdom of the player who used the cannon be\r\n# damaged after using the cannon?\r\n# Supports math equations.\r\n# If you want to completely remove their shield, use 'kingdoms_shield_time_left'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "actionbar",
+        "sit"
+      ],
+      "source": "\"{$p}Siege Cannon {$s}%roman@level% &8- {$p}Press {$s}SHIFT {$p}to leave\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "actionbar",
+        "fire"
+      ],
+      "source": "'{$p}Fire'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "actionbar",
+        "cooldown"
+      ],
+      "source": "'&cCooldown{$colon} &e%cooldown%'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "actionbar",
+        "not-loaded"
+      ],
+      "source": "'&cCannon not loaded'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "attacker-shield-damage"
+      ],
+      "source": "0",
+      "comments": [
+        "Should the shield of the kingdom of the player who used the cannon be",
+        "damaged after using the cannon?",
+        "Supports math equations.",
+        "If you want to completely remove their shield, use 'kingdoms_shield_time_left'"
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "conditions"
+      ],
+      "source": "\r\n  purchase:\r\n    'kingdoms_kingdom_level < 3': '{$$kingdom-levels.III}'\r\n  upgrade:\r\n    'level == 1 && kingdoms_kingdom_level < 4': '{$$kingdom-levels.IV}'\r\n    'level == 2 && kingdoms_kingdom_level < 5': '{$$kingdom-levels.V}'\r\n\r\n# Below values are added to the main value.\r\n# The \"item\" sections follow this format: https://github.com/CryptoMorin/KingdomsX/wiki/Config#item-matchers\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "conditions",
+        "purchase"
+      ],
+      "source": "\r\n    'kingdoms_kingdom_level < 3': '{$$kingdom-levels.III}'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "conditions",
+        "purchase",
+        "kingdoms_kingdom_level < 3"
+      ],
+      "source": "'{$$kingdom-levels.III}'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "conditions",
+        "upgrade"
+      ],
+      "source": "\r\n    'level == 1 && kingdoms_kingdom_level < 4': '{$$kingdom-levels.IV}'\r\n    'level == 2 && kingdoms_kingdom_level < 5': '{$$kingdom-levels.V}'\r\n\r\n# Below values are added to the main value.\r\n# The \"item\" sections follow this format: https://github.com/CryptoMorin/KingdomsX/wiki/Config#item-matchers\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "conditions",
+        "upgrade",
+        "level == 1 && kingdoms_kingdom_level < 4"
+      ],
+      "source": "'{$$kingdom-levels.IV}'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "conditions",
+        "upgrade",
+        "level == 2 && kingdoms_kingdom_level < 5"
+      ],
+      "source": "'{$$kingdom-levels.V}'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "projectiles"
+      ],
+      "source": "\r\n  low-tier-god:\r\n    name: \"&a{$$words.tier} I\"\r\n    shield-damage: 2min\r\n    explosion-radius: 1\r\n    damage: 1\r\n    knockback: 1\r\n    building-impact:\r\n      damage: 30\r\n    item:\r\n      material: IRON_BLOCK\r\n  mid-tier:\r\n    name: \"&3{$$words.tier} II\"\r\n    shield-damage: 3min\r\n    explosion-radius: 1\r\n    damage: 2\r\n    knockback: 2\r\n    building-impact:\r\n      damage: 50\r\n      paralyze: 5s\r\n    item:\r\n      material: GOLD_BLOCK\r\n  high-tier:\r\n    name: \"&c{$$words.tier} III\"\r\n    shield-damage: 5min\r\n    explosion-radius: 2\r\n    damage: 3\r\n    knockback: 3\r\n    building-impact:\r\n      damage: 70\r\n      paralyze: 10s\r\n    item:\r\n      material: FIRE_CHARGE\r\n\r\n# \"others\" is the blacklist of all other ordinary block types. You can also set this option\r\n# to \"*\" to disable all normal block damages.\r\n# Note that turret and structure types are case-sensitive. You can also set them to just \"true\" for all types.\r\n",
+      "comments": [
+        "Below values are added to the main value.",
+        "The \"item\" sections follow this format: https://github.com/CryptoMorin/KingdomsX/wiki/Config#item-matchers"
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "projectiles",
+        "low-tier-god"
+      ],
+      "source": "\r\n    name: \"&a{$$words.tier} I\"\r\n    shield-damage: 2min\r\n    explosion-radius: 1\r\n    damage: 1\r\n    knockback: 1\r\n    building-impact:\r\n      damage: 30\r\n    item:\r\n      material: IRON_BLOCK\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "projectiles",
+        "low-tier-god",
+        "name"
+      ],
+      "source": "\"&a{$$words.tier} I\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "projectiles",
+        "low-tier-god",
+        "shield-damage"
+      ],
+      "source": "2min",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "projectiles",
+        "low-tier-god",
+        "explosion-radius"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "projectiles",
+        "low-tier-god",
+        "damage"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "projectiles",
+        "low-tier-god",
+        "knockback"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "projectiles",
+        "low-tier-god",
+        "building-impact"
+      ],
+      "source": "\r\n      damage: 30\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "projectiles",
+        "low-tier-god",
+        "building-impact",
+        "damage"
+      ],
+      "source": "30",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "projectiles",
+        "low-tier-god",
+        "item"
+      ],
+      "source": "\r\n      material: IRON_BLOCK\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "projectiles",
+        "low-tier-god",
+        "item",
+        "material"
+      ],
+      "source": "IRON_BLOCK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "projectiles",
+        "mid-tier"
+      ],
+      "source": "\r\n    name: \"&3{$$words.tier} II\"\r\n    shield-damage: 3min\r\n    explosion-radius: 1\r\n    damage: 2\r\n    knockback: 2\r\n    building-impact:\r\n      damage: 50\r\n      paralyze: 5s\r\n    item:\r\n      material: GOLD_BLOCK\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "projectiles",
+        "mid-tier",
+        "name"
+      ],
+      "source": "\"&3{$$words.tier} II\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "projectiles",
+        "mid-tier",
+        "shield-damage"
+      ],
+      "source": "3min",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "projectiles",
+        "mid-tier",
+        "explosion-radius"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "projectiles",
+        "mid-tier",
+        "damage"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "projectiles",
+        "mid-tier",
+        "knockback"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "projectiles",
+        "mid-tier",
+        "building-impact"
+      ],
+      "source": "\r\n      damage: 50\r\n      paralyze: 5s\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "projectiles",
+        "mid-tier",
+        "building-impact",
+        "damage"
+      ],
+      "source": "50",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "projectiles",
+        "mid-tier",
+        "building-impact",
+        "paralyze"
+      ],
+      "source": "5s",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "projectiles",
+        "mid-tier",
+        "item"
+      ],
+      "source": "\r\n      material: GOLD_BLOCK\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "projectiles",
+        "mid-tier",
+        "item",
+        "material"
+      ],
+      "source": "GOLD_BLOCK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "projectiles",
+        "high-tier"
+      ],
+      "source": "\r\n    name: \"&c{$$words.tier} III\"\r\n    shield-damage: 5min\r\n    explosion-radius: 2\r\n    damage: 3\r\n    knockback: 3\r\n    building-impact:\r\n      damage: 70\r\n      paralyze: 10s\r\n    item:\r\n      material: FIRE_CHARGE\r\n\r\n# \"others\" is the blacklist of all other ordinary block types. You can also set this option\r\n# to \"*\" to disable all normal block damages.\r\n# Note that turret and structure types are case-sensitive. You can also set them to just \"true\" for all types.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "projectiles",
+        "high-tier",
+        "name"
+      ],
+      "source": "\"&c{$$words.tier} III\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "projectiles",
+        "high-tier",
+        "shield-damage"
+      ],
+      "source": "5min",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "projectiles",
+        "high-tier",
+        "explosion-radius"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "projectiles",
+        "high-tier",
+        "damage"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "projectiles",
+        "high-tier",
+        "knockback"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "projectiles",
+        "high-tier",
+        "building-impact"
+      ],
+      "source": "\r\n      damage: 70\r\n      paralyze: 10s\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "projectiles",
+        "high-tier",
+        "building-impact",
+        "damage"
+      ],
+      "source": "70",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "projectiles",
+        "high-tier",
+        "building-impact",
+        "paralyze"
+      ],
+      "source": "10s",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "projectiles",
+        "high-tier",
+        "item"
+      ],
+      "source": "\r\n      material: FIRE_CHARGE\r\n\r\n# \"others\" is the blacklist of all other ordinary block types. You can also set this option\r\n# to \"*\" to disable all normal block damages.\r\n# Note that turret and structure types are case-sensitive. You can also set them to just \"true\" for all types.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "projectiles",
+        "high-tier",
+        "item",
+        "material"
+      ],
+      "source": "FIRE_CHARGE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "allow-damaging"
+      ],
+      "source": "\r\n  1:\r\n    others: '*'\r\n    turrets: false\r\n    structures: false\r\n    protected-chests: false\r\n  2:\r\n    others: '*'\r\n    turrets: false\r\n    # Don't allow powercells\r\n    structures: [ 'siege-cannon', 'extractor', 'outpost', 'warppad', 'regulator' ]\r\n    protected-chests: false\r\n  3:\r\n    # others: [ BEDROCK, BARRIER, COMMAND_BLOCK, END_PORTAL_FRAME, STRUCTURE_BLOCK, STRUCTURE_VOID, OBSIDIAN ]\r\n    others: '*'\r\n    turrets: true\r\n    structures: [ 'siege-cannon', 'extractor', 'outpost', 'warppad', 'regulator' ]\r\n    protected-blocks: false\r\n\r\n",
+      "comments": [
+        "\"others\" is the blacklist of all other ordinary block types. You can also set this option",
+        "to \"*\" to disable all normal block damages.",
+        "Note that turret and structure types are case-sensitive. You can also set them to just \"true\" for all types."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "allow-damaging",
+        "1"
+      ],
+      "source": "\r\n    others: '*'\r\n    turrets: false\r\n    structures: false\r\n    protected-chests: false\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "allow-damaging",
+        "1",
+        "others"
+      ],
+      "source": "'*'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "allow-damaging",
+        "1",
+        "turrets"
+      ],
+      "source": "false",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "allow-damaging",
+        "1",
+        "structures"
+      ],
+      "source": "false",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "allow-damaging",
+        "1",
+        "protected-chests"
+      ],
+      "source": "false",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "allow-damaging",
+        "2"
+      ],
+      "source": "\r\n    others: '*'\r\n    turrets: false\r\n    # Don't allow powercells\r\n    structures: [ 'siege-cannon', 'extractor', 'outpost', 'warppad', 'regulator' ]\r\n    protected-chests: false\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "allow-damaging",
+        "2",
+        "others"
+      ],
+      "source": "'*'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "allow-damaging",
+        "2",
+        "turrets"
+      ],
+      "source": "false",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "allow-damaging",
+        "2",
+        "structures"
+      ],
+      "source": "[ 'siege-cannon', 'extractor', 'outpost', 'warppad', 'regulator' ]",
+      "comments": [
+        "Don't allow powercells"
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "'siege-cannon'",
+        "'extractor'",
+        "'outpost'",
+        "'warppad'",
+        "'regulator'"
+      ]
+    },
+    {
+      "path": [
+        "allow-damaging",
+        "2",
+        "protected-chests"
+      ],
+      "source": "false",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "allow-damaging",
+        "3"
+      ],
+      "source": "\r\n    # others: [ BEDROCK, BARRIER, COMMAND_BLOCK, END_PORTAL_FRAME, STRUCTURE_BLOCK, STRUCTURE_VOID, OBSIDIAN ]\r\n    others: '*'\r\n    turrets: true\r\n    structures: [ 'siege-cannon', 'extractor', 'outpost', 'warppad', 'regulator' ]\r\n    protected-blocks: false\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "allow-damaging",
+        "3",
+        "others"
+      ],
+      "source": "'*'",
+      "comments": [
+        "others: [ BEDROCK, BARRIER, COMMAND_BLOCK, END_PORTAL_FRAME, STRUCTURE_BLOCK, STRUCTURE_VOID, OBSIDIAN ]"
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "allow-damaging",
+        "3",
+        "turrets"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "allow-damaging",
+        "3",
+        "structures"
+      ],
+      "source": "[ 'siege-cannon', 'extractor', 'outpost', 'warppad', 'regulator' ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "'siege-cannon'",
+        "'extractor'",
+        "'outpost'",
+        "'warppad'",
+        "'regulator'"
+      ]
+    },
+    {
+      "path": [
+        "allow-damaging",
+        "3",
+        "protected-blocks"
+      ],
+      "source": "false",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles"
+      ],
+      "source": "\r\n  1:\r\n    shoot:\r\n      particle: FLAME\r\n      count: 30\r\n      offset: 0.5\r\n    hit:\r\n      particle: FLAME\r\n      count: 50\r\n      offset: 2\r\n    place:\r\n      particle: ENCHANTMENT_TABLE\r\n      count: 70\r\n      offset: 0.5, 0.5, 0.5\r\n    break:\r\n      particle: ENCHANTMENT_TABLE\r\n      count: 70\r\n      offset: 0.5, 0.5, 0.5\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "1"
+      ],
+      "source": "\r\n    shoot:\r\n      particle: FLAME\r\n      count: 30\r\n      offset: 0.5\r\n    hit:\r\n      particle: FLAME\r\n      count: 50\r\n      offset: 2\r\n    place:\r\n      particle: ENCHANTMENT_TABLE\r\n      count: 70\r\n      offset: 0.5, 0.5, 0.5\r\n    break:\r\n      particle: ENCHANTMENT_TABLE\r\n      count: 70\r\n      offset: 0.5, 0.5, 0.5\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "1",
+        "shoot"
+      ],
+      "source": "\r\n      particle: FLAME\r\n      count: 30\r\n      offset: 0.5\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "1",
+        "shoot",
+        "particle"
+      ],
+      "source": "FLAME",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "1",
+        "shoot",
+        "count"
+      ],
+      "source": "30",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "1",
+        "shoot",
+        "offset"
+      ],
+      "source": "0.5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "1",
+        "hit"
+      ],
+      "source": "\r\n      particle: FLAME\r\n      count: 50\r\n      offset: 2\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "1",
+        "hit",
+        "particle"
+      ],
+      "source": "FLAME",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "1",
+        "hit",
+        "count"
+      ],
+      "source": "50",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "1",
+        "hit",
+        "offset"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "1",
+        "place"
+      ],
+      "source": "\r\n      particle: ENCHANTMENT_TABLE\r\n      count: 70\r\n      offset: 0.5, 0.5, 0.5\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "1",
+        "place",
+        "particle"
+      ],
+      "source": "ENCHANTMENT_TABLE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "1",
+        "place",
+        "count"
+      ],
+      "source": "70",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "1",
+        "place",
+        "offset"
+      ],
+      "source": "0.5, 0.5, 0.5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "1",
+        "break"
+      ],
+      "source": "\r\n      particle: ENCHANTMENT_TABLE\r\n      count: 70\r\n      offset: 0.5, 0.5, 0.5\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "1",
+        "break",
+        "particle"
+      ],
+      "source": "ENCHANTMENT_TABLE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "1",
+        "break",
+        "count"
+      ],
+      "source": "70",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "1",
+        "break",
+        "offset"
+      ],
+      "source": "0.5, 0.5, 0.5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sounds"
+      ],
+      "source": "\r\n  1:\r\n    sit: ITEM_ARMOR_EQUIP_IRON\r\n    standup: ITEM_ARMOR_EQUIP_GOLD\r\n    shoot: ENTITY_DRAGON_FIREBALL_EXPLODE\r\n    load: ITEM_BOTTLE_FILL_DRAGONBREATH\r\n    empty: ENTITY_ITEM_BREAK\r\n    cooldown: BLOCK_NOTE_BLOCK_BASS\r\n    hit: ~ # The explosion sound is enough.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sounds",
+        "1"
+      ],
+      "source": "\r\n    sit: ITEM_ARMOR_EQUIP_IRON\r\n    standup: ITEM_ARMOR_EQUIP_GOLD\r\n    shoot: ENTITY_DRAGON_FIREBALL_EXPLODE\r\n    load: ITEM_BOTTLE_FILL_DRAGONBREATH\r\n    empty: ENTITY_ITEM_BREAK\r\n    cooldown: BLOCK_NOTE_BLOCK_BASS\r\n    hit: ~ # The explosion sound is enough.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sounds",
+        "1",
+        "sit"
+      ],
+      "source": "ITEM_ARMOR_EQUIP_IRON",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sounds",
+        "1",
+        "standup"
+      ],
+      "source": "ITEM_ARMOR_EQUIP_GOLD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sounds",
+        "1",
+        "shoot"
+      ],
+      "source": "ENTITY_DRAGON_FIREBALL_EXPLODE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sounds",
+        "1",
+        "load"
+      ],
+      "source": "ITEM_BOTTLE_FILL_DRAGONBREATH",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sounds",
+        "1",
+        "empty"
+      ],
+      "source": "ENTITY_ITEM_BREAK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sounds",
+        "1",
+        "cooldown"
+      ],
+      "source": "BLOCK_NOTE_BLOCK_BASS",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sounds",
+        "1",
+        "hit"
+      ],
+      "source": "~",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "hologram"
+      ],
+      "source": "\r\n  1:\r\n    lines:\r\n      - \"{$sep}-=( &5Siege Cannon {$s}%roman@level% {$sep})=-\"\r\n    height: 1\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "hologram",
+        "1"
+      ],
+      "source": "\r\n    lines:\r\n      - \"{$sep}-=( &5Siege Cannon {$s}%roman@level% {$sep})=-\"\r\n    height: 1\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "hologram",
+        "1",
+        "lines"
+      ],
+      "source": "\r\n      - \"{$sep}-=( &5Siege Cannon {$s}%roman@level% {$sep})=-\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$sep}-=( &5Siege Cannon {$s}%roman@level% {$sep})=-\""
+      ]
+    },
+    {
+      "path": [
+        "hologram",
+        "1",
+        "height"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "block"
+      ],
+      "source": "\r\n  1: DISPENSER\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "block",
+        "1"
+      ],
+      "source": "DISPENSER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "item"
+      ],
+      "source": "\r\n  1:\r\n    name: \"&5Siege Cannon\"\r\n    material: DISPENSER\r\n    lore: |\r\n      {$dot} {$p}Level{$colon} {$s}%roman@level%\r\n\r\n      {$sep}If the cannon hits a kingdom with\r\n      a shield, it might lower their shield time\r\n      depending ont the ammo.\r\n\r\n      If the cannon hits a kingdom with no shield,\r\n      it will destroy the blocks.\r\n\r\n      It can also damage players and their armor\r\n      depending on the item used as ammo.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "item",
+        "1"
+      ],
+      "source": "\r\n    name: \"&5Siege Cannon\"\r\n    material: DISPENSER\r\n    lore: |\r\n      {$dot} {$p}Level{$colon} {$s}%roman@level%\r\n\r\n      {$sep}If the cannon hits a kingdom with\r\n      a shield, it might lower their shield time\r\n      depending ont the ammo.\r\n\r\n      If the cannon hits a kingdom with no shield,\r\n      it will destroy the blocks.\r\n\r\n      It can also damage players and their armor\r\n      depending on the item used as ammo.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "item",
+        "1",
+        "name"
+      ],
+      "source": "\"&5Siege Cannon\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "item",
+        "1",
+        "material"
+      ],
+      "source": "DISPENSER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "item",
+        "1",
+        "lore"
+      ],
+      "source": "|\r\n      {$dot} {$p}Level{$colon} {$s}%roman@level%\r\n\r\n      {$sep}If the cannon hits a kingdom with\r\n      a shield, it might lower their shield time\r\n      depending ont the ammo.\r\n\r\n      If the cannon hits a kingdom with no shield,\r\n      it will destroy the blocks.\r\n\r\n      It can also damage players and their armor\r\n      depending on the item used as ammo.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

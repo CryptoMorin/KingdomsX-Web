@@ -1,6 +1,5 @@
 import {
-  LOCAL_SUBMITTER_RETURN_PATH,
-  SERVER_SUBDOMAIN_SUBMITTER_RETURN_PATH,
+  SUBMITTER_RETURN_PATH,
   SUBMITTER_SESSION_COOKIE,
   SUBMITTER_SESSION_TOUCH_INTERVAL_MS
 } from "../config";
@@ -46,15 +45,18 @@ export async function getSubmitterSession(
   env: DirectoryEnv
 ): Promise<SubmitterSession | null> {
   if (!env.SESSION_SECRET) {
-    if (env.APP_ENVIRONMENT !== "local") logError("auth.missing_session_secret");
+    if (env.APP_ENVIRONMENT !== "local") {
+      logError("auth.missing_session_secret");
+    }
 
     return null;
   }
 
   const token = parseCookies(request.headers.get("cookie") ?? "")[SUBMITTER_SESSION_COOKIE] ?? "";
 
-  if (!isValidSessionToken(token))
+  if (!isValidSessionToken(token)) {
     return null;
+  }
 
   const sessionHash = await hashSessionToken(token, env);
   const row = await env.DB.prepare(
@@ -77,8 +79,9 @@ export async function getSubmitterSession(
       avatar_hash: string | null;
     }>();
 
-  if (!row)
+  if (!row) {
     return null;
+  }
 
   // Touch sessions at most once per interval to avoid a D1 write on every poll
   const lastSeenAt = new Date(row.last_seen_at).getTime();
@@ -157,8 +160,9 @@ export function toSubmitterUser(account: SubmitterAccount) {
 }
 
 export function discordAvatarUrl(account: SubmitterAccount): string | null {
-  if (!account.avatar_hash)
+  if (!account.avatar_hash) {
     return null;
+  }
 
   const extension = account.avatar_hash.startsWith("a_") ? "gif" : "png";
 
@@ -172,8 +176,9 @@ export function submitterContact(account: SubmitterAccount): string {
 export async function hashSessionToken(token: string, env: DirectoryEnv): Promise<string> {
   const secret = env.SESSION_SECRET ?? "";
 
-  if (!secret)
+  if (!secret) {
     throw new ApiError(503, "Discord login is not configured.");
+  }
 
   return sha256(`${secret}:${token}`);
 }
@@ -182,22 +187,14 @@ export function isValidSessionToken(value: string): boolean {
   return /^[A-Za-z0-9_-]{64}$/.test(value);
 }
 
-export function submitterReturnPath(env: DirectoryEnv, value?: string | null): string {
+export function submitterReturnPath(value?: string | null): string {
   const path = safeReturnPath(value);
-  const defaultPath =
-    env.APP_ENVIRONMENT === "local"
-      ? LOCAL_SUBMITTER_RETURN_PATH
-      : SERVER_SUBDOMAIN_SUBMITTER_RETURN_PATH;
 
-  if (!path)
-    return defaultPath;
+  if (!path) {
+    return SUBMITTER_RETURN_PATH;
+  }
 
   const url = new URL(path, "https://kingdomsx.local");
-
-  if (env.APP_ENVIRONMENT === "local" && url.pathname === SERVER_SUBDOMAIN_SUBMITTER_RETURN_PATH)
-    url.pathname = LOCAL_SUBMITTER_RETURN_PATH;
-  else if (env.APP_ENVIRONMENT !== "local" && url.pathname === LOCAL_SUBMITTER_RETURN_PATH)
-    url.pathname = SERVER_SUBDOMAIN_SUBMITTER_RETURN_PATH;
 
   return `${url.pathname}${url.search}${url.hash}`;
 }
@@ -214,8 +211,9 @@ export function parseCookies(header: string): Record<string, string> {
   header.split(";").forEach((part) => {
     const [name, ...rest] = part.trim().split("=");
 
-    if (!name || rest.length === 0)
+    if (!name || rest.length === 0) {
       return;
+    }
 
     try {
       cookies[name] = decodeURIComponent(rest.join("="));

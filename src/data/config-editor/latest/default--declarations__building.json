@@ -1,0 +1,3518 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "declarations/building.yml",
+  "schemaId": "Structures/structure",
+  "options": [
+    {
+      "path": [
+        "(module)"
+      ],
+      "source": "\r\n  description: 'Base settings for <type>.'\r\n  parameters:\r\n    <type>: str\r\n    <name>: str # Used for EngineHub addon\r\n    <build-duration-factor>: str\r\n    <durability-factor>: int\r\n    <extra-holograms>: list\r\n    <block-1>: map\r\n    <block-2>: map\r\n    <block-3>: map\r\n\r\n# Maximum level this building can be upgraded to.\r\n",
+      "comments": [
+        "Shared settings for all buildings (turrets and structures) ###"
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(module)",
+        "description"
+      ],
+      "source": "'Base settings for <type>.'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(module)",
+        "parameters"
+      ],
+      "source": "\r\n    <type>: str\r\n    <name>: str # Used for EngineHub addon\r\n    <build-duration-factor>: str\r\n    <durability-factor>: int\r\n    <extra-holograms>: list\r\n    <block-1>: map\r\n    <block-2>: map\r\n    <block-3>: map\r\n\r\n# Maximum level this building can be upgraded to.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(module)",
+        "parameters",
+        "<type>"
+      ],
+      "source": "str",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(module)",
+        "parameters",
+        "<name>"
+      ],
+      "source": "str",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(module)",
+        "parameters",
+        "<build-duration-factor>"
+      ],
+      "source": "str",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(module)",
+        "parameters",
+        "<durability-factor>"
+      ],
+      "source": "int",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(module)",
+        "parameters",
+        "<extra-holograms>"
+      ],
+      "source": "list",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(module)",
+        "parameters",
+        "<block-1>"
+      ],
+      "source": "map",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(module)",
+        "parameters",
+        "<block-2>"
+      ],
+      "source": "map",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(module)",
+        "parameters",
+        "<block-3>"
+      ],
+      "source": "map",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "max-level"
+      ],
+      "source": "3",
+      "comments": [
+        "Maximum level this building can be upgraded to."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "build-duration"
+      ],
+      "source": "\r\n  # max() is used here just in case the duration factor is negative.\r\n  opening: 'max(0, [1min] + [<build-duration-factor>])'\r\n  upgrading: 'max(0, ([1min] + [<build-duration-factor>]) * level)'\r\n  repairing: '[1sec] * (building_max_durability - building_durability)'\r\n  demolishing: 'building_region_blocks * [50ms]'\r\n\r\n# The durability of a building (used for things like siege cannons)\r\n",
+      "comments": [
+        "The amount of time for a specific type of building to be finished."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "build-duration",
+        "opening"
+      ],
+      "source": "'max(0, [1min] + [<build-duration-factor>])'",
+      "comments": [
+        "max() is used here just in case the duration factor is negative."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "build-duration",
+        "upgrading"
+      ],
+      "source": "'max(0, ([1min] + [<build-duration-factor>]) * level)'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "build-duration",
+        "repairing"
+      ],
+      "source": "'[1sec] * (building_max_durability - building_durability)'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "build-duration",
+        "demolishing"
+      ],
+      "source": "'building_region_blocks * [50ms]'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "durability"
+      ],
+      "source": "'<durability-factor> * level'",
+      "comments": [
+        "The durability of a building (used for things like siege cannons)"
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "repair"
+      ],
+      "source": "\r\n  # Resource points needed for a full repair.\r\n  cost: '(building_max_durability - building_durability) / 2'\r\n\r\n  # When turret durability is not max but isn't 0 either, you\r\n  # can use these items to repair it instantly.\r\n  # Players need to drop the item near the turret they want to fix.\r\n  materials:\r\n    iron:\r\n      # Amount of durability restored.\r\n      amount: 10\r\n\r\n      # https://github.com/CryptoMorin/KingdomsX/wiki/Config#item-matchers\r\n      item:\r\n        material: IRON_INGOT\r\n    gold:\r\n      amount: 15\r\n      item:\r\n        material: GOLD_INGOT\r\n    diamond:\r\n      amount: 50\r\n      item:\r\n        material: DIAMOND\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "repair",
+        "cost"
+      ],
+      "source": "'(building_max_durability - building_durability) / 2'",
+      "comments": [
+        "Resource points needed for a full repair."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "repair",
+        "materials"
+      ],
+      "source": "\r\n    iron:\r\n      # Amount of durability restored.\r\n      amount: 10\r\n\r\n      # https://github.com/CryptoMorin/KingdomsX/wiki/Config#item-matchers\r\n      item:\r\n        material: IRON_INGOT\r\n    gold:\r\n      amount: 15\r\n      item:\r\n        material: GOLD_INGOT\r\n    diamond:\r\n      amount: 50\r\n      item:\r\n        material: DIAMOND\r\n\r\n",
+      "comments": [
+        "When turret durability is not max but isn't 0 either, you",
+        "can use these items to repair it instantly.",
+        "Players need to drop the item near the turret they want to fix."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "repair",
+        "materials",
+        "iron"
+      ],
+      "source": "\r\n      # Amount of durability restored.\r\n      amount: 10\r\n\r\n      # https://github.com/CryptoMorin/KingdomsX/wiki/Config#item-matchers\r\n      item:\r\n        material: IRON_INGOT\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "repair",
+        "materials",
+        "iron",
+        "amount"
+      ],
+      "source": "10",
+      "comments": [
+        "Amount of durability restored."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "repair",
+        "materials",
+        "iron",
+        "item"
+      ],
+      "source": "\r\n        material: IRON_INGOT\r\n",
+      "comments": [
+        "https://github.com/CryptoMorin/KingdomsX/wiki/Config#item-matchers"
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "repair",
+        "materials",
+        "iron",
+        "item",
+        "material"
+      ],
+      "source": "IRON_INGOT",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "repair",
+        "materials",
+        "gold"
+      ],
+      "source": "\r\n      amount: 15\r\n      item:\r\n        material: GOLD_INGOT\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "repair",
+        "materials",
+        "gold",
+        "amount"
+      ],
+      "source": "15",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "repair",
+        "materials",
+        "gold",
+        "item"
+      ],
+      "source": "\r\n        material: GOLD_INGOT\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "repair",
+        "materials",
+        "gold",
+        "item",
+        "material"
+      ],
+      "source": "GOLD_INGOT",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "repair",
+        "materials",
+        "diamond"
+      ],
+      "source": "\r\n      amount: 50\r\n      item:\r\n        material: DIAMOND\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "repair",
+        "materials",
+        "diamond",
+        "amount"
+      ],
+      "source": "50",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "repair",
+        "materials",
+        "diamond",
+        "item"
+      ],
+      "source": "\r\n        material: DIAMOND\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "repair",
+        "materials",
+        "diamond",
+        "item",
+        "material"
+      ],
+      "source": "DIAMOND",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "preview"
+      ],
+      "source": "\r\n  1:\r\n    ok:\r\n      type: INFO\r\n      color: 0, 255, 0, 70\r\n      block:\r\n        material: GREEN_STAINED_GLASS_PANE\r\n    out-of-chunk:\r\n      type: ERROR\r\n      message: 'building.errors.out-of-chunk'\r\n      color: 250, 150, 0, 70\r\n      block:\r\n        material: ORANGE_STAINED_GLASS\r\n    not-owned:\r\n      type: ERROR\r\n      message: 'building.errors.not-owned'\r\n      color: 250, 150, 0, 70\r\n      block:\r\n        material: ORANGE_STAINED_GLASS\r\n    wrong-schema:\r\n      type: ERROR\r\n      message: 'building.errors.wrong-schema'\r\n      color: 0, 100, 250, 70\r\n      block:\r\n        material: BLUE_STAINED_GLASS\r\n    conflict:\r\n      type: ERROR\r\n      message: 'building.errors.conflict'\r\n      color: 200, 0, 0, 70\r\n      block:\r\n        material: RED_STAINED_GLASS_PANE\r\n    conflict-other-building:\r\n      type: ERROR\r\n      message: 'building.errors.conflict-other-building'\r\n      color: 200, 0, 0, 70\r\n      block:\r\n        material: RED_STAINED_GLASS_PANE\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "preview",
+        "1"
+      ],
+      "source": "\r\n    ok:\r\n      type: INFO\r\n      color: 0, 255, 0, 70\r\n      block:\r\n        material: GREEN_STAINED_GLASS_PANE\r\n    out-of-chunk:\r\n      type: ERROR\r\n      message: 'building.errors.out-of-chunk'\r\n      color: 250, 150, 0, 70\r\n      block:\r\n        material: ORANGE_STAINED_GLASS\r\n    not-owned:\r\n      type: ERROR\r\n      message: 'building.errors.not-owned'\r\n      color: 250, 150, 0, 70\r\n      block:\r\n        material: ORANGE_STAINED_GLASS\r\n    wrong-schema:\r\n      type: ERROR\r\n      message: 'building.errors.wrong-schema'\r\n      color: 0, 100, 250, 70\r\n      block:\r\n        material: BLUE_STAINED_GLASS\r\n    conflict:\r\n      type: ERROR\r\n      message: 'building.errors.conflict'\r\n      color: 200, 0, 0, 70\r\n      block:\r\n        material: RED_STAINED_GLASS_PANE\r\n    conflict-other-building:\r\n      type: ERROR\r\n      message: 'building.errors.conflict-other-building'\r\n      color: 200, 0, 0, 70\r\n      block:\r\n        material: RED_STAINED_GLASS_PANE\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "preview",
+        "1",
+        "ok"
+      ],
+      "source": "\r\n      type: INFO\r\n      color: 0, 255, 0, 70\r\n      block:\r\n        material: GREEN_STAINED_GLASS_PANE\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "preview",
+        "1",
+        "ok",
+        "type"
+      ],
+      "source": "INFO",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "preview",
+        "1",
+        "ok",
+        "color"
+      ],
+      "source": "0, 255, 0, 70",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "preview",
+        "1",
+        "ok",
+        "block"
+      ],
+      "source": "\r\n        material: GREEN_STAINED_GLASS_PANE\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "preview",
+        "1",
+        "ok",
+        "block",
+        "material"
+      ],
+      "source": "GREEN_STAINED_GLASS_PANE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "preview",
+        "1",
+        "out-of-chunk"
+      ],
+      "source": "\r\n      type: ERROR\r\n      message: 'building.errors.out-of-chunk'\r\n      color: 250, 150, 0, 70\r\n      block:\r\n        material: ORANGE_STAINED_GLASS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "preview",
+        "1",
+        "out-of-chunk",
+        "type"
+      ],
+      "source": "ERROR",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "preview",
+        "1",
+        "out-of-chunk",
+        "message"
+      ],
+      "source": "'building.errors.out-of-chunk'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "preview",
+        "1",
+        "out-of-chunk",
+        "color"
+      ],
+      "source": "250, 150, 0, 70",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "preview",
+        "1",
+        "out-of-chunk",
+        "block"
+      ],
+      "source": "\r\n        material: ORANGE_STAINED_GLASS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "preview",
+        "1",
+        "out-of-chunk",
+        "block",
+        "material"
+      ],
+      "source": "ORANGE_STAINED_GLASS",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "preview",
+        "1",
+        "not-owned"
+      ],
+      "source": "\r\n      type: ERROR\r\n      message: 'building.errors.not-owned'\r\n      color: 250, 150, 0, 70\r\n      block:\r\n        material: ORANGE_STAINED_GLASS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "preview",
+        "1",
+        "not-owned",
+        "type"
+      ],
+      "source": "ERROR",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "preview",
+        "1",
+        "not-owned",
+        "message"
+      ],
+      "source": "'building.errors.not-owned'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "preview",
+        "1",
+        "not-owned",
+        "color"
+      ],
+      "source": "250, 150, 0, 70",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "preview",
+        "1",
+        "not-owned",
+        "block"
+      ],
+      "source": "\r\n        material: ORANGE_STAINED_GLASS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "preview",
+        "1",
+        "not-owned",
+        "block",
+        "material"
+      ],
+      "source": "ORANGE_STAINED_GLASS",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "preview",
+        "1",
+        "wrong-schema"
+      ],
+      "source": "\r\n      type: ERROR\r\n      message: 'building.errors.wrong-schema'\r\n      color: 0, 100, 250, 70\r\n      block:\r\n        material: BLUE_STAINED_GLASS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "preview",
+        "1",
+        "wrong-schema",
+        "type"
+      ],
+      "source": "ERROR",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "preview",
+        "1",
+        "wrong-schema",
+        "message"
+      ],
+      "source": "'building.errors.wrong-schema'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "preview",
+        "1",
+        "wrong-schema",
+        "color"
+      ],
+      "source": "0, 100, 250, 70",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "preview",
+        "1",
+        "wrong-schema",
+        "block"
+      ],
+      "source": "\r\n        material: BLUE_STAINED_GLASS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "preview",
+        "1",
+        "wrong-schema",
+        "block",
+        "material"
+      ],
+      "source": "BLUE_STAINED_GLASS",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "preview",
+        "1",
+        "conflict"
+      ],
+      "source": "\r\n      type: ERROR\r\n      message: 'building.errors.conflict'\r\n      color: 200, 0, 0, 70\r\n      block:\r\n        material: RED_STAINED_GLASS_PANE\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "preview",
+        "1",
+        "conflict",
+        "type"
+      ],
+      "source": "ERROR",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "preview",
+        "1",
+        "conflict",
+        "message"
+      ],
+      "source": "'building.errors.conflict'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "preview",
+        "1",
+        "conflict",
+        "color"
+      ],
+      "source": "200, 0, 0, 70",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "preview",
+        "1",
+        "conflict",
+        "block"
+      ],
+      "source": "\r\n        material: RED_STAINED_GLASS_PANE\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "preview",
+        "1",
+        "conflict",
+        "block",
+        "material"
+      ],
+      "source": "RED_STAINED_GLASS_PANE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "preview",
+        "1",
+        "conflict-other-building"
+      ],
+      "source": "\r\n      type: ERROR\r\n      message: 'building.errors.conflict-other-building'\r\n      color: 200, 0, 0, 70\r\n      block:\r\n        material: RED_STAINED_GLASS_PANE\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "preview",
+        "1",
+        "conflict-other-building",
+        "type"
+      ],
+      "source": "ERROR",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "preview",
+        "1",
+        "conflict-other-building",
+        "message"
+      ],
+      "source": "'building.errors.conflict-other-building'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "preview",
+        "1",
+        "conflict-other-building",
+        "color"
+      ],
+      "source": "200, 0, 0, 70",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "preview",
+        "1",
+        "conflict-other-building",
+        "block"
+      ],
+      "source": "\r\n        material: RED_STAINED_GLASS_PANE\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "preview",
+        "1",
+        "conflict-other-building",
+        "block",
+        "material"
+      ],
+      "source": "RED_STAINED_GLASS_PANE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "building"
+      ],
+      "source": "\r\n  1:\r\n    # Uses the registered default.\r\n    # type: SINGLE_BLOCKED\r\n\r\n    # [IgnoreIfSet]\r\n    functional-points: &fnPoints\r\n      '0, 0, 0':\r\n        - { type: activation, name: main }\r\n        - { type: interaction, name: main }\r\n        - { type: manual, name: main }\r\n    block: <block-1>\r\n    holograms: &holograms\r\n      main:\r\n        main:\r\n          background-color: 0, 0, 0, 150\r\n\r\n          # The line numbers must be specified here.\r\n          # If you want a custom spacing between lines,\r\n          # you'd have to make a new hologram.\r\n          lines:\r\n            - '{$$building.holograms.main}'\r\n            - '<extra-holograms>'\r\n            - '{? building_max_durability > 0 && building_durability < 0 ? \"{$sep}[{$es}!{$sep}] {$e}{$$building.holograms.progress.broken} {$sep}[{$es}!{$sep}]\" ; building_max_durability > 0 && building_durability != building_max_durability ? \"{$p}{$$building.holograms.progress.durability}{$colon} {$s}%fancy@building_durability%{$sep}/{$s}%fancy@building_max_durability%\"}'\r\n\r\n          # The initial height for holograms is their distance from the building's origin.\r\n          # Offset does the same thing as height, but it also supports xyz axis.\r\n          # offset: 4, 0, 35.63\r\n          height: &height 1.5\r\n      opening:\r\n        main:\r\n          background-color: 0, 255, 255, 100\r\n          lines:\r\n            - '{$$building.holograms.main}'\r\n            - &progress1 '{$$building.holograms.progress.2}'\r\n            - &progress2 '{$$building.holograms.progress.3}'\r\n          height: *height\r\n      upgrading:\r\n        main:\r\n          background-color: 101, 0, 140, 100\r\n          lines:\r\n            - '{$$building.holograms.upgrading}'\r\n            - *progress1\r\n            - *progress2\r\n          height: *height\r\n      demolishing:\r\n        main:\r\n          background-color: 200, 0, 0, 100\r\n          lines:\r\n            - '{$$building.holograms.demolishing}'\r\n            - *progress1\r\n            - *progress2\r\n          height: *height\r\n      repairing:\r\n        main:\r\n          background-color: 128, 140, 0, 100\r\n          lines:\r\n            - '{$$building.holograms.repairing}'\r\n            - *progress1\r\n            - *progress2\r\n          height: *height\r\n  2:\r\n    # [IgnoreIfSet]\r\n    functional-points: *fnPoints\r\n    block: <block-2>\r\n    holograms: *holograms\r\n  3:\r\n    # [IgnoreIfSet]\r\n    functional-points: *fnPoints\r\n    block: <block-3>\r\n    holograms: *holograms\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "building",
+        "1"
+      ],
+      "source": "\r\n    # Uses the registered default.\r\n    # type: SINGLE_BLOCKED\r\n\r\n    # [IgnoreIfSet]\r\n    functional-points: &fnPoints\r\n      '0, 0, 0':\r\n        - { type: activation, name: main }\r\n        - { type: interaction, name: main }\r\n        - { type: manual, name: main }\r\n    block: <block-1>\r\n    holograms: &holograms\r\n      main:\r\n        main:\r\n          background-color: 0, 0, 0, 150\r\n\r\n          # The line numbers must be specified here.\r\n          # If you want a custom spacing between lines,\r\n          # you'd have to make a new hologram.\r\n          lines:\r\n            - '{$$building.holograms.main}'\r\n            - '<extra-holograms>'\r\n            - '{? building_max_durability > 0 && building_durability < 0 ? \"{$sep}[{$es}!{$sep}] {$e}{$$building.holograms.progress.broken} {$sep}[{$es}!{$sep}]\" ; building_max_durability > 0 && building_durability != building_max_durability ? \"{$p}{$$building.holograms.progress.durability}{$colon} {$s}%fancy@building_durability%{$sep}/{$s}%fancy@building_max_durability%\"}'\r\n\r\n          # The initial height for holograms is their distance from the building's origin.\r\n          # Offset does the same thing as height, but it also supports xyz axis.\r\n          # offset: 4, 0, 35.63\r\n          height: &height 1.5\r\n      opening:\r\n        main:\r\n          background-color: 0, 255, 255, 100\r\n          lines:\r\n            - '{$$building.holograms.main}'\r\n            - &progress1 '{$$building.holograms.progress.2}'\r\n            - &progress2 '{$$building.holograms.progress.3}'\r\n          height: *height\r\n      upgrading:\r\n        main:\r\n          background-color: 101, 0, 140, 100\r\n          lines:\r\n            - '{$$building.holograms.upgrading}'\r\n            - *progress1\r\n            - *progress2\r\n          height: *height\r\n      demolishing:\r\n        main:\r\n          background-color: 200, 0, 0, 100\r\n          lines:\r\n            - '{$$building.holograms.demolishing}'\r\n            - *progress1\r\n            - *progress2\r\n          height: *height\r\n      repairing:\r\n        main:\r\n          background-color: 128, 140, 0, 100\r\n          lines:\r\n            - '{$$building.holograms.repairing}'\r\n            - *progress1\r\n            - *progress2\r\n          height: *height\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "building",
+        "1",
+        "functional-points"
+      ],
+      "source": "&fnPoints\r\n      '0, 0, 0':\r\n        - { type: activation, name: main }\r\n        - { type: interaction, name: main }\r\n        - { type: manual, name: main }\r\n",
+      "comments": [
+        "[IgnoreIfSet]"
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "building",
+        "1",
+        "functional-points",
+        "0, 0, 0"
+      ],
+      "source": "\r\n        - { type: activation, name: main }\r\n        - { type: interaction, name: main }\r\n        - { type: manual, name: main }\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "building",
+        "1",
+        "block"
+      ],
+      "source": "<block-1>",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "building",
+        "1",
+        "holograms"
+      ],
+      "source": "&holograms\r\n      main:\r\n        main:\r\n          background-color: 0, 0, 0, 150\r\n\r\n          # The line numbers must be specified here.\r\n          # If you want a custom spacing between lines,\r\n          # you'd have to make a new hologram.\r\n          lines:\r\n            - '{$$building.holograms.main}'\r\n            - '<extra-holograms>'\r\n            - '{? building_max_durability > 0 && building_durability < 0 ? \"{$sep}[{$es}!{$sep}] {$e}{$$building.holograms.progress.broken} {$sep}[{$es}!{$sep}]\" ; building_max_durability > 0 && building_durability != building_max_durability ? \"{$p}{$$building.holograms.progress.durability}{$colon} {$s}%fancy@building_durability%{$sep}/{$s}%fancy@building_max_durability%\"}'\r\n\r\n          # The initial height for holograms is their distance from the building's origin.\r\n          # Offset does the same thing as height, but it also supports xyz axis.\r\n          # offset: 4, 0, 35.63\r\n          height: &height 1.5\r\n      opening:\r\n        main:\r\n          background-color: 0, 255, 255, 100\r\n          lines:\r\n            - '{$$building.holograms.main}'\r\n            - &progress1 '{$$building.holograms.progress.2}'\r\n            - &progress2 '{$$building.holograms.progress.3}'\r\n          height: *height\r\n      upgrading:\r\n        main:\r\n          background-color: 101, 0, 140, 100\r\n          lines:\r\n            - '{$$building.holograms.upgrading}'\r\n            - *progress1\r\n            - *progress2\r\n          height: *height\r\n      demolishing:\r\n        main:\r\n          background-color: 200, 0, 0, 100\r\n          lines:\r\n            - '{$$building.holograms.demolishing}'\r\n            - *progress1\r\n            - *progress2\r\n          height: *height\r\n      repairing:\r\n        main:\r\n          background-color: 128, 140, 0, 100\r\n          lines:\r\n            - '{$$building.holograms.repairing}'\r\n            - *progress1\r\n            - *progress2\r\n          height: *height\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "building",
+        "1",
+        "holograms",
+        "main"
+      ],
+      "source": "\r\n        main:\r\n          background-color: 0, 0, 0, 150\r\n\r\n          # The line numbers must be specified here.\r\n          # If you want a custom spacing between lines,\r\n          # you'd have to make a new hologram.\r\n          lines:\r\n            - '{$$building.holograms.main}'\r\n            - '<extra-holograms>'\r\n            - '{? building_max_durability > 0 && building_durability < 0 ? \"{$sep}[{$es}!{$sep}] {$e}{$$building.holograms.progress.broken} {$sep}[{$es}!{$sep}]\" ; building_max_durability > 0 && building_durability != building_max_durability ? \"{$p}{$$building.holograms.progress.durability}{$colon} {$s}%fancy@building_durability%{$sep}/{$s}%fancy@building_max_durability%\"}'\r\n\r\n          # The initial height for holograms is their distance from the building's origin.\r\n          # Offset does the same thing as height, but it also supports xyz axis.\r\n          # offset: 4, 0, 35.63\r\n          height: &height 1.5\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "building",
+        "1",
+        "holograms",
+        "main",
+        "main"
+      ],
+      "source": "\r\n          background-color: 0, 0, 0, 150\r\n\r\n          # The line numbers must be specified here.\r\n          # If you want a custom spacing between lines,\r\n          # you'd have to make a new hologram.\r\n          lines:\r\n            - '{$$building.holograms.main}'\r\n            - '<extra-holograms>'\r\n            - '{? building_max_durability > 0 && building_durability < 0 ? \"{$sep}[{$es}!{$sep}] {$e}{$$building.holograms.progress.broken} {$sep}[{$es}!{$sep}]\" ; building_max_durability > 0 && building_durability != building_max_durability ? \"{$p}{$$building.holograms.progress.durability}{$colon} {$s}%fancy@building_durability%{$sep}/{$s}%fancy@building_max_durability%\"}'\r\n\r\n          # The initial height for holograms is their distance from the building's origin.\r\n          # Offset does the same thing as height, but it also supports xyz axis.\r\n          # offset: 4, 0, 35.63\r\n          height: &height 1.5\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "building",
+        "1",
+        "holograms",
+        "main",
+        "main",
+        "background-color"
+      ],
+      "source": "0, 0, 0, 150",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "building",
+        "1",
+        "holograms",
+        "main",
+        "main",
+        "lines"
+      ],
+      "source": "\r\n            - '{$$building.holograms.main}'\r\n            - '<extra-holograms>'\r\n            - '{? building_max_durability > 0 && building_durability < 0 ? \"{$sep}[{$es}!{$sep}] {$e}{$$building.holograms.progress.broken} {$sep}[{$es}!{$sep}]\" ; building_max_durability > 0 && building_durability != building_max_durability ? \"{$p}{$$building.holograms.progress.durability}{$colon} {$s}%fancy@building_durability%{$sep}/{$s}%fancy@building_max_durability%\"}'\r\n",
+      "comments": [
+        "The line numbers must be specified here.",
+        "If you want a custom spacing between lines,",
+        "you'd have to make a new hologram."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "'{$$building.holograms.main}'",
+        "'<extra-holograms>'",
+        "'{? building_max_durability > 0 && building_durability < 0 ? \"{$sep}[{$es}!{$sep}] {$e}{$$building.holograms.progress.broken} {$sep}[{$es}!{$sep}]\" ; building_max_durability > 0 && building_durability != building_max_durability ? \"{$p}{$$building.holograms.progress.durability}{$colon} {$s}%fancy@building_durability%{$sep}/{$s}%fancy@building_max_durability%\"}'"
+      ]
+    },
+    {
+      "path": [
+        "building",
+        "1",
+        "holograms",
+        "main",
+        "main",
+        "height"
+      ],
+      "source": "&height 1.5",
+      "comments": [
+        "The initial height for holograms is their distance from the building's origin.",
+        "Offset does the same thing as height, but it also supports xyz axis.",
+        "offset: 4, 0, 35.63"
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "building",
+        "1",
+        "holograms",
+        "opening"
+      ],
+      "source": "\r\n        main:\r\n          background-color: 0, 255, 255, 100\r\n          lines:\r\n            - '{$$building.holograms.main}'\r\n            - &progress1 '{$$building.holograms.progress.2}'\r\n            - &progress2 '{$$building.holograms.progress.3}'\r\n          height: *height\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "building",
+        "1",
+        "holograms",
+        "opening",
+        "main"
+      ],
+      "source": "\r\n          background-color: 0, 255, 255, 100\r\n          lines:\r\n            - '{$$building.holograms.main}'\r\n            - &progress1 '{$$building.holograms.progress.2}'\r\n            - &progress2 '{$$building.holograms.progress.3}'\r\n          height: *height\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "building",
+        "1",
+        "holograms",
+        "opening",
+        "main",
+        "background-color"
+      ],
+      "source": "0, 255, 255, 100",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "building",
+        "1",
+        "holograms",
+        "opening",
+        "main",
+        "lines"
+      ],
+      "source": "\r\n            - '{$$building.holograms.main}'\r\n            - &progress1 '{$$building.holograms.progress.2}'\r\n            - &progress2 '{$$building.holograms.progress.3}'\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "'{$$building.holograms.main}'",
+        "&progress1 '{$$building.holograms.progress.2}'",
+        "&progress2 '{$$building.holograms.progress.3}'"
+      ]
+    },
+    {
+      "path": [
+        "building",
+        "1",
+        "holograms",
+        "opening",
+        "main",
+        "height"
+      ],
+      "source": "*height",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "building",
+        "1",
+        "holograms",
+        "upgrading"
+      ],
+      "source": "\r\n        main:\r\n          background-color: 101, 0, 140, 100\r\n          lines:\r\n            - '{$$building.holograms.upgrading}'\r\n            - *progress1\r\n            - *progress2\r\n          height: *height\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "building",
+        "1",
+        "holograms",
+        "upgrading",
+        "main"
+      ],
+      "source": "\r\n          background-color: 101, 0, 140, 100\r\n          lines:\r\n            - '{$$building.holograms.upgrading}'\r\n            - *progress1\r\n            - *progress2\r\n          height: *height\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "building",
+        "1",
+        "holograms",
+        "upgrading",
+        "main",
+        "background-color"
+      ],
+      "source": "101, 0, 140, 100",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "building",
+        "1",
+        "holograms",
+        "upgrading",
+        "main",
+        "lines"
+      ],
+      "source": "\r\n            - '{$$building.holograms.upgrading}'\r\n            - *progress1\r\n            - *progress2\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "'{$$building.holograms.upgrading}'",
+        "*progress1",
+        "*progress2"
+      ]
+    },
+    {
+      "path": [
+        "building",
+        "1",
+        "holograms",
+        "upgrading",
+        "main",
+        "height"
+      ],
+      "source": "*height",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "building",
+        "1",
+        "holograms",
+        "demolishing"
+      ],
+      "source": "\r\n        main:\r\n          background-color: 200, 0, 0, 100\r\n          lines:\r\n            - '{$$building.holograms.demolishing}'\r\n            - *progress1\r\n            - *progress2\r\n          height: *height\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "building",
+        "1",
+        "holograms",
+        "demolishing",
+        "main"
+      ],
+      "source": "\r\n          background-color: 200, 0, 0, 100\r\n          lines:\r\n            - '{$$building.holograms.demolishing}'\r\n            - *progress1\r\n            - *progress2\r\n          height: *height\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "building",
+        "1",
+        "holograms",
+        "demolishing",
+        "main",
+        "background-color"
+      ],
+      "source": "200, 0, 0, 100",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "building",
+        "1",
+        "holograms",
+        "demolishing",
+        "main",
+        "lines"
+      ],
+      "source": "\r\n            - '{$$building.holograms.demolishing}'\r\n            - *progress1\r\n            - *progress2\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "'{$$building.holograms.demolishing}'",
+        "*progress1",
+        "*progress2"
+      ]
+    },
+    {
+      "path": [
+        "building",
+        "1",
+        "holograms",
+        "demolishing",
+        "main",
+        "height"
+      ],
+      "source": "*height",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "building",
+        "1",
+        "holograms",
+        "repairing"
+      ],
+      "source": "\r\n        main:\r\n          background-color: 128, 140, 0, 100\r\n          lines:\r\n            - '{$$building.holograms.repairing}'\r\n            - *progress1\r\n            - *progress2\r\n          height: *height\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "building",
+        "1",
+        "holograms",
+        "repairing",
+        "main"
+      ],
+      "source": "\r\n          background-color: 128, 140, 0, 100\r\n          lines:\r\n            - '{$$building.holograms.repairing}'\r\n            - *progress1\r\n            - *progress2\r\n          height: *height\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "building",
+        "1",
+        "holograms",
+        "repairing",
+        "main",
+        "background-color"
+      ],
+      "source": "128, 140, 0, 100",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "building",
+        "1",
+        "holograms",
+        "repairing",
+        "main",
+        "lines"
+      ],
+      "source": "\r\n            - '{$$building.holograms.repairing}'\r\n            - *progress1\r\n            - *progress2\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "'{$$building.holograms.repairing}'",
+        "*progress1",
+        "*progress2"
+      ]
+    },
+    {
+      "path": [
+        "building",
+        "1",
+        "holograms",
+        "repairing",
+        "main",
+        "height"
+      ],
+      "source": "*height",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "building",
+        "2"
+      ],
+      "source": "\r\n    # [IgnoreIfSet]\r\n    functional-points: *fnPoints\r\n    block: <block-2>\r\n    holograms: *holograms\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "building",
+        "2",
+        "functional-points"
+      ],
+      "source": "*fnPoints",
+      "comments": [
+        "[IgnoreIfSet]"
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "building",
+        "2",
+        "block"
+      ],
+      "source": "<block-2>",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "building",
+        "2",
+        "holograms"
+      ],
+      "source": "*holograms",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "building",
+        "3"
+      ],
+      "source": "\r\n    # [IgnoreIfSet]\r\n    functional-points: *fnPoints\r\n    block: <block-3>\r\n    holograms: *holograms\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "building",
+        "3",
+        "functional-points"
+      ],
+      "source": "*fnPoints",
+      "comments": [
+        "[IgnoreIfSet]"
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "building",
+        "3",
+        "block"
+      ],
+      "source": "<block-3>",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "building",
+        "3",
+        "holograms"
+      ],
+      "source": "*holograms",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sounds"
+      ],
+      "source": "\r\n  1:\r\n    # damaged: BLOCK_ANVIL_USE\r\n    partial-repair: BLOCK_ANVIL_USE\r\n    broken: BLOCK_ANVIL_DESTROY\r\n\r\n    opening:\r\n      started: ENTITY_ARROW_SHOOT\r\n      finished: BLOCK_ANVIL_USE\r\n      stopped: &stop-sound ENTITY_ITEM_BREAK\r\n    upgrading:\r\n      started: BLOCK_ANVIL_USE\r\n      finished: BLOCK_ANVIL_USE\r\n      stopped: *stop-sound\r\n    repairing:\r\n      started: BLOCK_ANVIL_USE\r\n      finished: BLOCK_ANVIL_USE\r\n      stopped: *stop-sound\r\n    demolition:\r\n      started: *stop-sound\r\n      finished: *stop-sound\r\n      stopped: *stop-sound\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sounds",
+        "1"
+      ],
+      "source": "\r\n    # damaged: BLOCK_ANVIL_USE\r\n    partial-repair: BLOCK_ANVIL_USE\r\n    broken: BLOCK_ANVIL_DESTROY\r\n\r\n    opening:\r\n      started: ENTITY_ARROW_SHOOT\r\n      finished: BLOCK_ANVIL_USE\r\n      stopped: &stop-sound ENTITY_ITEM_BREAK\r\n    upgrading:\r\n      started: BLOCK_ANVIL_USE\r\n      finished: BLOCK_ANVIL_USE\r\n      stopped: *stop-sound\r\n    repairing:\r\n      started: BLOCK_ANVIL_USE\r\n      finished: BLOCK_ANVIL_USE\r\n      stopped: *stop-sound\r\n    demolition:\r\n      started: *stop-sound\r\n      finished: *stop-sound\r\n      stopped: *stop-sound\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sounds",
+        "1",
+        "partial-repair"
+      ],
+      "source": "BLOCK_ANVIL_USE",
+      "comments": [
+        "damaged: BLOCK_ANVIL_USE"
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sounds",
+        "1",
+        "broken"
+      ],
+      "source": "BLOCK_ANVIL_DESTROY",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sounds",
+        "1",
+        "opening"
+      ],
+      "source": "\r\n      started: ENTITY_ARROW_SHOOT\r\n      finished: BLOCK_ANVIL_USE\r\n      stopped: &stop-sound ENTITY_ITEM_BREAK\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sounds",
+        "1",
+        "opening",
+        "started"
+      ],
+      "source": "ENTITY_ARROW_SHOOT",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sounds",
+        "1",
+        "opening",
+        "finished"
+      ],
+      "source": "BLOCK_ANVIL_USE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sounds",
+        "1",
+        "opening",
+        "stopped"
+      ],
+      "source": "&stop-sound ENTITY_ITEM_BREAK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sounds",
+        "1",
+        "upgrading"
+      ],
+      "source": "\r\n      started: BLOCK_ANVIL_USE\r\n      finished: BLOCK_ANVIL_USE\r\n      stopped: *stop-sound\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sounds",
+        "1",
+        "upgrading",
+        "started"
+      ],
+      "source": "BLOCK_ANVIL_USE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sounds",
+        "1",
+        "upgrading",
+        "finished"
+      ],
+      "source": "BLOCK_ANVIL_USE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sounds",
+        "1",
+        "upgrading",
+        "stopped"
+      ],
+      "source": "*stop-sound",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sounds",
+        "1",
+        "repairing"
+      ],
+      "source": "\r\n      started: BLOCK_ANVIL_USE\r\n      finished: BLOCK_ANVIL_USE\r\n      stopped: *stop-sound\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sounds",
+        "1",
+        "repairing",
+        "started"
+      ],
+      "source": "BLOCK_ANVIL_USE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sounds",
+        "1",
+        "repairing",
+        "finished"
+      ],
+      "source": "BLOCK_ANVIL_USE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sounds",
+        "1",
+        "repairing",
+        "stopped"
+      ],
+      "source": "*stop-sound",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sounds",
+        "1",
+        "demolition"
+      ],
+      "source": "\r\n      started: *stop-sound\r\n      finished: *stop-sound\r\n      stopped: *stop-sound\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sounds",
+        "1",
+        "demolition",
+        "started"
+      ],
+      "source": "*stop-sound",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sounds",
+        "1",
+        "demolition",
+        "finished"
+      ],
+      "source": "*stop-sound",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sounds",
+        "1",
+        "demolition",
+        "stopped"
+      ],
+      "source": "*stop-sound",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles"
+      ],
+      "source": "\r\n  # Other entries:\r\n  # place-block: Particle for when a single block is placed.\r\n  1:\r\n    broken:\r\n      particle: REDSTONE\r\n      color: 0, 0, 255\r\n      size: 2\r\n      count: 1\r\n\r\n    # This is displayed on the borders for the building.\r\n    opening:\r\n      progress:\r\n        particle: REDSTONE\r\n        color: 0, 255, 0\r\n        size: 2\r\n        count: 1\r\n      started: &basic-cloud\r\n        particle: CLOUD\r\n        count: 70\r\n        offset: 0.5, 0.5, 0.5\r\n      finished: *basic-cloud\r\n      stopped: *basic-cloud\r\n    upgrading:\r\n      started: *basic-cloud\r\n      stopped: *basic-cloud\r\n      finished: *basic-cloud\r\n      progress: &particle-2\r\n        particle: REDSTONE\r\n        color: 0, 0, 255\r\n        size: 2\r\n        count: 1\r\n    demolition:\r\n      started: *basic-cloud\r\n      stopped: *basic-cloud\r\n      finished: *basic-cloud\r\n      progress: *basic-cloud\r\n    repairing:\r\n      started: *basic-cloud\r\n      stopped: *basic-cloud\r\n      finished: *basic-cloud\r\n      progress:\r\n        particle: REDSTONE\r\n        color: 255, 255, 0\r\n        size: 2\r\n        count: 1\r\n  2:\r\n    opening:\r\n      progress: *particle-2\r\n    upgrading:\r\n      progress: &particle-3\r\n        particle: REDSTONE\r\n        color: 255, 0, 0\r\n        size: 2\r\n        count: 1\r\n  3:\r\n    opening:\r\n      progress: *particle-3\r\n    upgrading:\r\n      progress: *particle-3\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "1"
+      ],
+      "source": "\r\n    broken:\r\n      particle: REDSTONE\r\n      color: 0, 0, 255\r\n      size: 2\r\n      count: 1\r\n\r\n    # This is displayed on the borders for the building.\r\n    opening:\r\n      progress:\r\n        particle: REDSTONE\r\n        color: 0, 255, 0\r\n        size: 2\r\n        count: 1\r\n      started: &basic-cloud\r\n        particle: CLOUD\r\n        count: 70\r\n        offset: 0.5, 0.5, 0.5\r\n      finished: *basic-cloud\r\n      stopped: *basic-cloud\r\n    upgrading:\r\n      started: *basic-cloud\r\n      stopped: *basic-cloud\r\n      finished: *basic-cloud\r\n      progress: &particle-2\r\n        particle: REDSTONE\r\n        color: 0, 0, 255\r\n        size: 2\r\n        count: 1\r\n    demolition:\r\n      started: *basic-cloud\r\n      stopped: *basic-cloud\r\n      finished: *basic-cloud\r\n      progress: *basic-cloud\r\n    repairing:\r\n      started: *basic-cloud\r\n      stopped: *basic-cloud\r\n      finished: *basic-cloud\r\n      progress:\r\n        particle: REDSTONE\r\n        color: 255, 255, 0\r\n        size: 2\r\n        count: 1\r\n",
+      "comments": [
+        "Other entries:",
+        "place-block: Particle for when a single block is placed."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "1",
+        "broken"
+      ],
+      "source": "\r\n      particle: REDSTONE\r\n      color: 0, 0, 255\r\n      size: 2\r\n      count: 1\r\n\r\n    # This is displayed on the borders for the building.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "1",
+        "broken",
+        "particle"
+      ],
+      "source": "REDSTONE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "1",
+        "broken",
+        "color"
+      ],
+      "source": "0, 0, 255",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "1",
+        "broken",
+        "size"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "1",
+        "broken",
+        "count"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "1",
+        "opening"
+      ],
+      "source": "\r\n      progress:\r\n        particle: REDSTONE\r\n        color: 0, 255, 0\r\n        size: 2\r\n        count: 1\r\n      started: &basic-cloud\r\n        particle: CLOUD\r\n        count: 70\r\n        offset: 0.5, 0.5, 0.5\r\n      finished: *basic-cloud\r\n      stopped: *basic-cloud\r\n",
+      "comments": [
+        "This is displayed on the borders for the building."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "1",
+        "opening",
+        "progress"
+      ],
+      "source": "\r\n        particle: REDSTONE\r\n        color: 0, 255, 0\r\n        size: 2\r\n        count: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "1",
+        "opening",
+        "progress",
+        "particle"
+      ],
+      "source": "REDSTONE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "1",
+        "opening",
+        "progress",
+        "color"
+      ],
+      "source": "0, 255, 0",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "1",
+        "opening",
+        "progress",
+        "size"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "1",
+        "opening",
+        "progress",
+        "count"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "1",
+        "opening",
+        "started"
+      ],
+      "source": "&basic-cloud\r\n        particle: CLOUD\r\n        count: 70\r\n        offset: 0.5, 0.5, 0.5\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "1",
+        "opening",
+        "started",
+        "particle"
+      ],
+      "source": "CLOUD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "1",
+        "opening",
+        "started",
+        "count"
+      ],
+      "source": "70",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "1",
+        "opening",
+        "started",
+        "offset"
+      ],
+      "source": "0.5, 0.5, 0.5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "1",
+        "opening",
+        "finished"
+      ],
+      "source": "*basic-cloud",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "1",
+        "opening",
+        "stopped"
+      ],
+      "source": "*basic-cloud",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "1",
+        "upgrading"
+      ],
+      "source": "\r\n      started: *basic-cloud\r\n      stopped: *basic-cloud\r\n      finished: *basic-cloud\r\n      progress: &particle-2\r\n        particle: REDSTONE\r\n        color: 0, 0, 255\r\n        size: 2\r\n        count: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "1",
+        "upgrading",
+        "started"
+      ],
+      "source": "*basic-cloud",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "1",
+        "upgrading",
+        "stopped"
+      ],
+      "source": "*basic-cloud",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "1",
+        "upgrading",
+        "finished"
+      ],
+      "source": "*basic-cloud",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "1",
+        "upgrading",
+        "progress"
+      ],
+      "source": "&particle-2\r\n        particle: REDSTONE\r\n        color: 0, 0, 255\r\n        size: 2\r\n        count: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "1",
+        "upgrading",
+        "progress",
+        "particle"
+      ],
+      "source": "REDSTONE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "1",
+        "upgrading",
+        "progress",
+        "color"
+      ],
+      "source": "0, 0, 255",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "1",
+        "upgrading",
+        "progress",
+        "size"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "1",
+        "upgrading",
+        "progress",
+        "count"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "1",
+        "demolition"
+      ],
+      "source": "\r\n      started: *basic-cloud\r\n      stopped: *basic-cloud\r\n      finished: *basic-cloud\r\n      progress: *basic-cloud\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "1",
+        "demolition",
+        "started"
+      ],
+      "source": "*basic-cloud",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "1",
+        "demolition",
+        "stopped"
+      ],
+      "source": "*basic-cloud",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "1",
+        "demolition",
+        "finished"
+      ],
+      "source": "*basic-cloud",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "1",
+        "demolition",
+        "progress"
+      ],
+      "source": "*basic-cloud",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "1",
+        "repairing"
+      ],
+      "source": "\r\n      started: *basic-cloud\r\n      stopped: *basic-cloud\r\n      finished: *basic-cloud\r\n      progress:\r\n        particle: REDSTONE\r\n        color: 255, 255, 0\r\n        size: 2\r\n        count: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "1",
+        "repairing",
+        "started"
+      ],
+      "source": "*basic-cloud",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "1",
+        "repairing",
+        "stopped"
+      ],
+      "source": "*basic-cloud",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "1",
+        "repairing",
+        "finished"
+      ],
+      "source": "*basic-cloud",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "1",
+        "repairing",
+        "progress"
+      ],
+      "source": "\r\n        particle: REDSTONE\r\n        color: 255, 255, 0\r\n        size: 2\r\n        count: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "1",
+        "repairing",
+        "progress",
+        "particle"
+      ],
+      "source": "REDSTONE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "1",
+        "repairing",
+        "progress",
+        "color"
+      ],
+      "source": "255, 255, 0",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "1",
+        "repairing",
+        "progress",
+        "size"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "1",
+        "repairing",
+        "progress",
+        "count"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "2"
+      ],
+      "source": "\r\n    opening:\r\n      progress: *particle-2\r\n    upgrading:\r\n      progress: &particle-3\r\n        particle: REDSTONE\r\n        color: 255, 0, 0\r\n        size: 2\r\n        count: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "2",
+        "opening"
+      ],
+      "source": "\r\n      progress: *particle-2\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "2",
+        "opening",
+        "progress"
+      ],
+      "source": "*particle-2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "2",
+        "upgrading"
+      ],
+      "source": "\r\n      progress: &particle-3\r\n        particle: REDSTONE\r\n        color: 255, 0, 0\r\n        size: 2\r\n        count: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "2",
+        "upgrading",
+        "progress"
+      ],
+      "source": "&particle-3\r\n        particle: REDSTONE\r\n        color: 255, 0, 0\r\n        size: 2\r\n        count: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "2",
+        "upgrading",
+        "progress",
+        "particle"
+      ],
+      "source": "REDSTONE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "2",
+        "upgrading",
+        "progress",
+        "color"
+      ],
+      "source": "255, 0, 0",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "2",
+        "upgrading",
+        "progress",
+        "size"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "2",
+        "upgrading",
+        "progress",
+        "count"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "3"
+      ],
+      "source": "\r\n    opening:\r\n      progress: *particle-3\r\n    upgrading:\r\n      progress: *particle-3\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "3",
+        "opening"
+      ],
+      "source": "\r\n      progress: *particle-3\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "3",
+        "opening",
+        "progress"
+      ],
+      "source": "*particle-3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "3",
+        "upgrading"
+      ],
+      "source": "\r\n      progress: *particle-3\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "3",
+        "upgrading",
+        "progress"
+      ],
+      "source": "*particle-3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "markers"
+      ],
+      "source": "\r\n  1:\r\n    opening:\r\n      progress: 0, 255, 0, 70\r\n      paused: 0, 255, 0, 70\r\n    upgrading:\r\n      progress: 0, 255, 0, 70\r\n      paused: 0, 255, 0, 70\r\n    demolition:\r\n      progress: 0, 255, 0, 70\r\n      paused: 0, 255, 0, 70\r\n\r\n# Things that damage (decrease the durability), paralyze, hypnotize, etc... the turret.\r\n# If an arrow or a splash potion has multiple effects, all of them will apply.\r\n#\r\n# All custom effects mentioned here, except 'hypnotize' have no effect when accidentally\r\n# (or even intentionally) done by an ally to a friendly turret.\r\n#\r\n# If two conflicting effects are applied, e.g. a 10sec paralysis and a 5sec paralysis,\r\n# the newer one will override the last one regardless of how strong the older one is.\r\n#\r\n# Siege cannon damages are separatedly configured by their ammo type.\r\n# Note: Only the \"damage\" setting works on structures, others have no effect.\r\n# ----------------------------\r\n# Effects:\r\n#   * damage: Decreases the durability of the turret.\r\n#   * paralyze: Prevents the turret from automatically shooting at any targets temporarily.\r\n#               However, the cooldown does not persist between restarts. This effect will\r\n#               override the hypnotize effect and prevents the turret from shooting altogether.\r\n#   * hypnotize: Makes the turret attack the members of the kingdom that the turret was placed\r\n#                in, but not their allies. Has no effect when an ally uses this.\r\n#   * slowness: Makes the turret work slower. Specified in ticks. The \"cooldown\" placeholder can be used\r\n#               for these effects.\r\n#   * weakness: Makes the turret damage less. The number specified will be subtracted from the final damage.\r\n#               The \"damage\" placeholder can be used for these effects which is the current damage.\r\n# All options support \"distance\" which is the distance between the source of the damage and the building's\r\n# origin point (which is usually the center of the building)\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "markers",
+        "1"
+      ],
+      "source": "\r\n    opening:\r\n      progress: 0, 255, 0, 70\r\n      paused: 0, 255, 0, 70\r\n    upgrading:\r\n      progress: 0, 255, 0, 70\r\n      paused: 0, 255, 0, 70\r\n    demolition:\r\n      progress: 0, 255, 0, 70\r\n      paused: 0, 255, 0, 70\r\n\r\n# Things that damage (decrease the durability), paralyze, hypnotize, etc... the turret.\r\n# If an arrow or a splash potion has multiple effects, all of them will apply.\r\n#\r\n# All custom effects mentioned here, except 'hypnotize' have no effect when accidentally\r\n# (or even intentionally) done by an ally to a friendly turret.\r\n#\r\n# If two conflicting effects are applied, e.g. a 10sec paralysis and a 5sec paralysis,\r\n# the newer one will override the last one regardless of how strong the older one is.\r\n#\r\n# Siege cannon damages are separatedly configured by their ammo type.\r\n# Note: Only the \"damage\" setting works on structures, others have no effect.\r\n# ----------------------------\r\n# Effects:\r\n#   * damage: Decreases the durability of the turret.\r\n#   * paralyze: Prevents the turret from automatically shooting at any targets temporarily.\r\n#               However, the cooldown does not persist between restarts. This effect will\r\n#               override the hypnotize effect and prevents the turret from shooting altogether.\r\n#   * hypnotize: Makes the turret attack the members of the kingdom that the turret was placed\r\n#                in, but not their allies. Has no effect when an ally uses this.\r\n#   * slowness: Makes the turret work slower. Specified in ticks. The \"cooldown\" placeholder can be used\r\n#               for these effects.\r\n#   * weakness: Makes the turret damage less. The number specified will be subtracted from the final damage.\r\n#               The \"damage\" placeholder can be used for these effects which is the current damage.\r\n# All options support \"distance\" which is the distance between the source of the damage and the building's\r\n# origin point (which is usually the center of the building)\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "markers",
+        "1",
+        "opening"
+      ],
+      "source": "\r\n      progress: 0, 255, 0, 70\r\n      paused: 0, 255, 0, 70\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "markers",
+        "1",
+        "opening",
+        "progress"
+      ],
+      "source": "0, 255, 0, 70",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "markers",
+        "1",
+        "opening",
+        "paused"
+      ],
+      "source": "0, 255, 0, 70",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "markers",
+        "1",
+        "upgrading"
+      ],
+      "source": "\r\n      progress: 0, 255, 0, 70\r\n      paused: 0, 255, 0, 70\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "markers",
+        "1",
+        "upgrading",
+        "progress"
+      ],
+      "source": "0, 255, 0, 70",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "markers",
+        "1",
+        "upgrading",
+        "paused"
+      ],
+      "source": "0, 255, 0, 70",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "markers",
+        "1",
+        "demolition"
+      ],
+      "source": "\r\n      progress: 0, 255, 0, 70\r\n      paused: 0, 255, 0, 70\r\n\r\n# Things that damage (decrease the durability), paralyze, hypnotize, etc... the turret.\r\n# If an arrow or a splash potion has multiple effects, all of them will apply.\r\n#\r\n# All custom effects mentioned here, except 'hypnotize' have no effect when accidentally\r\n# (or even intentionally) done by an ally to a friendly turret.\r\n#\r\n# If two conflicting effects are applied, e.g. a 10sec paralysis and a 5sec paralysis,\r\n# the newer one will override the last one regardless of how strong the older one is.\r\n#\r\n# Siege cannon damages are separatedly configured by their ammo type.\r\n# Note: Only the \"damage\" setting works on structures, others have no effect.\r\n# ----------------------------\r\n# Effects:\r\n#   * damage: Decreases the durability of the turret.\r\n#   * paralyze: Prevents the turret from automatically shooting at any targets temporarily.\r\n#               However, the cooldown does not persist between restarts. This effect will\r\n#               override the hypnotize effect and prevents the turret from shooting altogether.\r\n#   * hypnotize: Makes the turret attack the members of the kingdom that the turret was placed\r\n#                in, but not their allies. Has no effect when an ally uses this.\r\n#   * slowness: Makes the turret work slower. Specified in ticks. The \"cooldown\" placeholder can be used\r\n#               for these effects.\r\n#   * weakness: Makes the turret damage less. The number specified will be subtracted from the final damage.\r\n#               The \"damage\" placeholder can be used for these effects which is the current damage.\r\n# All options support \"distance\" which is the distance between the source of the damage and the building's\r\n# origin point (which is usually the center of the building)\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "markers",
+        "1",
+        "demolition",
+        "progress"
+      ],
+      "source": "0, 255, 0, 70",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "markers",
+        "1",
+        "demolition",
+        "paused"
+      ],
+      "source": "0, 255, 0, 70",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damaging-factors"
+      ],
+      "source": "\r\n  TNT:\r\n    # Yield is explosion readius.\r\n    #   * TNT: 4\r\n    #   * Creeper: 3\r\n    damage: yield * 2\r\n    paralyze: '[10s] * yield'\r\n  SNOWBALL:\r\n    paralyze: 2s\r\n  SPECTRAL_ARROW:\r\n    hypnotize: 10s\r\n  ARROW:\r\n    # The following are the potion effect of the arrows.\r\n    # * The \"effect_lvl\" (starting from 1) placeholder can be used if it's a tipped arrow.\r\n    # * The \"force\" variable (from 0 to 3.0) is used for how hard the player\r\n    # charged the bow before releasing it.\r\n    # * The \"weapon_<info>\" can be used to get information about the bow.\r\n    normal:\r\n      damage: (0.1 * force) * max(1, weapon_enchant_power * 3)\r\n    POISON:\r\n      paralyze: '[10s] * effect_level'\r\n    INSTANT_DAMAGE:\r\n      damage: 7 * effect_lvl\r\n    WEAKNESS:\r\n      weakness:\r\n        damage-reduction: 5 * effect_lvl\r\n        duration: effect_duration\r\n    SLOWNESS:\r\n      slowness:\r\n        delay: 10 * effect_lvl\r\n        duration: effect_duration\r\n  POTION:\r\n    # * The \"effect_lvl\" (starting from 1) and \"effect_duration\" (in ticks) placeholder can be used as well.\r\n    #\r\n    # * The \"effect_distance\" determines the distance between the building and the splash potion.\r\n    #   This distance starts from 0 and can only go up to 10 blocks (even though Vanilla Minecraft distances are lower)\r\n    #   and you can control the values based on this value. Note that when using EngineHub add-on where buildings\r\n    #   have multiple blocks, it'll calculate this distance based on the closest block to the potion's location.\r\n    #\r\n    # * \"allowed-range\" option can be used to determine the minimum distance this splash potion must be close\r\n    #   in order to apply the effects. So \"allowed-range: [ 2, 2, 2 ]\" means that this splash potion must be at least\r\n    #   2 blocks (in any direction x,y,z) near the building for it to work.\r\n    INSTANT_DAMAGE:\r\n      allowed-range: &splash-range [ 5, 4, 5 ]\r\n      damage: 10 * effect_lvl\r\n    WEAKNESS:\r\n      allowed-range: *splash-range\r\n      weakness:\r\n        damage-reduction: 5 * effect_lvl\r\n        duration: effect_duration\r\n    SLOWNESS:\r\n      allowed-range: *splash-range\r\n      slowness:\r\n        delay: cooldown * effect_lvl\r\n        duration: effect_duration\r\n    POISON:\r\n      allowed-range: *splash-range\r\n      paralyze: '[10s] * effect_lvl'\r\n  WIND_CHARGE:\r\n    damage: 20\r\n    paralyze: 20s\r\n  TRIDENT:\r\n    damage: 1\r\n    paralyze: 1s\r\n    weakness:\r\n      damage-reduction: damage / 5\r\n      duration: 2s\r\n    slowness:\r\n      delay: cooldown / 5\r\n      duration: 2s\r\n",
+      "comments": [
+        "Things that damage (decrease the durability), paralyze, hypnotize, etc... the turret.",
+        "If an arrow or a splash potion has multiple effects, all of them will apply.",
+        "All custom effects mentioned here, except 'hypnotize' have no effect when accidentally",
+        "(or even intentionally) done by an ally to a friendly turret.",
+        "If two conflicting effects are applied, e.g. a 10sec paralysis and a 5sec paralysis,",
+        "the newer one will override the last one regardless of how strong the older one is.",
+        "Siege cannon damages are separatedly configured by their ammo type.",
+        "Note: Only the \"damage\" setting works on structures, others have no effect.",
+        "----------------------------",
+        "Effects:",
+        "* damage: Decreases the durability of the turret.",
+        "* paralyze: Prevents the turret from automatically shooting at any targets temporarily.",
+        "However, the cooldown does not persist between restarts. This effect will",
+        "override the hypnotize effect and prevents the turret from shooting altogether.",
+        "* hypnotize: Makes the turret attack the members of the kingdom that the turret was placed",
+        "in, but not their allies. Has no effect when an ally uses this.",
+        "* slowness: Makes the turret work slower. Specified in ticks. The \"cooldown\" placeholder can be used",
+        "for these effects.",
+        "* weakness: Makes the turret damage less. The number specified will be subtracted from the final damage.",
+        "The \"damage\" placeholder can be used for these effects which is the current damage.",
+        "All options support \"distance\" which is the distance between the source of the damage and the building's",
+        "origin point (which is usually the center of the building)"
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damaging-factors",
+        "TNT"
+      ],
+      "source": "\r\n    # Yield is explosion readius.\r\n    #   * TNT: 4\r\n    #   * Creeper: 3\r\n    damage: yield * 2\r\n    paralyze: '[10s] * yield'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damaging-factors",
+        "TNT",
+        "damage"
+      ],
+      "source": "yield * 2",
+      "comments": [
+        "Yield is explosion readius.",
+        "* TNT: 4",
+        "* Creeper: 3"
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damaging-factors",
+        "TNT",
+        "paralyze"
+      ],
+      "source": "'[10s] * yield'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damaging-factors",
+        "SNOWBALL"
+      ],
+      "source": "\r\n    paralyze: 2s\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damaging-factors",
+        "SNOWBALL",
+        "paralyze"
+      ],
+      "source": "2s",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damaging-factors",
+        "SPECTRAL_ARROW"
+      ],
+      "source": "\r\n    hypnotize: 10s\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damaging-factors",
+        "SPECTRAL_ARROW",
+        "hypnotize"
+      ],
+      "source": "10s",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damaging-factors",
+        "ARROW"
+      ],
+      "source": "\r\n    # The following are the potion effect of the arrows.\r\n    # * The \"effect_lvl\" (starting from 1) placeholder can be used if it's a tipped arrow.\r\n    # * The \"force\" variable (from 0 to 3.0) is used for how hard the player\r\n    # charged the bow before releasing it.\r\n    # * The \"weapon_<info>\" can be used to get information about the bow.\r\n    normal:\r\n      damage: (0.1 * force) * max(1, weapon_enchant_power * 3)\r\n    POISON:\r\n      paralyze: '[10s] * effect_level'\r\n    INSTANT_DAMAGE:\r\n      damage: 7 * effect_lvl\r\n    WEAKNESS:\r\n      weakness:\r\n        damage-reduction: 5 * effect_lvl\r\n        duration: effect_duration\r\n    SLOWNESS:\r\n      slowness:\r\n        delay: 10 * effect_lvl\r\n        duration: effect_duration\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damaging-factors",
+        "ARROW",
+        "normal"
+      ],
+      "source": "\r\n      damage: (0.1 * force) * max(1, weapon_enchant_power * 3)\r\n",
+      "comments": [
+        "The following are the potion effect of the arrows.",
+        "* The \"effect_lvl\" (starting from 1) placeholder can be used if it's a tipped arrow.",
+        "* The \"force\" variable (from 0 to 3.0) is used for how hard the player",
+        "charged the bow before releasing it.",
+        "* The \"weapon_<info>\" can be used to get information about the bow."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damaging-factors",
+        "ARROW",
+        "normal",
+        "damage"
+      ],
+      "source": "(0.1 * force) * max(1, weapon_enchant_power * 3)",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damaging-factors",
+        "ARROW",
+        "POISON"
+      ],
+      "source": "\r\n      paralyze: '[10s] * effect_level'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damaging-factors",
+        "ARROW",
+        "POISON",
+        "paralyze"
+      ],
+      "source": "'[10s] * effect_level'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damaging-factors",
+        "ARROW",
+        "INSTANT_DAMAGE"
+      ],
+      "source": "\r\n      damage: 7 * effect_lvl\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damaging-factors",
+        "ARROW",
+        "INSTANT_DAMAGE",
+        "damage"
+      ],
+      "source": "7 * effect_lvl",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damaging-factors",
+        "ARROW",
+        "WEAKNESS"
+      ],
+      "source": "\r\n      weakness:\r\n        damage-reduction: 5 * effect_lvl\r\n        duration: effect_duration\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damaging-factors",
+        "ARROW",
+        "WEAKNESS",
+        "weakness"
+      ],
+      "source": "\r\n        damage-reduction: 5 * effect_lvl\r\n        duration: effect_duration\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damaging-factors",
+        "ARROW",
+        "WEAKNESS",
+        "weakness",
+        "damage-reduction"
+      ],
+      "source": "5 * effect_lvl",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damaging-factors",
+        "ARROW",
+        "WEAKNESS",
+        "weakness",
+        "duration"
+      ],
+      "source": "effect_duration",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damaging-factors",
+        "ARROW",
+        "SLOWNESS"
+      ],
+      "source": "\r\n      slowness:\r\n        delay: 10 * effect_lvl\r\n        duration: effect_duration\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damaging-factors",
+        "ARROW",
+        "SLOWNESS",
+        "slowness"
+      ],
+      "source": "\r\n        delay: 10 * effect_lvl\r\n        duration: effect_duration\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damaging-factors",
+        "ARROW",
+        "SLOWNESS",
+        "slowness",
+        "delay"
+      ],
+      "source": "10 * effect_lvl",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damaging-factors",
+        "ARROW",
+        "SLOWNESS",
+        "slowness",
+        "duration"
+      ],
+      "source": "effect_duration",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damaging-factors",
+        "POTION"
+      ],
+      "source": "\r\n    # * The \"effect_lvl\" (starting from 1) and \"effect_duration\" (in ticks) placeholder can be used as well.\r\n    #\r\n    # * The \"effect_distance\" determines the distance between the building and the splash potion.\r\n    #   This distance starts from 0 and can only go up to 10 blocks (even though Vanilla Minecraft distances are lower)\r\n    #   and you can control the values based on this value. Note that when using EngineHub add-on where buildings\r\n    #   have multiple blocks, it'll calculate this distance based on the closest block to the potion's location.\r\n    #\r\n    # * \"allowed-range\" option can be used to determine the minimum distance this splash potion must be close\r\n    #   in order to apply the effects. So \"allowed-range: [ 2, 2, 2 ]\" means that this splash potion must be at least\r\n    #   2 blocks (in any direction x,y,z) near the building for it to work.\r\n    INSTANT_DAMAGE:\r\n      allowed-range: &splash-range [ 5, 4, 5 ]\r\n      damage: 10 * effect_lvl\r\n    WEAKNESS:\r\n      allowed-range: *splash-range\r\n      weakness:\r\n        damage-reduction: 5 * effect_lvl\r\n        duration: effect_duration\r\n    SLOWNESS:\r\n      allowed-range: *splash-range\r\n      slowness:\r\n        delay: cooldown * effect_lvl\r\n        duration: effect_duration\r\n    POISON:\r\n      allowed-range: *splash-range\r\n      paralyze: '[10s] * effect_lvl'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damaging-factors",
+        "POTION",
+        "INSTANT_DAMAGE"
+      ],
+      "source": "\r\n      allowed-range: &splash-range [ 5, 4, 5 ]\r\n      damage: 10 * effect_lvl\r\n",
+      "comments": [
+        "* The \"effect_lvl\" (starting from 1) and \"effect_duration\" (in ticks) placeholder can be used as well.",
+        "* The \"effect_distance\" determines the distance between the building and the splash potion.",
+        "This distance starts from 0 and can only go up to 10 blocks (even though Vanilla Minecraft distances are lower)",
+        "and you can control the values based on this value. Note that when using EngineHub add-on where buildings",
+        "have multiple blocks, it'll calculate this distance based on the closest block to the potion's location.",
+        "* \"allowed-range\" option can be used to determine the minimum distance this splash potion must be close",
+        "in order to apply the effects. So \"allowed-range: [ 2, 2, 2 ]\" means that this splash potion must be at least",
+        "2 blocks (in any direction x,y,z) near the building for it to work."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damaging-factors",
+        "POTION",
+        "INSTANT_DAMAGE",
+        "allowed-range"
+      ],
+      "source": "&splash-range [ 5, 4, 5 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "5",
+        "4",
+        "5"
+      ]
+    },
+    {
+      "path": [
+        "damaging-factors",
+        "POTION",
+        "INSTANT_DAMAGE",
+        "damage"
+      ],
+      "source": "10 * effect_lvl",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damaging-factors",
+        "POTION",
+        "WEAKNESS"
+      ],
+      "source": "\r\n      allowed-range: *splash-range\r\n      weakness:\r\n        damage-reduction: 5 * effect_lvl\r\n        duration: effect_duration\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damaging-factors",
+        "POTION",
+        "WEAKNESS",
+        "allowed-range"
+      ],
+      "source": "*splash-range",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damaging-factors",
+        "POTION",
+        "WEAKNESS",
+        "weakness"
+      ],
+      "source": "\r\n        damage-reduction: 5 * effect_lvl\r\n        duration: effect_duration\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damaging-factors",
+        "POTION",
+        "WEAKNESS",
+        "weakness",
+        "damage-reduction"
+      ],
+      "source": "5 * effect_lvl",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damaging-factors",
+        "POTION",
+        "WEAKNESS",
+        "weakness",
+        "duration"
+      ],
+      "source": "effect_duration",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damaging-factors",
+        "POTION",
+        "SLOWNESS"
+      ],
+      "source": "\r\n      allowed-range: *splash-range\r\n      slowness:\r\n        delay: cooldown * effect_lvl\r\n        duration: effect_duration\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damaging-factors",
+        "POTION",
+        "SLOWNESS",
+        "allowed-range"
+      ],
+      "source": "*splash-range",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damaging-factors",
+        "POTION",
+        "SLOWNESS",
+        "slowness"
+      ],
+      "source": "\r\n        delay: cooldown * effect_lvl\r\n        duration: effect_duration\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damaging-factors",
+        "POTION",
+        "SLOWNESS",
+        "slowness",
+        "delay"
+      ],
+      "source": "cooldown * effect_lvl",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damaging-factors",
+        "POTION",
+        "SLOWNESS",
+        "slowness",
+        "duration"
+      ],
+      "source": "effect_duration",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damaging-factors",
+        "POTION",
+        "POISON"
+      ],
+      "source": "\r\n      allowed-range: *splash-range\r\n      paralyze: '[10s] * effect_lvl'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damaging-factors",
+        "POTION",
+        "POISON",
+        "allowed-range"
+      ],
+      "source": "*splash-range",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damaging-factors",
+        "POTION",
+        "POISON",
+        "paralyze"
+      ],
+      "source": "'[10s] * effect_lvl'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damaging-factors",
+        "WIND_CHARGE"
+      ],
+      "source": "\r\n    damage: 20\r\n    paralyze: 20s\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damaging-factors",
+        "WIND_CHARGE",
+        "damage"
+      ],
+      "source": "20",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damaging-factors",
+        "WIND_CHARGE",
+        "paralyze"
+      ],
+      "source": "20s",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damaging-factors",
+        "TRIDENT"
+      ],
+      "source": "\r\n    damage: 1\r\n    paralyze: 1s\r\n    weakness:\r\n      damage-reduction: damage / 5\r\n      duration: 2s\r\n    slowness:\r\n      delay: cooldown / 5\r\n      duration: 2s\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damaging-factors",
+        "TRIDENT",
+        "damage"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damaging-factors",
+        "TRIDENT",
+        "paralyze"
+      ],
+      "source": "1s",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damaging-factors",
+        "TRIDENT",
+        "weakness"
+      ],
+      "source": "\r\n      damage-reduction: damage / 5\r\n      duration: 2s\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damaging-factors",
+        "TRIDENT",
+        "weakness",
+        "damage-reduction"
+      ],
+      "source": "damage / 5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damaging-factors",
+        "TRIDENT",
+        "weakness",
+        "duration"
+      ],
+      "source": "2s",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damaging-factors",
+        "TRIDENT",
+        "slowness"
+      ],
+      "source": "\r\n      delay: cooldown / 5\r\n      duration: 2s\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damaging-factors",
+        "TRIDENT",
+        "slowness",
+        "delay"
+      ],
+      "source": "cooldown / 5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damaging-factors",
+        "TRIDENT",
+        "slowness",
+        "duration"
+      ],
+      "source": "2s",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

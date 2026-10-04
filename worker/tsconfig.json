@@ -12,7 +12,6 @@
   },
   "include": [
     "bindings.production.d.ts",
-    "index.ts",
-    "server-directory/**/*.ts"
+    "index.ts"
   ]
 }

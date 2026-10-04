@@ -1,0 +1,533 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "guis/structures/nexus/member.yml",
+  "schemaId": "guis/schema",
+  "options": [
+    {
+      "path": [
+        "title"
+      ],
+      "source": "\"%player%\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "type"
+      ],
+      "source": "HOPPER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sound"
+      ],
+      "source": "ENTITY_EXPERIENCE_ORB_PICKUP",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options"
+      ],
+      "source": "\r\n  kick:\r\n    name: \"&cKick\"\r\n    material: RED_WOOL\r\n    cantKick:\r\n      condition: '!can_kick'\r\n      lore: |\r\n        &cYou can't kick this member.\r\n    else: { }\r\n    slot: 0\r\n  demote:\r\n    name: '&eDemote'\r\n    material: PLAYER_HEAD\r\n    skull: \"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTM4NTJiZjYxNmYzMWVkNjdjMzdkZTRiMGJhYTJjNWY4ZDhmY2E4MmU3MmRiY2FmY2JhNjY5NTZhODFjNCJ9fX0=\"\r\n    cantDemote:\r\n      condition: '!can_demote'\r\n      lore: |\r\n        &cYou can't demote this member.\r\n    else: { }\r\n    slot: 1\r\n  member:\r\n    name: \"&8[%kingdoms_rank_color%%kingdoms_rank_symbol%&8] {$p}%player%\"\r\n    material: PLAYER_HEAD\r\n    lore:\r\n      - \"%online%\"\r\n      - \"{$p}Joined{$colon} {$s}%date@kingdoms_joined%\"\r\n      - \"{$p}Donations{$colon} {$s}%kingdoms_total_donations%\"\r\n      - \"{$p}Last Donation{$colon} {$s}%date@kingdoms_last_donation_time%\"\r\n      - \"{$p}Rank{$colon} {$s}%kingdoms_rank_name%\"\r\n    slot: 2\r\n  promote:\r\n    name: '&aPromote'\r\n    material: PLAYER_HEAD\r\n    skull: \"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjIyMWRhNDQxOGJkM2JmYjQyZWI2NGQyYWI0MjljNjFkZWNiOGY0YmY3ZDRjZmI3N2ExNjJiZTNkY2IwYjkyNyJ9fX0=\"\r\n    canPromote:\r\n      condition: '!can_promote'\r\n      lore: |\r\n        &cYou can't promote this member.\r\n    else: { }\r\n    slot: 3\r\n  back:\r\n    name: \"{$p}Back\"\r\n    material: BARRIER\r\n    lore:\r\n      - \"{$s}Go back to members menu.\"\r\n    slot: 4",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "kick"
+      ],
+      "source": "\r\n    name: \"&cKick\"\r\n    material: RED_WOOL\r\n    cantKick:\r\n      condition: '!can_kick'\r\n      lore: |\r\n        &cYou can't kick this member.\r\n    else: { }\r\n    slot: 0\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "kick",
+        "name"
+      ],
+      "source": "\"&cKick\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "kick",
+        "material"
+      ],
+      "source": "RED_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "kick",
+        "cantKick"
+      ],
+      "source": "\r\n      condition: '!can_kick'\r\n      lore: |\r\n        &cYou can't kick this member.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "kick",
+        "cantKick",
+        "condition"
+      ],
+      "source": "'!can_kick'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "kick",
+        "cantKick",
+        "lore"
+      ],
+      "source": "|\r\n        &cYou can't kick this member.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "kick",
+        "else"
+      ],
+      "source": "{ }",
+      "comments": [],
+      "container": false,
+      "emptyMapping": true,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "kick",
+        "slot"
+      ],
+      "source": "0",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "demote"
+      ],
+      "source": "\r\n    name: '&eDemote'\r\n    material: PLAYER_HEAD\r\n    skull: \"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTM4NTJiZjYxNmYzMWVkNjdjMzdkZTRiMGJhYTJjNWY4ZDhmY2E4MmU3MmRiY2FmY2JhNjY5NTZhODFjNCJ9fX0=\"\r\n    cantDemote:\r\n      condition: '!can_demote'\r\n      lore: |\r\n        &cYou can't demote this member.\r\n    else: { }\r\n    slot: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "demote",
+        "name"
+      ],
+      "source": "'&eDemote'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "demote",
+        "material"
+      ],
+      "source": "PLAYER_HEAD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "demote",
+        "skull"
+      ],
+      "source": "\"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTM4NTJiZjYxNmYzMWVkNjdjMzdkZTRiMGJhYTJjNWY4ZDhmY2E4MmU3MmRiY2FmY2JhNjY5NTZhODFjNCJ9fX0=\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "demote",
+        "cantDemote"
+      ],
+      "source": "\r\n      condition: '!can_demote'\r\n      lore: |\r\n        &cYou can't demote this member.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "demote",
+        "cantDemote",
+        "condition"
+      ],
+      "source": "'!can_demote'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "demote",
+        "cantDemote",
+        "lore"
+      ],
+      "source": "|\r\n        &cYou can't demote this member.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "demote",
+        "else"
+      ],
+      "source": "{ }",
+      "comments": [],
+      "container": false,
+      "emptyMapping": true,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "demote",
+        "slot"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "member"
+      ],
+      "source": "\r\n    name: \"&8[%kingdoms_rank_color%%kingdoms_rank_symbol%&8] {$p}%player%\"\r\n    material: PLAYER_HEAD\r\n    lore:\r\n      - \"%online%\"\r\n      - \"{$p}Joined{$colon} {$s}%date@kingdoms_joined%\"\r\n      - \"{$p}Donations{$colon} {$s}%kingdoms_total_donations%\"\r\n      - \"{$p}Last Donation{$colon} {$s}%date@kingdoms_last_donation_time%\"\r\n      - \"{$p}Rank{$colon} {$s}%kingdoms_rank_name%\"\r\n    slot: 2\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "member",
+        "name"
+      ],
+      "source": "\"&8[%kingdoms_rank_color%%kingdoms_rank_symbol%&8] {$p}%player%\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "member",
+        "material"
+      ],
+      "source": "PLAYER_HEAD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "member",
+        "lore"
+      ],
+      "source": "\r\n      - \"%online%\"\r\n      - \"{$p}Joined{$colon} {$s}%date@kingdoms_joined%\"\r\n      - \"{$p}Donations{$colon} {$s}%kingdoms_total_donations%\"\r\n      - \"{$p}Last Donation{$colon} {$s}%date@kingdoms_last_donation_time%\"\r\n      - \"{$p}Rank{$colon} {$s}%kingdoms_rank_name%\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"%online%\"",
+        "\"{$p}Joined{$colon} {$s}%date@kingdoms_joined%\"",
+        "\"{$p}Donations{$colon} {$s}%kingdoms_total_donations%\"",
+        "\"{$p}Last Donation{$colon} {$s}%date@kingdoms_last_donation_time%\"",
+        "\"{$p}Rank{$colon} {$s}%kingdoms_rank_name%\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "member",
+        "slot"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "promote"
+      ],
+      "source": "\r\n    name: '&aPromote'\r\n    material: PLAYER_HEAD\r\n    skull: \"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjIyMWRhNDQxOGJkM2JmYjQyZWI2NGQyYWI0MjljNjFkZWNiOGY0YmY3ZDRjZmI3N2ExNjJiZTNkY2IwYjkyNyJ9fX0=\"\r\n    canPromote:\r\n      condition: '!can_promote'\r\n      lore: |\r\n        &cYou can't promote this member.\r\n    else: { }\r\n    slot: 3\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "promote",
+        "name"
+      ],
+      "source": "'&aPromote'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "promote",
+        "material"
+      ],
+      "source": "PLAYER_HEAD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "promote",
+        "skull"
+      ],
+      "source": "\"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjIyMWRhNDQxOGJkM2JmYjQyZWI2NGQyYWI0MjljNjFkZWNiOGY0YmY3ZDRjZmI3N2ExNjJiZTNkY2IwYjkyNyJ9fX0=\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "promote",
+        "canPromote"
+      ],
+      "source": "\r\n      condition: '!can_promote'\r\n      lore: |\r\n        &cYou can't promote this member.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "promote",
+        "canPromote",
+        "condition"
+      ],
+      "source": "'!can_promote'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "promote",
+        "canPromote",
+        "lore"
+      ],
+      "source": "|\r\n        &cYou can't promote this member.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "promote",
+        "else"
+      ],
+      "source": "{ }",
+      "comments": [],
+      "container": false,
+      "emptyMapping": true,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "promote",
+        "slot"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back"
+      ],
+      "source": "\r\n    name: \"{$p}Back\"\r\n    material: BARRIER\r\n    lore:\r\n      - \"{$s}Go back to members menu.\"\r\n    slot: 4",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "name"
+      ],
+      "source": "\"{$p}Back\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "material"
+      ],
+      "source": "BARRIER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "lore"
+      ],
+      "source": "\r\n      - \"{$s}Go back to members menu.\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$s}Go back to members menu.\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "slot"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

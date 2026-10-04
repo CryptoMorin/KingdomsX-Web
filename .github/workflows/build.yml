@@ -12,15 +12,33 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@v7
         with:
           node-version: "24"
           cache: npm
       - run: npm ci
+      - name: Install config editor browser
+        run: npx playwright install --with-deps chromium
+      - name: Audit dependencies
+        run: npm audit --audit-level=high
       - run: cp .dev.vars.example .dev.vars
 
       - name: Test Cloudflare Worker
         run: npm run worker:test
+      - name: Check generated editor data
+        run: npm run editor:snapshots:check
+      - name: Test config editor
+        run: npm run editor:test
+      - name: Test config editor in browser
+        run: npm run editor:browser:test
+      - name: Test config editor Worker
+        run: npm run editor:worker:test
+      - name: Test production-built config editor and Worker together
+        run: npm run editor:worker:browser:test
+      - name: Verify config editor Worker bindings
+        run: npm run editor:worker:types:check
+      - name: Type-check config editor Worker
+        run: npm run editor:worker:typecheck
 
       - name: Build production site
         run: npm run build
@@ -28,19 +46,66 @@ jobs:
           PUBLIC_SITE_URL: https://kingdomsx.com
           PUBLIC_ASSETS_BASE: https://assets.kingdomsx.com
           PUBLIC_SERVERS_SITE_URL: https://servers.kingdomsx.com
+          PUBLIC_EDITOR_SITE_URL: https://editor.kingdomsx.com
           PUBLIC_TURNSTILE_SITE_KEY: 1x00000000000000000000AA
           WORKERS_CI_COMMIT_SHA: ${{ github.sha }}
           PUBLIC_GIT_COMMIT_SHA: ${{ github.sha }}
       - name: Verify production output
         shell: bash
         run: |
+          test "$(find dist -name '*.html' -type f | wc -l)" -eq 3
+          test ! -e dist/editor.html
+          test ! -e dist/servers.html
           grep -q 'https://servers.kingdomsx.com' dist/index.html
           grep -q 'https://assets.kingdomsx.com' dist/index.html
-          grep -q 'challenges.cloudflare.com/turnstile' dist/servers/submit.html
           grep -q 'Sitemap: https://kingdomsx.com/sitemap-index.xml' dist/robots.txt
+          ! find dist/build -type f \( -name 'admin.*' -o -name 'admin.astro_*' -o -name 'submit.*' -o -name 'submit.astro_*' \) -print -quit | grep -q .
+
+      - name: Build standalone server directory
+        run: npm run server-directory:build
+        env:
+          PUBLIC_SITE_URL: https://kingdomsx.com
+          PUBLIC_SERVERS_SITE_URL: https://servers.kingdomsx.com
+          PUBLIC_EDITOR_SITE_URL: https://editor.kingdomsx.com
+          PUBLIC_TURNSTILE_SITE_KEY: 1x00000000000000000000AA
+          WORKERS_CI_COMMIT_SHA: ${{ github.sha }}
+          PUBLIC_GIT_COMMIT_SHA: ${{ github.sha }}
+      - name: Verify standalone server directory output
+        shell: bash
+        run: |
+          test "$(find dist-server-directory -name '*.html' -type f | wc -l)" -eq 5
+          test ! -e dist-server-directory/index.html
+          test ! -e dist-server-directory/editor.html
+          test -f dist-server-directory/servers.html
+          test -f dist-server-directory/servers/submit.html
+          test -f dist-server-directory/servers/admin.html
+          grep -q 'https://servers.kingdomsx.com' dist-server-directory/servers.html
+          grep -q 'src="/build/' dist-server-directory/servers.html
+          ! grep -q 'assets.kingdomsx.com' dist-server-directory/servers.html
+          grep -q 'challenges.cloudflare.com/turnstile' dist-server-directory/servers/submit.html
+          ! find dist-server-directory/build -type f -name 'default--*.js' -print -quit | grep -q .
+          ! find dist-server-directory/build -type f \( -name 'editor.*' -o -name 'editor.astro_*' -o -name 'preview-map-*' -o -name 'advanced-*' \) -print -quit | grep -q .
       - run: npm run worker:types:check
       - run: npm run worker:typecheck
       - run: npm run worker:deploy:check
+
+      - name: Build standalone config editor
+        run: npm run editor:build:production
+        env:
+          PUBLIC_SITE_URL: https://kingdomsx.com
+          PUBLIC_SERVERS_SITE_URL: https://servers.kingdomsx.com
+      - name: Verify standalone editor output
+        shell: bash
+        run: |
+          test "$(find dist-editor -name '*.html' -type f | wc -l)" -eq 1
+          grep -q 'https://editor.kingdomsx.com' dist-editor/index.html
+          grep -q 'src="/build/' dist-editor/index.html
+          grep -q 'href="/favicon.svg"' dist-editor/index.html
+          ! grep -q 'assets.kingdomsx.com' dist-editor/index.html
+          ! find dist-editor -type f -name '*.zip' -print -quit | grep -q .
+          grep -q 'X-Robots-Tag: noindex, nofollow' dist-editor/_headers
+          grep -q 'Disallow: /' dist-editor/robots.txt
+      - run: npm run editor:deploy:dry-run
 
       - name: Build local site
         run: npm run build
@@ -48,11 +113,22 @@ jobs:
         shell: bash
         run: |
           ! grep -R -I -q 'https://servers.kingdomsx.com' dist --include='*.html' --include='*.js'
-          grep -q 'challenges.cloudflare.com/turnstile' dist/servers/submit.html
-          grep -q 'server-submit-loading' dist/servers/submit.html
-          grep -q 'data-local-build="true"' dist/servers/submit.html
-          grep -q 'href="/servers/all"' dist/servers.html
-          grep -q 'href="/servers/offline"' dist/servers.html
+          test "$(find dist -name '*.html' -type f | wc -l)" -eq 3
+          grep -q 'href="/servers"' dist/index.html
+
+      - name: Build local standalone server directory
+        run: npm run server-directory:build
+      - name: Verify local standalone server directory output
+        shell: bash
+        run: |
+          ! grep -R -I -q 'https://servers.kingdomsx.com' dist-server-directory --include='*.html' --include='*.js'
+          grep -q 'challenges.cloudflare.com/turnstile' dist-server-directory/servers/submit.html
+          grep -q 'server-submit-loading' dist-server-directory/servers/submit.html
+          grep -q 'data-local-build="true"' dist-server-directory/servers/submit.html
+          grep -q 'href="/all"' dist-server-directory/servers.html
+          grep -q 'href="/offline"' dist-server-directory/servers.html
+          grep -q 'href="/submit"' dist-server-directory/servers.html
+          ! grep -q 'href="/servers' dist-server-directory/servers.html
       - run: npm run worker:setup:local
       - name: Verify repeatable local seed
         run: npm run worker:seed:local

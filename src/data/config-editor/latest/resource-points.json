@@ -1,0 +1,231 @@
+{
+  "formatVersion": 2,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "id": "resource-points",
+  "resourceName": "resource-points.yml",
+  "schema": {
+    "kind": "object",
+    "fields": [
+      {
+        "key": "last-donation-duration",
+        "type": {
+          "kind": "duration",
+          "typeName": "Period"
+        }
+      },
+      {
+        "key": "death-penalty",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "amount",
+              "type": {
+                "kind": "integer"
+              }
+            },
+            {
+              "key": "disabled-worlds",
+              "type": {
+                "kind": "set",
+                "elements": {
+                  "kind": "suggestion",
+                  "typeName": "World",
+                  "allowCustom": true
+                }
+              }
+            },
+            {
+              "key": "disabled-causes",
+              "type": {
+                "kind": "set",
+                "elements": {
+                  "kind": "string",
+                  "typeName": "str"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "for-each",
+        "type": {
+          "kind": "integer"
+        }
+      },
+      {
+        "key": "give",
+        "type": {
+          "kind": "integer"
+        }
+      },
+      {
+        "key": "general-filters",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "lore",
+              "type": {
+                "kind": "union",
+                "choices": [
+                  {
+                    "kind": "set",
+                    "elements": {
+                      "kind": "string",
+                      "typeName": "str"
+                    }
+                  },
+                  {
+                    "kind": "null"
+                  },
+                  {
+                    "kind": "boolean"
+                  }
+                ]
+              }
+            },
+            {
+              "key": "enchanted",
+              "type": {
+                "kind": "union",
+                "choices": [
+                  {
+                    "kind": "set",
+                    "elements": {
+                      "kind": "string",
+                      "typeName": "str"
+                    }
+                  },
+                  {
+                    "kind": "null"
+                  },
+                  {
+                    "kind": "boolean"
+                  }
+                ]
+              }
+            },
+            {
+              "key": "material",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "blacklist",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  },
+                  {
+                    "key": "list",
+                    "type": {
+                      "kind": "list",
+                      "elements": {
+                        "kind": "advanced",
+                        "typeName": "StringMatcher<Material>"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "custom",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "suggestion",
+            "typeName": "Material",
+            "allowCustom": true
+          },
+          "values": {
+            "kind": "integer"
+          },
+          "fields": [],
+          "optional": true
+        }
+      },
+      {
+        "key": "advanced",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "string",
+            "typeName": "str"
+          },
+          "values": {
+            "kind": "object",
+            "fields": [
+              {
+                "key": "resource-points",
+                "type": {
+                  "kind": "integer"
+                }
+              }
+            ],
+            "extends": [
+              "ItemMatcher"
+            ]
+          },
+          "fields": []
+        }
+      },
+      {
+        "key": "custom-items",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "string",
+            "typeName": "str"
+          },
+          "values": {
+            "kind": "object",
+            "fields": [
+              {
+                "key": "name",
+                "type": {
+                  "kind": "string",
+                  "typeName": "str"
+                }
+              },
+              {
+                "key": "material",
+                "type": {
+                  "kind": "suggestion",
+                  "typeName": "Material",
+                  "allowCustom": true
+                }
+              },
+              {
+                "key": "resource-points",
+                "type": {
+                  "kind": "integer"
+                }
+              },
+              {
+                "key": "lore",
+                "type": {
+                  "kind": "list",
+                  "elements": {
+                    "kind": "string",
+                    "typeName": "str"
+                  }
+                }
+              }
+            ]
+          },
+          "fields": []
+        }
+      }
+    ]
+  }
+}

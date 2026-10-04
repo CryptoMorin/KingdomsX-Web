@@ -1,0 +1,597 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "Structures/warppad.yml",
+  "schemaId": "Structures/structure",
+  "options": [
+    {
+      "path": [
+        "(import)"
+      ],
+      "source": "\r\n  structure:\r\n    parameters:\r\n      <name>: warppad\r\n      <build-duration-factor>: '+5 minutes'\r\n      <durability-factor>: 100\r\n      <extra-holograms>:\r\n        - '{? needs_fuel ? \"{$p}{$$words.fuel}{$colon} {$s}%fancy@fuel%{$sep}/{$s}%fancy@max_fuel%\"}'\r\n      <material-1>: END_PORTAL_FRAME\r\n      <material-2>: END_PORTAL_FRAME\r\n      <material-3>: END_PORTAL_FRAME\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "structure"
+      ],
+      "source": "\r\n    parameters:\r\n      <name>: warppad\r\n      <build-duration-factor>: '+5 minutes'\r\n      <durability-factor>: 100\r\n      <extra-holograms>:\r\n        - '{? needs_fuel ? \"{$p}{$$words.fuel}{$colon} {$s}%fancy@fuel%{$sep}/{$s}%fancy@max_fuel%\"}'\r\n      <material-1>: END_PORTAL_FRAME\r\n      <material-2>: END_PORTAL_FRAME\r\n      <material-3>: END_PORTAL_FRAME\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "structure",
+        "parameters"
+      ],
+      "source": "\r\n      <name>: warppad\r\n      <build-duration-factor>: '+5 minutes'\r\n      <durability-factor>: 100\r\n      <extra-holograms>:\r\n        - '{? needs_fuel ? \"{$p}{$$words.fuel}{$colon} {$s}%fancy@fuel%{$sep}/{$s}%fancy@max_fuel%\"}'\r\n      <material-1>: END_PORTAL_FRAME\r\n      <material-2>: END_PORTAL_FRAME\r\n      <material-3>: END_PORTAL_FRAME\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "structure",
+        "parameters",
+        "<name>"
+      ],
+      "source": "warppad",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "structure",
+        "parameters",
+        "<build-duration-factor>"
+      ],
+      "source": "'+5 minutes'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "structure",
+        "parameters",
+        "<durability-factor>"
+      ],
+      "source": "100",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "structure",
+        "parameters",
+        "<extra-holograms>"
+      ],
+      "source": "\r\n        - '{? needs_fuel ? \"{$p}{$$words.fuel}{$colon} {$s}%fancy@fuel%{$sep}/{$s}%fancy@max_fuel%\"}'\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "'{? needs_fuel ? \"{$p}{$$words.fuel}{$colon} {$s}%fancy@fuel%{$sep}/{$s}%fancy@max_fuel%\"}'"
+      ]
+    },
+    {
+      "path": [
+        "(import)",
+        "structure",
+        "parameters",
+        "<material-1>"
+      ],
+      "source": "END_PORTAL_FRAME",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "structure",
+        "parameters",
+        "<material-2>"
+      ],
+      "source": "END_PORTAL_FRAME",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "structure",
+        "parameters",
+        "<material-3>"
+      ],
+      "source": "END_PORTAL_FRAME",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "name"
+      ],
+      "source": "\"&cWarp pad\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "type"
+      ],
+      "source": "warppad",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "default-name"
+      ],
+      "source": "'Warp Pad'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "teleport-delay"
+      ],
+      "source": "3",
+      "comments": [
+        "The countdown for the teleportation."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "teleport-fuel-cost"
+      ],
+      "source": "'distance / 2'",
+      "comments": [
+        "\"distance\" is the block distance between the warppad and the target location."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "other-world-distance-factor"
+      ],
+      "source": "300",
+      "comments": [
+        "If the target location is in another world entirely,",
+        "this amount will be used for \"distance\" instead."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "conditions"
+      ],
+      "source": "\r\n  purchase:\r\n    'kingdoms_kingdom_level < 4': '{$$kingdom-levels.IV}'\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "conditions",
+        "purchase"
+      ],
+      "source": "\r\n    'kingdoms_kingdom_level < 4': '{$$kingdom-levels.IV}'\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "conditions",
+        "purchase",
+        "kingdoms_kingdom_level < 4"
+      ],
+      "source": "'{$$kingdom-levels.IV}'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "fuel"
+      ],
+      "source": "\r\n  enabled: true\r\n  capacity: lvl * 1000\r\n\r\n  # https://github.com/CryptoMorin/KingdomsX/wiki/Config#item-matchers\r\n  variants:\r\n    first:\r\n      material: COAL\r\n      fill-amount-per-item: 5\r\n    second:\r\n      material: CHARCOAL\r\n      fill-amount-per-item: 3\r\n    third:\r\n      material: BLAZE_ROD\r\n      fill-amount-per-item: 100\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "fuel",
+        "enabled"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "fuel",
+        "capacity"
+      ],
+      "source": "lvl * 1000",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "fuel",
+        "variants"
+      ],
+      "source": "\r\n    first:\r\n      material: COAL\r\n      fill-amount-per-item: 5\r\n    second:\r\n      material: CHARCOAL\r\n      fill-amount-per-item: 3\r\n    third:\r\n      material: BLAZE_ROD\r\n      fill-amount-per-item: 100\r\n\r\n",
+      "comments": [
+        "https://github.com/CryptoMorin/KingdomsX/wiki/Config#item-matchers"
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "fuel",
+        "variants",
+        "first"
+      ],
+      "source": "\r\n      material: COAL\r\n      fill-amount-per-item: 5\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "fuel",
+        "variants",
+        "first",
+        "material"
+      ],
+      "source": "COAL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "fuel",
+        "variants",
+        "first",
+        "fill-amount-per-item"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "fuel",
+        "variants",
+        "second"
+      ],
+      "source": "\r\n      material: CHARCOAL\r\n      fill-amount-per-item: 3\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "fuel",
+        "variants",
+        "second",
+        "material"
+      ],
+      "source": "CHARCOAL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "fuel",
+        "variants",
+        "second",
+        "fill-amount-per-item"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "fuel",
+        "variants",
+        "third"
+      ],
+      "source": "\r\n      material: BLAZE_ROD\r\n      fill-amount-per-item: 100\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "fuel",
+        "variants",
+        "third",
+        "material"
+      ],
+      "source": "BLAZE_ROD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "fuel",
+        "variants",
+        "third",
+        "fill-amount-per-item"
+      ],
+      "source": "100",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "limits"
+      ],
+      "source": "\r\n  per-land: 3\r\n  total: 30\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "limits",
+        "per-land"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "limits",
+        "total"
+      ],
+      "source": "30",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sounds"
+      ],
+      "source": "\r\n  1:\r\n    teleport-sound: BLOCK_PORTAL_TRAVEL, 0.5, 1.0\r\n    fuel-fill: BLOCK_FIRE_EXTINGUISH\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sounds",
+        "1"
+      ],
+      "source": "\r\n    teleport-sound: BLOCK_PORTAL_TRAVEL, 0.5, 1.0\r\n    fuel-fill: BLOCK_FIRE_EXTINGUISH\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sounds",
+        "1",
+        "teleport-sound"
+      ],
+      "source": "BLOCK_PORTAL_TRAVEL, 0.5, 1.0",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sounds",
+        "1",
+        "fuel-fill"
+      ],
+      "source": "BLOCK_FIRE_EXTINGUISH",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "cost"
+      ],
+      "source": "2000",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sell"
+      ],
+      "source": "1000",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "item"
+      ],
+      "source": "\r\n  1:\r\n    name: \"&cWarpPad\"\r\n    material: END_PORTAL_FRAME\r\n    lore: |\r\n      {$s}Warp pads can be used to teleport\r\n      from a structure to another.\r\n      {$dot} {$p}Name{$colon} {$s}%structure-custom-name%\r\n      {$dot} {$p}Fuel{$colon} {$s}%fuel%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "item",
+        "1"
+      ],
+      "source": "\r\n    name: \"&cWarpPad\"\r\n    material: END_PORTAL_FRAME\r\n    lore: |\r\n      {$s}Warp pads can be used to teleport\r\n      from a structure to another.\r\n      {$dot} {$p}Name{$colon} {$s}%structure-custom-name%\r\n      {$dot} {$p}Fuel{$colon} {$s}%fuel%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "item",
+        "1",
+        "name"
+      ],
+      "source": "\"&cWarpPad\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "item",
+        "1",
+        "material"
+      ],
+      "source": "END_PORTAL_FRAME",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "item",
+        "1",
+        "lore"
+      ],
+      "source": "|\r\n      {$s}Warp pads can be used to teleport\r\n      from a structure to another.\r\n      {$dot} {$p}Name{$colon} {$s}%structure-custom-name%\r\n      {$dot} {$p}Fuel{$colon} {$s}%fuel%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

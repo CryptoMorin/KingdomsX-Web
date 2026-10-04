@@ -1,0 +1,1810 @@
+{
+  "formatVersion": 1,
+  "source": {
+    "addonId": "admin-tools",
+    "artifactPath": "addons/Kingdoms-Addon-Admin-Tools-1.2.3.2.jar",
+    "artifactBlobSha": "c63f5eab8d950936ae09f12aed4ff1383c87cee2",
+    "artifactSha256": "c07ed8f5f52b657f57beca205d12755f0b4f94e26dfcd691834e2ad77043256f",
+    "addonVersion": "1.2.3.2"
+  },
+  "resourceName": "guis/item-editor/flags.yml",
+  "schemaId": "guis/schema",
+  "sha256": "c817bc46d2e42cbc2cd2a6816ebf7f5a75dd8c48038c26f15153af2a639c50c9",
+  "options": [
+    {
+      "path": [
+        "title"
+      ],
+      "source": "'{$sep}-=( {$p}Flags {$sep})=-'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "rows"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options"
+      ],
+      "source": "\r\n  back:\r\n    posx: 1\r\n    posy: 1\r\n    material: PLAYER_HEAD\r\n    skull: \"{$gui-back}\"\r\n    name: '&cBack'\r\n  decoration:\r\n    slots: [ 1, 2, 3, 5, 6, 7, 9, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26 ]\r\n    material: GREEN_STAINED_GLASS_PANE\r\n    name: ''\r\n  info:\r\n    posx: 5\r\n    posy: 1\r\n    name: \"&eInfo\"\r\n    material: PLAYER_HEAD\r\n    skull: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDAxYWZlOTczYzU0ODJmZGM3MWU2YWExMDY5ODgzM2M3OWM0MzdmMjEzMDhlYTlhMWEwOTU3NDZlYzI3NGEwZiJ9fX0='\r\n    slot: 4\r\n    lore: |\r\n      {$sep}Item flags can hide some\r\n      properties from items.\r\n      This won't change their actual\r\n      behavior it just hides them\r\n      from the item's description\r\n      which is either above or below\r\n      ther item's lore.\r\n  remove-all:\r\n    posx: 9\r\n    posy: 1\r\n    material: RED_WOOL\r\n    name: '{$e}Remove all flags'\r\n  flag-hide-attributes:\r\n    not-supported:\r\n      condition: \"!supported\"\r\n      name: \"{$sep}[{$e}Not Supported{$sep}] {$es}Hide Attributes\"\r\n    enabled:\r\n      condition: enabled\r\n      name: '{$enabled} Hide Attributes'\r\n      glow: true\r\n    else:\r\n      name: '{$disabled} Hide Attributes'\r\n    posx: 2\r\n    posy: 2\r\n    material: DIAMOND_SWORD\r\n    lore: |\r\n      {$sep}Item attributes are the small descriptions\r\n      shown under the lore of some items.\r\n    attributes:\r\n      GENERIC_ATTACK_DAMAGE:\r\n        amount: 10\r\n        operation: ADD_NUMBER\r\n  flag-hide-destroys:\r\n    posx: 3\r\n    posy: 2\r\n    material: DIAMOND_PICKAXE\r\n    not-supported:\r\n      condition: \"!supported\"\r\n      name: \"{$sep}[{$e}Not Supported{$sep}] {$es}Hide Destroys\"\r\n    enabled:\r\n      condition: enabled\r\n      name: '{$enabled} Hide Destroys'\r\n      glow: true\r\n      lore: |\r\n        {$sep}This is only used for really\r\n        rare items that are practically\r\n        useless in most servers. This hides\r\n        a special attribute which restricts\r\n        items from being able to destroy\r\n        certain blocks when the player is\r\n        in adventure mode.\r\n    else:\r\n      name: '{$disabled} Hide Destroys'\r\n      lore: |\r\n        {$sep}This is only used for really\r\n        rare items that are practically\r\n        useless in most servers. This hides\r\n        a special attribute which restricts\r\n        items from being able to destroy\r\n        certain blocks when the player is\r\n        in adventure mode.\r\n\r\n        {$sep}Can break:\r\n        &8Stone\r\n  flag-hide-dye:\r\n    posx: 4\r\n    posy: 2\r\n    material: LEATHER_CHESTPLATE\r\n    color: 255, 255, 255\r\n    not-supported:\r\n      condition: \"!supported\"\r\n      name: \"{$sep}[{$e}Not Supported{$sep}] {$es}Hide Dyes\"\r\n    enabled:\r\n      condition: enabled\r\n      name: '{$enabled} Hide Dye'\r\n      glow: true\r\n    else:\r\n      name: '{$disabled} Hide Dye'\r\n    lore: |\r\n      {$sep}Hide dye information from\r\n      colored leather armors.\r\n  flag-hide-enchants:\r\n    posx: 5\r\n    posy: 2\r\n    material: ENCHANTED_BOOK\r\n    not-supported:\r\n      condition: \"!supported\"\r\n      name: \"{$sep}[{$e}Not Supported{$sep}] {$es}Hide Enchants\"\r\n    enabled:\r\n      condition: enabled\r\n      name: '{$enabled} Hide Enchants'\r\n      glow: true\r\n    else:\r\n      name: '{$disabled} Hide Enchants'\r\n    enchants:\r\n      DURABILITY: 1\r\n    lore: |\r\n      {$sep}Hides item enchantments from\r\n      their description above the lore\r\n      however this will still keep the\r\n      item's glowing effect.\r\n  flag-hide-placed-on:\r\n    posx: 6\r\n    posy: 2\r\n    material: STONE\r\n    not-supported:\r\n      condition: \"!supported\"\r\n      name: \"{$sep}[{$e}Not Supported{$sep}] {$es}Hide Placed On\"\r\n    enabled:\r\n      condition: enabled\r\n      name: '{$enabled} Hide Placed On'\r\n      glow: true\r\n    else:\r\n      name: '{$disabled} Hide Placed On'\r\n    lore: |\r\n      {$sep}This is only used for really\r\n      rare items that are practically\r\n      useless in most servers. This hides\r\n      a special attribute which restricts\r\n      blocks from being placed on certain\r\n      blocks when the player is in adventure\r\n      mode.\r\n  flag-hide-additional-tooltip:\r\n    posx: 7\r\n    posy: 2\r\n    material: POTION\r\n    effects: [ \"BLINDNESS, 1, 10\" ]\r\n    not-supported:\r\n      condition: \"!supported\"\r\n      name: \"{$sep}[{$e}Not Supported{$sep}] {$es}Hide Potion Effects\"\r\n    enabled:\r\n      condition: enabled\r\n      name: '{$enabled} Hide Potion Effects'\r\n      glow: true\r\n    else:\r\n      name: '{$disabled} Hide Potion Effects'\r\n    lore: |\r\n      {$sep}This is one of those Minecraft\r\n      weird behaviors, this flag has\r\n      multiple functionalities. It Hides{$colon}\r\n      {$dot} {$s}Potion effects\r\n      {$dot} {$s}Book information such as the author\r\n      {$dot} {$s}Firework information\r\n      {$dot} {$s}Map tooltips\r\n      {$dot} {$s}Patterns of banners\r\n      {$dot} {$s}Enchantments of enchanted books\r\n  flag-hide-unbreakable:\r\n    posx: 8\r\n    posy: 2\r\n    material: OBSIDIAN\r\n    unbreakable: true\r\n    not-supported:\r\n      condition: \"!supported\"\r\n      name: \"{$sep}[{$e}Not Supported{$sep}] {$es}Hide Unbreakable\"\r\n    enabled:\r\n      condition: enabled\r\n      name: '{$enabled} Hide Unbreakable'\r\n      glow: true\r\n    else:\r\n      name: '{$disabled} Hide Unbreakable'\r\n    lore: |\r\n      {$sep}Hides the unbreakable description\r\n      from items. Unbreakable items don't\r\n      lose durability when you use them.",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back"
+      ],
+      "source": "\r\n    posx: 1\r\n    posy: 1\r\n    material: PLAYER_HEAD\r\n    skull: \"{$gui-back}\"\r\n    name: '&cBack'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "posx"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "material"
+      ],
+      "source": "PLAYER_HEAD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "skull"
+      ],
+      "source": "\"{$gui-back}\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "name"
+      ],
+      "source": "'&cBack'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "decoration"
+      ],
+      "source": "\r\n    slots: [ 1, 2, 3, 5, 6, 7, 9, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26 ]\r\n    material: GREEN_STAINED_GLASS_PANE\r\n    name: ''\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "decoration",
+        "slots"
+      ],
+      "source": "[ 1, 2, 3, 5, 6, 7, 9, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "1",
+        "2",
+        "3",
+        "5",
+        "6",
+        "7",
+        "9",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "decoration",
+        "material"
+      ],
+      "source": "GREEN_STAINED_GLASS_PANE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "decoration",
+        "name"
+      ],
+      "source": "''",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "info"
+      ],
+      "source": "\r\n    posx: 5\r\n    posy: 1\r\n    name: \"&eInfo\"\r\n    material: PLAYER_HEAD\r\n    skull: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDAxYWZlOTczYzU0ODJmZGM3MWU2YWExMDY5ODgzM2M3OWM0MzdmMjEzMDhlYTlhMWEwOTU3NDZlYzI3NGEwZiJ9fX0='\r\n    slot: 4\r\n    lore: |\r\n      {$sep}Item flags can hide some\r\n      properties from items.\r\n      This won't change their actual\r\n      behavior it just hides them\r\n      from the item's description\r\n      which is either above or below\r\n      ther item's lore.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "info",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "info",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "info",
+        "name"
+      ],
+      "source": "\"&eInfo\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "info",
+        "material"
+      ],
+      "source": "PLAYER_HEAD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "info",
+        "skull"
+      ],
+      "source": "'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDAxYWZlOTczYzU0ODJmZGM3MWU2YWExMDY5ODgzM2M3OWM0MzdmMjEzMDhlYTlhMWEwOTU3NDZlYzI3NGEwZiJ9fX0='",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "info",
+        "slot"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "info",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}Item flags can hide some\r\n      properties from items.\r\n      This won't change their actual\r\n      behavior it just hides them\r\n      from the item's description\r\n      which is either above or below\r\n      ther item's lore.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "remove-all"
+      ],
+      "source": "\r\n    posx: 9\r\n    posy: 1\r\n    material: RED_WOOL\r\n    name: '{$e}Remove all flags'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "remove-all",
+        "posx"
+      ],
+      "source": "9",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "remove-all",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "remove-all",
+        "material"
+      ],
+      "source": "RED_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "remove-all",
+        "name"
+      ],
+      "source": "'{$e}Remove all flags'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-attributes"
+      ],
+      "source": "\r\n    not-supported:\r\n      condition: \"!supported\"\r\n      name: \"{$sep}[{$e}Not Supported{$sep}] {$es}Hide Attributes\"\r\n    enabled:\r\n      condition: enabled\r\n      name: '{$enabled} Hide Attributes'\r\n      glow: true\r\n    else:\r\n      name: '{$disabled} Hide Attributes'\r\n    posx: 2\r\n    posy: 2\r\n    material: DIAMOND_SWORD\r\n    lore: |\r\n      {$sep}Item attributes are the small descriptions\r\n      shown under the lore of some items.\r\n    attributes:\r\n      GENERIC_ATTACK_DAMAGE:\r\n        amount: 10\r\n        operation: ADD_NUMBER\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-attributes",
+        "not-supported"
+      ],
+      "source": "\r\n      condition: \"!supported\"\r\n      name: \"{$sep}[{$e}Not Supported{$sep}] {$es}Hide Attributes\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-attributes",
+        "not-supported",
+        "condition"
+      ],
+      "source": "\"!supported\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-attributes",
+        "not-supported",
+        "name"
+      ],
+      "source": "\"{$sep}[{$e}Not Supported{$sep}] {$es}Hide Attributes\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-attributes",
+        "enabled"
+      ],
+      "source": "\r\n      condition: enabled\r\n      name: '{$enabled} Hide Attributes'\r\n      glow: true\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-attributes",
+        "enabled",
+        "condition"
+      ],
+      "source": "enabled",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-attributes",
+        "enabled",
+        "name"
+      ],
+      "source": "'{$enabled} Hide Attributes'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-attributes",
+        "enabled",
+        "glow"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-attributes",
+        "else"
+      ],
+      "source": "\r\n      name: '{$disabled} Hide Attributes'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-attributes",
+        "else",
+        "name"
+      ],
+      "source": "'{$disabled} Hide Attributes'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-attributes",
+        "posx"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-attributes",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-attributes",
+        "material"
+      ],
+      "source": "DIAMOND_SWORD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-attributes",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}Item attributes are the small descriptions\r\n      shown under the lore of some items.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-attributes",
+        "attributes"
+      ],
+      "source": "\r\n      GENERIC_ATTACK_DAMAGE:\r\n        amount: 10\r\n        operation: ADD_NUMBER\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-attributes",
+        "attributes",
+        "GENERIC_ATTACK_DAMAGE"
+      ],
+      "source": "\r\n        amount: 10\r\n        operation: ADD_NUMBER\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-attributes",
+        "attributes",
+        "GENERIC_ATTACK_DAMAGE",
+        "amount"
+      ],
+      "source": "10",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-attributes",
+        "attributes",
+        "GENERIC_ATTACK_DAMAGE",
+        "operation"
+      ],
+      "source": "ADD_NUMBER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-destroys"
+      ],
+      "source": "\r\n    posx: 3\r\n    posy: 2\r\n    material: DIAMOND_PICKAXE\r\n    not-supported:\r\n      condition: \"!supported\"\r\n      name: \"{$sep}[{$e}Not Supported{$sep}] {$es}Hide Destroys\"\r\n    enabled:\r\n      condition: enabled\r\n      name: '{$enabled} Hide Destroys'\r\n      glow: true\r\n      lore: |\r\n        {$sep}This is only used for really\r\n        rare items that are practically\r\n        useless in most servers. This hides\r\n        a special attribute which restricts\r\n        items from being able to destroy\r\n        certain blocks when the player is\r\n        in adventure mode.\r\n    else:\r\n      name: '{$disabled} Hide Destroys'\r\n      lore: |\r\n        {$sep}This is only used for really\r\n        rare items that are practically\r\n        useless in most servers. This hides\r\n        a special attribute which restricts\r\n        items from being able to destroy\r\n        certain blocks when the player is\r\n        in adventure mode.\r\n\r\n        {$sep}Can break:\r\n        &8Stone\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-destroys",
+        "posx"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-destroys",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-destroys",
+        "material"
+      ],
+      "source": "DIAMOND_PICKAXE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-destroys",
+        "not-supported"
+      ],
+      "source": "\r\n      condition: \"!supported\"\r\n      name: \"{$sep}[{$e}Not Supported{$sep}] {$es}Hide Destroys\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-destroys",
+        "not-supported",
+        "condition"
+      ],
+      "source": "\"!supported\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-destroys",
+        "not-supported",
+        "name"
+      ],
+      "source": "\"{$sep}[{$e}Not Supported{$sep}] {$es}Hide Destroys\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-destroys",
+        "enabled"
+      ],
+      "source": "\r\n      condition: enabled\r\n      name: '{$enabled} Hide Destroys'\r\n      glow: true\r\n      lore: |\r\n        {$sep}This is only used for really\r\n        rare items that are practically\r\n        useless in most servers. This hides\r\n        a special attribute which restricts\r\n        items from being able to destroy\r\n        certain blocks when the player is\r\n        in adventure mode.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-destroys",
+        "enabled",
+        "condition"
+      ],
+      "source": "enabled",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-destroys",
+        "enabled",
+        "name"
+      ],
+      "source": "'{$enabled} Hide Destroys'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-destroys",
+        "enabled",
+        "glow"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-destroys",
+        "enabled",
+        "lore"
+      ],
+      "source": "|\r\n        {$sep}This is only used for really\r\n        rare items that are practically\r\n        useless in most servers. This hides\r\n        a special attribute which restricts\r\n        items from being able to destroy\r\n        certain blocks when the player is\r\n        in adventure mode.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-destroys",
+        "else"
+      ],
+      "source": "\r\n      name: '{$disabled} Hide Destroys'\r\n      lore: |\r\n        {$sep}This is only used for really\r\n        rare items that are practically\r\n        useless in most servers. This hides\r\n        a special attribute which restricts\r\n        items from being able to destroy\r\n        certain blocks when the player is\r\n        in adventure mode.\r\n\r\n        {$sep}Can break:\r\n        &8Stone\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-destroys",
+        "else",
+        "name"
+      ],
+      "source": "'{$disabled} Hide Destroys'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-destroys",
+        "else",
+        "lore"
+      ],
+      "source": "|\r\n        {$sep}This is only used for really\r\n        rare items that are practically\r\n        useless in most servers. This hides\r\n        a special attribute which restricts\r\n        items from being able to destroy\r\n        certain blocks when the player is\r\n        in adventure mode.\r\n\r\n        {$sep}Can break:\r\n        &8Stone\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-dye"
+      ],
+      "source": "\r\n    posx: 4\r\n    posy: 2\r\n    material: LEATHER_CHESTPLATE\r\n    color: 255, 255, 255\r\n    not-supported:\r\n      condition: \"!supported\"\r\n      name: \"{$sep}[{$e}Not Supported{$sep}] {$es}Hide Dyes\"\r\n    enabled:\r\n      condition: enabled\r\n      name: '{$enabled} Hide Dye'\r\n      glow: true\r\n    else:\r\n      name: '{$disabled} Hide Dye'\r\n    lore: |\r\n      {$sep}Hide dye information from\r\n      colored leather armors.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-dye",
+        "posx"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-dye",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-dye",
+        "material"
+      ],
+      "source": "LEATHER_CHESTPLATE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-dye",
+        "color"
+      ],
+      "source": "255, 255, 255",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-dye",
+        "not-supported"
+      ],
+      "source": "\r\n      condition: \"!supported\"\r\n      name: \"{$sep}[{$e}Not Supported{$sep}] {$es}Hide Dyes\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-dye",
+        "not-supported",
+        "condition"
+      ],
+      "source": "\"!supported\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-dye",
+        "not-supported",
+        "name"
+      ],
+      "source": "\"{$sep}[{$e}Not Supported{$sep}] {$es}Hide Dyes\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-dye",
+        "enabled"
+      ],
+      "source": "\r\n      condition: enabled\r\n      name: '{$enabled} Hide Dye'\r\n      glow: true\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-dye",
+        "enabled",
+        "condition"
+      ],
+      "source": "enabled",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-dye",
+        "enabled",
+        "name"
+      ],
+      "source": "'{$enabled} Hide Dye'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-dye",
+        "enabled",
+        "glow"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-dye",
+        "else"
+      ],
+      "source": "\r\n      name: '{$disabled} Hide Dye'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-dye",
+        "else",
+        "name"
+      ],
+      "source": "'{$disabled} Hide Dye'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-dye",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}Hide dye information from\r\n      colored leather armors.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-enchants"
+      ],
+      "source": "\r\n    posx: 5\r\n    posy: 2\r\n    material: ENCHANTED_BOOK\r\n    not-supported:\r\n      condition: \"!supported\"\r\n      name: \"{$sep}[{$e}Not Supported{$sep}] {$es}Hide Enchants\"\r\n    enabled:\r\n      condition: enabled\r\n      name: '{$enabled} Hide Enchants'\r\n      glow: true\r\n    else:\r\n      name: '{$disabled} Hide Enchants'\r\n    enchants:\r\n      DURABILITY: 1\r\n    lore: |\r\n      {$sep}Hides item enchantments from\r\n      their description above the lore\r\n      however this will still keep the\r\n      item's glowing effect.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-enchants",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-enchants",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-enchants",
+        "material"
+      ],
+      "source": "ENCHANTED_BOOK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-enchants",
+        "not-supported"
+      ],
+      "source": "\r\n      condition: \"!supported\"\r\n      name: \"{$sep}[{$e}Not Supported{$sep}] {$es}Hide Enchants\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-enchants",
+        "not-supported",
+        "condition"
+      ],
+      "source": "\"!supported\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-enchants",
+        "not-supported",
+        "name"
+      ],
+      "source": "\"{$sep}[{$e}Not Supported{$sep}] {$es}Hide Enchants\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-enchants",
+        "enabled"
+      ],
+      "source": "\r\n      condition: enabled\r\n      name: '{$enabled} Hide Enchants'\r\n      glow: true\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-enchants",
+        "enabled",
+        "condition"
+      ],
+      "source": "enabled",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-enchants",
+        "enabled",
+        "name"
+      ],
+      "source": "'{$enabled} Hide Enchants'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-enchants",
+        "enabled",
+        "glow"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-enchants",
+        "else"
+      ],
+      "source": "\r\n      name: '{$disabled} Hide Enchants'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-enchants",
+        "else",
+        "name"
+      ],
+      "source": "'{$disabled} Hide Enchants'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-enchants",
+        "enchants"
+      ],
+      "source": "\r\n      DURABILITY: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-enchants",
+        "enchants",
+        "DURABILITY"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-enchants",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}Hides item enchantments from\r\n      their description above the lore\r\n      however this will still keep the\r\n      item's glowing effect.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-placed-on"
+      ],
+      "source": "\r\n    posx: 6\r\n    posy: 2\r\n    material: STONE\r\n    not-supported:\r\n      condition: \"!supported\"\r\n      name: \"{$sep}[{$e}Not Supported{$sep}] {$es}Hide Placed On\"\r\n    enabled:\r\n      condition: enabled\r\n      name: '{$enabled} Hide Placed On'\r\n      glow: true\r\n    else:\r\n      name: '{$disabled} Hide Placed On'\r\n    lore: |\r\n      {$sep}This is only used for really\r\n      rare items that are practically\r\n      useless in most servers. This hides\r\n      a special attribute which restricts\r\n      blocks from being placed on certain\r\n      blocks when the player is in adventure\r\n      mode.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-placed-on",
+        "posx"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-placed-on",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-placed-on",
+        "material"
+      ],
+      "source": "STONE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-placed-on",
+        "not-supported"
+      ],
+      "source": "\r\n      condition: \"!supported\"\r\n      name: \"{$sep}[{$e}Not Supported{$sep}] {$es}Hide Placed On\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-placed-on",
+        "not-supported",
+        "condition"
+      ],
+      "source": "\"!supported\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-placed-on",
+        "not-supported",
+        "name"
+      ],
+      "source": "\"{$sep}[{$e}Not Supported{$sep}] {$es}Hide Placed On\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-placed-on",
+        "enabled"
+      ],
+      "source": "\r\n      condition: enabled\r\n      name: '{$enabled} Hide Placed On'\r\n      glow: true\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-placed-on",
+        "enabled",
+        "condition"
+      ],
+      "source": "enabled",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-placed-on",
+        "enabled",
+        "name"
+      ],
+      "source": "'{$enabled} Hide Placed On'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-placed-on",
+        "enabled",
+        "glow"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-placed-on",
+        "else"
+      ],
+      "source": "\r\n      name: '{$disabled} Hide Placed On'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-placed-on",
+        "else",
+        "name"
+      ],
+      "source": "'{$disabled} Hide Placed On'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-placed-on",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}This is only used for really\r\n      rare items that are practically\r\n      useless in most servers. This hides\r\n      a special attribute which restricts\r\n      blocks from being placed on certain\r\n      blocks when the player is in adventure\r\n      mode.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-additional-tooltip"
+      ],
+      "source": "\r\n    posx: 7\r\n    posy: 2\r\n    material: POTION\r\n    effects: [ \"BLINDNESS, 1, 10\" ]\r\n    not-supported:\r\n      condition: \"!supported\"\r\n      name: \"{$sep}[{$e}Not Supported{$sep}] {$es}Hide Potion Effects\"\r\n    enabled:\r\n      condition: enabled\r\n      name: '{$enabled} Hide Potion Effects'\r\n      glow: true\r\n    else:\r\n      name: '{$disabled} Hide Potion Effects'\r\n    lore: |\r\n      {$sep}This is one of those Minecraft\r\n      weird behaviors, this flag has\r\n      multiple functionalities. It Hides{$colon}\r\n      {$dot} {$s}Potion effects\r\n      {$dot} {$s}Book information such as the author\r\n      {$dot} {$s}Firework information\r\n      {$dot} {$s}Map tooltips\r\n      {$dot} {$s}Patterns of banners\r\n      {$dot} {$s}Enchantments of enchanted books\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-additional-tooltip",
+        "posx"
+      ],
+      "source": "7",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-additional-tooltip",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-additional-tooltip",
+        "material"
+      ],
+      "source": "POTION",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-additional-tooltip",
+        "effects"
+      ],
+      "source": "[ \"BLINDNESS, 1, 10\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"BLINDNESS, 1, 10\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-additional-tooltip",
+        "not-supported"
+      ],
+      "source": "\r\n      condition: \"!supported\"\r\n      name: \"{$sep}[{$e}Not Supported{$sep}] {$es}Hide Potion Effects\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-additional-tooltip",
+        "not-supported",
+        "condition"
+      ],
+      "source": "\"!supported\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-additional-tooltip",
+        "not-supported",
+        "name"
+      ],
+      "source": "\"{$sep}[{$e}Not Supported{$sep}] {$es}Hide Potion Effects\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-additional-tooltip",
+        "enabled"
+      ],
+      "source": "\r\n      condition: enabled\r\n      name: '{$enabled} Hide Potion Effects'\r\n      glow: true\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-additional-tooltip",
+        "enabled",
+        "condition"
+      ],
+      "source": "enabled",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-additional-tooltip",
+        "enabled",
+        "name"
+      ],
+      "source": "'{$enabled} Hide Potion Effects'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-additional-tooltip",
+        "enabled",
+        "glow"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-additional-tooltip",
+        "else"
+      ],
+      "source": "\r\n      name: '{$disabled} Hide Potion Effects'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-additional-tooltip",
+        "else",
+        "name"
+      ],
+      "source": "'{$disabled} Hide Potion Effects'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-additional-tooltip",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}This is one of those Minecraft\r\n      weird behaviors, this flag has\r\n      multiple functionalities. It Hides{$colon}\r\n      {$dot} {$s}Potion effects\r\n      {$dot} {$s}Book information such as the author\r\n      {$dot} {$s}Firework information\r\n      {$dot} {$s}Map tooltips\r\n      {$dot} {$s}Patterns of banners\r\n      {$dot} {$s}Enchantments of enchanted books\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-unbreakable"
+      ],
+      "source": "\r\n    posx: 8\r\n    posy: 2\r\n    material: OBSIDIAN\r\n    unbreakable: true\r\n    not-supported:\r\n      condition: \"!supported\"\r\n      name: \"{$sep}[{$e}Not Supported{$sep}] {$es}Hide Unbreakable\"\r\n    enabled:\r\n      condition: enabled\r\n      name: '{$enabled} Hide Unbreakable'\r\n      glow: true\r\n    else:\r\n      name: '{$disabled} Hide Unbreakable'\r\n    lore: |\r\n      {$sep}Hides the unbreakable description\r\n      from items. Unbreakable items don't\r\n      lose durability when you use them.",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-unbreakable",
+        "posx"
+      ],
+      "source": "8",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-unbreakable",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-unbreakable",
+        "material"
+      ],
+      "source": "OBSIDIAN",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-unbreakable",
+        "unbreakable"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-unbreakable",
+        "not-supported"
+      ],
+      "source": "\r\n      condition: \"!supported\"\r\n      name: \"{$sep}[{$e}Not Supported{$sep}] {$es}Hide Unbreakable\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-unbreakable",
+        "not-supported",
+        "condition"
+      ],
+      "source": "\"!supported\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-unbreakable",
+        "not-supported",
+        "name"
+      ],
+      "source": "\"{$sep}[{$e}Not Supported{$sep}] {$es}Hide Unbreakable\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-unbreakable",
+        "enabled"
+      ],
+      "source": "\r\n      condition: enabled\r\n      name: '{$enabled} Hide Unbreakable'\r\n      glow: true\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-unbreakable",
+        "enabled",
+        "condition"
+      ],
+      "source": "enabled",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-unbreakable",
+        "enabled",
+        "name"
+      ],
+      "source": "'{$enabled} Hide Unbreakable'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-unbreakable",
+        "enabled",
+        "glow"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-unbreakable",
+        "else"
+      ],
+      "source": "\r\n      name: '{$disabled} Hide Unbreakable'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-unbreakable",
+        "else",
+        "name"
+      ],
+      "source": "'{$disabled} Hide Unbreakable'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flag-hide-unbreakable",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}Hides the unbreakable description\r\n      from items. Unbreakable items don't\r\n      lose durability when you use them.",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

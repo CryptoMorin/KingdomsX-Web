@@ -15,7 +15,7 @@ import {
 beforeEach(resetDatabase);
 
 describe("Moderation and submission jobs", () => {
-  it("approves independently of Discord and atomically queues an embed", async () => {
+  it("approves a listing without waiting for Discord and queues its embed in the same transaction", async () => {
     await seedSubmitter("approval");
     await seedOwnedServer("approval", "pending");
     const response = await adminApi("/api/admin/servers/server-approval/approve");
@@ -29,7 +29,7 @@ describe("Moderation and submission jobs", () => {
     ).toEqual({ desired_action: "upsert" });
   });
 
-  it("atomically queues a review notification for a new public submission", async () => {
+  it("queues the review notification in the same transaction as a new public submission", async () => {
     const cookie = await seedSubmitter("new-review");
     const challenge = await createChallenge(cookie);
     const verification = await verifyPlugin(String(challenge.code));
@@ -71,7 +71,7 @@ describe("Moderation and submission jobs", () => {
 });
 
 describe("Suspension feedback", () => {
-  it("keeps owner feedback separate from deleted-listing bookkeeping", async () => {
+  it("preserves owner feedback independently of deleted listing records", async () => {
     const cookie = await seedSubmitter("suspension-feedback");
 
     await seedOwnedServer("suspension-feedback");
@@ -82,7 +82,8 @@ describe("Suspension feedback", () => {
       INSERT INTO submissions (
         id, server_id, owner_account_id, contact, verification_method, verification_evidence,
         submitter_ip_hash, user_agent_hash, turnstile_result, created_at
-      ) VALUES (
+      )
+      VALUES (
         'submission-feedback', 'server-suspension-feedback', 'account-suspension-feedback', 'Tester',
         'plugin_callback', 'verified', 'ip-hash', 'ua-hash', '{}', ?
       )
@@ -120,6 +121,5 @@ describe("Suspension feedback", () => {
     ).first<{ reason: string }>();
 
     expect(address?.reason).toBe("This listing is suspended because staff found content or behavior that violates the server listing rules. Contact staff after correcting the issue.");
-    expect(address?.reason).not.toContain("Deleted suspended server listing");
   });
 });

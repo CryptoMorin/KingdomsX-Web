@@ -1,0 +1,2881 @@
+{
+  "formatVersion": 2,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "id": "config",
+  "resourceName": "config.yml",
+  "schema": {
+    "kind": "object",
+    "fields": [
+      {
+        "key": "prefix",
+        "type": {
+          "kind": "boolean"
+        }
+      },
+      {
+        "key": "debug",
+        "type": {
+          "kind": "boolean"
+        }
+      },
+      {
+        "key": "updates",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "check",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "download",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "path",
+              "type": {
+                "kind": "string",
+                "typeName": "str"
+              }
+            },
+            {
+              "key": "synchronize-guis",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "automatic",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  },
+                  {
+                    "key": "reference-language",
+                    "type": {
+                      "kind": "nullable",
+                      "value": {
+                        "kind": "string",
+                        "typeName": "str"
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "key": "configs",
+              "type": {
+                "kind": "boolean"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "lang",
+        "type": {
+          "kind": "string",
+          "typeName": "str"
+        }
+      },
+      {
+        "key": "force-lang",
+        "type": {
+          "kind": "boolean"
+        }
+      },
+      {
+        "key": "backups",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "interval",
+              "type": {
+                "kind": "duration",
+                "typeName": "Period"
+              }
+            },
+            {
+              "key": "enabled",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "enabled",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  },
+                  {
+                    "key": "data",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  },
+                  {
+                    "key": "chunk-snapshots",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  },
+                  {
+                    "key": "configs",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "key": "folder",
+              "type": {
+                "kind": "string",
+                "typeName": "str"
+              }
+            },
+            {
+              "key": "ignore-todays-backup",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "delete-backups-older-than",
+              "type": {
+                "kind": "integer"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "database",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "method",
+              "type": {
+                "kind": "enum",
+                "values": [
+                  "sqlite",
+                  "h2",
+                  "json",
+                  "yaml",
+                  "mysql",
+                  "mariadb",
+                  "postgresql",
+                  "mongodb"
+                ],
+                "allowCustom": false
+              }
+            },
+            {
+              "key": "auto-save-interval",
+              "type": {
+                "kind": "duration",
+                "typeName": "Period"
+              }
+            },
+            {
+              "key": "use-data-folder",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "smart-save",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "load-all-data-on-startup",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "table-prefix",
+              "type": {
+                "kind": "string",
+                "typeName": "str"
+              }
+            },
+            {
+              "key": "tables",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "nations",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "str"
+                    }
+                  },
+                  {
+                    "key": "kingdoms",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "str"
+                    }
+                  },
+                  {
+                    "key": "players",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "str"
+                    }
+                  },
+                  {
+                    "key": "lands",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "str"
+                    }
+                  },
+                  {
+                    "key": "mails",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "str"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "key": "address",
+              "type": {
+                "kind": "string",
+                "typeName": "str"
+              }
+            },
+            {
+              "key": "database",
+              "type": {
+                "kind": "string",
+                "typeName": "str"
+              }
+            },
+            {
+              "key": "username",
+              "type": {
+                "kind": "string",
+                "typeName": "str"
+              }
+            },
+            {
+              "key": "password",
+              "type": {
+                "kind": "string",
+                "typeName": "str"
+              }
+            },
+            {
+              "key": "uri",
+              "type": {
+                "kind": "string",
+                "typeName": "str"
+              }
+            },
+            {
+              "key": "pool-settings",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "size",
+                    "type": {
+                      "kind": "object",
+                      "fields": [
+                        {
+                          "key": "max",
+                          "type": {
+                            "kind": "integer",
+                            "minimum": 1,
+                            "maximum": 1000
+                          }
+                        },
+                        {
+                          "key": "min",
+                          "type": {
+                            "kind": "integer",
+                            "minimum": 0,
+                            "maximum": 100
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "key": "minimum-idle",
+                    "type": {
+                      "kind": "integer",
+                      "minimum": 0,
+                      "maximum": 100
+                    }
+                  },
+                  {
+                    "key": "maximum-lifetime",
+                    "type": {
+                      "kind": "duration",
+                      "typeName": "Period"
+                    }
+                  },
+                  {
+                    "key": "connection-timeout",
+                    "type": {
+                      "kind": "duration",
+                      "typeName": "Period"
+                    }
+                  },
+                  {
+                    "key": "keepalive-time",
+                    "type": {
+                      "kind": "duration",
+                      "typeName": "Period"
+                    }
+                  },
+                  {
+                    "key": "max-concurrent-connections",
+                    "type": {
+                      "kind": "integer"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "key": "ssl",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "enabled",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  },
+                  {
+                    "key": "verify-server-certificate",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  },
+                  {
+                    "key": "allow-public-key-retrieval",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "key": "properties",
+              "type": {
+                "kind": "mapping",
+                "keys": {
+                  "kind": "string",
+                  "typeName": "str"
+                },
+                "values": {
+                  "kind": "advanced",
+                  "typeName": "any"
+                },
+                "fields": []
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "disabled-worlds",
+        "type": {
+          "kind": "set",
+          "elements": {
+            "kind": "suggestion",
+            "typeName": "World",
+            "allowCustom": true
+          }
+        }
+      },
+      {
+        "key": "keep-admin-mode",
+        "type": {
+          "kind": "boolean"
+        }
+      },
+      {
+        "key": "building-visuals",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "disabled",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "hammer-animation",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "disable",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  },
+                  {
+                    "key": "particle",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "str"
+                    }
+                  },
+                  {
+                    "key": "sound",
+                    "type": {
+                      "kind": "suggestion",
+                      "typeName": "Sound",
+                      "allowCustom": true
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "key": "trigger-distance",
+              "type": {
+                "kind": "integer"
+              }
+            },
+            {
+              "key": "trigger-distance-tolerance",
+              "type": {
+                "kind": "integer"
+              }
+            },
+            {
+              "key": "holograms",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "update",
+                    "type": {
+                      "kind": "object",
+                      "fields": [
+                        {
+                          "key": "method",
+                          "type": {
+                            "kind": "union",
+                            "choices": [
+                              {
+                                "kind": "advanced",
+                                "typeName": "MANUAL"
+                              },
+                              {
+                                "kind": "advanced",
+                                "typeName": "AUTOMATIC"
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "key": "interval",
+                          "type": {
+                            "kind": "duration",
+                            "typeName": "Period"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "disabled-integrations",
+        "type": {
+          "kind": "set",
+          "elements": {
+            "kind": "string",
+            "typeName": "str"
+          }
+        }
+      },
+      {
+        "key": "command",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "enable-tab-colorization",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "name",
+              "type": {
+                "kind": "string",
+                "typeName": "str"
+              }
+            },
+            {
+              "key": "aliases",
+              "type": {
+                "kind": "set",
+                "elements": {
+                  "kind": "advanced",
+                  "typeName": "any"
+                }
+              }
+            },
+            {
+              "key": "space-text",
+              "type": {
+                "kind": "string",
+                "typeName": "str"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "commands",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "string",
+            "typeName": "str"
+          },
+          "values": {
+            "kind": "object",
+            "fields": [
+              {
+                "key": "disabled",
+                "type": {
+                  "kind": "boolean"
+                }
+              },
+              {
+                "key": "cooldown",
+                "type": {
+                  "kind": "duration",
+                  "typeName": "Period"
+                }
+              },
+              {
+                "key": "disabled-worlds",
+                "type": {
+                  "kind": "set",
+                  "elements": {
+                    "kind": "suggestion",
+                    "typeName": "World",
+                    "allowCustom": true
+                  }
+                }
+              }
+            ]
+          },
+          "fields": [],
+          "optional": true
+        }
+      },
+      {
+        "key": "events",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "advanced",
+            "typeName": "Class"
+          },
+          "values": {
+            "kind": "object",
+            "fields": [
+              {
+                "key": "priority",
+                "type": {
+                  "kind": "suggestion",
+                  "typeName": "Enum<org.bukkit.event.EventPriority>",
+                  "allowCustom": true
+                }
+              },
+              {
+                "key": "ignore-cancelled",
+                "type": {
+                  "kind": "boolean"
+                }
+              },
+              {
+                "key": "commands",
+                "type": {
+                  "kind": "union",
+                  "choices": [
+                    {
+                      "kind": "mapping",
+                      "keys": {
+                        "kind": "expression",
+                        "language": "condition"
+                      },
+                      "values": {
+                        "kind": "list",
+                        "elements": {
+                          "kind": "advanced",
+                          "typeName": "any"
+                        }
+                      },
+                      "fields": []
+                    },
+                    {
+                      "kind": "list",
+                      "elements": {
+                        "kind": "string",
+                        "typeName": "str"
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "fields": []
+        }
+      },
+      {
+        "key": "placeholders",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "variables",
+              "type": {
+                "kind": "mapping",
+                "keys": {
+                  "kind": "string",
+                  "typeName": "str"
+                },
+                "values": {
+                  "kind": "union",
+                  "choices": [
+                    {
+                      "kind": "string",
+                      "typeName": "str"
+                    },
+                    {
+                      "kind": "mapping",
+                      "keys": {
+                        "kind": "expression",
+                        "language": "condition"
+                      },
+                      "values": {
+                        "kind": "string",
+                        "typeName": "str"
+                      },
+                      "fields": []
+                    }
+                  ]
+                },
+                "fields": []
+              }
+            },
+            {
+              "key": "defaults",
+              "type": {
+                "kind": "mapping",
+                "keys": {
+                  "kind": "string",
+                  "typeName": "str"
+                },
+                "values": {
+                  "kind": "advanced",
+                  "typeName": "any"
+                },
+                "fields": []
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "merging",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "conditions",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "sender",
+                    "type": {
+                      "kind": "mapping",
+                      "keys": {
+                        "kind": "expression",
+                        "language": "condition"
+                      },
+                      "values": {
+                        "kind": "string",
+                        "typeName": "MessageEntry"
+                      },
+                      "fields": []
+                    }
+                  },
+                  {
+                    "key": "receiver",
+                    "type": {
+                      "kind": "mapping",
+                      "keys": {
+                        "kind": "expression",
+                        "language": "condition"
+                      },
+                      "values": {
+                        "kind": "string",
+                        "typeName": "MessageEntry"
+                      },
+                      "fields": []
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "time-formatter",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "string",
+            "typeName": "str"
+          },
+          "values": {
+            "kind": "string",
+            "typeName": "str"
+          },
+          "fields": []
+        }
+      },
+      {
+        "key": "help",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "commands",
+              "type": {
+                "kind": "integer",
+                "minimum": 1
+              }
+            },
+            {
+              "key": "footer-pages",
+              "type": {
+                "kind": "integer"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "error-sound",
+        "type": {
+          "kind": "suggestion",
+          "typeName": "Sound",
+          "allowCustom": true
+        }
+      },
+      {
+        "key": "audit-logs",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "disabled",
+              "type": {
+                "kind": "set",
+                "elements": {
+                  "kind": "advanced",
+                  "typeName": "any"
+                }
+              }
+            },
+            {
+              "key": "expiration",
+              "type": {
+                "kind": "mapping",
+                "keys": {
+                  "kind": "string",
+                  "typeName": "str"
+                },
+                "values": {
+                  "kind": "duration",
+                  "typeName": "Period"
+                },
+                "fields": [],
+                "required": [
+                  "default"
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "guis",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "creative-sound",
+              "type": {
+                "kind": "suggestion",
+                "typeName": "Sound",
+                "allowCustom": true
+              }
+            },
+            {
+              "key": "close-on-damage",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "allow-own-inventory-interact",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "default-click-sound",
+              "type": {
+                "kind": "suggestion",
+                "typeName": "Sound",
+                "allowCustom": true
+              }
+            },
+            {
+              "key": "enable-refresh-feature",
+              "type": {
+                "kind": "boolean"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "join-leave-messages",
+        "type": {
+          "kind": "boolean"
+        }
+      },
+      {
+        "key": "top-kingdoms",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "types",
+              "type": {
+                "kind": "mapping",
+                "keys": {
+                  "kind": "string",
+                  "typeName": "str"
+                },
+                "values": {
+                  "kind": "object",
+                  "fields": [
+                    {
+                      "key": "name",
+                      "type": {
+                        "kind": "string",
+                        "typeName": "str"
+                      }
+                    },
+                    {
+                      "key": "equation",
+                      "type": {
+                        "kind": "expression",
+                        "language": "math"
+                      }
+                    },
+                    {
+                      "key": "filter",
+                      "type": {
+                        "kind": "expression",
+                        "language": "condition"
+                      }
+                    },
+                    {
+                      "key": "description",
+                      "type": {
+                        "kind": "string",
+                        "typeName": "str"
+                      }
+                    }
+                  ]
+                },
+                "fields": []
+              }
+            },
+            {
+              "key": "update-interval",
+              "type": {
+                "kind": "duration",
+                "typeName": "Period"
+              }
+            },
+            {
+              "key": "amount",
+              "type": {
+                "kind": "integer"
+              }
+            },
+            {
+              "key": "rewards",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "top",
+                    "type": {
+                      "kind": "integer"
+                    }
+                  },
+                  {
+                    "key": "resource-points",
+                    "type": {
+                      "kind": "expression",
+                      "language": "math"
+                    }
+                  },
+                  {
+                    "key": "bank",
+                    "type": {
+                      "kind": "expression",
+                      "language": "math"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "top-nations",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "might",
+              "type": {
+                "kind": "expression",
+                "language": "math"
+              }
+            },
+            {
+              "key": "amount",
+              "type": {
+                "kind": "integer"
+              }
+            },
+            {
+              "key": "rewards",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "top",
+                    "type": {
+                      "kind": "integer"
+                    }
+                  },
+                  {
+                    "key": "resource-points",
+                    "type": {
+                      "kind": "expression",
+                      "language": "math"
+                    }
+                  },
+                  {
+                    "key": "bank",
+                    "type": {
+                      "kind": "expression",
+                      "language": "math"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "max-members",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "kingdoms",
+              "type": {
+                "kind": "expression",
+                "language": "math"
+              }
+            },
+            {
+              "key": "nations",
+              "type": {
+                "kind": "expression",
+                "language": "math"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "teleport-to-spawn-after-kick",
+        "type": {
+          "kind": "boolean"
+        }
+      },
+      {
+        "key": "kingdom-name",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "renaming-cooldown",
+              "type": {
+                "kind": "string",
+                "typeName": "str"
+              }
+            },
+            {
+              "key": "max-length",
+              "type": {
+                "kind": "integer"
+              }
+            },
+            {
+              "key": "min-length",
+              "type": {
+                "kind": "integer"
+              }
+            },
+            {
+              "key": "ignore-colors",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "allow-numbers",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "allow-spaces",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "allow-non-english",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "allow-symbols",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "allow-duplicate-names",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "case-sensitive",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "blacklisted-regex",
+              "type": {
+                "kind": "list",
+                "elements": {
+                  "kind": "string",
+                  "typeName": "str"
+                }
+              }
+            },
+            {
+              "key": "blacklisted-names",
+              "type": {
+                "kind": "list",
+                "elements": {
+                  "kind": "string",
+                  "typeName": "str"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "flag",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "cooldown",
+              "type": {
+                "kind": "duration",
+                "typeName": "Period"
+              }
+            },
+            {
+              "key": "size-limit",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "width",
+                    "type": {
+                      "kind": "integer"
+                    }
+                  },
+                  {
+                    "key": "height",
+                    "type": {
+                      "kind": "integer"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "key": "links",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "blacklist",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  },
+                  {
+                    "key": "contains",
+                    "type": {
+                      "kind": "list",
+                      "elements": {
+                        "kind": "string",
+                        "typeName": "str"
+                      }
+                    }
+                  },
+                  {
+                    "key": "regex",
+                    "type": {
+                      "kind": "list",
+                      "elements": {
+                        "kind": "string",
+                        "typeName": "str"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "tags",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "attempt-automatic-setting",
+              "type": {
+                "kind": "mapping",
+                "keys": {
+                  "kind": "string",
+                  "typeName": "str"
+                },
+                "values": {
+                  "kind": "object",
+                  "fields": [
+                    {
+                      "key": "regex",
+                      "type": {
+                        "kind": "expression",
+                        "language": "regex"
+                      }
+                    },
+                    {
+                      "key": "count",
+                      "type": {
+                        "kind": "advanced",
+                        "typeName": "NumberMatcher"
+                      }
+                    }
+                  ]
+                },
+                "fields": []
+              }
+            },
+            {
+              "key": "renaming-cooldown",
+              "type": {
+                "kind": "duration",
+                "typeName": "Period"
+              }
+            },
+            {
+              "key": "max-length",
+              "type": {
+                "kind": "integer"
+              }
+            },
+            {
+              "key": "min-length",
+              "type": {
+                "kind": "integer"
+              }
+            },
+            {
+              "key": "ignore-colors",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "allow-numbers",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "allow-spaces",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "allow-non-english",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "allow-symbols",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "blacklisted-names",
+              "type": {
+                "kind": "list",
+                "elements": {
+                  "kind": "string",
+                  "typeName": "str"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "nation-name",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "renaming-cooldown",
+              "type": {
+                "kind": "string",
+                "typeName": "str"
+              }
+            },
+            {
+              "key": "max-length",
+              "type": {
+                "kind": "integer"
+              }
+            },
+            {
+              "key": "min-length",
+              "type": {
+                "kind": "integer"
+              }
+            },
+            {
+              "key": "ignore-colors",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "allow-numbers",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "allow-spaces",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "allow-non-english",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "allow-symbols",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "allow-duplicate-names",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "case-sensitive",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "blacklisted-names",
+              "type": {
+                "kind": "list",
+                "elements": {
+                  "kind": "string",
+                  "typeName": "str"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "default-flags",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "string",
+            "typeName": "str"
+          },
+          "values": {
+            "kind": "mapping",
+            "keys": {
+              "kind": "string",
+              "typeName": "str"
+            },
+            "values": {
+              "kind": "boolean"
+            },
+            "fields": []
+          },
+          "fields": []
+        }
+      },
+      {
+        "key": "kingdom-fly",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "enabled",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "disable-on-damage",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "nearby-unfriendly-range",
+              "type": {
+                "kind": "integer"
+              }
+            },
+            {
+              "key": "charges",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "enabled",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  },
+                  {
+                    "key": "every-seconds",
+                    "type": {
+                      "kind": "integer"
+                    }
+                  },
+                  {
+                    "key": "players",
+                    "type": {
+                      "kind": "object",
+                      "fields": [
+                        {
+                          "key": "amount",
+                          "type": {
+                            "kind": "object",
+                            "fields": [
+                              {
+                                "key": "default",
+                                "type": {
+                                  "kind": "nullable",
+                                  "value": {
+                                    "kind": "expression",
+                                    "language": "math"
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "key": "activation-cost",
+                          "type": {
+                            "kind": "object",
+                            "fields": [
+                              {
+                                "key": "default",
+                                "type": {
+                                  "kind": "nullable",
+                                  "value": {
+                                    "kind": "expression",
+                                    "language": "math"
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "key": "pay-kingdom",
+                          "type": {
+                            "kind": "object",
+                            "fields": [
+                              {
+                                "key": "enabled",
+                                "type": {
+                                  "kind": "boolean"
+                                }
+                              },
+                              {
+                                "key": "resource-points",
+                                "type": {
+                                  "kind": "boolean"
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "key": "kingdoms",
+                    "type": {
+                      "kind": "object",
+                      "fields": [
+                        {
+                          "key": "amount",
+                          "type": {
+                            "kind": "object",
+                            "fields": [
+                              {
+                                "key": "default",
+                                "type": {
+                                  "kind": "integer"
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "key": "activation-cost",
+                          "type": {
+                            "kind": "object",
+                            "fields": [
+                              {
+                                "key": "default",
+                                "type": {
+                                  "kind": "integer"
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "key": "resource-points",
+                          "type": {
+                            "kind": "boolean"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "key": "warnings",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "land",
+                    "type": {
+                      "kind": "integer"
+                    }
+                  },
+                  {
+                    "key": "charges",
+                    "type": {
+                      "kind": "integer"
+                    }
+                  },
+                  {
+                    "key": "unfriendly-nearby",
+                    "type": {
+                      "kind": "integer"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "kingdom-lore",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "title",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "fade-in",
+                    "type": {
+                      "kind": "integer"
+                    }
+                  },
+                  {
+                    "key": "stay",
+                    "type": {
+                      "kind": "integer"
+                    }
+                  },
+                  {
+                    "key": "fade-out",
+                    "type": {
+                      "kind": "integer"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "key": "allow-colors",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "max-length",
+              "type": {
+                "kind": "integer"
+              }
+            },
+            {
+              "key": "ignore-colors",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "renaming-cooldown",
+              "type": {
+                "kind": "integer"
+              }
+            },
+            {
+              "key": "allow-non-english",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "allow-symbols",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "remove-keywords",
+              "type": {
+                "kind": "list",
+                "elements": {
+                  "kind": "string",
+                  "typeName": "str"
+                }
+              }
+            },
+            {
+              "key": "blacklisted-names",
+              "type": {
+                "kind": "list",
+                "elements": {
+                  "kind": "string",
+                  "typeName": "str"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "no-kingdom-reminder",
+        "type": {
+          "kind": "boolean"
+        }
+      },
+      {
+        "key": "announcements",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "king",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "rename",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "create",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "kingdom",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  },
+                  {
+                    "key": "nation",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "outpost-events",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "death-resource-points-penalty",
+              "type": {
+                "kind": "integer"
+              }
+            },
+            {
+              "key": "scoreboard",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "title",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "str"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "economy",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "create-confirmation",
+              "type": {
+                "kind": "duration",
+                "typeName": "Period"
+              }
+            },
+            {
+              "key": "bank",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "deposit",
+                    "type": {
+                      "kind": "object",
+                      "fields": [
+                        {
+                          "key": "enabled",
+                          "type": {
+                            "kind": "boolean"
+                          }
+                        },
+                        {
+                          "key": "min",
+                          "type": {
+                            "kind": "integer"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "key": "withdraw",
+                    "type": {
+                      "kind": "object",
+                      "fields": [
+                        {
+                          "key": "enabled",
+                          "type": {
+                            "kind": "boolean"
+                          }
+                        },
+                        {
+                          "key": "min",
+                          "type": {
+                            "kind": "integer"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "key": "limit",
+                    "type": {
+                      "kind": "object",
+                      "fields": [
+                        {
+                          "key": "kingdoms",
+                          "type": {
+                            "kind": "integer"
+                          }
+                        },
+                        {
+                          "key": "nations",
+                          "type": {
+                            "kind": "integer"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "key": "resource-points",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "worth",
+                    "type": {
+                      "kind": "object",
+                      "fields": [
+                        {
+                          "key": "buy",
+                          "type": {
+                            "kind": "decimal"
+                          }
+                        },
+                        {
+                          "key": "sell",
+                          "type": {
+                            "kind": "decimal"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "key": "min-withdraw",
+                    "type": {
+                      "kind": "integer"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "key": "costs",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "create",
+                    "type": {
+                      "kind": "object",
+                      "fields": [
+                        {
+                          "key": "kingdom",
+                          "type": {
+                            "kind": "integer"
+                          }
+                        },
+                        {
+                          "key": "nation",
+                          "type": {
+                            "kind": "integer"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "key": "rename",
+                    "type": {
+                      "kind": "object",
+                      "fields": [
+                        {
+                          "key": "kingdom",
+                          "type": {
+                            "kind": "integer"
+                          }
+                        },
+                        {
+                          "key": "nation",
+                          "type": {
+                            "kind": "integer"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "key": "tag",
+                    "type": {
+                      "kind": "object",
+                      "fields": [
+                        {
+                          "key": "kingdom",
+                          "type": {
+                            "kind": "integer"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "daily-checks",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "time",
+              "type": {
+                "kind": "string",
+                "typeName": "str"
+              }
+            },
+            {
+              "key": "interval",
+              "type": {
+                "kind": "integer"
+              }
+            },
+            {
+              "key": "elections",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "enabled",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  },
+                  {
+                    "key": "interval",
+                    "type": {
+                      "kind": "integer"
+                    }
+                  },
+                  {
+                    "key": "vote-percentage",
+                    "type": {
+                      "kind": "integer"
+                    }
+                  },
+                  {
+                    "key": "duration",
+                    "type": {
+                      "kind": "duration",
+                      "typeName": "Period"
+                    }
+                  },
+                  {
+                    "key": "disallow",
+                    "type": {
+                      "kind": "object",
+                      "fields": [
+                        {
+                          "key": "joins",
+                          "type": {
+                            "kind": "boolean"
+                          }
+                        },
+                        {
+                          "key": "kicks",
+                          "type": {
+                            "kind": "boolean"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "key": "timezone",
+              "type": {
+                "kind": "string",
+                "typeName": "str"
+              }
+            },
+            {
+              "key": "countdowns",
+              "type": {
+                "kind": "list",
+                "elements": {
+                  "kind": "string",
+                  "typeName": "str"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "tax",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "kingdoms",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "enabled",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  },
+                  {
+                    "key": "pacifism-factor",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "str"
+                    }
+                  },
+                  {
+                    "key": "scaling",
+                    "type": {
+                      "kind": "expression",
+                      "language": "math"
+                    }
+                  },
+                  {
+                    "key": "notifications",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  },
+                  {
+                    "key": "age",
+                    "type": {
+                      "kind": "duration",
+                      "typeName": "Period"
+                    }
+                  },
+                  {
+                    "key": "use-resource-points",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  },
+                  {
+                    "key": "disband-if-cant-pay",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  },
+                  {
+                    "key": "members",
+                    "type": {
+                      "kind": "object",
+                      "fields": [
+                        {
+                          "key": "enabled",
+                          "type": {
+                            "kind": "boolean"
+                          }
+                        },
+                        {
+                          "key": "age",
+                          "type": {
+                            "kind": "duration",
+                            "typeName": "Period"
+                          }
+                        },
+                        {
+                          "key": "default-equation",
+                          "type": {
+                            "kind": "expression",
+                            "language": "math"
+                          }
+                        },
+                        {
+                          "key": "kick-if-cant-pay",
+                          "type": {
+                            "kind": "boolean"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "key": "nations",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "enabled",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  },
+                  {
+                    "key": "scaling",
+                    "type": {
+                      "kind": "expression",
+                      "language": "math"
+                    }
+                  },
+                  {
+                    "key": "age",
+                    "type": {
+                      "kind": "duration",
+                      "typeName": "Period"
+                    }
+                  },
+                  {
+                    "key": "disband-if-cant-pay",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  },
+                  {
+                    "key": "use-resource-points",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  },
+                  {
+                    "key": "members",
+                    "type": {
+                      "kind": "object",
+                      "fields": [
+                        {
+                          "key": "enabled",
+                          "type": {
+                            "kind": "boolean"
+                          }
+                        },
+                        {
+                          "key": "default-equation",
+                          "type": {
+                            "kind": "expression",
+                            "language": "math"
+                          }
+                        },
+                        {
+                          "key": "use-resource-points",
+                          "type": {
+                            "kind": "boolean"
+                          }
+                        },
+                        {
+                          "key": "kick-if-cant-pay",
+                          "type": {
+                            "kind": "boolean"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "inactivity",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "kingdom",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "exclude-condition",
+                    "type": {
+                      "kind": "expression",
+                      "language": "condition"
+                    }
+                  },
+                  {
+                    "key": "disband",
+                    "type": {
+                      "kind": "duration",
+                      "typeName": "Period"
+                    }
+                  },
+                  {
+                    "key": "announce",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "key": "member",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "exclude-condition",
+                    "type": {
+                      "kind": "expression",
+                      "language": "condition"
+                    }
+                  },
+                  {
+                    "key": "kick",
+                    "type": {
+                      "kind": "duration",
+                      "typeName": "Period"
+                    }
+                  },
+                  {
+                    "key": "disband-kingdom-if-king",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  },
+                  {
+                    "key": "announce",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "creation",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "kingdoms",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "show-kingdom-type-gui",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  },
+                  {
+                    "key": "newbie-protection",
+                    "type": {
+                      "kind": "duration",
+                      "typeName": "Period"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "key": "nations",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "newbie-protection",
+                    "type": {
+                      "kind": "duration",
+                      "typeName": "Period"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "disband",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "confirm",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "use-gui",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "confirmation-expiration",
+              "type": {
+                "kind": "integer"
+              }
+            },
+            {
+              "key": "announce",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "announce-inactivity",
+              "type": {
+                "kind": "boolean"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "nexus",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "place-on-create",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "claimed",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "break",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "item",
+                    "type": {
+                      "kind": "advanced",
+                      "typeName": "ItemMatcher"
+                    }
+                  },
+                  {
+                    "key": "creative",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  },
+                  {
+                    "key": "cost",
+                    "type": {
+                      "kind": "integer"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "key": "click-donation",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "allow-removal",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "nation-capital",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "disable-shift-click",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "actionbar",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "enabled",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  },
+                  {
+                    "key": "keep",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "key": "preview",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "enabled",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  },
+                  {
+                    "key": "refresh-ticks",
+                    "type": {
+                      "kind": "integer"
+                    }
+                  },
+                  {
+                    "key": "flick-ticks",
+                    "type": {
+                      "kind": "integer"
+                    }
+                  },
+                  {
+                    "key": "out-of-land-block",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "str"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "key": "replace",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "left-click",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  },
+                  {
+                    "key": "right-click",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  },
+                  {
+                    "key": "blocks",
+                    "type": {
+                      "kind": "object",
+                      "fields": [
+                        {
+                          "key": "blacklist",
+                          "type": {
+                            "kind": "boolean"
+                          }
+                        },
+                        {
+                          "key": "list",
+                          "type": {
+                            "kind": "list",
+                            "elements": {
+                              "kind": "string",
+                              "typeName": "str"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "key": "disable-place-mode",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "on-damage",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  },
+                  {
+                    "key": "out-of-land",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "invitations",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "allow-offline-invites",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "allow-from-other-kingdoms",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "allow-multiple-invites",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "expiration",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "expire-on-leave",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  },
+                  {
+                    "key": "default-expire",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "str"
+                    }
+                  },
+                  {
+                    "key": "offline-expire",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "str"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "key": "announce",
+              "type": {
+                "kind": "boolean"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "home",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "on-join",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "kingdom-home",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  },
+                  {
+                    "key": "nation-spawn",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "key": "respawn",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "kingdom-home",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  },
+                  {
+                    "key": "nation-spawn",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "key": "set-on-create",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "set-on-first-claim",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "use-nexus-if-not-set",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "claimed",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "nation-spawn-capital",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "nexus-land",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "unset-if",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "unclaimed",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  },
+                  {
+                    "key": "invaded",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "key": "safe",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "teleport-delay",
+              "type": {
+                "kind": "integer"
+              }
+            },
+            {
+              "key": "use-timer-message",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "should-not-move",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "should-not-be-damaged",
+              "type": {
+                "kind": "boolean"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "book",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "limit",
+              "type": {
+                "kind": "integer"
+              }
+            },
+            {
+              "key": "title-max-length",
+              "type": {
+                "kind": "integer"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "color-range",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "enabled",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "blacklist",
+              "type": {
+                "kind": "boolean"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "tpa",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "allow-from-other-kingdoms",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "default-timer",
+              "type": {
+                "kind": "duration",
+                "typeName": "Period"
+              }
+            },
+            {
+              "key": "teleport",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "prepare-seconds",
+                    "type": {
+                      "kind": "integer"
+                    }
+                  },
+                  {
+                    "key": "timer-seconds",
+                    "type": {
+                      "kind": "integer"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "mails",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "envelope",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "resource-points",
+                    "type": {
+                      "kind": "expression",
+                      "language": "math"
+                    }
+                  },
+                  {
+                    "key": "money",
+                    "type": {
+                      "kind": "expression",
+                      "language": "math"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "key": "subject",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "limit",
+                    "type": {
+                      "kind": "integer"
+                    }
+                  },
+                  {
+                    "key": "ignore-colors",
+                    "type": {
+                      "kind": "boolean"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "key": "summary",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "limit",
+                    "type": {
+                      "kind": "integer"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

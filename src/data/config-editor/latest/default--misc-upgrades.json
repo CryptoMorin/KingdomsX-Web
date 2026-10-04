@@ -1,0 +1,3530 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "misc-upgrades.yml",
+  "schemaId": "misc-upgrades",
+  "options": [
+    {
+      "path": [
+        "invasions"
+      ],
+      "source": "\r\n  enabled: true\r\n  scaling: 'max(1, lvl) * 5'\r\n  cost: \"(lvl + 1) * 5\"\r\n  refresh-cooldown: \"[1hr] / (lvl + 1)\"\r\n  max-level: 5\r\n  default-level: 0\r\n",
+      "comments": [
+        "You'll still need to remove them from the GUI (guis -> structures -> nexus -> misc-upgrades)",
+        "if you don't want people to upgrade them."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "invasions",
+        "enabled"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "invasions",
+        "scaling"
+      ],
+      "source": "'max(1, lvl) * 5'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "invasions",
+        "cost"
+      ],
+      "source": "\"(lvl + 1) * 5\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "invasions",
+        "refresh-cooldown"
+      ],
+      "source": "\"[1hr] / (lvl + 1)\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "invasions",
+        "max-level"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "invasions",
+        "default-level"
+      ],
+      "source": "0",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "invasion-teleportation"
+      ],
+      "source": "\r\n  enabled: true\r\n\r\n  # This option can be used to make upgrade trees.\r\n  # conditions:\r\n  # Makes \"invasions\" upgrade to be a requirement to be maxxed to upgrade this upgrade.\r\n  # The \"miscupgrades.required.invasions\" refers to a custom language entry inside your language files. (e.g. en.yml)\r\n  # %kingdoms_kingdom_upgrade% is a functional placeholder: https://github.com/CryptoMorin/KingdomsX/wiki/Placeholders#placeholder-functions\r\n  # \"{kingdoms_kingdom_upgrade:level type=misc, of=INVASIONS} < 5\": \"{$$miscupgrades.required.invasions}\"\r\n\r\n  # If anti-explosion upgrade is upgraded, you won't be able to upgrade this and any other upgrade that depends on this.\r\n  # You could block anti-explosion from being upgraded if this option is upgraded by doing the same thing.\r\n  # \"{kingdoms_kingdom_upgrade:level type=misc, of=ANTI_EXPLOSION} > 0\": \"{$$miscupgrades.tree.anti-explosion}\"\r\n\r\n  # This amount is reduced from invasions.yml -> teleportation -> teleport-delay\r\n  scaling: lvl\r\n  cost: \"(lvl + 1) * 10\"\r\n  max-level: 5\r\n  default-level: 0\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "invasion-teleportation",
+        "enabled"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "invasion-teleportation",
+        "scaling"
+      ],
+      "source": "lvl",
+      "comments": [
+        "This amount is reduced from invasions.yml -> teleportation -> teleport-delay"
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "invasion-teleportation",
+        "cost"
+      ],
+      "source": "\"(lvl + 1) * 10\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "invasion-teleportation",
+        "max-level"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "invasion-teleportation",
+        "default-level"
+      ],
+      "source": "0",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "anti-explosion"
+      ],
+      "source": "\r\n  enabled: true\r\n  cost: \"(lvl + 1) * 100\"\r\n  max-level: 3 # Increasing this doesn't change anything.\r\n  default-level: 0\r\n\r\n  # Should regeneration work for wilderness?\r\n  wilderness: false\r\n\r\n  # Wind charges are disabled by default because the server treats them\r\n  # like explosions however no blocks are actually destroyed.\r\n  explosions:\r\n    WIND_CHARGE:\r\n      # Note: currently there are no other variations for this option.\r\n      handle: false\r\n\r\n  # It'll throw the blocks in the air!\r\n  # This feature isn't really related to Kingdoms, but it's kept\r\n  # here for historical purposes. It still works.\r\n  fancy-explosions:\r\n    # Requires a restart to change.\r\n    enabled: false\r\n\r\n    # The options below require a server restart to be applied\r\n    # due to performance issues.\r\n    height:\r\n      min: 0.2\r\n      max: 1.0\r\n    spread:\r\n      min: -1.0\r\n      max: 1.0\r\n\r\n  # When a siege cannon is able to destroy kingdom items (turrets & structures)\r\n  # should the kingdom item drop or not. If not, the item will be permanently lost.\r\n  drop-destroyed-kingdom-items: false\r\n\r\n  # Auto regenerate the blocks slowly.\r\n  # This option has its own limitations. Containers such as chests will not be removed.\r\n  # Kingdom items (turrets and structures) will not be removed.\r\n  auto-regenerate:\r\n    # Requires a restart to apply.\r\n    # When set to false, blocks will simply not disappear at all.\r\n    enabled: true\r\n\r\n    # The delay before starting the regeneration in ticks.\r\n    delay: 40\r\n\r\n    # The interval between each block regeneration in ticks.\r\n    interval: 1\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "anti-explosion",
+        "enabled"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "anti-explosion",
+        "cost"
+      ],
+      "source": "\"(lvl + 1) * 100\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "anti-explosion",
+        "max-level"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "anti-explosion",
+        "default-level"
+      ],
+      "source": "0",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "anti-explosion",
+        "wilderness"
+      ],
+      "source": "false",
+      "comments": [
+        "Should regeneration work for wilderness?"
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "anti-explosion",
+        "explosions"
+      ],
+      "source": "\r\n    WIND_CHARGE:\r\n      # Note: currently there are no other variations for this option.\r\n      handle: false\r\n\r\n  # It'll throw the blocks in the air!\r\n  # This feature isn't really related to Kingdoms, but it's kept\r\n  # here for historical purposes. It still works.\r\n",
+      "comments": [
+        "Wind charges are disabled by default because the server treats them",
+        "like explosions however no blocks are actually destroyed."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "anti-explosion",
+        "explosions",
+        "WIND_CHARGE"
+      ],
+      "source": "\r\n      # Note: currently there are no other variations for this option.\r\n      handle: false\r\n\r\n  # It'll throw the blocks in the air!\r\n  # This feature isn't really related to Kingdoms, but it's kept\r\n  # here for historical purposes. It still works.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "anti-explosion",
+        "explosions",
+        "WIND_CHARGE",
+        "handle"
+      ],
+      "source": "false",
+      "comments": [
+        "Note: currently there are no other variations for this option."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "anti-explosion",
+        "fancy-explosions"
+      ],
+      "source": "\r\n    # Requires a restart to change.\r\n    enabled: false\r\n\r\n    # The options below require a server restart to be applied\r\n    # due to performance issues.\r\n    height:\r\n      min: 0.2\r\n      max: 1.0\r\n    spread:\r\n      min: -1.0\r\n      max: 1.0\r\n\r\n  # When a siege cannon is able to destroy kingdom items (turrets & structures)\r\n  # should the kingdom item drop or not. If not, the item will be permanently lost.\r\n",
+      "comments": [
+        "It'll throw the blocks in the air!",
+        "This feature isn't really related to Kingdoms, but it's kept",
+        "here for historical purposes. It still works."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "anti-explosion",
+        "fancy-explosions",
+        "enabled"
+      ],
+      "source": "false",
+      "comments": [
+        "Requires a restart to change."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "anti-explosion",
+        "fancy-explosions",
+        "height"
+      ],
+      "source": "\r\n      min: 0.2\r\n      max: 1.0\r\n",
+      "comments": [
+        "The options below require a server restart to be applied",
+        "due to performance issues."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "anti-explosion",
+        "fancy-explosions",
+        "height",
+        "min"
+      ],
+      "source": "0.2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "anti-explosion",
+        "fancy-explosions",
+        "height",
+        "max"
+      ],
+      "source": "1.0",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "anti-explosion",
+        "fancy-explosions",
+        "spread"
+      ],
+      "source": "\r\n      min: -1.0\r\n      max: 1.0\r\n\r\n  # When a siege cannon is able to destroy kingdom items (turrets & structures)\r\n  # should the kingdom item drop or not. If not, the item will be permanently lost.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "anti-explosion",
+        "fancy-explosions",
+        "spread",
+        "min"
+      ],
+      "source": "-1.0",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "anti-explosion",
+        "fancy-explosions",
+        "spread",
+        "max"
+      ],
+      "source": "1.0",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "anti-explosion",
+        "drop-destroyed-kingdom-items"
+      ],
+      "source": "false",
+      "comments": [
+        "When a siege cannon is able to destroy kingdom items (turrets & structures)",
+        "should the kingdom item drop or not. If not, the item will be permanently lost."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "anti-explosion",
+        "auto-regenerate"
+      ],
+      "source": "\r\n    # Requires a restart to apply.\r\n    # When set to false, blocks will simply not disappear at all.\r\n    enabled: true\r\n\r\n    # The delay before starting the regeneration in ticks.\r\n    delay: 40\r\n\r\n    # The interval between each block regeneration in ticks.\r\n    interval: 1\r\n\r\n",
+      "comments": [
+        "Auto regenerate the blocks slowly.",
+        "This option has its own limitations. Containers such as chests will not be removed.",
+        "Kingdom items (turrets and structures) will not be removed."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "anti-explosion",
+        "auto-regenerate",
+        "enabled"
+      ],
+      "source": "true",
+      "comments": [
+        "Requires a restart to apply.",
+        "When set to false, blocks will simply not disappear at all."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "anti-explosion",
+        "auto-regenerate",
+        "delay"
+      ],
+      "source": "40",
+      "comments": [
+        "The delay before starting the regeneration in ticks."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "anti-explosion",
+        "auto-regenerate",
+        "interval"
+      ],
+      "source": "1",
+      "comments": [
+        "The interval between each block regeneration in ticks."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "anti-trample"
+      ],
+      "source": "\r\n  enabled: true\r\n  cost: \"(lvl + 1) * 100\"\r\n  max-level: 3 # Increasing this doesn't change anything.\r\n\r\n  # Level 3 anti-trample will not protect these animals.\r\n  blacklisted-animals: [ ]\r\n\r\n  default-level: 0\r\n\r\n  # Prevents enemy players from using ender pearls to teleport into your land.\r\n  # Works on level 3\r\n  enable-ender-pearl-protection: false\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "anti-trample",
+        "enabled"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "anti-trample",
+        "cost"
+      ],
+      "source": "\"(lvl + 1) * 100\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "anti-trample",
+        "max-level"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "anti-trample",
+        "blacklisted-animals"
+      ],
+      "source": "[ ]",
+      "comments": [
+        "Level 3 anti-trample will not protect these animals."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": []
+    },
+    {
+      "path": [
+        "anti-trample",
+        "default-level"
+      ],
+      "source": "0",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "anti-trample",
+        "enable-ender-pearl-protection"
+      ],
+      "source": "false",
+      "comments": [
+        "Prevents enemy players from using ender pearls to teleport into your land.",
+        "Works on level 3"
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "nexus-guards"
+      ],
+      "source": "\r\n  enabled: true\r\n  cost: \"(lvl + 1) * 100\"\r\n  max-level: 4\r\n  # Spawn delay in seconds.\r\n  spawn-delay: 5\r\n  default-level: 0\r\n  can-be-disabled: true\r\n\r\n  condition: 'kingdoms_kingdom_is_pacifist || {other*kingdoms_kingdom_is_pacifist}'\r\n  conditions:\r\n    'kingdoms_kingdom_level < 4': '{$$kingdom-levels.IV}'\r\n\r\n  levels:\r\n    1:\r\n      zombies:\r\n        amount: 2\r\n        type: ZOMBIE\r\n        name: \"{$s}%kingdoms_kingdom_name% &cNexus Guard\"\r\n        health: 50\r\n      skeletons:\r\n        amount: 1\r\n        type: SKELETON\r\n        name: \"{$s}%kingdoms_kingdom_name% {$s}Nexus Guard\"\r\n        health: 20\r\n    2:\r\n      zombies:\r\n        amount: 3\r\n        type: ZOMBIE\r\n        name: \"{$s}%kingdoms_kingdom_name% &cNexus Guard\"\r\n        health: 50\r\n      skeletons:\r\n        amount: 3\r\n        type: SKELETON\r\n        name: \"{$s}%kingdoms_kingdom_name% {$s}Nexus Guard\"\r\n        health: 20\r\n    3:\r\n      illusioners:\r\n        amount: 1\r\n        type: ILLUSIONER\r\n        name: \"{$s}%kingdoms_kingdom_name% &cNexus Wizard\"\r\n        health: 50\r\n      vindicators:\r\n        amount: 3\r\n        type: VINDICATOR\r\n        name: \"{$s}%kingdoms_kingdom_name% {$s}Nexus Butler\"\r\n        health: 20\r\n    4:\r\n      illusioners:\r\n        amount: 1\r\n        type: ILLUSIONER\r\n        name: \"{$s}%kingdoms_kingdom_name% &cNexus Wizard\"\r\n        health: 50\r\n      vindicators:\r\n        amount: 2\r\n        type: VINDICATOR\r\n        name: \"{$s}%kingdoms_kingdom_name% {$s}Nexus Butler\"\r\n        health: 20\r\n      vexes:\r\n        amount: 5\r\n        type: VEX\r\n        name: \"{$s}%kingdoms_kingdom_name% {$s}Nexus Minions\"\r\n        health: 20\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "nexus-guards",
+        "enabled"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "nexus-guards",
+        "cost"
+      ],
+      "source": "\"(lvl + 1) * 100\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "nexus-guards",
+        "max-level"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "nexus-guards",
+        "spawn-delay"
+      ],
+      "source": "5",
+      "comments": [
+        "Spawn delay in seconds."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "nexus-guards",
+        "default-level"
+      ],
+      "source": "0",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "nexus-guards",
+        "can-be-disabled"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "nexus-guards",
+        "condition"
+      ],
+      "source": "'kingdoms_kingdom_is_pacifist || {other*kingdoms_kingdom_is_pacifist}'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "nexus-guards",
+        "conditions"
+      ],
+      "source": "\r\n    'kingdoms_kingdom_level < 4': '{$$kingdom-levels.IV}'\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "nexus-guards",
+        "conditions",
+        "kingdoms_kingdom_level < 4"
+      ],
+      "source": "'{$$kingdom-levels.IV}'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "nexus-guards",
+        "levels"
+      ],
+      "source": "\r\n    1:\r\n      zombies:\r\n        amount: 2\r\n        type: ZOMBIE\r\n        name: \"{$s}%kingdoms_kingdom_name% &cNexus Guard\"\r\n        health: 50\r\n      skeletons:\r\n        amount: 1\r\n        type: SKELETON\r\n        name: \"{$s}%kingdoms_kingdom_name% {$s}Nexus Guard\"\r\n        health: 20\r\n    2:\r\n      zombies:\r\n        amount: 3\r\n        type: ZOMBIE\r\n        name: \"{$s}%kingdoms_kingdom_name% &cNexus Guard\"\r\n        health: 50\r\n      skeletons:\r\n        amount: 3\r\n        type: SKELETON\r\n        name: \"{$s}%kingdoms_kingdom_name% {$s}Nexus Guard\"\r\n        health: 20\r\n    3:\r\n      illusioners:\r\n        amount: 1\r\n        type: ILLUSIONER\r\n        name: \"{$s}%kingdoms_kingdom_name% &cNexus Wizard\"\r\n        health: 50\r\n      vindicators:\r\n        amount: 3\r\n        type: VINDICATOR\r\n        name: \"{$s}%kingdoms_kingdom_name% {$s}Nexus Butler\"\r\n        health: 20\r\n    4:\r\n      illusioners:\r\n        amount: 1\r\n        type: ILLUSIONER\r\n        name: \"{$s}%kingdoms_kingdom_name% &cNexus Wizard\"\r\n        health: 50\r\n      vindicators:\r\n        amount: 2\r\n        type: VINDICATOR\r\n        name: \"{$s}%kingdoms_kingdom_name% {$s}Nexus Butler\"\r\n        health: 20\r\n      vexes:\r\n        amount: 5\r\n        type: VEX\r\n        name: \"{$s}%kingdoms_kingdom_name% {$s}Nexus Minions\"\r\n        health: 20\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "nexus-guards",
+        "levels",
+        "1"
+      ],
+      "source": "\r\n      zombies:\r\n        amount: 2\r\n        type: ZOMBIE\r\n        name: \"{$s}%kingdoms_kingdom_name% &cNexus Guard\"\r\n        health: 50\r\n      skeletons:\r\n        amount: 1\r\n        type: SKELETON\r\n        name: \"{$s}%kingdoms_kingdom_name% {$s}Nexus Guard\"\r\n        health: 20\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "nexus-guards",
+        "levels",
+        "1",
+        "zombies"
+      ],
+      "source": "\r\n        amount: 2\r\n        type: ZOMBIE\r\n        name: \"{$s}%kingdoms_kingdom_name% &cNexus Guard\"\r\n        health: 50\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "nexus-guards",
+        "levels",
+        "1",
+        "zombies",
+        "amount"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "nexus-guards",
+        "levels",
+        "1",
+        "zombies",
+        "type"
+      ],
+      "source": "ZOMBIE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "nexus-guards",
+        "levels",
+        "1",
+        "zombies",
+        "name"
+      ],
+      "source": "\"{$s}%kingdoms_kingdom_name% &cNexus Guard\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "nexus-guards",
+        "levels",
+        "1",
+        "zombies",
+        "health"
+      ],
+      "source": "50",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "nexus-guards",
+        "levels",
+        "1",
+        "skeletons"
+      ],
+      "source": "\r\n        amount: 1\r\n        type: SKELETON\r\n        name: \"{$s}%kingdoms_kingdom_name% {$s}Nexus Guard\"\r\n        health: 20\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "nexus-guards",
+        "levels",
+        "1",
+        "skeletons",
+        "amount"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "nexus-guards",
+        "levels",
+        "1",
+        "skeletons",
+        "type"
+      ],
+      "source": "SKELETON",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "nexus-guards",
+        "levels",
+        "1",
+        "skeletons",
+        "name"
+      ],
+      "source": "\"{$s}%kingdoms_kingdom_name% {$s}Nexus Guard\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "nexus-guards",
+        "levels",
+        "1",
+        "skeletons",
+        "health"
+      ],
+      "source": "20",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "nexus-guards",
+        "levels",
+        "2"
+      ],
+      "source": "\r\n      zombies:\r\n        amount: 3\r\n        type: ZOMBIE\r\n        name: \"{$s}%kingdoms_kingdom_name% &cNexus Guard\"\r\n        health: 50\r\n      skeletons:\r\n        amount: 3\r\n        type: SKELETON\r\n        name: \"{$s}%kingdoms_kingdom_name% {$s}Nexus Guard\"\r\n        health: 20\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "nexus-guards",
+        "levels",
+        "2",
+        "zombies"
+      ],
+      "source": "\r\n        amount: 3\r\n        type: ZOMBIE\r\n        name: \"{$s}%kingdoms_kingdom_name% &cNexus Guard\"\r\n        health: 50\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "nexus-guards",
+        "levels",
+        "2",
+        "zombies",
+        "amount"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "nexus-guards",
+        "levels",
+        "2",
+        "zombies",
+        "type"
+      ],
+      "source": "ZOMBIE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "nexus-guards",
+        "levels",
+        "2",
+        "zombies",
+        "name"
+      ],
+      "source": "\"{$s}%kingdoms_kingdom_name% &cNexus Guard\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "nexus-guards",
+        "levels",
+        "2",
+        "zombies",
+        "health"
+      ],
+      "source": "50",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "nexus-guards",
+        "levels",
+        "2",
+        "skeletons"
+      ],
+      "source": "\r\n        amount: 3\r\n        type: SKELETON\r\n        name: \"{$s}%kingdoms_kingdom_name% {$s}Nexus Guard\"\r\n        health: 20\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "nexus-guards",
+        "levels",
+        "2",
+        "skeletons",
+        "amount"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "nexus-guards",
+        "levels",
+        "2",
+        "skeletons",
+        "type"
+      ],
+      "source": "SKELETON",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "nexus-guards",
+        "levels",
+        "2",
+        "skeletons",
+        "name"
+      ],
+      "source": "\"{$s}%kingdoms_kingdom_name% {$s}Nexus Guard\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "nexus-guards",
+        "levels",
+        "2",
+        "skeletons",
+        "health"
+      ],
+      "source": "20",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "nexus-guards",
+        "levels",
+        "3"
+      ],
+      "source": "\r\n      illusioners:\r\n        amount: 1\r\n        type: ILLUSIONER\r\n        name: \"{$s}%kingdoms_kingdom_name% &cNexus Wizard\"\r\n        health: 50\r\n      vindicators:\r\n        amount: 3\r\n        type: VINDICATOR\r\n        name: \"{$s}%kingdoms_kingdom_name% {$s}Nexus Butler\"\r\n        health: 20\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "nexus-guards",
+        "levels",
+        "3",
+        "illusioners"
+      ],
+      "source": "\r\n        amount: 1\r\n        type: ILLUSIONER\r\n        name: \"{$s}%kingdoms_kingdom_name% &cNexus Wizard\"\r\n        health: 50\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "nexus-guards",
+        "levels",
+        "3",
+        "illusioners",
+        "amount"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "nexus-guards",
+        "levels",
+        "3",
+        "illusioners",
+        "type"
+      ],
+      "source": "ILLUSIONER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "nexus-guards",
+        "levels",
+        "3",
+        "illusioners",
+        "name"
+      ],
+      "source": "\"{$s}%kingdoms_kingdom_name% &cNexus Wizard\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "nexus-guards",
+        "levels",
+        "3",
+        "illusioners",
+        "health"
+      ],
+      "source": "50",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "nexus-guards",
+        "levels",
+        "3",
+        "vindicators"
+      ],
+      "source": "\r\n        amount: 3\r\n        type: VINDICATOR\r\n        name: \"{$s}%kingdoms_kingdom_name% {$s}Nexus Butler\"\r\n        health: 20\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "nexus-guards",
+        "levels",
+        "3",
+        "vindicators",
+        "amount"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "nexus-guards",
+        "levels",
+        "3",
+        "vindicators",
+        "type"
+      ],
+      "source": "VINDICATOR",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "nexus-guards",
+        "levels",
+        "3",
+        "vindicators",
+        "name"
+      ],
+      "source": "\"{$s}%kingdoms_kingdom_name% {$s}Nexus Butler\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "nexus-guards",
+        "levels",
+        "3",
+        "vindicators",
+        "health"
+      ],
+      "source": "20",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "nexus-guards",
+        "levels",
+        "4"
+      ],
+      "source": "\r\n      illusioners:\r\n        amount: 1\r\n        type: ILLUSIONER\r\n        name: \"{$s}%kingdoms_kingdom_name% &cNexus Wizard\"\r\n        health: 50\r\n      vindicators:\r\n        amount: 2\r\n        type: VINDICATOR\r\n        name: \"{$s}%kingdoms_kingdom_name% {$s}Nexus Butler\"\r\n        health: 20\r\n      vexes:\r\n        amount: 5\r\n        type: VEX\r\n        name: \"{$s}%kingdoms_kingdom_name% {$s}Nexus Minions\"\r\n        health: 20\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "nexus-guards",
+        "levels",
+        "4",
+        "illusioners"
+      ],
+      "source": "\r\n        amount: 1\r\n        type: ILLUSIONER\r\n        name: \"{$s}%kingdoms_kingdom_name% &cNexus Wizard\"\r\n        health: 50\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "nexus-guards",
+        "levels",
+        "4",
+        "illusioners",
+        "amount"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "nexus-guards",
+        "levels",
+        "4",
+        "illusioners",
+        "type"
+      ],
+      "source": "ILLUSIONER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "nexus-guards",
+        "levels",
+        "4",
+        "illusioners",
+        "name"
+      ],
+      "source": "\"{$s}%kingdoms_kingdom_name% &cNexus Wizard\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "nexus-guards",
+        "levels",
+        "4",
+        "illusioners",
+        "health"
+      ],
+      "source": "50",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "nexus-guards",
+        "levels",
+        "4",
+        "vindicators"
+      ],
+      "source": "\r\n        amount: 2\r\n        type: VINDICATOR\r\n        name: \"{$s}%kingdoms_kingdom_name% {$s}Nexus Butler\"\r\n        health: 20\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "nexus-guards",
+        "levels",
+        "4",
+        "vindicators",
+        "amount"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "nexus-guards",
+        "levels",
+        "4",
+        "vindicators",
+        "type"
+      ],
+      "source": "VINDICATOR",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "nexus-guards",
+        "levels",
+        "4",
+        "vindicators",
+        "name"
+      ],
+      "source": "\"{$s}%kingdoms_kingdom_name% {$s}Nexus Butler\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "nexus-guards",
+        "levels",
+        "4",
+        "vindicators",
+        "health"
+      ],
+      "source": "20",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "nexus-guards",
+        "levels",
+        "4",
+        "vexes"
+      ],
+      "source": "\r\n        amount: 5\r\n        type: VEX\r\n        name: \"{$s}%kingdoms_kingdom_name% {$s}Nexus Minions\"\r\n        health: 20\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "nexus-guards",
+        "levels",
+        "4",
+        "vexes",
+        "amount"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "nexus-guards",
+        "levels",
+        "4",
+        "vexes",
+        "type"
+      ],
+      "source": "VEX",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "nexus-guards",
+        "levels",
+        "4",
+        "vexes",
+        "name"
+      ],
+      "source": "\"{$s}%kingdoms_kingdom_name% {$s}Nexus Minions\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "nexus-guards",
+        "levels",
+        "4",
+        "vexes",
+        "health"
+      ],
+      "source": "20",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "guards"
+      ],
+      "source": "\r\n  enabled: true\r\n  cost: \"(lvl + 1) * 100\"\r\n  max-level: 2\r\n  # Spawn delay in seconds.\r\n  spawn-delay: 5\r\n  default-level: 0\r\n  can-be-disabled: true\r\n\r\n  condition: 'kingdoms_kingdom_is_pacifist || {other*kingdoms_kingdom_is_pacifist}'\r\n  conditions:\r\n    'kingdoms_kingdom_level < 3': '{$$kingdom-levels.III}'\r\n\r\n  levels:\r\n    1:\r\n      zombies:\r\n        amount: 3\r\n        type: ZOMBIE\r\n        name: \"{$s}%kingdoms_kingdom_name% {$s}Guard\"\r\n        health: 50\r\n      skeletons:\r\n        amount: 1\r\n        type: SKELETON\r\n        name: \"{$s}%kingdoms_kingdom_name% {$s}Guard\"\r\n        health: 20\r\n    2:\r\n      zombies:\r\n        amount: 3\r\n        type: ZOMBIE\r\n        name: \"{$s}%kingdoms_kingdom_name% {$s}Guard\"\r\n        health: 50\r\n      skeletons:\r\n        amount: 1\r\n        type: SKELETON\r\n        name: \"{$s}%kingdoms_kingdom_name% {$s}Guard\"\r\n        health: 20\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "guards",
+        "enabled"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "guards",
+        "cost"
+      ],
+      "source": "\"(lvl + 1) * 100\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "guards",
+        "max-level"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "guards",
+        "spawn-delay"
+      ],
+      "source": "5",
+      "comments": [
+        "Spawn delay in seconds."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "guards",
+        "default-level"
+      ],
+      "source": "0",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "guards",
+        "can-be-disabled"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "guards",
+        "condition"
+      ],
+      "source": "'kingdoms_kingdom_is_pacifist || {other*kingdoms_kingdom_is_pacifist}'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "guards",
+        "conditions"
+      ],
+      "source": "\r\n    'kingdoms_kingdom_level < 3': '{$$kingdom-levels.III}'\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "guards",
+        "conditions",
+        "kingdoms_kingdom_level < 3"
+      ],
+      "source": "'{$$kingdom-levels.III}'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "guards",
+        "levels"
+      ],
+      "source": "\r\n    1:\r\n      zombies:\r\n        amount: 3\r\n        type: ZOMBIE\r\n        name: \"{$s}%kingdoms_kingdom_name% {$s}Guard\"\r\n        health: 50\r\n      skeletons:\r\n        amount: 1\r\n        type: SKELETON\r\n        name: \"{$s}%kingdoms_kingdom_name% {$s}Guard\"\r\n        health: 20\r\n    2:\r\n      zombies:\r\n        amount: 3\r\n        type: ZOMBIE\r\n        name: \"{$s}%kingdoms_kingdom_name% {$s}Guard\"\r\n        health: 50\r\n      skeletons:\r\n        amount: 1\r\n        type: SKELETON\r\n        name: \"{$s}%kingdoms_kingdom_name% {$s}Guard\"\r\n        health: 20\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "guards",
+        "levels",
+        "1"
+      ],
+      "source": "\r\n      zombies:\r\n        amount: 3\r\n        type: ZOMBIE\r\n        name: \"{$s}%kingdoms_kingdom_name% {$s}Guard\"\r\n        health: 50\r\n      skeletons:\r\n        amount: 1\r\n        type: SKELETON\r\n        name: \"{$s}%kingdoms_kingdom_name% {$s}Guard\"\r\n        health: 20\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "guards",
+        "levels",
+        "1",
+        "zombies"
+      ],
+      "source": "\r\n        amount: 3\r\n        type: ZOMBIE\r\n        name: \"{$s}%kingdoms_kingdom_name% {$s}Guard\"\r\n        health: 50\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "guards",
+        "levels",
+        "1",
+        "zombies",
+        "amount"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "guards",
+        "levels",
+        "1",
+        "zombies",
+        "type"
+      ],
+      "source": "ZOMBIE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "guards",
+        "levels",
+        "1",
+        "zombies",
+        "name"
+      ],
+      "source": "\"{$s}%kingdoms_kingdom_name% {$s}Guard\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "guards",
+        "levels",
+        "1",
+        "zombies",
+        "health"
+      ],
+      "source": "50",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "guards",
+        "levels",
+        "1",
+        "skeletons"
+      ],
+      "source": "\r\n        amount: 1\r\n        type: SKELETON\r\n        name: \"{$s}%kingdoms_kingdom_name% {$s}Guard\"\r\n        health: 20\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "guards",
+        "levels",
+        "1",
+        "skeletons",
+        "amount"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "guards",
+        "levels",
+        "1",
+        "skeletons",
+        "type"
+      ],
+      "source": "SKELETON",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "guards",
+        "levels",
+        "1",
+        "skeletons",
+        "name"
+      ],
+      "source": "\"{$s}%kingdoms_kingdom_name% {$s}Guard\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "guards",
+        "levels",
+        "1",
+        "skeletons",
+        "health"
+      ],
+      "source": "20",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "guards",
+        "levels",
+        "2"
+      ],
+      "source": "\r\n      zombies:\r\n        amount: 3\r\n        type: ZOMBIE\r\n        name: \"{$s}%kingdoms_kingdom_name% {$s}Guard\"\r\n        health: 50\r\n      skeletons:\r\n        amount: 1\r\n        type: SKELETON\r\n        name: \"{$s}%kingdoms_kingdom_name% {$s}Guard\"\r\n        health: 20\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "guards",
+        "levels",
+        "2",
+        "zombies"
+      ],
+      "source": "\r\n        amount: 3\r\n        type: ZOMBIE\r\n        name: \"{$s}%kingdoms_kingdom_name% {$s}Guard\"\r\n        health: 50\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "guards",
+        "levels",
+        "2",
+        "zombies",
+        "amount"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "guards",
+        "levels",
+        "2",
+        "zombies",
+        "type"
+      ],
+      "source": "ZOMBIE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "guards",
+        "levels",
+        "2",
+        "zombies",
+        "name"
+      ],
+      "source": "\"{$s}%kingdoms_kingdom_name% {$s}Guard\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "guards",
+        "levels",
+        "2",
+        "zombies",
+        "health"
+      ],
+      "source": "50",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "guards",
+        "levels",
+        "2",
+        "skeletons"
+      ],
+      "source": "\r\n        amount: 1\r\n        type: SKELETON\r\n        name: \"{$s}%kingdoms_kingdom_name% {$s}Guard\"\r\n        health: 20\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "guards",
+        "levels",
+        "2",
+        "skeletons",
+        "amount"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "guards",
+        "levels",
+        "2",
+        "skeletons",
+        "type"
+      ],
+      "source": "SKELETON",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "guards",
+        "levels",
+        "2",
+        "skeletons",
+        "name"
+      ],
+      "source": "\"{$s}%kingdoms_kingdom_name% {$s}Guard\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "guards",
+        "levels",
+        "2",
+        "skeletons",
+        "health"
+      ],
+      "source": "20",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "insanity"
+      ],
+      "source": "\r\n  enabled: true\r\n  can-be-disabled: false\r\n  cost: \"(lvl + 1) * 500\"\r\n  conditions:\r\n    'kingdoms_kingdom_level < 2': '{$$kingdom-levels.II}'\r\n  effects:\r\n    1: [ \"STRENGTH, 10, 1\" ]\r\n    2: [ \"STRENGTH, 10, 2\" ]\r\n    3: [ \"STRENGTH, 10, 3\" ]\r\n  max-level: 3\r\n  default-level: 0\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "insanity",
+        "enabled"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "insanity",
+        "can-be-disabled"
+      ],
+      "source": "false",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "insanity",
+        "cost"
+      ],
+      "source": "\"(lvl + 1) * 500\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "insanity",
+        "conditions"
+      ],
+      "source": "\r\n    'kingdoms_kingdom_level < 2': '{$$kingdom-levels.II}'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "insanity",
+        "conditions",
+        "kingdoms_kingdom_level < 2"
+      ],
+      "source": "'{$$kingdom-levels.II}'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "insanity",
+        "effects"
+      ],
+      "source": "\r\n    1: [ \"STRENGTH, 10, 1\" ]\r\n    2: [ \"STRENGTH, 10, 2\" ]\r\n    3: [ \"STRENGTH, 10, 3\" ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "insanity",
+        "effects",
+        "1"
+      ],
+      "source": "[ \"STRENGTH, 10, 1\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"STRENGTH, 10, 1\""
+      ]
+    },
+    {
+      "path": [
+        "insanity",
+        "effects",
+        "2"
+      ],
+      "source": "[ \"STRENGTH, 10, 2\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"STRENGTH, 10, 2\""
+      ]
+    },
+    {
+      "path": [
+        "insanity",
+        "effects",
+        "3"
+      ],
+      "source": "[ \"STRENGTH, 10, 3\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"STRENGTH, 10, 3\""
+      ]
+    },
+    {
+      "path": [
+        "insanity",
+        "max-level"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "insanity",
+        "default-level"
+      ],
+      "source": "0",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "glory"
+      ],
+      "source": "\r\n  enabled: true\r\n  cost: \"(lvl + 1) * 100\"\r\n  # This is currently not used.\r\n  max-level: 3\r\n  default-level: 0\r\n  conditions:\r\n    'kingdoms_kingdom_level < 3': '{$$kingdom-levels.III}'\r\n  xp:\r\n    # The player XP multiplier is protected by an anti-exploit system.\r\n    # Killing the same player within 5 minutes will just yield the default XP.\r\n    \"lvl >= 3 && type == 'PLAYER' && kingdoms_relation == 'ENEMY'\": \"xp * 1.5\"\r\n    \"lvl >= 2 && (type == 'ZOMBIE' || type == 'SKELETON')\": \"xp * 2\"\r\n    \"type != 'PLAYER'\": \"xp + (lvl * 5)\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "glory",
+        "enabled"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "glory",
+        "cost"
+      ],
+      "source": "\"(lvl + 1) * 100\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "glory",
+        "max-level"
+      ],
+      "source": "3",
+      "comments": [
+        "This is currently not used."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "glory",
+        "default-level"
+      ],
+      "source": "0",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "glory",
+        "conditions"
+      ],
+      "source": "\r\n    'kingdoms_kingdom_level < 3': '{$$kingdom-levels.III}'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "glory",
+        "conditions",
+        "kingdoms_kingdom_level < 3"
+      ],
+      "source": "'{$$kingdom-levels.III}'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "glory",
+        "xp"
+      ],
+      "source": "\r\n    # The player XP multiplier is protected by an anti-exploit system.\r\n    # Killing the same player within 5 minutes will just yield the default XP.\r\n    \"lvl >= 3 && type == 'PLAYER' && kingdoms_relation == 'ENEMY'\": \"xp * 1.5\"\r\n    \"lvl >= 2 && (type == 'ZOMBIE' || type == 'SKELETON')\": \"xp * 2\"\r\n    \"type != 'PLAYER'\": \"xp + (lvl * 5)\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "glory",
+        "xp",
+        "lvl >= 3 && type == 'PLAYER' && kingdoms_relation == 'ENEMY'"
+      ],
+      "source": "\"xp * 1.5\"",
+      "comments": [
+        "The player XP multiplier is protected by an anti-exploit system.",
+        "Killing the same player within 5 minutes will just yield the default XP."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "glory",
+        "xp",
+        "lvl >= 2 && (type == 'ZOMBIE' || type == 'SKELETON')"
+      ],
+      "source": "\"xp * 2\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "glory",
+        "xp",
+        "type != 'PLAYER'"
+      ],
+      "source": "\"xp + (lvl * 5)\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "chest-size"
+      ],
+      "source": "\r\n  enabled: true\r\n  can-be-disabled: false\r\n  scaling: lvl\r\n  cost: \"(lvl + 1) * 100\"\r\n  # You cannot change this to a higher number, otherwise a lot of unexpected errors will spam.\r\n  max-level: 5\r\n  default-level: 0\r\n\r\n  # Players cannot place these items in their kingdom chest.\r\n  items:\r\n    blacklist: true\r\n    list:\r\n      emeralds:\r\n        material: EMERALD\r\n      emerald-blocks:\r\n        material: EMERALD_BLOCK\r\n      something:\r\n        lore: \"CONTAINS:The ultimate thing\"\r\n\r\n# This upgrade has no scaling. The level number is used in the\r\n# max-claims equation in claims.yml\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "chest-size",
+        "enabled"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "chest-size",
+        "can-be-disabled"
+      ],
+      "source": "false",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "chest-size",
+        "scaling"
+      ],
+      "source": "lvl",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "chest-size",
+        "cost"
+      ],
+      "source": "\"(lvl + 1) * 100\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "chest-size",
+        "max-level"
+      ],
+      "source": "5",
+      "comments": [
+        "You cannot change this to a higher number, otherwise a lot of unexpected errors will spam."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "chest-size",
+        "default-level"
+      ],
+      "source": "0",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "chest-size",
+        "items"
+      ],
+      "source": "\r\n    blacklist: true\r\n    list:\r\n      emeralds:\r\n        material: EMERALD\r\n      emerald-blocks:\r\n        material: EMERALD_BLOCK\r\n      something:\r\n        lore: \"CONTAINS:The ultimate thing\"\r\n\r\n# This upgrade has no scaling. The level number is used in the\r\n# max-claims equation in claims.yml\r\n",
+      "comments": [
+        "Players cannot place these items in their kingdom chest."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "chest-size",
+        "items",
+        "blacklist"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "chest-size",
+        "items",
+        "list"
+      ],
+      "source": "\r\n      emeralds:\r\n        material: EMERALD\r\n      emerald-blocks:\r\n        material: EMERALD_BLOCK\r\n      something:\r\n        lore: \"CONTAINS:The ultimate thing\"\r\n\r\n# This upgrade has no scaling. The level number is used in the\r\n# max-claims equation in claims.yml\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "chest-size",
+        "items",
+        "list",
+        "emeralds"
+      ],
+      "source": "\r\n        material: EMERALD\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "chest-size",
+        "items",
+        "list",
+        "emeralds",
+        "material"
+      ],
+      "source": "EMERALD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "chest-size",
+        "items",
+        "list",
+        "emerald-blocks"
+      ],
+      "source": "\r\n        material: EMERALD_BLOCK\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "chest-size",
+        "items",
+        "list",
+        "emerald-blocks",
+        "material"
+      ],
+      "source": "EMERALD_BLOCK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "chest-size",
+        "items",
+        "list",
+        "something"
+      ],
+      "source": "\r\n        lore: \"CONTAINS:The ultimate thing\"\r\n\r\n# This upgrade has no scaling. The level number is used in the\r\n# max-claims equation in claims.yml\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "chest-size",
+        "items",
+        "list",
+        "something",
+        "lore"
+      ],
+      "source": "\"CONTAINS:The ultimate thing\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "max-claims"
+      ],
+      "source": "\r\n  enabled: true\r\n  can-be-disabled: false\r\n  scaling: 'lvl * 2'\r\n  cost: \"(lvl + 1) * 200\"\r\n  max-level: 10\r\n  default-level: 0\r\n",
+      "comments": [
+        "This upgrade has no scaling. The level number is used in the",
+        "max-claims equation in claims.yml"
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "max-claims",
+        "enabled"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "max-claims",
+        "can-be-disabled"
+      ],
+      "source": "false",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "max-claims",
+        "scaling"
+      ],
+      "source": "'lvl * 2'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "max-claims",
+        "cost"
+      ],
+      "source": "\"(lvl + 1) * 200\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "max-claims",
+        "max-level"
+      ],
+      "source": "10",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "max-claims",
+        "default-level"
+      ],
+      "source": "0",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "max-members"
+      ],
+      "source": "\r\n  enabled: true\r\n  cost: \"(lvl + 1) * 100\"\r\n  # Each upgrade.\r\n  scaling: 'lvl * 5'\r\n  max-level: 10\r\n  default-level: 0\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "max-members",
+        "enabled"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "max-members",
+        "cost"
+      ],
+      "source": "\"(lvl + 1) * 100\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "max-members",
+        "scaling"
+      ],
+      "source": "'lvl * 5'",
+      "comments": [
+        "Each upgrade."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "max-members",
+        "max-level"
+      ],
+      "source": "10",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "max-members",
+        "default-level"
+      ],
+      "source": "0",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "max-turrets"
+      ],
+      "source": "# This works per land, it doesn't bypass per turret limits.\r\n  enabled: true\r\n  can-be-disabled: false\r\n  cost: \"(lvl + 1) * 10000\"\r\n  scaling: 'lvl' # defines \"misc_upgrades_max_turrets\" placeholder used inside turrets.yml\r\n  max-level: 5\r\n  default-level: 0\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "max-turrets",
+        "enabled"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "max-turrets",
+        "can-be-disabled"
+      ],
+      "source": "false",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "max-turrets",
+        "cost"
+      ],
+      "source": "\"(lvl + 1) * 10000\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "max-turrets",
+        "scaling"
+      ],
+      "source": "'lvl'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "max-turrets",
+        "max-level"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "max-turrets",
+        "default-level"
+      ],
+      "source": "0",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "flight"
+      ],
+      "source": "# For /k fly\r\n  # Disabling it will make /k fly to not require this upgrade in order to work.\r\n  # If you want to disable \"/k fly\" completely, you should disable the command instead:\r\n  # https://github.com/CryptoMorin/KingdomsX/wiki/FAQ#how-to-disable-a-command\r\n  enabled: true\r\n  cost: \"10000\"\r\n  max-level: 1\r\n  default-level: 0\r\n\r\n  conditions:\r\n    'kingdoms_kingdom_level < 5': '{$$kingdom-levels.V}'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "flight",
+        "enabled"
+      ],
+      "source": "true",
+      "comments": [
+        "Disabling it will make /k fly to not require this upgrade in order to work.",
+        "If you want to disable \"/k fly\" completely, you should disable the command instead:",
+        "https://github.com/CryptoMorin/KingdomsX/wiki/FAQ#how-to-disable-a-command"
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "flight",
+        "cost"
+      ],
+      "source": "\"10000\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "flight",
+        "max-level"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "flight",
+        "default-level"
+      ],
+      "source": "0",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "flight",
+        "conditions"
+      ],
+      "source": "\r\n    'kingdoms_kingdom_level < 5': '{$$kingdom-levels.V}'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "flight",
+        "conditions",
+        "kingdoms_kingdom_level < 5"
+      ],
+      "source": "'{$$kingdom-levels.V}'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "keep-inventory"
+      ],
+      "source": "\r\n  enabled: true\r\n  cost: \"lvl * 50000\"\r\n  max-level: 3\r\n  default-level: 0\r\n\r\n  conditions:\r\n    'lvl == 0 && kingdoms_kingdom_level < 3': '{$$kingdom-levels.III}'\r\n    'lvl == 1 && kingdoms_kingdom_level < 4': '{$$kingdom-levels.IV}'\r\n    'lvl == 2 && kingdoms_kingdom_level < 5': '{$$kingdom-levels.V}'\r\n\r\n  levels:\r\n    1:\r\n      armor: true\r\n      main-hand: true\r\n      off-hand: true\r\n      blacklisted-causes: [ SUFFOCATION, SUICIDE ]\r\n    2:\r\n      armor: true\r\n      main-hand: true\r\n      off-hand: true\r\n      hotbar: true\r\n    3:\r\n      items: [ '*' ]\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "keep-inventory",
+        "enabled"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "keep-inventory",
+        "cost"
+      ],
+      "source": "\"lvl * 50000\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "keep-inventory",
+        "max-level"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "keep-inventory",
+        "default-level"
+      ],
+      "source": "0",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "keep-inventory",
+        "conditions"
+      ],
+      "source": "\r\n    'lvl == 0 && kingdoms_kingdom_level < 3': '{$$kingdom-levels.III}'\r\n    'lvl == 1 && kingdoms_kingdom_level < 4': '{$$kingdom-levels.IV}'\r\n    'lvl == 2 && kingdoms_kingdom_level < 5': '{$$kingdom-levels.V}'\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "keep-inventory",
+        "conditions",
+        "lvl == 0 && kingdoms_kingdom_level < 3"
+      ],
+      "source": "'{$$kingdom-levels.III}'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "keep-inventory",
+        "conditions",
+        "lvl == 1 && kingdoms_kingdom_level < 4"
+      ],
+      "source": "'{$$kingdom-levels.IV}'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "keep-inventory",
+        "conditions",
+        "lvl == 2 && kingdoms_kingdom_level < 5"
+      ],
+      "source": "'{$$kingdom-levels.V}'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "keep-inventory",
+        "levels"
+      ],
+      "source": "\r\n    1:\r\n      armor: true\r\n      main-hand: true\r\n      off-hand: true\r\n      blacklisted-causes: [ SUFFOCATION, SUICIDE ]\r\n    2:\r\n      armor: true\r\n      main-hand: true\r\n      off-hand: true\r\n      hotbar: true\r\n    3:\r\n      items: [ '*' ]\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "keep-inventory",
+        "levels",
+        "1"
+      ],
+      "source": "\r\n      armor: true\r\n      main-hand: true\r\n      off-hand: true\r\n      blacklisted-causes: [ SUFFOCATION, SUICIDE ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "keep-inventory",
+        "levels",
+        "1",
+        "armor"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "keep-inventory",
+        "levels",
+        "1",
+        "main-hand"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "keep-inventory",
+        "levels",
+        "1",
+        "off-hand"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "keep-inventory",
+        "levels",
+        "1",
+        "blacklisted-causes"
+      ],
+      "source": "[ SUFFOCATION, SUICIDE ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "SUFFOCATION",
+        "SUICIDE"
+      ]
+    },
+    {
+      "path": [
+        "keep-inventory",
+        "levels",
+        "2"
+      ],
+      "source": "\r\n      armor: true\r\n      main-hand: true\r\n      off-hand: true\r\n      hotbar: true\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "keep-inventory",
+        "levels",
+        "2",
+        "armor"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "keep-inventory",
+        "levels",
+        "2",
+        "main-hand"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "keep-inventory",
+        "levels",
+        "2",
+        "off-hand"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "keep-inventory",
+        "levels",
+        "2",
+        "hotbar"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "keep-inventory",
+        "levels",
+        "3"
+      ],
+      "source": "\r\n      items: [ '*' ]\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "keep-inventory",
+        "levels",
+        "3",
+        "items"
+      ],
+      "source": "[ '*' ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "'*'"
+      ]
+    },
+    {
+      "path": [
+        "[fn-add-permission]"
+      ],
+      "source": "&fn-add-permission\r\n  args: [ \"<<permission>>\" ]\r\n  return: \"CONSOLE:k admin forEach contextType=playersInKingdom context=%kingdoms_kingdom_name% command=\\\"CONSOLE:lp user %player% permission set <<permission>> true\\\"\"\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-add-permission]",
+        "args"
+      ],
+      "source": "[ \"<<permission>>\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"<<permission>>\""
+      ]
+    },
+    {
+      "path": [
+        "[fn-add-permission]",
+        "return"
+      ],
+      "source": "\"CONSOLE:k admin forEach contextType=playersInKingdom context=%kingdoms_kingdom_name% command=\\\"CONSOLE:lp user %player% permission set <<permission>> true\\\"\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-remove-permission]"
+      ],
+      "source": "&fn-remove-permission\r\n  args: [ \"<<permission>>\" ]\r\n  return: \"CONSOLE:k admin forEach contextType=playersInKingdom context=%kingdoms_kingdom_name% command=\\\"CONSOLE:lp user %player% permission unset <<permission>>\\\"\"\r\n\r\n# https://github.com/CryptoMorin/KingdomsX/wiki/NFAQ#making-custom-misc-upgrades\r\n# This example is not used by default inside the misc upgrades nexus GUI, so players\r\n# will not be able to use it by default. To fix it you'd have to go to the GUI and\r\n# add an option named \"custom-misc-upgrade\"\r\n# Note that for this to function properly, you also need to remove permissions when\r\n# a player leaves their kingdom. To do this, you have to use the events option in config.yml\r\n# For a full guide, visit this:\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-remove-permission]",
+        "args"
+      ],
+      "source": "[ \"<<permission>>\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"<<permission>>\""
+      ]
+    },
+    {
+      "path": [
+        "[fn-remove-permission]",
+        "return"
+      ],
+      "source": "\"CONSOLE:k admin forEach contextType=playersInKingdom context=%kingdoms_kingdom_name% command=\\\"CONSOLE:lp user %player% permission unset <<permission>>\\\"\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "custom-misc-upgrade"
+      ],
+      "source": "# Namespace: Kingdoms:CUSTOM_MISC_UPGRADE\r\n  enabled: true\r\n  can-be-disabled: true\r\n  max-level: 3\r\n\r\n  permissions:\r\n    1:\r\n      permissions:\r\n        - \"kingdoms.upgrade.custom.1\"\r\n    2:\r\n      previous: remove\r\n      permissions:\r\n        - \"kingdoms.upgrade.custom.2\"\r\n    3:\r\n      previous: remove\r\n      permissions:\r\n        - \"kingdoms.upgrade.custom.3\"\r\n\r\n  commands:\r\n\r\n    # Unlike most other conditions inside the plugin, this condition list\r\n    # will execute every entry that meets the condition, and it will not stop at the first\r\n    # one that is true. Here in order to make the config much cleaner, we used functions\r\n    # and YAML anchors/aliases to prevent repeating the same thing over and over again.\r\n    # The numbers here represent the misc upgrade level.\r\n    1:\r\n      enabled: &custom-enabled-1\r\n        - *fn-add-permission [ 'kingdoms.upgrade.custom.1' ]\r\n      \"!enabled\": &custom-disabled-1\r\n        - *fn-remove-permission [ 'kingdoms.upgrade.custom.1' ]\r\n\r\n    # Here the \"toggle\" variable is true if the upgrade is being turned on/off rather than\r\n    # being upgraded. This helps with keeping permissions from previous upgrades.\r\n    # So if I were to disable this upgrade when at level 2, players would have\r\n    # both their kingdoms.upgrade.custom.1 and kingdoms.upgrade.custom.2 permissions removed.\r\n    2:\r\n      enabled: &custom-enabled-2\r\n        toggle: *custom-enabled-1\r\n        true: *fn-add-permission [ 'kingdoms.upgrade.custom.2' ]\r\n      \"!enabled\": &custom-disabled-2\r\n        toggle: *custom-disabled-1\r\n        true: *fn-remove-permission [ 'kingdoms.upgrade.custom.2' ]\r\n\r\n    3:\r\n      enabled: &custom-enabled-3\r\n        toggle: *custom-enabled-2\r\n        true: *fn-add-permission [ 'kingdoms.upgrade.custom.3' ]\r\n      \"!enabled\": &custom-disabled-3\r\n        toggle: *custom-disabled-2\r\n        true: *fn-remove-permission [ 'kingdoms.upgrade.custom.3' ]\r\n",
+      "comments": [
+        "https://github.com/CryptoMorin/KingdomsX/wiki/NFAQ#making-custom-misc-upgrades",
+        "This example is not used by default inside the misc upgrades nexus GUI, so players",
+        "will not be able to use it by default. To fix it you'd have to go to the GUI and",
+        "add an option named \"custom-misc-upgrade\"",
+        "Note that for this to function properly, you also need to remove permissions when",
+        "a player leaves their kingdom. To do this, you have to use the events option in config.yml",
+        "For a full guide, visit this:"
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "custom-misc-upgrade",
+        "enabled"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "custom-misc-upgrade",
+        "can-be-disabled"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "custom-misc-upgrade",
+        "max-level"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "custom-misc-upgrade",
+        "permissions"
+      ],
+      "source": "\r\n    1:\r\n      permissions:\r\n        - \"kingdoms.upgrade.custom.1\"\r\n    2:\r\n      previous: remove\r\n      permissions:\r\n        - \"kingdoms.upgrade.custom.2\"\r\n    3:\r\n      previous: remove\r\n      permissions:\r\n        - \"kingdoms.upgrade.custom.3\"\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "custom-misc-upgrade",
+        "permissions",
+        "1"
+      ],
+      "source": "\r\n      permissions:\r\n        - \"kingdoms.upgrade.custom.1\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "custom-misc-upgrade",
+        "permissions",
+        "1",
+        "permissions"
+      ],
+      "source": "\r\n        - \"kingdoms.upgrade.custom.1\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"kingdoms.upgrade.custom.1\""
+      ]
+    },
+    {
+      "path": [
+        "custom-misc-upgrade",
+        "permissions",
+        "2"
+      ],
+      "source": "\r\n      previous: remove\r\n      permissions:\r\n        - \"kingdoms.upgrade.custom.2\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "custom-misc-upgrade",
+        "permissions",
+        "2",
+        "previous"
+      ],
+      "source": "remove",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "custom-misc-upgrade",
+        "permissions",
+        "2",
+        "permissions"
+      ],
+      "source": "\r\n        - \"kingdoms.upgrade.custom.2\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"kingdoms.upgrade.custom.2\""
+      ]
+    },
+    {
+      "path": [
+        "custom-misc-upgrade",
+        "permissions",
+        "3"
+      ],
+      "source": "\r\n      previous: remove\r\n      permissions:\r\n        - \"kingdoms.upgrade.custom.3\"\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "custom-misc-upgrade",
+        "permissions",
+        "3",
+        "previous"
+      ],
+      "source": "remove",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "custom-misc-upgrade",
+        "permissions",
+        "3",
+        "permissions"
+      ],
+      "source": "\r\n        - \"kingdoms.upgrade.custom.3\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"kingdoms.upgrade.custom.3\""
+      ]
+    },
+    {
+      "path": [
+        "custom-misc-upgrade",
+        "commands"
+      ],
+      "source": "\r\n\r\n    # Unlike most other conditions inside the plugin, this condition list\r\n    # will execute every entry that meets the condition, and it will not stop at the first\r\n    # one that is true. Here in order to make the config much cleaner, we used functions\r\n    # and YAML anchors/aliases to prevent repeating the same thing over and over again.\r\n    # The numbers here represent the misc upgrade level.\r\n    1:\r\n      enabled: &custom-enabled-1\r\n        - *fn-add-permission [ 'kingdoms.upgrade.custom.1' ]\r\n      \"!enabled\": &custom-disabled-1\r\n        - *fn-remove-permission [ 'kingdoms.upgrade.custom.1' ]\r\n\r\n    # Here the \"toggle\" variable is true if the upgrade is being turned on/off rather than\r\n    # being upgraded. This helps with keeping permissions from previous upgrades.\r\n    # So if I were to disable this upgrade when at level 2, players would have\r\n    # both their kingdoms.upgrade.custom.1 and kingdoms.upgrade.custom.2 permissions removed.\r\n    2:\r\n      enabled: &custom-enabled-2\r\n        toggle: *custom-enabled-1\r\n        true: *fn-add-permission [ 'kingdoms.upgrade.custom.2' ]\r\n      \"!enabled\": &custom-disabled-2\r\n        toggle: *custom-disabled-1\r\n        true: *fn-remove-permission [ 'kingdoms.upgrade.custom.2' ]\r\n\r\n    3:\r\n      enabled: &custom-enabled-3\r\n        toggle: *custom-enabled-2\r\n        true: *fn-add-permission [ 'kingdoms.upgrade.custom.3' ]\r\n      \"!enabled\": &custom-disabled-3\r\n        toggle: *custom-disabled-2\r\n        true: *fn-remove-permission [ 'kingdoms.upgrade.custom.3' ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "custom-misc-upgrade",
+        "commands",
+        "1"
+      ],
+      "source": "\r\n      enabled: &custom-enabled-1\r\n        - *fn-add-permission [ 'kingdoms.upgrade.custom.1' ]\r\n      \"!enabled\": &custom-disabled-1\r\n        - *fn-remove-permission [ 'kingdoms.upgrade.custom.1' ]\r\n\r\n    # Here the \"toggle\" variable is true if the upgrade is being turned on/off rather than\r\n    # being upgraded. This helps with keeping permissions from previous upgrades.\r\n    # So if I were to disable this upgrade when at level 2, players would have\r\n    # both their kingdoms.upgrade.custom.1 and kingdoms.upgrade.custom.2 permissions removed.\r\n",
+      "comments": [
+        "Unlike most other conditions inside the plugin, this condition list",
+        "will execute every entry that meets the condition, and it will not stop at the first",
+        "one that is true. Here in order to make the config much cleaner, we used functions",
+        "and YAML anchors/aliases to prevent repeating the same thing over and over again.",
+        "The numbers here represent the misc upgrade level."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "custom-misc-upgrade",
+        "commands",
+        "1",
+        "enabled"
+      ],
+      "source": "&custom-enabled-1\r\n        - *fn-add-permission [ 'kingdoms.upgrade.custom.1' ]\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "*fn-add-permission [ 'kingdoms.upgrade.custom.1' ]"
+      ]
+    },
+    {
+      "path": [
+        "custom-misc-upgrade",
+        "commands",
+        "1",
+        "!enabled"
+      ],
+      "source": "&custom-disabled-1\r\n        - *fn-remove-permission [ 'kingdoms.upgrade.custom.1' ]\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "*fn-remove-permission [ 'kingdoms.upgrade.custom.1' ]"
+      ]
+    },
+    {
+      "path": [
+        "custom-misc-upgrade",
+        "commands",
+        "2"
+      ],
+      "source": "\r\n      enabled: &custom-enabled-2\r\n        toggle: *custom-enabled-1\r\n        true: *fn-add-permission [ 'kingdoms.upgrade.custom.2' ]\r\n      \"!enabled\": &custom-disabled-2\r\n        toggle: *custom-disabled-1\r\n        true: *fn-remove-permission [ 'kingdoms.upgrade.custom.2' ]\r\n\r\n",
+      "comments": [
+        "Here the \"toggle\" variable is true if the upgrade is being turned on/off rather than",
+        "being upgraded. This helps with keeping permissions from previous upgrades.",
+        "So if I were to disable this upgrade when at level 2, players would have",
+        "both their kingdoms.upgrade.custom.1 and kingdoms.upgrade.custom.2 permissions removed."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "custom-misc-upgrade",
+        "commands",
+        "2",
+        "enabled"
+      ],
+      "source": "&custom-enabled-2\r\n        toggle: *custom-enabled-1\r\n        true: *fn-add-permission [ 'kingdoms.upgrade.custom.2' ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "custom-misc-upgrade",
+        "commands",
+        "2",
+        "enabled",
+        "toggle"
+      ],
+      "source": "*custom-enabled-1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "custom-misc-upgrade",
+        "commands",
+        "2",
+        "enabled",
+        "true"
+      ],
+      "source": "*fn-add-permission [ 'kingdoms.upgrade.custom.2' ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "custom-misc-upgrade",
+        "commands",
+        "2",
+        "!enabled"
+      ],
+      "source": "&custom-disabled-2\r\n        toggle: *custom-disabled-1\r\n        true: *fn-remove-permission [ 'kingdoms.upgrade.custom.2' ]\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "custom-misc-upgrade",
+        "commands",
+        "2",
+        "!enabled",
+        "toggle"
+      ],
+      "source": "*custom-disabled-1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "custom-misc-upgrade",
+        "commands",
+        "2",
+        "!enabled",
+        "true"
+      ],
+      "source": "*fn-remove-permission [ 'kingdoms.upgrade.custom.2' ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "custom-misc-upgrade",
+        "commands",
+        "3"
+      ],
+      "source": "\r\n      enabled: &custom-enabled-3\r\n        toggle: *custom-enabled-2\r\n        true: *fn-add-permission [ 'kingdoms.upgrade.custom.3' ]\r\n      \"!enabled\": &custom-disabled-3\r\n        toggle: *custom-disabled-2\r\n        true: *fn-remove-permission [ 'kingdoms.upgrade.custom.3' ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "custom-misc-upgrade",
+        "commands",
+        "3",
+        "enabled"
+      ],
+      "source": "&custom-enabled-3\r\n        toggle: *custom-enabled-2\r\n        true: *fn-add-permission [ 'kingdoms.upgrade.custom.3' ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "custom-misc-upgrade",
+        "commands",
+        "3",
+        "enabled",
+        "toggle"
+      ],
+      "source": "*custom-enabled-2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "custom-misc-upgrade",
+        "commands",
+        "3",
+        "enabled",
+        "true"
+      ],
+      "source": "*fn-add-permission [ 'kingdoms.upgrade.custom.3' ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "custom-misc-upgrade",
+        "commands",
+        "3",
+        "!enabled"
+      ],
+      "source": "&custom-disabled-3\r\n        toggle: *custom-disabled-2\r\n        true: *fn-remove-permission [ 'kingdoms.upgrade.custom.3' ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "custom-misc-upgrade",
+        "commands",
+        "3",
+        "!enabled",
+        "toggle"
+      ],
+      "source": "*custom-disabled-2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "custom-misc-upgrade",
+        "commands",
+        "3",
+        "!enabled",
+        "true"
+      ],
+      "source": "*fn-remove-permission [ 'kingdoms.upgrade.custom.3' ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

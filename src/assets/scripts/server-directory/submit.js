@@ -1,4 +1,5 @@
-import { Toast } from "bootstrap";
+import { dismissSiteToast, showSiteToast } from "../site-toast.js";
+import { formatDate } from "../site-date.js";
 import {
   appendServerLink,
   createOwnerStat,
@@ -7,7 +8,6 @@ import {
   createServerCardShell,
   createServerStat,
   createServerStatus,
-  formatDate,
   playerCountLabel,
   readSocialFormValues,
   SERVER_DESCRIPTION_LIMIT,
@@ -170,97 +170,14 @@ const initServerSubmit = () => {
     }
 
     container = document.createElement("div");
-    container.className = "toast-container position-fixed bottom-0 end-0 p-3 server-submit-toast-container";
+    container.className = "toast-container position-fixed bottom-0 end-0 p-3 site-toast-container d-flex flex-column align-items-end";
     container.dataset.serverSubmitToastContainer = "";
     document.body.append(container);
 
     return container;
   };
 
-  const toastIconClass = (kind) =>
-    ({
-      "is-success": "fa-solid fa-circle-check",
-      "is-error": "fa-solid fa-triangle-exclamation",
-      "is-warning": "fa-solid fa-clock",
-    })[kind] || "fa-solid fa-circle-info";
-
-  const showToast = ({ title, message, kind = "", autohide = true, delay = 6000 }) => {
-    const container = ensureToastContainer();
-    const toastNode = document.createElement("div");
-    toastNode.className = `toast server-submit-toast ${kind}`.trim();
-    toastNode.style.setProperty("--server-submit-toast-delay", `${delay}ms`);
-    toastNode.setAttribute("role", kind === "is-error" ? "alert" : "status");
-    toastNode.setAttribute("aria-live", kind === "is-error" ? "assertive" : "polite");
-    toastNode.setAttribute("aria-atomic", "true");
-
-    if (autohide) {
-      toastNode.classList.add("is-autohide");
-    }
-
-    const header = document.createElement("div");
-    header.className = "toast-header server-submit-toast-header";
-
-    const icon = document.createElement("i");
-    icon.className = `${toastIconClass(kind)} me-2`;
-    icon.setAttribute("aria-hidden", "true");
-
-    const heading = document.createElement("strong");
-    heading.className = "me-auto";
-    heading.textContent = title;
-
-    const close = document.createElement("button");
-    close.type = "button";
-    close.className = "btn-close btn-close-white";
-    close.dataset.bsDismiss = "toast";
-    close.setAttribute("aria-label", "Close");
-
-    const body = document.createElement("div");
-    body.className = "toast-body";
-    body.textContent = message;
-
-    const progress = document.createElement("div");
-    progress.className = "server-submit-toast-progress";
-    progress.setAttribute("aria-hidden", "true");
-    ["top", "right", "bottom"].forEach((edge) => {
-      const segment = document.createElement("span");
-      segment.className = `server-submit-toast-progress-edge is-${edge}`;
-      progress.append(segment);
-    });
-
-    header.append(icon, heading, close);
-    toastNode.append(header, body, progress);
-    container.append(toastNode);
-
-    const toast = Toast.getOrCreateInstance(toastNode, { autohide, delay });
-
-    if (autohide) {
-      const pauseProgress = () => toastNode.classList.add("is-progress-paused");
-      const resumeProgress = () => toastNode.classList.remove("is-progress-paused");
-
-      toastNode.addEventListener("mouseover", pauseProgress);
-      toastNode.addEventListener("mouseout", resumeProgress);
-      toastNode.addEventListener("focusin", pauseProgress);
-      toastNode.addEventListener("focusout", resumeProgress);
-    }
-
-    toastNode.addEventListener(
-      "hidden.bs.toast",
-      () => {
-        toast.dispose();
-        toastNode.remove();
-      },
-      { once: true }
-    );
-    toast.show();
-
-    return { node: toastNode, toast };
-  };
-
-  const dismissToast = (handle) => {
-    if (handle?.node?.isConnected) {
-      handle.toast.hide();
-    }
-  };
+  const showToast = (options) => showSiteToast({ container: ensureToastContainer(), ...options });
 
   const setSubmitView = (view) => {
     submitSection?.classList.toggle("is-logged-out", view === "logged-out");
@@ -319,6 +236,7 @@ const initServerSubmit = () => {
 
   const renderForm = (mode, item = null) => {
     setSubmitView("authenticated");
+
     const panel = document.createElement("div");
     panel.className = "server-submit-form-shell d-flex flex-column gap-4";
 
@@ -366,9 +284,11 @@ const initServerSubmit = () => {
 
     const publicSection = document.createElement("section");
     publicSection.className = "server-submit-section surface-lift d-flex flex-column gap-3 p-3 p-md-4 rounded-3";
+
     const publicTitle = document.createElement("h2");
     publicTitle.className = "server-submit-section-title mb-0";
     publicTitle.textContent = "Website & Socials";
+
     publicSection.append(publicTitle, publicFields);
 
     const createIdentityChangedNotice = () => {
@@ -725,7 +645,8 @@ const initServerSubmit = () => {
         }
 
         window.turnstile?.reset?.();
-        dismissToast(progressToast);
+        dismissSiteToast(progressToast);
+
         const autoSuspended = data.status === "suspended" || data.item?.reviewStatus === "suspended";
 
         showToast({
@@ -744,7 +665,7 @@ const initServerSubmit = () => {
         load();
       } catch (error) {
         window.turnstile?.reset?.();
-        dismissToast(progressToast);
+        dismissSiteToast(progressToast);
         showToast({
           title: needsStaffReview
             ? SERVER_MESSAGES.submit.toasts.failure.submissionTitle
@@ -771,8 +692,10 @@ const initServerSubmit = () => {
 
     const content = document.createElement("div");
     content.className = "d-grid gap-2";
+
     const title = document.createElement("strong");
     title.textContent = SERVER_MESSAGES.submit.reviewFeedback.title;
+
     const text = document.createElement("p");
     text.className = "mb-0";
     text.textContent =
@@ -782,6 +705,7 @@ const initServerSubmit = () => {
         hidden_offline: SERVER_MESSAGES.submit.reviewFeedback.hiddenOffline,
       })[item?.reviewStatus] ||
       SERVER_MESSAGES.submit.reviewFeedback.fallback;
+
     content.append(title, text);
     reason.append(content);
 
@@ -824,11 +748,14 @@ const initServerSubmit = () => {
 
       const content = document.createElement("div");
       content.className = "d-grid gap-1 min-w-0";
+
       const title = document.createElement("strong");
       title.textContent = item.title;
+
       const message = document.createElement("p");
       message.className = "mb-0";
       message.textContent = item.message;
+
       content.append(title, message);
       notice.append(icon, content);
       area.append(notice);
@@ -890,8 +817,7 @@ const initServerSubmit = () => {
     const summary = createServerCardShell({
       server: item,
       headingTag: "h2",
-      cardClassName:
-        "server-card surface-panel surface-lift server-submit-summary d-flex flex-column gap-3 w-100 p-3 overflow-hidden rounded-3",
+      cardClassName: "server-card surface-panel surface-lift server-submit-summary d-flex flex-column gap-3 w-100 p-3 overflow-hidden rounded-3",
       chips,
       description: item.description,
       descriptionClassName: "server-description mb-0",
@@ -907,6 +833,7 @@ const initServerSubmit = () => {
 
   const renderPublicDetailsForm = (item) => {
     setSubmitView("authenticated");
+
     const panel = document.createElement("div");
     panel.className = "server-submit-form-shell d-flex flex-column gap-4";
     panel.append(createAccountBar(currentState.user), createServerSummary(item));
@@ -921,9 +848,11 @@ const initServerSubmit = () => {
 
     const section = document.createElement("section");
     section.className = "server-submit-section surface-lift d-flex flex-column gap-3 p-3 p-md-4 rounded-3";
+
     const title = document.createElement("h2");
     title.className = "server-submit-section-title mb-0";
     title.textContent = "Public Details";
+
     section.append(title, publicFields);
 
     const actions = document.createElement("div");
@@ -1010,7 +939,7 @@ const initServerSubmit = () => {
         }
 
         currentState = { ...currentState, item: data.item };
-        dismissToast(progressToast);
+        dismissSiteToast(progressToast);
         showToast({
           title: SERVER_MESSAGES.submit.toasts.success.savedTitle,
           message: SERVER_MESSAGES.submit.toasts.success.savedMessage,
@@ -1018,7 +947,7 @@ const initServerSubmit = () => {
         });
         window.setTimeout(() => renderOwnedState(data.item), 650);
       } catch (error) {
-        dismissToast(progressToast);
+        dismissSiteToast(progressToast);
         showToast({
           title: SERVER_MESSAGES.submit.toasts.failure.saveTitle,
           message:
@@ -1037,11 +966,13 @@ const initServerSubmit = () => {
   // Owner dashboard after approval
   const renderOwnedState = (item) => {
     setSubmitView("authenticated");
+
     const panel = document.createElement("div");
     panel.className = "server-submit-owned d-flex flex-column gap-4";
     panel.append(createAccountBar(currentState.user));
 
     panel.append(createNotificationArea([notificationFromItem(item)]));
+
     let summary = null;
     const cardActions = document.createElement("div");
     cardActions.className = "server-card-actions d-flex flex-wrap gap-2 ms-sm-auto";
@@ -1143,6 +1074,7 @@ const initServerSubmit = () => {
     view.className = "btn btn-site d-inline-flex align-items-center justify-content-center gap-2 fw-bold";
     view.href = serversUrl;
     view.innerHTML = '<i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Back to Servers';
+
     const actions = document.createElement("div");
     actions.className = "server-submit-actions d-flex flex-column flex-sm-row justify-content-center gap-3";
     actions.append(view);

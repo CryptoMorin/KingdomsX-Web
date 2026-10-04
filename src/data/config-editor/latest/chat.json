@@ -1,0 +1,325 @@
+{
+  "formatVersion": 2,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "id": "chat",
+  "resourceName": "chat.yml",
+  "schema": {
+    "kind": "object",
+    "fields": [
+      {
+        "key": "channels",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "string",
+            "typeName": "str"
+          },
+          "values": {
+            "kind": "object",
+            "fields": [
+              {
+                "key": "color",
+                "type": {
+                  "kind": "string",
+                  "typeName": "str"
+                }
+              },
+              {
+                "key": "recipients-condition",
+                "type": {
+                  "kind": "expression",
+                  "language": "condition"
+                }
+              },
+              {
+                "key": "use-conditions",
+                "type": {
+                  "kind": "union",
+                  "choices": [
+                    {
+                      "kind": "expression",
+                      "language": "condition"
+                    },
+                    {
+                      "kind": "mapping",
+                      "keys": {
+                        "kind": "expression",
+                        "language": "condition"
+                      },
+                      "values": {
+                        "kind": "string",
+                        "typeName": "str"
+                      },
+                      "fields": []
+                    }
+                  ]
+                }
+              },
+              {
+                "key": "admin-formats",
+                "type": {
+                  "kind": "union",
+                  "choices": [
+                    {
+                      "kind": "string",
+                      "typeName": "str"
+                    },
+                    {
+                      "kind": "mapping",
+                      "keys": {
+                        "kind": "expression",
+                        "language": "condition"
+                      },
+                      "values": {
+                        "kind": "string",
+                        "typeName": "str"
+                      },
+                      "fields": [],
+                      "required": [
+                        "else"
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "key": "formats",
+                "type": {
+                  "kind": "union",
+                  "choices": [
+                    {
+                      "kind": "string",
+                      "typeName": "str"
+                    },
+                    {
+                      "kind": "mapping",
+                      "keys": {
+                        "kind": "expression",
+                        "language": "condition"
+                      },
+                      "values": {
+                        "kind": "string",
+                        "typeName": "str"
+                      },
+                      "fields": [],
+                      "required": [
+                        "else"
+                      ]
+                    }
+                  ]
+                }
+              }
+            ],
+            "required": [
+              "formats",
+              "admin-formats",
+              "color"
+            ]
+          },
+          "fields": [],
+          "optional": true,
+          "required": [
+            "global"
+          ]
+        }
+      },
+      {
+        "key": "direct-prefix",
+        "type": {
+          "kind": "string",
+          "typeName": "str"
+        }
+      },
+      {
+        "key": "priority",
+        "type": {
+          "kind": "suggestion",
+          "typeName": "Enum<org.bukkit.event.EventPriority>",
+          "allowCustom": true
+        }
+      },
+      {
+        "key": "cancel",
+        "type": {
+          "kind": "boolean"
+        }
+      },
+      {
+        "key": "recipients",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "respect-others",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "clear-when-done",
+              "type": {
+                "kind": "boolean"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "reset-channel-on-leave",
+        "type": {
+          "kind": "boolean"
+        }
+      },
+      {
+        "key": "ranged-channels",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "channels",
+              "type": {
+                "kind": "list",
+                "elements": {
+                  "kind": "string",
+                  "typeName": "str"
+                }
+              }
+            },
+            {
+              "key": "radius",
+              "type": {
+                "kind": "integer"
+              }
+            },
+            {
+              "key": "bypass-prefix",
+              "type": {
+                "kind": "string",
+                "typeName": "str"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "tagging",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "enabled",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "prefix",
+              "type": {
+                "kind": "string",
+                "typeName": "str"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "global-channel",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "format",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "parse-as-placeholder",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "relational-placeholders",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "color",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "str"
+                    }
+                  },
+                  {
+                    "key": "name",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "str"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "discordsrv",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "global-channel",
+              "type": {
+                "kind": "string",
+                "typeName": "str"
+              }
+            },
+            {
+              "key": "private-channel",
+              "type": {
+                "kind": "string",
+                "typeName": "str"
+              }
+            },
+            {
+              "key": "announcements",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "invasion",
+                    "type": {
+                      "kind": "object",
+                      "fields": [
+                        {
+                          "key": "channel",
+                          "type": {
+                            "kind": "string",
+                            "typeName": "str"
+                          }
+                        },
+                        {
+                          "key": "message",
+                          "type": {
+                            "kind": "string",
+                            "typeName": "str"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

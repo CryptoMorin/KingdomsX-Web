@@ -1,0 +1,2131 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "guis/structures/nexus/nexus.yml",
+  "schemaId": "guis/schema",
+  "options": [
+    {
+      "path": [
+        "title"
+      ],
+      "source": "\"{$p}&l%kingdoms_kingdom_name%'s {$s}&lNexus\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "rows"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sound"
+      ],
+      "source": "BLOCK_BEACON_ACTIVATE, 0.3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "forms"
+      ],
+      "source": "\r\n  title: 'Title'\r\n  icon: \"https://www.sonatype.com/hubfs/Company%20Logo/SON_logo_profilepict@2x%20(1).png\"\r\n  type: CUSTOM\r\n  options:\r\n    settings:\r\n      component-type: LABEL\r\n      text: \"&5Settings\"\r\n    some-button:\r\n      component-type: BUTTON\r\n      text: \"A button!\"\r\n    some-toggle:\r\n      component-type: TOGGLE\r\n      text: \"A toggle!\"\r\n      default-value: true\r\n    some-slider:\r\n      component-type: SLIDER\r\n      text: \"A slider!\"\r\n      min: 5\r\n      max: 110\r\n      step: 3\r\n      default-value: 25\r\n    some-step-slider:\r\n      component-type: STEP_SLIDER\r\n      text: \"A step-slider!\"\r\n      steps: [ \"One me\", \"Two you\", \"Three us\" ]\r\n      default-value: 2\r\n    some-dropdown:\r\n      component-type: DROPDOWN\r\n      text: \"A dropdown!\"\r\n      steps: [ \"Drop me\", \"Drop you\", \"Drop us\" ]\r\n      default-value: 1\r\n    some-input:\r\n      component-type: INPUT\r\n      text: \"An input!!\"\r\n      placeholder: \"Replace me!\"\r\n      default-value: \"Please delete me\"\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "forms",
+        "title"
+      ],
+      "source": "'Title'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "forms",
+        "icon"
+      ],
+      "source": "\"https://www.sonatype.com/hubfs/Company%20Logo/SON_logo_profilepict@2x%20(1).png\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "forms",
+        "type"
+      ],
+      "source": "CUSTOM",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "forms",
+        "options"
+      ],
+      "source": "\r\n    settings:\r\n      component-type: LABEL\r\n      text: \"&5Settings\"\r\n    some-button:\r\n      component-type: BUTTON\r\n      text: \"A button!\"\r\n    some-toggle:\r\n      component-type: TOGGLE\r\n      text: \"A toggle!\"\r\n      default-value: true\r\n    some-slider:\r\n      component-type: SLIDER\r\n      text: \"A slider!\"\r\n      min: 5\r\n      max: 110\r\n      step: 3\r\n      default-value: 25\r\n    some-step-slider:\r\n      component-type: STEP_SLIDER\r\n      text: \"A step-slider!\"\r\n      steps: [ \"One me\", \"Two you\", \"Three us\" ]\r\n      default-value: 2\r\n    some-dropdown:\r\n      component-type: DROPDOWN\r\n      text: \"A dropdown!\"\r\n      steps: [ \"Drop me\", \"Drop you\", \"Drop us\" ]\r\n      default-value: 1\r\n    some-input:\r\n      component-type: INPUT\r\n      text: \"An input!!\"\r\n      placeholder: \"Replace me!\"\r\n      default-value: \"Please delete me\"\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "forms",
+        "options",
+        "settings"
+      ],
+      "source": "\r\n      component-type: LABEL\r\n      text: \"&5Settings\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "forms",
+        "options",
+        "settings",
+        "component-type"
+      ],
+      "source": "LABEL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "forms",
+        "options",
+        "settings",
+        "text"
+      ],
+      "source": "\"&5Settings\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "forms",
+        "options",
+        "some-button"
+      ],
+      "source": "\r\n      component-type: BUTTON\r\n      text: \"A button!\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "forms",
+        "options",
+        "some-button",
+        "component-type"
+      ],
+      "source": "BUTTON",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "forms",
+        "options",
+        "some-button",
+        "text"
+      ],
+      "source": "\"A button!\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "forms",
+        "options",
+        "some-toggle"
+      ],
+      "source": "\r\n      component-type: TOGGLE\r\n      text: \"A toggle!\"\r\n      default-value: true\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "forms",
+        "options",
+        "some-toggle",
+        "component-type"
+      ],
+      "source": "TOGGLE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "forms",
+        "options",
+        "some-toggle",
+        "text"
+      ],
+      "source": "\"A toggle!\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "forms",
+        "options",
+        "some-toggle",
+        "default-value"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "forms",
+        "options",
+        "some-slider"
+      ],
+      "source": "\r\n      component-type: SLIDER\r\n      text: \"A slider!\"\r\n      min: 5\r\n      max: 110\r\n      step: 3\r\n      default-value: 25\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "forms",
+        "options",
+        "some-slider",
+        "component-type"
+      ],
+      "source": "SLIDER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "forms",
+        "options",
+        "some-slider",
+        "text"
+      ],
+      "source": "\"A slider!\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "forms",
+        "options",
+        "some-slider",
+        "min"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "forms",
+        "options",
+        "some-slider",
+        "max"
+      ],
+      "source": "110",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "forms",
+        "options",
+        "some-slider",
+        "step"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "forms",
+        "options",
+        "some-slider",
+        "default-value"
+      ],
+      "source": "25",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "forms",
+        "options",
+        "some-step-slider"
+      ],
+      "source": "\r\n      component-type: STEP_SLIDER\r\n      text: \"A step-slider!\"\r\n      steps: [ \"One me\", \"Two you\", \"Three us\" ]\r\n      default-value: 2\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "forms",
+        "options",
+        "some-step-slider",
+        "component-type"
+      ],
+      "source": "STEP_SLIDER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "forms",
+        "options",
+        "some-step-slider",
+        "text"
+      ],
+      "source": "\"A step-slider!\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "forms",
+        "options",
+        "some-step-slider",
+        "steps"
+      ],
+      "source": "[ \"One me\", \"Two you\", \"Three us\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"One me\"",
+        "\"Two you\"",
+        "\"Three us\""
+      ]
+    },
+    {
+      "path": [
+        "forms",
+        "options",
+        "some-step-slider",
+        "default-value"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "forms",
+        "options",
+        "some-dropdown"
+      ],
+      "source": "\r\n      component-type: DROPDOWN\r\n      text: \"A dropdown!\"\r\n      steps: [ \"Drop me\", \"Drop you\", \"Drop us\" ]\r\n      default-value: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "forms",
+        "options",
+        "some-dropdown",
+        "component-type"
+      ],
+      "source": "DROPDOWN",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "forms",
+        "options",
+        "some-dropdown",
+        "text"
+      ],
+      "source": "\"A dropdown!\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "forms",
+        "options",
+        "some-dropdown",
+        "steps"
+      ],
+      "source": "[ \"Drop me\", \"Drop you\", \"Drop us\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"Drop me\"",
+        "\"Drop you\"",
+        "\"Drop us\""
+      ]
+    },
+    {
+      "path": [
+        "forms",
+        "options",
+        "some-dropdown",
+        "default-value"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "forms",
+        "options",
+        "some-input"
+      ],
+      "source": "\r\n      component-type: INPUT\r\n      text: \"An input!!\"\r\n      placeholder: \"Replace me!\"\r\n      default-value: \"Please delete me\"\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "forms",
+        "options",
+        "some-input",
+        "component-type"
+      ],
+      "source": "INPUT",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "forms",
+        "options",
+        "some-input",
+        "text"
+      ],
+      "source": "\"An input!!\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "forms",
+        "options",
+        "some-input",
+        "placeholder"
+      ],
+      "source": "\"Replace me!\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "forms",
+        "options",
+        "some-input",
+        "default-value"
+      ],
+      "source": "\"Please delete me\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options"
+      ],
+      "source": "\r\n  settings:\r\n    name: \"{$sep}Settings\"\r\n    material: NETHER_STAR\r\n    lore: |\r\n      {$s}Change your kingdom settings.\r\n    posx: 5\r\n    posy: 2\r\n  members:\r\n    name: \"{$p}Members\"\r\n    material: PLAYER_HEAD\r\n    skull: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzRiODlhZDA2ZDMxOGYwYWUxZWVhZjY2MGZlYTc4YzM0ZWI1NWQwNWYwMWUxY2Y5OTlmMzMxZmIzMmQzODk0MiJ9fX0='\r\n    lore: |\r\n      {$s}Manage your kingdom members.\r\n      {$s}Promote or demote them.\r\n    posx: 5\r\n    posy: 3\r\n  masswar:\r\n    running:\r\n      condition: kingdoms_masswar_is_running\r\n      name: \"&4Masswar\"\r\n      material: CLOCK\r\n      lore: |\r\n        {$s}During MassWar, invasions are free.\r\n        Masswar is currently {$p}running.\r\n\r\n        {$p}Mass War ends in{$colon} {$s}%time@kingdoms_masswar_time%\r\n    else:\r\n      name: \"&4Masswar\"\r\n      material: RED_WOOL\r\n      lore: |\r\n        {$s}During MassWar, invasions are free.\r\n        Masswar is currently &cnot running.\r\n\r\n        {$p}Next Mass War in{$colon} {$s}%time@kingdoms_masswar_time%\r\n    posx: 6\r\n    posy: 3\r\n  nexus-chest:\r\n    name: \"&eNexus Chest\"\r\n    material: CHEST\r\n    lore: |\r\n      {$s}Put items in your kingdoms chest\r\n      {$s}for everyone to use.\r\n    posx: 7\r\n    posy: 3\r\n  turrets:\r\n    name: \"{$sp}Turrets\"\r\n    material: SPECTRAL_ARROW\r\n    lore: |\r\n      {$s}You can buy turrets with\r\n      resource points to place them\r\n      on your land. It protects against\r\n      mobs and invaders.\r\n      {? kingdoms_kingdom_is_pacifist ? \"{$note} {$desc}Your kingdom is a pacifist kingdom\r\n      {$desc}and turrets will only shoot mobs, not players.\"}\r\n    posx: 3\r\n    posy: 3\r\n  structures:\r\n    name: \"&5Structures\"\r\n    material: REDSTONE_LAMP\r\n    lore: |\r\n      {$s}Structures can do different things.\r\n      You can only have one structure per land.\r\n      Note that the nexus is a structure itself.\r\n      You can buy structures with resource points.\r\n    posx: 4\r\n    posy: 3\r\n  misc-upgrades:\r\n    name: \"&bMisc Upgrades\"\r\n    material: ENCHANTING_TABLE\r\n    lore: |\r\n      {$s}Extra miscellaneous upgrades\r\n      to improve your kingdom\r\n      in different aspects.\r\n    posx: 2\r\n    posy: 3\r\n  logs:\r\n    name: \"&aAudit Logs\"\r\n    material: KNOWLEDGE_BOOK\r\n    lore: |\r\n      {$s}View kingdom logs including\r\n      invasions, claims, unclaims,\r\n      and other member activities.\r\n\r\n      {$sep}Most of these logs stay for\r\n      30 days after they're created.\r\n      Some may stay for a shorter time\r\n      if they are less important.\r\n    posx: 8\r\n    posy: 3\r\n  resource-points:\r\n    name: \"&eResource Points Converter\"\r\n    material: HAY_BLOCK\r\n    lore: |\r\n      {$s}Convert your items to\r\n      resource points.\r\n      Your kingdom has &e%fancy@kingdoms_resource_points% {$s}resource points.\r\n    posx: 4\r\n    posy: 5\r\n  damage-reduction:\r\n    name: \"&3Damage Reduction\"\r\n    material: DIAMOND_CHESTPLATE\r\n    flags: [ ALL ]\r\n\r\n    powerup-conds: &pwrup-conds\r\n      - '{? level >= 20 && kingdoms_kingdom_level < 2 ? \"{$kingdom-lvl-II}\"}'\r\n      - '{? level >= 30 && kingdoms_kingdom_level < 3 ? \"{$kingdom-lvl-III}\"}'\r\n      - '{? level >= 40 && kingdoms_kingdom_level < 4 ? \"{$kingdom-lvl-IV}\"}'\r\n      - '{? level >= 50 && kingdoms_kingdom_level < 5 ? \"{$kingdom-lvl-V}\"}'\r\n\r\n    lore:\r\n      - \"{$s}Each upgrade reduces damage\"\r\n      - \"taken by &e1% {$s}when you're in\"\r\n      - \"your own kingdom land.\"\r\n      - \"\"\r\n      - <<: *pwrup-conds\r\n      - \"{$s}Level{$colon} {$p}%level%{$sep}/{$p}%max_level%\"\r\n      - \"{$s}Cost{$colon} {$p}%cost%\"\r\n    posx: 7\r\n    posy: 4\r\n  damage-boost:\r\n    name: \"&3Damage Boost\"\r\n    material: DIAMOND_SWORD\r\n    flags: [ ALL ]\r\n    lore:\r\n      - \"{$s}Each upgrade increases your\"\r\n      - \"damage by &e1% {$s}when you're in\"\r\n      - \"your own kingdom land.\"\r\n      - \"\"\r\n      - <<: *pwrup-conds\r\n      - \"{$s}Level{$colon} {$p}%level%{$sep}/{$p}%max_level%\"\r\n      - \"{$s}Cost{$colon} {$p}%cost%\"\r\n    posx: 3\r\n    posy: 4\r\n  arrow-boost:\r\n    name: \"{$sep}Arrow Boost\"\r\n    material: BOW\r\n    lore:\r\n      - \"{$s}Each upgrade increases your bow\"\r\n      - \"damage by &e1% {$s}when you're in\"\r\n      - \"your own kingdom land.\"\r\n      - \"\"\r\n      - <<: *pwrup-conds\r\n      - \"{$s}Level{$colon} {$p}%level%{$sep}/{$p}%max_level%\"\r\n      - \"{$s}Cost{$colon} {$p}%cost%\"\r\n    posx: 4\r\n    posy: 4\r\n  regeneration-boost:\r\n    name: \"&dRegeneration Boost\"\r\n    material: GOLDEN_APPLE\r\n    lore:\r\n      - \"{$s}Each upgrade increases your\"\r\n      - \"health regeneration by &e1% {$s}in your land.\"\r\n      - \"This upgrade doesn't do any regeneration by\"\r\n      - \"itself. It only boosts your natural\"\r\n      - \"health regeneration.\"\r\n      - \"\"\r\n      - <<: *pwrup-conds\r\n      - \"{$s}Level{$colon} {$p}%level%{$sep}/{$p}%max_level%\"\r\n      - \"{$s}Cost{$colon} {$p}%cost%\"\r\n    posx: 6\r\n    posy: 4\r\n  ranks:\r\n    name: \"&5Ranks & Permissions\"\r\n    material: BOOKSHELF\r\n    lore:\r\n      - \"{$s}Modify ranks and permissions for\"\r\n      - \"your kingdom.\"\r\n    posx: 6\r\n    posy: 5\r\n  champion-upgrades:\r\n    name: \"{$p}Champion Upgrades\"\r\n    material: ZOMBIE_HEAD\r\n    lore:\r\n      - \"{$s}Upgrade your champion for stronger\"\r\n      - \"defense against invaders.\"\r\n    posx: 5\r\n    posy: 5\r\n  mailbox:\r\n    name: \"{$p}Mailbox\"\r\n    material: PLAYER_HEAD\r\n    # https://minecraft-heads.com/custom-heads/decoration/18054-mailbox-green\r\n    skull: \"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTVmYmJjNjI1ZmE0ZWI2NDk2YmU4ZGJiZjBhYTJiMjhmMTAyOTdjZmZiY2Y1ZTBhYWY2Y2IxMWU4ZjI2MTZlZCJ9fX0=\"\r\n    lore: |\r\n      {$sep}Send & recieve mails from\r\n      other kingdoms.\r\n      {$p}Total mails{$colon} {$s}%kingdoms_mails_total%\r\n    posx: 5\r\n    posy: 4\r\n\r\n  red-glass:\r\n    name: \"\"\r\n    material: RED_STAINED_GLASS_PANE\r\n    slots: [ 1, 4, 7, 9, 10, 16, 17, 36, 37, 43, 44, 46, 49, 52 ]\r\n  black-glass:\r\n    name: \"\"\r\n    material: BLACK_STAINED_GLASS_PANE\r\n    slots: [ 0, 2, 3, 5, 6, 8, 18, 26, 27, 35, 45, 47, 48, 50, 51, 53 ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "settings"
+      ],
+      "source": "\r\n    name: \"{$sep}Settings\"\r\n    material: NETHER_STAR\r\n    lore: |\r\n      {$s}Change your kingdom settings.\r\n    posx: 5\r\n    posy: 2\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "settings",
+        "name"
+      ],
+      "source": "\"{$sep}Settings\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "settings",
+        "material"
+      ],
+      "source": "NETHER_STAR",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "settings",
+        "lore"
+      ],
+      "source": "|\r\n      {$s}Change your kingdom settings.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "settings",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "settings",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "members"
+      ],
+      "source": "\r\n    name: \"{$p}Members\"\r\n    material: PLAYER_HEAD\r\n    skull: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzRiODlhZDA2ZDMxOGYwYWUxZWVhZjY2MGZlYTc4YzM0ZWI1NWQwNWYwMWUxY2Y5OTlmMzMxZmIzMmQzODk0MiJ9fX0='\r\n    lore: |\r\n      {$s}Manage your kingdom members.\r\n      {$s}Promote or demote them.\r\n    posx: 5\r\n    posy: 3\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "members",
+        "name"
+      ],
+      "source": "\"{$p}Members\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "members",
+        "material"
+      ],
+      "source": "PLAYER_HEAD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "members",
+        "skull"
+      ],
+      "source": "'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzRiODlhZDA2ZDMxOGYwYWUxZWVhZjY2MGZlYTc4YzM0ZWI1NWQwNWYwMWUxY2Y5OTlmMzMxZmIzMmQzODk0MiJ9fX0='",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "members",
+        "lore"
+      ],
+      "source": "|\r\n      {$s}Manage your kingdom members.\r\n      {$s}Promote or demote them.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "members",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "members",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "masswar"
+      ],
+      "source": "\r\n    running:\r\n      condition: kingdoms_masswar_is_running\r\n      name: \"&4Masswar\"\r\n      material: CLOCK\r\n      lore: |\r\n        {$s}During MassWar, invasions are free.\r\n        Masswar is currently {$p}running.\r\n\r\n        {$p}Mass War ends in{$colon} {$s}%time@kingdoms_masswar_time%\r\n    else:\r\n      name: \"&4Masswar\"\r\n      material: RED_WOOL\r\n      lore: |\r\n        {$s}During MassWar, invasions are free.\r\n        Masswar is currently &cnot running.\r\n\r\n        {$p}Next Mass War in{$colon} {$s}%time@kingdoms_masswar_time%\r\n    posx: 6\r\n    posy: 3\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "masswar",
+        "running"
+      ],
+      "source": "\r\n      condition: kingdoms_masswar_is_running\r\n      name: \"&4Masswar\"\r\n      material: CLOCK\r\n      lore: |\r\n        {$s}During MassWar, invasions are free.\r\n        Masswar is currently {$p}running.\r\n\r\n        {$p}Mass War ends in{$colon} {$s}%time@kingdoms_masswar_time%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "masswar",
+        "running",
+        "condition"
+      ],
+      "source": "kingdoms_masswar_is_running",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "masswar",
+        "running",
+        "name"
+      ],
+      "source": "\"&4Masswar\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "masswar",
+        "running",
+        "material"
+      ],
+      "source": "CLOCK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "masswar",
+        "running",
+        "lore"
+      ],
+      "source": "|\r\n        {$s}During MassWar, invasions are free.\r\n        Masswar is currently {$p}running.\r\n\r\n        {$p}Mass War ends in{$colon} {$s}%time@kingdoms_masswar_time%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "masswar",
+        "else"
+      ],
+      "source": "\r\n      name: \"&4Masswar\"\r\n      material: RED_WOOL\r\n      lore: |\r\n        {$s}During MassWar, invasions are free.\r\n        Masswar is currently &cnot running.\r\n\r\n        {$p}Next Mass War in{$colon} {$s}%time@kingdoms_masswar_time%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "masswar",
+        "else",
+        "name"
+      ],
+      "source": "\"&4Masswar\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "masswar",
+        "else",
+        "material"
+      ],
+      "source": "RED_WOOL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "masswar",
+        "else",
+        "lore"
+      ],
+      "source": "|\r\n        {$s}During MassWar, invasions are free.\r\n        Masswar is currently &cnot running.\r\n\r\n        {$p}Next Mass War in{$colon} {$s}%time@kingdoms_masswar_time%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "masswar",
+        "posx"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "masswar",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "nexus-chest"
+      ],
+      "source": "\r\n    name: \"&eNexus Chest\"\r\n    material: CHEST\r\n    lore: |\r\n      {$s}Put items in your kingdoms chest\r\n      {$s}for everyone to use.\r\n    posx: 7\r\n    posy: 3\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "nexus-chest",
+        "name"
+      ],
+      "source": "\"&eNexus Chest\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "nexus-chest",
+        "material"
+      ],
+      "source": "CHEST",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "nexus-chest",
+        "lore"
+      ],
+      "source": "|\r\n      {$s}Put items in your kingdoms chest\r\n      {$s}for everyone to use.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "nexus-chest",
+        "posx"
+      ],
+      "source": "7",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "nexus-chest",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "turrets"
+      ],
+      "source": "\r\n    name: \"{$sp}Turrets\"\r\n    material: SPECTRAL_ARROW\r\n    lore: |\r\n      {$s}You can buy turrets with\r\n      resource points to place them\r\n      on your land. It protects against\r\n      mobs and invaders.\r\n      {? kingdoms_kingdom_is_pacifist ? \"{$note} {$desc}Your kingdom is a pacifist kingdom\r\n      {$desc}and turrets will only shoot mobs, not players.\"}\r\n    posx: 3\r\n    posy: 3\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "turrets",
+        "name"
+      ],
+      "source": "\"{$sp}Turrets\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "turrets",
+        "material"
+      ],
+      "source": "SPECTRAL_ARROW",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "turrets",
+        "lore"
+      ],
+      "source": "|\r\n      {$s}You can buy turrets with\r\n      resource points to place them\r\n      on your land. It protects against\r\n      mobs and invaders.\r\n      {? kingdoms_kingdom_is_pacifist ? \"{$note} {$desc}Your kingdom is a pacifist kingdom\r\n      {$desc}and turrets will only shoot mobs, not players.\"}\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "turrets",
+        "posx"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "turrets",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "structures"
+      ],
+      "source": "\r\n    name: \"&5Structures\"\r\n    material: REDSTONE_LAMP\r\n    lore: |\r\n      {$s}Structures can do different things.\r\n      You can only have one structure per land.\r\n      Note that the nexus is a structure itself.\r\n      You can buy structures with resource points.\r\n    posx: 4\r\n    posy: 3\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "structures",
+        "name"
+      ],
+      "source": "\"&5Structures\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "structures",
+        "material"
+      ],
+      "source": "REDSTONE_LAMP",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "structures",
+        "lore"
+      ],
+      "source": "|\r\n      {$s}Structures can do different things.\r\n      You can only have one structure per land.\r\n      Note that the nexus is a structure itself.\r\n      You can buy structures with resource points.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "structures",
+        "posx"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "structures",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "misc-upgrades"
+      ],
+      "source": "\r\n    name: \"&bMisc Upgrades\"\r\n    material: ENCHANTING_TABLE\r\n    lore: |\r\n      {$s}Extra miscellaneous upgrades\r\n      to improve your kingdom\r\n      in different aspects.\r\n    posx: 2\r\n    posy: 3\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "misc-upgrades",
+        "name"
+      ],
+      "source": "\"&bMisc Upgrades\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "misc-upgrades",
+        "material"
+      ],
+      "source": "ENCHANTING_TABLE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "misc-upgrades",
+        "lore"
+      ],
+      "source": "|\r\n      {$s}Extra miscellaneous upgrades\r\n      to improve your kingdom\r\n      in different aspects.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "misc-upgrades",
+        "posx"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "misc-upgrades",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "logs"
+      ],
+      "source": "\r\n    name: \"&aAudit Logs\"\r\n    material: KNOWLEDGE_BOOK\r\n    lore: |\r\n      {$s}View kingdom logs including\r\n      invasions, claims, unclaims,\r\n      and other member activities.\r\n\r\n      {$sep}Most of these logs stay for\r\n      30 days after they're created.\r\n      Some may stay for a shorter time\r\n      if they are less important.\r\n    posx: 8\r\n    posy: 3\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "logs",
+        "name"
+      ],
+      "source": "\"&aAudit Logs\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "logs",
+        "material"
+      ],
+      "source": "KNOWLEDGE_BOOK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "logs",
+        "lore"
+      ],
+      "source": "|\r\n      {$s}View kingdom logs including\r\n      invasions, claims, unclaims,\r\n      and other member activities.\r\n\r\n      {$sep}Most of these logs stay for\r\n      30 days after they're created.\r\n      Some may stay for a shorter time\r\n      if they are less important.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "logs",
+        "posx"
+      ],
+      "source": "8",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "logs",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "resource-points"
+      ],
+      "source": "\r\n    name: \"&eResource Points Converter\"\r\n    material: HAY_BLOCK\r\n    lore: |\r\n      {$s}Convert your items to\r\n      resource points.\r\n      Your kingdom has &e%fancy@kingdoms_resource_points% {$s}resource points.\r\n    posx: 4\r\n    posy: 5\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "resource-points",
+        "name"
+      ],
+      "source": "\"&eResource Points Converter\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "resource-points",
+        "material"
+      ],
+      "source": "HAY_BLOCK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "resource-points",
+        "lore"
+      ],
+      "source": "|\r\n      {$s}Convert your items to\r\n      resource points.\r\n      Your kingdom has &e%fancy@kingdoms_resource_points% {$s}resource points.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "resource-points",
+        "posx"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "resource-points",
+        "posy"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "damage-reduction"
+      ],
+      "source": "\r\n    name: \"&3Damage Reduction\"\r\n    material: DIAMOND_CHESTPLATE\r\n    flags: [ ALL ]\r\n\r\n    powerup-conds: &pwrup-conds\r\n      - '{? level >= 20 && kingdoms_kingdom_level < 2 ? \"{$kingdom-lvl-II}\"}'\r\n      - '{? level >= 30 && kingdoms_kingdom_level < 3 ? \"{$kingdom-lvl-III}\"}'\r\n      - '{? level >= 40 && kingdoms_kingdom_level < 4 ? \"{$kingdom-lvl-IV}\"}'\r\n      - '{? level >= 50 && kingdoms_kingdom_level < 5 ? \"{$kingdom-lvl-V}\"}'\r\n\r\n    lore:\r\n      - \"{$s}Each upgrade reduces damage\"\r\n      - \"taken by &e1% {$s}when you're in\"\r\n      - \"your own kingdom land.\"\r\n      - \"\"\r\n      - <<: *pwrup-conds\r\n      - \"{$s}Level{$colon} {$p}%level%{$sep}/{$p}%max_level%\"\r\n      - \"{$s}Cost{$colon} {$p}%cost%\"\r\n    posx: 7\r\n    posy: 4\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "damage-reduction",
+        "name"
+      ],
+      "source": "\"&3Damage Reduction\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "damage-reduction",
+        "material"
+      ],
+      "source": "DIAMOND_CHESTPLATE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "damage-reduction",
+        "flags"
+      ],
+      "source": "[ ALL ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "ALL"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "damage-reduction",
+        "powerup-conds"
+      ],
+      "source": "&pwrup-conds\r\n      - '{? level >= 20 && kingdoms_kingdom_level < 2 ? \"{$kingdom-lvl-II}\"}'\r\n      - '{? level >= 30 && kingdoms_kingdom_level < 3 ? \"{$kingdom-lvl-III}\"}'\r\n      - '{? level >= 40 && kingdoms_kingdom_level < 4 ? \"{$kingdom-lvl-IV}\"}'\r\n      - '{? level >= 50 && kingdoms_kingdom_level < 5 ? \"{$kingdom-lvl-V}\"}'\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "'{? level >= 20 && kingdoms_kingdom_level < 2 ? \"{$kingdom-lvl-II}\"}'",
+        "'{? level >= 30 && kingdoms_kingdom_level < 3 ? \"{$kingdom-lvl-III}\"}'",
+        "'{? level >= 40 && kingdoms_kingdom_level < 4 ? \"{$kingdom-lvl-IV}\"}'",
+        "'{? level >= 50 && kingdoms_kingdom_level < 5 ? \"{$kingdom-lvl-V}\"}'"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "damage-reduction",
+        "lore"
+      ],
+      "source": "\r\n      - \"{$s}Each upgrade reduces damage\"\r\n      - \"taken by &e1% {$s}when you're in\"\r\n      - \"your own kingdom land.\"\r\n      - \"\"\r\n      - <<: *pwrup-conds\r\n      - \"{$s}Level{$colon} {$p}%level%{$sep}/{$p}%max_level%\"\r\n      - \"{$s}Cost{$colon} {$p}%cost%\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$s}Each upgrade reduces damage\"",
+        "\"taken by &e1% {$s}when you're in\"",
+        "\"your own kingdom land.\"",
+        "\"\"",
+        "<<: *pwrup-conds",
+        "\"{$s}Level{$colon} {$p}%level%{$sep}/{$p}%max_level%\"",
+        "\"{$s}Cost{$colon} {$p}%cost%\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "damage-reduction",
+        "posx"
+      ],
+      "source": "7",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "damage-reduction",
+        "posy"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "damage-boost"
+      ],
+      "source": "\r\n    name: \"&3Damage Boost\"\r\n    material: DIAMOND_SWORD\r\n    flags: [ ALL ]\r\n    lore:\r\n      - \"{$s}Each upgrade increases your\"\r\n      - \"damage by &e1% {$s}when you're in\"\r\n      - \"your own kingdom land.\"\r\n      - \"\"\r\n      - <<: *pwrup-conds\r\n      - \"{$s}Level{$colon} {$p}%level%{$sep}/{$p}%max_level%\"\r\n      - \"{$s}Cost{$colon} {$p}%cost%\"\r\n    posx: 3\r\n    posy: 4\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "damage-boost",
+        "name"
+      ],
+      "source": "\"&3Damage Boost\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "damage-boost",
+        "material"
+      ],
+      "source": "DIAMOND_SWORD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "damage-boost",
+        "flags"
+      ],
+      "source": "[ ALL ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "ALL"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "damage-boost",
+        "lore"
+      ],
+      "source": "\r\n      - \"{$s}Each upgrade increases your\"\r\n      - \"damage by &e1% {$s}when you're in\"\r\n      - \"your own kingdom land.\"\r\n      - \"\"\r\n      - <<: *pwrup-conds\r\n      - \"{$s}Level{$colon} {$p}%level%{$sep}/{$p}%max_level%\"\r\n      - \"{$s}Cost{$colon} {$p}%cost%\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$s}Each upgrade increases your\"",
+        "\"damage by &e1% {$s}when you're in\"",
+        "\"your own kingdom land.\"",
+        "\"\"",
+        "<<: *pwrup-conds",
+        "\"{$s}Level{$colon} {$p}%level%{$sep}/{$p}%max_level%\"",
+        "\"{$s}Cost{$colon} {$p}%cost%\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "damage-boost",
+        "posx"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "damage-boost",
+        "posy"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "arrow-boost"
+      ],
+      "source": "\r\n    name: \"{$sep}Arrow Boost\"\r\n    material: BOW\r\n    lore:\r\n      - \"{$s}Each upgrade increases your bow\"\r\n      - \"damage by &e1% {$s}when you're in\"\r\n      - \"your own kingdom land.\"\r\n      - \"\"\r\n      - <<: *pwrup-conds\r\n      - \"{$s}Level{$colon} {$p}%level%{$sep}/{$p}%max_level%\"\r\n      - \"{$s}Cost{$colon} {$p}%cost%\"\r\n    posx: 4\r\n    posy: 4\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "arrow-boost",
+        "name"
+      ],
+      "source": "\"{$sep}Arrow Boost\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "arrow-boost",
+        "material"
+      ],
+      "source": "BOW",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "arrow-boost",
+        "lore"
+      ],
+      "source": "\r\n      - \"{$s}Each upgrade increases your bow\"\r\n      - \"damage by &e1% {$s}when you're in\"\r\n      - \"your own kingdom land.\"\r\n      - \"\"\r\n      - <<: *pwrup-conds\r\n      - \"{$s}Level{$colon} {$p}%level%{$sep}/{$p}%max_level%\"\r\n      - \"{$s}Cost{$colon} {$p}%cost%\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$s}Each upgrade increases your bow\"",
+        "\"damage by &e1% {$s}when you're in\"",
+        "\"your own kingdom land.\"",
+        "\"\"",
+        "<<: *pwrup-conds",
+        "\"{$s}Level{$colon} {$p}%level%{$sep}/{$p}%max_level%\"",
+        "\"{$s}Cost{$colon} {$p}%cost%\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "arrow-boost",
+        "posx"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "arrow-boost",
+        "posy"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "regeneration-boost"
+      ],
+      "source": "\r\n    name: \"&dRegeneration Boost\"\r\n    material: GOLDEN_APPLE\r\n    lore:\r\n      - \"{$s}Each upgrade increases your\"\r\n      - \"health regeneration by &e1% {$s}in your land.\"\r\n      - \"This upgrade doesn't do any regeneration by\"\r\n      - \"itself. It only boosts your natural\"\r\n      - \"health regeneration.\"\r\n      - \"\"\r\n      - <<: *pwrup-conds\r\n      - \"{$s}Level{$colon} {$p}%level%{$sep}/{$p}%max_level%\"\r\n      - \"{$s}Cost{$colon} {$p}%cost%\"\r\n    posx: 6\r\n    posy: 4\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "regeneration-boost",
+        "name"
+      ],
+      "source": "\"&dRegeneration Boost\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "regeneration-boost",
+        "material"
+      ],
+      "source": "GOLDEN_APPLE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "regeneration-boost",
+        "lore"
+      ],
+      "source": "\r\n      - \"{$s}Each upgrade increases your\"\r\n      - \"health regeneration by &e1% {$s}in your land.\"\r\n      - \"This upgrade doesn't do any regeneration by\"\r\n      - \"itself. It only boosts your natural\"\r\n      - \"health regeneration.\"\r\n      - \"\"\r\n      - <<: *pwrup-conds\r\n      - \"{$s}Level{$colon} {$p}%level%{$sep}/{$p}%max_level%\"\r\n      - \"{$s}Cost{$colon} {$p}%cost%\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$s}Each upgrade increases your\"",
+        "\"health regeneration by &e1% {$s}in your land.\"",
+        "\"This upgrade doesn't do any regeneration by\"",
+        "\"itself. It only boosts your natural\"",
+        "\"health regeneration.\"",
+        "\"\"",
+        "<<: *pwrup-conds",
+        "\"{$s}Level{$colon} {$p}%level%{$sep}/{$p}%max_level%\"",
+        "\"{$s}Cost{$colon} {$p}%cost%\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "regeneration-boost",
+        "posx"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "regeneration-boost",
+        "posy"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "ranks"
+      ],
+      "source": "\r\n    name: \"&5Ranks & Permissions\"\r\n    material: BOOKSHELF\r\n    lore:\r\n      - \"{$s}Modify ranks and permissions for\"\r\n      - \"your kingdom.\"\r\n    posx: 6\r\n    posy: 5\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "ranks",
+        "name"
+      ],
+      "source": "\"&5Ranks & Permissions\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "ranks",
+        "material"
+      ],
+      "source": "BOOKSHELF",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "ranks",
+        "lore"
+      ],
+      "source": "\r\n      - \"{$s}Modify ranks and permissions for\"\r\n      - \"your kingdom.\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$s}Modify ranks and permissions for\"",
+        "\"your kingdom.\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "ranks",
+        "posx"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "ranks",
+        "posy"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "champion-upgrades"
+      ],
+      "source": "\r\n    name: \"{$p}Champion Upgrades\"\r\n    material: ZOMBIE_HEAD\r\n    lore:\r\n      - \"{$s}Upgrade your champion for stronger\"\r\n      - \"defense against invaders.\"\r\n    posx: 5\r\n    posy: 5\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "champion-upgrades",
+        "name"
+      ],
+      "source": "\"{$p}Champion Upgrades\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "champion-upgrades",
+        "material"
+      ],
+      "source": "ZOMBIE_HEAD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "champion-upgrades",
+        "lore"
+      ],
+      "source": "\r\n      - \"{$s}Upgrade your champion for stronger\"\r\n      - \"defense against invaders.\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$s}Upgrade your champion for stronger\"",
+        "\"defense against invaders.\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "champion-upgrades",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "champion-upgrades",
+        "posy"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "mailbox"
+      ],
+      "source": "\r\n    name: \"{$p}Mailbox\"\r\n    material: PLAYER_HEAD\r\n    # https://minecraft-heads.com/custom-heads/decoration/18054-mailbox-green\r\n    skull: \"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTVmYmJjNjI1ZmE0ZWI2NDk2YmU4ZGJiZjBhYTJiMjhmMTAyOTdjZmZiY2Y1ZTBhYWY2Y2IxMWU4ZjI2MTZlZCJ9fX0=\"\r\n    lore: |\r\n      {$sep}Send & recieve mails from\r\n      other kingdoms.\r\n      {$p}Total mails{$colon} {$s}%kingdoms_mails_total%\r\n    posx: 5\r\n    posy: 4\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "mailbox",
+        "name"
+      ],
+      "source": "\"{$p}Mailbox\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "mailbox",
+        "material"
+      ],
+      "source": "PLAYER_HEAD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "mailbox",
+        "skull"
+      ],
+      "source": "\"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTVmYmJjNjI1ZmE0ZWI2NDk2YmU4ZGJiZjBhYTJiMjhmMTAyOTdjZmZiY2Y1ZTBhYWY2Y2IxMWU4ZjI2MTZlZCJ9fX0=\"",
+      "comments": [
+        "https://minecraft-heads.com/custom-heads/decoration/18054-mailbox-green"
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "mailbox",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}Send & recieve mails from\r\n      other kingdoms.\r\n      {$p}Total mails{$colon} {$s}%kingdoms_mails_total%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "mailbox",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "mailbox",
+        "posy"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "red-glass"
+      ],
+      "source": "\r\n    name: \"\"\r\n    material: RED_STAINED_GLASS_PANE\r\n    slots: [ 1, 4, 7, 9, 10, 16, 17, 36, 37, 43, 44, 46, 49, 52 ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "red-glass",
+        "name"
+      ],
+      "source": "\"\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "red-glass",
+        "material"
+      ],
+      "source": "RED_STAINED_GLASS_PANE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "red-glass",
+        "slots"
+      ],
+      "source": "[ 1, 4, 7, 9, 10, 16, 17, 36, 37, 43, 44, 46, 49, 52 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "1",
+        "4",
+        "7",
+        "9",
+        "10",
+        "16",
+        "17",
+        "36",
+        "37",
+        "43",
+        "44",
+        "46",
+        "49",
+        "52"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "black-glass"
+      ],
+      "source": "\r\n    name: \"\"\r\n    material: BLACK_STAINED_GLASS_PANE\r\n    slots: [ 0, 2, 3, 5, 6, 8, 18, 26, 27, 35, 45, 47, 48, 50, 51, 53 ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "black-glass",
+        "name"
+      ],
+      "source": "\"\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "black-glass",
+        "material"
+      ],
+      "source": "BLACK_STAINED_GLASS_PANE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "black-glass",
+        "slots"
+      ],
+      "source": "[ 0, 2, 3, 5, 6, 8, 18, 26, 27, 35, 45, 47, 48, 50, 51, 53 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "0",
+        "2",
+        "3",
+        "5",
+        "6",
+        "8",
+        "18",
+        "26",
+        "27",
+        "35",
+        "45",
+        "47",
+        "48",
+        "50",
+        "51",
+        "53"
+      ]
+    }
+  ]
+}

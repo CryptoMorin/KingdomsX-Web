@@ -11,7 +11,7 @@ import {
 beforeEach(resetDatabase);
 
 describe("Scheduled maintenance", () => {
-  it("runs bounded hourly cleanup and scans orphaned consumed proofs only daily", async () => {
+  it("cleans up a limited batch hourly and checks orphaned used verification records only daily", async () => {
     await seedSubmitter();
     const old = "2000-01-01T00:00:00.000Z";
     const verifiedWithinTtl = new Date(Date.now() - 47 * 60 * 60 * 1000).toISOString();

@@ -1,0 +1,390 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "guis/protection-signs/access-entry.yml",
+  "schemaId": "guis/schema",
+  "options": [
+    {
+      "path": [
+        "title"
+      ],
+      "source": "\"{$sep}-=[ &5Access Entry {$sep}]=-\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "rows"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sound"
+      ],
+      "source": "BLOCK_CHEST_OPEN",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options"
+      ],
+      "source": "\r\n  privilege:\r\n    name: \"{$p}Access Privilege{$colon} {$s}%access_entry_privilege_displayname%\"\r\n    material: CHEST\r\n    lore: |\r\n      {$desc}Change the access privilege\r\n      for the matched player based on\r\n      the player selector.\r\n    posx: 3\r\n    posy: 2\r\n  player-selector:\r\n    name: \"{$p}Player Selector\"\r\n    material: PLAYER_HEAD\r\n    lore: |\r\n      {$desc}Change who this rule applies to.\r\n\r\n      {$p}Left-click{$colon} {$desc}Change the current\r\n                    player selector settings.\r\n      {$p}Right-click{$colon} {$desc}Replace the current\r\n                    player selector.\r\n\r\n      %access_entry_player_selector%\r\n    posx: 7\r\n    posy: 2\r\n  back:\r\n    name: \"&4Back\"\r\n    material: BARRIER\r\n    posx: 5\r\n    posy: 2\r\n  decoration-lime:\r\n    name: ''\r\n    material: LIME_STAINED_GLASS_PANE\r\n    slots: [ 0, 4, 8, 18, 22, 26 ]\r\n  decoration-green:\r\n    name: ''\r\n    material: GREEN_STAINED_GLASS_PANE\r\n    slots: [ 1, 7, 9, 17, 19, 25 ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "privilege"
+      ],
+      "source": "\r\n    name: \"{$p}Access Privilege{$colon} {$s}%access_entry_privilege_displayname%\"\r\n    material: CHEST\r\n    lore: |\r\n      {$desc}Change the access privilege\r\n      for the matched player based on\r\n      the player selector.\r\n    posx: 3\r\n    posy: 2\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "privilege",
+        "name"
+      ],
+      "source": "\"{$p}Access Privilege{$colon} {$s}%access_entry_privilege_displayname%\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "privilege",
+        "material"
+      ],
+      "source": "CHEST",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "privilege",
+        "lore"
+      ],
+      "source": "|\r\n      {$desc}Change the access privilege\r\n      for the matched player based on\r\n      the player selector.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "privilege",
+        "posx"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "privilege",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "player-selector"
+      ],
+      "source": "\r\n    name: \"{$p}Player Selector\"\r\n    material: PLAYER_HEAD\r\n    lore: |\r\n      {$desc}Change who this rule applies to.\r\n\r\n      {$p}Left-click{$colon} {$desc}Change the current\r\n                    player selector settings.\r\n      {$p}Right-click{$colon} {$desc}Replace the current\r\n                    player selector.\r\n\r\n      %access_entry_player_selector%\r\n    posx: 7\r\n    posy: 2\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "player-selector",
+        "name"
+      ],
+      "source": "\"{$p}Player Selector\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "player-selector",
+        "material"
+      ],
+      "source": "PLAYER_HEAD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "player-selector",
+        "lore"
+      ],
+      "source": "|\r\n      {$desc}Change who this rule applies to.\r\n\r\n      {$p}Left-click{$colon} {$desc}Change the current\r\n                    player selector settings.\r\n      {$p}Right-click{$colon} {$desc}Replace the current\r\n                    player selector.\r\n\r\n      %access_entry_player_selector%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "player-selector",
+        "posx"
+      ],
+      "source": "7",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "player-selector",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back"
+      ],
+      "source": "\r\n    name: \"&4Back\"\r\n    material: BARRIER\r\n    posx: 5\r\n    posy: 2\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "name"
+      ],
+      "source": "\"&4Back\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "material"
+      ],
+      "source": "BARRIER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "decoration-lime"
+      ],
+      "source": "\r\n    name: ''\r\n    material: LIME_STAINED_GLASS_PANE\r\n    slots: [ 0, 4, 8, 18, 22, 26 ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "decoration-lime",
+        "name"
+      ],
+      "source": "''",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "decoration-lime",
+        "material"
+      ],
+      "source": "LIME_STAINED_GLASS_PANE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "decoration-lime",
+        "slots"
+      ],
+      "source": "[ 0, 4, 8, 18, 22, 26 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "0",
+        "4",
+        "8",
+        "18",
+        "22",
+        "26"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "decoration-green"
+      ],
+      "source": "\r\n    name: ''\r\n    material: GREEN_STAINED_GLASS_PANE\r\n    slots: [ 1, 7, 9, 17, 19, 25 ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "decoration-green",
+        "name"
+      ],
+      "source": "''",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "decoration-green",
+        "material"
+      ],
+      "source": "GREEN_STAINED_GLASS_PANE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "decoration-green",
+        "slots"
+      ],
+      "source": "[ 1, 7, 9, 17, 19, 25 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "1",
+        "7",
+        "9",
+        "17",
+        "19",
+        "25"
+      ]
+    }
+  ]
+}

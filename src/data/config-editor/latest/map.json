@@ -1,0 +1,152 @@
+{
+  "formatVersion": 2,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "id": "map",
+  "resourceName": "map.yml",
+  "schema": {
+    "kind": "object",
+    "fields": [
+      {
+        "key": "height",
+        "type": {
+          "kind": "integer"
+        }
+      },
+      {
+        "key": "width",
+        "type": {
+          "kind": "integer"
+        }
+      },
+      {
+        "key": "limit",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "height",
+              "type": {
+                "kind": "integer"
+              }
+            },
+            {
+              "key": "width",
+              "type": {
+                "kind": "integer"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "kingdom-member-only",
+        "type": {
+          "kind": "boolean"
+        }
+      },
+      {
+        "key": "header",
+        "type": {
+          "kind": "string",
+          "typeName": "str"
+        }
+      },
+      {
+        "key": "footer",
+        "type": {
+          "kind": "string",
+          "typeName": "str"
+        }
+      },
+      {
+        "key": "begin",
+        "type": {
+          "kind": "string",
+          "typeName": "str"
+        }
+      },
+      {
+        "key": "distance",
+        "type": {
+          "kind": "string",
+          "typeName": "str"
+        }
+      },
+      {
+        "key": "compass",
+        "type": {
+          "kind": "string",
+          "typeName": "str"
+        }
+      },
+      {
+        "key": "cardinal-directions",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "NORTH",
+              "type": {
+                "kind": "string",
+                "typeName": "str"
+              }
+            },
+            {
+              "key": "SOUTH",
+              "type": {
+                "kind": "string",
+                "typeName": "str"
+              }
+            },
+            {
+              "key": "WEST",
+              "type": {
+                "kind": "string",
+                "typeName": "str"
+              }
+            },
+            {
+              "key": "EAST",
+              "type": {
+                "kind": "string",
+                "typeName": "str"
+              }
+            },
+            {
+              "key": "NORTH_EAST",
+              "type": {
+                "kind": "string",
+                "typeName": "str"
+              }
+            },
+            {
+              "key": "NORTH_WEST",
+              "type": {
+                "kind": "string",
+                "typeName": "str"
+              }
+            },
+            {
+              "key": "SOUTH_EAST",
+              "type": {
+                "kind": "string",
+                "typeName": "str"
+              }
+            },
+            {
+              "key": "SOUTH_WEST",
+              "type": {
+                "kind": "string",
+                "typeName": "str"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

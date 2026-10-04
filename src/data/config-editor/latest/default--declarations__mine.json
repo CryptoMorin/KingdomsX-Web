@@ -1,0 +1,279 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "declarations/mine.yml",
+  "schemaId": "Turrets/turret",
+  "options": [
+    {
+      "path": [
+        "(import)"
+      ],
+      "source": "\r\n  building:\r\n    parameters:\r\n      <type>: turrets\r\n      <name>: <name>\r\n      <extra-holograms>: [ ]\r\n      <block-1>:\r\n        material: <material>\r\n      <block-2>:\r\n        material: <material>\r\n      <block-3>:\r\n        material: <material>\r\n\r\n### Shared mine settings (chemical and explosive) ###\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "building"
+      ],
+      "source": "\r\n    parameters:\r\n      <type>: turrets\r\n      <name>: <name>\r\n      <extra-holograms>: [ ]\r\n      <block-1>:\r\n        material: <material>\r\n      <block-2>:\r\n        material: <material>\r\n      <block-3>:\r\n        material: <material>\r\n\r\n### Shared mine settings (chemical and explosive) ###\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "building",
+        "parameters"
+      ],
+      "source": "\r\n      <type>: turrets\r\n      <name>: <name>\r\n      <extra-holograms>: [ ]\r\n      <block-1>:\r\n        material: <material>\r\n      <block-2>:\r\n        material: <material>\r\n      <block-3>:\r\n        material: <material>\r\n\r\n### Shared mine settings (chemical and explosive) ###\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "building",
+        "parameters",
+        "<type>"
+      ],
+      "source": "turrets",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "building",
+        "parameters",
+        "<name>"
+      ],
+      "source": "<name>",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "building",
+        "parameters",
+        "<extra-holograms>"
+      ],
+      "source": "[ ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": []
+    },
+    {
+      "path": [
+        "(import)",
+        "building",
+        "parameters",
+        "<block-1>"
+      ],
+      "source": "\r\n        material: <material>\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "building",
+        "parameters",
+        "<block-1>",
+        "material"
+      ],
+      "source": "<material>",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "building",
+        "parameters",
+        "<block-2>"
+      ],
+      "source": "\r\n        material: <material>\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "building",
+        "parameters",
+        "<block-2>",
+        "material"
+      ],
+      "source": "<material>",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "building",
+        "parameters",
+        "<block-3>"
+      ],
+      "source": "\r\n        material: <material>\r\n\r\n### Shared mine settings (chemical and explosive) ###\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "building",
+        "parameters",
+        "<block-3>",
+        "material"
+      ],
+      "source": "<material>",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(module)"
+      ],
+      "source": "\r\n  description: 'Base settings for turrets.'\r\n  parameters:\r\n    <name>: str\r\n    <build-duration-factor>: str\r\n    <durability-factor>: int\r\n    <material>: str\r\n\r\n# Hide the hologram from kingdoms without \"SHOW_HOLOGRAMS\" relationship attribute.\r\n",
+      "comments": [
+        "Shared mine settings (chemical and explosive) ###"
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(module)",
+        "description"
+      ],
+      "source": "'Base settings for turrets.'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(module)",
+        "parameters"
+      ],
+      "source": "\r\n    <name>: str\r\n    <build-duration-factor>: str\r\n    <durability-factor>: int\r\n    <material>: str\r\n\r\n# Hide the hologram from kingdoms without \"SHOW_HOLOGRAMS\" relationship attribute.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(module)",
+        "parameters",
+        "<name>"
+      ],
+      "source": "str",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(module)",
+        "parameters",
+        "<build-duration-factor>"
+      ],
+      "source": "str",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(module)",
+        "parameters",
+        "<durability-factor>"
+      ],
+      "source": "int",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(module)",
+        "parameters",
+        "<material>"
+      ],
+      "source": "str",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "hide-holograms"
+      ],
+      "source": "true",
+      "comments": [
+        "Hide the hologram from kingdoms without \"SHOW_HOLOGRAMS\" relationship attribute."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

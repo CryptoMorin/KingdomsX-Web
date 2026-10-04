@@ -1,0 +1,902 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "guis/structures/regulator/attribute-editor.yml",
+  "schemaId": "guis/schema",
+  "options": [
+    {
+      "path": [
+        "title"
+      ],
+      "source": "\"&eAttribute Editor\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "type"
+      ],
+      "source": "HOPPER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sound"
+      ],
+      "source": "BLOCK_ANVIL_USE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options"
+      ],
+      "source": "\r\n  all:\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}All{$colon} {$p}Enabled\"\r\n      lore:\r\n        - '{$sep}All the attributes.'\r\n      material: BOOK\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n    else:\r\n      name: \"{$p}All{$colon} &cDisabled\"\r\n      material: BOOK\r\n    slot: 0\r\n  build:\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}Build{$colon} {$p}Enabled\"\r\n      material: DIAMOND_PICKAXE\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n    else:\r\n      name: \"{$p}Build{$colon} &cDisabled\"\r\n      material: DIAMOND_PICKAXE\r\n    slot: 1\r\n  fly:\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}Fly{$colon} {$p}Enabled\"\r\n      material: ELYTRA\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n    else:\r\n      name: \"{$p}Fly{$colon} &cDisabled\"\r\n      material: ELYTRA\r\n    slot: 2\r\n  turret-ceasefire:\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}Turret Ceasefire{$colon} {$p}Enabled\"\r\n      material: SPECTRAL_ARROW\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n    else:\r\n      name: \"{$p}Turret Ceasefire{$colon} &cDisabled\"\r\n      material: SPECTRAL_ARROW\r\n    slot: 3\r\n  manage-turrets:\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}Manage Turrets{$colon} {$p}Enabled\"\r\n      material: ARROW\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n    else:\r\n      name: \"{$p}Manage Turrets{$colon} &cDisabled\"\r\n      material: ARROW\r\n    slot: 4",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "all"
+      ],
+      "source": "\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}All{$colon} {$p}Enabled\"\r\n      lore:\r\n        - '{$sep}All the attributes.'\r\n      material: BOOK\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n    else:\r\n      name: \"{$p}All{$colon} &cDisabled\"\r\n      material: BOOK\r\n    slot: 0\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "all",
+        "enabled"
+      ],
+      "source": "\r\n      condition: enabled\r\n      name: \"{$p}All{$colon} {$p}Enabled\"\r\n      lore:\r\n        - '{$sep}All the attributes.'\r\n      material: BOOK\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "all",
+        "enabled",
+        "condition"
+      ],
+      "source": "enabled",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "all",
+        "enabled",
+        "name"
+      ],
+      "source": "\"{$p}All{$colon} {$p}Enabled\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "all",
+        "enabled",
+        "lore"
+      ],
+      "source": "\r\n        - '{$sep}All the attributes.'\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "'{$sep}All the attributes.'"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "all",
+        "enabled",
+        "material"
+      ],
+      "source": "BOOK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "all",
+        "enabled",
+        "flags"
+      ],
+      "source": "[ HIDE_ENCHANTS ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "HIDE_ENCHANTS"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "all",
+        "enabled",
+        "enchants"
+      ],
+      "source": "\r\n        DURABILITY: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "all",
+        "enabled",
+        "enchants",
+        "DURABILITY"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "all",
+        "else"
+      ],
+      "source": "\r\n      name: \"{$p}All{$colon} &cDisabled\"\r\n      material: BOOK\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "all",
+        "else",
+        "name"
+      ],
+      "source": "\"{$p}All{$colon} &cDisabled\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "all",
+        "else",
+        "material"
+      ],
+      "source": "BOOK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "all",
+        "slot"
+      ],
+      "source": "0",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "build"
+      ],
+      "source": "\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}Build{$colon} {$p}Enabled\"\r\n      material: DIAMOND_PICKAXE\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n    else:\r\n      name: \"{$p}Build{$colon} &cDisabled\"\r\n      material: DIAMOND_PICKAXE\r\n    slot: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "build",
+        "enabled"
+      ],
+      "source": "\r\n      condition: enabled\r\n      name: \"{$p}Build{$colon} {$p}Enabled\"\r\n      material: DIAMOND_PICKAXE\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "build",
+        "enabled",
+        "condition"
+      ],
+      "source": "enabled",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "build",
+        "enabled",
+        "name"
+      ],
+      "source": "\"{$p}Build{$colon} {$p}Enabled\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "build",
+        "enabled",
+        "material"
+      ],
+      "source": "DIAMOND_PICKAXE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "build",
+        "enabled",
+        "flags"
+      ],
+      "source": "[ HIDE_ENCHANTS ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "HIDE_ENCHANTS"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "build",
+        "enabled",
+        "enchants"
+      ],
+      "source": "\r\n        DURABILITY: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "build",
+        "enabled",
+        "enchants",
+        "DURABILITY"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "build",
+        "else"
+      ],
+      "source": "\r\n      name: \"{$p}Build{$colon} &cDisabled\"\r\n      material: DIAMOND_PICKAXE\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "build",
+        "else",
+        "name"
+      ],
+      "source": "\"{$p}Build{$colon} &cDisabled\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "build",
+        "else",
+        "material"
+      ],
+      "source": "DIAMOND_PICKAXE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "build",
+        "slot"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "fly"
+      ],
+      "source": "\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}Fly{$colon} {$p}Enabled\"\r\n      material: ELYTRA\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n    else:\r\n      name: \"{$p}Fly{$colon} &cDisabled\"\r\n      material: ELYTRA\r\n    slot: 2\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "fly",
+        "enabled"
+      ],
+      "source": "\r\n      condition: enabled\r\n      name: \"{$p}Fly{$colon} {$p}Enabled\"\r\n      material: ELYTRA\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "fly",
+        "enabled",
+        "condition"
+      ],
+      "source": "enabled",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "fly",
+        "enabled",
+        "name"
+      ],
+      "source": "\"{$p}Fly{$colon} {$p}Enabled\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "fly",
+        "enabled",
+        "material"
+      ],
+      "source": "ELYTRA",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "fly",
+        "enabled",
+        "flags"
+      ],
+      "source": "[ HIDE_ENCHANTS ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "HIDE_ENCHANTS"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "fly",
+        "enabled",
+        "enchants"
+      ],
+      "source": "\r\n        DURABILITY: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "fly",
+        "enabled",
+        "enchants",
+        "DURABILITY"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "fly",
+        "else"
+      ],
+      "source": "\r\n      name: \"{$p}Fly{$colon} &cDisabled\"\r\n      material: ELYTRA\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "fly",
+        "else",
+        "name"
+      ],
+      "source": "\"{$p}Fly{$colon} &cDisabled\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "fly",
+        "else",
+        "material"
+      ],
+      "source": "ELYTRA",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "fly",
+        "slot"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "turret-ceasefire"
+      ],
+      "source": "\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}Turret Ceasefire{$colon} {$p}Enabled\"\r\n      material: SPECTRAL_ARROW\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n    else:\r\n      name: \"{$p}Turret Ceasefire{$colon} &cDisabled\"\r\n      material: SPECTRAL_ARROW\r\n    slot: 3\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "turret-ceasefire",
+        "enabled"
+      ],
+      "source": "\r\n      condition: enabled\r\n      name: \"{$p}Turret Ceasefire{$colon} {$p}Enabled\"\r\n      material: SPECTRAL_ARROW\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "turret-ceasefire",
+        "enabled",
+        "condition"
+      ],
+      "source": "enabled",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "turret-ceasefire",
+        "enabled",
+        "name"
+      ],
+      "source": "\"{$p}Turret Ceasefire{$colon} {$p}Enabled\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "turret-ceasefire",
+        "enabled",
+        "material"
+      ],
+      "source": "SPECTRAL_ARROW",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "turret-ceasefire",
+        "enabled",
+        "flags"
+      ],
+      "source": "[ HIDE_ENCHANTS ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "HIDE_ENCHANTS"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "turret-ceasefire",
+        "enabled",
+        "enchants"
+      ],
+      "source": "\r\n        DURABILITY: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "turret-ceasefire",
+        "enabled",
+        "enchants",
+        "DURABILITY"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "turret-ceasefire",
+        "else"
+      ],
+      "source": "\r\n      name: \"{$p}Turret Ceasefire{$colon} &cDisabled\"\r\n      material: SPECTRAL_ARROW\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "turret-ceasefire",
+        "else",
+        "name"
+      ],
+      "source": "\"{$p}Turret Ceasefire{$colon} &cDisabled\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "turret-ceasefire",
+        "else",
+        "material"
+      ],
+      "source": "SPECTRAL_ARROW",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "turret-ceasefire",
+        "slot"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "manage-turrets"
+      ],
+      "source": "\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}Manage Turrets{$colon} {$p}Enabled\"\r\n      material: ARROW\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n    else:\r\n      name: \"{$p}Manage Turrets{$colon} &cDisabled\"\r\n      material: ARROW\r\n    slot: 4",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "manage-turrets",
+        "enabled"
+      ],
+      "source": "\r\n      condition: enabled\r\n      name: \"{$p}Manage Turrets{$colon} {$p}Enabled\"\r\n      material: ARROW\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "manage-turrets",
+        "enabled",
+        "condition"
+      ],
+      "source": "enabled",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "manage-turrets",
+        "enabled",
+        "name"
+      ],
+      "source": "\"{$p}Manage Turrets{$colon} {$p}Enabled\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "manage-turrets",
+        "enabled",
+        "material"
+      ],
+      "source": "ARROW",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "manage-turrets",
+        "enabled",
+        "flags"
+      ],
+      "source": "[ HIDE_ENCHANTS ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "HIDE_ENCHANTS"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "manage-turrets",
+        "enabled",
+        "enchants"
+      ],
+      "source": "\r\n        DURABILITY: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "manage-turrets",
+        "enabled",
+        "enchants",
+        "DURABILITY"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "manage-turrets",
+        "else"
+      ],
+      "source": "\r\n      name: \"{$p}Manage Turrets{$colon} &cDisabled\"\r\n      material: ARROW\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "manage-turrets",
+        "else",
+        "name"
+      ],
+      "source": "\"{$p}Manage Turrets{$colon} &cDisabled\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "manage-turrets",
+        "else",
+        "material"
+      ],
+      "source": "ARROW",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "manage-turrets",
+        "slot"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

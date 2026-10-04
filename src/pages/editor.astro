@@ -1,0 +1,828 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import SectionOrnament from "../components/SectionOrnament.astro";
+import { SITE } from "../config";
+import logo from "../assets/images/logo.webp";
+import editorFontLicenseUrl from "../assets/fonts/minecraft-ui/OFL.txt?url";
+import rendererLicenseUrl from "../assets/vendor/block-model-renderer/LICENSE.txt?url&no-inline";
+import remoteSessionBootstrapUrl from "../assets/scripts/config-editor/remote-session-bootstrap.js?url&no-inline";
+import { REMOTE_EDITOR_SESSION_STORAGE_KEY } from "../assets/scripts/config-editor/remote-editor-link.js";
+import "../assets/styles/config-editor.css";
+
+const canonicalUrl = SITE.editor || (SITE.url ? `${SITE.url}/editor` : "/editor");
+const homeUrl = SITE.url ? `${SITE.url}/` : "/";
+const pageDescription = "Easily change your KingdomsX settings without editing YAML by hand.";
+const allowManualWorkspaces = import.meta.env.DEV || process.env.EDITOR_MANUAL_WORKSPACES === "true";
+---
+<BaseLayout
+  title="Config Editor | KingdomsX"
+  description={pageDescription}
+  canonicalUrl={canonicalUrl}
+  robots="noindex, nofollow"
+  preloadHeroImage={false}
+  includeStructuredData={false}
+  includeSiteScript={false}
+  includeEditorFont={true}
+  editorFontLicenseUrl={editorFontLicenseUrl}
+  publicAssetsSameOrigin={true}
+>
+  <Fragment slot="head">
+    <link rel="license" href={rendererLicenseUrl} type="text/plain" title="Block Model Renderer" />
+    <meta name="kingdomsx-editor-session-storage-key" content={REMOTE_EDITOR_SESSION_STORAGE_KEY} />
+    <script is:inline src={remoteSessionBootstrapUrl}></script>
+  </Fragment>
+
+  {allowManualWorkspaces && <input class="visually-hidden" type="file" accept=".zip,.yml,.yaml,application/zip,text/yaml,application/yaml" multiple data-file-input />}
+  <input class="visually-hidden" type="file" accept=".schematic,.schem,application/octet-stream" data-schematic-file-input />
+
+  <div class="editor-session-loading page position-relative min-vh-100 d-grid place-items-center px-3 py-5" data-editor-session-loading hidden>
+    <div class="editor-save-progress surface-panel rounded-3 p-4 p-md-5 text-center" role="status" aria-live="polite" aria-labelledby="editor-session-loading-title">
+      <span class="editor-save-spinner d-inline-grid mb-3" aria-hidden="true"><i class="fa-solid fa-circle-notch fa-spin"></i></span>
+      <span class="editor-eyebrow d-block">Secure editor session</span>
+      <h1 class="h4 mb-2 mt-1" id="editor-session-loading-title">Opening server configs…</h1>
+      <p class="mb-0">Downloading and decrypting your KingdomsX configuration files.</p>
+    </div>
+  </div>
+
+  <div class="page position-relative min-vh-100 d-flex flex-column" data-editor-empty>
+    <Header homeUrl={homeUrl} />
+    <main class="flex-grow-1">
+      <section class="editor-empty servers servers-page position-relative" aria-labelledby="editor-title">
+        <div class="container position-relative z-1">
+          <div class="servers-page-head text-center mx-auto">
+            <h1 class="section-title mb-0" id="editor-title">KingdomsX Config Editor</h1>
+            <SectionOrnament />
+            <p class="section-kicker mx-auto">{pageDescription}</p>
+          </div>
+
+          <div class={allowManualWorkspaces ? "editor-empty-panels has-manual-workspaces d-grid gap-3" : "editor-empty-panels d-grid gap-3"}>
+            <div class="editor-empty-session surface-panel surface-lift rounded-3 p-4 p-md-5 text-center mx-auto d-flex flex-column align-items-center justify-content-center w-100 min-w-0">
+              <span class="editor-empty-file-icon d-inline-grid" aria-hidden="true">
+                <i class="fa-solid fa-terminal"></i>
+              </span>
+              <h2 class="mt-3 mb-2">Start from your Minecraft server</h2>
+              <p class="editor-empty-lead mx-auto mb-0">Run the editor admin command in-game. The plugin will give you a private link that opens your server's config files here.</p>
+
+              <div class="editor-session-actions d-flex flex-column flex-sm-row align-items-stretch justify-content-center gap-2 gap-sm-3 w-100 mt-4">
+                <button class="btn btn-site copy-action editor-session-command d-inline-flex align-items-center justify-content-center gap-2 fw-bold mb-0 position-relative overflow-hidden w-auto" type="button" data-copy-command="/k admin editor" data-copy-success-label="Copied command!" aria-label="Copy in-game command /k admin editor">
+                  <code class="cmd position-relative z-1 text-nowrap">/k admin editor</code>
+                  <i class="copy-action-icon fa-regular fa-copy flex-shrink-0 position-relative z-1" aria-hidden="true"></i>
+                  <span class="visually-hidden" data-copy-status aria-live="polite"></span>
+                </button>
+                <button class="btn btn-site editor-session-demo d-inline-flex align-items-center justify-content-center gap-2 fw-bold w-auto" type="button" data-example>
+                  <i class="fa-solid fa-flask" aria-hidden="true"></i>
+                  Try the demo
+                </button>
+              </div>
+            </div>
+
+            {allowManualWorkspaces && (
+              <aside class="editor-empty-drop-zone surface-panel surface-lift rounded-3 p-4 p-md-5 text-center mx-auto d-flex flex-column align-items-center justify-content-center w-100 min-w-0" data-drop-zone aria-labelledby="editor-local-testing-title">
+                <span class="editor-empty-file-icon d-inline-grid" aria-hidden="true">
+                  <i class="fa-solid fa-file-circle-plus fa-2xs"></i>
+                </span>
+                <span class="editor-eyebrow">Local editing</span>
+                <h2 class="mt-2 mb-2" id="editor-local-testing-title">Open files locally</h2>
+                <p class="editor-empty-lead mx-auto mb-0">Upload a ZIP containing Kingdoms configs or one or more YAML files to exercise the editor without a plugin session.</p>
+                <button class="btn btn-site btn-site-primary d-inline-flex align-items-center justify-content-center gap-2 fw-bold mt-4" type="button" data-open-file>
+                  <i class="fa-solid fa-folder-open" aria-hidden="true"></i>
+                  Open configs or ZIP
+                </button>
+                <!--<small class="d-block mx-auto mt-3 text-secondary-emphasis">Local test files stay in browser memory and are never uploaded or persisted.</small>-->
+              </aside>
+            )}
+          </div>
+
+          <small class="editor-data-safety d-block w-100 mx-auto mt-3 px-2 text-center text-secondary-emphasis">Your config files stay private and secure. They're encrypted before leaving your server and are only accessible through your unique private link, which works for one hour. <strong>Only share your private link with people you trust, as anyone with the link can edit your KingdomsX config files.</strong> After the time has passed, the editor session is automagically destroyed.</small>
+        </div>
+      </section>
+    </main>
+    <Footer />
+  </div>
+
+  <main class="config-editor page min-vh-100 d-flex flex-column overflow-hidden" data-editor-shell hidden>
+    <header class="site-header editor-header position-relative flex-shrink-0 user-select-none">
+      <nav class="navbar py-1 py-sm-2" aria-label="Config editor navigation">
+        <div class="editor-header-layout container-fluid">
+          <a class="navbar-brand brand d-inline-flex align-items-center gap-3 mb-0 fw-bold" href={canonicalUrl} aria-label="KingdomsX Config Editor home">
+            <img class="object-fit-contain" src={logo.src} width="40" height="40" alt="" draggable="false" />
+            <span class="editor-brand-copy d-flex flex-column justify-content-center">
+              <span class="fw-bold">KingdomsX</span>
+              <span class="editor-brand-context">Config Editor</span>
+            </span>
+          </a>
+
+          <div class="d-flex align-items-center ms-0 ms-lg-3" data-editor-header-controls>
+            <div class="d-flex align-items-center justify-content-between gap-3" data-editor-controls>
+              <div class="editor-segmented-switch editor-mode-switch position-relative" data-editor-mode-switch data-editor-mode-current="visual" data-loaded-action role="group" aria-label="Editor mode" hidden>
+                <span class="editor-segmented-switch-thumb position-absolute" aria-hidden="true"></span>
+                <button class="editor-segmented-switch-button editor-mode-switch-button is-active position-relative d-inline-flex align-items-center justify-content-center gap-2" type="button" data-editor-mode="visual" aria-pressed="true" aria-label="Visual">
+                  <i class="fa-solid fa-sliders" aria-hidden="true"></i>
+                  <span>Visual</span>
+                </button>
+                <button class="editor-segmented-switch-button editor-mode-switch-button position-relative d-inline-flex align-items-center justify-content-center gap-2" type="button" data-editor-mode="source" aria-pressed="false" aria-label="Code">
+                  <i class="fa-solid fa-code" aria-hidden="true"></i>
+                  <span>Code</span>
+                </button>
+              </div>
+
+              <button class="editor-header-action-button editor-header-icon-button btn btn-site-secondary btn-site-sm d-inline-flex align-items-center justify-content-center gap-2 ms-auto" type="button" aria-label="Editor settings" aria-haspopup="dialog" data-open-editor-settings data-loaded-action hidden>
+                <i class="fa-solid fa-gear" aria-hidden="true"></i>
+                <span class="d-none d-xl-inline">Settings</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="editor-header-navigation-actions d-flex align-items-center gap-2 ms-0 ms-lg-3" data-editor-header-navigation hidden>
+            <span class="editor-control-hint small text-nowrap d-lg-none" data-editor-session-time hidden></span>
+            <button
+              class="navbar-toggler d-inline-grid"
+              type="button"
+              aria-controls="editor-navigation"
+              aria-expanded="true"
+              title="Hide editor navigation"
+              data-toggle-editor-navigation
+              data-loaded-action
+              hidden
+            >
+              <span class="navbar-toggler-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Toggle editor navigation</span>
+            </button>
+          </div>
+
+          <div class="editor-header-actions ms-auto d-flex align-items-center justify-content-end gap-2 gap-lg-3" data-loaded-action hidden>
+            <span class="editor-change-status d-none d-lg-inline" data-change-status>No changes yet</span>
+            <span class="editor-control-hint text-nowrap d-none d-lg-inline" data-editor-session-time hidden></span>
+            <button class="editor-header-action-button btn btn-site-secondary btn-site-sm d-inline-flex align-items-center justify-content-center gap-2" type="button" data-preview-yaml aria-label="Review changes">
+              <i class="fa-regular fa-file-code"></i>
+              <span>Review<span class="d-none d-sm-inline"> changes</span></span>
+            </button>
+            <div class="dropdown flex-shrink-0" data-editor-save-actions>
+              <button class="editor-header-action-button btn btn-site btn-site-primary btn-site-sm d-inline-flex align-items-center justify-content-center gap-2 fw-bold w-auto flex-shrink-0 text-nowrap" type="button" data-save-workspace data-editor-primary-action aria-label="Download file">
+                <i class="fa-solid fa-download" aria-hidden="true"></i>
+                <span data-download-label>Download file</span>
+              </button>
+              <button class="editor-header-action-button btn btn-site btn-site-primary btn-site-sm dropdown-toggle dropdown-toggle-split d-inline-flex align-items-center justify-content-center w-auto flex-shrink-0" type="button" data-editor-save-menu-toggle data-bs-toggle="dropdown" aria-label="Backup options" aria-expanded="false" hidden></button>
+              <div class="dropdown-menu dropdown-menu-end editor-more-actions-menu">
+                <button class="dropdown-item editor-more-actions-item d-grid w-100 border-0 text-start" type="button" data-download-recovery>
+                  <span class="editor-more-actions-icon d-grid" aria-hidden="true"><i class="fa-solid fa-download"></i></span>
+                  <span class="editor-more-actions-copy d-grid">
+                    <span class="editor-more-actions-title fw-bold">Download unsaved work</span>
+                    <span class="editor-control-hint">Downloads a backup without saving to the server.</span>
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <section class="editor-workspace d-grid flex-grow-1 min-h-0" data-editor-workspace hidden>
+      <div class="editor-navigation" id="editor-navigation" aria-labelledby="editor-navigation-title" data-editor-navigation>
+        <div class="navigation-drawer-header editor-navigation-header align-items-center justify-content-between gap-3">
+          <h2 class="navigation-drawer-title offcanvas-title brand d-inline-flex align-items-center gap-3 mb-0 fw-bold" id="editor-navigation-title">
+            <img class="object-fit-contain" src={logo.src} width="40" height="40" alt="" draggable="false" />
+            <span class="editor-brand-copy d-flex flex-column justify-content-center">
+              <span class="fw-bold">KingdomsX</span>
+              <span class="editor-brand-context">Config Editor</span>
+            </span>
+          </h2>
+          <button class="navigation-close btn-close d-grid" type="button" aria-label="Close editor navigation" data-close-editor-navigation></button>
+        </div>
+
+        <div class="editor-navigation-tabs editor-segmented-switch position-relative mx-3 mt-3" role="tablist" aria-label="Editor navigation" data-editor-navigation-tabs data-editor-navigation-panel="sections" hidden>
+          <span class="editor-segmented-switch-thumb position-absolute" aria-hidden="true"></span>
+          <button
+            class="editor-navigation-tab editor-segmented-switch-button position-relative d-inline-flex align-items-center justify-content-center gap-2"
+            id="editor-navigation-files-tab"
+            type="button"
+            role="tab"
+            aria-controls="editor-files-sidebar"
+            aria-selected="false"
+            tabindex="-1"
+            data-editor-navigation-tab="files"
+          >
+            <i class="fa-regular fa-folder-open" aria-hidden="true"></i>
+            Files
+          </button>
+          <button
+            class="editor-navigation-tab editor-segmented-switch-button is-active position-relative d-inline-flex align-items-center justify-content-center gap-2"
+            id="editor-navigation-sections-tab"
+            type="button"
+            role="tab"
+            aria-controls="editor-sections-sidebar"
+            aria-selected="true"
+            data-editor-navigation-tab="sections"
+          >
+            <i class="fa-solid fa-list" aria-hidden="true"></i>
+            Sections
+          </button>
+        </div>
+
+        <div class="editor-navigation-body">
+          <aside class="editor-files-rail d-flex flex-column min-w-0 min-h-0 p-3" id="editor-files-sidebar" data-workspace-files-panel hidden>
+            <div class="editor-file-card surface-panel rounded-3 p-3 mb-3 flex-shrink-0">
+              <div class="d-flex align-items-start gap-3">
+                <span class="editor-file-card-icon place-items-center d-grid flex-shrink-0"><i class="fa-solid fa-file-zipper"></i></span>
+                <div class="min-w-0 flex-grow-1">
+                  <strong class="editor-item-title d-block text-truncate fw-semibold" data-workspace-name>configs.zip</strong>
+                  <span class="editor-file-card-meta d-block mt-1" data-workspace-meta></span>
+                </div>
+                {allowManualWorkspaces && <button class="editor-icon-button editor-interactive-surface d-inline-grid flex-shrink-0" type="button" title="Open another ZIP or files" aria-label="Open another ZIP or files" data-open-file><i class="fa-solid fa-arrow-right-arrow-left"></i></button>}
+              </div>
+            </div>
+            <div class="editor-eyebrow d-flex align-items-center justify-content-between gap-2 px-1 mb-2">
+              <span>Files</span>
+              <span class="editor-file-browser-count" data-workspace-files-count></span>
+            </div>
+            <label class="editor-file-search d-flex align-items-center gap-2 mb-2 rounded-3">
+              <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+              <span class="visually-hidden">Search config files</span>
+              <input class="editor-compact-search w-100 min-w-0 p-0 border-0 bg-transparent" type="search" autocomplete="off" placeholder="Find a file" data-workspace-file-search />
+            </label>
+            <nav class="editor-file-list flex-grow-1 min-h-0 overflow-auto" data-workspace-files aria-label="Config files"></nav>
+          </aside>
+          <div
+            class="editor-sidebar-resizer position-relative d-none d-lg-block"
+            role="separator"
+            tabindex="0"
+            aria-label="Resize files sidebar"
+            aria-controls="editor-files-sidebar"
+            aria-orientation="vertical"
+            data-sidebar-resizer="files"
+            hidden
+          ></div>
+
+          <aside class="editor-sidebar d-flex flex-column min-w-0 min-h-0 p-3" id="editor-sections-sidebar" data-editor-sidebar>
+            <div class="editor-file-card surface-panel rounded-3 p-3 flex-shrink-0">
+              <div class="d-flex align-items-start gap-3">
+                <span class="editor-file-card-icon place-items-center d-grid flex-shrink-0"><i class="fa-regular fa-file-code"></i></span>
+                <div class="min-w-0 flex-grow-1">
+                  <strong class="editor-item-title d-block text-truncate fw-semibold" data-current-file>config.yml</strong>
+                  <span class="editor-file-card-meta d-block mt-1" data-current-file-meta></span>
+                </div>
+                {allowManualWorkspaces && <button class="editor-icon-button editor-interactive-surface d-inline-grid flex-shrink-0" type="button" title="Open another file" aria-label="Open another file" data-open-file data-change-file-single hidden><i class="fa-solid fa-arrow-right-arrow-left"></i></button>}
+              </div>
+            </div>
+
+            <section class="editor-sections-panel min-w-0 min-h-0 flex-grow-1 d-flex flex-column overflow-hidden mt-0 mt-sm-3">
+              <div class="editor-eyebrow px-1 mb-2" data-sections-heading>Sections</div>
+              <nav class="editor-sections d-grid gap-1 min-w-0 min-h-0" data-editor-sections aria-label="Config sections"></nav>
+            </section>
+          </aside>
+          <div
+            class="editor-sidebar-resizer position-relative d-none d-lg-block"
+            role="separator"
+            tabindex="0"
+            aria-label="Resize sections sidebar"
+            aria-controls="editor-sections-sidebar"
+            aria-orientation="vertical"
+            data-sidebar-resizer="sections"
+          ></div>
+        </div>
+        <footer class="site-modal-footer mt-auto flex-shrink-0" data-editor-sidebar-controls hidden></footer>
+      </div>
+
+      <button class="editor-navigation-backdrop rounded-0" type="button" aria-label="Close editor navigation" data-editor-navigation-backdrop hidden></button>
+
+      <section class="editor-main d-flex flex-column min-w-0 min-h-0 overflow-auto" data-editor-scroll data-editor-file-content>
+        <div class="editor-visual-workspace" data-visual-workspace>
+          <div data-editor-warnings hidden></div>
+          <div class="editor-tools px-3 px-xl-4 py-1 py-md-2 d-grid gap-2 align-items-center flex-shrink-0" data-editor-tools>
+            <div class="editor-search d-flex align-items-center gap-2 mb-0 rounded-3" role="search">
+              <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+              <label class="visually-hidden" for="editor-setting-search">Search this file</label>
+              <span class="editor-search-field position-relative flex-grow-1 min-w-0 overflow-hidden">
+                <input class="w-100 min-w-0 p-0 border-0 bg-transparent" id="editor-setting-search" type="search" autocomplete="off" placeholder="Search settings, descriptions, or paths" data-setting-search />
+                <span class="editor-search-hint position-absolute top-0 end-0 bottom-0 start-0 d-flex d-sm-none align-items-center overflow-hidden pe-none" aria-hidden="true"><span class="d-block text-nowrap">Search settings, descriptions, or paths</span></span>
+              </span>
+              <button class="editor-search-clear place-items-center d-grid flex-shrink-0 p-0 border-0 bg-transparent" type="button" aria-label="Clear search" data-clear-search hidden><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="editor-view-actions editor-control-hint d-flex align-items-center justify-content-end gap-2">
+              <span class="d-none d-sm-inline" data-view-results>All settings</span>
+              <div class="editor-view-overflow editor-more-actions dropdown" data-view-overflow>
+                <button class="editor-icon-button editor-interactive-surface d-grid" type="button" title="More view actions" aria-label="More view actions" aria-expanded="false" data-bs-toggle="dropdown" data-bs-auto-close="true">
+                  <i class="fa-solid fa-ellipsis-vertical" aria-hidden="true"></i>
+                </button>
+                <div class="dropdown-menu dropdown-menu-end editor-more-actions-menu">
+                  <div class="editor-more-actions-label px-2 pt-1 pb-1 fw-bold text-uppercase">Filters</div>
+                  <button class="dropdown-item editor-more-actions-item d-grid w-100 border-0 text-start" type="button" aria-pressed="false" data-view-mode="common">
+                    <span class="editor-more-actions-icon d-inline-grid flex-shrink-0"><i class="fa-solid fa-star" aria-hidden="true"></i></span>
+                    <span class="editor-more-actions-copy d-grid min-w-0"><span class="editor-more-actions-title fw-semibold">Common settings</span><span class="editor-more-actions-help">Show the settings edited most often.</span></span>
+                  </button>
+                  <button class="dropdown-item editor-more-actions-item d-grid w-100 border-0 text-start" type="button" aria-pressed="false" data-view-mode="changed">
+                    <span class="editor-more-actions-icon d-inline-grid flex-shrink-0"><i class="fa-solid fa-pen" aria-hidden="true"></i></span>
+                    <span class="editor-more-actions-copy d-grid min-w-0"><span class="editor-more-actions-title fw-semibold">Changed settings</span><span class="editor-more-actions-help">Show values that differ from their defaults.</span></span>
+                  </button>
+                  <button class="dropdown-item editor-more-actions-item d-grid w-100 border-0 text-start" type="button" aria-pressed="false" data-view-mode="advanced">
+                    <span class="editor-more-actions-icon d-inline-grid flex-shrink-0"><i class="fa-solid fa-gears" aria-hidden="true"></i></span>
+                    <span class="editor-more-actions-copy d-grid min-w-0"><span class="editor-more-actions-title fw-semibold">Advanced settings</span><span class="editor-more-actions-help">Show advanced and less common settings.</span></span>
+                  </button>
+                  <button class="dropdown-item editor-more-actions-item d-grid w-100 border-0 text-start" type="button" aria-pressed="true" data-view-mode="all">
+                    <span class="editor-more-actions-icon d-inline-grid flex-shrink-0"><i class="fa-solid fa-list" aria-hidden="true"></i></span>
+                    <span class="editor-more-actions-copy d-grid min-w-0"><span class="editor-more-actions-title fw-semibold">All settings</span><span class="editor-more-actions-help">Show every setting in this file.</span></span>
+                  </button>
+                  <div class="editor-more-actions-divider" role="separator"></div>
+                  <div class="editor-more-actions-label px-2 pt-1 pb-1 fw-bold text-uppercase">Group display</div>
+                  <button class="dropdown-item editor-more-actions-item d-grid w-100 border-0 text-start" type="button" data-collapse-groups>
+                    <span class="editor-more-actions-icon d-inline-grid flex-shrink-0"><i class="fa-solid fa-angles-up" aria-hidden="true"></i></span>
+                    <span class="editor-more-actions-copy d-grid min-w-0"><span class="editor-more-actions-title fw-semibold">Collapse all groups</span><span class="editor-more-actions-help">Reduce the visible section to its headings.</span></span>
+                  </button>
+                  <button class="dropdown-item editor-more-actions-item d-grid w-100 border-0 text-start" type="button" data-expand-groups>
+                    <span class="editor-more-actions-icon d-inline-grid flex-shrink-0"><i class="fa-solid fa-angles-down" aria-hidden="true"></i></span>
+                    <span class="editor-more-actions-copy d-grid min-w-0"><span class="editor-more-actions-title fw-semibold">Expand all groups</span><span class="editor-more-actions-help">Reveal every group in the visible section.</span></span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="editor-mobile-group-sticky" data-editor-mobile-group-sticky aria-hidden="true" inert>
+            <div class="editor-mobile-group-sticky-header editor-sticky-group-header d-flex align-items-center gap-2 px-3">
+              <details class="editor-mobile-group-details min-w-0 flex-grow-1" data-editor-mobile-group-details>
+                <summary class="editor-mobile-group-summary d-flex align-items-center gap-2 min-w-0">
+                  <span class="editor-mobile-group-copy d-grid min-w-0 flex-grow-1">
+                    <span class="editor-mobile-group-context d-block text-truncate" data-editor-mobile-group-context></span>
+                    <span class="d-flex align-items-center gap-2 min-w-0">
+                      <strong class="editor-group-title editor-item-title d-block overflow-hidden text-nowrap text-truncate" data-editor-mobile-group-title></strong>
+                      <code class="editor-group-key d-block text-truncate" data-editor-mobile-group-key></code>
+                    </span>
+                  </span>
+                  <i class="editor-mobile-group-chevron fa-solid fa-chevron-down flex-shrink-0" aria-hidden="true"></i>
+                </summary>
+                <div class="editor-mobile-group-ancestors surface-panel rounded-3 p-1" data-editor-mobile-group-ancestors></div>
+              </details>
+              <button class="editor-group-pin editor-icon-button editor-interactive-surface d-grid flex-shrink-0" type="button" tabindex="-1" data-editor-mobile-group-pin>
+                <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="flex-shrink-0">
+            <section class="editor-gui-preview editor-preview-surface surface-panel rounded-3 mx-3 mx-lg-auto my-3 my-lg-4 p-3 p-lg-4" id="editor-gui-inventory-preview" data-gui-preview hidden>
+              <div class="d-flex flex-column flex-lg-row align-items-lg-start justify-content-between gap-3">
+                <div>
+                  <span class="editor-eyebrow">Inventory preview</span>
+                  <p class="editor-gui-preview-help editor-preview-copy mb-0 mt-1" data-gui-preview-help>Select a slot to configure its button. Drag a button with one fixed position to an empty slot.</p>
+                </div>
+                <div class="d-flex flex-column align-items-lg-end gap-2">
+                  <div class="d-flex align-items-center justify-content-end gap-2">
+                    <div class="editor-gui-preview-meta editor-preview-copy d-flex flex-wrap justify-content-lg-end gap-2" data-gui-preview-meta></div>
+                    <button class="editor-icon-button editor-interactive-surface editor-gui-preview-close d-inline-grid" type="button" title="Close expanded inventory preview" aria-label="Close expanded inventory preview" data-close-gui-preview>
+                      <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+                    </button>
+                  </div>
+                  <div class="editor-outpost-pages d-flex flex-wrap justify-content-lg-end gap-2" data-outpost-page-actions hidden>
+                    <button class="btn btn-sm btn-site-secondary d-inline-flex align-items-center gap-2" type="button" data-add-outpost-page>
+                      <i class="fa-solid fa-plus" aria-hidden="true"></i>
+                      Add page
+                    </button>
+                    <button class="btn btn-sm btn-site-danger d-inline-flex align-items-center gap-2" type="button" data-delete-outpost-page>
+                      <i class="fa-solid fa-trash" aria-hidden="true"></i>
+                      Delete this page
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="editor-gui-preview-notice editor-preview-copy editor-preview-notice mt-3" data-gui-preview-notice hidden></div>
+              <div class="editor-gui-preview-workspace mt-3" data-gui-preview-workspace>
+                <div class="editor-inventory mx-auto" data-gui-preview-grid></div>
+                <aside class="editor-gui-slot-pane surface-panel rounded-3 p-3" tabindex="-1" aria-live="polite" data-gui-slot-pane hidden></aside>
+              </div>
+              <div class="editor-gui-preview-unplaced editor-compact-actions mt-3" data-gui-preview-unplaced hidden>
+                <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-2">
+                  <span class="editor-subfield-label fw-bold">Other and unplaced buttons</span>
+                  <div class="d-flex flex-column flex-sm-row align-items-sm-center gap-2">
+                    <input class="form-control editor-input editor-gui-preview-search" type="search" autocomplete="off" placeholder="Filter buttons" aria-label="Filter other and unplaced buttons" data-gui-preview-unplaced-search />
+                    <button
+                      class="btn btn-sm btn-site-secondary editor-chip-button d-inline-flex align-items-center justify-content-center gap-2 flex-shrink-0"
+                      type="button"
+                      aria-controls="editor-gui-unplaced-buttons"
+                      aria-expanded="true"
+                      data-gui-preview-unplaced-toggle
+                    >
+                      <i class="fa-solid fa-chevron-up" aria-hidden="true" data-gui-preview-unplaced-toggle-icon></i>
+                      <span data-gui-preview-unplaced-toggle-label>Collapse</span>
+                    </button>
+                  </div>
+                </div>
+                <div class="editor-gui-preview-unplaced-list d-grid gap-2 mt-2" id="editor-gui-unplaced-buttons" data-gui-preview-unplaced-list></div>
+              </div>
+              <div class="editor-gui-conditions mt-3" data-gui-preview-states hidden>
+                <div class="d-flex align-items-center justify-content-between gap-3">
+                  <span class="editor-subfield-label fw-bold">Conditional appearances</span>
+                  <button
+                    class="btn btn-sm btn-site-secondary editor-chip-button d-inline-flex align-items-center gap-2"
+                    type="button"
+                    aria-controls="editor-gui-conditional-appearances"
+                    aria-expanded="true"
+                    data-gui-preview-states-toggle
+                  >
+                    <i class="fa-solid fa-chevron-up" aria-hidden="true" data-gui-preview-states-toggle-icon></i>
+                    <span data-gui-preview-states-toggle-label>Collapse all</span>
+                  </button>
+                </div>
+                <div class="d-grid gap-2 mt-2" id="editor-gui-conditional-appearances" data-gui-preview-states-list></div>
+              </div>
+            </section>
+
+            <section class="editor-schematic-preview editor-preview-surface surface-panel rounded-3 mx-3 mx-lg-auto my-3 my-lg-4 p-3 p-lg-4" data-schematic-preview hidden>
+              <div class="d-flex flex-column flex-lg-row align-items-lg-start justify-content-between gap-3">
+                <div>
+                  <div class="d-flex flex-wrap align-items-center gap-2">
+                    <span class="editor-eyebrow">Building preview</span>
+                    <span class="editor-pill fw-bold text-nowrap d-inline-flex align-items-center" data-schematic-preview-addon>EngineHub addon</span>
+                  </div>
+                  <div class="d-flex flex-wrap align-items-center gap-2 mt-1">
+                    <h2 class="editor-schematic-preview-title mb-0" data-schematic-preview-title>Schematic</h2>
+                    <span class="editor-pill fw-bold text-nowrap editor-schematic-preview-source d-inline-flex align-items-center" data-schematic-preview-source>Default design</span>
+                  </div>
+                  <p class="editor-schematic-preview-help editor-preview-copy mb-0 mt-1" data-schematic-preview-help>Loading the Minecraft model…</p>
+                </div>
+                <div class="d-flex flex-column align-items-lg-end gap-2">
+                  <div class="editor-schematic-preview-meta editor-preview-copy d-flex flex-wrap justify-content-lg-end gap-2" data-schematic-preview-meta></div>
+                  <div class="d-flex flex-wrap justify-content-lg-end gap-2" role="group" aria-label="Building level" data-schematic-preview-levels></div>
+                  <div class="d-flex flex-wrap justify-content-lg-end gap-2">
+                    <button class="btn btn-sm btn-site-secondary d-inline-flex align-items-center gap-2" type="button" title="Add a numbered schematic that starts at another building level" data-add-schematic hidden>
+                      <i class="fa-solid fa-plus" aria-hidden="true"></i>
+                      Add level schematic
+                    </button>
+                    <button class="btn btn-sm btn-site-secondary d-inline-flex align-items-center gap-2" type="button" title="Choose a .schematic or .schem file for this archive path" data-replace-schematic hidden>
+                      <i class="fa-solid fa-arrow-right-arrow-left" aria-hidden="true"></i>
+                      Replace schematic
+                    </button>
+                    <button class="btn btn-sm btn-site-danger d-inline-flex align-items-center gap-2" type="button" title="Remove this numbered schematic from the edited ZIP" data-remove-schematic hidden>
+                      <i class="fa-regular fa-trash-can" aria-hidden="true"></i>
+                      Remove schematic
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="editor-schematic-preview-notice editor-preview-copy editor-preview-notice mt-3" data-schematic-preview-notice hidden></div>
+              <div class="editor-schematic-preview-viewport d-grid w-100 overflow-hidden rounded-3 mt-3" data-schematic-preview-viewport>
+                <canvas class="editor-schematic-preview-canvas editor-drag-surface d-block w-100 h-100" aria-label="Interactive 3D Minecraft schematic preview" data-schematic-preview-canvas></canvas>
+                <p class="editor-schematic-preview-status editor-preview-copy mb-0 px-4 text-center" role="status" data-schematic-preview-status>Loading schematic…</p>
+              </div>
+            </section>
+
+            <div data-editor-section-content>
+              <header class="editor-section-header px-3 px-xl-4 py-2">
+                <div class="d-flex align-items-center gap-2 gap-lg-3 min-w-0">
+                  <div class="min-w-0 flex-grow-1">
+                    <div class="editor-section-header-title d-flex align-items-center gap-2 min-w-0">
+                      <h1 class="mb-0 text-truncate" data-current-section>General</h1>
+                      <code class="editor-section-key flex-shrink-0" data-section-key hidden></code>
+                    </div>
+                    <p class="mb-0 mt-1" data-section-summary></p>
+                  </div>
+                  <div class="d-flex align-items-center gap-2 flex-shrink-0 ms-auto" data-section-actions></div>
+                </div>
+                <p class="editor-section-description mb-0 mt-2" data-section-description hidden></p>
+              </header>
+              <div class="editor-form d-grid gap-3 gap-xl-4 mx-auto p-3 p-xl-4" data-editor-form></div>
+              <p class="editor-form-empty text-center p-5" data-form-empty hidden>No editable settings were found in this section.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="editor-gui-preview-backdrop" data-gui-preview-backdrop hidden></div>
+        <section class="h-100 min-h-0" data-source-workspace hidden>
+          <form class="editor-source-workspace-form h-100 d-grid min-h-0" data-source-form>
+            <header class="editor-source-workspace-header d-flex flex-column flex-lg-row align-items-lg-center justify-content-between gap-3 px-3 px-lg-4 py-3">
+              <div class="min-w-0">
+                <span class="editor-eyebrow">Code editor</span>
+                <h1 class="mb-0 mt-1 text-truncate">Edit <span data-source-file></span></h1>
+              </div>
+            </header>
+            <div class="editor-source-workspace-body min-h-0 d-grid px-3 px-lg-4 pb-3">
+              <div class="editor-source-code h-100 min-h-0 overflow-hidden" data-source-editor></div>
+              <div class="editor-review-warnings rounded-3 p-3 mt-3" data-source-warnings hidden>
+                <strong><i class="fa-solid fa-triangle-exclamation me-2"></i>Check this source</strong>
+                <ul class="mb-0 ps-3" data-source-warning-list></ul>
+              </div>
+            </div>
+            <footer class="editor-source-workspace-footer d-flex flex-wrap align-items-center justify-content-end gap-2 px-3 px-lg-4 py-3">
+              <span class="editor-control-hint me-auto" data-source-status>No code changes.</span>
+              <div class="d-inline-flex gap-1" role="group" aria-label="Code history">
+                <button class="editor-icon-button editor-interactive-surface d-inline-grid" type="button" title="Undo code edit (Ctrl+Z)" aria-label="Undo code edit" data-source-undo><i class="fa-solid fa-rotate-left"></i></button>
+                <button class="editor-icon-button editor-interactive-surface d-inline-grid" type="button" title="Redo code edit (Ctrl+Y or Ctrl+Shift+Z)" aria-label="Redo code edit" data-source-redo><i class="fa-solid fa-rotate-right"></i></button>
+              </div>
+              <button class="btn btn-site btn-site-primary btn-site-sm fw-bold" type="submit"><i class="fa-solid fa-check me-2"></i>Apply YAML changes</button>
+            </footer>
+          </form>
+        </section>
+      </section>
+    </section>
+  </main>
+
+  <dialog class="editor-dialog editor-settings-dialog surface-panel site-modal-surface p-0" aria-labelledby="editor-settings-title" data-editor-settings-dialog>
+    <form data-editor-settings-form>
+      <div class="editor-dialog-header site-modal-header d-flex align-items-start justify-content-between gap-3">
+        <div>
+          <span class="editor-eyebrow">Editor settings</span>
+          <h2 class="mb-1 mt-1" id="editor-settings-title">Display and accessibility</h2>
+        </div>
+        <button class="editor-icon-button editor-interactive-surface site-modal-close d-inline-grid flex-shrink-0 ms-auto" type="button" data-close-editor-settings aria-label="Close editor settings"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <div class="editor-settings-body site-modal-body d-grid gap-4">
+        <fieldset class="editor-settings-group p-0 m-0 border-0">
+          <legend class="editor-settings-legend mb-3">Text input font</legend>
+          <div class="editor-settings-options d-grid gap-2">
+            <label class="editor-settings-option rounded-3 p-3 d-grid">
+              <input class="form-check-input" type="radio" name="editor-input-font" value="console" data-editor-settings-font />
+              <span class="editor-settings-option-copy">
+                <strong class="d-block">Console</strong>
+                <span class="editor-settings-font-sample editor-settings-font-sample--console d-block mt-2" aria-hidden="true">Welcome to KingdomsX</span>
+              </span>
+            </label>
+            <label class="editor-settings-option rounded-3 p-3 d-grid">
+              <input class="form-check-input" type="radio" name="editor-input-font" value="minecraft" data-editor-settings-font />
+              <span class="editor-settings-option-copy">
+                <strong class="d-block">Minecraft</strong>
+                <span class="editor-settings-font-sample editor-settings-font-sample--minecraft d-block mt-2" aria-hidden="true">Welcome to KingdomsX</span>
+              </span>
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset class="editor-settings-group p-0 m-0 border-0">
+          <legend class="editor-settings-legend mb-1">Editor text size</legend>
+          <p class="editor-dialog-hint mb-3">Make text throughout the editor easier to read.</p>
+          <div class="editor-settings-options editor-settings-options--compact d-grid gap-2">
+            <label class="editor-settings-option rounded-3 p-3 d-grid">
+              <input class="form-check-input" type="radio" name="editor-text-size" value="standard" data-editor-settings-text-size />
+              <span class="editor-settings-option-copy"><strong class="d-block">Standard</strong><span class="editor-control-hint">Keeps the current compact layout.</span></span>
+            </label>
+            <label class="editor-settings-option rounded-3 p-3 d-grid">
+              <input class="form-check-input" type="radio" name="editor-text-size" value="large" data-editor-settings-text-size />
+              <span class="editor-settings-option-copy"><strong class="d-block">Large</strong><span class="editor-control-hint">Makes editable text easier to read.</span></span>
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset class="editor-settings-group p-0 m-0 border-0">
+          <legend class="editor-settings-legend mb-1">Motion</legend>
+          <p class="editor-dialog-hint mb-3">Choose how transitions and scrolling behave.</p>
+          <label class="editor-settings-option rounded-3 p-3 d-grid">
+            <input class="form-check-input" type="checkbox" name="editor-reduce-motion" data-editor-settings-reduce-motion />
+            <span class="editor-settings-option-copy"><strong class="d-block">Reduce motion</strong><span class="editor-control-hint">Minimizes transitions and uses instant scrolling in the editor.</span></span>
+          </label>
+        </fieldset>
+      </div>
+
+      <div class="editor-dialog-footer site-modal-footer d-grid d-sm-flex flex-wrap justify-content-end gap-2">
+        <button class="editor-settings-reset btn btn-site-secondary btn-site-sm me-0 me-sm-auto" type="button" data-reset-editor-settings>Restore defaults</button>
+        <button class="btn btn-site-secondary btn-site-sm" type="button" data-close-editor-settings>Cancel</button>
+        <button class="editor-settings-save btn btn-site btn-site-primary btn-site-sm fw-bold" type="submit"><i class="fa-solid fa-check me-2" aria-hidden="true"></i>Save settings</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog class="editor-dialog editor-dialog--scrollable editor-preview-dialog surface-panel site-modal-surface p-0" aria-labelledby="editor-preview-title" data-preview-dialog>
+    <div class="editor-dialog-header site-modal-header d-flex align-items-start justify-content-between gap-3">
+      <div class="min-w-0">
+        <span class="editor-eyebrow" data-review-eyebrow>Review before download</span>
+        <h2 class="mb-0 mt-1 text-truncate" id="editor-preview-title" data-preview-name>config.yml</h2>
+      </div>
+      <button class="editor-icon-button editor-interactive-surface site-modal-close d-inline-grid flex-shrink-0 ms-auto" type="button" data-close-preview aria-label="Close YAML preview"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="editor-review site-modal-body overflow-auto">
+      <h3 class="mb-2">Changes</h3>
+      <p class="editor-review-empty mb-0" data-preview-changes-empty>No settings have been changed.</p>
+      <div class="d-grid gap-2" data-preview-changes></div>
+      <div class="editor-review-warnings rounded-3 p-3 mt-3" data-preview-warnings-panel hidden>
+        <strong><i class="fa-solid fa-triangle-exclamation me-2"></i><span data-review-warning-heading>Check before downloading</span></strong>
+        <ul class="mb-0 ps-3" data-preview-warnings></ul>
+      </div>
+      <details class="editor-review-source mt-4" data-preview-source-details>
+        <summary class="fw-bold">Inspect exact config source</summary>
+        <div class="form-floating editor-floating mt-3" data-preview-file-field hidden>
+          <select class="form-select editor-input" id="editor-preview-file" data-preview-file></select>
+          <label for="editor-preview-file">File</label>
+        </div>
+        <div class="editor-source-code editor-preview-code mt-2 overflow-hidden" data-preview-source-host></div>
+        <div class="d-flex justify-content-end mt-2">
+          <button class="btn btn-sm btn-site-secondary" type="button" data-open-source-editor>
+            <i class="fa-solid fa-code me-2"></i>Open Code
+          </button>
+        </div>
+      </details>
+    </div>
+    <div class="editor-dialog-footer site-modal-footer d-flex flex-wrap justify-content-end gap-2">
+      <button class="btn btn-site-secondary btn-site-sm me-auto" type="button" data-download-original><i class="fa-solid fa-box-archive me-2"></i><span data-original-download-label>Download original backup</span></button>
+      <button class="btn btn-site-secondary btn-site-sm" type="button" data-close-preview>Back to editor</button>
+      <button class="btn btn-site btn-site-primary btn-site-sm fw-bold" type="button" data-save-workspace><i class="fa-solid fa-download me-2"></i><span data-download-label>Download file</span></button>
+    </div>
+  </dialog>
+
+  <dialog class="editor-dialog editor-dialog--form surface-panel site-modal-surface p-0" aria-labelledby="editor-add-schematic-title" data-add-schematic-dialog>
+    <form data-add-schematic-form>
+      <div class="editor-dialog-header site-modal-header d-flex align-items-start justify-content-between gap-3">
+        <div>
+          <span class="editor-eyebrow">Building schematic</span>
+          <h2 class="mb-1 mt-1" id="editor-add-schematic-title">Add a level schematic</h2>
+          <p class="mb-0" data-add-schematic-description>The new schematic is used from its starting level until the next numbered schematic.</p>
+        </div>
+        <button class="editor-icon-button editor-interactive-surface site-modal-close d-inline-grid flex-shrink-0 ms-auto" type="button" data-close-add-schematic aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="site-modal-body">
+        <div class="form-floating editor-floating">
+          <input class="form-control editor-input" id="editor-schematic-level" type="number" min="1" step="1" inputmode="numeric" placeholder="Starting level" data-add-schematic-level required />
+          <label for="editor-schematic-level">Starting level</label>
+        </div>
+        <div class="mt-3">
+          <label class="editor-subfield-label d-block mb-2 fw-bold" for="editor-schematic-file">Schematic file</label>
+          <input class="form-control editor-input" id="editor-schematic-file" type="file" accept=".schematic,.schem,application/octet-stream" data-add-schematic-file required />
+        </div>
+        <p class="editor-dialog-hint mt-3 mb-0"><i class="fa-solid fa-circle-info me-2"></i><span data-add-schematic-hint></span></p>
+        <p class="editor-dialog-hint mt-2 mb-0">Archive path: <code data-add-schematic-path></code></p>
+      </div>
+      <div class="editor-dialog-footer site-modal-footer d-flex justify-content-end gap-2">
+        <button class="btn btn-site-secondary btn-site-sm" type="button" data-close-add-schematic>Cancel</button>
+        <button class="btn btn-site btn-site-primary btn-site-sm fw-bold" type="submit"><i class="fa-solid fa-plus me-2"></i>Add level schematic</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog class="editor-dialog editor-dialog--form editor-mapping-dialog surface-panel site-modal-surface p-0" aria-labelledby="editor-mapping-title" data-mapping-dialog>
+    <form data-mapping-form>
+      <div class="editor-dialog-header site-modal-header d-flex align-items-start justify-content-between gap-3">
+        <div>
+          <span class="editor-eyebrow" data-mapping-eyebrow>Custom entry</span>
+          <h2 class="mb-1 mt-1" id="editor-mapping-title" data-mapping-title>Add a custom item</h2>
+          <p class="mb-0" data-mapping-description><span data-mapping-description-copy>Create a named item inside </span><strong data-mapping-parent></strong>.</p>
+        </div>
+        <button class="editor-icon-button editor-interactive-surface site-modal-close d-inline-grid flex-shrink-0 ms-auto" type="button" data-close-mapping aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="site-modal-body">
+        <div class="form-floating editor-floating">
+          <input class="form-control editor-input" id="editor-mapping-key" type="text" autocomplete="off" placeholder="New entry" data-mapping-key required />
+          <label for="editor-mapping-key" data-mapping-key-label>Entry name</label>
+        </div>
+        <div class="form-floating editor-floating mt-3" data-mapping-template-field>
+          <select class="form-select editor-input" id="editor-mapping-template" data-mapping-template></select>
+          <label for="editor-mapping-template">Initial contents</label>
+        </div>
+        <div class="form-floating editor-floating mt-3" data-mapping-shape-field>
+          <select class="form-select editor-input" id="editor-mapping-shape" data-mapping-shape>
+            <option value="text">Text or custom value</option>
+            <option value="mapping">Nested section</option>
+            <option value="list">List</option>
+            <option value="boolean">On or off</option>
+            <option value="number">Number</option>
+          </select>
+          <label for="editor-mapping-shape">Value shape</label>
+        </div>
+        <p class="editor-dialog-hint mt-3 mb-0"><i class="fa-solid fa-circle-info me-2"></i><span data-mapping-hint></span></p>
+      </div>
+      <div class="editor-dialog-footer site-modal-footer d-flex justify-content-end gap-2">
+        <button class="btn btn-site-secondary btn-site-sm" type="button" data-close-mapping>Cancel</button>
+        <button class="btn btn-site btn-site-primary btn-site-sm fw-bold" type="submit" data-mapping-submit><i class="fa-solid fa-plus me-2"></i><span>Create item</span></button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog class="editor-dialog editor-dialog--form editor-anchor-dialog surface-panel site-modal-surface p-0" aria-labelledby="editor-anchor-title" data-anchor-dialog>
+    <form data-anchor-form>
+      <div class="editor-dialog-header site-modal-header d-flex align-items-start justify-content-between gap-3">
+        <div>
+          <span class="editor-eyebrow" data-anchor-eyebrow>Create shared value</span>
+          <h2 class="mb-1 mt-1" id="editor-anchor-title"><span data-anchor-heading-prefix>Share: </span><span data-anchor-target></span><span data-anchor-heading-suffix></span></h2>
+          <p class="mb-0" data-anchor-description>Name this value so other settings in this file can use it. Changing the shared value updates every linked setting.</p>
+        </div>
+        <button class="editor-icon-button editor-interactive-surface site-modal-close d-inline-grid flex-shrink-0 ms-auto" type="button" data-close-anchor aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="site-modal-body">
+        <div class="form-floating editor-floating">
+          <input class="form-control editor-input editor-input--code" id="editor-anchor-name" type="text" autocomplete="off" placeholder="Shared value name" pattern="[A-Za-z0-9_\-]+" data-anchor-name required />
+          <label for="editor-anchor-name" data-anchor-name-label>Shared value name</label>
+        </div>
+        <p class="editor-dialog-hint mt-2 mb-0"><i class="fa-solid fa-circle-info me-2"></i><span data-anchor-name-hint>Use letters, numbers, underscores, or hyphens. The name is available later in this file.</span></p>
+      </div>
+      <div class="editor-dialog-footer site-modal-footer d-flex justify-content-end gap-2">
+        <button class="btn btn-site-secondary btn-site-sm" type="button" data-close-anchor><span data-anchor-close-label>Cancel</span></button>
+        <button class="btn btn-site btn-site-primary btn-site-sm fw-bold" type="submit"><i class="fa-solid fa-link me-2"></i><span data-anchor-submit-label>Create shared value</span></button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog class="editor-dialog editor-dialog--form editor-use-saved-dialog surface-panel site-modal-surface p-0" aria-labelledby="editor-use-saved-title" data-use-saved-dialog>
+    <form data-use-saved-form>
+      <div class="editor-dialog-header site-modal-header d-flex align-items-start justify-content-between gap-3">
+        <div>
+          <span class="editor-eyebrow">Link to shared value</span>
+          <h2 class="mb-1 mt-1" id="editor-use-saved-title">Link <span data-use-saved-target></span></h2>
+          <p class="mb-0">Choose a shared value from earlier in this file. This setting will use that value until you unlink it.</p>
+        </div>
+        <button class="editor-icon-button editor-interactive-surface site-modal-close d-inline-grid flex-shrink-0 ms-auto" type="button" data-close-use-saved aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="site-modal-body">
+        <div class="form-floating editor-floating">
+          <select class="form-select editor-input editor-input--code" id="editor-use-saved-name" data-use-saved-name required></select>
+          <label for="editor-use-saved-name">Shared value</label>
+        </div>
+        <p class="editor-dialog-hint mt-3 mb-0"><i class="fa-solid fa-circle-info me-2"></i>Only compatible values defined earlier in the file are shown.</p>
+      </div>
+      <div class="editor-dialog-footer site-modal-footer d-flex justify-content-end gap-2">
+        <button class="btn btn-site-secondary btn-site-sm" type="button" data-close-use-saved>Cancel</button>
+        <button class="btn btn-site btn-site-primary btn-site-sm fw-bold" type="submit"><i class="fa-solid fa-link me-2"></i>Link setting</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog class="editor-dialog editor-dialog--form editor-annotation-dialog surface-panel site-modal-surface p-0" aria-labelledby="editor-annotation-title" data-annotation-dialog>
+    <form data-annotation-form>
+      <div class="editor-dialog-header site-modal-header d-flex align-items-start justify-content-between gap-3">
+        <div>
+          <span class="editor-eyebrow">Inheritance rules</span>
+          <h2 class="mb-1 mt-1" id="editor-annotation-title">Control how <span data-annotation-target></span> is inherited</h2>
+          <p class="mb-0">These rules affect parent-template imports and GUI synchronization. They do not link settings together.</p>
+        </div>
+        <button class="editor-icon-button editor-interactive-surface site-modal-close d-inline-grid flex-shrink-0 ms-auto" type="button" data-close-annotation aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="site-modal-body d-grid gap-2">
+        <label class="editor-policy-option rounded-3 p-3 d-flex align-items-start gap-3">
+          <input class="form-check-input flex-shrink-0" type="checkbox" value="final" data-annotation-policy />
+          <span><strong class="d-block">Final</strong><span class="editor-control-hint">A parent config cannot replace this value.</span></span>
+        </label>
+        <label class="editor-policy-option rounded-3 p-3 d-flex align-items-start gap-3">
+          <input class="form-check-input flex-shrink-0" type="checkbox" value="ignore-if-set" data-annotation-policy />
+          <span><strong class="d-block">Ignore if set</strong><span class="editor-control-hint">Keep this local value when the imported parent also provides one.</span></span>
+        </label>
+        <label class="editor-policy-option rounded-3 p-3 d-flex align-items-start gap-3">
+          <input class="form-check-input flex-shrink-0" type="checkbox" value="no-sync" data-annotation-policy />
+          <span><strong class="d-block">No sync</strong><span class="editor-control-hint">Keep this value unchanged when GUI settings are synchronized.</span></span>
+        </label>
+      </div>
+      <div class="editor-dialog-footer site-modal-footer d-flex justify-content-end gap-2">
+        <button class="btn btn-site-secondary btn-site-sm" type="button" data-close-annotation>Cancel</button>
+        <button class="btn btn-site btn-site-primary btn-site-sm fw-bold" type="submit"><i class="fa-solid fa-shield-halved me-2"></i>Save rules</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog class="editor-dialog editor-dialog--form editor-confirmation-dialog surface-panel site-modal-surface p-0" aria-labelledby="editor-confirmation-title" aria-describedby="editor-confirmation-message" data-editor-confirmation-dialog>
+    <form method="dialog" data-editor-confirmation-form>
+      <div class="editor-dialog-header site-modal-header d-flex align-items-start gap-3">
+        <span class="editor-confirmation-icon d-inline-grid flex-shrink-0" aria-hidden="true"><i class="fa-solid fa-clock-rotate-left"></i></span>
+        <div class="min-w-0">
+          <span class="editor-eyebrow" data-editor-confirmation-eyebrow>Unsaved local draft</span>
+          <h2 class="mb-1 mt-1" id="editor-confirmation-title" data-editor-confirmation-title>Restore unsaved changes?</h2>
+        </div>
+      </div>
+      <div class="site-modal-body">
+        <p class="editor-confirmation-message mb-0" id="editor-confirmation-message" data-editor-confirmation-message></p>
+      </div>
+      <div class="editor-dialog-footer site-modal-footer d-flex flex-wrap justify-content-center justify-content-sm-end gap-2">
+        <button class="btn btn-site-secondary btn-site-sm" type="submit" value="cancel" data-editor-confirmation-cancel>Use server version</button>
+        <button class="btn btn-site btn-site-primary btn-site-sm fw-bold" type="submit" value="confirm" data-editor-confirmation-confirm><i class="fa-solid fa-clock-rotate-left me-2" aria-hidden="true"></i><span>Restore draft</span></button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog class="editor-dialog editor-dialog--form surface-panel site-modal-surface p-0" aria-labelledby="editor-session-expired-title" aria-describedby="editor-session-expired-message" data-editor-session-expired-dialog>
+    <div class="editor-dialog-header site-modal-header d-flex align-items-center gap-3">
+      <h2 class="mb-0" id="editor-session-expired-title">Editing session expired</h2>
+      <button class="site-modal-close d-inline-grid flex-shrink-0 ms-auto" type="button" data-close-session-expired aria-label="Close"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+    </div>
+    <div class="site-modal-body">
+      <p class="editor-confirmation-message mb-3" id="editor-session-expired-message">Saving configs directly to your server is no longer possible. Your work is still available in this tab. Download it before closing or refreshing!</p>
+      <p class="editor-dialog-hint mb-0">Run <code>/k admin editor</code> for a fresh link to the current server files. Use your backup to recover your changes manually. It will not be applied automatically.</p>
+    </div>
+    <div class="editor-dialog-footer site-modal-footer d-flex flex-column flex-sm-row justify-content-sm-end gap-2">
+      <button class="btn btn-site-secondary btn-site-sm" type="button" data-close-session-expired>Keep browsing</button>
+      <button class="btn btn-site btn-site-primary btn-site-sm fw-bold" type="button" data-download-recovery autofocus><i class="fa-solid fa-download me-2" aria-hidden="true"></i>Download backup</button>
+    </div>
+  </dialog>
+
+  <div class="editor-save-overlay position-fixed d-grid" data-editor-save-overlay hidden>
+    <div class="editor-save-progress surface-panel rounded-3 p-4 text-center" role="status" aria-live="polite" tabindex="-1" data-editor-save-status>
+      <span class="editor-save-spinner d-inline-grid mb-3" aria-hidden="true"><i class="fa-solid fa-circle-notch fa-spin"></i></span>
+      <span class="editor-eyebrow d-block">Secure server save</span>
+      <h2 class="h4 mb-2 mt-1">Saving configs…</h2>
+      <p class="mb-2" data-editor-save-progress>Checking configs…</p>
+      <small class="d-block">Keep this tab open. Editing will resume after your Minecraft server confirms the changes.</small>
+    </div>
+  </div>
+
+  <div class="editor-corner-stack position-fixed d-flex flex-column align-items-end gap-2 p-3">
+    <div class="toast-container site-toast-container position-static w-100 p-0 d-flex flex-column align-items-end" data-editor-toast-container></div>
+    <button class="editor-gui-preview-launcher btn btn-site d-inline-flex align-items-center gap-2" type="button" aria-controls="editor-gui-inventory-preview" aria-expanded="false" data-gui-preview-launcher hidden>
+      <i class="fa-solid fa-table-cells-large" aria-hidden="true"></i>
+      <span>Inventory preview</span>
+    </button>
+  </div>
+
+  <script>
+    import "bootstrap";
+    import { initAmbientPointer } from "../assets/scripts/ambient-pointer.js";
+    import "../assets/scripts/copy-command.js";
+    import "../assets/scripts/config-editor/editor-workspace.js";
+
+    initAmbientPointer();
+  </script>
+</BaseLayout>

@@ -81,17 +81,21 @@ export async function routeOwnerSubmissions(
 ): Promise<Response | null> {
   const { request, url, env, executionCtx } = context;
 
-  if (request.method === "GET" && url.pathname === "/api/servers/me")
+  if (request.method === "GET" && url.pathname === "/api/servers/me") {
     return getMySubmission(request, env);
+  }
 
-  if (request.method === "POST" && url.pathname === "/api/servers/me/resubmit")
+  if (request.method === "POST" && url.pathname === "/api/servers/me/resubmit") {
     return resubmitMyServer(request, env, executionCtx);
+  }
 
-  if (request.method === "PATCH" && url.pathname === "/api/servers/me/details")
+  if (request.method === "PATCH" && url.pathname === "/api/servers/me/details") {
     return updateMyPublicDetails(request, env, executionCtx);
+  }
 
-  if (request.method === "DELETE" && url.pathname === "/api/servers/me")
+  if (request.method === "DELETE" && url.pathname === "/api/servers/me") {
     return deleteMyServer(request, env, executionCtx);
+  }
 
   return null;
 }
@@ -182,8 +186,10 @@ async function submitServer(
 
   const existing = await getExistingAddress(env, input.normalized.host, input.normalized.port);
   const conflict = conflictingAddressResponse(existing);
-  if (conflict)
+
+  if (conflict) {
     return conflict;
+  }
 
   const suspendedAddress = await getSuspendedAddress(
     env,
@@ -208,8 +214,9 @@ async function submitServer(
     "The server must be online and reachable before staff can review it."
   );
 
-  if (!verification.ok)
+  if (!verification.ok) {
     return verification.response;
+  }
 
   const id = existing?.id ?? crypto.randomUUID();
   const submissionId = crypto.randomUUID();
@@ -291,7 +298,7 @@ async function getMySubmission(
     return json(
       {
         authenticated: false,
-        loginUrl: `/api/auth/discord/login?returnTo=${encodeURIComponent(submitterReturnPath(env))}`
+        loginUrl: `/api/auth/discord/login?returnTo=${encodeURIComponent(submitterReturnPath())}`
       },
       200,
       NO_STORE_JSON_HEADERS
@@ -384,8 +391,10 @@ async function resubmitMyServer(
     owned.id
   );
   const conflict = conflictingAddressResponse(existingAddress);
-  if (conflict)
+
+  if (conflict) {
     return conflict;
+  }
 
   const suspendedAddress = await getSuspendedAddress(
     env,
@@ -403,8 +412,9 @@ async function resubmitMyServer(
     "The server must be online and reachable before these changes can be saved."
   );
 
-  if (!verification.ok)
+  if (!verification.ok) {
     return verification.response;
+  }
 
   const timestamp = nowIso();
   const submissionId = crypto.randomUUID();

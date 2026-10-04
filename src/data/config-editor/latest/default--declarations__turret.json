@@ -1,0 +1,493 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "declarations/turret.yml",
+  "schemaId": "Turrets/turret",
+  "options": [
+    {
+      "path": [
+        "(import)"
+      ],
+      "source": "\r\n  building:\r\n    parameters:\r\n      <type>: turrets\r\n      <name>: <name>\r\n      <extra-holograms>:\r\n        - '{$$turrets.holograms.ammo}'\r\n        - '{? building_effects_paralysis ? \"&3Paralysis{$colon} {$es}%time@building_effects_paralysis_time_remaining%\" }'\r\n        - '{? building_effects_hypnosis ? \"&6Hypnosis{$colon} {$es}%time@building_effects_hypnosis_time_remaining%\" }'\r\n        - '{? building_effects_weakness ? \"&5Weakness{$colon} {$es}%building_effects_weakness_damage_reduction% {$sep}| {$es}%time@building_effects_weakness_time_remaining%\" }'\r\n        - '{? building_effects_slowness ? \"&9Slowness{$colon} {$es}%building_effects_slowness_delay% {$sep}| {$es}%time@building_effects_slowness_time_remaining%\" }'\r\n      <block-1>:\r\n        material: PLAYER_HEAD\r\n        skull: <skull-1>\r\n      <block-2>:\r\n        material: PLAYER_HEAD\r\n        skull: <skull-2>\r\n      <block-3>:\r\n        material: PLAYER_HEAD\r\n        skull: <skull-3>\r\n\r\n### Shared turret settings ###\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "building"
+      ],
+      "source": "\r\n    parameters:\r\n      <type>: turrets\r\n      <name>: <name>\r\n      <extra-holograms>:\r\n        - '{$$turrets.holograms.ammo}'\r\n        - '{? building_effects_paralysis ? \"&3Paralysis{$colon} {$es}%time@building_effects_paralysis_time_remaining%\" }'\r\n        - '{? building_effects_hypnosis ? \"&6Hypnosis{$colon} {$es}%time@building_effects_hypnosis_time_remaining%\" }'\r\n        - '{? building_effects_weakness ? \"&5Weakness{$colon} {$es}%building_effects_weakness_damage_reduction% {$sep}| {$es}%time@building_effects_weakness_time_remaining%\" }'\r\n        - '{? building_effects_slowness ? \"&9Slowness{$colon} {$es}%building_effects_slowness_delay% {$sep}| {$es}%time@building_effects_slowness_time_remaining%\" }'\r\n      <block-1>:\r\n        material: PLAYER_HEAD\r\n        skull: <skull-1>\r\n      <block-2>:\r\n        material: PLAYER_HEAD\r\n        skull: <skull-2>\r\n      <block-3>:\r\n        material: PLAYER_HEAD\r\n        skull: <skull-3>\r\n\r\n### Shared turret settings ###\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "building",
+        "parameters"
+      ],
+      "source": "\r\n      <type>: turrets\r\n      <name>: <name>\r\n      <extra-holograms>:\r\n        - '{$$turrets.holograms.ammo}'\r\n        - '{? building_effects_paralysis ? \"&3Paralysis{$colon} {$es}%time@building_effects_paralysis_time_remaining%\" }'\r\n        - '{? building_effects_hypnosis ? \"&6Hypnosis{$colon} {$es}%time@building_effects_hypnosis_time_remaining%\" }'\r\n        - '{? building_effects_weakness ? \"&5Weakness{$colon} {$es}%building_effects_weakness_damage_reduction% {$sep}| {$es}%time@building_effects_weakness_time_remaining%\" }'\r\n        - '{? building_effects_slowness ? \"&9Slowness{$colon} {$es}%building_effects_slowness_delay% {$sep}| {$es}%time@building_effects_slowness_time_remaining%\" }'\r\n      <block-1>:\r\n        material: PLAYER_HEAD\r\n        skull: <skull-1>\r\n      <block-2>:\r\n        material: PLAYER_HEAD\r\n        skull: <skull-2>\r\n      <block-3>:\r\n        material: PLAYER_HEAD\r\n        skull: <skull-3>\r\n\r\n### Shared turret settings ###\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "building",
+        "parameters",
+        "<type>"
+      ],
+      "source": "turrets",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "building",
+        "parameters",
+        "<name>"
+      ],
+      "source": "<name>",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "building",
+        "parameters",
+        "<extra-holograms>"
+      ],
+      "source": "\r\n        - '{$$turrets.holograms.ammo}'\r\n        - '{? building_effects_paralysis ? \"&3Paralysis{$colon} {$es}%time@building_effects_paralysis_time_remaining%\" }'\r\n        - '{? building_effects_hypnosis ? \"&6Hypnosis{$colon} {$es}%time@building_effects_hypnosis_time_remaining%\" }'\r\n        - '{? building_effects_weakness ? \"&5Weakness{$colon} {$es}%building_effects_weakness_damage_reduction% {$sep}| {$es}%time@building_effects_weakness_time_remaining%\" }'\r\n        - '{? building_effects_slowness ? \"&9Slowness{$colon} {$es}%building_effects_slowness_delay% {$sep}| {$es}%time@building_effects_slowness_time_remaining%\" }'\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "'{$$turrets.holograms.ammo}'",
+        "'{? building_effects_paralysis ? \"&3Paralysis{$colon} {$es}%time@building_effects_paralysis_time_remaining%\" }'",
+        "'{? building_effects_hypnosis ? \"&6Hypnosis{$colon} {$es}%time@building_effects_hypnosis_time_remaining%\" }'",
+        "'{? building_effects_weakness ? \"&5Weakness{$colon} {$es}%building_effects_weakness_damage_reduction% {$sep}| {$es}%time@building_effects_weakness_time_remaining%\" }'",
+        "'{? building_effects_slowness ? \"&9Slowness{$colon} {$es}%building_effects_slowness_delay% {$sep}| {$es}%time@building_effects_slowness_time_remaining%\" }'"
+      ]
+    },
+    {
+      "path": [
+        "(import)",
+        "building",
+        "parameters",
+        "<block-1>"
+      ],
+      "source": "\r\n        material: PLAYER_HEAD\r\n        skull: <skull-1>\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "building",
+        "parameters",
+        "<block-1>",
+        "material"
+      ],
+      "source": "PLAYER_HEAD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "building",
+        "parameters",
+        "<block-1>",
+        "skull"
+      ],
+      "source": "<skull-1>",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "building",
+        "parameters",
+        "<block-2>"
+      ],
+      "source": "\r\n        material: PLAYER_HEAD\r\n        skull: <skull-2>\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "building",
+        "parameters",
+        "<block-2>",
+        "material"
+      ],
+      "source": "PLAYER_HEAD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "building",
+        "parameters",
+        "<block-2>",
+        "skull"
+      ],
+      "source": "<skull-2>",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "building",
+        "parameters",
+        "<block-3>"
+      ],
+      "source": "\r\n        material: PLAYER_HEAD\r\n        skull: <skull-3>\r\n\r\n### Shared turret settings ###\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "building",
+        "parameters",
+        "<block-3>",
+        "material"
+      ],
+      "source": "PLAYER_HEAD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "building",
+        "parameters",
+        "<block-3>",
+        "skull"
+      ],
+      "source": "<skull-3>",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(module)"
+      ],
+      "source": "\r\n  description: 'Base settings for turrets.'\r\n  parameters:\r\n    <name>: str\r\n    <build-duration-factor>: str\r\n    <durability-factor>: int\r\n    <skull-1>: SkinTexture\r\n    <skull-2>: SkinTexture\r\n    <skull-3>: SkinTexture\r\n\r\n# Schema is a block pattern describing the blocks and their positions that must be placed\r\n# around where you want to place your building.\r\n# in order to actually place it. Not having the correct blocks or position will prevent\r\n# you from placing down buildings.\r\n# It's an interactive way to allow your players to build parts of the buildings themselves.\r\n",
+      "comments": [
+        "Shared turret settings ###"
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(module)",
+        "description"
+      ],
+      "source": "'Base settings for turrets.'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(module)",
+        "parameters"
+      ],
+      "source": "\r\n    <name>: str\r\n    <build-duration-factor>: str\r\n    <durability-factor>: int\r\n    <skull-1>: SkinTexture\r\n    <skull-2>: SkinTexture\r\n    <skull-3>: SkinTexture\r\n\r\n# Schema is a block pattern describing the blocks and their positions that must be placed\r\n# around where you want to place your building.\r\n# in order to actually place it. Not having the correct blocks or position will prevent\r\n# you from placing down buildings.\r\n# It's an interactive way to allow your players to build parts of the buildings themselves.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(module)",
+        "parameters",
+        "<name>"
+      ],
+      "source": "str",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(module)",
+        "parameters",
+        "<build-duration-factor>"
+      ],
+      "source": "str",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(module)",
+        "parameters",
+        "<durability-factor>"
+      ],
+      "source": "int",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(module)",
+        "parameters",
+        "<skull-1>"
+      ],
+      "source": "SkinTexture",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(module)",
+        "parameters",
+        "<skull-2>"
+      ],
+      "source": "SkinTexture",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(module)",
+        "parameters",
+        "<skull-3>"
+      ],
+      "source": "SkinTexture",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "schema"
+      ],
+      "source": "\r\n  1:\r\n    # Where is the xz center of the pattern?\r\n    # You determine this based on the pattern you put in \"blocks\"\r\n    origin: [ 1, 1 ]\r\n\r\n    # The block pattern. \"x\" represents any.\r\n    # Other symbols must be manually mapped under \"mappings\" option.\r\n    # * The \"-1\" here refers to the y position of the pattern.\r\n    #   The reason why it's -1 here is that when you want to place\r\n    #   your turrets, you right-click on top of a fence, and you want to\r\n    #   look at the layer under the turret itself, which is where the fence is.\r\n    # * The pattern itself is the xz of the blocks.\r\n    blocks:\r\n      -1: |\r\n        xxx\r\n        xFx\r\n        xxx\r\n\r\n    # Mapping symbols to blocks.\r\n    mappings:\r\n      F:\r\n        # Message showed for errors.\r\n        displayname: Fence\r\n        mismatch-message: '{$$building.schema.mismatch.fence}'\r\n\r\n        # List of blocks that this symbol represents.\r\n        accepted-materials:\r\n          - \"REGEX:\\\\w+_FENCE$\"\r\n          - \"REGEX:(POLISHED_(BLACKSTONE|DEEPSLATE|BLACKSTONE_BRICK)|ANDESITE|BLACKSTONE|MUD_BRICK|BRICK|COBBLESTONE|MOSSY_COBBLESTONE|MOSSY_STONE_BRICK|COBBLED_DEEPSLATE|PRISMARINE|DEEPSLATE_TILE|END_STONE_BRICK|DIORITE|NETHER_BRICK|RED_NETHER_BRICK|GRANITE|SANDSTONE|RED_SANDSTONE|STONE_BRICK)_WALL\"\r\n",
+      "comments": [
+        "Schema is a block pattern describing the blocks and their positions that must be placed",
+        "around where you want to place your building.",
+        "in order to actually place it. Not having the correct blocks or position will prevent",
+        "you from placing down buildings.",
+        "It's an interactive way to allow your players to build parts of the buildings themselves."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "schema",
+        "1"
+      ],
+      "source": "\r\n    # Where is the xz center of the pattern?\r\n    # You determine this based on the pattern you put in \"blocks\"\r\n    origin: [ 1, 1 ]\r\n\r\n    # The block pattern. \"x\" represents any.\r\n    # Other symbols must be manually mapped under \"mappings\" option.\r\n    # * The \"-1\" here refers to the y position of the pattern.\r\n    #   The reason why it's -1 here is that when you want to place\r\n    #   your turrets, you right-click on top of a fence, and you want to\r\n    #   look at the layer under the turret itself, which is where the fence is.\r\n    # * The pattern itself is the xz of the blocks.\r\n    blocks:\r\n      -1: |\r\n        xxx\r\n        xFx\r\n        xxx\r\n\r\n    # Mapping symbols to blocks.\r\n    mappings:\r\n      F:\r\n        # Message showed for errors.\r\n        displayname: Fence\r\n        mismatch-message: '{$$building.schema.mismatch.fence}'\r\n\r\n        # List of blocks that this symbol represents.\r\n        accepted-materials:\r\n          - \"REGEX:\\\\w+_FENCE$\"\r\n          - \"REGEX:(POLISHED_(BLACKSTONE|DEEPSLATE|BLACKSTONE_BRICK)|ANDESITE|BLACKSTONE|MUD_BRICK|BRICK|COBBLESTONE|MOSSY_COBBLESTONE|MOSSY_STONE_BRICK|COBBLED_DEEPSLATE|PRISMARINE|DEEPSLATE_TILE|END_STONE_BRICK|DIORITE|NETHER_BRICK|RED_NETHER_BRICK|GRANITE|SANDSTONE|RED_SANDSTONE|STONE_BRICK)_WALL\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "schema",
+        "1",
+        "origin"
+      ],
+      "source": "[ 1, 1 ]",
+      "comments": [
+        "Where is the xz center of the pattern?",
+        "You determine this based on the pattern you put in \"blocks\""
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "1",
+        "1"
+      ]
+    },
+    {
+      "path": [
+        "schema",
+        "1",
+        "blocks"
+      ],
+      "source": "\r\n      -1: |\r\n        xxx\r\n        xFx\r\n        xxx\r\n\r\n    # Mapping symbols to blocks.\r\n",
+      "comments": [
+        "The block pattern. \"x\" represents any.",
+        "Other symbols must be manually mapped under \"mappings\" option.",
+        "* The \"-1\" here refers to the y position of the pattern.",
+        "The reason why it's -1 here is that when you want to place",
+        "your turrets, you right-click on top of a fence, and you want to",
+        "look at the layer under the turret itself, which is where the fence is.",
+        "* The pattern itself is the xz of the blocks."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "schema",
+        "1",
+        "mappings"
+      ],
+      "source": "\r\n      F:\r\n        # Message showed for errors.\r\n        displayname: Fence\r\n        mismatch-message: '{$$building.schema.mismatch.fence}'\r\n\r\n        # List of blocks that this symbol represents.\r\n        accepted-materials:\r\n          - \"REGEX:\\\\w+_FENCE$\"\r\n          - \"REGEX:(POLISHED_(BLACKSTONE|DEEPSLATE|BLACKSTONE_BRICK)|ANDESITE|BLACKSTONE|MUD_BRICK|BRICK|COBBLESTONE|MOSSY_COBBLESTONE|MOSSY_STONE_BRICK|COBBLED_DEEPSLATE|PRISMARINE|DEEPSLATE_TILE|END_STONE_BRICK|DIORITE|NETHER_BRICK|RED_NETHER_BRICK|GRANITE|SANDSTONE|RED_SANDSTONE|STONE_BRICK)_WALL\"\r\n",
+      "comments": [
+        "Mapping symbols to blocks."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "schema",
+        "1",
+        "mappings",
+        "F"
+      ],
+      "source": "\r\n        # Message showed for errors.\r\n        displayname: Fence\r\n        mismatch-message: '{$$building.schema.mismatch.fence}'\r\n\r\n        # List of blocks that this symbol represents.\r\n        accepted-materials:\r\n          - \"REGEX:\\\\w+_FENCE$\"\r\n          - \"REGEX:(POLISHED_(BLACKSTONE|DEEPSLATE|BLACKSTONE_BRICK)|ANDESITE|BLACKSTONE|MUD_BRICK|BRICK|COBBLESTONE|MOSSY_COBBLESTONE|MOSSY_STONE_BRICK|COBBLED_DEEPSLATE|PRISMARINE|DEEPSLATE_TILE|END_STONE_BRICK|DIORITE|NETHER_BRICK|RED_NETHER_BRICK|GRANITE|SANDSTONE|RED_SANDSTONE|STONE_BRICK)_WALL\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "schema",
+        "1",
+        "mappings",
+        "F",
+        "displayname"
+      ],
+      "source": "Fence",
+      "comments": [
+        "Message showed for errors."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "schema",
+        "1",
+        "mappings",
+        "F",
+        "mismatch-message"
+      ],
+      "source": "'{$$building.schema.mismatch.fence}'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "schema",
+        "1",
+        "mappings",
+        "F",
+        "accepted-materials"
+      ],
+      "source": "\r\n          - \"REGEX:\\\\w+_FENCE$\"\r\n          - \"REGEX:(POLISHED_(BLACKSTONE|DEEPSLATE|BLACKSTONE_BRICK)|ANDESITE|BLACKSTONE|MUD_BRICK|BRICK|COBBLESTONE|MOSSY_COBBLESTONE|MOSSY_STONE_BRICK|COBBLED_DEEPSLATE|PRISMARINE|DEEPSLATE_TILE|END_STONE_BRICK|DIORITE|NETHER_BRICK|RED_NETHER_BRICK|GRANITE|SANDSTONE|RED_SANDSTONE|STONE_BRICK)_WALL\"\r\n",
+      "comments": [
+        "List of blocks that this symbol represents."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"REGEX:\\\\w+_FENCE$\"",
+        "\"REGEX:(POLISHED_(BLACKSTONE|DEEPSLATE|BLACKSTONE_BRICK)|ANDESITE|BLACKSTONE|MUD_BRICK|BRICK|COBBLESTONE|MOSSY_COBBLESTONE|MOSSY_STONE_BRICK|COBBLED_DEEPSLATE|PRISMARINE|DEEPSLATE_TILE|END_STONE_BRICK|DIORITE|NETHER_BRICK|RED_NETHER_BRICK|GRANITE|SANDSTONE|RED_SANDSTONE|STONE_BRICK)_WALL\""
+      ]
+    }
+  ]
+}

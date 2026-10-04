@@ -1,0 +1,508 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "guis/bossbar/flags.yml",
+  "schemaId": "guis/schema",
+  "options": [
+    {
+      "path": [
+        "title"
+      ],
+      "source": "hopper",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "type"
+      ],
+      "source": "HOPPER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options"
+      ],
+      "source": "\r\n  back:\r\n    slot: 0\r\n    material: PLAYER_HEAD\r\n    skull: \"{$gui-back}\"\r\n    name: '&cBack'\r\n  play-boss-music:\r\n    slot: 2\r\n    material: MUSIC_DISC_CAT\r\n    lore: |\r\n      {$sep}Plays the ender dragon theme\r\n      while this bossbar is active for\r\n      the player. This doesn't work\r\n      reliably for all servers.\r\n    enabled:\r\n      name: '{$enabled} Music'\r\n      condition: enabled\r\n      glow: true\r\n    else:\r\n      name: '{$disabled} Music'\r\n  darken-sky:\r\n    slot: 3\r\n    material: CLOCK\r\n    lore: |\r\n      {$sep}It's similar to blindness\r\n      potion effect.\r\n    enabled:\r\n      name: '{$enabled} Darken Sky'\r\n      condition: enabled\r\n      glow: true\r\n    else:\r\n      name: '{$disabled} Darken Sky'\r\n  create-fog:\r\n    slot: 4\r\n    material: COBWEB\r\n    lore: |\r\n      {$sep}Mostly restricts the player's\r\n      sight and view distance.\r\n    enabled:\r\n      name: '{$enabled} Fog'\r\n      condition: enabled\r\n      glow: true\r\n    else:\r\n      name: '{$disabled} Fog'",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back"
+      ],
+      "source": "\r\n    slot: 0\r\n    material: PLAYER_HEAD\r\n    skull: \"{$gui-back}\"\r\n    name: '&cBack'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "slot"
+      ],
+      "source": "0",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "material"
+      ],
+      "source": "PLAYER_HEAD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "skull"
+      ],
+      "source": "\"{$gui-back}\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "name"
+      ],
+      "source": "'&cBack'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "play-boss-music"
+      ],
+      "source": "\r\n    slot: 2\r\n    material: MUSIC_DISC_CAT\r\n    lore: |\r\n      {$sep}Plays the ender dragon theme\r\n      while this bossbar is active for\r\n      the player. This doesn't work\r\n      reliably for all servers.\r\n    enabled:\r\n      name: '{$enabled} Music'\r\n      condition: enabled\r\n      glow: true\r\n    else:\r\n      name: '{$disabled} Music'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "play-boss-music",
+        "slot"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "play-boss-music",
+        "material"
+      ],
+      "source": "MUSIC_DISC_CAT",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "play-boss-music",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}Plays the ender dragon theme\r\n      while this bossbar is active for\r\n      the player. This doesn't work\r\n      reliably for all servers.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "play-boss-music",
+        "enabled"
+      ],
+      "source": "\r\n      name: '{$enabled} Music'\r\n      condition: enabled\r\n      glow: true\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "play-boss-music",
+        "enabled",
+        "name"
+      ],
+      "source": "'{$enabled} Music'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "play-boss-music",
+        "enabled",
+        "condition"
+      ],
+      "source": "enabled",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "play-boss-music",
+        "enabled",
+        "glow"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "play-boss-music",
+        "else"
+      ],
+      "source": "\r\n      name: '{$disabled} Music'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "play-boss-music",
+        "else",
+        "name"
+      ],
+      "source": "'{$disabled} Music'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "darken-sky"
+      ],
+      "source": "\r\n    slot: 3\r\n    material: CLOCK\r\n    lore: |\r\n      {$sep}It's similar to blindness\r\n      potion effect.\r\n    enabled:\r\n      name: '{$enabled} Darken Sky'\r\n      condition: enabled\r\n      glow: true\r\n    else:\r\n      name: '{$disabled} Darken Sky'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "darken-sky",
+        "slot"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "darken-sky",
+        "material"
+      ],
+      "source": "CLOCK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "darken-sky",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}It's similar to blindness\r\n      potion effect.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "darken-sky",
+        "enabled"
+      ],
+      "source": "\r\n      name: '{$enabled} Darken Sky'\r\n      condition: enabled\r\n      glow: true\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "darken-sky",
+        "enabled",
+        "name"
+      ],
+      "source": "'{$enabled} Darken Sky'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "darken-sky",
+        "enabled",
+        "condition"
+      ],
+      "source": "enabled",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "darken-sky",
+        "enabled",
+        "glow"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "darken-sky",
+        "else"
+      ],
+      "source": "\r\n      name: '{$disabled} Darken Sky'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "darken-sky",
+        "else",
+        "name"
+      ],
+      "source": "'{$disabled} Darken Sky'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "create-fog"
+      ],
+      "source": "\r\n    slot: 4\r\n    material: COBWEB\r\n    lore: |\r\n      {$sep}Mostly restricts the player's\r\n      sight and view distance.\r\n    enabled:\r\n      name: '{$enabled} Fog'\r\n      condition: enabled\r\n      glow: true\r\n    else:\r\n      name: '{$disabled} Fog'",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "create-fog",
+        "slot"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "create-fog",
+        "material"
+      ],
+      "source": "COBWEB",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "create-fog",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}Mostly restricts the player's\r\n      sight and view distance.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "create-fog",
+        "enabled"
+      ],
+      "source": "\r\n      name: '{$enabled} Fog'\r\n      condition: enabled\r\n      glow: true\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "create-fog",
+        "enabled",
+        "name"
+      ],
+      "source": "'{$enabled} Fog'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "create-fog",
+        "enabled",
+        "condition"
+      ],
+      "source": "enabled",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "create-fog",
+        "enabled",
+        "glow"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "create-fog",
+        "else"
+      ],
+      "source": "\r\n      name: '{$disabled} Fog'",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "create-fog",
+        "else",
+        "name"
+      ],
+      "source": "'{$disabled} Fog'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

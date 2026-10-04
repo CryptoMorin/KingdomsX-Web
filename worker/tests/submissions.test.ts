@@ -14,7 +14,7 @@ import {
 
 beforeEach(resetDatabase);
 
-describe("Resubmission policy", () => {
+describe("Resubmission rules", () => {
   it("keeps an approved listing approved after a verified address change", async () => {
     const cookie = await seedSubmitter("approved-address");
 

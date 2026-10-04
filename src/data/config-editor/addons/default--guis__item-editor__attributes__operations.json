@@ -1,0 +1,626 @@
+{
+  "formatVersion": 1,
+  "source": {
+    "addonId": "admin-tools",
+    "artifactPath": "addons/Kingdoms-Addon-Admin-Tools-1.2.3.2.jar",
+    "artifactBlobSha": "c63f5eab8d950936ae09f12aed4ff1383c87cee2",
+    "artifactSha256": "c07ed8f5f52b657f57beca205d12755f0b4f94e26dfcd691834e2ad77043256f",
+    "addonVersion": "1.2.3.2"
+  },
+  "resourceName": "guis/item-editor/attributes/operations.yml",
+  "schemaId": "guis/schema",
+  "sha256": "c82de982c2048d541e476a8aa467a85e0d2bb8c32362794127a1332157665947",
+  "options": [
+    {
+      "path": [
+        "title"
+      ],
+      "source": "\"{$desc}-=( {$p}Attribute Operations {$desc})=-\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "rows"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "op"
+      ],
+      "source": "&fn-op\r\n  args: [ \"<x>\" ]\r\n  return:\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$desc}[{$p}Active{$desc}] {$p}<x>\"\r\n      glow: true\r\n    else:\r\n      name: \"{$p}<x>\"\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "op",
+        "args"
+      ],
+      "source": "[ \"<x>\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"<x>\""
+      ]
+    },
+    {
+      "path": [
+        "op",
+        "return"
+      ],
+      "source": "\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$desc}[{$p}Active{$desc}] {$p}<x>\"\r\n      glow: true\r\n    else:\r\n      name: \"{$p}<x>\"\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "op",
+        "return",
+        "enabled"
+      ],
+      "source": "\r\n      condition: enabled\r\n      name: \"{$desc}[{$p}Active{$desc}] {$p}<x>\"\r\n      glow: true\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "op",
+        "return",
+        "enabled",
+        "condition"
+      ],
+      "source": "enabled",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "op",
+        "return",
+        "enabled",
+        "name"
+      ],
+      "source": "\"{$desc}[{$p}Active{$desc}] {$p}<x>\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "op",
+        "return",
+        "enabled",
+        "glow"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "op",
+        "return",
+        "else"
+      ],
+      "source": "\r\n      name: \"{$p}<x>\"\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "op",
+        "return",
+        "else",
+        "name"
+      ],
+      "source": "\"{$p}<x>\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options"
+      ],
+      "source": "\r\n  back:\r\n    posx: 1\r\n    posy: 1\r\n    skull: \"{$gui-back}\"\r\n    name: '{$p}Back'\r\n  decoration:\r\n    slots: [ 1, 2, 3, 5, 6, 7, 8, 9, 11, 12, 14, 15, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26 ]\r\n    material: BROWN_STAINED_GLASS_PANE\r\n    name: ''\r\n  info:\r\n    posx: 5\r\n    posy: 1\r\n    material: NETHER_STAR\r\n    name: '&eInfo'\r\n    lore: |\r\n      {$desc}A modifier's operation dictates\r\n      how it modifies an attribute's base value\r\n  add-number:\r\n    posx: 2\r\n    posy: 2\r\n    glow: true\r\n    skull: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjM3MjgxNzhhMTMzOTQzMGFhYzQ4NGZmMjI1NzNmOGVlNzRlZmY1ZGJkNGFlOTVkYjhmMmRmY2ZjMzUzYzEzMiJ9fX0='\r\n    <<: *fn-op [ \"Add Number\" ]\r\n    lore: |\r\n      {$desc}Adds all of the modifiers' amounts to\r\n      the current value of the attribute.\r\n      For example, modifying an attribute with\r\n      {$p}Amount 2 {$desc}and {$p} Amount 4 {$desc}with\r\n      a {$p}Base of 3 {$desc}results in {$p}3 + 2 + 4 = 9\r\n  multiply-scalar-1:\r\n    posx: 5\r\n    posy: 2\r\n    skull: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDZhZTIxMWI0NDAzYjg5NjNjNjc0NWYzYzk4ZWJlNzNhMmI0ZTk3YzQwYTc4YjJmZDQwM2EwOWMwZmNhZDZkIn19fQ=='\r\n    <<: *fn-op [ \"Multiply\" ]\r\n    lore: |\r\n      {$desc}For every modifier, multiplies the\r\n      current value of the attribute by {$p}(1 + x){$desc},\r\n      where x is the amount of the particular\r\n      modifier. Functions the same as {$p}Add Scalar\r\n      {$desc}if there is only a single modifier with\r\n      {$p}operation 1 or 2{$desc}. However, for multiple\r\n      modifiers it multiplies the modifiers rather\r\n      than adding them. For example, modifying an\r\n      attribute with {$p}Amount 2 {$desc}and {$p}Amount 4\r\n      {$desc}with a {$p}Base of 3 {$desc}results in\r\n      {$p}3 * (1 + 2) * (1 + 4) = 45\r\n  add-scalar:\r\n    posx: 8\r\n    posy: 2\r\n    skull: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTc3YmI2NmZjNzNhOTdjZWZjYjNhNGJmZGNjYjEyMjgxZjQ0ZGQzMjZjY2QwZmYzOWQ0N2U5ODViZmVmZjM0MyJ9fX0='\r\n    <<: *fn-op [ \"Add Scalar\" ]\r\n    lore: |\r\n      {$desc}Multiplies the current value of the\r\n      attribute by {$p}1 + x{$desc}, where x is the sum\r\n      of the modifiers' amounts. For example,\r\n      modifying an attribute with {$p}Amount 2{$desc}\r\n      and {$p}Amount 4 with a {$p}Base of 3 {$desc}results in\r\n      {$p}3 * (1 + 2 + 4) = 21",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back"
+      ],
+      "source": "\r\n    posx: 1\r\n    posy: 1\r\n    skull: \"{$gui-back}\"\r\n    name: '{$p}Back'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "posx"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "skull"
+      ],
+      "source": "\"{$gui-back}\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "name"
+      ],
+      "source": "'{$p}Back'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "decoration"
+      ],
+      "source": "\r\n    slots: [ 1, 2, 3, 5, 6, 7, 8, 9, 11, 12, 14, 15, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26 ]\r\n    material: BROWN_STAINED_GLASS_PANE\r\n    name: ''\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "decoration",
+        "slots"
+      ],
+      "source": "[ 1, 2, 3, 5, 6, 7, 8, 9, 11, 12, 14, 15, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "1",
+        "2",
+        "3",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "11",
+        "12",
+        "14",
+        "15",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "decoration",
+        "material"
+      ],
+      "source": "BROWN_STAINED_GLASS_PANE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "decoration",
+        "name"
+      ],
+      "source": "''",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "info"
+      ],
+      "source": "\r\n    posx: 5\r\n    posy: 1\r\n    material: NETHER_STAR\r\n    name: '&eInfo'\r\n    lore: |\r\n      {$desc}A modifier's operation dictates\r\n      how it modifies an attribute's base value\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "info",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "info",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "info",
+        "material"
+      ],
+      "source": "NETHER_STAR",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "info",
+        "name"
+      ],
+      "source": "'&eInfo'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "info",
+        "lore"
+      ],
+      "source": "|\r\n      {$desc}A modifier's operation dictates\r\n      how it modifies an attribute's base value\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "add-number"
+      ],
+      "source": "\r\n    posx: 2\r\n    posy: 2\r\n    glow: true\r\n    skull: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjM3MjgxNzhhMTMzOTQzMGFhYzQ4NGZmMjI1NzNmOGVlNzRlZmY1ZGJkNGFlOTVkYjhmMmRmY2ZjMzUzYzEzMiJ9fX0='\r\n    <<: *fn-op [ \"Add Number\" ]\r\n    lore: |\r\n      {$desc}Adds all of the modifiers' amounts to\r\n      the current value of the attribute.\r\n      For example, modifying an attribute with\r\n      {$p}Amount 2 {$desc}and {$p} Amount 4 {$desc}with\r\n      a {$p}Base of 3 {$desc}results in {$p}3 + 2 + 4 = 9\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "add-number",
+        "posx"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "add-number",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "add-number",
+        "glow"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "add-number",
+        "skull"
+      ],
+      "source": "'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjM3MjgxNzhhMTMzOTQzMGFhYzQ4NGZmMjI1NzNmOGVlNzRlZmY1ZGJkNGFlOTVkYjhmMmRmY2ZjMzUzYzEzMiJ9fX0='",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "add-number",
+        "<<"
+      ],
+      "source": "*fn-op [ \"Add Number\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "add-number",
+        "lore"
+      ],
+      "source": "|\r\n      {$desc}Adds all of the modifiers' amounts to\r\n      the current value of the attribute.\r\n      For example, modifying an attribute with\r\n      {$p}Amount 2 {$desc}and {$p} Amount 4 {$desc}with\r\n      a {$p}Base of 3 {$desc}results in {$p}3 + 2 + 4 = 9\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "multiply-scalar-1"
+      ],
+      "source": "\r\n    posx: 5\r\n    posy: 2\r\n    skull: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDZhZTIxMWI0NDAzYjg5NjNjNjc0NWYzYzk4ZWJlNzNhMmI0ZTk3YzQwYTc4YjJmZDQwM2EwOWMwZmNhZDZkIn19fQ=='\r\n    <<: *fn-op [ \"Multiply\" ]\r\n    lore: |\r\n      {$desc}For every modifier, multiplies the\r\n      current value of the attribute by {$p}(1 + x){$desc},\r\n      where x is the amount of the particular\r\n      modifier. Functions the same as {$p}Add Scalar\r\n      {$desc}if there is only a single modifier with\r\n      {$p}operation 1 or 2{$desc}. However, for multiple\r\n      modifiers it multiplies the modifiers rather\r\n      than adding them. For example, modifying an\r\n      attribute with {$p}Amount 2 {$desc}and {$p}Amount 4\r\n      {$desc}with a {$p}Base of 3 {$desc}results in\r\n      {$p}3 * (1 + 2) * (1 + 4) = 45\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "multiply-scalar-1",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "multiply-scalar-1",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "multiply-scalar-1",
+        "skull"
+      ],
+      "source": "'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDZhZTIxMWI0NDAzYjg5NjNjNjc0NWYzYzk4ZWJlNzNhMmI0ZTk3YzQwYTc4YjJmZDQwM2EwOWMwZmNhZDZkIn19fQ=='",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "multiply-scalar-1",
+        "<<"
+      ],
+      "source": "*fn-op [ \"Multiply\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "multiply-scalar-1",
+        "lore"
+      ],
+      "source": "|\r\n      {$desc}For every modifier, multiplies the\r\n      current value of the attribute by {$p}(1 + x){$desc},\r\n      where x is the amount of the particular\r\n      modifier. Functions the same as {$p}Add Scalar\r\n      {$desc}if there is only a single modifier with\r\n      {$p}operation 1 or 2{$desc}. However, for multiple\r\n      modifiers it multiplies the modifiers rather\r\n      than adding them. For example, modifying an\r\n      attribute with {$p}Amount 2 {$desc}and {$p}Amount 4\r\n      {$desc}with a {$p}Base of 3 {$desc}results in\r\n      {$p}3 * (1 + 2) * (1 + 4) = 45\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "add-scalar"
+      ],
+      "source": "\r\n    posx: 8\r\n    posy: 2\r\n    skull: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTc3YmI2NmZjNzNhOTdjZWZjYjNhNGJmZGNjYjEyMjgxZjQ0ZGQzMjZjY2QwZmYzOWQ0N2U5ODViZmVmZjM0MyJ9fX0='\r\n    <<: *fn-op [ \"Add Scalar\" ]\r\n    lore: |\r\n      {$desc}Multiplies the current value of the\r\n      attribute by {$p}1 + x{$desc}, where x is the sum\r\n      of the modifiers' amounts. For example,\r\n      modifying an attribute with {$p}Amount 2{$desc}\r\n      and {$p}Amount 4 with a {$p}Base of 3 {$desc}results in\r\n      {$p}3 * (1 + 2 + 4) = 21",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "add-scalar",
+        "posx"
+      ],
+      "source": "8",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "add-scalar",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "add-scalar",
+        "skull"
+      ],
+      "source": "'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTc3YmI2NmZjNzNhOTdjZWZjYjNhNGJmZGNjYjEyMjgxZjQ0ZGQzMjZjY2QwZmYzOWQ0N2U5ODViZmVmZjM0MyJ9fX0='",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "add-scalar",
+        "<<"
+      ],
+      "source": "*fn-op [ \"Add Scalar\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "add-scalar",
+        "lore"
+      ],
+      "source": "|\r\n      {$desc}Multiplies the current value of the\r\n      attribute by {$p}1 + x{$desc}, where x is the sum\r\n      of the modifiers' amounts. For example,\r\n      modifying an attribute with {$p}Amount 2{$desc}\r\n      and {$p}Amount 4 with a {$p}Base of 3 {$desc}results in\r\n      {$p}3 * (1 + 2 + 4) = 21",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

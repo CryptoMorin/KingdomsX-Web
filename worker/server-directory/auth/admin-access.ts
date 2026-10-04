@@ -39,19 +39,22 @@ export async function requireAdmin(
     return { ok: false, error: "Admin access is not configured." };
   }
 
-  if (!assertion)
+  if (!assertion) {
     return { ok: false, error: "Admin endpoints require Cloudflare Access." };
+  }
 
   const payload = await verifyAccessJwt(assertion, teamDomain, audience);
 
-  if (!payload)
+  if (!payload) {
     return { ok: false, error: "Cloudflare Access authentication is invalid." };
+  }
 
   const actor = payload.email;
   const accessEmail = request.headers.get("cf-access-authenticated-user-email") ?? "";
 
-  if (accessEmail && accessEmail.toLowerCase() !== actor.toLowerCase())
+  if (accessEmail && accessEmail.toLowerCase() !== actor.toLowerCase()) {
     return { ok: false, error: "Cloudflare Access identity headers do not match." };
+  }
 
   const allowlist = (env.ADMIN_EMAILS ?? "")
     .split(",")
@@ -74,13 +77,15 @@ async function verifyAccessJwt(
   teamDomain: string,
   audience: string
 ): Promise<AccessJwtPayload | null> {
-  if (token.length > 16_384)
+  if (token.length > 16_384) {
     return null;
+  }
 
   const parts = token.split(".");
 
-  if (parts.length !== 3)
+  if (parts.length !== 3) {
     return null;
+  }
 
   const headerData = decodeJwtObject(parts[0]);
   const payloadData = decodeJwtObject(parts[1]);
@@ -100,8 +105,9 @@ async function verifyAccessJwt(
     typeof payloadData.exp !== "number" ||
     typeof payloadData.iss !== "string" ||
     (payloadData.nbf !== undefined && typeof payloadData.nbf !== "number")
-  )
+  ) {
     return null;
+  }
 
   const payload: AccessJwtPayload = {
     aud: payloadData.aud,
@@ -121,11 +127,12 @@ async function verifyAccessJwt(
     !Number.isFinite(payload.exp) ||
     payload.exp <= now ||
     (payload.nbf !== undefined && (!Number.isFinite(payload.nbf) || payload.nbf > now + 60))
-  )
+  ) {
     return null;
+  }
 
   try {
-    // Cache Access public keys at the edge while still validating the full JWT on every request
+    // Cache Access public keys at the edge but still check the full JWT on every request
     const response = await fetch(`${expectedIssuer}/cdn-cgi/access/certs`, {
       headers: { accept: "application/json" },
       signal: AbortSignal.timeout(TURNSTILE_TIMEOUT_MS),
@@ -141,8 +148,9 @@ async function verifyAccessJwt(
     const document = await response.json<{ keys?: AccessJwk[] }>();
     const key = document.keys?.find((candidate) => candidate.kid === headerData.kid);
 
-    if (!key)
+    if (!key) {
       return null;
+    }
 
     const cryptoKey = await crypto.subtle.importKey(
       "jwk",

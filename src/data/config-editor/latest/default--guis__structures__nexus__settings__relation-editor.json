@@ -1,0 +1,1880 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "guis/structures/nexus/settings/relation-editor.yml",
+  "schemaId": "guis/schema",
+  "options": [
+    {
+      "path": [
+        "title"
+      ],
+      "source": "\"{$sep}-=( {$sep}Relation Editor {$sep})=-\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "rows"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sound"
+      ],
+      "source": "ITEM_BOOK_PAGE_TURN",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options"
+      ],
+      "source": "\r\n  green-stained-glass-pane:\r\n    slots: [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 15, 16, 17, 18, 19, 20, 24, 25, 26, 27, 28, 29, 33, 34, 35, 36, 37, 38, 39, 41, 42, 43, 44 ]\r\n    material: GREEN_STAINED_GLASS_PANE\r\n    name: ''\r\n  back:\r\n    name: \"{$p}Back\"\r\n    material: PLAYER_HEAD\r\n    skull: \"{$gui-back}\"\r\n    lore:\r\n      - \"{$s}Go back to nexus menu.\"\r\n    posx: 1\r\n    posy: 1\r\n  fly:\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$enabled} Fly\"\r\n      material: ELYTRA\r\n      glow: true\r\n    else:\r\n      name: \"{$disabled} Fly\"\r\n      material: ELYTRA\r\n    lore:\r\n      - \"{$sep}Allow kingdom flight in\"\r\n      - \"your land.\"\r\n    posx: 4\r\n    posy: 2\r\n  build:\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$enabled} Build\"\r\n      material: DIAMOND_PICKAXE\r\n      glow: true\r\n    else:\r\n      name: \"{$disabled} Build\"\r\n      material: DIAMOND_PICKAXE\r\n    lore:\r\n      - \"{$sep}Allow building in your land.\"\r\n    posx: 5\r\n    posy: 2\r\n  ceasefire:\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$enabled} Ceasefire\"\r\n      material: DIAMOND_SWORD\r\n      glow: true\r\n    else:\r\n      name: \"{$disabled} Ceasefire\"\r\n      material: DIAMOND_SWORD\r\n    lore:\r\n      - \"{$sep}Disable friendly fire.\"\r\n    posx: 6\r\n    posy: 2\r\n  interact:\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$enabled} Interact\"\r\n      material: CAULDRON\r\n      glow: true\r\n    else:\r\n      name: \"{$disabled} Interact\"\r\n      material: CAULDRON\r\n    lore:\r\n      - \"{$sep}Allow block interaction\"\r\n      - \"for opening containers.\"\r\n    posx: 4\r\n    posy: 3\r\n  use:\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$enabled} Use\"\r\n      material: LEVER\r\n      glow: true\r\n    else:\r\n      name: \"{$disabled} Use\"\r\n      material: LEVER\r\n    lore:\r\n      - \"{$sep}Allow using blocks.\"\r\n      - \"Such as doors, levels and buttons.\"\r\n    posx: 5\r\n    posy: 3\r\n  turret-ceasefire:\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$enabled} Turret Ceasefire\"\r\n      material: SPECTRAL_ARROW\r\n      glow: true\r\n      lore:\r\n        - \"{$sep}Disable friendly fire for turrets.\"\r\n    else:\r\n      name: \"{$disabled} Turret Ceasefire\"\r\n      material: SPECTRAL_ARROW\r\n    lore:\r\n      - \"{$sep}Disable friendly fire for turrets.\"\r\n    posx: 6\r\n    posy: 3\r\n  manage-turrets:\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$enabled} Manage Turrets\"\r\n      material: ARROW\r\n      glow: true\r\n    else:\r\n      name: \"{$disabled} Manage Turrets\"\r\n      material: ARROW\r\n    lore:\r\n      - \"{$sep}Allow breaking, placing and\"\r\n      - \"interacting with turrets.\"\r\n    posx: 4\r\n    posy: 4\r\n  manage-structures:\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$enabled} Manage Structures\"\r\n      material: REDSTONE_LAMP\r\n      glow: true\r\n    else:\r\n      name: \"{$disabled} Manage Structures\"\r\n      material: REDSTONE_LAMP\r\n    lore:\r\n      - \"{$sep}Allow breaking, placing and interacting with structures.\"\r\n    posx: 5\r\n    posy: 4\r\n  show-holograms:\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$enabled} Show Holograms\"\r\n      material: PAPER\r\n      glow: true\r\n    else:\r\n      name: \"{$disabled} Show Holograms\"\r\n      material: PAPER\r\n    lore: |\r\n      {$sep}Shows the holograms of\r\n      kingdom items to the members\r\n      of kingdom.\r\n    posx: 6\r\n    posy: 4\r\n  home:\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$enabled} Use Public Homes\"\r\n      material: DARK_OAK_DOOR\r\n      glow: true\r\n    else:\r\n      name: \"{$disabled} Use Public Homes\"\r\n      material: PAPER\r\n    lore: |\r\n      {$sep}Able to teleport to each\r\n      others {$p}/k home\r\n\r\n      {$note} You have to set your home\r\n      to be public in nexus settings.\r\n    posx: 5\r\n    posy: 5\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "green-stained-glass-pane"
+      ],
+      "source": "\r\n    slots: [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 15, 16, 17, 18, 19, 20, 24, 25, 26, 27, 28, 29, 33, 34, 35, 36, 37, 38, 39, 41, 42, 43, 44 ]\r\n    material: GREEN_STAINED_GLASS_PANE\r\n    name: ''\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "green-stained-glass-pane",
+        "slots"
+      ],
+      "source": "[ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 15, 16, 17, 18, 19, 20, 24, 25, 26, 27, 28, 29, 33, 34, 35, 36, 37, 38, 39, 41, 42, 43, 44 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "33",
+        "34",
+        "35",
+        "36",
+        "37",
+        "38",
+        "39",
+        "41",
+        "42",
+        "43",
+        "44"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "green-stained-glass-pane",
+        "material"
+      ],
+      "source": "GREEN_STAINED_GLASS_PANE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "green-stained-glass-pane",
+        "name"
+      ],
+      "source": "''",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back"
+      ],
+      "source": "\r\n    name: \"{$p}Back\"\r\n    material: PLAYER_HEAD\r\n    skull: \"{$gui-back}\"\r\n    lore:\r\n      - \"{$s}Go back to nexus menu.\"\r\n    posx: 1\r\n    posy: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "name"
+      ],
+      "source": "\"{$p}Back\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "material"
+      ],
+      "source": "PLAYER_HEAD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "skull"
+      ],
+      "source": "\"{$gui-back}\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "lore"
+      ],
+      "source": "\r\n      - \"{$s}Go back to nexus menu.\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$s}Go back to nexus menu.\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "posx"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "fly"
+      ],
+      "source": "\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$enabled} Fly\"\r\n      material: ELYTRA\r\n      glow: true\r\n    else:\r\n      name: \"{$disabled} Fly\"\r\n      material: ELYTRA\r\n    lore:\r\n      - \"{$sep}Allow kingdom flight in\"\r\n      - \"your land.\"\r\n    posx: 4\r\n    posy: 2\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "fly",
+        "enabled"
+      ],
+      "source": "\r\n      condition: enabled\r\n      name: \"{$enabled} Fly\"\r\n      material: ELYTRA\r\n      glow: true\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "fly",
+        "enabled",
+        "condition"
+      ],
+      "source": "enabled",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "fly",
+        "enabled",
+        "name"
+      ],
+      "source": "\"{$enabled} Fly\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "fly",
+        "enabled",
+        "material"
+      ],
+      "source": "ELYTRA",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "fly",
+        "enabled",
+        "glow"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "fly",
+        "else"
+      ],
+      "source": "\r\n      name: \"{$disabled} Fly\"\r\n      material: ELYTRA\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "fly",
+        "else",
+        "name"
+      ],
+      "source": "\"{$disabled} Fly\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "fly",
+        "else",
+        "material"
+      ],
+      "source": "ELYTRA",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "fly",
+        "lore"
+      ],
+      "source": "\r\n      - \"{$sep}Allow kingdom flight in\"\r\n      - \"your land.\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$sep}Allow kingdom flight in\"",
+        "\"your land.\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "fly",
+        "posx"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "fly",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "build"
+      ],
+      "source": "\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$enabled} Build\"\r\n      material: DIAMOND_PICKAXE\r\n      glow: true\r\n    else:\r\n      name: \"{$disabled} Build\"\r\n      material: DIAMOND_PICKAXE\r\n    lore:\r\n      - \"{$sep}Allow building in your land.\"\r\n    posx: 5\r\n    posy: 2\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "build",
+        "enabled"
+      ],
+      "source": "\r\n      condition: enabled\r\n      name: \"{$enabled} Build\"\r\n      material: DIAMOND_PICKAXE\r\n      glow: true\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "build",
+        "enabled",
+        "condition"
+      ],
+      "source": "enabled",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "build",
+        "enabled",
+        "name"
+      ],
+      "source": "\"{$enabled} Build\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "build",
+        "enabled",
+        "material"
+      ],
+      "source": "DIAMOND_PICKAXE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "build",
+        "enabled",
+        "glow"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "build",
+        "else"
+      ],
+      "source": "\r\n      name: \"{$disabled} Build\"\r\n      material: DIAMOND_PICKAXE\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "build",
+        "else",
+        "name"
+      ],
+      "source": "\"{$disabled} Build\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "build",
+        "else",
+        "material"
+      ],
+      "source": "DIAMOND_PICKAXE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "build",
+        "lore"
+      ],
+      "source": "\r\n      - \"{$sep}Allow building in your land.\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$sep}Allow building in your land.\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "build",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "build",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "ceasefire"
+      ],
+      "source": "\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$enabled} Ceasefire\"\r\n      material: DIAMOND_SWORD\r\n      glow: true\r\n    else:\r\n      name: \"{$disabled} Ceasefire\"\r\n      material: DIAMOND_SWORD\r\n    lore:\r\n      - \"{$sep}Disable friendly fire.\"\r\n    posx: 6\r\n    posy: 2\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "ceasefire",
+        "enabled"
+      ],
+      "source": "\r\n      condition: enabled\r\n      name: \"{$enabled} Ceasefire\"\r\n      material: DIAMOND_SWORD\r\n      glow: true\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "ceasefire",
+        "enabled",
+        "condition"
+      ],
+      "source": "enabled",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "ceasefire",
+        "enabled",
+        "name"
+      ],
+      "source": "\"{$enabled} Ceasefire\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "ceasefire",
+        "enabled",
+        "material"
+      ],
+      "source": "DIAMOND_SWORD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "ceasefire",
+        "enabled",
+        "glow"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "ceasefire",
+        "else"
+      ],
+      "source": "\r\n      name: \"{$disabled} Ceasefire\"\r\n      material: DIAMOND_SWORD\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "ceasefire",
+        "else",
+        "name"
+      ],
+      "source": "\"{$disabled} Ceasefire\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "ceasefire",
+        "else",
+        "material"
+      ],
+      "source": "DIAMOND_SWORD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "ceasefire",
+        "lore"
+      ],
+      "source": "\r\n      - \"{$sep}Disable friendly fire.\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$sep}Disable friendly fire.\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "ceasefire",
+        "posx"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "ceasefire",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "interact"
+      ],
+      "source": "\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$enabled} Interact\"\r\n      material: CAULDRON\r\n      glow: true\r\n    else:\r\n      name: \"{$disabled} Interact\"\r\n      material: CAULDRON\r\n    lore:\r\n      - \"{$sep}Allow block interaction\"\r\n      - \"for opening containers.\"\r\n    posx: 4\r\n    posy: 3\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "interact",
+        "enabled"
+      ],
+      "source": "\r\n      condition: enabled\r\n      name: \"{$enabled} Interact\"\r\n      material: CAULDRON\r\n      glow: true\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "interact",
+        "enabled",
+        "condition"
+      ],
+      "source": "enabled",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "interact",
+        "enabled",
+        "name"
+      ],
+      "source": "\"{$enabled} Interact\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "interact",
+        "enabled",
+        "material"
+      ],
+      "source": "CAULDRON",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "interact",
+        "enabled",
+        "glow"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "interact",
+        "else"
+      ],
+      "source": "\r\n      name: \"{$disabled} Interact\"\r\n      material: CAULDRON\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "interact",
+        "else",
+        "name"
+      ],
+      "source": "\"{$disabled} Interact\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "interact",
+        "else",
+        "material"
+      ],
+      "source": "CAULDRON",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "interact",
+        "lore"
+      ],
+      "source": "\r\n      - \"{$sep}Allow block interaction\"\r\n      - \"for opening containers.\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$sep}Allow block interaction\"",
+        "\"for opening containers.\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "interact",
+        "posx"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "interact",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "use"
+      ],
+      "source": "\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$enabled} Use\"\r\n      material: LEVER\r\n      glow: true\r\n    else:\r\n      name: \"{$disabled} Use\"\r\n      material: LEVER\r\n    lore:\r\n      - \"{$sep}Allow using blocks.\"\r\n      - \"Such as doors, levels and buttons.\"\r\n    posx: 5\r\n    posy: 3\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "use",
+        "enabled"
+      ],
+      "source": "\r\n      condition: enabled\r\n      name: \"{$enabled} Use\"\r\n      material: LEVER\r\n      glow: true\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "use",
+        "enabled",
+        "condition"
+      ],
+      "source": "enabled",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "use",
+        "enabled",
+        "name"
+      ],
+      "source": "\"{$enabled} Use\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "use",
+        "enabled",
+        "material"
+      ],
+      "source": "LEVER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "use",
+        "enabled",
+        "glow"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "use",
+        "else"
+      ],
+      "source": "\r\n      name: \"{$disabled} Use\"\r\n      material: LEVER\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "use",
+        "else",
+        "name"
+      ],
+      "source": "\"{$disabled} Use\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "use",
+        "else",
+        "material"
+      ],
+      "source": "LEVER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "use",
+        "lore"
+      ],
+      "source": "\r\n      - \"{$sep}Allow using blocks.\"\r\n      - \"Such as doors, levels and buttons.\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$sep}Allow using blocks.\"",
+        "\"Such as doors, levels and buttons.\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "use",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "use",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "turret-ceasefire"
+      ],
+      "source": "\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$enabled} Turret Ceasefire\"\r\n      material: SPECTRAL_ARROW\r\n      glow: true\r\n      lore:\r\n        - \"{$sep}Disable friendly fire for turrets.\"\r\n    else:\r\n      name: \"{$disabled} Turret Ceasefire\"\r\n      material: SPECTRAL_ARROW\r\n    lore:\r\n      - \"{$sep}Disable friendly fire for turrets.\"\r\n    posx: 6\r\n    posy: 3\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "turret-ceasefire",
+        "enabled"
+      ],
+      "source": "\r\n      condition: enabled\r\n      name: \"{$enabled} Turret Ceasefire\"\r\n      material: SPECTRAL_ARROW\r\n      glow: true\r\n      lore:\r\n        - \"{$sep}Disable friendly fire for turrets.\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "turret-ceasefire",
+        "enabled",
+        "condition"
+      ],
+      "source": "enabled",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "turret-ceasefire",
+        "enabled",
+        "name"
+      ],
+      "source": "\"{$enabled} Turret Ceasefire\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "turret-ceasefire",
+        "enabled",
+        "material"
+      ],
+      "source": "SPECTRAL_ARROW",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "turret-ceasefire",
+        "enabled",
+        "glow"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "turret-ceasefire",
+        "enabled",
+        "lore"
+      ],
+      "source": "\r\n        - \"{$sep}Disable friendly fire for turrets.\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$sep}Disable friendly fire for turrets.\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "turret-ceasefire",
+        "else"
+      ],
+      "source": "\r\n      name: \"{$disabled} Turret Ceasefire\"\r\n      material: SPECTRAL_ARROW\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "turret-ceasefire",
+        "else",
+        "name"
+      ],
+      "source": "\"{$disabled} Turret Ceasefire\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "turret-ceasefire",
+        "else",
+        "material"
+      ],
+      "source": "SPECTRAL_ARROW",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "turret-ceasefire",
+        "lore"
+      ],
+      "source": "\r\n      - \"{$sep}Disable friendly fire for turrets.\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$sep}Disable friendly fire for turrets.\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "turret-ceasefire",
+        "posx"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "turret-ceasefire",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "manage-turrets"
+      ],
+      "source": "\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$enabled} Manage Turrets\"\r\n      material: ARROW\r\n      glow: true\r\n    else:\r\n      name: \"{$disabled} Manage Turrets\"\r\n      material: ARROW\r\n    lore:\r\n      - \"{$sep}Allow breaking, placing and\"\r\n      - \"interacting with turrets.\"\r\n    posx: 4\r\n    posy: 4\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "manage-turrets",
+        "enabled"
+      ],
+      "source": "\r\n      condition: enabled\r\n      name: \"{$enabled} Manage Turrets\"\r\n      material: ARROW\r\n      glow: true\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "manage-turrets",
+        "enabled",
+        "condition"
+      ],
+      "source": "enabled",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "manage-turrets",
+        "enabled",
+        "name"
+      ],
+      "source": "\"{$enabled} Manage Turrets\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "manage-turrets",
+        "enabled",
+        "material"
+      ],
+      "source": "ARROW",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "manage-turrets",
+        "enabled",
+        "glow"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "manage-turrets",
+        "else"
+      ],
+      "source": "\r\n      name: \"{$disabled} Manage Turrets\"\r\n      material: ARROW\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "manage-turrets",
+        "else",
+        "name"
+      ],
+      "source": "\"{$disabled} Manage Turrets\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "manage-turrets",
+        "else",
+        "material"
+      ],
+      "source": "ARROW",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "manage-turrets",
+        "lore"
+      ],
+      "source": "\r\n      - \"{$sep}Allow breaking, placing and\"\r\n      - \"interacting with turrets.\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$sep}Allow breaking, placing and\"",
+        "\"interacting with turrets.\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "manage-turrets",
+        "posx"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "manage-turrets",
+        "posy"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "manage-structures"
+      ],
+      "source": "\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$enabled} Manage Structures\"\r\n      material: REDSTONE_LAMP\r\n      glow: true\r\n    else:\r\n      name: \"{$disabled} Manage Structures\"\r\n      material: REDSTONE_LAMP\r\n    lore:\r\n      - \"{$sep}Allow breaking, placing and interacting with structures.\"\r\n    posx: 5\r\n    posy: 4\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "manage-structures",
+        "enabled"
+      ],
+      "source": "\r\n      condition: enabled\r\n      name: \"{$enabled} Manage Structures\"\r\n      material: REDSTONE_LAMP\r\n      glow: true\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "manage-structures",
+        "enabled",
+        "condition"
+      ],
+      "source": "enabled",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "manage-structures",
+        "enabled",
+        "name"
+      ],
+      "source": "\"{$enabled} Manage Structures\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "manage-structures",
+        "enabled",
+        "material"
+      ],
+      "source": "REDSTONE_LAMP",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "manage-structures",
+        "enabled",
+        "glow"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "manage-structures",
+        "else"
+      ],
+      "source": "\r\n      name: \"{$disabled} Manage Structures\"\r\n      material: REDSTONE_LAMP\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "manage-structures",
+        "else",
+        "name"
+      ],
+      "source": "\"{$disabled} Manage Structures\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "manage-structures",
+        "else",
+        "material"
+      ],
+      "source": "REDSTONE_LAMP",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "manage-structures",
+        "lore"
+      ],
+      "source": "\r\n      - \"{$sep}Allow breaking, placing and interacting with structures.\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$sep}Allow breaking, placing and interacting with structures.\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "manage-structures",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "manage-structures",
+        "posy"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "show-holograms"
+      ],
+      "source": "\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$enabled} Show Holograms\"\r\n      material: PAPER\r\n      glow: true\r\n    else:\r\n      name: \"{$disabled} Show Holograms\"\r\n      material: PAPER\r\n    lore: |\r\n      {$sep}Shows the holograms of\r\n      kingdom items to the members\r\n      of kingdom.\r\n    posx: 6\r\n    posy: 4\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "show-holograms",
+        "enabled"
+      ],
+      "source": "\r\n      condition: enabled\r\n      name: \"{$enabled} Show Holograms\"\r\n      material: PAPER\r\n      glow: true\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "show-holograms",
+        "enabled",
+        "condition"
+      ],
+      "source": "enabled",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "show-holograms",
+        "enabled",
+        "name"
+      ],
+      "source": "\"{$enabled} Show Holograms\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "show-holograms",
+        "enabled",
+        "material"
+      ],
+      "source": "PAPER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "show-holograms",
+        "enabled",
+        "glow"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "show-holograms",
+        "else"
+      ],
+      "source": "\r\n      name: \"{$disabled} Show Holograms\"\r\n      material: PAPER\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "show-holograms",
+        "else",
+        "name"
+      ],
+      "source": "\"{$disabled} Show Holograms\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "show-holograms",
+        "else",
+        "material"
+      ],
+      "source": "PAPER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "show-holograms",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}Shows the holograms of\r\n      kingdom items to the members\r\n      of kingdom.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "show-holograms",
+        "posx"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "show-holograms",
+        "posy"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "home"
+      ],
+      "source": "\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$enabled} Use Public Homes\"\r\n      material: DARK_OAK_DOOR\r\n      glow: true\r\n    else:\r\n      name: \"{$disabled} Use Public Homes\"\r\n      material: PAPER\r\n    lore: |\r\n      {$sep}Able to teleport to each\r\n      others {$p}/k home\r\n\r\n      {$note} You have to set your home\r\n      to be public in nexus settings.\r\n    posx: 5\r\n    posy: 5\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "home",
+        "enabled"
+      ],
+      "source": "\r\n      condition: enabled\r\n      name: \"{$enabled} Use Public Homes\"\r\n      material: DARK_OAK_DOOR\r\n      glow: true\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "home",
+        "enabled",
+        "condition"
+      ],
+      "source": "enabled",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "home",
+        "enabled",
+        "name"
+      ],
+      "source": "\"{$enabled} Use Public Homes\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "home",
+        "enabled",
+        "material"
+      ],
+      "source": "DARK_OAK_DOOR",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "home",
+        "enabled",
+        "glow"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "home",
+        "else"
+      ],
+      "source": "\r\n      name: \"{$disabled} Use Public Homes\"\r\n      material: PAPER\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "home",
+        "else",
+        "name"
+      ],
+      "source": "\"{$disabled} Use Public Homes\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "home",
+        "else",
+        "material"
+      ],
+      "source": "PAPER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "home",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}Able to teleport to each\r\n      others {$p}/k home\r\n\r\n      {$note} You have to set your home\r\n      to be public in nexus settings.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "home",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "home",
+        "posy"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

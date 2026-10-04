@@ -1,0 +1,590 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "Turrets/healing.yml",
+  "schemaId": "Turrets/turret",
+  "options": [
+    {
+      "path": [
+        "(import)"
+      ],
+      "source": "\r\n  turret:\r\n    parameters:\r\n      <name>: healing\r\n      <build-duration-factor>: '0'\r\n      <durability-factor>: 100\r\n      <skull-1>: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMmIwNTVjODEwYmRkZmQxNjI2NGVjOGQ0MzljNDMyODNlMzViY2E3MWE1MDk4M2UxNWUzNjRjZDhhYjdjNjY4ZiJ9fX0='\r\n      <skull-2>: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzJlYmVhMTdjMzIzNTYzN2E3NDQ4ODczODA2MDllMzhmYWU3NDhhMjY5YzY3NThkZDA5Njk4NmYyYWI5ZjgxNCJ9fX0='\r\n      <skull-3>: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWRkY2E5M2Q0MTZmNTUzN2E4MjdhYWZmZDVlNGM1YWRmOWE4YjJhZWY4NDBkYmQzMzM4NjFlMmM1ZjkxMjI4YyJ9fX0='\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "turret"
+      ],
+      "source": "\r\n    parameters:\r\n      <name>: healing\r\n      <build-duration-factor>: '0'\r\n      <durability-factor>: 100\r\n      <skull-1>: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMmIwNTVjODEwYmRkZmQxNjI2NGVjOGQ0MzljNDMyODNlMzViY2E3MWE1MDk4M2UxNWUzNjRjZDhhYjdjNjY4ZiJ9fX0='\r\n      <skull-2>: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzJlYmVhMTdjMzIzNTYzN2E3NDQ4ODczODA2MDllMzhmYWU3NDhhMjY5YzY3NThkZDA5Njk4NmYyYWI5ZjgxNCJ9fX0='\r\n      <skull-3>: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWRkY2E5M2Q0MTZmNTUzN2E4MjdhYWZmZDVlNGM1YWRmOWE4YjJhZWY4NDBkYmQzMzM4NjFlMmM1ZjkxMjI4YyJ9fX0='\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "turret",
+        "parameters"
+      ],
+      "source": "\r\n      <name>: healing\r\n      <build-duration-factor>: '0'\r\n      <durability-factor>: 100\r\n      <skull-1>: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMmIwNTVjODEwYmRkZmQxNjI2NGVjOGQ0MzljNDMyODNlMzViY2E3MWE1MDk4M2UxNWUzNjRjZDhhYjdjNjY4ZiJ9fX0='\r\n      <skull-2>: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzJlYmVhMTdjMzIzNTYzN2E3NDQ4ODczODA2MDllMzhmYWU3NDhhMjY5YzY3NThkZDA5Njk4NmYyYWI5ZjgxNCJ9fX0='\r\n      <skull-3>: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWRkY2E5M2Q0MTZmNTUzN2E4MjdhYWZmZDVlNGM1YWRmOWE4YjJhZWY4NDBkYmQzMzM4NjFlMmM1ZjkxMjI4YyJ9fX0='\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "turret",
+        "parameters",
+        "<name>"
+      ],
+      "source": "healing",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "turret",
+        "parameters",
+        "<build-duration-factor>"
+      ],
+      "source": "'0'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "turret",
+        "parameters",
+        "<durability-factor>"
+      ],
+      "source": "100",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "turret",
+        "parameters",
+        "<skull-1>"
+      ],
+      "source": "'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMmIwNTVjODEwYmRkZmQxNjI2NGVjOGQ0MzljNDMyODNlMzViY2E3MWE1MDk4M2UxNWUzNjRjZDhhYjdjNjY4ZiJ9fX0='",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "turret",
+        "parameters",
+        "<skull-2>"
+      ],
+      "source": "'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzJlYmVhMTdjMzIzNTYzN2E3NDQ4ODczODA2MDllMzhmYWU3NDhhMjY5YzY3NThkZDA5Njk4NmYyYWI5ZjgxNCJ9fX0='",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "turret",
+        "parameters",
+        "<skull-3>"
+      ],
+      "source": "'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWRkY2E5M2Q0MTZmNTUzN2E4MjdhYWZmZDVlNGM1YWRmOWE4YjJhZWY4NDBkYmQzMzM4NjFlMmM1ZjkxMjI4YyJ9fX0='",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "name"
+      ],
+      "source": "\"&dHealing\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "type"
+      ],
+      "source": "healing",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "cost"
+      ],
+      "source": "200",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sell"
+      ],
+      "source": "100",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "max-level"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "range"
+      ],
+      "source": "5 + lvl",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "cooldown"
+      ],
+      "source": "7 - lvl",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "max-targets"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "max-ammo"
+      ],
+      "source": "lvl * 2000",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "upgrade-cost"
+      ],
+      "source": "lvl * 60",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "conditions"
+      ],
+      "source": "\r\n  purchase:\r\n    'kingdoms_kingdom_level < 2': '{$$kingdom-levels.II}'\r\n  upgrade:\r\n    'level == 1 && kingdoms_kingdom_level < 3': '{$$kingdom-levels.III}'\r\n    'level == 2 && kingdoms_kingdom_level < 4': '{$$kingdom-levels.IV}'\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "conditions",
+        "purchase"
+      ],
+      "source": "\r\n    'kingdoms_kingdom_level < 2': '{$$kingdom-levels.II}'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "conditions",
+        "purchase",
+        "kingdoms_kingdom_level < 2"
+      ],
+      "source": "'{$$kingdom-levels.II}'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "conditions",
+        "upgrade"
+      ],
+      "source": "\r\n    'level == 1 && kingdoms_kingdom_level < 3': '{$$kingdom-levels.III}'\r\n    'level == 2 && kingdoms_kingdom_level < 4': '{$$kingdom-levels.IV}'\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "conditions",
+        "upgrade",
+        "level == 1 && kingdoms_kingdom_level < 3"
+      ],
+      "source": "'{$$kingdom-levels.III}'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "conditions",
+        "upgrade",
+        "level == 2 && kingdoms_kingdom_level < 4"
+      ],
+      "source": "'{$$kingdom-levels.IV}'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "whitelist"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "entities"
+      ],
+      "source": "\r\n  whitelist: true\r\n  list: [ PLAYER ]\r\n\r\n# Repairs a random player armor if they're wearing one.\r\n# This only works if the player needs healing so it won't work\r\n# when on full health. It works exactly like mending except that\r\n# if all armors are fully repaired, it doesn't give you exp.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "entities",
+        "whitelist"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "entities",
+        "list"
+      ],
+      "source": "[ PLAYER ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "PLAYER"
+      ]
+    },
+    {
+      "path": [
+        "repair-armor"
+      ],
+      "source": "lvl * 3",
+      "comments": [
+        "Repairs a random player armor if they're wearing one.",
+        "This only works if the player needs healing so it won't work",
+        "when on full health. It works exactly like mending except that",
+        "if all armors are fully repaired, it doesn't give you exp."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "fire"
+      ],
+      "source": "100",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particle"
+      ],
+      "source": "\r\n  1:\r\n    particle: SPELL_WITCH\r\n    count: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particle",
+        "1"
+      ],
+      "source": "\r\n    particle: SPELL_WITCH\r\n    count: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particle",
+        "1",
+        "particle"
+      ],
+      "source": "SPELL_WITCH",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particle",
+        "1",
+        "count"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "effects"
+      ],
+      "source": "\r\n  2: [ \"STRENGTH, 5, 1\" ]\r\n  3: [ \"STRENGTH, 7, 1\", \"SPEED, 5, 1\" ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "effects",
+        "2"
+      ],
+      "source": "[ \"STRENGTH, 5, 1\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"STRENGTH, 5, 1\""
+      ]
+    },
+    {
+      "path": [
+        "effects",
+        "3"
+      ],
+      "source": "[ \"STRENGTH, 7, 1\", \"SPEED, 5, 1\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"STRENGTH, 7, 1\"",
+        "\"SPEED, 5, 1\""
+      ]
+    },
+    {
+      "path": [
+        "projectile"
+      ],
+      "source": "~",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "speed"
+      ],
+      "source": "1 + (lvl * 0.5)",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damage"
+      ],
+      "source": "lvl + 3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "item"
+      ],
+      "source": "\r\n  1:\r\n    name: \"&dHealing Turret\"\r\n    material: TIPPED_ARROW\r\n    flags: [ ALL ]\r\n    lore: |\r\n      {$desc}Heals nearby kingdom members\r\n      and allies. Gives some buffs on higher\r\n      levels.\r\n\r\n      {$sp}Attributes{$colon}\r\n      {$dot} {$p}Level{$colon} {$s}%roman@level%\r\n      {$dot} {$p}Ammo{$colon} {$s}%ammo%\r\n      {$dot} {$p}Durability{$colon} {? building_max_durability > 0 && building_durability <= 0 ? \"&4Broken\" : \"{$s}%building_durability%{$sep}/{$s}%building_max_durability%\" }\r\n      {$dot} {$p}Range{$colon} {$s}%range%\r\n      {$dot} {$p}Max Targets{$colon} {$s}%max_targets%\r\n      {$dot} {$p}Max Ammo{$colon} {$s}%max_ammo%\r\n      {$dot} {$p}Cooldown{$colon} {$s}%cooldown%\r\n      {$dot} {$p}Speed{$colon} {$s}%fancy@speed%\r\n      {$dot} {$p}Healing{$colon} {$s}%damage%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "item",
+        "1"
+      ],
+      "source": "\r\n    name: \"&dHealing Turret\"\r\n    material: TIPPED_ARROW\r\n    flags: [ ALL ]\r\n    lore: |\r\n      {$desc}Heals nearby kingdom members\r\n      and allies. Gives some buffs on higher\r\n      levels.\r\n\r\n      {$sp}Attributes{$colon}\r\n      {$dot} {$p}Level{$colon} {$s}%roman@level%\r\n      {$dot} {$p}Ammo{$colon} {$s}%ammo%\r\n      {$dot} {$p}Durability{$colon} {? building_max_durability > 0 && building_durability <= 0 ? \"&4Broken\" : \"{$s}%building_durability%{$sep}/{$s}%building_max_durability%\" }\r\n      {$dot} {$p}Range{$colon} {$s}%range%\r\n      {$dot} {$p}Max Targets{$colon} {$s}%max_targets%\r\n      {$dot} {$p}Max Ammo{$colon} {$s}%max_ammo%\r\n      {$dot} {$p}Cooldown{$colon} {$s}%cooldown%\r\n      {$dot} {$p}Speed{$colon} {$s}%fancy@speed%\r\n      {$dot} {$p}Healing{$colon} {$s}%damage%\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "item",
+        "1",
+        "name"
+      ],
+      "source": "\"&dHealing Turret\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "item",
+        "1",
+        "material"
+      ],
+      "source": "TIPPED_ARROW",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "item",
+        "1",
+        "flags"
+      ],
+      "source": "[ ALL ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "ALL"
+      ]
+    },
+    {
+      "path": [
+        "item",
+        "1",
+        "lore"
+      ],
+      "source": "|\r\n      {$desc}Heals nearby kingdom members\r\n      and allies. Gives some buffs on higher\r\n      levels.\r\n\r\n      {$sp}Attributes{$colon}\r\n      {$dot} {$p}Level{$colon} {$s}%roman@level%\r\n      {$dot} {$p}Ammo{$colon} {$s}%ammo%\r\n      {$dot} {$p}Durability{$colon} {? building_max_durability > 0 && building_durability <= 0 ? \"&4Broken\" : \"{$s}%building_durability%{$sep}/{$s}%building_max_durability%\" }\r\n      {$dot} {$p}Range{$colon} {$s}%range%\r\n      {$dot} {$p}Max Targets{$colon} {$s}%max_targets%\r\n      {$dot} {$p}Max Ammo{$colon} {$s}%max_ammo%\r\n      {$dot} {$p}Cooldown{$colon} {$s}%cooldown%\r\n      {$dot} {$p}Speed{$colon} {$s}%fancy@speed%\r\n      {$dot} {$p}Healing{$colon} {$s}%damage%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

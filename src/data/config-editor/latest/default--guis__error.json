@@ -1,0 +1,120 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "guis/error.yml",
+  "schemaId": "guis/schema",
+  "options": [
+    {
+      "path": [
+        "title"
+      ],
+      "source": "\"&4&lError\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "type"
+      ],
+      "source": "HOPPER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sound"
+      ],
+      "source": "BLOCK_NOTE_BLOCK_BASS",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options"
+      ],
+      "source": "\r\n  error:\r\n    name: \"&cThis GUI is broken\"\r\n    lore: |\r\n      &fIf you're a player contact\r\n      the server's administrators.\r\n\r\n      If you're an admin, this GUI:\r\n      {$s}%gui_path%\r\n      &fError{$colon}\r\n      &e%message%\r\n    material: BARRIER\r\n    slot: 2",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "error"
+      ],
+      "source": "\r\n    name: \"&cThis GUI is broken\"\r\n    lore: |\r\n      &fIf you're a player contact\r\n      the server's administrators.\r\n\r\n      If you're an admin, this GUI:\r\n      {$s}%gui_path%\r\n      &fError{$colon}\r\n      &e%message%\r\n    material: BARRIER\r\n    slot: 2",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "error",
+        "name"
+      ],
+      "source": "\"&cThis GUI is broken\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "error",
+        "lore"
+      ],
+      "source": "|\r\n      &fIf you're a player contact\r\n      the server's administrators.\r\n\r\n      If you're an admin, this GUI:\r\n      {$s}%gui_path%\r\n      &fError{$colon}\r\n      &e%message%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "error",
+        "material"
+      ],
+      "source": "BARRIER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "error",
+        "slot"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

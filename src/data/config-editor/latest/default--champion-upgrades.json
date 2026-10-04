@@ -1,0 +1,4782 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "champion-upgrades.yml",
+  "schemaId": "champion-upgrades",
+  "options": [
+    {
+      "path": [
+        "champions"
+      ],
+      "source": "\r\n  # The default champion type. Requires a restart to apply.\r\n  default: 'zombie'\r\n  zombie:\r\n    name: 'Equipment'\r\n    cost: \"(lvl + 1) * 100\"\r\n    max-level: 5\r\n    # Do not set the maximum health in the base. The health upgrade scaling will override it.\r\n    base:\r\n      # If you have mythicmobs installed you can do this:\r\n      # mythicmob: <type>\r\n      # The level of the mm mob is the same as the equipment's upgrade level.\r\n      type: ZOMBIE\r\n      baby: false\r\n      name: \"&c%kingdoms_kingdom_name% {$s}Champion\"\r\n    levels:\r\n      1:\r\n        equipment:\r\n          main-hand:\r\n            item:\r\n              material: WOODEN_SWORD\r\n          helmet:\r\n            item:\r\n              material: LEATHER_HELMET\r\n          chestplate:\r\n            item:\r\n              material: LEATHER_CHESTPLATE\r\n          leggings:\r\n            item:\r\n              material: LEATHER_LEGGINGS\r\n          boots:\r\n            item:\r\n              material: LEATHER_BOOTS\r\n      2:\r\n        equipment:\r\n          main-hand:\r\n            item:\r\n              material: STONE_SWORD\r\n              enchants:\r\n                KNOCKBACK: 1\r\n          helmet:\r\n            item:\r\n              material: CHAINMAIL_HELMET\r\n          chestplate:\r\n            item:\r\n              material: CHAINMAIL_CHESTPLATE\r\n          leggings:\r\n            item:\r\n              material: CHAINMAIL_LEGGINGS\r\n          boots:\r\n            item:\r\n              material: CHAINMAIL_BOOTS\r\n      3:\r\n        equipment:\r\n          main-hand:\r\n            item:\r\n              material: GOLDEN_SWORD\r\n              enchants:\r\n                KNOCKBACK: 2\r\n                FIRE_ASPECT: 1\r\n          helmet:\r\n            item:\r\n              material: GOLDEN_HELMET\r\n          chestplate:\r\n            item:\r\n              material: GOLDEN_CHESTPLATE\r\n          leggings:\r\n            item:\r\n              material: GOLDEN_LEGGINGS\r\n          boots:\r\n            item:\r\n              material: GOLDEN_BOOTS\r\n      4:\r\n        equipment:\r\n          main-hand:\r\n            item:\r\n              material: IRON_SWORD\r\n              enchants:\r\n                KNOCKBACK: 2\r\n                FIRE_ASPECT: 2\r\n          helmet:\r\n            item:\r\n              material: IRON_HELMET\r\n          chestplate:\r\n            item:\r\n              material: IRON_CHESTPLATE\r\n          leggings:\r\n            item:\r\n              material: IRON_LEGGINGS\r\n          boots:\r\n            item:\r\n              material: IRON_BOOTS\r\n      5:\r\n        equipment:\r\n          main-hand:\r\n            item:\r\n              material: DIAMOND_SWORD\r\n              enchants:\r\n                KNOCKBACK: 2\r\n                FIRE_ASPECT: 2\r\n                SHARPNESS: 3\r\n          helmet:\r\n            item:\r\n              material: DIAMOND_HELMET\r\n          chestplate:\r\n            item:\r\n              material: DIAMOND_CHESTPLATE\r\n          leggings:\r\n            item:\r\n              material: DIAMOND_LEGGINGS\r\n          boots:\r\n            item:\r\n              material: DIAMOND_BOOTS\r\n  skeleton:\r\n    name: 'Equipment'\r\n    cost: \"(lvl + 1) * 100\"\r\n    max-level: 5\r\n    base:\r\n      type: SKELETON\r\n      baby: false\r\n      name: \"&c%kingdoms_kingdom_name% {$s}Champion\"\r\n    levels:\r\n      1:\r\n        equipment:\r\n          main-hand:\r\n            item:\r\n              material: BOW\r\n              enchants:\r\n                POWER: 1\r\n          helmet:\r\n            item:\r\n              material: LEATHER_HELMET\r\n          chestplate:\r\n            item:\r\n              material: LEATHER_CHESTPLATE\r\n          leggings:\r\n            item:\r\n              material: LEATHER_LEGGINGS\r\n          boots:\r\n            item:\r\n              material: LEATHER_BOOTS\r\n      2:\r\n        equipment:\r\n          main-hand:\r\n            item:\r\n              material: BOW\r\n              enchants:\r\n                POWER: 2\r\n                PUNCH: 1\r\n          helmet:\r\n            item:\r\n              material: CHAINMAIL_HELMET\r\n          chestplate:\r\n            item:\r\n              material: CHAINMAIL_CHESTPLATE\r\n          leggings:\r\n            item:\r\n              material: CHAINMAIL_LEGGINGS\r\n          boots:\r\n            item:\r\n              material: CHAINMAIL_BOOTS\r\n      3:\r\n        equipment:\r\n          main-hand:\r\n            item:\r\n              material: BOW\r\n              enchants:\r\n                POWER: 3\r\n                PUNCH: 2\r\n          helmet:\r\n            item:\r\n              material: GOLDEN_HELMET\r\n          chestplate:\r\n            item:\r\n              material: GOLDEN_CHESTPLATE\r\n          leggings:\r\n            item:\r\n              material: GOLDEN_LEGGINGS\r\n          boots:\r\n            item:\r\n              material: GOLDEN_BOOTS\r\n      4:\r\n        equipment:\r\n          main-hand:\r\n            item:\r\n              material: BOW\r\n              enchants:\r\n                POWER: 4\r\n                PUNCH: 2\r\n                FLAME: 1\r\n          helmet:\r\n            item:\r\n              material: IRON_HELMET\r\n          chestplate:\r\n            item:\r\n              material: IRON_CHESTPLATE\r\n          leggings:\r\n            item:\r\n              material: IRON_LEGGINGS\r\n          boots:\r\n            item:\r\n              material: IRON_BOOTS\r\n      5:\r\n        equipment:\r\n          main-hand:\r\n            item:\r\n              material: BOW\r\n              enchants:\r\n                POWER: 5\r\n                PUNCH: 2\r\n                FLAME: 1\r\n                UNBREAKING: 3\r\n          helmet:\r\n            item:\r\n              material: DIAMOND_HELMET\r\n          chestplate:\r\n            item:\r\n              material: DIAMOND_CHESTPLATE\r\n          leggings:\r\n            item:\r\n              material: DIAMOND_LEGGINGS\r\n          boots:\r\n            item:\r\n              material: DIAMOND_BOOTS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "default"
+      ],
+      "source": "'zombie'",
+      "comments": [
+        "The default champion type. Requires a restart to apply."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie"
+      ],
+      "source": "\r\n    name: 'Equipment'\r\n    cost: \"(lvl + 1) * 100\"\r\n    max-level: 5\r\n    # Do not set the maximum health in the base. The health upgrade scaling will override it.\r\n    base:\r\n      # If you have mythicmobs installed you can do this:\r\n      # mythicmob: <type>\r\n      # The level of the mm mob is the same as the equipment's upgrade level.\r\n      type: ZOMBIE\r\n      baby: false\r\n      name: \"&c%kingdoms_kingdom_name% {$s}Champion\"\r\n    levels:\r\n      1:\r\n        equipment:\r\n          main-hand:\r\n            item:\r\n              material: WOODEN_SWORD\r\n          helmet:\r\n            item:\r\n              material: LEATHER_HELMET\r\n          chestplate:\r\n            item:\r\n              material: LEATHER_CHESTPLATE\r\n          leggings:\r\n            item:\r\n              material: LEATHER_LEGGINGS\r\n          boots:\r\n            item:\r\n              material: LEATHER_BOOTS\r\n      2:\r\n        equipment:\r\n          main-hand:\r\n            item:\r\n              material: STONE_SWORD\r\n              enchants:\r\n                KNOCKBACK: 1\r\n          helmet:\r\n            item:\r\n              material: CHAINMAIL_HELMET\r\n          chestplate:\r\n            item:\r\n              material: CHAINMAIL_CHESTPLATE\r\n          leggings:\r\n            item:\r\n              material: CHAINMAIL_LEGGINGS\r\n          boots:\r\n            item:\r\n              material: CHAINMAIL_BOOTS\r\n      3:\r\n        equipment:\r\n          main-hand:\r\n            item:\r\n              material: GOLDEN_SWORD\r\n              enchants:\r\n                KNOCKBACK: 2\r\n                FIRE_ASPECT: 1\r\n          helmet:\r\n            item:\r\n              material: GOLDEN_HELMET\r\n          chestplate:\r\n            item:\r\n              material: GOLDEN_CHESTPLATE\r\n          leggings:\r\n            item:\r\n              material: GOLDEN_LEGGINGS\r\n          boots:\r\n            item:\r\n              material: GOLDEN_BOOTS\r\n      4:\r\n        equipment:\r\n          main-hand:\r\n            item:\r\n              material: IRON_SWORD\r\n              enchants:\r\n                KNOCKBACK: 2\r\n                FIRE_ASPECT: 2\r\n          helmet:\r\n            item:\r\n              material: IRON_HELMET\r\n          chestplate:\r\n            item:\r\n              material: IRON_CHESTPLATE\r\n          leggings:\r\n            item:\r\n              material: IRON_LEGGINGS\r\n          boots:\r\n            item:\r\n              material: IRON_BOOTS\r\n      5:\r\n        equipment:\r\n          main-hand:\r\n            item:\r\n              material: DIAMOND_SWORD\r\n              enchants:\r\n                KNOCKBACK: 2\r\n                FIRE_ASPECT: 2\r\n                SHARPNESS: 3\r\n          helmet:\r\n            item:\r\n              material: DIAMOND_HELMET\r\n          chestplate:\r\n            item:\r\n              material: DIAMOND_CHESTPLATE\r\n          leggings:\r\n            item:\r\n              material: DIAMOND_LEGGINGS\r\n          boots:\r\n            item:\r\n              material: DIAMOND_BOOTS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "name"
+      ],
+      "source": "'Equipment'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "cost"
+      ],
+      "source": "\"(lvl + 1) * 100\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "max-level"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "base"
+      ],
+      "source": "\r\n      # If you have mythicmobs installed you can do this:\r\n      # mythicmob: <type>\r\n      # The level of the mm mob is the same as the equipment's upgrade level.\r\n      type: ZOMBIE\r\n      baby: false\r\n      name: \"&c%kingdoms_kingdom_name% {$s}Champion\"\r\n",
+      "comments": [
+        "Do not set the maximum health in the base. The health upgrade scaling will override it."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "base",
+        "type"
+      ],
+      "source": "ZOMBIE",
+      "comments": [
+        "If you have mythicmobs installed you can do this:",
+        "mythicmob: <type>",
+        "The level of the mm mob is the same as the equipment's upgrade level."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "base",
+        "baby"
+      ],
+      "source": "false",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "base",
+        "name"
+      ],
+      "source": "\"&c%kingdoms_kingdom_name% {$s}Champion\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels"
+      ],
+      "source": "\r\n      1:\r\n        equipment:\r\n          main-hand:\r\n            item:\r\n              material: WOODEN_SWORD\r\n          helmet:\r\n            item:\r\n              material: LEATHER_HELMET\r\n          chestplate:\r\n            item:\r\n              material: LEATHER_CHESTPLATE\r\n          leggings:\r\n            item:\r\n              material: LEATHER_LEGGINGS\r\n          boots:\r\n            item:\r\n              material: LEATHER_BOOTS\r\n      2:\r\n        equipment:\r\n          main-hand:\r\n            item:\r\n              material: STONE_SWORD\r\n              enchants:\r\n                KNOCKBACK: 1\r\n          helmet:\r\n            item:\r\n              material: CHAINMAIL_HELMET\r\n          chestplate:\r\n            item:\r\n              material: CHAINMAIL_CHESTPLATE\r\n          leggings:\r\n            item:\r\n              material: CHAINMAIL_LEGGINGS\r\n          boots:\r\n            item:\r\n              material: CHAINMAIL_BOOTS\r\n      3:\r\n        equipment:\r\n          main-hand:\r\n            item:\r\n              material: GOLDEN_SWORD\r\n              enchants:\r\n                KNOCKBACK: 2\r\n                FIRE_ASPECT: 1\r\n          helmet:\r\n            item:\r\n              material: GOLDEN_HELMET\r\n          chestplate:\r\n            item:\r\n              material: GOLDEN_CHESTPLATE\r\n          leggings:\r\n            item:\r\n              material: GOLDEN_LEGGINGS\r\n          boots:\r\n            item:\r\n              material: GOLDEN_BOOTS\r\n      4:\r\n        equipment:\r\n          main-hand:\r\n            item:\r\n              material: IRON_SWORD\r\n              enchants:\r\n                KNOCKBACK: 2\r\n                FIRE_ASPECT: 2\r\n          helmet:\r\n            item:\r\n              material: IRON_HELMET\r\n          chestplate:\r\n            item:\r\n              material: IRON_CHESTPLATE\r\n          leggings:\r\n            item:\r\n              material: IRON_LEGGINGS\r\n          boots:\r\n            item:\r\n              material: IRON_BOOTS\r\n      5:\r\n        equipment:\r\n          main-hand:\r\n            item:\r\n              material: DIAMOND_SWORD\r\n              enchants:\r\n                KNOCKBACK: 2\r\n                FIRE_ASPECT: 2\r\n                SHARPNESS: 3\r\n          helmet:\r\n            item:\r\n              material: DIAMOND_HELMET\r\n          chestplate:\r\n            item:\r\n              material: DIAMOND_CHESTPLATE\r\n          leggings:\r\n            item:\r\n              material: DIAMOND_LEGGINGS\r\n          boots:\r\n            item:\r\n              material: DIAMOND_BOOTS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "1"
+      ],
+      "source": "\r\n        equipment:\r\n          main-hand:\r\n            item:\r\n              material: WOODEN_SWORD\r\n          helmet:\r\n            item:\r\n              material: LEATHER_HELMET\r\n          chestplate:\r\n            item:\r\n              material: LEATHER_CHESTPLATE\r\n          leggings:\r\n            item:\r\n              material: LEATHER_LEGGINGS\r\n          boots:\r\n            item:\r\n              material: LEATHER_BOOTS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "1",
+        "equipment"
+      ],
+      "source": "\r\n          main-hand:\r\n            item:\r\n              material: WOODEN_SWORD\r\n          helmet:\r\n            item:\r\n              material: LEATHER_HELMET\r\n          chestplate:\r\n            item:\r\n              material: LEATHER_CHESTPLATE\r\n          leggings:\r\n            item:\r\n              material: LEATHER_LEGGINGS\r\n          boots:\r\n            item:\r\n              material: LEATHER_BOOTS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "1",
+        "equipment",
+        "main-hand"
+      ],
+      "source": "\r\n            item:\r\n              material: WOODEN_SWORD\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "1",
+        "equipment",
+        "main-hand",
+        "item"
+      ],
+      "source": "\r\n              material: WOODEN_SWORD\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "1",
+        "equipment",
+        "main-hand",
+        "item",
+        "material"
+      ],
+      "source": "WOODEN_SWORD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "1",
+        "equipment",
+        "helmet"
+      ],
+      "source": "\r\n            item:\r\n              material: LEATHER_HELMET\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "1",
+        "equipment",
+        "helmet",
+        "item"
+      ],
+      "source": "\r\n              material: LEATHER_HELMET\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "1",
+        "equipment",
+        "helmet",
+        "item",
+        "material"
+      ],
+      "source": "LEATHER_HELMET",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "1",
+        "equipment",
+        "chestplate"
+      ],
+      "source": "\r\n            item:\r\n              material: LEATHER_CHESTPLATE\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "1",
+        "equipment",
+        "chestplate",
+        "item"
+      ],
+      "source": "\r\n              material: LEATHER_CHESTPLATE\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "1",
+        "equipment",
+        "chestplate",
+        "item",
+        "material"
+      ],
+      "source": "LEATHER_CHESTPLATE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "1",
+        "equipment",
+        "leggings"
+      ],
+      "source": "\r\n            item:\r\n              material: LEATHER_LEGGINGS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "1",
+        "equipment",
+        "leggings",
+        "item"
+      ],
+      "source": "\r\n              material: LEATHER_LEGGINGS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "1",
+        "equipment",
+        "leggings",
+        "item",
+        "material"
+      ],
+      "source": "LEATHER_LEGGINGS",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "1",
+        "equipment",
+        "boots"
+      ],
+      "source": "\r\n            item:\r\n              material: LEATHER_BOOTS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "1",
+        "equipment",
+        "boots",
+        "item"
+      ],
+      "source": "\r\n              material: LEATHER_BOOTS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "1",
+        "equipment",
+        "boots",
+        "item",
+        "material"
+      ],
+      "source": "LEATHER_BOOTS",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "2"
+      ],
+      "source": "\r\n        equipment:\r\n          main-hand:\r\n            item:\r\n              material: STONE_SWORD\r\n              enchants:\r\n                KNOCKBACK: 1\r\n          helmet:\r\n            item:\r\n              material: CHAINMAIL_HELMET\r\n          chestplate:\r\n            item:\r\n              material: CHAINMAIL_CHESTPLATE\r\n          leggings:\r\n            item:\r\n              material: CHAINMAIL_LEGGINGS\r\n          boots:\r\n            item:\r\n              material: CHAINMAIL_BOOTS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "2",
+        "equipment"
+      ],
+      "source": "\r\n          main-hand:\r\n            item:\r\n              material: STONE_SWORD\r\n              enchants:\r\n                KNOCKBACK: 1\r\n          helmet:\r\n            item:\r\n              material: CHAINMAIL_HELMET\r\n          chestplate:\r\n            item:\r\n              material: CHAINMAIL_CHESTPLATE\r\n          leggings:\r\n            item:\r\n              material: CHAINMAIL_LEGGINGS\r\n          boots:\r\n            item:\r\n              material: CHAINMAIL_BOOTS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "2",
+        "equipment",
+        "main-hand"
+      ],
+      "source": "\r\n            item:\r\n              material: STONE_SWORD\r\n              enchants:\r\n                KNOCKBACK: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "2",
+        "equipment",
+        "main-hand",
+        "item"
+      ],
+      "source": "\r\n              material: STONE_SWORD\r\n              enchants:\r\n                KNOCKBACK: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "2",
+        "equipment",
+        "main-hand",
+        "item",
+        "material"
+      ],
+      "source": "STONE_SWORD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "2",
+        "equipment",
+        "main-hand",
+        "item",
+        "enchants"
+      ],
+      "source": "\r\n                KNOCKBACK: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "2",
+        "equipment",
+        "main-hand",
+        "item",
+        "enchants",
+        "KNOCKBACK"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "2",
+        "equipment",
+        "helmet"
+      ],
+      "source": "\r\n            item:\r\n              material: CHAINMAIL_HELMET\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "2",
+        "equipment",
+        "helmet",
+        "item"
+      ],
+      "source": "\r\n              material: CHAINMAIL_HELMET\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "2",
+        "equipment",
+        "helmet",
+        "item",
+        "material"
+      ],
+      "source": "CHAINMAIL_HELMET",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "2",
+        "equipment",
+        "chestplate"
+      ],
+      "source": "\r\n            item:\r\n              material: CHAINMAIL_CHESTPLATE\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "2",
+        "equipment",
+        "chestplate",
+        "item"
+      ],
+      "source": "\r\n              material: CHAINMAIL_CHESTPLATE\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "2",
+        "equipment",
+        "chestplate",
+        "item",
+        "material"
+      ],
+      "source": "CHAINMAIL_CHESTPLATE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "2",
+        "equipment",
+        "leggings"
+      ],
+      "source": "\r\n            item:\r\n              material: CHAINMAIL_LEGGINGS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "2",
+        "equipment",
+        "leggings",
+        "item"
+      ],
+      "source": "\r\n              material: CHAINMAIL_LEGGINGS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "2",
+        "equipment",
+        "leggings",
+        "item",
+        "material"
+      ],
+      "source": "CHAINMAIL_LEGGINGS",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "2",
+        "equipment",
+        "boots"
+      ],
+      "source": "\r\n            item:\r\n              material: CHAINMAIL_BOOTS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "2",
+        "equipment",
+        "boots",
+        "item"
+      ],
+      "source": "\r\n              material: CHAINMAIL_BOOTS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "2",
+        "equipment",
+        "boots",
+        "item",
+        "material"
+      ],
+      "source": "CHAINMAIL_BOOTS",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "3"
+      ],
+      "source": "\r\n        equipment:\r\n          main-hand:\r\n            item:\r\n              material: GOLDEN_SWORD\r\n              enchants:\r\n                KNOCKBACK: 2\r\n                FIRE_ASPECT: 1\r\n          helmet:\r\n            item:\r\n              material: GOLDEN_HELMET\r\n          chestplate:\r\n            item:\r\n              material: GOLDEN_CHESTPLATE\r\n          leggings:\r\n            item:\r\n              material: GOLDEN_LEGGINGS\r\n          boots:\r\n            item:\r\n              material: GOLDEN_BOOTS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "3",
+        "equipment"
+      ],
+      "source": "\r\n          main-hand:\r\n            item:\r\n              material: GOLDEN_SWORD\r\n              enchants:\r\n                KNOCKBACK: 2\r\n                FIRE_ASPECT: 1\r\n          helmet:\r\n            item:\r\n              material: GOLDEN_HELMET\r\n          chestplate:\r\n            item:\r\n              material: GOLDEN_CHESTPLATE\r\n          leggings:\r\n            item:\r\n              material: GOLDEN_LEGGINGS\r\n          boots:\r\n            item:\r\n              material: GOLDEN_BOOTS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "3",
+        "equipment",
+        "main-hand"
+      ],
+      "source": "\r\n            item:\r\n              material: GOLDEN_SWORD\r\n              enchants:\r\n                KNOCKBACK: 2\r\n                FIRE_ASPECT: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "3",
+        "equipment",
+        "main-hand",
+        "item"
+      ],
+      "source": "\r\n              material: GOLDEN_SWORD\r\n              enchants:\r\n                KNOCKBACK: 2\r\n                FIRE_ASPECT: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "3",
+        "equipment",
+        "main-hand",
+        "item",
+        "material"
+      ],
+      "source": "GOLDEN_SWORD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "3",
+        "equipment",
+        "main-hand",
+        "item",
+        "enchants"
+      ],
+      "source": "\r\n                KNOCKBACK: 2\r\n                FIRE_ASPECT: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "3",
+        "equipment",
+        "main-hand",
+        "item",
+        "enchants",
+        "KNOCKBACK"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "3",
+        "equipment",
+        "main-hand",
+        "item",
+        "enchants",
+        "FIRE_ASPECT"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "3",
+        "equipment",
+        "helmet"
+      ],
+      "source": "\r\n            item:\r\n              material: GOLDEN_HELMET\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "3",
+        "equipment",
+        "helmet",
+        "item"
+      ],
+      "source": "\r\n              material: GOLDEN_HELMET\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "3",
+        "equipment",
+        "helmet",
+        "item",
+        "material"
+      ],
+      "source": "GOLDEN_HELMET",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "3",
+        "equipment",
+        "chestplate"
+      ],
+      "source": "\r\n            item:\r\n              material: GOLDEN_CHESTPLATE\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "3",
+        "equipment",
+        "chestplate",
+        "item"
+      ],
+      "source": "\r\n              material: GOLDEN_CHESTPLATE\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "3",
+        "equipment",
+        "chestplate",
+        "item",
+        "material"
+      ],
+      "source": "GOLDEN_CHESTPLATE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "3",
+        "equipment",
+        "leggings"
+      ],
+      "source": "\r\n            item:\r\n              material: GOLDEN_LEGGINGS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "3",
+        "equipment",
+        "leggings",
+        "item"
+      ],
+      "source": "\r\n              material: GOLDEN_LEGGINGS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "3",
+        "equipment",
+        "leggings",
+        "item",
+        "material"
+      ],
+      "source": "GOLDEN_LEGGINGS",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "3",
+        "equipment",
+        "boots"
+      ],
+      "source": "\r\n            item:\r\n              material: GOLDEN_BOOTS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "3",
+        "equipment",
+        "boots",
+        "item"
+      ],
+      "source": "\r\n              material: GOLDEN_BOOTS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "3",
+        "equipment",
+        "boots",
+        "item",
+        "material"
+      ],
+      "source": "GOLDEN_BOOTS",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "4"
+      ],
+      "source": "\r\n        equipment:\r\n          main-hand:\r\n            item:\r\n              material: IRON_SWORD\r\n              enchants:\r\n                KNOCKBACK: 2\r\n                FIRE_ASPECT: 2\r\n          helmet:\r\n            item:\r\n              material: IRON_HELMET\r\n          chestplate:\r\n            item:\r\n              material: IRON_CHESTPLATE\r\n          leggings:\r\n            item:\r\n              material: IRON_LEGGINGS\r\n          boots:\r\n            item:\r\n              material: IRON_BOOTS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "4",
+        "equipment"
+      ],
+      "source": "\r\n          main-hand:\r\n            item:\r\n              material: IRON_SWORD\r\n              enchants:\r\n                KNOCKBACK: 2\r\n                FIRE_ASPECT: 2\r\n          helmet:\r\n            item:\r\n              material: IRON_HELMET\r\n          chestplate:\r\n            item:\r\n              material: IRON_CHESTPLATE\r\n          leggings:\r\n            item:\r\n              material: IRON_LEGGINGS\r\n          boots:\r\n            item:\r\n              material: IRON_BOOTS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "4",
+        "equipment",
+        "main-hand"
+      ],
+      "source": "\r\n            item:\r\n              material: IRON_SWORD\r\n              enchants:\r\n                KNOCKBACK: 2\r\n                FIRE_ASPECT: 2\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "4",
+        "equipment",
+        "main-hand",
+        "item"
+      ],
+      "source": "\r\n              material: IRON_SWORD\r\n              enchants:\r\n                KNOCKBACK: 2\r\n                FIRE_ASPECT: 2\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "4",
+        "equipment",
+        "main-hand",
+        "item",
+        "material"
+      ],
+      "source": "IRON_SWORD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "4",
+        "equipment",
+        "main-hand",
+        "item",
+        "enchants"
+      ],
+      "source": "\r\n                KNOCKBACK: 2\r\n                FIRE_ASPECT: 2\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "4",
+        "equipment",
+        "main-hand",
+        "item",
+        "enchants",
+        "KNOCKBACK"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "4",
+        "equipment",
+        "main-hand",
+        "item",
+        "enchants",
+        "FIRE_ASPECT"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "4",
+        "equipment",
+        "helmet"
+      ],
+      "source": "\r\n            item:\r\n              material: IRON_HELMET\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "4",
+        "equipment",
+        "helmet",
+        "item"
+      ],
+      "source": "\r\n              material: IRON_HELMET\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "4",
+        "equipment",
+        "helmet",
+        "item",
+        "material"
+      ],
+      "source": "IRON_HELMET",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "4",
+        "equipment",
+        "chestplate"
+      ],
+      "source": "\r\n            item:\r\n              material: IRON_CHESTPLATE\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "4",
+        "equipment",
+        "chestplate",
+        "item"
+      ],
+      "source": "\r\n              material: IRON_CHESTPLATE\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "4",
+        "equipment",
+        "chestplate",
+        "item",
+        "material"
+      ],
+      "source": "IRON_CHESTPLATE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "4",
+        "equipment",
+        "leggings"
+      ],
+      "source": "\r\n            item:\r\n              material: IRON_LEGGINGS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "4",
+        "equipment",
+        "leggings",
+        "item"
+      ],
+      "source": "\r\n              material: IRON_LEGGINGS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "4",
+        "equipment",
+        "leggings",
+        "item",
+        "material"
+      ],
+      "source": "IRON_LEGGINGS",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "4",
+        "equipment",
+        "boots"
+      ],
+      "source": "\r\n            item:\r\n              material: IRON_BOOTS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "4",
+        "equipment",
+        "boots",
+        "item"
+      ],
+      "source": "\r\n              material: IRON_BOOTS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "4",
+        "equipment",
+        "boots",
+        "item",
+        "material"
+      ],
+      "source": "IRON_BOOTS",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "5"
+      ],
+      "source": "\r\n        equipment:\r\n          main-hand:\r\n            item:\r\n              material: DIAMOND_SWORD\r\n              enchants:\r\n                KNOCKBACK: 2\r\n                FIRE_ASPECT: 2\r\n                SHARPNESS: 3\r\n          helmet:\r\n            item:\r\n              material: DIAMOND_HELMET\r\n          chestplate:\r\n            item:\r\n              material: DIAMOND_CHESTPLATE\r\n          leggings:\r\n            item:\r\n              material: DIAMOND_LEGGINGS\r\n          boots:\r\n            item:\r\n              material: DIAMOND_BOOTS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "5",
+        "equipment"
+      ],
+      "source": "\r\n          main-hand:\r\n            item:\r\n              material: DIAMOND_SWORD\r\n              enchants:\r\n                KNOCKBACK: 2\r\n                FIRE_ASPECT: 2\r\n                SHARPNESS: 3\r\n          helmet:\r\n            item:\r\n              material: DIAMOND_HELMET\r\n          chestplate:\r\n            item:\r\n              material: DIAMOND_CHESTPLATE\r\n          leggings:\r\n            item:\r\n              material: DIAMOND_LEGGINGS\r\n          boots:\r\n            item:\r\n              material: DIAMOND_BOOTS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "5",
+        "equipment",
+        "main-hand"
+      ],
+      "source": "\r\n            item:\r\n              material: DIAMOND_SWORD\r\n              enchants:\r\n                KNOCKBACK: 2\r\n                FIRE_ASPECT: 2\r\n                SHARPNESS: 3\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "5",
+        "equipment",
+        "main-hand",
+        "item"
+      ],
+      "source": "\r\n              material: DIAMOND_SWORD\r\n              enchants:\r\n                KNOCKBACK: 2\r\n                FIRE_ASPECT: 2\r\n                SHARPNESS: 3\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "5",
+        "equipment",
+        "main-hand",
+        "item",
+        "material"
+      ],
+      "source": "DIAMOND_SWORD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "5",
+        "equipment",
+        "main-hand",
+        "item",
+        "enchants"
+      ],
+      "source": "\r\n                KNOCKBACK: 2\r\n                FIRE_ASPECT: 2\r\n                SHARPNESS: 3\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "5",
+        "equipment",
+        "main-hand",
+        "item",
+        "enchants",
+        "KNOCKBACK"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "5",
+        "equipment",
+        "main-hand",
+        "item",
+        "enchants",
+        "FIRE_ASPECT"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "5",
+        "equipment",
+        "main-hand",
+        "item",
+        "enchants",
+        "SHARPNESS"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "5",
+        "equipment",
+        "helmet"
+      ],
+      "source": "\r\n            item:\r\n              material: DIAMOND_HELMET\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "5",
+        "equipment",
+        "helmet",
+        "item"
+      ],
+      "source": "\r\n              material: DIAMOND_HELMET\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "5",
+        "equipment",
+        "helmet",
+        "item",
+        "material"
+      ],
+      "source": "DIAMOND_HELMET",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "5",
+        "equipment",
+        "chestplate"
+      ],
+      "source": "\r\n            item:\r\n              material: DIAMOND_CHESTPLATE\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "5",
+        "equipment",
+        "chestplate",
+        "item"
+      ],
+      "source": "\r\n              material: DIAMOND_CHESTPLATE\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "5",
+        "equipment",
+        "chestplate",
+        "item",
+        "material"
+      ],
+      "source": "DIAMOND_CHESTPLATE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "5",
+        "equipment",
+        "leggings"
+      ],
+      "source": "\r\n            item:\r\n              material: DIAMOND_LEGGINGS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "5",
+        "equipment",
+        "leggings",
+        "item"
+      ],
+      "source": "\r\n              material: DIAMOND_LEGGINGS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "5",
+        "equipment",
+        "leggings",
+        "item",
+        "material"
+      ],
+      "source": "DIAMOND_LEGGINGS",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "5",
+        "equipment",
+        "boots"
+      ],
+      "source": "\r\n            item:\r\n              material: DIAMOND_BOOTS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "5",
+        "equipment",
+        "boots",
+        "item"
+      ],
+      "source": "\r\n              material: DIAMOND_BOOTS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "zombie",
+        "levels",
+        "5",
+        "equipment",
+        "boots",
+        "item",
+        "material"
+      ],
+      "source": "DIAMOND_BOOTS",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton"
+      ],
+      "source": "\r\n    name: 'Equipment'\r\n    cost: \"(lvl + 1) * 100\"\r\n    max-level: 5\r\n    base:\r\n      type: SKELETON\r\n      baby: false\r\n      name: \"&c%kingdoms_kingdom_name% {$s}Champion\"\r\n    levels:\r\n      1:\r\n        equipment:\r\n          main-hand:\r\n            item:\r\n              material: BOW\r\n              enchants:\r\n                POWER: 1\r\n          helmet:\r\n            item:\r\n              material: LEATHER_HELMET\r\n          chestplate:\r\n            item:\r\n              material: LEATHER_CHESTPLATE\r\n          leggings:\r\n            item:\r\n              material: LEATHER_LEGGINGS\r\n          boots:\r\n            item:\r\n              material: LEATHER_BOOTS\r\n      2:\r\n        equipment:\r\n          main-hand:\r\n            item:\r\n              material: BOW\r\n              enchants:\r\n                POWER: 2\r\n                PUNCH: 1\r\n          helmet:\r\n            item:\r\n              material: CHAINMAIL_HELMET\r\n          chestplate:\r\n            item:\r\n              material: CHAINMAIL_CHESTPLATE\r\n          leggings:\r\n            item:\r\n              material: CHAINMAIL_LEGGINGS\r\n          boots:\r\n            item:\r\n              material: CHAINMAIL_BOOTS\r\n      3:\r\n        equipment:\r\n          main-hand:\r\n            item:\r\n              material: BOW\r\n              enchants:\r\n                POWER: 3\r\n                PUNCH: 2\r\n          helmet:\r\n            item:\r\n              material: GOLDEN_HELMET\r\n          chestplate:\r\n            item:\r\n              material: GOLDEN_CHESTPLATE\r\n          leggings:\r\n            item:\r\n              material: GOLDEN_LEGGINGS\r\n          boots:\r\n            item:\r\n              material: GOLDEN_BOOTS\r\n      4:\r\n        equipment:\r\n          main-hand:\r\n            item:\r\n              material: BOW\r\n              enchants:\r\n                POWER: 4\r\n                PUNCH: 2\r\n                FLAME: 1\r\n          helmet:\r\n            item:\r\n              material: IRON_HELMET\r\n          chestplate:\r\n            item:\r\n              material: IRON_CHESTPLATE\r\n          leggings:\r\n            item:\r\n              material: IRON_LEGGINGS\r\n          boots:\r\n            item:\r\n              material: IRON_BOOTS\r\n      5:\r\n        equipment:\r\n          main-hand:\r\n            item:\r\n              material: BOW\r\n              enchants:\r\n                POWER: 5\r\n                PUNCH: 2\r\n                FLAME: 1\r\n                UNBREAKING: 3\r\n          helmet:\r\n            item:\r\n              material: DIAMOND_HELMET\r\n          chestplate:\r\n            item:\r\n              material: DIAMOND_CHESTPLATE\r\n          leggings:\r\n            item:\r\n              material: DIAMOND_LEGGINGS\r\n          boots:\r\n            item:\r\n              material: DIAMOND_BOOTS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "name"
+      ],
+      "source": "'Equipment'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "cost"
+      ],
+      "source": "\"(lvl + 1) * 100\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "max-level"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "base"
+      ],
+      "source": "\r\n      type: SKELETON\r\n      baby: false\r\n      name: \"&c%kingdoms_kingdom_name% {$s}Champion\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "base",
+        "type"
+      ],
+      "source": "SKELETON",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "base",
+        "baby"
+      ],
+      "source": "false",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "base",
+        "name"
+      ],
+      "source": "\"&c%kingdoms_kingdom_name% {$s}Champion\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels"
+      ],
+      "source": "\r\n      1:\r\n        equipment:\r\n          main-hand:\r\n            item:\r\n              material: BOW\r\n              enchants:\r\n                POWER: 1\r\n          helmet:\r\n            item:\r\n              material: LEATHER_HELMET\r\n          chestplate:\r\n            item:\r\n              material: LEATHER_CHESTPLATE\r\n          leggings:\r\n            item:\r\n              material: LEATHER_LEGGINGS\r\n          boots:\r\n            item:\r\n              material: LEATHER_BOOTS\r\n      2:\r\n        equipment:\r\n          main-hand:\r\n            item:\r\n              material: BOW\r\n              enchants:\r\n                POWER: 2\r\n                PUNCH: 1\r\n          helmet:\r\n            item:\r\n              material: CHAINMAIL_HELMET\r\n          chestplate:\r\n            item:\r\n              material: CHAINMAIL_CHESTPLATE\r\n          leggings:\r\n            item:\r\n              material: CHAINMAIL_LEGGINGS\r\n          boots:\r\n            item:\r\n              material: CHAINMAIL_BOOTS\r\n      3:\r\n        equipment:\r\n          main-hand:\r\n            item:\r\n              material: BOW\r\n              enchants:\r\n                POWER: 3\r\n                PUNCH: 2\r\n          helmet:\r\n            item:\r\n              material: GOLDEN_HELMET\r\n          chestplate:\r\n            item:\r\n              material: GOLDEN_CHESTPLATE\r\n          leggings:\r\n            item:\r\n              material: GOLDEN_LEGGINGS\r\n          boots:\r\n            item:\r\n              material: GOLDEN_BOOTS\r\n      4:\r\n        equipment:\r\n          main-hand:\r\n            item:\r\n              material: BOW\r\n              enchants:\r\n                POWER: 4\r\n                PUNCH: 2\r\n                FLAME: 1\r\n          helmet:\r\n            item:\r\n              material: IRON_HELMET\r\n          chestplate:\r\n            item:\r\n              material: IRON_CHESTPLATE\r\n          leggings:\r\n            item:\r\n              material: IRON_LEGGINGS\r\n          boots:\r\n            item:\r\n              material: IRON_BOOTS\r\n      5:\r\n        equipment:\r\n          main-hand:\r\n            item:\r\n              material: BOW\r\n              enchants:\r\n                POWER: 5\r\n                PUNCH: 2\r\n                FLAME: 1\r\n                UNBREAKING: 3\r\n          helmet:\r\n            item:\r\n              material: DIAMOND_HELMET\r\n          chestplate:\r\n            item:\r\n              material: DIAMOND_CHESTPLATE\r\n          leggings:\r\n            item:\r\n              material: DIAMOND_LEGGINGS\r\n          boots:\r\n            item:\r\n              material: DIAMOND_BOOTS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "1"
+      ],
+      "source": "\r\n        equipment:\r\n          main-hand:\r\n            item:\r\n              material: BOW\r\n              enchants:\r\n                POWER: 1\r\n          helmet:\r\n            item:\r\n              material: LEATHER_HELMET\r\n          chestplate:\r\n            item:\r\n              material: LEATHER_CHESTPLATE\r\n          leggings:\r\n            item:\r\n              material: LEATHER_LEGGINGS\r\n          boots:\r\n            item:\r\n              material: LEATHER_BOOTS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "1",
+        "equipment"
+      ],
+      "source": "\r\n          main-hand:\r\n            item:\r\n              material: BOW\r\n              enchants:\r\n                POWER: 1\r\n          helmet:\r\n            item:\r\n              material: LEATHER_HELMET\r\n          chestplate:\r\n            item:\r\n              material: LEATHER_CHESTPLATE\r\n          leggings:\r\n            item:\r\n              material: LEATHER_LEGGINGS\r\n          boots:\r\n            item:\r\n              material: LEATHER_BOOTS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "1",
+        "equipment",
+        "main-hand"
+      ],
+      "source": "\r\n            item:\r\n              material: BOW\r\n              enchants:\r\n                POWER: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "1",
+        "equipment",
+        "main-hand",
+        "item"
+      ],
+      "source": "\r\n              material: BOW\r\n              enchants:\r\n                POWER: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "1",
+        "equipment",
+        "main-hand",
+        "item",
+        "material"
+      ],
+      "source": "BOW",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "1",
+        "equipment",
+        "main-hand",
+        "item",
+        "enchants"
+      ],
+      "source": "\r\n                POWER: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "1",
+        "equipment",
+        "main-hand",
+        "item",
+        "enchants",
+        "POWER"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "1",
+        "equipment",
+        "helmet"
+      ],
+      "source": "\r\n            item:\r\n              material: LEATHER_HELMET\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "1",
+        "equipment",
+        "helmet",
+        "item"
+      ],
+      "source": "\r\n              material: LEATHER_HELMET\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "1",
+        "equipment",
+        "helmet",
+        "item",
+        "material"
+      ],
+      "source": "LEATHER_HELMET",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "1",
+        "equipment",
+        "chestplate"
+      ],
+      "source": "\r\n            item:\r\n              material: LEATHER_CHESTPLATE\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "1",
+        "equipment",
+        "chestplate",
+        "item"
+      ],
+      "source": "\r\n              material: LEATHER_CHESTPLATE\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "1",
+        "equipment",
+        "chestplate",
+        "item",
+        "material"
+      ],
+      "source": "LEATHER_CHESTPLATE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "1",
+        "equipment",
+        "leggings"
+      ],
+      "source": "\r\n            item:\r\n              material: LEATHER_LEGGINGS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "1",
+        "equipment",
+        "leggings",
+        "item"
+      ],
+      "source": "\r\n              material: LEATHER_LEGGINGS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "1",
+        "equipment",
+        "leggings",
+        "item",
+        "material"
+      ],
+      "source": "LEATHER_LEGGINGS",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "1",
+        "equipment",
+        "boots"
+      ],
+      "source": "\r\n            item:\r\n              material: LEATHER_BOOTS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "1",
+        "equipment",
+        "boots",
+        "item"
+      ],
+      "source": "\r\n              material: LEATHER_BOOTS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "1",
+        "equipment",
+        "boots",
+        "item",
+        "material"
+      ],
+      "source": "LEATHER_BOOTS",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "2"
+      ],
+      "source": "\r\n        equipment:\r\n          main-hand:\r\n            item:\r\n              material: BOW\r\n              enchants:\r\n                POWER: 2\r\n                PUNCH: 1\r\n          helmet:\r\n            item:\r\n              material: CHAINMAIL_HELMET\r\n          chestplate:\r\n            item:\r\n              material: CHAINMAIL_CHESTPLATE\r\n          leggings:\r\n            item:\r\n              material: CHAINMAIL_LEGGINGS\r\n          boots:\r\n            item:\r\n              material: CHAINMAIL_BOOTS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "2",
+        "equipment"
+      ],
+      "source": "\r\n          main-hand:\r\n            item:\r\n              material: BOW\r\n              enchants:\r\n                POWER: 2\r\n                PUNCH: 1\r\n          helmet:\r\n            item:\r\n              material: CHAINMAIL_HELMET\r\n          chestplate:\r\n            item:\r\n              material: CHAINMAIL_CHESTPLATE\r\n          leggings:\r\n            item:\r\n              material: CHAINMAIL_LEGGINGS\r\n          boots:\r\n            item:\r\n              material: CHAINMAIL_BOOTS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "2",
+        "equipment",
+        "main-hand"
+      ],
+      "source": "\r\n            item:\r\n              material: BOW\r\n              enchants:\r\n                POWER: 2\r\n                PUNCH: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "2",
+        "equipment",
+        "main-hand",
+        "item"
+      ],
+      "source": "\r\n              material: BOW\r\n              enchants:\r\n                POWER: 2\r\n                PUNCH: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "2",
+        "equipment",
+        "main-hand",
+        "item",
+        "material"
+      ],
+      "source": "BOW",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "2",
+        "equipment",
+        "main-hand",
+        "item",
+        "enchants"
+      ],
+      "source": "\r\n                POWER: 2\r\n                PUNCH: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "2",
+        "equipment",
+        "main-hand",
+        "item",
+        "enchants",
+        "POWER"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "2",
+        "equipment",
+        "main-hand",
+        "item",
+        "enchants",
+        "PUNCH"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "2",
+        "equipment",
+        "helmet"
+      ],
+      "source": "\r\n            item:\r\n              material: CHAINMAIL_HELMET\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "2",
+        "equipment",
+        "helmet",
+        "item"
+      ],
+      "source": "\r\n              material: CHAINMAIL_HELMET\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "2",
+        "equipment",
+        "helmet",
+        "item",
+        "material"
+      ],
+      "source": "CHAINMAIL_HELMET",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "2",
+        "equipment",
+        "chestplate"
+      ],
+      "source": "\r\n            item:\r\n              material: CHAINMAIL_CHESTPLATE\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "2",
+        "equipment",
+        "chestplate",
+        "item"
+      ],
+      "source": "\r\n              material: CHAINMAIL_CHESTPLATE\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "2",
+        "equipment",
+        "chestplate",
+        "item",
+        "material"
+      ],
+      "source": "CHAINMAIL_CHESTPLATE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "2",
+        "equipment",
+        "leggings"
+      ],
+      "source": "\r\n            item:\r\n              material: CHAINMAIL_LEGGINGS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "2",
+        "equipment",
+        "leggings",
+        "item"
+      ],
+      "source": "\r\n              material: CHAINMAIL_LEGGINGS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "2",
+        "equipment",
+        "leggings",
+        "item",
+        "material"
+      ],
+      "source": "CHAINMAIL_LEGGINGS",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "2",
+        "equipment",
+        "boots"
+      ],
+      "source": "\r\n            item:\r\n              material: CHAINMAIL_BOOTS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "2",
+        "equipment",
+        "boots",
+        "item"
+      ],
+      "source": "\r\n              material: CHAINMAIL_BOOTS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "2",
+        "equipment",
+        "boots",
+        "item",
+        "material"
+      ],
+      "source": "CHAINMAIL_BOOTS",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "3"
+      ],
+      "source": "\r\n        equipment:\r\n          main-hand:\r\n            item:\r\n              material: BOW\r\n              enchants:\r\n                POWER: 3\r\n                PUNCH: 2\r\n          helmet:\r\n            item:\r\n              material: GOLDEN_HELMET\r\n          chestplate:\r\n            item:\r\n              material: GOLDEN_CHESTPLATE\r\n          leggings:\r\n            item:\r\n              material: GOLDEN_LEGGINGS\r\n          boots:\r\n            item:\r\n              material: GOLDEN_BOOTS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "3",
+        "equipment"
+      ],
+      "source": "\r\n          main-hand:\r\n            item:\r\n              material: BOW\r\n              enchants:\r\n                POWER: 3\r\n                PUNCH: 2\r\n          helmet:\r\n            item:\r\n              material: GOLDEN_HELMET\r\n          chestplate:\r\n            item:\r\n              material: GOLDEN_CHESTPLATE\r\n          leggings:\r\n            item:\r\n              material: GOLDEN_LEGGINGS\r\n          boots:\r\n            item:\r\n              material: GOLDEN_BOOTS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "3",
+        "equipment",
+        "main-hand"
+      ],
+      "source": "\r\n            item:\r\n              material: BOW\r\n              enchants:\r\n                POWER: 3\r\n                PUNCH: 2\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "3",
+        "equipment",
+        "main-hand",
+        "item"
+      ],
+      "source": "\r\n              material: BOW\r\n              enchants:\r\n                POWER: 3\r\n                PUNCH: 2\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "3",
+        "equipment",
+        "main-hand",
+        "item",
+        "material"
+      ],
+      "source": "BOW",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "3",
+        "equipment",
+        "main-hand",
+        "item",
+        "enchants"
+      ],
+      "source": "\r\n                POWER: 3\r\n                PUNCH: 2\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "3",
+        "equipment",
+        "main-hand",
+        "item",
+        "enchants",
+        "POWER"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "3",
+        "equipment",
+        "main-hand",
+        "item",
+        "enchants",
+        "PUNCH"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "3",
+        "equipment",
+        "helmet"
+      ],
+      "source": "\r\n            item:\r\n              material: GOLDEN_HELMET\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "3",
+        "equipment",
+        "helmet",
+        "item"
+      ],
+      "source": "\r\n              material: GOLDEN_HELMET\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "3",
+        "equipment",
+        "helmet",
+        "item",
+        "material"
+      ],
+      "source": "GOLDEN_HELMET",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "3",
+        "equipment",
+        "chestplate"
+      ],
+      "source": "\r\n            item:\r\n              material: GOLDEN_CHESTPLATE\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "3",
+        "equipment",
+        "chestplate",
+        "item"
+      ],
+      "source": "\r\n              material: GOLDEN_CHESTPLATE\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "3",
+        "equipment",
+        "chestplate",
+        "item",
+        "material"
+      ],
+      "source": "GOLDEN_CHESTPLATE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "3",
+        "equipment",
+        "leggings"
+      ],
+      "source": "\r\n            item:\r\n              material: GOLDEN_LEGGINGS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "3",
+        "equipment",
+        "leggings",
+        "item"
+      ],
+      "source": "\r\n              material: GOLDEN_LEGGINGS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "3",
+        "equipment",
+        "leggings",
+        "item",
+        "material"
+      ],
+      "source": "GOLDEN_LEGGINGS",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "3",
+        "equipment",
+        "boots"
+      ],
+      "source": "\r\n            item:\r\n              material: GOLDEN_BOOTS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "3",
+        "equipment",
+        "boots",
+        "item"
+      ],
+      "source": "\r\n              material: GOLDEN_BOOTS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "3",
+        "equipment",
+        "boots",
+        "item",
+        "material"
+      ],
+      "source": "GOLDEN_BOOTS",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "4"
+      ],
+      "source": "\r\n        equipment:\r\n          main-hand:\r\n            item:\r\n              material: BOW\r\n              enchants:\r\n                POWER: 4\r\n                PUNCH: 2\r\n                FLAME: 1\r\n          helmet:\r\n            item:\r\n              material: IRON_HELMET\r\n          chestplate:\r\n            item:\r\n              material: IRON_CHESTPLATE\r\n          leggings:\r\n            item:\r\n              material: IRON_LEGGINGS\r\n          boots:\r\n            item:\r\n              material: IRON_BOOTS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "4",
+        "equipment"
+      ],
+      "source": "\r\n          main-hand:\r\n            item:\r\n              material: BOW\r\n              enchants:\r\n                POWER: 4\r\n                PUNCH: 2\r\n                FLAME: 1\r\n          helmet:\r\n            item:\r\n              material: IRON_HELMET\r\n          chestplate:\r\n            item:\r\n              material: IRON_CHESTPLATE\r\n          leggings:\r\n            item:\r\n              material: IRON_LEGGINGS\r\n          boots:\r\n            item:\r\n              material: IRON_BOOTS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "4",
+        "equipment",
+        "main-hand"
+      ],
+      "source": "\r\n            item:\r\n              material: BOW\r\n              enchants:\r\n                POWER: 4\r\n                PUNCH: 2\r\n                FLAME: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "4",
+        "equipment",
+        "main-hand",
+        "item"
+      ],
+      "source": "\r\n              material: BOW\r\n              enchants:\r\n                POWER: 4\r\n                PUNCH: 2\r\n                FLAME: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "4",
+        "equipment",
+        "main-hand",
+        "item",
+        "material"
+      ],
+      "source": "BOW",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "4",
+        "equipment",
+        "main-hand",
+        "item",
+        "enchants"
+      ],
+      "source": "\r\n                POWER: 4\r\n                PUNCH: 2\r\n                FLAME: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "4",
+        "equipment",
+        "main-hand",
+        "item",
+        "enchants",
+        "POWER"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "4",
+        "equipment",
+        "main-hand",
+        "item",
+        "enchants",
+        "PUNCH"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "4",
+        "equipment",
+        "main-hand",
+        "item",
+        "enchants",
+        "FLAME"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "4",
+        "equipment",
+        "helmet"
+      ],
+      "source": "\r\n            item:\r\n              material: IRON_HELMET\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "4",
+        "equipment",
+        "helmet",
+        "item"
+      ],
+      "source": "\r\n              material: IRON_HELMET\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "4",
+        "equipment",
+        "helmet",
+        "item",
+        "material"
+      ],
+      "source": "IRON_HELMET",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "4",
+        "equipment",
+        "chestplate"
+      ],
+      "source": "\r\n            item:\r\n              material: IRON_CHESTPLATE\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "4",
+        "equipment",
+        "chestplate",
+        "item"
+      ],
+      "source": "\r\n              material: IRON_CHESTPLATE\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "4",
+        "equipment",
+        "chestplate",
+        "item",
+        "material"
+      ],
+      "source": "IRON_CHESTPLATE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "4",
+        "equipment",
+        "leggings"
+      ],
+      "source": "\r\n            item:\r\n              material: IRON_LEGGINGS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "4",
+        "equipment",
+        "leggings",
+        "item"
+      ],
+      "source": "\r\n              material: IRON_LEGGINGS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "4",
+        "equipment",
+        "leggings",
+        "item",
+        "material"
+      ],
+      "source": "IRON_LEGGINGS",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "4",
+        "equipment",
+        "boots"
+      ],
+      "source": "\r\n            item:\r\n              material: IRON_BOOTS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "4",
+        "equipment",
+        "boots",
+        "item"
+      ],
+      "source": "\r\n              material: IRON_BOOTS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "4",
+        "equipment",
+        "boots",
+        "item",
+        "material"
+      ],
+      "source": "IRON_BOOTS",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "5"
+      ],
+      "source": "\r\n        equipment:\r\n          main-hand:\r\n            item:\r\n              material: BOW\r\n              enchants:\r\n                POWER: 5\r\n                PUNCH: 2\r\n                FLAME: 1\r\n                UNBREAKING: 3\r\n          helmet:\r\n            item:\r\n              material: DIAMOND_HELMET\r\n          chestplate:\r\n            item:\r\n              material: DIAMOND_CHESTPLATE\r\n          leggings:\r\n            item:\r\n              material: DIAMOND_LEGGINGS\r\n          boots:\r\n            item:\r\n              material: DIAMOND_BOOTS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "5",
+        "equipment"
+      ],
+      "source": "\r\n          main-hand:\r\n            item:\r\n              material: BOW\r\n              enchants:\r\n                POWER: 5\r\n                PUNCH: 2\r\n                FLAME: 1\r\n                UNBREAKING: 3\r\n          helmet:\r\n            item:\r\n              material: DIAMOND_HELMET\r\n          chestplate:\r\n            item:\r\n              material: DIAMOND_CHESTPLATE\r\n          leggings:\r\n            item:\r\n              material: DIAMOND_LEGGINGS\r\n          boots:\r\n            item:\r\n              material: DIAMOND_BOOTS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "5",
+        "equipment",
+        "main-hand"
+      ],
+      "source": "\r\n            item:\r\n              material: BOW\r\n              enchants:\r\n                POWER: 5\r\n                PUNCH: 2\r\n                FLAME: 1\r\n                UNBREAKING: 3\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "5",
+        "equipment",
+        "main-hand",
+        "item"
+      ],
+      "source": "\r\n              material: BOW\r\n              enchants:\r\n                POWER: 5\r\n                PUNCH: 2\r\n                FLAME: 1\r\n                UNBREAKING: 3\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "5",
+        "equipment",
+        "main-hand",
+        "item",
+        "material"
+      ],
+      "source": "BOW",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "5",
+        "equipment",
+        "main-hand",
+        "item",
+        "enchants"
+      ],
+      "source": "\r\n                POWER: 5\r\n                PUNCH: 2\r\n                FLAME: 1\r\n                UNBREAKING: 3\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "5",
+        "equipment",
+        "main-hand",
+        "item",
+        "enchants",
+        "POWER"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "5",
+        "equipment",
+        "main-hand",
+        "item",
+        "enchants",
+        "PUNCH"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "5",
+        "equipment",
+        "main-hand",
+        "item",
+        "enchants",
+        "FLAME"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "5",
+        "equipment",
+        "main-hand",
+        "item",
+        "enchants",
+        "UNBREAKING"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "5",
+        "equipment",
+        "helmet"
+      ],
+      "source": "\r\n            item:\r\n              material: DIAMOND_HELMET\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "5",
+        "equipment",
+        "helmet",
+        "item"
+      ],
+      "source": "\r\n              material: DIAMOND_HELMET\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "5",
+        "equipment",
+        "helmet",
+        "item",
+        "material"
+      ],
+      "source": "DIAMOND_HELMET",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "5",
+        "equipment",
+        "chestplate"
+      ],
+      "source": "\r\n            item:\r\n              material: DIAMOND_CHESTPLATE\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "5",
+        "equipment",
+        "chestplate",
+        "item"
+      ],
+      "source": "\r\n              material: DIAMOND_CHESTPLATE\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "5",
+        "equipment",
+        "chestplate",
+        "item",
+        "material"
+      ],
+      "source": "DIAMOND_CHESTPLATE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "5",
+        "equipment",
+        "leggings"
+      ],
+      "source": "\r\n            item:\r\n              material: DIAMOND_LEGGINGS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "5",
+        "equipment",
+        "leggings",
+        "item"
+      ],
+      "source": "\r\n              material: DIAMOND_LEGGINGS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "5",
+        "equipment",
+        "leggings",
+        "item",
+        "material"
+      ],
+      "source": "DIAMOND_LEGGINGS",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "5",
+        "equipment",
+        "boots"
+      ],
+      "source": "\r\n            item:\r\n              material: DIAMOND_BOOTS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "5",
+        "equipment",
+        "boots",
+        "item"
+      ],
+      "source": "\r\n              material: DIAMOND_BOOTS\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "champions",
+        "skeleton",
+        "levels",
+        "5",
+        "equipment",
+        "boots",
+        "item",
+        "material"
+      ],
+      "source": "DIAMOND_BOOTS",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "health"
+      ],
+      "source": "\r\n  enabled: true\r\n  # Max health is 2048, but you can change that\r\n  # in your server settings.\r\n  scaling: \"min((lvl + 1) * 50, 2048)\"\r\n  max-level: 40\r\n  cost: \"(lvl + 1) * 100\"\r\n  conditions:\r\n    'lvl >= 10 && kingdoms_kingdom_level < 2': '{$$kingdom-levels.II}'\r\n    'lvl >= 30 && kingdoms_kingdom_level < 3': '{$$kingdom-levels.III}'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "health",
+        "enabled"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "health",
+        "scaling"
+      ],
+      "source": "\"min((lvl + 1) * 50, 2048)\"",
+      "comments": [
+        "Max health is 2048, but you can change that",
+        "in your server settings."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "health",
+        "max-level"
+      ],
+      "source": "40",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "health",
+        "cost"
+      ],
+      "source": "\"(lvl + 1) * 100\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "health",
+        "conditions"
+      ],
+      "source": "\r\n    'lvl >= 10 && kingdoms_kingdom_level < 2': '{$$kingdom-levels.II}'\r\n    'lvl >= 30 && kingdoms_kingdom_level < 3': '{$$kingdom-levels.III}'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "health",
+        "conditions",
+        "lvl >= 10 && kingdoms_kingdom_level < 2"
+      ],
+      "source": "'{$$kingdom-levels.II}'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "health",
+        "conditions",
+        "lvl >= 30 && kingdoms_kingdom_level < 3"
+      ],
+      "source": "'{$$kingdom-levels.III}'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "resistance"
+      ],
+      "source": "\r\n  enabled: true\r\n  max-level: 10\r\n  # Chance\r\n  scaling: \"lvl * 10\"\r\n  cost: \"(lvl + 1) * 100\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "resistance",
+        "enabled"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "resistance",
+        "max-level"
+      ],
+      "source": "10",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "resistance",
+        "scaling"
+      ],
+      "source": "\"lvl * 10\"",
+      "comments": [
+        "Chance"
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "resistance",
+        "cost"
+      ],
+      "source": "\"(lvl + 1) * 100\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "speed"
+      ],
+      "source": "\r\n  enabled: true\r\n  max-level: 5\r\n  scaling: \"lvl * 2\"\r\n  cost: \"(lvl + 1) * 100\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "speed",
+        "enabled"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "speed",
+        "max-level"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "speed",
+        "scaling"
+      ],
+      "source": "\"lvl * 2\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "speed",
+        "cost"
+      ],
+      "source": "\"(lvl + 1) * 100\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "strength"
+      ],
+      "source": "\r\n  enabled: true\r\n  max-level: 3\r\n  cost: \"(lvl + 1) * 100\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "strength",
+        "enabled"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "strength",
+        "max-level"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "strength",
+        "cost"
+      ],
+      "source": "\"(lvl + 1) * 100\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "throw"
+      ],
+      "source": "\r\n  enabled: true\r\n  max-level: 5\r\n  chance: \"10 * lvl\"\r\n  scaling: \"1 + (lvl / 10)\"\r\n  cost: \"(lvl + 1) * 100\"\r\n  conditions:\r\n    'kingdoms_kingdom_level < 2': '{$$kingdom-levels.II}'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "throw",
+        "enabled"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "throw",
+        "max-level"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "throw",
+        "chance"
+      ],
+      "source": "\"10 * lvl\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "throw",
+        "scaling"
+      ],
+      "source": "\"1 + (lvl / 10)\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "throw",
+        "cost"
+      ],
+      "source": "\"(lvl + 1) * 100\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "throw",
+        "conditions"
+      ],
+      "source": "\r\n    'kingdoms_kingdom_level < 2': '{$$kingdom-levels.II}'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "throw",
+        "conditions",
+        "kingdoms_kingdom_level < 2"
+      ],
+      "source": "'{$$kingdom-levels.II}'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "drag"
+      ],
+      "source": "\r\n  enabled: true\r\n  scaling: \"10 - lvl\"\r\n  max-level: 3\r\n  cost: \"(lvl + 1) * 100\"\r\n  conditions:\r\n    'kingdoms_kingdom_level < 3': '{$$kingdom-levels.III}'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "drag",
+        "enabled"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "drag",
+        "scaling"
+      ],
+      "source": "\"10 - lvl\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "drag",
+        "max-level"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "drag",
+        "cost"
+      ],
+      "source": "\"(lvl + 1) * 100\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "drag",
+        "conditions"
+      ],
+      "source": "\r\n    'kingdoms_kingdom_level < 3': '{$$kingdom-levels.III}'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "drag",
+        "conditions",
+        "kingdoms_kingdom_level < 3"
+      ],
+      "source": "'{$$kingdom-levels.III}'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "death-duel"
+      ],
+      "source": "\r\n  enabled: true\r\n  max-level: 1\r\n\r\n  champion-damage-boost: 'damage * 2'\r\n  champion-damage-reduction: 'damage / 2'\r\n\r\n  cost: \"(lvl + 1) * 100\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "death-duel",
+        "enabled"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "death-duel",
+        "max-level"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "death-duel",
+        "champion-damage-boost"
+      ],
+      "source": "'damage * 2'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "death-duel",
+        "champion-damage-reduction"
+      ],
+      "source": "'damage / 2'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "death-duel",
+        "cost"
+      ],
+      "source": "\"(lvl + 1) * 100\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damage-cap"
+      ],
+      "source": "\r\n  enabled: true\r\n  scaling: \"20 - lvl\"\r\n  max-level: 5\r\n  cost: \"(lvl + 1) * 100\"\r\n  conditions:\r\n    'kingdoms_kingdom_level < 2': '{$$kingdom-levels.II}'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damage-cap",
+        "enabled"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damage-cap",
+        "scaling"
+      ],
+      "source": "\"20 - lvl\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damage-cap",
+        "max-level"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damage-cap",
+        "cost"
+      ],
+      "source": "\"(lvl + 1) * 100\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damage-cap",
+        "conditions"
+      ],
+      "source": "\r\n    'kingdoms_kingdom_level < 2': '{$$kingdom-levels.II}'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "damage-cap",
+        "conditions",
+        "kingdoms_kingdom_level < 2"
+      ],
+      "source": "'{$$kingdom-levels.II}'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "thor"
+      ],
+      "source": "\r\n  enabled: true\r\n  scaling: \"lvl\"\r\n  cooldown: '[15sec] - ([1sec] * lvl)'\r\n  max-level: 5\r\n  cost: \"(lvl + 1) * 100\"\r\n  conditions:\r\n    'kingdoms_kingdom_level < 3': '{$$kingdom-levels.III}'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "thor",
+        "enabled"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "thor",
+        "scaling"
+      ],
+      "source": "\"lvl\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "thor",
+        "cooldown"
+      ],
+      "source": "'[15sec] - ([1sec] * lvl)'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "thor",
+        "max-level"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "thor",
+        "cost"
+      ],
+      "source": "\"(lvl + 1) * 100\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "thor",
+        "conditions"
+      ],
+      "source": "\r\n    'kingdoms_kingdom_level < 3': '{$$kingdom-levels.III}'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "thor",
+        "conditions",
+        "kingdoms_kingdom_level < 3"
+      ],
+      "source": "'{$$kingdom-levels.III}'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "plow"
+      ],
+      "source": "\r\n  enabled: true\r\n  max-level: 1\r\n  radius: 1\r\n  cooldown: 5sec\r\n  cost: \"(lvl + 1) * 100\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "plow",
+        "enabled"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "plow",
+        "max-level"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "plow",
+        "radius"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "plow",
+        "cooldown"
+      ],
+      "source": "5sec",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "plow",
+        "cost"
+      ],
+      "source": "\"(lvl + 1) * 100\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "fangs"
+      ],
+      "source": "\r\n  enabled: true\r\n  max-level: 10\r\n  cooldown: 30sec\r\n  # How close the players should be for this ability to activate.\r\n  radius: 'lvl + 1'\r\n  # Amount of damage when the fangs when they bite the player.\r\n  scaling: \"lvl\"\r\n  cost: \"(lvl + 1) * 100\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "fangs",
+        "enabled"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "fangs",
+        "max-level"
+      ],
+      "source": "10",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "fangs",
+        "cooldown"
+      ],
+      "source": "30sec",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "fangs",
+        "radius"
+      ],
+      "source": "'lvl + 1'",
+      "comments": [
+        "How close the players should be for this ability to activate."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "fangs",
+        "scaling"
+      ],
+      "source": "\"lvl\"",
+      "comments": [
+        "Amount of damage when the fangs when they bite the player."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "fangs",
+        "cost"
+      ],
+      "source": "\"(lvl + 1) * 100\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "reinforcements"
+      ],
+      "source": "\r\n  enabled: true\r\n  max-level: 3\r\n  scaling: \"[3min] - ([15sec] * lvl)\"\r\n  cost: \"(lvl + 1) * 100\"\r\n  conditions:\r\n    'kingdoms_kingdom_level < 4': '{$$kingdom-levels.IV}'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "reinforcements",
+        "enabled"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "reinforcements",
+        "max-level"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "reinforcements",
+        "scaling"
+      ],
+      "source": "\"[3min] - ([15sec] * lvl)\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "reinforcements",
+        "cost"
+      ],
+      "source": "\"(lvl + 1) * 100\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "reinforcements",
+        "conditions"
+      ],
+      "source": "\r\n    'kingdoms_kingdom_level < 4': '{$$kingdom-levels.IV}'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "reinforcements",
+        "conditions",
+        "kingdoms_kingdom_level < 4"
+      ],
+      "source": "'{$$kingdom-levels.IV}'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "focus"
+      ],
+      "source": "\r\n  enabled: true\r\n  max-level: 3\r\n  scaling: \"lvl + 1\"\r\n  cost: \"(lvl + 1) * 100\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "focus",
+        "enabled"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "focus",
+        "max-level"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "focus",
+        "scaling"
+      ],
+      "source": "\"lvl + 1\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "focus",
+        "cost"
+      ],
+      "source": "\"(lvl + 1) * 100\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "burst"
+      ],
+      "source": "\r\n  enabled: true\r\n  max-level: 3\r\n  cost: \"(lvl + 1) * 200\"\r\n  conditions:\r\n    'kingdoms_kingdom_level < 5': '{$$kingdom-levels.V}'\r\n\r\n  range: \"3 + lvl\"\r\n  min-targets: '5 - lvl'\r\n  damage: '3 + lvl'\r\n  knockback: '1 + lvl'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "burst",
+        "enabled"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "burst",
+        "max-level"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "burst",
+        "cost"
+      ],
+      "source": "\"(lvl + 1) * 200\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "burst",
+        "conditions"
+      ],
+      "source": "\r\n    'kingdoms_kingdom_level < 5': '{$$kingdom-levels.V}'\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "burst",
+        "conditions",
+        "kingdoms_kingdom_level < 5"
+      ],
+      "source": "'{$$kingdom-levels.V}'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "burst",
+        "range"
+      ],
+      "source": "\"3 + lvl\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "burst",
+        "min-targets"
+      ],
+      "source": "'5 - lvl'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "burst",
+        "damage"
+      ],
+      "source": "'3 + lvl'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "burst",
+        "knockback"
+      ],
+      "source": "'1 + lvl'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

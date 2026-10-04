@@ -13,11 +13,12 @@ const pageDescription = "Review submitted server listings, check their current s
 <BaseLayout
   title="Server Review | KingdomsX"
   description={pageDescription}
-  canonicalPath="/servers/admin"
+  canonicalPath={SITE.isStandaloneServerDirectory ? "/admin" : "/servers/admin"}
   canonicalUrl={canonicalUrl}
   robots="noindex, nofollow"
   preloadHeroImage={false}
   includeStructuredData={false}
+  includeSiteScript={false}
 >
   <div class="page position-relative min-vh-100">
     <Header homeUrl={homeUrl} />
@@ -80,14 +81,18 @@ const pageDescription = "Review submitted server listings, check their current s
   </div>
   <div class="modal fade server-admin-modal" tabindex="-1" aria-labelledby="server-admin-modal-title" aria-hidden="true" data-admin-modal>
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
-      <div class="modal-content surface-panel">
-        <div class="modal-header">
+      <div class="modal-content surface-panel site-modal-surface">
+        <div class="modal-header site-modal-header">
           <h2 class="modal-title" id="server-admin-modal-title" data-admin-modal-title>Manage Server</h2>
-          <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button class="site-modal-close d-inline-grid ms-auto" type="button" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
         </div>
-        <div class="modal-body d-flex flex-column gap-3" data-admin-modal-body></div>
-        <div class="modal-footer justify-content-between gap-2" data-admin-modal-footer></div>
+        <div class="modal-body site-modal-body d-flex flex-column gap-3" data-admin-modal-body></div>
+        <div class="modal-footer site-modal-footer justify-content-between gap-2" data-admin-modal-footer></div>
       </div>
     </div>
   </div>
+  <script>
+    import "../../assets/scripts/site-shell.js";
+    import "../../assets/scripts/server-directory/admin.js";
+  </script>
 </BaseLayout>

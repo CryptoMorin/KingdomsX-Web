@@ -1,0 +1,443 @@
+{
+  "formatVersion": 1,
+  "id": "addons/maps/map",
+  "resourceName": "schemas/maps/map.yml",
+  "sources": {
+    "schema": {
+      "addonId": "map-viewers",
+      "artifactPath": "addons/Kingdoms-Addon-Map-Viewers-3.2.2.jar",
+      "artifactBlobSha": "29aaabc3ae8f20ecc1fe6ff4ea14652e4f5e96ac",
+      "artifactSha256": "b169a040912e6c578a6092569ea0e64e092b530f846bbb40b9f56f11104dcf4e",
+      "addonVersion": "3.2.2",
+      "fileName": "schema--addons__maps__map.json"
+    },
+    "defaults": [
+      "default--maps__map.json"
+    ],
+    "runtime": null
+  },
+  "coverage": {
+    "defaultPathCount": 43,
+    "rawDefaultPathCount": 43,
+    "activeRuntimePathCount": 0,
+    "fieldCount": 26,
+    "capabilitySourceCounts": {
+      "jar-schema": 23,
+      "jar-default": 16,
+      "editor-overlay": 12
+    },
+    "commonSettingCount": 0
+  },
+  "schema": {
+    "kind": "object",
+    "fields": [
+      {
+        "key": "update-interval",
+        "type": {
+          "kind": "duration",
+          "typeName": "Period",
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "Updates all the lands. Set to 0 to disable. This performs a full async render for all the claimed lands. This is not necessary most of the time, since the plugin already keeps track of most changes such as land claiming, unclaiming, structure placing, breaking, etc.",
+          "optional": true
+        }
+      },
+      {
+        "key": "icons",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "string",
+            "typeName": "str",
+            "capability": {
+              "sources": [
+                "jar-schema"
+              ]
+            }
+          },
+          "values": {
+            "kind": "object",
+            "fields": [
+              {
+                "key": "enabled",
+                "type": {
+                  "kind": "boolean",
+                  "capability": {
+                    "sources": [
+                      "jar-schema"
+                    ]
+                  },
+                  "optional": true
+                }
+              },
+              {
+                "key": "name",
+                "type": {
+                  "kind": "string",
+                  "typeName": "str",
+                  "capability": {
+                    "sources": [
+                      "jar-schema",
+                      "jar-default"
+                    ]
+                  },
+                  "optional": true
+                }
+              },
+              {
+                "key": "zoom",
+                "type": {
+                  "kind": "object",
+                  "fields": [
+                    {
+                      "key": "max",
+                      "type": {
+                        "kind": "integer",
+                        "description": "Maximum visible zoom percentage. Use -1 for no maximum.",
+                        "optional": true,
+                        "minimum": -1,
+                        "maximum": 100,
+                        "capability": {
+                          "sources": [
+                            "editor-overlay",
+                            "jar-schema"
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "key": "min",
+                      "type": {
+                        "kind": "integer",
+                        "description": "Minimum visible zoom percentage. Use -1 for no minimum.",
+                        "optional": true,
+                        "minimum": -1,
+                        "maximum": 100,
+                        "capability": {
+                          "sources": [
+                            "editor-overlay",
+                            "jar-schema"
+                          ]
+                        }
+                      }
+                    }
+                  ],
+                  "capability": {
+                    "sources": [
+                      "jar-schema",
+                      "jar-default"
+                    ]
+                  },
+                  "optional": true
+                }
+              },
+              {
+                "key": "disabled",
+                "type": {
+                  "kind": "boolean",
+                  "description": "Disable this map icon.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay"
+                    ]
+                  }
+                }
+              }
+            ],
+            "capability": {
+              "sources": [
+                "jar-schema"
+              ]
+            }
+          },
+          "fields": [
+            {
+              "key": "enabled",
+              "type": {
+                "kind": "boolean",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "To disable a certain icon, add \"disabled: true\" option under it."
+              }
+            },
+            {
+              "key": "home",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "enabled",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "name",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "str",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "description": "The label shown when clicking the icon.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "zoom",
+                    "type": {
+                      "kind": "object",
+                      "fields": [
+                        {
+                          "key": "max",
+                          "type": {
+                            "kind": "integer",
+                            "description": "Maximum visible zoom percentage. Use -1 for no maximum.",
+                            "optional": true,
+                            "minimum": -1,
+                            "maximum": 100,
+                            "capability": {
+                              "sources": [
+                                "editor-overlay",
+                                "jar-schema",
+                                "jar-default"
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "key": "min",
+                          "type": {
+                            "kind": "integer",
+                            "description": "Minimum visible zoom percentage. Use -1 for no minimum.",
+                            "optional": true,
+                            "minimum": -1,
+                            "maximum": 100,
+                            "capability": {
+                              "sources": [
+                                "editor-overlay",
+                                "jar-schema",
+                                "jar-default"
+                              ]
+                            }
+                          }
+                        }
+                      ],
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "description": "See the explanation in maps/kingdoms.yml on the zoom option.",
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "disabled",
+                    "type": {
+                      "kind": "boolean",
+                      "description": "Disable this map icon.",
+                      "optional": true,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-default"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "key": "use-banner",
+                    "type": {
+                      "kind": "enum",
+                      "values": [
+                        "banner",
+                        "flag"
+                      ],
+                      "description": "Use the in-game Minecraft banner or the kingdom/nation image flag as this icon.",
+                      "optional": true,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-default"
+                        ]
+                      }
+                    }
+                  }
+                ],
+                "capability": {
+                  "sources": [
+                    "jar-schema"
+                  ]
+                }
+              }
+            },
+            {
+              "key": "national-spawn",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "enabled",
+                    "type": {
+                      "kind": "boolean",
+                      "capability": {
+                        "sources": [
+                          "jar-schema"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "name",
+                    "type": {
+                      "kind": "string",
+                      "typeName": "str",
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "zoom",
+                    "type": {
+                      "kind": "object",
+                      "fields": [
+                        {
+                          "key": "max",
+                          "type": {
+                            "kind": "integer",
+                            "description": "Maximum visible zoom percentage. Use -1 for no maximum.",
+                            "optional": true,
+                            "minimum": -1,
+                            "maximum": 100,
+                            "capability": {
+                              "sources": [
+                                "editor-overlay",
+                                "jar-schema"
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "key": "min",
+                          "type": {
+                            "kind": "integer",
+                            "description": "Minimum visible zoom percentage. Use -1 for no minimum.",
+                            "optional": true,
+                            "minimum": -1,
+                            "maximum": 100,
+                            "capability": {
+                              "sources": [
+                                "editor-overlay",
+                                "jar-schema"
+                              ]
+                            }
+                          }
+                        }
+                      ],
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "disabled",
+                    "type": {
+                      "kind": "boolean",
+                      "description": "Disable this map icon.",
+                      "optional": true,
+                      "capability": {
+                        "sources": [
+                          "editor-overlay",
+                          "jar-default"
+                        ]
+                      }
+                    }
+                  }
+                ],
+                "capability": {
+                  "sources": [
+                    "jar-schema"
+                  ]
+                }
+              }
+            }
+          ],
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "If you changed an icon image, you have to restart the server. Turrets do not use an icon as there are too many of them. The folder names in your \"maps/icons\" need to match the entry names here. Each file is named after the level of the structure. The size of the image doesn't really matter, and will be resized when needed.",
+          "optional": true
+        }
+      },
+      {
+        "key": "banners",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "scaling",
+              "type": {
+                "kind": "integer",
+                "description": "Scale applied to generated kingdom and nation banner images.",
+                "optional": true,
+                "minimum": 1,
+                "capability": {
+                  "sources": [
+                    "editor-overlay",
+                    "jar-default"
+                  ]
+                }
+              }
+            }
+          ],
+          "description": "Settings for kingdom/nation banners (alternative to flags)",
+          "capability": {
+            "sources": [
+              "editor-overlay",
+              "jar-default"
+            ]
+          },
+          "optional": true
+        }
+      }
+    ],
+    "capability": {
+      "sources": [
+        "jar-schema"
+      ]
+    }
+  }
+}

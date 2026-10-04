@@ -14,38 +14,42 @@ import {
 
 beforeEach(resetDatabase);
 
-describe("Status providers and refresh policy", () => {
+describe("Server status refreshes", () => {
   it.each([
     ["mcsrvstat.us", 0],
     ["mcstatus.io", 1],
     ["minecraftpinger.com", 2],
     ["mcapi.us", 3]
   ])(
-    "uses the %s adapter after earlier providers fail",
+    "uses %s after the earlier status services fail",
     async (expectedProvider, successfulIndex) => {
       let requestIndex = 0;
 
       stubFetch(() => {
         const index = requestIndex++;
 
-        if (index < successfulIndex)
+        if (index < successfulIndex) {
           return new Response(null, { status: 503 });
+        }
 
-        if (expectedProvider === "mcsrvstat.us")
+        if (expectedProvider === "mcsrvstat.us") {
           return Response.json({ online: true, players: { online: 1, max: 20 } });
+        }
 
-        if (expectedProvider === "mcstatus.io")
+        if (expectedProvider === "mcstatus.io") {
           return Response.json({
             online: true,
             players: { online: 2, max: 30 },
             version: { name_clean: "Paper" },
             motd: { clean: "Hello" }
           });
+        }
 
-        if (expectedProvider === "minecraftpinger.com")
+        if (expectedProvider === "minecraftpinger.com") {
           return Response.json({
             server: { players: { online: 3, max: 40 }, version: "Paper", motd: "Hello" }
           });
+        }
 
         return Response.json({
           status: "success",
@@ -61,7 +65,7 @@ describe("Status providers and refresh policy", () => {
     }
   );
 
-  it("reports all-provider failure after trying every adapter", async () => {
+  it("reports failure after every status service fails", async () => {
     let attempts = 0;
 
     stubFetch(() => {
@@ -73,7 +77,7 @@ describe("Status providers and refresh policy", () => {
     expect(attempts).toBe(4);
   });
 
-  it("keeps local read refresh non-destructive while scheduled refresh can auto-hide", async () => {
+  it("does not hide servers during a directory refresh but allows scheduled checks to do so", async () => {
     const oldTimestamp = new Date(Date.now() - 15 * 24 * 60 * 60 * 1000).toISOString();
 
     await testEnv.DB.batch([
@@ -115,7 +119,7 @@ describe("Status providers and refresh policy", () => {
     ).toEqual({ status: "hidden_offline" });
   });
 
-  it("keeps manual refresh moderation behavior distinct from local read refresh", async () => {
+  it("allows a manual check to hide an offline server without changing directory refreshes", async () => {
     await seedSubmitter("manual-status");
     await seedOwnedServer("manual-status");
     const oldTimestamp = new Date(Date.now() - 15 * 24 * 60 * 60 * 1000).toISOString();

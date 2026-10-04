@@ -1,0 +1,1152 @@
+{
+  "formatVersion": 1,
+  "source": {
+    "addonId": "map-viewers",
+    "artifactPath": "addons/Kingdoms-Addon-Map-Viewers-3.2.2.jar",
+    "artifactBlobSha": "29aaabc3ae8f20ecc1fe6ff4ea14652e4f5e96ac",
+    "artifactSha256": "b169a040912e6c578a6092569ea0e64e092b530f846bbb40b9f56f11104dcf4e",
+    "addonVersion": "3.2.2"
+  },
+  "resourceName": "maps/kingdoms.yml",
+  "schemaId": "addons/maps/marker",
+  "sha256": "d345b4b6857103f2e38642b61dc0fbd6a49133c8fae705ea88450707493b0c2b",
+  "options": [
+    {
+      "path": [
+        "persistent-data"
+      ],
+      "source": "false",
+      "comments": [
+        "WARNING: It's not recommneded to use this option as it might not remove some outdated markers in the future.",
+        "If the marker data should be persistent. If enabled, all the land markers and icons will stay even after",
+        "server restarts. This is useful when your server has a lot of claimed lands, or you want to avoid lag without",
+        "using the auto update interval option. The data will be internally stored in Dynmap.",
+        "Needs a restart to update.",
+        "Note that if you change it from true to false, the old data will still stay.",
+        "It's not recommended to use this, as it may no longer work with future updates.",
+        "This currently only works with Dynmap."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "label"
+      ],
+      "source": "\"Kingdoms\"",
+      "comments": [
+        "The name shown on markers tab of map plugins on the web.",
+        "Unfortunately none of the maps provide any translation capabilities."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "priority"
+      ],
+      "source": "1",
+      "comments": [
+        "Priority of the marker visibility in the map.",
+        "(See z-index for more info)",
+        "Needs a restart to update."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "z-index"
+      ],
+      "source": "1",
+      "comments": [
+        "The distinction between z-index and layer priority isn't exactly defined for",
+        "all map plugins, but for some of them layer priority will completely hide overlapping",
+        "layers with lower priority, but it'll move the layer behind the other layer with higher z-index.",
+        "BlueMap doesn't have support for priority or z-index, but has support for \"sorting\" below."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sorting"
+      ],
+      "source": "0",
+      "comments": [
+        "Used by some maps like BlueMap to control the position of the marker",
+        "in the \"Markers\" menu list. This doesn't affect how the marker itself is shown.",
+        "A lower value makes the marker sorted first , a higher value makes it sorted later.",
+        "If multiple markers have the same sorting-value, their order will be arbitrary.",
+        "Other maps might not have a separate option for this and use the \"priority\" option instead."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "special-flag"
+      ],
+      "source": "false",
+      "comments": [
+        "For Dynmap this option will boost marker resolutions.",
+        "For BlueMap, this option controls \"depth-test\"",
+        "If the depth-test is disabled, you can see the marker fully through all objects on the map.",
+        "If it is enabled, you'll only see the marker when it is not behind anything.",
+        "This needs a restart to update."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "hide-by-default"
+      ],
+      "source": "false",
+      "comments": [
+        "If the kingdoms marker should be disabled by default.",
+        "Needs a restart to update."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "show-controls"
+      ],
+      "source": "true",
+      "comments": [
+        "Show kingdoms marker toggle buttons."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "zoom"
+      ],
+      "source": "\r\n  # The minimum zooming required to see the borders. If someone zooms out \"too much\" from the map they won't be able to see the borders.\r\n  # This is really useful because land borders can be really annoying when you want to have a general view of a big portion of the map.\r\n  # E.g., 75% min required zoom means that you need to be at least zoomed in 75% (from the total zoom range) to see the markers.\r\n  # (Config values are without the percent signs)\r\n  min: -1\r\n\r\n  # The maximum zooming possible. So this value prevents players from seeing the borders when they zoom in \"too much\"\r\n  max: -1\r\n\r\n# Default Maker settings.\r\n# If the kingdom already chose a color, it'll use that\r\n# for both fill and line colors. Other settings will stay the same.\r\n\r\n# For the color setting in your nexus, refer to config.yml instead.\r\n\r\n# The land chunk square fill options.\r\n# Hex code follows RGBA format.\r\n",
+      "comments": [
+        "The zoom level range which the markers are visible at.",
+        "set to -1 for no max/min limit.",
+        "It starts from 0% to 100%",
+        "All these values are normalized correctly according to the specific map system that your server is using.",
+        "Only Dynmap and BlueMap support this feature. And even then, BlueMaps motion system in general is extremely",
+        "unstable unlike Dynmap, certain values might act weird or lose change opacity depending on how you're",
+        "looking at the map. Because it has a gradual opacity fading effect unlike Dynmap that immediatelly",
+        "hides or shows the markers.",
+        "* LiveAtlas is known to break zoom levels for Dynmap. Either adjust the value manually or diasble it."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "zoom",
+        "min"
+      ],
+      "source": "-1",
+      "comments": [
+        "The minimum zooming required to see the borders. If someone zooms out \"too much\" from the map they won't be able to see the borders.",
+        "This is really useful because land borders can be really annoying when you want to have a general view of a big portion of the map.",
+        "E.g., 75% min required zoom means that you need to be at least zoomed in 75% (from the total zoom range) to see the markers.",
+        "(Config values are without the percent signs)"
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "zoom",
+        "max"
+      ],
+      "source": "-1",
+      "comments": [
+        "The maximum zooming possible. So this value prevents players from seeing the borders when they zoom in \"too much\""
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "fill"
+      ],
+      "source": "\r\n  # The opacity is used for both this color and the custom\r\n  # color that kingdoms set from their nexus.\r\n  # 0 - 255\r\n  opacity: 100\r\n\r\n  # Hex code. https://www.w3schools.com/colors/colors_rgb.asp\r\n  color: '01ce00'\r\n\r\n# The land chunk square stroke options.\r\n",
+      "comments": [
+        "The land chunk square fill options.",
+        "Hex code follows RGBA format."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "fill",
+        "opacity"
+      ],
+      "source": "100",
+      "comments": [
+        "The opacity is used for both this color and the custom",
+        "color that kingdoms set from their nexus.",
+        "0 - 255"
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "fill",
+        "color"
+      ],
+      "source": "'01ce00'",
+      "comments": [
+        "Hex code. https://www.w3schools.com/colors/colors_rgb.asp"
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "line"
+      ],
+      "source": "\r\n  # The size of the stroke.\r\n  weight: 5\r\n  # Hex code. https://www.w3schools.com/colors/colors_rgb.asp\r\n  color: '017800'\r\n\r\n# The settings for the marker when a land is under attack.\r\n",
+      "comments": [
+        "The land chunk square stroke options."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "line",
+        "weight"
+      ],
+      "source": "5",
+      "comments": [
+        "The size of the stroke."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "line",
+        "color"
+      ],
+      "source": "'017800'",
+      "comments": [
+        "Hex code. https://www.w3schools.com/colors/colors_rgb.asp"
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "invasion"
+      ],
+      "source": "\r\n  fill:\r\n    opacity: 200\r\n    color: '7a0305'\r\n\r\n  line:\r\n    weight: 6\r\n    opacity: 1\r\n    color: '7a0305'\r\n\r\n",
+      "comments": [
+        "The settings for the marker when a land is under attack."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "invasion",
+        "fill"
+      ],
+      "source": "\r\n    opacity: 200\r\n    color: '7a0305'\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "invasion",
+        "fill",
+        "opacity"
+      ],
+      "source": "200",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "invasion",
+        "fill",
+        "color"
+      ],
+      "source": "'7a0305'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "invasion",
+        "line"
+      ],
+      "source": "\r\n    weight: 6\r\n    opacity: 1\r\n    color: '7a0305'\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "invasion",
+        "line",
+        "weight"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "invasion",
+        "line",
+        "opacity"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "invasion",
+        "line",
+        "color"
+      ],
+      "source": "'7a0305'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[style]"
+      ],
+      "source": "&fn-style\r\n  args: [ \"{content}\" ]\r\n  return: |\r\n    <style>\r\n    {? flag_height > flag_width ? \"\r\n    .kingdoms-description {\r\n      display: flex;\r\n      align-items: center;\r\n      align-content: center;\r\n    }\r\n\r\n    .kingdoms-description-text {\r\n      margin-left: 10px;\r\n      flex-shrink: 0;\r\n    }\r\n    \" : \"\"}\r\n\r\n    .kingdoms-description-text {\r\n      white-space: nowrap;\r\n    }\r\n\r\n    .kingdoms-popup {\r\n      z-index: 1000;\r\n      padding: 1em;\r\n      animation-name: kingdoms-popup-animation;\r\n      animation-duration: 1s;\r\n      animation-timing-function: ease;\r\n    }\r\n\r\n    %popup_container_selector% {\r\n      max-width: none !important;\r\n      width: fit-content !important;\r\n      background-color: rgb(20 20 20);\r\n      border-radius: 5px;\r\n    }\r\n\r\n    @keyframes kingdoms-popup-animation {\r\n      0% {\r\n        box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);\r\n        transform: translatey(0px);\r\n      }\r\n      50% {\r\n        box-shadow: 0 25px 15px 0px rgba(0,0,0,0.2);\r\n        transform: translatey(-30px);\r\n      }\r\n        100% {\r\n        box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);\r\n        transform: translatey(0px);\r\n      }\r\n    }\r\n\r\n    @media screen and (prefers-reduced-motion: reduce) {\r\n      .kingdoms-popup { animation: none !important; }\r\n    }\r\n\r\n    .kingdoms-flex-item {\r\n      min-width: 0;\r\n      min-height: 0;\r\n    }\r\n\r\n    .leaflet-popup-content-wrapper:has(.kingdoms-popup) ~ .leaflet-popup-tip-container .leaflet-popup-tip {\r\n      background-color: rgb(20 20 20) !important;\r\n    }\r\n\r\n    .kingdoms-popup > div, .leaflet-popup-content-wrapper:has(.kingdoms-popup) .leaflet-popup-content {\r\n      width: auto !important;\r\n      margin: 13px 20px 13px 20px;\r\n    }\r\n\r\n    .kingdoms-popup h1,h2,h3,h4 {\r\n      text-align: center\r\n    }\r\n\r\n    .kingdoms-popup h1:after {\r\n      content: ' ';\r\n      display: block;\r\n      border: 0.07em solid rgb(50 50 50);\r\n      width: 80%;\r\n      margin-left: 10%;\r\n    }\r\n    </style>\r\n\r\n    <div class=\"kingdoms-popup\">\r\n      <h1><span style=\"color:#%kingdoms_kingdom_color%\">%html_kingdoms_kingdom_name%</span></h1>\r\n      <div class=\"kingdoms-description\">\r\n        %flag%\r\n        <div class=\"kingdoms-description-text kingdoms-flex-item\">\r\n          {content}\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n# Description shown when hovering over the chunks.\r\n# All the descriptions are based on HTML markup.\r\n# https://www.w3schools.com/html/html_intro.asp\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[style]",
+        "args"
+      ],
+      "source": "[ \"{content}\" ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{content}\""
+      ]
+    },
+    {
+      "path": [
+        "[style]",
+        "return"
+      ],
+      "source": "|\r\n    <style>\r\n    {? flag_height > flag_width ? \"\r\n    .kingdoms-description {\r\n      display: flex;\r\n      align-items: center;\r\n      align-content: center;\r\n    }\r\n\r\n    .kingdoms-description-text {\r\n      margin-left: 10px;\r\n      flex-shrink: 0;\r\n    }\r\n    \" : \"\"}\r\n\r\n    .kingdoms-description-text {\r\n      white-space: nowrap;\r\n    }\r\n\r\n    .kingdoms-popup {\r\n      z-index: 1000;\r\n      padding: 1em;\r\n      animation-name: kingdoms-popup-animation;\r\n      animation-duration: 1s;\r\n      animation-timing-function: ease;\r\n    }\r\n\r\n    %popup_container_selector% {\r\n      max-width: none !important;\r\n      width: fit-content !important;\r\n      background-color: rgb(20 20 20);\r\n      border-radius: 5px;\r\n    }\r\n\r\n    @keyframes kingdoms-popup-animation {\r\n      0% {\r\n        box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);\r\n        transform: translatey(0px);\r\n      }\r\n      50% {\r\n        box-shadow: 0 25px 15px 0px rgba(0,0,0,0.2);\r\n        transform: translatey(-30px);\r\n      }\r\n        100% {\r\n        box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);\r\n        transform: translatey(0px);\r\n      }\r\n    }\r\n\r\n    @media screen and (prefers-reduced-motion: reduce) {\r\n      .kingdoms-popup { animation: none !important; }\r\n    }\r\n\r\n    .kingdoms-flex-item {\r\n      min-width: 0;\r\n      min-height: 0;\r\n    }\r\n\r\n    .leaflet-popup-content-wrapper:has(.kingdoms-popup) ~ .leaflet-popup-tip-container .leaflet-popup-tip {\r\n      background-color: rgb(20 20 20) !important;\r\n    }\r\n\r\n    .kingdoms-popup > div, .leaflet-popup-content-wrapper:has(.kingdoms-popup) .leaflet-popup-content {\r\n      width: auto !important;\r\n      margin: 13px 20px 13px 20px;\r\n    }\r\n\r\n    .kingdoms-popup h1,h2,h3,h4 {\r\n      text-align: center\r\n    }\r\n\r\n    .kingdoms-popup h1:after {\r\n      content: ' ';\r\n      display: block;\r\n      border: 0.07em solid rgb(50 50 50);\r\n      width: 80%;\r\n      margin-left: 10%;\r\n    }\r\n    </style>\r\n\r\n    <div class=\"kingdoms-popup\">\r\n      <h1><span style=\"color:#%kingdoms_kingdom_color%\">%html_kingdoms_kingdom_name%</span></h1>\r\n      <div class=\"kingdoms-description\">\r\n        %flag%\r\n        <div class=\"kingdoms-description-text kingdoms-flex-item\">\r\n          {content}\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "descriptions"
+      ],
+      "source": "\r\n  # Used in the description below if the kingdom has a flag set, otherwise nothing.\r\n  flag: '<img class=\"kingdoms-banner kingdoms-flex-item\" src=\"%src%\" alt=\"%kingdoms_kingdom_name% flag\" style=\"border:5px solid black;margin-bottom: 10px; {? flag_height > flag_width ? \"min-width: 100px;max-width: 100px;\" : \"min-width: 200px;max-width: 500px;width: 20vw;\"}\">'\r\n\r\n  # In order to change the default kingdom name color, refer to default placeholders in config.\r\n  click:\r\n    '[fn]': *fn-style\r\n    '{content}': |\r\n      {? kingdoms_lore == '' ? \"\" : \"<h3><span style=\\\"color:gray\\\">%html_kingdoms_lore%</span></h3><br>\" }\r\n      <span style=\"color:green\">Nation</span><span style=\"color:gray\">:</span> <span style=\"color:orange\">%none@html_kingdoms_nation_name%</span><br>\r\n      <span style=\"color:green\">Might</span><span style=\"color:gray\">:</span> <span style=\"color:orange\">%fancy@kingdoms_might%</span><br>\r\n      <span style=\"color:green\">King</span><span style=\"color:gray\">:</span> <span style=\"color:orange\">%kingdoms_king%</span><br>\r\n      <span style=\"color:green\">Bank</span><span style=\"color:gray\">:</span> <span style=\"color:orange\">%fancy@kingdoms_bank%</span><br>\r\n      <span style=\"color:green\">Resource Points</span> <span style=\"color:orange\">%fancy@kingdoms_resource_points%</span><br>\r\n      <span style=\"color:green\">Since</span> %html_kingdoms_date_since%<br>\r\n      <span style=\"color:green\">Lands</span><span style=\"color:gray\">:</span> <span style=\"color:orange\">%kingdoms_claims%</span><span style=\"color:grey\">/</span><span style=\"color:orange\">%kingdoms_max_claims%</span><br>\r\n      <span style=\"color:green\">Members</span><span style=\"color:gray\">:</span> <span style=\"color:orange\">%kingdoms_members%</span><span style=\"color:grey\">/</span><span style=\"color:orange\">%kingdoms_max_members%</span><br>\r\n      <div style=\"max-width:300px;white-space:wrap;\">%members%</div><br>\r\n      {? has_allies ? \"\r\n      <br>\r\n      <span style=\\\"color:green\\\">Allies</span><span style=\\\"color:gray\\\">:</span><br>\r\n      %allies%\r\n      \"}\r\n      {? has_truces ? \"\r\n      <br>\r\n      <span style=\\\"color:yellow\\\">Truces</span><span style=\\\"color:gray\\\">:</span><br>\r\n      %truces%\r\n      \"}\r\n      {? has_enemies ? \"\r\n      <br>\r\n      <span style=\\\"color:red\\\">Enemies</span><span style=\\\"color:gray\\\">:</span><br>\r\n      %enemies%\r\n      <br>\r\n      \"}\r\n\r\n  members: '<span style=\"font-style:italic;color:%htmlStyle_kingdoms_rank_color%\">%kingdoms_rank_symbol%</span> <span style=\"font-style:italic;color:green\">%player%</span> '\r\n  members-etc: '<span style=\"color:gray\">... [</span><span style=\"color:green\">and </span><span style=\"color:orange\">%remaining% </span><span style=\"color:green\">more</span><span style=\"color:gray\">]</span>'\r\n\r\n  allies: '<span style=\"font-style:italic;color:darkgreen\">%kingdoms_kingdom_name%</span> '\r\n  truces: '<span style=\"font-style:italic;color:yellow\">%kingdoms_kingdom_name%</span> '\r\n  enemies: '<span style=\"font-style:italic;color:red\">%kingdoms_kingdom_name%</span> '\r\n\r\n  # Only Plx3Map and squaremap support hover descriptions.\r\n  hover: |\r\n    <h1><span style=\"color:%kingdoms_kingdom_color%\">%kingdoms_kingdom_name%</span></h1>\r\n\r\n\r\n# All the following settings have the same options and follow the same rules\r\n# as all the options shown above.\r\n",
+      "comments": [
+        "Description shown when hovering over the chunks.",
+        "All the descriptions are based on HTML markup.",
+        "https://www.w3schools.com/html/html_intro.asp"
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "descriptions",
+        "flag"
+      ],
+      "source": "'<img class=\"kingdoms-banner kingdoms-flex-item\" src=\"%src%\" alt=\"%kingdoms_kingdom_name% flag\" style=\"border:5px solid black;margin-bottom: 10px; {? flag_height > flag_width ? \"min-width: 100px;max-width: 100px;\" : \"min-width: 200px;max-width: 500px;width: 20vw;\"}\">'",
+      "comments": [
+        "Used in the description below if the kingdom has a flag set, otherwise nothing."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "descriptions",
+        "click"
+      ],
+      "source": "\r\n    '[fn]': *fn-style\r\n    '{content}': |\r\n      {? kingdoms_lore == '' ? \"\" : \"<h3><span style=\\\"color:gray\\\">%html_kingdoms_lore%</span></h3><br>\" }\r\n      <span style=\"color:green\">Nation</span><span style=\"color:gray\">:</span> <span style=\"color:orange\">%none@html_kingdoms_nation_name%</span><br>\r\n      <span style=\"color:green\">Might</span><span style=\"color:gray\">:</span> <span style=\"color:orange\">%fancy@kingdoms_might%</span><br>\r\n      <span style=\"color:green\">King</span><span style=\"color:gray\">:</span> <span style=\"color:orange\">%kingdoms_king%</span><br>\r\n      <span style=\"color:green\">Bank</span><span style=\"color:gray\">:</span> <span style=\"color:orange\">%fancy@kingdoms_bank%</span><br>\r\n      <span style=\"color:green\">Resource Points</span> <span style=\"color:orange\">%fancy@kingdoms_resource_points%</span><br>\r\n      <span style=\"color:green\">Since</span> %html_kingdoms_date_since%<br>\r\n      <span style=\"color:green\">Lands</span><span style=\"color:gray\">:</span> <span style=\"color:orange\">%kingdoms_claims%</span><span style=\"color:grey\">/</span><span style=\"color:orange\">%kingdoms_max_claims%</span><br>\r\n      <span style=\"color:green\">Members</span><span style=\"color:gray\">:</span> <span style=\"color:orange\">%kingdoms_members%</span><span style=\"color:grey\">/</span><span style=\"color:orange\">%kingdoms_max_members%</span><br>\r\n      <div style=\"max-width:300px;white-space:wrap;\">%members%</div><br>\r\n      {? has_allies ? \"\r\n      <br>\r\n      <span style=\\\"color:green\\\">Allies</span><span style=\\\"color:gray\\\">:</span><br>\r\n      %allies%\r\n      \"}\r\n      {? has_truces ? \"\r\n      <br>\r\n      <span style=\\\"color:yellow\\\">Truces</span><span style=\\\"color:gray\\\">:</span><br>\r\n      %truces%\r\n      \"}\r\n      {? has_enemies ? \"\r\n      <br>\r\n      <span style=\\\"color:red\\\">Enemies</span><span style=\\\"color:gray\\\">:</span><br>\r\n      %enemies%\r\n      <br>\r\n      \"}\r\n\r\n",
+      "comments": [
+        "In order to change the default kingdom name color, refer to default placeholders in config."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "descriptions",
+        "click",
+        "[fn]"
+      ],
+      "source": "*fn-style",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "descriptions",
+        "click",
+        "{content}"
+      ],
+      "source": "|\r\n      {? kingdoms_lore == '' ? \"\" : \"<h3><span style=\\\"color:gray\\\">%html_kingdoms_lore%</span></h3><br>\" }\r\n      <span style=\"color:green\">Nation</span><span style=\"color:gray\">:</span> <span style=\"color:orange\">%none@html_kingdoms_nation_name%</span><br>\r\n      <span style=\"color:green\">Might</span><span style=\"color:gray\">:</span> <span style=\"color:orange\">%fancy@kingdoms_might%</span><br>\r\n      <span style=\"color:green\">King</span><span style=\"color:gray\">:</span> <span style=\"color:orange\">%kingdoms_king%</span><br>\r\n      <span style=\"color:green\">Bank</span><span style=\"color:gray\">:</span> <span style=\"color:orange\">%fancy@kingdoms_bank%</span><br>\r\n      <span style=\"color:green\">Resource Points</span> <span style=\"color:orange\">%fancy@kingdoms_resource_points%</span><br>\r\n      <span style=\"color:green\">Since</span> %html_kingdoms_date_since%<br>\r\n      <span style=\"color:green\">Lands</span><span style=\"color:gray\">:</span> <span style=\"color:orange\">%kingdoms_claims%</span><span style=\"color:grey\">/</span><span style=\"color:orange\">%kingdoms_max_claims%</span><br>\r\n      <span style=\"color:green\">Members</span><span style=\"color:gray\">:</span> <span style=\"color:orange\">%kingdoms_members%</span><span style=\"color:grey\">/</span><span style=\"color:orange\">%kingdoms_max_members%</span><br>\r\n      <div style=\"max-width:300px;white-space:wrap;\">%members%</div><br>\r\n      {? has_allies ? \"\r\n      <br>\r\n      <span style=\\\"color:green\\\">Allies</span><span style=\\\"color:gray\\\">:</span><br>\r\n      %allies%\r\n      \"}\r\n      {? has_truces ? \"\r\n      <br>\r\n      <span style=\\\"color:yellow\\\">Truces</span><span style=\\\"color:gray\\\">:</span><br>\r\n      %truces%\r\n      \"}\r\n      {? has_enemies ? \"\r\n      <br>\r\n      <span style=\\\"color:red\\\">Enemies</span><span style=\\\"color:gray\\\">:</span><br>\r\n      %enemies%\r\n      <br>\r\n      \"}\r\n\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "descriptions",
+        "members"
+      ],
+      "source": "'<span style=\"font-style:italic;color:%htmlStyle_kingdoms_rank_color%\">%kingdoms_rank_symbol%</span> <span style=\"font-style:italic;color:green\">%player%</span> '",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "descriptions",
+        "members-etc"
+      ],
+      "source": "'<span style=\"color:gray\">... [</span><span style=\"color:green\">and </span><span style=\"color:orange\">%remaining% </span><span style=\"color:green\">more</span><span style=\"color:gray\">]</span>'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "descriptions",
+        "allies"
+      ],
+      "source": "'<span style=\"font-style:italic;color:darkgreen\">%kingdoms_kingdom_name%</span> '",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "descriptions",
+        "truces"
+      ],
+      "source": "'<span style=\"font-style:italic;color:yellow\">%kingdoms_kingdom_name%</span> '",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "descriptions",
+        "enemies"
+      ],
+      "source": "'<span style=\"font-style:italic;color:red\">%kingdoms_kingdom_name%</span> '",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "descriptions",
+        "hover"
+      ],
+      "source": "|\r\n    <h1><span style=\"color:%kingdoms_kingdom_color%\">%kingdoms_kingdom_name%</span></h1>\r\n\r\n\r\n",
+      "comments": [
+        "Only Plx3Map and squaremap support hover descriptions."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-top]"
+      ],
+      "source": "&fn-top\r\n  args: [ '{label}', '{type}' ]\r\n  return:\r\n    label: \"Top Kingdom - {label}\"\r\n    top: 5 # Only show the top 5 kingdoms\r\n    z-index: 2\r\n    sorting: 2\r\n    hide-by-default: true\r\n    descriptions:\r\n      click:\r\n        '[fn]': *fn-style\r\n        '{content}': |\r\n          <h2 style=\"color:red;text-wrap:nowrap;\">✦ Top Kingdoms ✦</h2>\r\n          <h3 style=\"color:orange;text-wrap:nowrap;\">{label}</h3>\r\n          <br>\r\n          <span style=\"color:green\">Top</span><span style=\"color:gray\">:</span> <span style=\"color:orange\">%kingdoms_kingdom_top:position type={type}%</span><br>\r\n          <span style=\"color:green\">Score</span><span style=\"color:gray\">:</span> <span style=\"color:orange\">%fancy@kingdoms_kingdom_top:value type={type}%</span><br>\r\n\r\n",
+      "comments": [
+        "All the following settings have the same options and follow the same rules",
+        "as all the options shown above."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-top]",
+        "args"
+      ],
+      "source": "[ '{label}', '{type}' ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "'{label}'",
+        "'{type}'"
+      ]
+    },
+    {
+      "path": [
+        "[fn-top]",
+        "return"
+      ],
+      "source": "\r\n    label: \"Top Kingdom - {label}\"\r\n    top: 5 # Only show the top 5 kingdoms\r\n    z-index: 2\r\n    sorting: 2\r\n    hide-by-default: true\r\n    descriptions:\r\n      click:\r\n        '[fn]': *fn-style\r\n        '{content}': |\r\n          <h2 style=\"color:red;text-wrap:nowrap;\">✦ Top Kingdoms ✦</h2>\r\n          <h3 style=\"color:orange;text-wrap:nowrap;\">{label}</h3>\r\n          <br>\r\n          <span style=\"color:green\">Top</span><span style=\"color:gray\">:</span> <span style=\"color:orange\">%kingdoms_kingdom_top:position type={type}%</span><br>\r\n          <span style=\"color:green\">Score</span><span style=\"color:gray\">:</span> <span style=\"color:orange\">%fancy@kingdoms_kingdom_top:value type={type}%</span><br>\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-top]",
+        "return",
+        "label"
+      ],
+      "source": "\"Top Kingdom - {label}\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-top]",
+        "return",
+        "top"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-top]",
+        "return",
+        "z-index"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-top]",
+        "return",
+        "sorting"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-top]",
+        "return",
+        "hide-by-default"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-top]",
+        "return",
+        "descriptions"
+      ],
+      "source": "\r\n      click:\r\n        '[fn]': *fn-style\r\n        '{content}': |\r\n          <h2 style=\"color:red;text-wrap:nowrap;\">✦ Top Kingdoms ✦</h2>\r\n          <h3 style=\"color:orange;text-wrap:nowrap;\">{label}</h3>\r\n          <br>\r\n          <span style=\"color:green\">Top</span><span style=\"color:gray\">:</span> <span style=\"color:orange\">%kingdoms_kingdom_top:position type={type}%</span><br>\r\n          <span style=\"color:green\">Score</span><span style=\"color:gray\">:</span> <span style=\"color:orange\">%fancy@kingdoms_kingdom_top:value type={type}%</span><br>\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-top]",
+        "return",
+        "descriptions",
+        "click"
+      ],
+      "source": "\r\n        '[fn]': *fn-style\r\n        '{content}': |\r\n          <h2 style=\"color:red;text-wrap:nowrap;\">✦ Top Kingdoms ✦</h2>\r\n          <h3 style=\"color:orange;text-wrap:nowrap;\">{label}</h3>\r\n          <br>\r\n          <span style=\"color:green\">Top</span><span style=\"color:gray\">:</span> <span style=\"color:orange\">%kingdoms_kingdom_top:position type={type}%</span><br>\r\n          <span style=\"color:green\">Score</span><span style=\"color:gray\">:</span> <span style=\"color:orange\">%fancy@kingdoms_kingdom_top:value type={type}%</span><br>\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-top]",
+        "return",
+        "descriptions",
+        "click",
+        "[fn]"
+      ],
+      "source": "*fn-style",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "[fn-top]",
+        "return",
+        "descriptions",
+        "click",
+        "{content}"
+      ],
+      "source": "|\r\n          <h2 style=\"color:red;text-wrap:nowrap;\">✦ Top Kingdoms ✦</h2>\r\n          <h3 style=\"color:orange;text-wrap:nowrap;\">{label}</h3>\r\n          <br>\r\n          <span style=\"color:green\">Top</span><span style=\"color:gray\">:</span> <span style=\"color:orange\">%kingdoms_kingdom_top:position type={type}%</span><br>\r\n          <span style=\"color:green\">Score</span><span style=\"color:gray\">:</span> <span style=\"color:orange\">%fancy@kingdoms_kingdom_top:value type={type}%</span><br>\r\n\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "top-kingdoms"
+      ],
+      "source": "\r\n  default:\r\n    '[fn]': *fn-top\r\n    '{label}': Might\r\n    '{type}': default\r\n  resource-points:\r\n    '[fn]': *fn-top\r\n    '{label}': Resource Points\r\n    '{type}': resource-points\r\n  lands:\r\n    '[fn]': *fn-top\r\n    '{label}': Lands\r\n    '{type}': lands\r\n  members:\r\n    '[fn]': *fn-top\r\n    '{label}': Members\r\n    '{type}': members\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "top-kingdoms",
+        "default"
+      ],
+      "source": "\r\n    '[fn]': *fn-top\r\n    '{label}': Might\r\n    '{type}': default\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "top-kingdoms",
+        "default",
+        "[fn]"
+      ],
+      "source": "*fn-top",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "top-kingdoms",
+        "default",
+        "{label}"
+      ],
+      "source": "Might",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "top-kingdoms",
+        "default",
+        "{type}"
+      ],
+      "source": "default",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "top-kingdoms",
+        "resource-points"
+      ],
+      "source": "\r\n    '[fn]': *fn-top\r\n    '{label}': Resource Points\r\n    '{type}': resource-points\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "top-kingdoms",
+        "resource-points",
+        "[fn]"
+      ],
+      "source": "*fn-top",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "top-kingdoms",
+        "resource-points",
+        "{label}"
+      ],
+      "source": "Resource Points",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "top-kingdoms",
+        "resource-points",
+        "{type}"
+      ],
+      "source": "resource-points",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "top-kingdoms",
+        "lands"
+      ],
+      "source": "\r\n    '[fn]': *fn-top\r\n    '{label}': Lands\r\n    '{type}': lands\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "top-kingdoms",
+        "lands",
+        "[fn]"
+      ],
+      "source": "*fn-top",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "top-kingdoms",
+        "lands",
+        "{label}"
+      ],
+      "source": "Lands",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "top-kingdoms",
+        "lands",
+        "{type}"
+      ],
+      "source": "lands",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "top-kingdoms",
+        "members"
+      ],
+      "source": "\r\n    '[fn]': *fn-top\r\n    '{label}': Members\r\n    '{type}': members\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "top-kingdoms",
+        "members",
+        "[fn]"
+      ],
+      "source": "*fn-top",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "top-kingdoms",
+        "members",
+        "{label}"
+      ],
+      "source": "Members",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "top-kingdoms",
+        "members",
+        "{type}"
+      ],
+      "source": "members",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "powercell"
+      ],
+      "source": "\r\n  label: 'Powercells'\r\n  z-index: 2\r\n  sorting: 1\r\n  hide-by-default: true\r\n  line:\r\n    weight: 7\r\n    color: 'FF0000'\r\n    force: true\r\n  fill:\r\n    opacity: 100\r\n    color: 'FF0000'\r\n    force: true\r\n\r\n  descriptions:\r\n    click:\r\n      '[fn]': *fn-style\r\n      '{content}': '<h2 style=\"text-wrap:nowrap;\"><span style=\"color:green\">Powercell</span><span style=\"color:gray\">:</span> <span style=\"color:orange\">%roman@level%</h2>'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "powercell",
+        "label"
+      ],
+      "source": "'Powercells'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "powercell",
+        "z-index"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "powercell",
+        "sorting"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "powercell",
+        "hide-by-default"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "powercell",
+        "line"
+      ],
+      "source": "\r\n    weight: 7\r\n    color: 'FF0000'\r\n    force: true\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "powercell",
+        "line",
+        "weight"
+      ],
+      "source": "7",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "powercell",
+        "line",
+        "color"
+      ],
+      "source": "'FF0000'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "powercell",
+        "line",
+        "force"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "powercell",
+        "fill"
+      ],
+      "source": "\r\n    opacity: 100\r\n    color: 'FF0000'\r\n    force: true\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "powercell",
+        "fill",
+        "opacity"
+      ],
+      "source": "100",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "powercell",
+        "fill",
+        "color"
+      ],
+      "source": "'FF0000'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "powercell",
+        "fill",
+        "force"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "powercell",
+        "descriptions"
+      ],
+      "source": "\r\n    click:\r\n      '[fn]': *fn-style\r\n      '{content}': '<h2 style=\"text-wrap:nowrap;\"><span style=\"color:green\">Powercell</span><span style=\"color:gray\">:</span> <span style=\"color:orange\">%roman@level%</h2>'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "powercell",
+        "descriptions",
+        "click"
+      ],
+      "source": "\r\n      '[fn]': *fn-style\r\n      '{content}': '<h2 style=\"text-wrap:nowrap;\"><span style=\"color:green\">Powercell</span><span style=\"color:gray\">:</span> <span style=\"color:orange\">%roman@level%</h2>'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "powercell",
+        "descriptions",
+        "click",
+        "[fn]"
+      ],
+      "source": "*fn-style",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "powercell",
+        "descriptions",
+        "click",
+        "{content}"
+      ],
+      "source": "'<h2 style=\"text-wrap:nowrap;\"><span style=\"color:green\">Powercell</span><span style=\"color:gray\">:</span> <span style=\"color:orange\">%roman@level%</h2>'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

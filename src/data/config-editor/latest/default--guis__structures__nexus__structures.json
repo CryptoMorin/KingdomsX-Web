@@ -1,0 +1,895 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "guis/structures/nexus/structures.yml",
+  "schemaId": "guis/schema",
+  "options": [
+    {
+      "path": [
+        "title"
+      ],
+      "source": "\"{$sep}-=( &5Structures {$sep})=-\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "rows"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sound"
+      ],
+      "source": "BLOCK_CONDUIT_ACTIVATE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options"
+      ],
+      "source": "\r\n  powercell:\r\n    name: \"&4Powercell\"\r\n    material: MUSIC_DISC_CHIRP\r\n    sound: BLOCK_REDSTONE_TORCH_BURNOUT\r\n    flags: [ ALL ]\r\n    lore: |\r\n      {$s}Lands surrounded by a powercell cannot\r\n      be invaded until the powercell\r\n      land is invaded first.\r\n      The protection radius is {$p}3x3 {$s}for level 1\r\n      and {$p}5x5 {$s}for level 2.\r\n\r\n      {$chk-kingdom-lvl-II}\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n      {? kingdoms_kingdom_is_pacifist ? \"{$note} {$desc}Your kingdom is a pacifist kingdom\r\n      {$desc}and this structure will have no use for your kingdom.\"}\r\n    posx: 3\r\n    posy: 2\r\n  extractor:\r\n    name: \"&aExtractor\"\r\n    material: MUSIC_DISC_CAT\r\n    sound: BLOCK_ANVIL_LAND\r\n    flags: [ ALL ]\r\n    lore: |\r\n      {$s}Extractors produce resource points.\r\n      {$s}You can collect the resource points\r\n      at any time.\r\n\r\n      {$chk-kingdom-lvl-III}\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n    posx: 4\r\n    posy: 2\r\n  outpost:\r\n    name: \"&eOutpost\"\r\n    material: MUSIC_DISC_13\r\n    sound: ENTITY_EXPERIENCE_ORB_PICKUP, 1.5\r\n    flags: [ ALL ]\r\n    lore: |\r\n      {$s}The global stock market\r\n      of kingdoms. Buy and sell\r\n      various items that affects\r\n      the prices of these items globally\r\n      across all outposts.\r\n      This structure also gives you the\r\n      ability to open your nexus remotely.\r\n\r\n      {$chk-kingdom-lvl-II}\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n    posx: 5\r\n    posy: 2\r\n  warppad:\r\n    name: \"&cWarp Pad\"\r\n    material: MUSIC_DISC_BLOCKS\r\n    sound: ENTITY_ENDERMAN_TELEPORT\r\n    flags: [ ALL ]\r\n    lore: |\r\n      {$s}Warp pads can be used to teleport\r\n      from a structure to another.\r\n\r\n      {$chk-kingdom-lvl-IV}\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n    posx: 6\r\n    posy: 2\r\n  regulator:\r\n    name: \"&3Regulator\"\r\n    material: MUSIC_DISC_WARD\r\n    sound: ENTITY_VILLAGER_AMBIENT\r\n    flags: [ ALL ]\r\n    lore: |\r\n      {$s}Manages player attributes such as building,\r\n      turret ceasefire, etc.\r\n      Controls mob/animal spawning,\r\n      turrets (such as auto-refilling ammo) and explosions.\r\n\r\n      {$chk-kingdom-lvl-IV}\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n    posx: 7\r\n    posy: 2\r\n  siege-cannon:\r\n    name: \"&3Siege Cannon\"\r\n    material: MUSIC_DISC_STRAD\r\n    sound: ENTITY_VILLAGER_AMBIENT\r\n    flags: [ ALL ]\r\n    lore: |\r\n      {$s}Cannon used to break a kingdom's\r\n      shield.\r\n\r\n      {$chk-kingdom-lvl-III}\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n      {? kingdoms_kingdom_is_pacifist ? \"{$note} {$desc}Your kingdom is a pacifist kingdom\r\n      {$desc}and this structure will have no use for your kingdom.\"}\r\n    posx: 5\r\n    posy: 1\r\n  back:\r\n    name: \"{$p}Back\"\r\n    material: PLAYER_HEAD\r\n    # https://minecraft-heads.com/custom-heads/alphabet/10299-gray-backward\r\n    skull: \"{$gui-back}\"\r\n    lore: |\r\n      {$s}Go back to nexus menu.\r\n    posx: 5\r\n    posy: 3\r\n  cyan-glass:\r\n    name: \"\"\r\n    material: CYAN_STAINED_GLASS_PANE\r\n    slots: [ 1, 7, 9, 17, 19, 25 ]\r\n  light-blue-glass:\r\n    name: \"\"\r\n    material: LIGHT_BLUE_STAINED_GLASS_PANE\r\n    slots: [ 0, 8, 18, 26 ]\r\n",
+      "comments": [
+        "Apparently HIDE_POTION_EFFECTS item flag will",
+        "remove the disc's name from the lore..."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "powercell"
+      ],
+      "source": "\r\n    name: \"&4Powercell\"\r\n    material: MUSIC_DISC_CHIRP\r\n    sound: BLOCK_REDSTONE_TORCH_BURNOUT\r\n    flags: [ ALL ]\r\n    lore: |\r\n      {$s}Lands surrounded by a powercell cannot\r\n      be invaded until the powercell\r\n      land is invaded first.\r\n      The protection radius is {$p}3x3 {$s}for level 1\r\n      and {$p}5x5 {$s}for level 2.\r\n\r\n      {$chk-kingdom-lvl-II}\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n      {? kingdoms_kingdom_is_pacifist ? \"{$note} {$desc}Your kingdom is a pacifist kingdom\r\n      {$desc}and this structure will have no use for your kingdom.\"}\r\n    posx: 3\r\n    posy: 2\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "powercell",
+        "name"
+      ],
+      "source": "\"&4Powercell\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "powercell",
+        "material"
+      ],
+      "source": "MUSIC_DISC_CHIRP",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "powercell",
+        "sound"
+      ],
+      "source": "BLOCK_REDSTONE_TORCH_BURNOUT",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "powercell",
+        "flags"
+      ],
+      "source": "[ ALL ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "ALL"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "powercell",
+        "lore"
+      ],
+      "source": "|\r\n      {$s}Lands surrounded by a powercell cannot\r\n      be invaded until the powercell\r\n      land is invaded first.\r\n      The protection radius is {$p}3x3 {$s}for level 1\r\n      and {$p}5x5 {$s}for level 2.\r\n\r\n      {$chk-kingdom-lvl-II}\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n      {? kingdoms_kingdom_is_pacifist ? \"{$note} {$desc}Your kingdom is a pacifist kingdom\r\n      {$desc}and this structure will have no use for your kingdom.\"}\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "powercell",
+        "posx"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "powercell",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "extractor"
+      ],
+      "source": "\r\n    name: \"&aExtractor\"\r\n    material: MUSIC_DISC_CAT\r\n    sound: BLOCK_ANVIL_LAND\r\n    flags: [ ALL ]\r\n    lore: |\r\n      {$s}Extractors produce resource points.\r\n      {$s}You can collect the resource points\r\n      at any time.\r\n\r\n      {$chk-kingdom-lvl-III}\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n    posx: 4\r\n    posy: 2\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "extractor",
+        "name"
+      ],
+      "source": "\"&aExtractor\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "extractor",
+        "material"
+      ],
+      "source": "MUSIC_DISC_CAT",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "extractor",
+        "sound"
+      ],
+      "source": "BLOCK_ANVIL_LAND",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "extractor",
+        "flags"
+      ],
+      "source": "[ ALL ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "ALL"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "extractor",
+        "lore"
+      ],
+      "source": "|\r\n      {$s}Extractors produce resource points.\r\n      {$s}You can collect the resource points\r\n      at any time.\r\n\r\n      {$chk-kingdom-lvl-III}\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "extractor",
+        "posx"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "extractor",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "outpost"
+      ],
+      "source": "\r\n    name: \"&eOutpost\"\r\n    material: MUSIC_DISC_13\r\n    sound: ENTITY_EXPERIENCE_ORB_PICKUP, 1.5\r\n    flags: [ ALL ]\r\n    lore: |\r\n      {$s}The global stock market\r\n      of kingdoms. Buy and sell\r\n      various items that affects\r\n      the prices of these items globally\r\n      across all outposts.\r\n      This structure also gives you the\r\n      ability to open your nexus remotely.\r\n\r\n      {$chk-kingdom-lvl-II}\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n    posx: 5\r\n    posy: 2\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "outpost",
+        "name"
+      ],
+      "source": "\"&eOutpost\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "outpost",
+        "material"
+      ],
+      "source": "MUSIC_DISC_13",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "outpost",
+        "sound"
+      ],
+      "source": "ENTITY_EXPERIENCE_ORB_PICKUP, 1.5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "outpost",
+        "flags"
+      ],
+      "source": "[ ALL ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "ALL"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "outpost",
+        "lore"
+      ],
+      "source": "|\r\n      {$s}The global stock market\r\n      of kingdoms. Buy and sell\r\n      various items that affects\r\n      the prices of these items globally\r\n      across all outposts.\r\n      This structure also gives you the\r\n      ability to open your nexus remotely.\r\n\r\n      {$chk-kingdom-lvl-II}\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "outpost",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "outpost",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "warppad"
+      ],
+      "source": "\r\n    name: \"&cWarp Pad\"\r\n    material: MUSIC_DISC_BLOCKS\r\n    sound: ENTITY_ENDERMAN_TELEPORT\r\n    flags: [ ALL ]\r\n    lore: |\r\n      {$s}Warp pads can be used to teleport\r\n      from a structure to another.\r\n\r\n      {$chk-kingdom-lvl-IV}\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n    posx: 6\r\n    posy: 2\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "warppad",
+        "name"
+      ],
+      "source": "\"&cWarp Pad\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "warppad",
+        "material"
+      ],
+      "source": "MUSIC_DISC_BLOCKS",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "warppad",
+        "sound"
+      ],
+      "source": "ENTITY_ENDERMAN_TELEPORT",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "warppad",
+        "flags"
+      ],
+      "source": "[ ALL ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "ALL"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "warppad",
+        "lore"
+      ],
+      "source": "|\r\n      {$s}Warp pads can be used to teleport\r\n      from a structure to another.\r\n\r\n      {$chk-kingdom-lvl-IV}\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "warppad",
+        "posx"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "warppad",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "regulator"
+      ],
+      "source": "\r\n    name: \"&3Regulator\"\r\n    material: MUSIC_DISC_WARD\r\n    sound: ENTITY_VILLAGER_AMBIENT\r\n    flags: [ ALL ]\r\n    lore: |\r\n      {$s}Manages player attributes such as building,\r\n      turret ceasefire, etc.\r\n      Controls mob/animal spawning,\r\n      turrets (such as auto-refilling ammo) and explosions.\r\n\r\n      {$chk-kingdom-lvl-IV}\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n    posx: 7\r\n    posy: 2\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "regulator",
+        "name"
+      ],
+      "source": "\"&3Regulator\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "regulator",
+        "material"
+      ],
+      "source": "MUSIC_DISC_WARD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "regulator",
+        "sound"
+      ],
+      "source": "ENTITY_VILLAGER_AMBIENT",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "regulator",
+        "flags"
+      ],
+      "source": "[ ALL ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "ALL"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "regulator",
+        "lore"
+      ],
+      "source": "|\r\n      {$s}Manages player attributes such as building,\r\n      turret ceasefire, etc.\r\n      Controls mob/animal spawning,\r\n      turrets (such as auto-refilling ammo) and explosions.\r\n\r\n      {$chk-kingdom-lvl-IV}\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "regulator",
+        "posx"
+      ],
+      "source": "7",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "regulator",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "siege-cannon"
+      ],
+      "source": "\r\n    name: \"&3Siege Cannon\"\r\n    material: MUSIC_DISC_STRAD\r\n    sound: ENTITY_VILLAGER_AMBIENT\r\n    flags: [ ALL ]\r\n    lore: |\r\n      {$s}Cannon used to break a kingdom's\r\n      shield.\r\n\r\n      {$chk-kingdom-lvl-III}\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n      {? kingdoms_kingdom_is_pacifist ? \"{$note} {$desc}Your kingdom is a pacifist kingdom\r\n      {$desc}and this structure will have no use for your kingdom.\"}\r\n    posx: 5\r\n    posy: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "siege-cannon",
+        "name"
+      ],
+      "source": "\"&3Siege Cannon\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "siege-cannon",
+        "material"
+      ],
+      "source": "MUSIC_DISC_STRAD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "siege-cannon",
+        "sound"
+      ],
+      "source": "ENTITY_VILLAGER_AMBIENT",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "siege-cannon",
+        "flags"
+      ],
+      "source": "[ ALL ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "ALL"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "siege-cannon",
+        "lore"
+      ],
+      "source": "|\r\n      {$s}Cannon used to break a kingdom's\r\n      shield.\r\n\r\n      {$chk-kingdom-lvl-III}\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n      {? kingdoms_kingdom_is_pacifist ? \"{$note} {$desc}Your kingdom is a pacifist kingdom\r\n      {$desc}and this structure will have no use for your kingdom.\"}\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "siege-cannon",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "siege-cannon",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back"
+      ],
+      "source": "\r\n    name: \"{$p}Back\"\r\n    material: PLAYER_HEAD\r\n    # https://minecraft-heads.com/custom-heads/alphabet/10299-gray-backward\r\n    skull: \"{$gui-back}\"\r\n    lore: |\r\n      {$s}Go back to nexus menu.\r\n    posx: 5\r\n    posy: 3\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "name"
+      ],
+      "source": "\"{$p}Back\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "material"
+      ],
+      "source": "PLAYER_HEAD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "skull"
+      ],
+      "source": "\"{$gui-back}\"",
+      "comments": [
+        "https://minecraft-heads.com/custom-heads/alphabet/10299-gray-backward"
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "lore"
+      ],
+      "source": "|\r\n      {$s}Go back to nexus menu.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "cyan-glass"
+      ],
+      "source": "\r\n    name: \"\"\r\n    material: CYAN_STAINED_GLASS_PANE\r\n    slots: [ 1, 7, 9, 17, 19, 25 ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "cyan-glass",
+        "name"
+      ],
+      "source": "\"\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "cyan-glass",
+        "material"
+      ],
+      "source": "CYAN_STAINED_GLASS_PANE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "cyan-glass",
+        "slots"
+      ],
+      "source": "[ 1, 7, 9, 17, 19, 25 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "1",
+        "7",
+        "9",
+        "17",
+        "19",
+        "25"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "light-blue-glass"
+      ],
+      "source": "\r\n    name: \"\"\r\n    material: LIGHT_BLUE_STAINED_GLASS_PANE\r\n    slots: [ 0, 8, 18, 26 ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "light-blue-glass",
+        "name"
+      ],
+      "source": "\"\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "light-blue-glass",
+        "material"
+      ],
+      "source": "LIGHT_BLUE_STAINED_GLASS_PANE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "light-blue-glass",
+        "slots"
+      ],
+      "source": "[ 0, 8, 18, 26 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "0",
+        "8",
+        "18",
+        "26"
+      ]
+    }
+  ]
+}

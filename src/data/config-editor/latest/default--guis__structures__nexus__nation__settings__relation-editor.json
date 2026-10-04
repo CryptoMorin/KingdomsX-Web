@@ -1,0 +1,1842 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "guis/structures/nexus/nation/settings/relation-editor.yml",
+  "schemaId": "guis/schema",
+  "options": [
+    {
+      "path": [
+        "title"
+      ],
+      "source": "\"{$sep}-=( {$sep}Relation Editor {$sep})=-\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "rows"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sound"
+      ],
+      "source": "ITEM_BOOK_PAGE_TURN",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options"
+      ],
+      "source": "\r\n  fly:\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}Fly{$colon} {$p}Enabled\"\r\n      material: ELYTRA\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n      lore:\r\n        - \"{$sep}Allow kingdom flight in\"\r\n        - \"your land.\"\r\n    else:\r\n      name: \"{$p}Fly{$colon} &cDisabled\"\r\n      material: ELYTRA\r\n      lore:\r\n        - \"{$sep}Allow kingdom flight in\"\r\n        - \"your land.\"\r\n    posx: 1\r\n    posy: 1\r\n  build:\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}Build{$colon} {$p}Enabled\"\r\n      material: DIAMOND_PICKAXE\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n      lore:\r\n        - \"{$sep}Allow building in your land.\"\r\n    else:\r\n      name: \"{$p}Build{$colon} &cDisabled\"\r\n      material: DIAMOND_PICKAXE\r\n      lore:\r\n        - \"{$sep}Allow building in your land.\"\r\n    posx: 2\r\n    posy: 1\r\n  ceasefire:\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}Ceasefire{$colon} {$p}Enabled\"\r\n      material: DIAMOND_SWORD\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n      lore:\r\n        - \"{$sep}Disable friendly fire.\"\r\n    else:\r\n      name: \"{$p}Ceasefire{$colon} &cDisabled\"\r\n      material: DIAMOND_SWORD\r\n      lore:\r\n        - \"{$sep}Disable friendly fire.\"\r\n    posx: 3\r\n    posy: 1\r\n  interact:\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}Interact{$colon} {$p}Enabled\"\r\n      material: CAULDRON\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n      lore:\r\n        - \"{$sep}Allow block interaction for opening containers.\"\r\n    else:\r\n      name: \"{$p}Interact{$colon} &cDisabled\"\r\n      material: CAULDRON\r\n      lore:\r\n        - \"{$sep}Allow block interaction for opening containers.\"\r\n    posx: 4\r\n    posy: 1\r\n  use:\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}Use{$colon} {$p}Enabled\"\r\n      material: LEVER\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n      lore:\r\n        - \"{$sep}Allow using blocks.\"\r\n        - \"Such as doors, levels and buttons.\"\r\n    else:\r\n      name: \"{$p}Use{$colon} &cDisabled\"\r\n      material: LEVER\r\n      lore:\r\n        - \"{$sep}Allow using blocks.\"\r\n        - \"Such as doors, levels and buttons.\"\r\n    posx: 5\r\n    posy: 1\r\n  turret-ceasefire:\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}Turret Ceasefire{$colon} {$p}Enabled\"\r\n      material: SPECTRAL_ARROW\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n      lore:\r\n        - \"{$sep}Disable friendly fire for turrets.\"\r\n    else:\r\n      name: \"{$p}Turret Ceasefire{$colon} &cDisabled\"\r\n      material: SPECTRAL_ARROW\r\n      lore:\r\n        - \"{$sep}Disable friendly fire for turrets.\"\r\n    posx: 6\r\n    posy: 1\r\n  manage-turrets:\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}Manage Turrets{$colon} {$p}Enabled\"\r\n      material: ARROW\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n      lore:\r\n        - \"{$sep}Allow breaking, placing and\"\r\n        - \"interacting with turrets.\"\r\n    else:\r\n      name: \"{$p}Manage Turrets{$colon} &cDisabled\"\r\n      material: ARROW\r\n      lore:\r\n        - \"{$sep}Allow breaking, placing and\"\r\n        - \"interacting with turrets.\"\r\n    posx: 7\r\n    posy: 1\r\n  manage-structures:\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}Manage Structures{$colon} {$p}Enabled\"\r\n      material: REDSTONE_LAMP\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n      lore:\r\n        - \"{$sep}Allow breaking, placing and interacting with structures.\"\r\n    else:\r\n      name: \"{$p}Manage Structures{$colon} &cDisabled\"\r\n      material: REDSTONE_LAMP\r\n      lore:\r\n        - \"{$sep}Allow breaking, placing and interacting with structures.\"\r\n    posx: 8\r\n    posy: 1\r\n\r\n  back:\r\n    name: \"{$p}Back\"\r\n    material: PLAYER_HEAD\r\n    skull: \"{$gui-back}\"\r\n    lore:\r\n      - \"{$s}Go back to nexus menu.\"\r\n    posx: 9\r\n    posy: 1",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "fly"
+      ],
+      "source": "\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}Fly{$colon} {$p}Enabled\"\r\n      material: ELYTRA\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n      lore:\r\n        - \"{$sep}Allow kingdom flight in\"\r\n        - \"your land.\"\r\n    else:\r\n      name: \"{$p}Fly{$colon} &cDisabled\"\r\n      material: ELYTRA\r\n      lore:\r\n        - \"{$sep}Allow kingdom flight in\"\r\n        - \"your land.\"\r\n    posx: 1\r\n    posy: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "fly",
+        "enabled"
+      ],
+      "source": "\r\n      condition: enabled\r\n      name: \"{$p}Fly{$colon} {$p}Enabled\"\r\n      material: ELYTRA\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n      lore:\r\n        - \"{$sep}Allow kingdom flight in\"\r\n        - \"your land.\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "fly",
+        "enabled",
+        "condition"
+      ],
+      "source": "enabled",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "fly",
+        "enabled",
+        "name"
+      ],
+      "source": "\"{$p}Fly{$colon} {$p}Enabled\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "fly",
+        "enabled",
+        "material"
+      ],
+      "source": "ELYTRA",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "fly",
+        "enabled",
+        "flags"
+      ],
+      "source": "[ HIDE_ENCHANTS ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "HIDE_ENCHANTS"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "fly",
+        "enabled",
+        "enchants"
+      ],
+      "source": "\r\n        DURABILITY: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "fly",
+        "enabled",
+        "enchants",
+        "DURABILITY"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "fly",
+        "enabled",
+        "lore"
+      ],
+      "source": "\r\n        - \"{$sep}Allow kingdom flight in\"\r\n        - \"your land.\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$sep}Allow kingdom flight in\"",
+        "\"your land.\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "fly",
+        "else"
+      ],
+      "source": "\r\n      name: \"{$p}Fly{$colon} &cDisabled\"\r\n      material: ELYTRA\r\n      lore:\r\n        - \"{$sep}Allow kingdom flight in\"\r\n        - \"your land.\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "fly",
+        "else",
+        "name"
+      ],
+      "source": "\"{$p}Fly{$colon} &cDisabled\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "fly",
+        "else",
+        "material"
+      ],
+      "source": "ELYTRA",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "fly",
+        "else",
+        "lore"
+      ],
+      "source": "\r\n        - \"{$sep}Allow kingdom flight in\"\r\n        - \"your land.\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$sep}Allow kingdom flight in\"",
+        "\"your land.\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "fly",
+        "posx"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "fly",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "build"
+      ],
+      "source": "\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}Build{$colon} {$p}Enabled\"\r\n      material: DIAMOND_PICKAXE\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n      lore:\r\n        - \"{$sep}Allow building in your land.\"\r\n    else:\r\n      name: \"{$p}Build{$colon} &cDisabled\"\r\n      material: DIAMOND_PICKAXE\r\n      lore:\r\n        - \"{$sep}Allow building in your land.\"\r\n    posx: 2\r\n    posy: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "build",
+        "enabled"
+      ],
+      "source": "\r\n      condition: enabled\r\n      name: \"{$p}Build{$colon} {$p}Enabled\"\r\n      material: DIAMOND_PICKAXE\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n      lore:\r\n        - \"{$sep}Allow building in your land.\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "build",
+        "enabled",
+        "condition"
+      ],
+      "source": "enabled",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "build",
+        "enabled",
+        "name"
+      ],
+      "source": "\"{$p}Build{$colon} {$p}Enabled\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "build",
+        "enabled",
+        "material"
+      ],
+      "source": "DIAMOND_PICKAXE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "build",
+        "enabled",
+        "flags"
+      ],
+      "source": "[ HIDE_ENCHANTS ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "HIDE_ENCHANTS"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "build",
+        "enabled",
+        "enchants"
+      ],
+      "source": "\r\n        DURABILITY: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "build",
+        "enabled",
+        "enchants",
+        "DURABILITY"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "build",
+        "enabled",
+        "lore"
+      ],
+      "source": "\r\n        - \"{$sep}Allow building in your land.\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$sep}Allow building in your land.\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "build",
+        "else"
+      ],
+      "source": "\r\n      name: \"{$p}Build{$colon} &cDisabled\"\r\n      material: DIAMOND_PICKAXE\r\n      lore:\r\n        - \"{$sep}Allow building in your land.\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "build",
+        "else",
+        "name"
+      ],
+      "source": "\"{$p}Build{$colon} &cDisabled\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "build",
+        "else",
+        "material"
+      ],
+      "source": "DIAMOND_PICKAXE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "build",
+        "else",
+        "lore"
+      ],
+      "source": "\r\n        - \"{$sep}Allow building in your land.\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$sep}Allow building in your land.\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "build",
+        "posx"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "build",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "ceasefire"
+      ],
+      "source": "\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}Ceasefire{$colon} {$p}Enabled\"\r\n      material: DIAMOND_SWORD\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n      lore:\r\n        - \"{$sep}Disable friendly fire.\"\r\n    else:\r\n      name: \"{$p}Ceasefire{$colon} &cDisabled\"\r\n      material: DIAMOND_SWORD\r\n      lore:\r\n        - \"{$sep}Disable friendly fire.\"\r\n    posx: 3\r\n    posy: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "ceasefire",
+        "enabled"
+      ],
+      "source": "\r\n      condition: enabled\r\n      name: \"{$p}Ceasefire{$colon} {$p}Enabled\"\r\n      material: DIAMOND_SWORD\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n      lore:\r\n        - \"{$sep}Disable friendly fire.\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "ceasefire",
+        "enabled",
+        "condition"
+      ],
+      "source": "enabled",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "ceasefire",
+        "enabled",
+        "name"
+      ],
+      "source": "\"{$p}Ceasefire{$colon} {$p}Enabled\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "ceasefire",
+        "enabled",
+        "material"
+      ],
+      "source": "DIAMOND_SWORD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "ceasefire",
+        "enabled",
+        "flags"
+      ],
+      "source": "[ HIDE_ENCHANTS ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "HIDE_ENCHANTS"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "ceasefire",
+        "enabled",
+        "enchants"
+      ],
+      "source": "\r\n        DURABILITY: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "ceasefire",
+        "enabled",
+        "enchants",
+        "DURABILITY"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "ceasefire",
+        "enabled",
+        "lore"
+      ],
+      "source": "\r\n        - \"{$sep}Disable friendly fire.\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$sep}Disable friendly fire.\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "ceasefire",
+        "else"
+      ],
+      "source": "\r\n      name: \"{$p}Ceasefire{$colon} &cDisabled\"\r\n      material: DIAMOND_SWORD\r\n      lore:\r\n        - \"{$sep}Disable friendly fire.\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "ceasefire",
+        "else",
+        "name"
+      ],
+      "source": "\"{$p}Ceasefire{$colon} &cDisabled\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "ceasefire",
+        "else",
+        "material"
+      ],
+      "source": "DIAMOND_SWORD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "ceasefire",
+        "else",
+        "lore"
+      ],
+      "source": "\r\n        - \"{$sep}Disable friendly fire.\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$sep}Disable friendly fire.\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "ceasefire",
+        "posx"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "ceasefire",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "interact"
+      ],
+      "source": "\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}Interact{$colon} {$p}Enabled\"\r\n      material: CAULDRON\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n      lore:\r\n        - \"{$sep}Allow block interaction for opening containers.\"\r\n    else:\r\n      name: \"{$p}Interact{$colon} &cDisabled\"\r\n      material: CAULDRON\r\n      lore:\r\n        - \"{$sep}Allow block interaction for opening containers.\"\r\n    posx: 4\r\n    posy: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "interact",
+        "enabled"
+      ],
+      "source": "\r\n      condition: enabled\r\n      name: \"{$p}Interact{$colon} {$p}Enabled\"\r\n      material: CAULDRON\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n      lore:\r\n        - \"{$sep}Allow block interaction for opening containers.\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "interact",
+        "enabled",
+        "condition"
+      ],
+      "source": "enabled",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "interact",
+        "enabled",
+        "name"
+      ],
+      "source": "\"{$p}Interact{$colon} {$p}Enabled\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "interact",
+        "enabled",
+        "material"
+      ],
+      "source": "CAULDRON",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "interact",
+        "enabled",
+        "flags"
+      ],
+      "source": "[ HIDE_ENCHANTS ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "HIDE_ENCHANTS"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "interact",
+        "enabled",
+        "enchants"
+      ],
+      "source": "\r\n        DURABILITY: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "interact",
+        "enabled",
+        "enchants",
+        "DURABILITY"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "interact",
+        "enabled",
+        "lore"
+      ],
+      "source": "\r\n        - \"{$sep}Allow block interaction for opening containers.\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$sep}Allow block interaction for opening containers.\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "interact",
+        "else"
+      ],
+      "source": "\r\n      name: \"{$p}Interact{$colon} &cDisabled\"\r\n      material: CAULDRON\r\n      lore:\r\n        - \"{$sep}Allow block interaction for opening containers.\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "interact",
+        "else",
+        "name"
+      ],
+      "source": "\"{$p}Interact{$colon} &cDisabled\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "interact",
+        "else",
+        "material"
+      ],
+      "source": "CAULDRON",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "interact",
+        "else",
+        "lore"
+      ],
+      "source": "\r\n        - \"{$sep}Allow block interaction for opening containers.\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$sep}Allow block interaction for opening containers.\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "interact",
+        "posx"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "interact",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "use"
+      ],
+      "source": "\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}Use{$colon} {$p}Enabled\"\r\n      material: LEVER\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n      lore:\r\n        - \"{$sep}Allow using blocks.\"\r\n        - \"Such as doors, levels and buttons.\"\r\n    else:\r\n      name: \"{$p}Use{$colon} &cDisabled\"\r\n      material: LEVER\r\n      lore:\r\n        - \"{$sep}Allow using blocks.\"\r\n        - \"Such as doors, levels and buttons.\"\r\n    posx: 5\r\n    posy: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "use",
+        "enabled"
+      ],
+      "source": "\r\n      condition: enabled\r\n      name: \"{$p}Use{$colon} {$p}Enabled\"\r\n      material: LEVER\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n      lore:\r\n        - \"{$sep}Allow using blocks.\"\r\n        - \"Such as doors, levels and buttons.\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "use",
+        "enabled",
+        "condition"
+      ],
+      "source": "enabled",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "use",
+        "enabled",
+        "name"
+      ],
+      "source": "\"{$p}Use{$colon} {$p}Enabled\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "use",
+        "enabled",
+        "material"
+      ],
+      "source": "LEVER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "use",
+        "enabled",
+        "flags"
+      ],
+      "source": "[ HIDE_ENCHANTS ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "HIDE_ENCHANTS"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "use",
+        "enabled",
+        "enchants"
+      ],
+      "source": "\r\n        DURABILITY: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "use",
+        "enabled",
+        "enchants",
+        "DURABILITY"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "use",
+        "enabled",
+        "lore"
+      ],
+      "source": "\r\n        - \"{$sep}Allow using blocks.\"\r\n        - \"Such as doors, levels and buttons.\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$sep}Allow using blocks.\"",
+        "\"Such as doors, levels and buttons.\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "use",
+        "else"
+      ],
+      "source": "\r\n      name: \"{$p}Use{$colon} &cDisabled\"\r\n      material: LEVER\r\n      lore:\r\n        - \"{$sep}Allow using blocks.\"\r\n        - \"Such as doors, levels and buttons.\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "use",
+        "else",
+        "name"
+      ],
+      "source": "\"{$p}Use{$colon} &cDisabled\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "use",
+        "else",
+        "material"
+      ],
+      "source": "LEVER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "use",
+        "else",
+        "lore"
+      ],
+      "source": "\r\n        - \"{$sep}Allow using blocks.\"\r\n        - \"Such as doors, levels and buttons.\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$sep}Allow using blocks.\"",
+        "\"Such as doors, levels and buttons.\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "use",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "use",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "turret-ceasefire"
+      ],
+      "source": "\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}Turret Ceasefire{$colon} {$p}Enabled\"\r\n      material: SPECTRAL_ARROW\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n      lore:\r\n        - \"{$sep}Disable friendly fire for turrets.\"\r\n    else:\r\n      name: \"{$p}Turret Ceasefire{$colon} &cDisabled\"\r\n      material: SPECTRAL_ARROW\r\n      lore:\r\n        - \"{$sep}Disable friendly fire for turrets.\"\r\n    posx: 6\r\n    posy: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "turret-ceasefire",
+        "enabled"
+      ],
+      "source": "\r\n      condition: enabled\r\n      name: \"{$p}Turret Ceasefire{$colon} {$p}Enabled\"\r\n      material: SPECTRAL_ARROW\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n      lore:\r\n        - \"{$sep}Disable friendly fire for turrets.\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "turret-ceasefire",
+        "enabled",
+        "condition"
+      ],
+      "source": "enabled",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "turret-ceasefire",
+        "enabled",
+        "name"
+      ],
+      "source": "\"{$p}Turret Ceasefire{$colon} {$p}Enabled\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "turret-ceasefire",
+        "enabled",
+        "material"
+      ],
+      "source": "SPECTRAL_ARROW",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "turret-ceasefire",
+        "enabled",
+        "flags"
+      ],
+      "source": "[ HIDE_ENCHANTS ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "HIDE_ENCHANTS"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "turret-ceasefire",
+        "enabled",
+        "enchants"
+      ],
+      "source": "\r\n        DURABILITY: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "turret-ceasefire",
+        "enabled",
+        "enchants",
+        "DURABILITY"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "turret-ceasefire",
+        "enabled",
+        "lore"
+      ],
+      "source": "\r\n        - \"{$sep}Disable friendly fire for turrets.\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$sep}Disable friendly fire for turrets.\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "turret-ceasefire",
+        "else"
+      ],
+      "source": "\r\n      name: \"{$p}Turret Ceasefire{$colon} &cDisabled\"\r\n      material: SPECTRAL_ARROW\r\n      lore:\r\n        - \"{$sep}Disable friendly fire for turrets.\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "turret-ceasefire",
+        "else",
+        "name"
+      ],
+      "source": "\"{$p}Turret Ceasefire{$colon} &cDisabled\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "turret-ceasefire",
+        "else",
+        "material"
+      ],
+      "source": "SPECTRAL_ARROW",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "turret-ceasefire",
+        "else",
+        "lore"
+      ],
+      "source": "\r\n        - \"{$sep}Disable friendly fire for turrets.\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$sep}Disable friendly fire for turrets.\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "turret-ceasefire",
+        "posx"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "turret-ceasefire",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "manage-turrets"
+      ],
+      "source": "\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}Manage Turrets{$colon} {$p}Enabled\"\r\n      material: ARROW\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n      lore:\r\n        - \"{$sep}Allow breaking, placing and\"\r\n        - \"interacting with turrets.\"\r\n    else:\r\n      name: \"{$p}Manage Turrets{$colon} &cDisabled\"\r\n      material: ARROW\r\n      lore:\r\n        - \"{$sep}Allow breaking, placing and\"\r\n        - \"interacting with turrets.\"\r\n    posx: 7\r\n    posy: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "manage-turrets",
+        "enabled"
+      ],
+      "source": "\r\n      condition: enabled\r\n      name: \"{$p}Manage Turrets{$colon} {$p}Enabled\"\r\n      material: ARROW\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n      lore:\r\n        - \"{$sep}Allow breaking, placing and\"\r\n        - \"interacting with turrets.\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "manage-turrets",
+        "enabled",
+        "condition"
+      ],
+      "source": "enabled",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "manage-turrets",
+        "enabled",
+        "name"
+      ],
+      "source": "\"{$p}Manage Turrets{$colon} {$p}Enabled\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "manage-turrets",
+        "enabled",
+        "material"
+      ],
+      "source": "ARROW",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "manage-turrets",
+        "enabled",
+        "flags"
+      ],
+      "source": "[ HIDE_ENCHANTS ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "HIDE_ENCHANTS"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "manage-turrets",
+        "enabled",
+        "enchants"
+      ],
+      "source": "\r\n        DURABILITY: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "manage-turrets",
+        "enabled",
+        "enchants",
+        "DURABILITY"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "manage-turrets",
+        "enabled",
+        "lore"
+      ],
+      "source": "\r\n        - \"{$sep}Allow breaking, placing and\"\r\n        - \"interacting with turrets.\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$sep}Allow breaking, placing and\"",
+        "\"interacting with turrets.\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "manage-turrets",
+        "else"
+      ],
+      "source": "\r\n      name: \"{$p}Manage Turrets{$colon} &cDisabled\"\r\n      material: ARROW\r\n      lore:\r\n        - \"{$sep}Allow breaking, placing and\"\r\n        - \"interacting with turrets.\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "manage-turrets",
+        "else",
+        "name"
+      ],
+      "source": "\"{$p}Manage Turrets{$colon} &cDisabled\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "manage-turrets",
+        "else",
+        "material"
+      ],
+      "source": "ARROW",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "manage-turrets",
+        "else",
+        "lore"
+      ],
+      "source": "\r\n        - \"{$sep}Allow breaking, placing and\"\r\n        - \"interacting with turrets.\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$sep}Allow breaking, placing and\"",
+        "\"interacting with turrets.\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "manage-turrets",
+        "posx"
+      ],
+      "source": "7",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "manage-turrets",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "manage-structures"
+      ],
+      "source": "\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}Manage Structures{$colon} {$p}Enabled\"\r\n      material: REDSTONE_LAMP\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n      lore:\r\n        - \"{$sep}Allow breaking, placing and interacting with structures.\"\r\n    else:\r\n      name: \"{$p}Manage Structures{$colon} &cDisabled\"\r\n      material: REDSTONE_LAMP\r\n      lore:\r\n        - \"{$sep}Allow breaking, placing and interacting with structures.\"\r\n    posx: 8\r\n    posy: 1\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "manage-structures",
+        "enabled"
+      ],
+      "source": "\r\n      condition: enabled\r\n      name: \"{$p}Manage Structures{$colon} {$p}Enabled\"\r\n      material: REDSTONE_LAMP\r\n      flags: [ HIDE_ENCHANTS ]\r\n      enchants:\r\n        DURABILITY: 1\r\n      lore:\r\n        - \"{$sep}Allow breaking, placing and interacting with structures.\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "manage-structures",
+        "enabled",
+        "condition"
+      ],
+      "source": "enabled",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "manage-structures",
+        "enabled",
+        "name"
+      ],
+      "source": "\"{$p}Manage Structures{$colon} {$p}Enabled\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "manage-structures",
+        "enabled",
+        "material"
+      ],
+      "source": "REDSTONE_LAMP",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "manage-structures",
+        "enabled",
+        "flags"
+      ],
+      "source": "[ HIDE_ENCHANTS ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "HIDE_ENCHANTS"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "manage-structures",
+        "enabled",
+        "enchants"
+      ],
+      "source": "\r\n        DURABILITY: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "manage-structures",
+        "enabled",
+        "enchants",
+        "DURABILITY"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "manage-structures",
+        "enabled",
+        "lore"
+      ],
+      "source": "\r\n        - \"{$sep}Allow breaking, placing and interacting with structures.\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$sep}Allow breaking, placing and interacting with structures.\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "manage-structures",
+        "else"
+      ],
+      "source": "\r\n      name: \"{$p}Manage Structures{$colon} &cDisabled\"\r\n      material: REDSTONE_LAMP\r\n      lore:\r\n        - \"{$sep}Allow breaking, placing and interacting with structures.\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "manage-structures",
+        "else",
+        "name"
+      ],
+      "source": "\"{$p}Manage Structures{$colon} &cDisabled\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "manage-structures",
+        "else",
+        "material"
+      ],
+      "source": "REDSTONE_LAMP",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "manage-structures",
+        "else",
+        "lore"
+      ],
+      "source": "\r\n        - \"{$sep}Allow breaking, placing and interacting with structures.\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$sep}Allow breaking, placing and interacting with structures.\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "manage-structures",
+        "posx"
+      ],
+      "source": "8",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "manage-structures",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back"
+      ],
+      "source": "\r\n    name: \"{$p}Back\"\r\n    material: PLAYER_HEAD\r\n    skull: \"{$gui-back}\"\r\n    lore:\r\n      - \"{$s}Go back to nexus menu.\"\r\n    posx: 9\r\n    posy: 1",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "name"
+      ],
+      "source": "\"{$p}Back\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "material"
+      ],
+      "source": "PLAYER_HEAD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "skull"
+      ],
+      "source": "\"{$gui-back}\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "lore"
+      ],
+      "source": "\r\n      - \"{$s}Go back to nexus menu.\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$s}Go back to nexus menu.\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "posx"
+      ],
+      "source": "9",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

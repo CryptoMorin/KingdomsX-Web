@@ -1,3 +1,4 @@
+import { formatDate } from "../site-date.js";
 import {
   createAddressButton,
   createOwnerStat,
@@ -5,7 +6,6 @@ import {
   createServerIcon,
   createServerLink,
   createServerStat,
-  formatDate,
   playerCountLabel,
   versionLabel,
 } from "./ui.js";
@@ -87,7 +87,7 @@ const providerName = (value) =>
     "minecraftpinger.com": "minecraftpinger.com",
     "mcapi.us": "mcapi.us",
   })[value] ??
-  (value || "No provider");
+  (value || "No status source");
 
 const createModalSection = (title, content) => {
   const section = document.createElement("section");
@@ -207,7 +207,9 @@ const createDiscordEmbedAction = (server) => {
   const button = createActionButton("discord-sync", label, icon, "btn-site-sm");
   button.disabled = disabled;
 
-  if (disabled) button.setAttribute("aria-disabled", "true");
+  if (disabled) {
+    button.setAttribute("aria-disabled", "true");
+  }
 
   return button;
 };
@@ -255,7 +257,9 @@ export const fillManageModal = (modal, server, messages) => {
     return null;
   }
 
-  if (title) title.textContent = server.name;
+  if (title) {
+    title.textContent = server.name;
+  }
 
   body.replaceChildren();
   footer.replaceChildren();
@@ -315,7 +319,9 @@ export const fillManageModal = (modal, server, messages) => {
   links.className = "server-links d-flex flex-wrap gap-2";
   const website = createServerLink(server.websiteUrl, "Website", "website");
 
-  if (website) links.append(website);
+  if (website) {
+    links.append(website);
+  }
 
   (server.socialLinks ?? []).forEach((item) => {
     const link = createServerLink(
@@ -325,7 +331,9 @@ export const fillManageModal = (modal, server, messages) => {
       item.label
     );
 
-    if (link) links.append(link);
+    if (link) {
+      links.append(link);
+    }
   });
 
   const socialsContent = document.createElement("div");
@@ -355,7 +363,9 @@ export const fillManageModal = (modal, server, messages) => {
   );
   const discordAction = createDiscordEmbedAction(server);
 
-  if (discordAction) refreshGroup.append(discordAction);
+  if (discordAction) {
+    refreshGroup.append(discordAction);
+  }
 
   const moderationGroup = document.createElement("div");
   moderationGroup.className = "server-admin-footer-group d-flex flex-wrap gap-2";
@@ -381,7 +391,9 @@ export const fillReasonModal = (modal, server, action, messages) => {
     return;
   }
 
-  if (title) title.textContent = `${action === "suspend" ? "Suspend" : "Reject"} ${server.name}`;
+  if (title) {
+    title.textContent = `${action === "suspend" ? "Suspend" : "Reject"} ${server.name}`;
+  }
 
   body.replaceChildren();
   footer.replaceChildren();

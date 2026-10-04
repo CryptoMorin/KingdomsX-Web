@@ -1,0 +1,391 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "guis/challenge.yml",
+  "schemaId": "guis/schema",
+  "options": [
+    {
+      "path": [
+        "title"
+      ],
+      "source": "\"{$s}-=( &cChallenges {$s})=-\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "type"
+      ],
+      "source": "HOPPER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sound"
+      ],
+      "source": "BLOCK_LEVER_CLICK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options"
+      ],
+      "source": "\r\n  time-two-days:\r\n    name: \"{$p}In 2 days\"\r\n    material: IRON_BLOCK\r\n    slot: 0\r\n    time: 2days\r\n  time-three-days:\r\n    name: \"{$p}In 3 days\"\r\n    material: GOLD_BLOCK\r\n    slot: 1\r\n    time: 3days\r\n  time-five-days:\r\n    name: \"{$p}In 5 days\"\r\n    material: DIAMOND_BLOCK\r\n    slot: 2\r\n    time: 2days\r\n  time-week:\r\n    name: \"{$p}In 1 week\"\r\n    material: EMERALD_BLOCK\r\n    slot: 3\r\n    time: 7days\r\n  info:\r\n    name: \"{$p}Challenges\"\r\n    material: PLAYER_HEAD\r\n    # https://minecraft-heads.com/custom-heads/alphabet/24498-information\r\n    skull: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDAxYWZlOTczYzU0ODJmZGM3MWU2YWExMDY5ODgzM2M3OWM0MzdmMjEzMDhlYTlhMWEwOTU3NDZlYzI3NGEwZiJ9fX0='\r\n    slot: 4\r\n    lore: |\r\n      {$sep}They are planned invasions.\r\n      When you want to invade someone, you\r\n      have to plan an invasion in advance.\r\n\r\n      You click the amount of time you want\r\n      to give to your enemy before being able\r\n      to attack them. After this time has passed\r\n      you will have {$p}6 hours {$sep}to invade any of\r\n      the lands of the challenged kingdom.",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "time-two-days"
+      ],
+      "source": "\r\n    name: \"{$p}In 2 days\"\r\n    material: IRON_BLOCK\r\n    slot: 0\r\n    time: 2days\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "time-two-days",
+        "name"
+      ],
+      "source": "\"{$p}In 2 days\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "time-two-days",
+        "material"
+      ],
+      "source": "IRON_BLOCK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "time-two-days",
+        "slot"
+      ],
+      "source": "0",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "time-two-days",
+        "time"
+      ],
+      "source": "2days",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "time-three-days"
+      ],
+      "source": "\r\n    name: \"{$p}In 3 days\"\r\n    material: GOLD_BLOCK\r\n    slot: 1\r\n    time: 3days\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "time-three-days",
+        "name"
+      ],
+      "source": "\"{$p}In 3 days\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "time-three-days",
+        "material"
+      ],
+      "source": "GOLD_BLOCK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "time-three-days",
+        "slot"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "time-three-days",
+        "time"
+      ],
+      "source": "3days",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "time-five-days"
+      ],
+      "source": "\r\n    name: \"{$p}In 5 days\"\r\n    material: DIAMOND_BLOCK\r\n    slot: 2\r\n    time: 2days\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "time-five-days",
+        "name"
+      ],
+      "source": "\"{$p}In 5 days\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "time-five-days",
+        "material"
+      ],
+      "source": "DIAMOND_BLOCK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "time-five-days",
+        "slot"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "time-five-days",
+        "time"
+      ],
+      "source": "2days",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "time-week"
+      ],
+      "source": "\r\n    name: \"{$p}In 1 week\"\r\n    material: EMERALD_BLOCK\r\n    slot: 3\r\n    time: 7days\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "time-week",
+        "name"
+      ],
+      "source": "\"{$p}In 1 week\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "time-week",
+        "material"
+      ],
+      "source": "EMERALD_BLOCK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "time-week",
+        "slot"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "time-week",
+        "time"
+      ],
+      "source": "7days",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "info"
+      ],
+      "source": "\r\n    name: \"{$p}Challenges\"\r\n    material: PLAYER_HEAD\r\n    # https://minecraft-heads.com/custom-heads/alphabet/24498-information\r\n    skull: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDAxYWZlOTczYzU0ODJmZGM3MWU2YWExMDY5ODgzM2M3OWM0MzdmMjEzMDhlYTlhMWEwOTU3NDZlYzI3NGEwZiJ9fX0='\r\n    slot: 4\r\n    lore: |\r\n      {$sep}They are planned invasions.\r\n      When you want to invade someone, you\r\n      have to plan an invasion in advance.\r\n\r\n      You click the amount of time you want\r\n      to give to your enemy before being able\r\n      to attack them. After this time has passed\r\n      you will have {$p}6 hours {$sep}to invade any of\r\n      the lands of the challenged kingdom.",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "info",
+        "name"
+      ],
+      "source": "\"{$p}Challenges\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "info",
+        "material"
+      ],
+      "source": "PLAYER_HEAD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "info",
+        "skull"
+      ],
+      "source": "'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDAxYWZlOTczYzU0ODJmZGM3MWU2YWExMDY5ODgzM2M3OWM0MzdmMjEzMDhlYTlhMWEwOTU3NDZlYzI3NGEwZiJ9fX0='",
+      "comments": [
+        "https://minecraft-heads.com/custom-heads/alphabet/24498-information"
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "info",
+        "slot"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "info",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}They are planned invasions.\r\n      When you want to invade someone, you\r\n      have to plan an invasion in advance.\r\n\r\n      You click the amount of time you want\r\n      to give to your enemy before being able\r\n      to attack them. After this time has passed\r\n      you will have {$p}6 hours {$sep}to invade any of\r\n      the lands of the challenged kingdom.",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

@@ -1,0 +1,755 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "resource-points.yml",
+  "schemaId": "resource-points",
+  "options": [
+    {
+      "path": [
+        "last-donation-duration"
+      ],
+      "source": "30sec",
+      "comments": [
+        "How should the %kingdoms_last_donation_time/amount% be parsed?",
+        "This will gather the amount of rp player has collected since his last",
+        "\"donation time\" If the donation time reaches this duration,",
+        "it'll update their %kingdoms_last_donation_amount% player tries to donate again."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "death-penalty"
+      ],
+      "source": "\r\n  amount: 10\r\n  disabled-worlds: [ ]\r\n  disabled-causes: [ SUICIDE, STARVATION ]\r\n\r\n# For each 5 items that are in NOT in any of the lists below, give 1 resource point.\r\n# Resource points are not doubles/decimals (rational numbers) they're integers.\r\n# Set one of them to zero to disable this feature entirely.\r\n",
+      "comments": [
+        "Kingdom resource points lost when a member dies in any way.",
+        "If the kingdom cannot afford this, simply nothing will happen."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "death-penalty",
+        "amount"
+      ],
+      "source": "10",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "death-penalty",
+        "disabled-worlds"
+      ],
+      "source": "[ ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": []
+    },
+    {
+      "path": [
+        "death-penalty",
+        "disabled-causes"
+      ],
+      "source": "[ SUICIDE, STARVATION ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "SUICIDE",
+        "STARVATION"
+      ]
+    },
+    {
+      "path": [
+        "for-each"
+      ],
+      "source": "5",
+      "comments": [
+        "For each 5 items that are in NOT in any of the lists below, give 1 resource point.",
+        "Resource points are not doubles/decimals (rational numbers) they're integers.",
+        "Set one of them to zero to disable this feature entirely."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "give"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "general-filters"
+      ],
+      "source": "\r\n  # E.g. if any of an item's lore matches the one specified in this list, it'll not be used:\r\n  # with-lore: [ \"Hello hi\", \"I'm a simple lore line!\" ]\r\n  lore: ~\r\n\r\n  # E.g. If an item has any of the following enchants, it'll not be used\r\n  # enchanted: [ UNBREAKING, SHARPNESS, ... ]\r\n  enchants: false\r\n\r\n  # This option's format is different.\r\n  material:\r\n    # \"custom\" takes priority over this.\r\n    blacklist: true\r\n    list:\r\n      - STICK\r\n      - STRING\r\n\r\n# Resource points given per item. (for-each is not used here)\r\n",
+      "comments": [
+        "These filters apply to any item with these basic properties. The \"advanced\" and \"custom-items\" take priority.",
+        "true:  Whitelists the item, any item without this property will not be accepted.",
+        "false: Blacklists the item, any item with    this property will not be accepted.",
+        "~: Accepts the item regardless."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "general-filters",
+        "lore"
+      ],
+      "source": "~",
+      "comments": [
+        "E.g. if any of an item's lore matches the one specified in this list, it'll not be used:",
+        "with-lore: [ \"Hello hi\", \"I'm a simple lore line!\" ]"
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "general-filters",
+        "enchants"
+      ],
+      "source": "false",
+      "comments": [
+        "E.g. If an item has any of the following enchants, it'll not be used",
+        "enchanted: [ UNBREAKING, SHARPNESS, ... ]"
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "general-filters",
+        "material"
+      ],
+      "source": "\r\n    # \"custom\" takes priority over this.\r\n    blacklist: true\r\n    list:\r\n      - STICK\r\n      - STRING\r\n\r\n# Resource points given per item. (for-each is not used here)\r\n",
+      "comments": [
+        "This option's format is different."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "general-filters",
+        "material",
+        "blacklist"
+      ],
+      "source": "true",
+      "comments": [
+        "\"custom\" takes priority over this."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "general-filters",
+        "material",
+        "list"
+      ],
+      "source": "\r\n      - STICK\r\n      - STRING\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "STICK",
+        "STRING"
+      ]
+    },
+    {
+      "path": [
+        "custom"
+      ],
+      "source": "\r\n  GOLD_NUGGET: 4\r\n\r\n  IRON_INGOT: 30\r\n  GOLD_INGOT: 40\r\n  DIAMOND: 50\r\n  EMERALD: 60\r\n  LAPIS_LAZULI: 10\r\n  COAL: 2\r\n  CHARCOAL: 1\r\n  REDSTONE: 1\r\n  BLAZE_ROD: 40\r\n  BLAZE_POWDER: 20\r\n\r\n  EMERALD_BLOCK: 550\r\n  DIAMOND_BLOCK: 450\r\n  GOLD_BLOCK: 370\r\n  IRON_BLOCK: 270\r\n  LAPIS_BLOCK: 90\r\n  COAL_BLOCK: 18\r\n  REDSTONE_BLOCK: 9\r\n\r\n# Advanced settings to detect custom items worth.\r\n# https://github.com/CryptoMorin/KingdomsX/wiki/Config#item-matchers\r\n",
+      "comments": [
+        "Resource points given per item. (for-each is not used here)"
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "custom",
+        "GOLD_NUGGET"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "custom",
+        "IRON_INGOT"
+      ],
+      "source": "30",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "custom",
+        "GOLD_INGOT"
+      ],
+      "source": "40",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "custom",
+        "DIAMOND"
+      ],
+      "source": "50",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "custom",
+        "EMERALD"
+      ],
+      "source": "60",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "custom",
+        "LAPIS_LAZULI"
+      ],
+      "source": "10",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "custom",
+        "COAL"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "custom",
+        "CHARCOAL"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "custom",
+        "REDSTONE"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "custom",
+        "BLAZE_ROD"
+      ],
+      "source": "40",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "custom",
+        "BLAZE_POWDER"
+      ],
+      "source": "20",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "custom",
+        "EMERALD_BLOCK"
+      ],
+      "source": "550",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "custom",
+        "DIAMOND_BLOCK"
+      ],
+      "source": "450",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "custom",
+        "GOLD_BLOCK"
+      ],
+      "source": "370",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "custom",
+        "IRON_BLOCK"
+      ],
+      "source": "270",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "custom",
+        "LAPIS_BLOCK"
+      ],
+      "source": "90",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "custom",
+        "COAL_BLOCK"
+      ],
+      "source": "18",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "custom",
+        "REDSTONE_BLOCK"
+      ],
+      "source": "9",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "advanced"
+      ],
+      "source": "\r\n  special-gravel:\r\n    name: \"CONTAINS:Dorito\"\r\n    material: DIRT\r\n    resource-points: 1\r\n  cor-lapis:\r\n    # Notice lore is used instead of name\r\n    lore: \"CONTAINS:cor lapis\"\r\n    material: GOLD_BLOCK\r\n    resource-points: 1000\r\n    # advanced-nbt-stuff:\r\n    # material: NETHER_STAR\r\n    # nbt:\r\n    # The built-in \"ResourcePoints\" kingdoms NBT Allows developers to add custom worth\r\n    # to resource points without adding them here. This is just here for demonstration purposes.\r\n    # The dot indicates a NBT compound. Kinda like config entries in yml.\r\n    #  \"Kingdoms.ResourcePoints\": \"\"\r\n    # Bukkit's format for the normal API...\r\n    #  \"PluginName:NBTName\": \"golden\"\r\n\r\n# Custom items that can be obtained using the command: /k item give <name> [amount] [player]\r\n# Similarly, you can hold an item and do \"/k item inject <rp>\" to put rp into an item.\r\n",
+      "comments": [
+        "Advanced settings to detect custom items worth.",
+        "https://github.com/CryptoMorin/KingdomsX/wiki/Config#item-matchers"
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "advanced",
+        "special-gravel"
+      ],
+      "source": "\r\n    name: \"CONTAINS:Dorito\"\r\n    material: DIRT\r\n    resource-points: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "advanced",
+        "special-gravel",
+        "name"
+      ],
+      "source": "\"CONTAINS:Dorito\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "advanced",
+        "special-gravel",
+        "material"
+      ],
+      "source": "DIRT",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "advanced",
+        "special-gravel",
+        "resource-points"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "advanced",
+        "cor-lapis"
+      ],
+      "source": "\r\n    # Notice lore is used instead of name\r\n    lore: \"CONTAINS:cor lapis\"\r\n    material: GOLD_BLOCK\r\n    resource-points: 1000\r\n    # advanced-nbt-stuff:\r\n    # material: NETHER_STAR\r\n    # nbt:\r\n    # The built-in \"ResourcePoints\" kingdoms NBT Allows developers to add custom worth\r\n    # to resource points without adding them here. This is just here for demonstration purposes.\r\n    # The dot indicates a NBT compound. Kinda like config entries in yml.\r\n    #  \"Kingdoms.ResourcePoints\": \"\"\r\n    # Bukkit's format for the normal API...\r\n    #  \"PluginName:NBTName\": \"golden\"\r\n\r\n# Custom items that can be obtained using the command: /k item give <name> [amount] [player]\r\n# Similarly, you can hold an item and do \"/k item inject <rp>\" to put rp into an item.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "advanced",
+        "cor-lapis",
+        "lore"
+      ],
+      "source": "\"CONTAINS:cor lapis\"",
+      "comments": [
+        "Notice lore is used instead of name"
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "advanced",
+        "cor-lapis",
+        "material"
+      ],
+      "source": "GOLD_BLOCK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "advanced",
+        "cor-lapis",
+        "resource-points"
+      ],
+      "source": "1000",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "custom-items"
+      ],
+      "source": "\r\n  # E.g. /k item rp give crystal 10 Hex_27\r\n  # Which gives the player Hex_27 10 crystal items.\r\n  crystal:\r\n    name: \"&3Crystal\"\r\n    material: DIAMOND\r\n    resource-points: 1000\r\n    enchants:\r\n      THORNS: 3\r\n    lore:\r\n      - \"{$sep}A crystal formed by months of\"\r\n      - \"being exposed to magma underwater.\"\r\n      - ''\r\n      - \"{$p}Resource Points{$colon} {$s}1,000\"\r\n  bush:\r\n    name: \"&8Resource Point Bush\"\r\n    material: DEAD_BUSH\r\n    resource-points: 100\r\n    enchants:\r\n      UNBREAKING: 1\r\n    lore:\r\n      - \"{$sep}The essence of resource points\"\r\n      - \"is buried underneath the skin of these\"\r\n      - \"dead bush that can be extracted.\"\r\n      - ''\r\n      - \"{$p}Resource Points{$colon} {$s}100\"",
+      "comments": [
+        "Custom items that can be obtained using the command: /k item give <name> [amount] [player]",
+        "Similarly, you can hold an item and do \"/k item inject <rp>\" to put rp into an item."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "custom-items",
+        "crystal"
+      ],
+      "source": "\r\n    name: \"&3Crystal\"\r\n    material: DIAMOND\r\n    resource-points: 1000\r\n    enchants:\r\n      THORNS: 3\r\n    lore:\r\n      - \"{$sep}A crystal formed by months of\"\r\n      - \"being exposed to magma underwater.\"\r\n      - ''\r\n      - \"{$p}Resource Points{$colon} {$s}1,000\"\r\n",
+      "comments": [
+        "E.g. /k item rp give crystal 10 Hex_27",
+        "Which gives the player Hex_27 10 crystal items."
+      ],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "custom-items",
+        "crystal",
+        "name"
+      ],
+      "source": "\"&3Crystal\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "custom-items",
+        "crystal",
+        "material"
+      ],
+      "source": "DIAMOND",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "custom-items",
+        "crystal",
+        "resource-points"
+      ],
+      "source": "1000",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "custom-items",
+        "crystal",
+        "enchants"
+      ],
+      "source": "\r\n      THORNS: 3\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "custom-items",
+        "crystal",
+        "enchants",
+        "THORNS"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "custom-items",
+        "crystal",
+        "lore"
+      ],
+      "source": "\r\n      - \"{$sep}A crystal formed by months of\"\r\n      - \"being exposed to magma underwater.\"\r\n      - ''\r\n      - \"{$p}Resource Points{$colon} {$s}1,000\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$sep}A crystal formed by months of\"",
+        "\"being exposed to magma underwater.\"",
+        "''",
+        "\"{$p}Resource Points{$colon} {$s}1,000\""
+      ]
+    },
+    {
+      "path": [
+        "custom-items",
+        "bush"
+      ],
+      "source": "\r\n    name: \"&8Resource Point Bush\"\r\n    material: DEAD_BUSH\r\n    resource-points: 100\r\n    enchants:\r\n      UNBREAKING: 1\r\n    lore:\r\n      - \"{$sep}The essence of resource points\"\r\n      - \"is buried underneath the skin of these\"\r\n      - \"dead bush that can be extracted.\"\r\n      - ''\r\n      - \"{$p}Resource Points{$colon} {$s}100\"",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "custom-items",
+        "bush",
+        "name"
+      ],
+      "source": "\"&8Resource Point Bush\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "custom-items",
+        "bush",
+        "material"
+      ],
+      "source": "DEAD_BUSH",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "custom-items",
+        "bush",
+        "resource-points"
+      ],
+      "source": "100",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "custom-items",
+        "bush",
+        "enchants"
+      ],
+      "source": "\r\n      UNBREAKING: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "custom-items",
+        "bush",
+        "enchants",
+        "UNBREAKING"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "custom-items",
+        "bush",
+        "lore"
+      ],
+      "source": "\r\n      - \"{$sep}The essence of resource points\"\r\n      - \"is buried underneath the skin of these\"\r\n      - \"dead bush that can be extracted.\"\r\n      - ''\r\n      - \"{$p}Resource Points{$colon} {$s}100\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$sep}The essence of resource points\"",
+        "\"is buried underneath the skin of these\"",
+        "\"dead bush that can be extracted.\"",
+        "''",
+        "\"{$p}Resource Points{$colon} {$s}100\""
+      ]
+    }
+  ]
+}

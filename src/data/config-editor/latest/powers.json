@@ -1,0 +1,186 @@
+{
+  "formatVersion": 2,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "id": "powers",
+  "resourceName": "powers.yml",
+  "schema": {
+    "kind": "object",
+    "fields": [
+      {
+        "key": "powerups",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "enum",
+            "values": [
+              "damage-boost",
+              "damage-reduction",
+              "arrow-boost",
+              "regeneration-boost"
+            ],
+            "allowCustom": false
+          },
+          "values": {
+            "kind": "object",
+            "fields": [
+              {
+                "key": "enabled",
+                "type": {
+                  "kind": "boolean"
+                }
+              },
+              {
+                "key": "cost",
+                "type": {
+                  "kind": "expression",
+                  "language": "math"
+                }
+              },
+              {
+                "key": "scaling",
+                "type": {
+                  "kind": "expression",
+                  "language": "math"
+                }
+              },
+              {
+                "key": "max-level",
+                "type": {
+                  "kind": "expression",
+                  "language": "math"
+                }
+              },
+              {
+                "key": "own-land-only",
+                "type": {
+                  "kind": "boolean"
+                }
+              }
+            ]
+          },
+          "fields": []
+        }
+      },
+      {
+        "key": "power",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "enabled",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "player",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "max",
+                    "type": {
+                      "kind": "decimal"
+                    }
+                  },
+                  {
+                    "key": "min",
+                    "type": {
+                      "kind": "decimal"
+                    }
+                  },
+                  {
+                    "key": "initial",
+                    "type": {
+                      "kind": "decimal"
+                    }
+                  },
+                  {
+                    "key": "regeneration",
+                    "type": {
+                      "kind": "object",
+                      "fields": [
+                        {
+                          "key": "every",
+                          "type": {
+                            "kind": "duration",
+                            "typeName": "Period"
+                          }
+                        },
+                        {
+                          "key": "charge",
+                          "type": {
+                            "kind": "decimal"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "key": "loss",
+                    "type": {
+                      "kind": "object",
+                      "fields": [
+                        {
+                          "key": "death",
+                          "type": {
+                            "kind": "decimal"
+                          }
+                        },
+                        {
+                          "key": "offline",
+                          "type": {
+                            "kind": "object",
+                            "fields": [
+                              {
+                                "key": "every",
+                                "type": {
+                                  "kind": "duration",
+                                  "typeName": "Period"
+                                }
+                              },
+                              {
+                                "key": "lose",
+                                "type": {
+                                  "kind": "decimal"
+                                }
+                              },
+                              {
+                                "key": "min",
+                                "type": {
+                                  "kind": "decimal"
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "key": "faction",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "max",
+                    "type": {
+                      "kind": "decimal"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

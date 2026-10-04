@@ -51,7 +51,9 @@ export async function handleAdminDiscordAction(
     adminSyncStatements(env, serverId, actor, desiredAction, server.updated_at, timestamp)
   );
 
-  if (ctx) ctx.waitUntil(processDiscordEmbedJobs(env));
+  if (ctx) {
+    ctx.waitUntil(processDiscordEmbedJobs(env));
+  }
 
   return json({ ok: true, id: serverId, discordEmbed: "pending" }, 202, NO_STORE_JSON_HEADERS);
 }
@@ -143,8 +145,9 @@ async function upsertDiscordEmbed(
   }
 
   if (messageId && !repostMessage) {
-    if (!(await discordEmbedJobStillCurrent(env, job, leaseToken)))
+    if (!(await discordEmbedJobStillCurrent(env, job, leaseToken))) {
       return false;
+    }
 
     const payload = buildDiscordServerMessage(server, { updated: true, timestamp });
     const response = await discordFetch(
@@ -168,8 +171,9 @@ async function upsertDiscordEmbed(
   }
 
   if (!messageId || repostMessage) {
-    if (!(await discordEmbedJobStillCurrent(env, job, leaseToken)))
+    if (!(await discordEmbedJobStillCurrent(env, job, leaseToken))) {
       return false;
+    }
 
     const previousMessageId = repostMessage ? messageId : null;
     const payload = buildDiscordServerMessage(server, { updated: false, timestamp });
@@ -213,7 +217,7 @@ async function upsertDiscordEmbed(
   }
 
   if (!(await discordEmbedJobStillCurrent(env, job, leaseToken))) {
-    // Persist a newly created message before releasing a stale lease so the next job can clean it up
+    // Save a newly created message before releasing a stale lease so the next job can clean it up
     if (createdMessage || repostedMessage) {
       await storeDiscordEmbed(
         env,
@@ -287,11 +291,13 @@ async function deleteDiscordEmbed(
 ): Promise<boolean> {
   const embed = await getDiscordEmbedForDeletion(env, serverId);
 
-  if (!embed)
+  if (!embed) {
     return true;
+  }
 
-  if (!(await discordEmbedJobStillCurrent(env, job, leaseToken)))
+  if (!(await discordEmbedJobStillCurrent(env, job, leaseToken))) {
     return false;
+  }
 
   const webhook = parseDiscordWebhookUrl(env.DISCORD_SERVER_DIRECTORY_WEBHOOK_URL);
 
@@ -305,8 +311,9 @@ async function deleteDiscordEmbed(
     );
   }
 
-  if (!(await discordEmbedJobStillCurrent(env, job, leaseToken)))
+  if (!(await discordEmbedJobStillCurrent(env, job, leaseToken))) {
     return false;
+  }
 
   await deleteDiscordEmbedRecord(env, serverId);
   logInfo("discord.embed_deleted", { serverId });

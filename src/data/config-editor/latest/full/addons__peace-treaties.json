@@ -1,0 +1,624 @@
+{
+  "formatVersion": 1,
+  "id": "addons/peace-treaties",
+  "resourceName": "schemas/peace-treaties.yml",
+  "sources": {
+    "schema": {
+      "addonId": "peace-treaties",
+      "artifactPath": "addons/Kingdoms-Addon-Peace-Treaties-1.2.8.3.jar",
+      "artifactBlobSha": "65c542bd55dc6dfed6e222f079d37971fd24a682",
+      "artifactSha256": "54b2f1a879e10403200f218d852deb8d80c721cc933777812bbdcfcac5ca9f03",
+      "addonVersion": "1.2.8.3",
+      "fileName": "schema--addons__peace-treaties.json"
+    },
+    "defaults": [
+      "default--peace-treaties.json"
+    ],
+    "runtime": null
+  },
+  "coverage": {
+    "defaultPathCount": 30,
+    "rawDefaultPathCount": 71,
+    "activeRuntimePathCount": 0,
+    "fieldCount": 24,
+    "capabilitySourceCounts": {
+      "jar-schema": 31,
+      "jar-default": 23,
+      "editor-overlay": 15
+    },
+    "commonSettingCount": 0
+  },
+  "schema": {
+    "kind": "object",
+    "fields": [
+      {
+        "key": "duration",
+        "type": {
+          "kind": "duration",
+          "typeName": "Period",
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "The duration for the contract to last if any long-term terms are selected.",
+          "optional": true
+        }
+      },
+      {
+        "key": "force-accept",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "condition",
+              "type": {
+                "kind": "expression",
+                "language": "condition",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "war-points",
+              "type": {
+                "kind": "decimal",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "Taken war points if acceptance is enforced.",
+                "optional": true
+              }
+            }
+          ],
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "description": "Based on what condition should the sender of a peace treaty should be able to force the contract on the other side without concept? This is useful for situations where the other side has completely lost everything and are being stubborn to continue the war with nothing. This default condition checks if the proposer has 100 more war points than the victim kingdom.",
+          "optional": true
+        }
+      },
+      {
+        "key": "war-points",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "initial",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "Initial war points given to a kingdom when created.",
+                "optional": true
+              }
+            },
+            {
+              "key": "max",
+              "type": {
+                "kind": "expression",
+                "language": "math",
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "allowed-relationships",
+              "type": {
+                "kind": "set",
+                "elements": {
+                  "kind": "advanced",
+                  "typeName": "any",
+                  "capability": {
+                    "sources": [
+                      "jar-schema"
+                    ]
+                  }
+                },
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "optional": true
+              }
+            },
+            {
+              "key": "scores",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "gain",
+                    "type": {
+                      "kind": "mapping",
+                      "keys": {
+                        "kind": "enum",
+                        "values": [
+                          "kill",
+                          "invade",
+                          "break-turret",
+                          "break-structure"
+                        ],
+                        "allowCustom": false,
+                        "capability": {
+                          "sources": [
+                            "jar-schema"
+                          ]
+                        }
+                      },
+                      "values": {
+                        "kind": "expression",
+                        "language": "math",
+                        "capability": {
+                          "sources": [
+                            "jar-schema"
+                          ]
+                        }
+                      },
+                      "fields": [],
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  },
+                  {
+                    "key": "lose",
+                    "type": {
+                      "kind": "mapping",
+                      "keys": {
+                        "kind": "enum",
+                        "values": [
+                          "kill",
+                          "invade",
+                          "break-turret",
+                          "break-structure"
+                        ],
+                        "allowCustom": false,
+                        "capability": {
+                          "sources": [
+                            "jar-schema"
+                          ]
+                        }
+                      },
+                      "values": {
+                        "kind": "expression",
+                        "language": "math",
+                        "capability": {
+                          "sources": [
+                            "jar-schema"
+                          ]
+                        }
+                      },
+                      "fields": [],
+                      "capability": {
+                        "sources": [
+                          "jar-schema",
+                          "jar-default"
+                        ]
+                      },
+                      "optional": true
+                    }
+                  }
+                ],
+                "capability": {
+                  "sources": [
+                    "jar-schema",
+                    "jar-default"
+                  ]
+                },
+                "description": "Amount of war points given per action. These actions must be performed against an enemy relationship.",
+                "optional": true
+              }
+            }
+          ],
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          },
+          "optional": true
+        }
+      },
+      {
+        "key": "min-terms",
+        "type": {
+          "kind": "integer",
+          "description": "Minimum selected terms required to send a contract.",
+          "optional": true,
+          "minimum": 1,
+          "capability": {
+            "sources": [
+              "editor-overlay",
+              "jar-schema",
+              "jar-default"
+            ]
+          }
+        }
+      },
+      {
+        "key": "terms",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "string",
+            "typeName": "str",
+            "capability": {
+              "sources": [
+                "jar-schema"
+              ]
+            }
+          },
+          "values": {
+            "kind": "object",
+            "fields": [
+              {
+                "key": "war-points",
+                "type": {
+                  "kind": "expression",
+                  "language": "math",
+                  "capability": {
+                    "sources": [
+                      "jar-schema",
+                      "jar-default"
+                    ]
+                  },
+                  "description": "Required war points to select this term."
+                }
+              },
+              {
+                "key": "terms",
+                "type": {
+                  "kind": "set",
+                  "elements": {
+                    "kind": "suggestion",
+                    "typeName": "PeaceTreatyTerm",
+                    "values": [
+                      "scutage",
+                      "annul-treaties",
+                      "limit-structures",
+                      "limit-turrets",
+                      "limit-claims",
+                      "misc-upgrades",
+                      "take-money",
+                      "take-resource-points",
+                      "keep-lands",
+                      "leave-nation"
+                    ],
+                    "allowCustom": true,
+                    "description": "Bundled peace-treaty term name. Custom addon-provided term names remain available.",
+                    "optional": true,
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    }
+                  },
+                  "description": "Sub-terms applied by this selectable contract term.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay",
+                      "jar-schema",
+                      "jar-default"
+                    ]
+                  }
+                }
+              },
+              {
+                "key": "conditions",
+                "type": {
+                  "kind": "mapping",
+                  "keys": {
+                    "kind": "expression",
+                    "language": "condition",
+                    "capability": {
+                      "sources": [
+                        "jar-schema"
+                      ]
+                    },
+                    "allowFallback": true,
+                    "description": "A Kingdoms condition, or else for the optional fallback."
+                  },
+                  "values": {
+                    "kind": "string",
+                    "typeName": "MessageEntry",
+                    "capability": {
+                      "sources": [
+                        "jar-schema"
+                      ]
+                    }
+                  },
+                  "fields": [],
+                  "capability": {
+                    "sources": [
+                      "jar-schema"
+                    ]
+                  },
+                  "description": "Conditional outputs evaluated from top to bottom.",
+                  "optional": true
+                }
+              },
+              {
+                "key": "term-options",
+                "type": {
+                  "kind": "mapping",
+                  "keys": {
+                    "kind": "suggestion",
+                    "typeName": "PeaceTreatyTerm",
+                    "values": [
+                      "scutage",
+                      "annul-treaties",
+                      "limit-structures",
+                      "limit-turrets",
+                      "limit-claims",
+                      "misc-upgrades",
+                      "take-money",
+                      "take-resource-points",
+                      "keep-lands",
+                      "leave-nation"
+                    ],
+                    "allowCustom": true,
+                    "description": "Bundled peace-treaty term name. Custom addon-provided term names remain available.",
+                    "optional": true,
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    }
+                  },
+                  "values": {
+                    "kind": "object",
+                    "fields": [
+                      {
+                        "key": "conditions",
+                        "type": {
+                          "kind": "mapping",
+                          "keys": {
+                            "kind": "expression",
+                            "language": "condition",
+                            "capability": {
+                              "sources": [
+                                "jar-schema"
+                              ]
+                            },
+                            "allowFallback": true,
+                            "description": "A Kingdoms condition, or else for the optional fallback."
+                          },
+                          "values": {
+                            "kind": "string",
+                            "typeName": "MessageEntry",
+                            "capability": {
+                              "sources": [
+                                "jar-schema"
+                              ]
+                            }
+                          },
+                          "fields": [],
+                          "capability": {
+                            "sources": [
+                              "jar-schema",
+                              "jar-default"
+                            ]
+                          },
+                          "description": "Conditional outputs evaluated from top to bottom.",
+                          "optional": true
+                        }
+                      },
+                      {
+                        "key": "amount",
+                        "type": {
+                          "kind": "union",
+                          "description": "Use true to ask the proposer for an amount, or provide a fixed value or math formula.",
+                          "optional": true,
+                          "choices": [
+                            {
+                              "kind": "literal",
+                              "value": true,
+                              "label": "Prompt the proposer",
+                              "optional": true,
+                              "capability": {
+                                "sources": [
+                                  "editor-overlay"
+                                ]
+                              }
+                            },
+                            {
+                              "kind": "expression",
+                              "language": "math",
+                              "description": "Fixed amount or math formula.",
+                              "optional": true,
+                              "capability": {
+                                "sources": [
+                                  "editor-overlay"
+                                ]
+                              }
+                            }
+                          ],
+                          "capability": {
+                            "sources": [
+                              "editor-overlay",
+                              "jar-default"
+                            ]
+                          }
+                        }
+                      },
+                      {
+                        "key": "min",
+                        "type": {
+                          "kind": "decimal",
+                          "description": "Minimum amount accepted from the proposer.",
+                          "optional": true,
+                          "capability": {
+                            "sources": [
+                              "editor-overlay",
+                              "jar-default"
+                            ]
+                          }
+                        }
+                      },
+                      {
+                        "key": "max",
+                        "type": {
+                          "kind": "decimal",
+                          "description": "Maximum amount accepted from the proposer.",
+                          "optional": true,
+                          "capability": {
+                            "sources": [
+                              "editor-overlay",
+                              "jar-default"
+                            ]
+                          }
+                        }
+                      }
+                    ],
+                    "capability": {
+                      "sources": [
+                        "jar-schema"
+                      ]
+                    }
+                  },
+                  "fields": [],
+                  "capability": {
+                    "sources": [
+                      "jar-schema",
+                      "jar-default"
+                    ]
+                  },
+                  "description": "Options that control each sub-term.",
+                  "optional": true
+                }
+              },
+              {
+                "key": "condition",
+                "type": {
+                  "kind": "mapping",
+                  "keys": {
+                    "kind": "expression",
+                    "language": "condition",
+                    "description": "Condition that prevents this term from being selected.",
+                    "optional": true,
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    },
+                    "allowFallback": true
+                  },
+                  "values": {
+                    "kind": "string",
+                    "typeName": "MessageEntry",
+                    "description": "Language message shown when the condition matches.",
+                    "optional": true,
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    }
+                  },
+                  "description": "Selection-blocking conditions and their language message entries.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay",
+                      "jar-default"
+                    ]
+                  }
+                }
+              },
+              {
+                "key": "gui",
+                "type": {
+                  "kind": "nullable",
+                  "value": {
+                    "kind": "string",
+                    "typeName": "GuiPath",
+                    "description": "GUI opened to configure sub-terms.",
+                    "optional": true,
+                    "capability": {
+                      "sources": [
+                        "editor-overlay"
+                      ]
+                    }
+                  },
+                  "description": "GUI opened to configure sub-terms. Leave disabled when no input GUI is required.",
+                  "optional": true,
+                  "capability": {
+                    "sources": [
+                      "editor-overlay",
+                      "jar-default"
+                    ]
+                  }
+                }
+              }
+            ],
+            "required": [
+              "terms",
+              "war-points"
+            ],
+            "capability": {
+              "sources": [
+                "jar-schema"
+              ]
+            }
+          },
+          "fields": [],
+          "optional": true,
+          "capability": {
+            "sources": [
+              "jar-schema",
+              "jar-default"
+            ]
+          }
+        }
+      },
+      {
+        "key": "unfinished-contract-reminder",
+        "type": {
+          "kind": "duration",
+          "description": "Interval between reminders about unfinished contracts.",
+          "optional": true,
+          "capability": {
+            "sources": [
+              "editor-overlay",
+              "jar-default"
+            ]
+          }
+        }
+      }
+    ],
+    "capability": {
+      "sources": [
+        "jar-schema"
+      ]
+    }
+  }
+}

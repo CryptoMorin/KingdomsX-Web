@@ -1,0 +1,95 @@
+{
+  "formatVersion": 1,
+  "source": {
+    "addonId": "map-viewers",
+    "artifactPath": "addons/Kingdoms-Addon-Map-Viewers-3.2.2.jar",
+    "artifactBlobSha": "29aaabc3ae8f20ecc1fe6ff4ea14652e4f5e96ac",
+    "artifactSha256": "b169a040912e6c578a6092569ea0e64e092b530f846bbb40b9f56f11104dcf4e",
+    "addonVersion": "3.2.2"
+  },
+  "id": "addons/maps/map",
+  "resourceName": "schemas/maps/map.yml",
+  "reason": null,
+  "schema": {
+    "kind": "object",
+    "fields": [
+      {
+        "key": "update-interval",
+        "type": {
+          "kind": "duration",
+          "typeName": "Period"
+        }
+      },
+      {
+        "key": "banner",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "scaling",
+              "type": {
+                "kind": "integer"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "icons",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "string",
+            "typeName": "str"
+          },
+          "values": {
+            "kind": "object",
+            "fields": [
+              {
+                "key": "enabled",
+                "type": {
+                  "kind": "boolean"
+                }
+              },
+              {
+                "key": "name",
+                "type": {
+                  "kind": "string",
+                  "typeName": "str"
+                }
+              },
+              {
+                "key": "zoom",
+                "type": {
+                  "kind": "object",
+                  "fields": [
+                    {
+                      "key": "max",
+                      "type": {
+                        "kind": "integer"
+                      }
+                    },
+                    {
+                      "key": "min",
+                      "type": {
+                        "kind": "integer"
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "fields": [
+            {
+              "key": "enabled",
+              "type": {
+                "kind": "boolean"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

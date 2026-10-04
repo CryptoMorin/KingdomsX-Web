@@ -1,0 +1,525 @@
+{
+  "formatVersion": 2,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "id": "Structures/structure",
+  "resourceName": "Structures/structure.yml",
+  "schema": {
+    "kind": "object",
+    "fields": [
+      {
+        "key": "name",
+        "type": {
+          "kind": "string",
+          "typeName": "str"
+        }
+      },
+      {
+        "key": "type",
+        "type": {
+          "kind": "suggestion",
+          "typeName": "StructureType",
+          "allowCustom": true
+        }
+      },
+      {
+        "key": "upgrade-cost",
+        "type": {
+          "kind": "expression",
+          "language": "math"
+        }
+      },
+      {
+        "key": "max-level",
+        "type": {
+          "kind": "expression",
+          "language": "math"
+        }
+      },
+      {
+        "key": "dont-update-holograms",
+        "type": {
+          "kind": "boolean"
+        }
+      },
+      {
+        "key": "item",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "integer"
+          },
+          "values": {
+            "kind": "advanced",
+            "typeName": "ItemStack"
+          },
+          "fields": []
+        }
+      },
+      {
+        "key": "particles",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "integer"
+          },
+          "values": {
+            "kind": "object",
+            "fields": [
+              {
+                "key": "place",
+                "type": {
+                  "kind": "object",
+                  "fields": [
+                    {
+                      "key": "particle",
+                      "type": {
+                        "kind": "string",
+                        "typeName": "str"
+                      }
+                    },
+                    {
+                      "key": "count",
+                      "type": {
+                        "kind": "integer"
+                      }
+                    },
+                    {
+                      "key": "offset",
+                      "type": {
+                        "kind": "string",
+                        "typeName": "str"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "key": "break",
+                "type": {
+                  "kind": "object",
+                  "fields": [
+                    {
+                      "key": "particle",
+                      "type": {
+                        "kind": "string",
+                        "typeName": "str"
+                      }
+                    },
+                    {
+                      "key": "count",
+                      "type": {
+                        "kind": "integer"
+                      }
+                    },
+                    {
+                      "key": "offset",
+                      "type": {
+                        "kind": "string",
+                        "typeName": "str"
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "fields": []
+        }
+      },
+      {
+        "key": "sounds",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "integer"
+          },
+          "values": {
+            "kind": "mapping",
+            "keys": {
+              "kind": "enum",
+              "values": [
+                "opening",
+                "upgrading",
+                "demolition",
+                "repairing",
+                "cooldown",
+                "empty",
+                "load",
+                "shoot",
+                "standup",
+                "sit",
+                "hit",
+                "teleport-sound",
+                "partial-repair",
+                "damaged",
+                "broken",
+                "fuel-fill"
+              ],
+              "allowCustom": false
+            },
+            "values": {
+              "kind": "union",
+              "choices": [
+                {
+                  "kind": "nullable",
+                  "value": {
+                    "kind": "suggestion",
+                    "typeName": "Sound",
+                    "allowCustom": true
+                  }
+                },
+                {
+                  "kind": "mapping",
+                  "keys": {
+                    "kind": "enum",
+                    "values": [
+                      "started",
+                      "finished",
+                      "stopped"
+                    ],
+                    "allowCustom": false
+                  },
+                  "values": {
+                    "kind": "suggestion",
+                    "typeName": "Sound",
+                    "allowCustom": true
+                  },
+                  "fields": []
+                }
+              ]
+            },
+            "fields": []
+          },
+          "fields": []
+        }
+      },
+      {
+        "key": "hologram",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "integer"
+          },
+          "values": {
+            "kind": "object",
+            "fields": [
+              {
+                "key": "lines",
+                "type": {
+                  "kind": "list",
+                  "elements": {
+                    "kind": "advanced",
+                    "typeName": "any"
+                  }
+                }
+              },
+              {
+                "key": "height",
+                "type": {
+                  "kind": "decimal"
+                }
+              }
+            ]
+          },
+          "fields": []
+        }
+      },
+      {
+        "key": "capacity",
+        "type": {
+          "kind": "expression",
+          "language": "math"
+        }
+      },
+      {
+        "key": "fuel",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "enabled",
+              "type": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "key": "capacity",
+              "type": {
+                "kind": "expression",
+                "language": "math"
+              }
+            },
+            {
+              "key": "variants",
+              "type": {
+                "kind": "mapping",
+                "keys": {
+                  "kind": "string",
+                  "typeName": "str"
+                },
+                "values": {
+                  "kind": "object",
+                  "fields": [
+                    {
+                      "key": "fill-amount-per-item",
+                      "type": {
+                        "kind": "decimal"
+                      }
+                    }
+                  ],
+                  "extends": [
+                    "ItemMatcher"
+                  ]
+                },
+                "fields": []
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "generator",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "integer"
+          },
+          "values": {
+            "kind": "object",
+            "fields": [
+              {
+                "key": "amount",
+                "type": {
+                  "kind": "integer"
+                }
+              },
+              {
+                "key": "every",
+                "type": {
+                  "kind": "string",
+                  "typeName": "str"
+                }
+              }
+            ]
+          },
+          "fields": [],
+          "required": [
+            "1"
+          ]
+        }
+      },
+      {
+        "key": "teleport-delay",
+        "type": {
+          "kind": "integer"
+        }
+      },
+      {
+        "key": "teleport-fuel-cost",
+        "type": {
+          "kind": "string",
+          "typeName": "str"
+        }
+      },
+      {
+        "key": "other-world-distance-factor",
+        "type": {
+          "kind": "integer"
+        }
+      },
+      {
+        "key": "auto-fill-cost",
+        "type": {
+          "kind": "expression",
+          "language": "math"
+        }
+      },
+      {
+        "key": "shield-damage",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "integer"
+          },
+          "values": {
+            "kind": "duration",
+            "typeName": "Period"
+          },
+          "fields": []
+        }
+      },
+      {
+        "key": "explosion-radius",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "integer"
+          },
+          "values": {
+            "kind": "expression",
+            "language": "math"
+          },
+          "fields": []
+        }
+      },
+      {
+        "key": "tube-textures",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "integer"
+          },
+          "values": {
+            "kind": "list",
+            "elements": {
+              "kind": "advanced",
+              "typeName": "any"
+            }
+          },
+          "fields": []
+        }
+      },
+      {
+        "key": "allow-damaging",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "integer"
+          },
+          "values": {
+            "kind": "object",
+            "fields": [
+              {
+                "key": "others",
+                "type": {
+                  "kind": "union",
+                  "choices": [
+                    {
+                      "kind": "enum",
+                      "values": [
+                        "*"
+                      ],
+                      "allowCustom": false
+                    },
+                    {
+                      "kind": "set",
+                      "elements": {
+                        "kind": "suggestion",
+                        "typeName": "Material",
+                        "allowCustom": true
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "key": "turrets",
+                "type": {
+                  "kind": "boolean"
+                }
+              },
+              {
+                "key": "protected-blocks",
+                "type": {
+                  "kind": "boolean"
+                }
+              }
+            ]
+          },
+          "fields": []
+        }
+      },
+      {
+        "key": "damage",
+        "type": {
+          "kind": "expression",
+          "language": "math"
+        }
+      },
+      {
+        "key": "knockback",
+        "type": {
+          "kind": "expression",
+          "language": "math"
+        }
+      },
+      {
+        "key": "cooldown",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "integer"
+          },
+          "values": {
+            "kind": "duration",
+            "typeName": "Period"
+          },
+          "fields": []
+        }
+      },
+      {
+        "key": "actionbar",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "string",
+            "typeName": "str"
+          },
+          "values": {
+            "kind": "string",
+            "typeName": "str"
+          },
+          "fields": []
+        }
+      },
+      {
+        "key": "projectiles",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "string",
+            "typeName": "str"
+          },
+          "values": {
+            "kind": "object",
+            "fields": [
+              {
+                "key": "shield-damage",
+                "type": {
+                  "kind": "duration",
+                  "typeName": "Period"
+                }
+              },
+              {
+                "key": "explosion-radius",
+                "type": {
+                  "kind": "decimal"
+                }
+              },
+              {
+                "key": "damage",
+                "type": {
+                  "kind": "decimal"
+                }
+              },
+              {
+                "key": "knockback",
+                "type": {
+                  "kind": "decimal"
+                }
+              }
+            ],
+            "extends": [
+              "ItemMatcher"
+            ]
+          },
+          "fields": []
+        }
+      }
+    ]
+  }
+}

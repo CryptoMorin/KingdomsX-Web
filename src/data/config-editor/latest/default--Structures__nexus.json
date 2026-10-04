@@ -1,0 +1,526 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "Structures/nexus.yml",
+  "schemaId": "Structures/structure",
+  "options": [
+    {
+      "path": [
+        "(import)"
+      ],
+      "source": "\r\n  building:\r\n    anchors: [ &fnPoints fnPoints, &holograms holograms ]\r\n    extend: false\r\n  structure:\r\n    parameters:\r\n      <name>: nexus\r\n      <build-duration-factor>: '-45 seconds'\r\n      <durability-factor>: 1000\r\n      <material-1>: BEACON\r\n      <material-2>: BEACON\r\n      <material-3>: BEACON\r\n\r\n# Refer to config.yml for more nexus options.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "building"
+      ],
+      "source": "\r\n    anchors: [ &fnPoints fnPoints, &holograms holograms ]\r\n    extend: false\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "building",
+        "anchors"
+      ],
+      "source": "[ &fnPoints fnPoints, &holograms holograms ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "&fnPoints fnPoints",
+        "&holograms holograms"
+      ]
+    },
+    {
+      "path": [
+        "(import)",
+        "building",
+        "extend"
+      ],
+      "source": "false",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "structure"
+      ],
+      "source": "\r\n    parameters:\r\n      <name>: nexus\r\n      <build-duration-factor>: '-45 seconds'\r\n      <durability-factor>: 1000\r\n      <material-1>: BEACON\r\n      <material-2>: BEACON\r\n      <material-3>: BEACON\r\n\r\n# Refer to config.yml for more nexus options.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "structure",
+        "parameters"
+      ],
+      "source": "\r\n      <name>: nexus\r\n      <build-duration-factor>: '-45 seconds'\r\n      <durability-factor>: 1000\r\n      <material-1>: BEACON\r\n      <material-2>: BEACON\r\n      <material-3>: BEACON\r\n\r\n# Refer to config.yml for more nexus options.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "structure",
+        "parameters",
+        "<name>"
+      ],
+      "source": "nexus",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "structure",
+        "parameters",
+        "<build-duration-factor>"
+      ],
+      "source": "'-45 seconds'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "structure",
+        "parameters",
+        "<durability-factor>"
+      ],
+      "source": "1000",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "structure",
+        "parameters",
+        "<material-1>"
+      ],
+      "source": "BEACON",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "structure",
+        "parameters",
+        "<material-2>"
+      ],
+      "source": "BEACON",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "(import)",
+        "structure",
+        "parameters",
+        "<material-3>"
+      ],
+      "source": "BEACON",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "name"
+      ],
+      "source": "\"&bNexus\"",
+      "comments": [
+        "Refer to config.yml for more nexus options."
+      ],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "type"
+      ],
+      "source": "nexus",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "default-name"
+      ],
+      "source": "\"Nexus\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "max-level"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "upgrade-cost"
+      ],
+      "source": "'level * 1000'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "dont-update-holograms"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "hide-holograms"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "building"
+      ],
+      "source": "\r\n  4:\r\n    functional-points: *fnPoints\r\n    block:\r\n      material: BEACON\r\n    holograms: *holograms\r\n  5:\r\n    functional-points: *fnPoints\r\n    block:\r\n      material: BEACON\r\n    holograms: *holograms\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "building",
+        "4"
+      ],
+      "source": "\r\n    functional-points: *fnPoints\r\n    block:\r\n      material: BEACON\r\n    holograms: *holograms\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "building",
+        "4",
+        "functional-points"
+      ],
+      "source": "*fnPoints",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "building",
+        "4",
+        "block"
+      ],
+      "source": "\r\n      material: BEACON\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "building",
+        "4",
+        "block",
+        "material"
+      ],
+      "source": "BEACON",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "building",
+        "4",
+        "holograms"
+      ],
+      "source": "*holograms",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "building",
+        "5"
+      ],
+      "source": "\r\n    functional-points: *fnPoints\r\n    block:\r\n      material: BEACON\r\n    holograms: *holograms\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "building",
+        "5",
+        "functional-points"
+      ],
+      "source": "*fnPoints",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "building",
+        "5",
+        "block"
+      ],
+      "source": "\r\n      material: BEACON\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "building",
+        "5",
+        "block",
+        "material"
+      ],
+      "source": "BEACON",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "building",
+        "5",
+        "holograms"
+      ],
+      "source": "*holograms",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles"
+      ],
+      "source": "\r\n  1:\r\n    place:\r\n      particle: DRAGON_BREATH\r\n      count: 70\r\n      offset: 0.5, 0.5, 0.5\r\n    break:\r\n      particle: DRAGON_BREATH\r\n      count: 70\r\n      offset: 0.5, 0.5, 0.5\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "1"
+      ],
+      "source": "\r\n    place:\r\n      particle: DRAGON_BREATH\r\n      count: 70\r\n      offset: 0.5, 0.5, 0.5\r\n    break:\r\n      particle: DRAGON_BREATH\r\n      count: 70\r\n      offset: 0.5, 0.5, 0.5\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "1",
+        "place"
+      ],
+      "source": "\r\n      particle: DRAGON_BREATH\r\n      count: 70\r\n      offset: 0.5, 0.5, 0.5\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "1",
+        "place",
+        "particle"
+      ],
+      "source": "DRAGON_BREATH",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "1",
+        "place",
+        "count"
+      ],
+      "source": "70",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "1",
+        "place",
+        "offset"
+      ],
+      "source": "0.5, 0.5, 0.5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "1",
+        "break"
+      ],
+      "source": "\r\n      particle: DRAGON_BREATH\r\n      count: 70\r\n      offset: 0.5, 0.5, 0.5\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "1",
+        "break",
+        "particle"
+      ],
+      "source": "DRAGON_BREATH",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "1",
+        "break",
+        "count"
+      ],
+      "source": "70",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "particles",
+        "1",
+        "break",
+        "offset"
+      ],
+      "source": "0.5, 0.5, 0.5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

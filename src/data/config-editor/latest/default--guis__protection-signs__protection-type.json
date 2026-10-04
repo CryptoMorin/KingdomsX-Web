@@ -1,0 +1,545 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "guis/protection-signs/protection-type.yml",
+  "schemaId": "guis/schema",
+  "options": [
+    {
+      "path": [
+        "title"
+      ],
+      "source": "\"{$sep}-=[ &5Protection Type {$sep}]=-\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "type"
+      ],
+      "source": "HOPPER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sound"
+      ],
+      "source": "BLOCK_CHEST_OPEN",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options"
+      ],
+      "source": "\r\n  protected:\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}%protection%\"\r\n      lore: |-\r\n        {$sep}This block will be protected\r\n        from all the players unless they're\r\n        added manually to access the block.\r\n      material: OAK_SIGN\r\n      glow: true\r\n    else:\r\n      name: \"&4%protection%\"\r\n      material: OAK_SIGN\r\n      lore: |-\r\n        {$sep}This block will be protected\r\n        from all the players unless they're\r\n        added manually to access the block.\r\n    slot: 1\r\n  everyone-in-kingdom:\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}%protection%\"\r\n      lore: |-\r\n        {$sep}This block will be protected\r\n        from all the players who are not\r\n        in your kingdom unless they're\r\n        added manually to access the block.\r\n      material: SPRUCE_SIGN\r\n      glow: true\r\n    else:\r\n      name: \"{$p}%protection%\"\r\n      material: SPRUCE_SIGN\r\n      lore: |-\r\n        {$sep}This block will be protected\r\n        from all the players who are not\r\n        in your kingdom unless they're\r\n        added manually to access the block.\r\n    slot: 2\r\n  everyone:\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}%protection%\"\r\n      lore: |-\r\n        {$sep}This block can be accessed\r\n        by everyone, outside or inside your\r\n        kingdom unless they're added manually\r\n        to not have access to this block.\r\n      material: DARK_OAK_SIGN\r\n      glow: true\r\n    else:\r\n      name: \"{$p}%protection%\"\r\n      material: DARK_OAK_SIGN\r\n      lore: |-\r\n        {$sep}This block can be accessed\r\n        by everyone, outside or inside your\r\n        kingdom unless they're added manually\r\n        to not have access to this block.\r\n    slot: 3\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "protected"
+      ],
+      "source": "\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}%protection%\"\r\n      lore: |-\r\n        {$sep}This block will be protected\r\n        from all the players unless they're\r\n        added manually to access the block.\r\n      material: OAK_SIGN\r\n      glow: true\r\n    else:\r\n      name: \"&4%protection%\"\r\n      material: OAK_SIGN\r\n      lore: |-\r\n        {$sep}This block will be protected\r\n        from all the players unless they're\r\n        added manually to access the block.\r\n    slot: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "protected",
+        "enabled"
+      ],
+      "source": "\r\n      condition: enabled\r\n      name: \"{$p}%protection%\"\r\n      lore: |-\r\n        {$sep}This block will be protected\r\n        from all the players unless they're\r\n        added manually to access the block.\r\n      material: OAK_SIGN\r\n      glow: true\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "protected",
+        "enabled",
+        "condition"
+      ],
+      "source": "enabled",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "protected",
+        "enabled",
+        "name"
+      ],
+      "source": "\"{$p}%protection%\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "protected",
+        "enabled",
+        "lore"
+      ],
+      "source": "|-\r\n        {$sep}This block will be protected\r\n        from all the players unless they're\r\n        added manually to access the block.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "protected",
+        "enabled",
+        "material"
+      ],
+      "source": "OAK_SIGN",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "protected",
+        "enabled",
+        "glow"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "protected",
+        "else"
+      ],
+      "source": "\r\n      name: \"&4%protection%\"\r\n      material: OAK_SIGN\r\n      lore: |-\r\n        {$sep}This block will be protected\r\n        from all the players unless they're\r\n        added manually to access the block.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "protected",
+        "else",
+        "name"
+      ],
+      "source": "\"&4%protection%\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "protected",
+        "else",
+        "material"
+      ],
+      "source": "OAK_SIGN",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "protected",
+        "else",
+        "lore"
+      ],
+      "source": "|-\r\n        {$sep}This block will be protected\r\n        from all the players unless they're\r\n        added manually to access the block.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "protected",
+        "slot"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "everyone-in-kingdom"
+      ],
+      "source": "\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}%protection%\"\r\n      lore: |-\r\n        {$sep}This block will be protected\r\n        from all the players who are not\r\n        in your kingdom unless they're\r\n        added manually to access the block.\r\n      material: SPRUCE_SIGN\r\n      glow: true\r\n    else:\r\n      name: \"{$p}%protection%\"\r\n      material: SPRUCE_SIGN\r\n      lore: |-\r\n        {$sep}This block will be protected\r\n        from all the players who are not\r\n        in your kingdom unless they're\r\n        added manually to access the block.\r\n    slot: 2\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "everyone-in-kingdom",
+        "enabled"
+      ],
+      "source": "\r\n      condition: enabled\r\n      name: \"{$p}%protection%\"\r\n      lore: |-\r\n        {$sep}This block will be protected\r\n        from all the players who are not\r\n        in your kingdom unless they're\r\n        added manually to access the block.\r\n      material: SPRUCE_SIGN\r\n      glow: true\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "everyone-in-kingdom",
+        "enabled",
+        "condition"
+      ],
+      "source": "enabled",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "everyone-in-kingdom",
+        "enabled",
+        "name"
+      ],
+      "source": "\"{$p}%protection%\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "everyone-in-kingdom",
+        "enabled",
+        "lore"
+      ],
+      "source": "|-\r\n        {$sep}This block will be protected\r\n        from all the players who are not\r\n        in your kingdom unless they're\r\n        added manually to access the block.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "everyone-in-kingdom",
+        "enabled",
+        "material"
+      ],
+      "source": "SPRUCE_SIGN",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "everyone-in-kingdom",
+        "enabled",
+        "glow"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "everyone-in-kingdom",
+        "else"
+      ],
+      "source": "\r\n      name: \"{$p}%protection%\"\r\n      material: SPRUCE_SIGN\r\n      lore: |-\r\n        {$sep}This block will be protected\r\n        from all the players who are not\r\n        in your kingdom unless they're\r\n        added manually to access the block.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "everyone-in-kingdom",
+        "else",
+        "name"
+      ],
+      "source": "\"{$p}%protection%\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "everyone-in-kingdom",
+        "else",
+        "material"
+      ],
+      "source": "SPRUCE_SIGN",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "everyone-in-kingdom",
+        "else",
+        "lore"
+      ],
+      "source": "|-\r\n        {$sep}This block will be protected\r\n        from all the players who are not\r\n        in your kingdom unless they're\r\n        added manually to access the block.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "everyone-in-kingdom",
+        "slot"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "everyone"
+      ],
+      "source": "\r\n    enabled:\r\n      condition: enabled\r\n      name: \"{$p}%protection%\"\r\n      lore: |-\r\n        {$sep}This block can be accessed\r\n        by everyone, outside or inside your\r\n        kingdom unless they're added manually\r\n        to not have access to this block.\r\n      material: DARK_OAK_SIGN\r\n      glow: true\r\n    else:\r\n      name: \"{$p}%protection%\"\r\n      material: DARK_OAK_SIGN\r\n      lore: |-\r\n        {$sep}This block can be accessed\r\n        by everyone, outside or inside your\r\n        kingdom unless they're added manually\r\n        to not have access to this block.\r\n    slot: 3\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "everyone",
+        "enabled"
+      ],
+      "source": "\r\n      condition: enabled\r\n      name: \"{$p}%protection%\"\r\n      lore: |-\r\n        {$sep}This block can be accessed\r\n        by everyone, outside or inside your\r\n        kingdom unless they're added manually\r\n        to not have access to this block.\r\n      material: DARK_OAK_SIGN\r\n      glow: true\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "everyone",
+        "enabled",
+        "condition"
+      ],
+      "source": "enabled",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "everyone",
+        "enabled",
+        "name"
+      ],
+      "source": "\"{$p}%protection%\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "everyone",
+        "enabled",
+        "lore"
+      ],
+      "source": "|-\r\n        {$sep}This block can be accessed\r\n        by everyone, outside or inside your\r\n        kingdom unless they're added manually\r\n        to not have access to this block.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "everyone",
+        "enabled",
+        "material"
+      ],
+      "source": "DARK_OAK_SIGN",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "everyone",
+        "enabled",
+        "glow"
+      ],
+      "source": "true",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "everyone",
+        "else"
+      ],
+      "source": "\r\n      name: \"{$p}%protection%\"\r\n      material: DARK_OAK_SIGN\r\n      lore: |-\r\n        {$sep}This block can be accessed\r\n        by everyone, outside or inside your\r\n        kingdom unless they're added manually\r\n        to not have access to this block.\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "everyone",
+        "else",
+        "name"
+      ],
+      "source": "\"{$p}%protection%\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "everyone",
+        "else",
+        "material"
+      ],
+      "source": "DARK_OAK_SIGN",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "everyone",
+        "else",
+        "lore"
+      ],
+      "source": "|-\r\n        {$sep}This block can be accessed\r\n        by everyone, outside or inside your\r\n        kingdom unless they're added manually\r\n        to not have access to this block.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "everyone",
+        "slot"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "formatVersion": 1,
+  "source": {
+    "addonId": "outposts",
+    "artifactPath": "addons/Kingdoms-Addon-Outposts-3.1.2.4.jar",
+    "artifactBlobSha": "831afdbcfedd0d7574337c93a662b58e51186ee0",
+    "artifactSha256": "37567955a0194f18a5eed5b11631d4e1225cc927605e183d3a438ca9469ac633",
+    "addonVersion": "3.1.2.4"
+  },
+  "id": "addons/outposts",
+  "resourceName": "outposts.yml",
+  "reason": "The addon creates this runtime data file after an outpost is configured. Its structure is supplied by the editor's Outposts data contract.",
+  "schema": {
+    "kind": "object",
+    "fields": []
+  }
+}

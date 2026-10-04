@@ -1,0 +1,642 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "guis/structures/nexus/ranks/permissions/categories.yml",
+  "schemaId": "guis/schema",
+  "options": [
+    {
+      "path": [
+        "title"
+      ],
+      "source": "'{$sep}-=( {$p}Permissions {$sep})=-'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "rows"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options"
+      ],
+      "source": "\r\n  decoration:\r\n    slots: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 17, 18, 19, 20, 21, 23, 24, 25, 26 ]\r\n    material: BLACK_STAINED_GLASS_PANE\r\n    name: ''\r\n\r\n  category-building:\r\n    name: \"{$p}Building\"\r\n    material: DIAMOND_PICKAXE\r\n    posx: 2\r\n    posy: 2\r\n    lore: |\r\n      {$sep}Permissions related to building.\r\n\r\n      {$dot} {$s}Building in kingdom lands in general.\r\n      {$dot} {$s}Building in the nexus land only.\r\n      {$dot} {$s}Building in own claimed lands only.\r\n\r\n  category-members:\r\n    name: \"{$p}Members\"\r\n    material: PLAYER_HEAD\r\n    posx: 3\r\n    posy: 2\r\n    lore: |\r\n      {$sep}Permissions related to managing members.\r\n\r\n      {$dot} {$s}/k invsee\r\n      {$dot} {$s}/k invite\r\n      {$dot} {$s}/k kick\r\n      {$dot} {$s}Exclude Taxes\r\n\r\n  category-economy:\r\n    name: \"{$p}Economy\"\r\n    material: CHEST\r\n    posx: 4\r\n    posy: 2\r\n    lore: |\r\n      {$sep}Permissions related to managing\r\n      resource points & money.\r\n\r\n      {$dot} {$s}/k bank {$s}withdraw\r\n      {$dot} {$s}Upgrading structures, turrets, etc\r\n      {$dot} {$s}Using outpost structures\r\n\r\n\r\n  category-diplomacy:\r\n    name: \"{$p}Diplomacy\"\r\n    material: BOOK\r\n    posx: 6\r\n    posy: 2\r\n    lore: |\r\n      {$sep}Permissions related to managing\r\n      kingdom settings and relationships\r\n      with other kingdoms.\r\n\r\n      {$dot} {$s}/k ally {$sep}| {$s}enemy {$sep}| {$s}truce {$sep}| {$s}revoke\r\n      {$dot} {$s}/k broadcast\r\n      {$dot} {$s}Modify relationship attributes\r\n      {$dot} {$s}Modify kingdom settings\r\n      {$dot} {$s}View audit logs\r\n      {$dot} {$s}Change member ranks & modify ranks\r\n      {$dot} {$s}Read mails\r\n      {$dot} {$s}Rename kingdom name, tags and change lore\r\n\r\n  category-land:\r\n    name: \"{$p}Land\"\r\n    material: GRASS_BLOCK\r\n    posx: 7\r\n    posy: 2\r\n    lore: |\r\n      {$sep}Permissions related to managing\r\n      your kingdom lands.\r\n\r\n      {$dot} {$s}/k claim\r\n      {$dot} {$s}/k unclaim\r\n      {$dot} {$s}/k invade\r\n      {$dot} {$s}Placing/breaking turrets\r\n      {$dot} {$s}Placing/breaking structures\r\n      {$dot} {$s}Interacting/using blocks\r\n\r\n  category-others:\r\n    name: \"{$p}Others\"\r\n    material: PAPER\r\n    posx: 8\r\n    posy: 2\r\n    lore: |\r\n      {$sep}Other permissions that don't have\r\n      a specific category.\r\n\r\n      {$dot} {$s}/k fly\r\n      {$dot} {$s}/k home\r\n      {$dot} {$s}/k sethome\r\n      {$dot} {$s}Accessing nexus vault\r\n      {$dot} {$s}Bypassing protection signs\r\n      {$dot} {$s}Instantly tp with /k tpa\r\n\r\n  back:\r\n    posx: 5\r\n    posy: 3\r\n    material: BARRIER\r\n    name: '{$p}Back'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "decoration"
+      ],
+      "source": "\r\n    slots: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 17, 18, 19, 20, 21, 23, 24, 25, 26 ]\r\n    material: BLACK_STAINED_GLASS_PANE\r\n    name: ''\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "decoration",
+        "slots"
+      ],
+      "source": "[ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 17, 18, 19, 20, 21, 23, 24, 25, 26 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "23",
+        "24",
+        "25",
+        "26"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "decoration",
+        "material"
+      ],
+      "source": "BLACK_STAINED_GLASS_PANE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "decoration",
+        "name"
+      ],
+      "source": "''",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "category-building"
+      ],
+      "source": "\r\n    name: \"{$p}Building\"\r\n    material: DIAMOND_PICKAXE\r\n    posx: 2\r\n    posy: 2\r\n    lore: |\r\n      {$sep}Permissions related to building.\r\n\r\n      {$dot} {$s}Building in kingdom lands in general.\r\n      {$dot} {$s}Building in the nexus land only.\r\n      {$dot} {$s}Building in own claimed lands only.\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "category-building",
+        "name"
+      ],
+      "source": "\"{$p}Building\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "category-building",
+        "material"
+      ],
+      "source": "DIAMOND_PICKAXE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "category-building",
+        "posx"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "category-building",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "category-building",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}Permissions related to building.\r\n\r\n      {$dot} {$s}Building in kingdom lands in general.\r\n      {$dot} {$s}Building in the nexus land only.\r\n      {$dot} {$s}Building in own claimed lands only.\r\n\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "category-members"
+      ],
+      "source": "\r\n    name: \"{$p}Members\"\r\n    material: PLAYER_HEAD\r\n    posx: 3\r\n    posy: 2\r\n    lore: |\r\n      {$sep}Permissions related to managing members.\r\n\r\n      {$dot} {$s}/k invsee\r\n      {$dot} {$s}/k invite\r\n      {$dot} {$s}/k kick\r\n      {$dot} {$s}Exclude Taxes\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "category-members",
+        "name"
+      ],
+      "source": "\"{$p}Members\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "category-members",
+        "material"
+      ],
+      "source": "PLAYER_HEAD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "category-members",
+        "posx"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "category-members",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "category-members",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}Permissions related to managing members.\r\n\r\n      {$dot} {$s}/k invsee\r\n      {$dot} {$s}/k invite\r\n      {$dot} {$s}/k kick\r\n      {$dot} {$s}Exclude Taxes\r\n\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "category-economy"
+      ],
+      "source": "\r\n    name: \"{$p}Economy\"\r\n    material: CHEST\r\n    posx: 4\r\n    posy: 2\r\n    lore: |\r\n      {$sep}Permissions related to managing\r\n      resource points & money.\r\n\r\n      {$dot} {$s}/k bank {$s}withdraw\r\n      {$dot} {$s}Upgrading structures, turrets, etc\r\n      {$dot} {$s}Using outpost structures\r\n\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "category-economy",
+        "name"
+      ],
+      "source": "\"{$p}Economy\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "category-economy",
+        "material"
+      ],
+      "source": "CHEST",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "category-economy",
+        "posx"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "category-economy",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "category-economy",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}Permissions related to managing\r\n      resource points & money.\r\n\r\n      {$dot} {$s}/k bank {$s}withdraw\r\n      {$dot} {$s}Upgrading structures, turrets, etc\r\n      {$dot} {$s}Using outpost structures\r\n\r\n\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "category-diplomacy"
+      ],
+      "source": "\r\n    name: \"{$p}Diplomacy\"\r\n    material: BOOK\r\n    posx: 6\r\n    posy: 2\r\n    lore: |\r\n      {$sep}Permissions related to managing\r\n      kingdom settings and relationships\r\n      with other kingdoms.\r\n\r\n      {$dot} {$s}/k ally {$sep}| {$s}enemy {$sep}| {$s}truce {$sep}| {$s}revoke\r\n      {$dot} {$s}/k broadcast\r\n      {$dot} {$s}Modify relationship attributes\r\n      {$dot} {$s}Modify kingdom settings\r\n      {$dot} {$s}View audit logs\r\n      {$dot} {$s}Change member ranks & modify ranks\r\n      {$dot} {$s}Read mails\r\n      {$dot} {$s}Rename kingdom name, tags and change lore\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "category-diplomacy",
+        "name"
+      ],
+      "source": "\"{$p}Diplomacy\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "category-diplomacy",
+        "material"
+      ],
+      "source": "BOOK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "category-diplomacy",
+        "posx"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "category-diplomacy",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "category-diplomacy",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}Permissions related to managing\r\n      kingdom settings and relationships\r\n      with other kingdoms.\r\n\r\n      {$dot} {$s}/k ally {$sep}| {$s}enemy {$sep}| {$s}truce {$sep}| {$s}revoke\r\n      {$dot} {$s}/k broadcast\r\n      {$dot} {$s}Modify relationship attributes\r\n      {$dot} {$s}Modify kingdom settings\r\n      {$dot} {$s}View audit logs\r\n      {$dot} {$s}Change member ranks & modify ranks\r\n      {$dot} {$s}Read mails\r\n      {$dot} {$s}Rename kingdom name, tags and change lore\r\n\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "category-land"
+      ],
+      "source": "\r\n    name: \"{$p}Land\"\r\n    material: GRASS_BLOCK\r\n    posx: 7\r\n    posy: 2\r\n    lore: |\r\n      {$sep}Permissions related to managing\r\n      your kingdom lands.\r\n\r\n      {$dot} {$s}/k claim\r\n      {$dot} {$s}/k unclaim\r\n      {$dot} {$s}/k invade\r\n      {$dot} {$s}Placing/breaking turrets\r\n      {$dot} {$s}Placing/breaking structures\r\n      {$dot} {$s}Interacting/using blocks\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "category-land",
+        "name"
+      ],
+      "source": "\"{$p}Land\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "category-land",
+        "material"
+      ],
+      "source": "GRASS_BLOCK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "category-land",
+        "posx"
+      ],
+      "source": "7",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "category-land",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "category-land",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}Permissions related to managing\r\n      your kingdom lands.\r\n\r\n      {$dot} {$s}/k claim\r\n      {$dot} {$s}/k unclaim\r\n      {$dot} {$s}/k invade\r\n      {$dot} {$s}Placing/breaking turrets\r\n      {$dot} {$s}Placing/breaking structures\r\n      {$dot} {$s}Interacting/using blocks\r\n\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "category-others"
+      ],
+      "source": "\r\n    name: \"{$p}Others\"\r\n    material: PAPER\r\n    posx: 8\r\n    posy: 2\r\n    lore: |\r\n      {$sep}Other permissions that don't have\r\n      a specific category.\r\n\r\n      {$dot} {$s}/k fly\r\n      {$dot} {$s}/k home\r\n      {$dot} {$s}/k sethome\r\n      {$dot} {$s}Accessing nexus vault\r\n      {$dot} {$s}Bypassing protection signs\r\n      {$dot} {$s}Instantly tp with /k tpa\r\n\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "category-others",
+        "name"
+      ],
+      "source": "\"{$p}Others\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "category-others",
+        "material"
+      ],
+      "source": "PAPER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "category-others",
+        "posx"
+      ],
+      "source": "8",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "category-others",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "category-others",
+        "lore"
+      ],
+      "source": "|\r\n      {$sep}Other permissions that don't have\r\n      a specific category.\r\n\r\n      {$dot} {$s}/k fly\r\n      {$dot} {$s}/k home\r\n      {$dot} {$s}/k sethome\r\n      {$dot} {$s}Accessing nexus vault\r\n      {$dot} {$s}Bypassing protection signs\r\n      {$dot} {$s}Instantly tp with /k tpa\r\n\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back"
+      ],
+      "source": "\r\n    posx: 5\r\n    posy: 3\r\n    material: BARRIER\r\n    name: '{$p}Back'\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "material"
+      ],
+      "source": "BARRIER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "name"
+      ],
+      "source": "'{$p}Back'",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

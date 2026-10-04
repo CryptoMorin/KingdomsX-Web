@@ -1,0 +1,5353 @@
+{
+  "formatVersion": 4,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "schemaCount": 22,
+  "defaultCount": 137,
+  "files": [
+    {
+      "pattern": "champion-upgrades.yml",
+      "schemaId": "champion-upgrades"
+    },
+    {
+      "pattern": "chat.yml",
+      "schemaId": "chat"
+    },
+    {
+      "pattern": "claims.yml",
+      "schemaId": "claims"
+    },
+    {
+      "pattern": "config.yml",
+      "schemaId": "config"
+    },
+    {
+      "pattern": "guis/**/*.yml",
+      "schemaId": "guis/schema"
+    },
+    {
+      "pattern": "invasions.yml",
+      "schemaId": "invasions"
+    },
+    {
+      "pattern": "map.yml",
+      "schemaId": "map"
+    },
+    {
+      "pattern": "misc-upgrades.yml",
+      "schemaId": "misc-upgrades"
+    },
+    {
+      "pattern": "powers.yml",
+      "schemaId": "powers"
+    },
+    {
+      "pattern": "protection-signs.yml",
+      "schemaId": "protection-signs"
+    },
+    {
+      "pattern": "ranks.yml",
+      "schemaId": "ranks"
+    },
+    {
+      "pattern": "relations.yml",
+      "schemaId": "relations"
+    },
+    {
+      "pattern": "resource-points.yml",
+      "schemaId": "resource-points"
+    },
+    {
+      "pattern": "structures.yml",
+      "schemaId": "structures"
+    },
+    {
+      "pattern": "Structures/*.yml",
+      "schemaId": "Structures/structure"
+    },
+    {
+      "pattern": "turrets.yml",
+      "schemaId": "turrets"
+    },
+    {
+      "pattern": "Turrets/*.yml",
+      "schemaId": "Turrets/turret"
+    }
+  ],
+  "defaults": [
+    {
+      "resourceName": "champion-upgrades.yml",
+      "schemaId": "champion-upgrades",
+      "fileName": "default--champion-upgrades.json",
+      "signature": {
+        "entryCount": 312,
+        "rootKeys": [
+          "burst",
+          "champions",
+          "damage-cap",
+          "death-duel",
+          "drag",
+          "fangs",
+          "focus",
+          "health",
+          "plow",
+          "reinforcements",
+          "resistance",
+          "speed",
+          "strength",
+          "thor",
+          "throw"
+        ],
+        "paths": [
+          "burst",
+          "burst\u0000conditions",
+          "burst\u0000cost",
+          "burst\u0000damage",
+          "burst\u0000enabled",
+          "burst\u0000knockback",
+          "burst\u0000max-level",
+          "burst\u0000min-targets",
+          "burst\u0000range",
+          "champions",
+          "champions\u0000default",
+          "champions\u0000skeleton",
+          "champions\u0000zombie",
+          "damage-cap",
+          "damage-cap\u0000conditions",
+          "damage-cap\u0000cost",
+          "damage-cap\u0000enabled",
+          "damage-cap\u0000max-level",
+          "damage-cap\u0000scaling",
+          "death-duel",
+          "death-duel\u0000champion-damage-boost",
+          "death-duel\u0000champion-damage-reduction",
+          "death-duel\u0000cost",
+          "death-duel\u0000enabled",
+          "death-duel\u0000max-level",
+          "drag",
+          "drag\u0000conditions",
+          "drag\u0000cost",
+          "drag\u0000enabled",
+          "drag\u0000max-level",
+          "drag\u0000scaling",
+          "fangs",
+          "fangs\u0000cooldown",
+          "fangs\u0000cost",
+          "fangs\u0000enabled",
+          "fangs\u0000max-level",
+          "fangs\u0000radius",
+          "fangs\u0000scaling",
+          "focus",
+          "focus\u0000cost",
+          "focus\u0000enabled",
+          "focus\u0000max-level",
+          "focus\u0000scaling",
+          "health",
+          "health\u0000conditions",
+          "health\u0000cost",
+          "health\u0000enabled",
+          "health\u0000max-level",
+          "health\u0000scaling",
+          "plow",
+          "plow\u0000cooldown",
+          "plow\u0000cost",
+          "plow\u0000enabled",
+          "plow\u0000max-level",
+          "plow\u0000radius",
+          "reinforcements",
+          "reinforcements\u0000conditions",
+          "reinforcements\u0000cost",
+          "reinforcements\u0000enabled",
+          "reinforcements\u0000max-level",
+          "reinforcements\u0000scaling",
+          "resistance",
+          "resistance\u0000cost",
+          "resistance\u0000enabled",
+          "resistance\u0000max-level",
+          "resistance\u0000scaling",
+          "speed",
+          "speed\u0000cost",
+          "speed\u0000enabled",
+          "speed\u0000max-level",
+          "speed\u0000scaling",
+          "strength",
+          "strength\u0000cost",
+          "strength\u0000enabled",
+          "strength\u0000max-level",
+          "thor",
+          "thor\u0000conditions",
+          "thor\u0000cooldown",
+          "thor\u0000cost",
+          "thor\u0000enabled",
+          "thor\u0000max-level",
+          "thor\u0000scaling",
+          "throw",
+          "throw\u0000chance",
+          "throw\u0000conditions",
+          "throw\u0000cost",
+          "throw\u0000enabled",
+          "throw\u0000max-level",
+          "throw\u0000scaling"
+        ]
+      }
+    },
+    {
+      "resourceName": "chat.yml",
+      "schemaId": "chat",
+      "fileName": "default--chat.json",
+      "signature": {
+        "entryCount": 109,
+        "rootKeys": [
+          "cancel",
+          "channels",
+          "direct-prefix",
+          "discordsrv",
+          "global-channel",
+          "priority",
+          "recipients",
+          "reset-channel-on-leave",
+          "show-item",
+          "tagging"
+        ],
+        "paths": [
+          "cancel",
+          "channels",
+          "channels\u0000ally",
+          "channels\u0000global",
+          "channels\u0000help",
+          "channels\u0000kingdom",
+          "channels\u0000nation",
+          "channels\u0000ranged",
+          "channels\u0000staff",
+          "channels\u0000truce",
+          "direct-prefix",
+          "discordsrv",
+          "discordsrv\u0000announcements",
+          "discordsrv\u0000global-channel",
+          "discordsrv\u0000private-channel",
+          "global-channel",
+          "global-channel\u0000format",
+          "global-channel\u0000parse-as-placeholder",
+          "global-channel\u0000relational-placeholders",
+          "priority",
+          "recipients",
+          "recipients\u0000clear-when-done",
+          "recipients\u0000respect-others",
+          "reset-channel-on-leave",
+          "show-item",
+          "show-item\u0000empty",
+          "show-item\u0000main-hand",
+          "tagging",
+          "tagging\u0000enabled",
+          "tagging\u0000prefix"
+        ]
+      }
+    },
+    {
+      "resourceName": "claims.yml",
+      "schemaId": "claims",
+      "fileName": "default--claims.json",
+      "signature": {
+        "entryCount": 186,
+        "rootKeys": [
+          "actionbar",
+          "beacon-protected-effects",
+          "biomes",
+          "build-in-claimed-only",
+          "claim-on-create",
+          "confirmation",
+          "connection-radius",
+          "coordinates-claim-max-distance",
+          "corner-max-claims",
+          "disable-crops-physics",
+          "disable-protection-system",
+          "disabled-worlds",
+          "distance",
+          "fill",
+          "history",
+          "indicator",
+          "line-max-distance",
+          "max-claims",
+          "money",
+          "potion-protected-effects",
+          "requires-outpost-for-other-worlds",
+          "resource-points",
+          "restoration",
+          "square-max-radius",
+          "starter-free",
+          "unclaim-all",
+          "unclaim-confirmation",
+          "unclaim-cooldown"
+        ],
+        "paths": [
+          "actionbar",
+          "actionbar\u0000auto-claim",
+          "actionbar\u0000auto-unclaim",
+          "actionbar\u0000keep",
+          "beacon-protected-effects",
+          "biomes",
+          "biomes\u0000default",
+          "build-in-claimed-only",
+          "build-in-claimed-only\u0000break",
+          "build-in-claimed-only\u0000charges",
+          "build-in-claimed-only\u0000place",
+          "build-in-claimed-only\u0000unclaimed-build-radius",
+          "build-in-claimed-only\u0000whitelist",
+          "claim-on-create",
+          "confirmation",
+          "connection-radius",
+          "coordinates-claim-max-distance",
+          "corner-max-claims",
+          "disable-crops-physics",
+          "disable-protection-system",
+          "disabled-worlds",
+          "distance",
+          "fill",
+          "fill\u0000max-claims",
+          "fill\u0000max-iterations",
+          "history",
+          "history\u0000enabled",
+          "history\u0000limit",
+          "indicator",
+          "indicator\u0000ally",
+          "indicator\u0000default",
+          "indicator\u0000enemy",
+          "indicator\u0000kingdomless-enabled",
+          "indicator\u0000nation",
+          "indicator\u0000nation-zone",
+          "indicator\u0000neutral",
+          "indicator\u0000no-kingdom",
+          "indicator\u0000particles",
+          "indicator\u0000self",
+          "indicator\u0000truce",
+          "indicator\u0000visualizer",
+          "indicator\u0000wilderness",
+          "line-max-distance",
+          "max-claims",
+          "max-claims\u0000default",
+          "money",
+          "money\u0000auto-claims",
+          "money\u0000claims",
+          "money\u0000refund-auto-unclaim",
+          "money\u0000refund-unclaim",
+          "potion-protected-effects",
+          "requires-outpost-for-other-worlds",
+          "resource-points",
+          "resource-points\u0000auto-claims",
+          "resource-points\u0000claims",
+          "resource-points\u0000refund-auto-unclaim",
+          "resource-points\u0000refund-unclaim",
+          "restoration",
+          "restoration\u0000block-restoration-rate",
+          "restoration\u0000enabled",
+          "restoration\u0000ignored-blocks",
+          "restoration\u0000max-active-restoring-chunks",
+          "square-max-radius",
+          "starter-free",
+          "unclaim-all",
+          "unclaim-all\u0000announce",
+          "unclaim-all\u0000confirm",
+          "unclaim-all\u0000cost",
+          "unclaim-all\u0000keep-nexus-land",
+          "unclaim-confirmation",
+          "unclaim-confirmation\u0000home",
+          "unclaim-confirmation\u0000nexus",
+          "unclaim-confirmation\u0000structures",
+          "unclaim-confirmation\u0000turrets",
+          "unclaim-cooldown"
+        ]
+      }
+    },
+    {
+      "resourceName": "config.yml",
+      "schemaId": "config",
+      "fileName": "default--config.json",
+      "signature": {
+        "entryCount": 630,
+        "rootKeys": [
+          "announcements",
+          "audit-logs",
+          "backups",
+          "book",
+          "building-visuals",
+          "color-range",
+          "command",
+          "commands",
+          "creation",
+          "daily-checks",
+          "database",
+          "debug",
+          "default-flags",
+          "development-mode",
+          "disable-debug-tracing",
+          "disabled-integrations",
+          "disabled-worlds",
+          "disband",
+          "economy",
+          "error-sound",
+          "events",
+          "flag",
+          "force-lang",
+          "group-levels",
+          "guis",
+          "help",
+          "home",
+          "inactivity",
+          "invitations",
+          "iSwearIKnowWhatTheFuckIAmDoingRightNow",
+          "join-leave-messages",
+          "keep-admin-mode",
+          "kingdom-fly",
+          "kingdom-items",
+          "kingdom-lore",
+          "kingdom-name",
+          "lang",
+          "mails",
+          "max-members",
+          "merging",
+          "nation-name",
+          "nexus",
+          "no-kingdom-reminder",
+          "outpost-events",
+          "placeholders",
+          "prefix",
+          "private-kingdoms",
+          "tags",
+          "tax",
+          "teleport-to-spawn-after-kick",
+          "top-kingdoms",
+          "top-nations",
+          "tpa",
+          "updates",
+          "username-validation"
+        ],
+        "paths": [
+          "announcements",
+          "announcements\u0000create",
+          "announcements\u0000king",
+          "announcements\u0000rename",
+          "audit-logs",
+          "audit-logs\u0000disabled",
+          "audit-logs\u0000expiration",
+          "backups",
+          "backups\u0000delete-backups-older-than",
+          "backups\u0000enabled",
+          "backups\u0000folder",
+          "backups\u0000ignore-todays-backup",
+          "backups\u0000interval",
+          "book",
+          "book\u0000limit",
+          "book\u0000title-max-length",
+          "building-visuals",
+          "building-visuals\u0000disabled",
+          "building-visuals\u0000hammer-animation",
+          "building-visuals\u0000holograms",
+          "building-visuals\u0000trigger-distance",
+          "building-visuals\u0000trigger-distance-tolerance",
+          "color-range",
+          "color-range\u0000main",
+          "command",
+          "command\u0000aliases",
+          "command\u0000display-name",
+          "command\u0000enable-tab-colorization",
+          "command\u0000name",
+          "commands",
+          "commands\u0000fly",
+          "commands\u0000help",
+          "commands\u0000nation",
+          "command\u0000space-text",
+          "commands\u0000resourcepoints",
+          "commands\u0000session",
+          "creation",
+          "creation\u0000kingdoms",
+          "creation\u0000nations",
+          "daily-checks",
+          "daily-checks\u0000countdowns",
+          "daily-checks\u0000elections",
+          "daily-checks\u0000interval",
+          "daily-checks\u0000time",
+          "daily-checks\u0000timezone",
+          "database",
+          "database\u0000address",
+          "database\u0000auto-save-interval",
+          "database\u0000close-at-vm-shutdown",
+          "database\u0000database",
+          "database\u0000load-all-data-on-startup",
+          "database\u0000method",
+          "database\u0000password",
+          "database\u0000pool-settings",
+          "database\u0000properties",
+          "database\u0000smart-save",
+          "database\u0000ssl",
+          "database\u0000table-prefix",
+          "database\u0000tables",
+          "database\u0000uri",
+          "database\u0000use-data-folder",
+          "database\u0000username",
+          "debug",
+          "default-flags",
+          "default-flags\u0000kingdoms",
+          "default-flags\u0000nations",
+          "default-flags\u0000players",
+          "development-mode",
+          "disable-debug-tracing",
+          "disabled-integrations",
+          "disabled-worlds",
+          "disband",
+          "disband\u0000announce",
+          "disband\u0000announce-inactivity",
+          "disband\u0000confirm",
+          "disband\u0000confirmation-expiration",
+          "disband\u0000use-gui",
+          "economy",
+          "economy\u0000bank",
+          "economy\u0000costs",
+          "economy\u0000create-confirmation",
+          "economy\u0000resource-points",
+          "error-sound",
+          "events",
+          "events\u0000org.kingdoms.events.members.KingdomJoinEvent",
+          "events\u0000org.kingdoms.events.members.KingdomLeaveEvent",
+          "flag",
+          "flag\u0000cooldown",
+          "flag\u0000links",
+          "flag\u0000size-limit",
+          "force-lang",
+          "group-levels",
+          "group-levels\u0000kingdoms",
+          "group-levels\u0000nations",
+          "guis",
+          "guis\u0000allow-own-inventory-interact",
+          "guis\u0000close-on-damage",
+          "guis\u0000creative-sound",
+          "guis\u0000default-click-sound",
+          "guis\u0000enable-refresh-feature",
+          "help",
+          "help\u0000commands",
+          "help\u0000footer-pages",
+          "help\u0000order",
+          "home",
+          "home\u0000center",
+          "home\u0000check-safe",
+          "home\u0000claimed",
+          "home\u0000nation-spawn-capital",
+          "home\u0000nexus-land",
+          "home\u0000on-join",
+          "home\u0000respawn",
+          "home\u0000set-on-create",
+          "home\u0000set-on-first-claim",
+          "home\u0000should-not-be-damaged",
+          "home\u0000should-not-move",
+          "home\u0000teleport-delay",
+          "home\u0000unset-if",
+          "home\u0000use-nexus-if-not-set",
+          "home\u0000use-timer-message",
+          "inactivity",
+          "inactivity\u0000kingdom",
+          "inactivity\u0000member",
+          "invitations",
+          "invitations\u0000allow",
+          "invitations\u0000announce",
+          "invitations\u0000codes",
+          "invitations\u0000expiration",
+          "iSwearIKnowWhatTheFuckIAmDoingRightNow",
+          "join-leave-messages",
+          "keep-admin-mode",
+          "kingdom-fly",
+          "kingdom-fly\u0000allow-unclaimed",
+          "kingdom-fly\u0000allowed-speed",
+          "kingdom-fly\u0000charges",
+          "kingdom-fly\u0000disable-on-damage",
+          "kingdom-fly\u0000enabled",
+          "kingdom-fly\u0000nearby-unfriendly-range",
+          "kingdom-fly\u0000normal-flight-speed",
+          "kingdom-fly\u0000speed",
+          "kingdom-fly\u0000warnings",
+          "kingdom-items",
+          "kingdom-items\u0000preview-duration",
+          "kingdom-lore",
+          "kingdom-lore\u0000allow-colors",
+          "kingdom-lore\u0000allow-non-english",
+          "kingdom-lore\u0000allow-symbols",
+          "kingdom-lore\u0000blacklisted-names",
+          "kingdom-lore\u0000ignore-colors",
+          "kingdom-lore\u0000max-length",
+          "kingdom-lore\u0000remove-keywords",
+          "kingdom-lore\u0000renaming-cooldown",
+          "kingdom-lore\u0000title",
+          "kingdom-name",
+          "kingdom-name\u0000allow-duplicate-names",
+          "kingdom-name\u0000allow-non-english",
+          "kingdom-name\u0000allow-numbers",
+          "kingdom-name\u0000allow-spaces",
+          "kingdom-name\u0000allow-symbols",
+          "kingdom-name\u0000blacklisted-names",
+          "kingdom-name\u0000case-sensitive",
+          "kingdom-name\u0000ignore-colors",
+          "kingdom-name\u0000max-length",
+          "kingdom-name\u0000min-length",
+          "kingdom-name\u0000renaming-cooldown",
+          "lang",
+          "mails",
+          "mails\u0000envelope",
+          "mails\u0000subject",
+          "mails\u0000summary",
+          "max-members",
+          "max-members\u0000kingdoms",
+          "max-members\u0000nations",
+          "merging",
+          "merging\u0000conditions",
+          "nation-name",
+          "nation-name\u0000allow-duplicate-names",
+          "nation-name\u0000allow-non-english",
+          "nation-name\u0000allow-numbers",
+          "nation-name\u0000allow-spaces",
+          "nation-name\u0000allow-symbols",
+          "nation-name\u0000blacklisted-names",
+          "nation-name\u0000case-sensitive",
+          "nation-name\u0000ignore-colors",
+          "nation-name\u0000max-length",
+          "nation-name\u0000min-length",
+          "nation-name\u0000renaming-cooldown",
+          "nexus",
+          "nexus\u0000actionbar",
+          "nexus\u0000allow-removal",
+          "nexus\u0000break",
+          "nexus\u0000click-donation",
+          "nexus\u0000disable-place-mode",
+          "nexus\u0000disable-shift-click",
+          "nexus\u0000nation-capital",
+          "nexus\u0000place-on-create",
+          "nexus\u0000preview",
+          "nexus\u0000replace",
+          "no-kingdom-reminder",
+          "outpost-events",
+          "outpost-events\u0000death-resource-points-penalty",
+          "outpost-events\u0000scoreboard",
+          "placeholders",
+          "placeholders\u0000defaults",
+          "placeholders\u0000formats",
+          "placeholders\u0000variables",
+          "prefix",
+          "private-kingdoms",
+          "private-kingdoms\u0000enabled",
+          "private-kingdoms\u0000items",
+          "tags",
+          "tags\u0000allow-non-english",
+          "tags\u0000allow-numbers",
+          "tags\u0000allow-spaces",
+          "tags\u0000allow-symbols",
+          "tags\u0000attempt-automatic-setting",
+          "tags\u0000blacklisted-names",
+          "tags\u0000ignore-colors",
+          "tags\u0000max-length",
+          "tags\u0000min-length",
+          "tax",
+          "tax\u0000kingdoms",
+          "tax\u0000nations",
+          "teleport-to-spawn-after-kick",
+          "top-kingdoms",
+          "top-kingdoms\u0000amount",
+          "top-kingdoms\u0000rewards",
+          "top-kingdoms\u0000types",
+          "top-kingdoms\u0000update-interval",
+          "top-nations",
+          "top-nations\u0000amount",
+          "top-nations\u0000rewards",
+          "top-nations\u0000types",
+          "top-nations\u0000update-interval",
+          "tpa",
+          "tpa\u0000allow-from-other-kingdoms",
+          "tpa\u0000default-timer",
+          "tpa\u0000teleport",
+          "updates",
+          "updates\u0000automatic-config-reloads",
+          "updates\u0000check",
+          "updates\u0000configs",
+          "updates\u0000download",
+          "updates\u0000path",
+          "updates\u0000synchronize-guis",
+          "username-validation"
+        ]
+      }
+    },
+    {
+      "resourceName": "declarations/building.yml",
+      "schemaId": "Structures/structure",
+      "fileName": "default--declarations__building.json",
+      "signature": {
+        "entryCount": 248,
+        "rootKeys": [
+          "(module)",
+          "build-duration",
+          "building",
+          "damaging-factors",
+          "durability",
+          "markers",
+          "max-level",
+          "particles",
+          "preview",
+          "repair",
+          "sounds"
+        ],
+        "paths": [
+          "(module)",
+          "(module)\u0000description",
+          "(module)\u0000parameters",
+          "build-duration",
+          "build-duration\u0000demolishing",
+          "build-duration\u0000opening",
+          "build-duration\u0000repairing",
+          "build-duration\u0000upgrading",
+          "building",
+          "building\u00001",
+          "building\u00002",
+          "building\u00003",
+          "damaging-factors",
+          "damaging-factors\u0000ARROW",
+          "damaging-factors\u0000POTION",
+          "damaging-factors\u0000SNOWBALL",
+          "damaging-factors\u0000SPECTRAL_ARROW",
+          "damaging-factors\u0000TNT",
+          "damaging-factors\u0000TRIDENT",
+          "damaging-factors\u0000WIND_CHARGE",
+          "durability",
+          "markers",
+          "markers\u00001",
+          "max-level",
+          "particles",
+          "particles\u00001",
+          "particles\u00002",
+          "particles\u00003",
+          "preview",
+          "preview\u00001",
+          "repair",
+          "repair\u0000cost",
+          "repair\u0000materials",
+          "sounds",
+          "sounds\u00001"
+        ]
+      }
+    },
+    {
+      "resourceName": "declarations/mine.yml",
+      "schemaId": "Turrets/turret",
+      "fileName": "default--declarations__mine.json",
+      "signature": {
+        "entryCount": 20,
+        "rootKeys": [
+          "(import)",
+          "(module)",
+          "hide-holograms"
+        ],
+        "paths": [
+          "(import)",
+          "(import)\u0000building",
+          "(module)",
+          "(module)\u0000description",
+          "(module)\u0000parameters",
+          "hide-holograms"
+        ]
+      }
+    },
+    {
+      "resourceName": "declarations/structure.yml",
+      "schemaId": "Structures/structure",
+      "fileName": "default--declarations__structure.json",
+      "signature": {
+        "entryCount": 41,
+        "rootKeys": [
+          "(import)",
+          "(module)",
+          "damaging-factors",
+          "durability"
+        ],
+        "paths": [
+          "(import)",
+          "(import)\u0000building",
+          "(module)",
+          "(module)\u0000description",
+          "(module)\u0000parameters",
+          "damaging-factors",
+          "damaging-factors\u0000ARROW",
+          "damaging-factors\u0000POTION",
+          "damaging-factors\u0000TNT",
+          "damaging-factors\u0000TRIDENT",
+          "damaging-factors\u0000WIND_CHARGE",
+          "durability"
+        ]
+      }
+    },
+    {
+      "resourceName": "declarations/turret.yml",
+      "schemaId": "Turrets/turret",
+      "fileName": "default--declarations__turret.json",
+      "signature": {
+        "entryCount": 33,
+        "rootKeys": [
+          "(import)",
+          "(module)",
+          "schema"
+        ],
+        "paths": [
+          "(import)",
+          "(import)\u0000building",
+          "(module)",
+          "(module)\u0000description",
+          "(module)\u0000parameters",
+          "schema",
+          "schema\u00001"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/addons-version-history.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__addons-version-history.json",
+      "signature": {
+        "entryCount": 23,
+        "rootKeys": [
+          "options",
+          "rows",
+          "title"
+        ],
+        "paths": [
+          "options",
+          "options\u0000back",
+          "options\u0000decoration",
+          "options\u0000info",
+          "options\u0000versions",
+          "rows",
+          "title"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/addons.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__addons.json",
+      "signature": {
+        "entryCount": 55,
+        "rootKeys": [
+          "options",
+          "rows",
+          "title"
+        ],
+        "paths": [
+          "options",
+          "options\u0000addons",
+          "options\u0000decoration",
+          "options\u0000info",
+          "rows",
+          "title"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/book.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__book.json",
+      "signature": {
+        "entryCount": 9,
+        "rootKeys": [
+          "options",
+          "sound",
+          "title",
+          "type"
+        ],
+        "paths": [
+          "options",
+          "options\u0000chapters",
+          "sound",
+          "title",
+          "type"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/bossbar/colors.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__bossbar__colors.json",
+      "signature": {
+        "entryCount": 44,
+        "rootKeys": [
+          "options",
+          "rows",
+          "title"
+        ],
+        "paths": [
+          "options",
+          "options\u0000back",
+          "options\u0000blue",
+          "options\u0000green",
+          "options\u0000pink",
+          "options\u0000purple",
+          "options\u0000red",
+          "options\u0000white",
+          "options\u0000yellow",
+          "rows",
+          "title"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/bossbar/editor.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__bossbar__editor.json",
+      "signature": {
+        "entryCount": 56,
+        "rootKeys": [
+          "options",
+          "title",
+          "type"
+        ],
+        "paths": [
+          "options",
+          "options\u0000colors",
+          "options\u0000flags",
+          "options\u0000styles",
+          "options\u0000title",
+          "title",
+          "type"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/bossbar/flags.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__bossbar__flags.json",
+      "signature": {
+        "entryCount": 38,
+        "rootKeys": [
+          "options",
+          "title",
+          "type"
+        ],
+        "paths": [
+          "options",
+          "options\u0000back",
+          "options\u0000create-fog",
+          "options\u0000darken-sky",
+          "options\u0000play-boss-music",
+          "title",
+          "type"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/bossbar/styles.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__bossbar__styles.json",
+      "signature": {
+        "entryCount": 29,
+        "rootKeys": [
+          "options",
+          "title",
+          "type"
+        ],
+        "paths": [
+          "options",
+          "options\u0000SEGMENTED_10",
+          "options\u0000SEGMENTED_12",
+          "options\u0000SEGMENTED_20",
+          "options\u0000SEGMENTED_6",
+          "options\u0000SOLID",
+          "title",
+          "type"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/challenge.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__challenge.json",
+      "signature": {
+        "entryCount": 30,
+        "rootKeys": [
+          "options",
+          "sound",
+          "title",
+          "type"
+        ],
+        "paths": [
+          "options",
+          "options\u0000info",
+          "options\u0000time-five-days",
+          "options\u0000time-three-days",
+          "options\u0000time-two-days",
+          "options\u0000time-week",
+          "sound",
+          "title",
+          "type"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/color-picker/color-picker.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__color-picker__color-picker.json",
+      "signature": {
+        "entryCount": 141,
+        "rootKeys": [
+          "[color]",
+          "options",
+          "rows",
+          "sound",
+          "title"
+        ],
+        "paths": [
+          "[color]",
+          "[color]\u0000disallowed",
+          "options",
+          "options\u0000back",
+          "options\u0000color-aqua",
+          "options\u0000color-black",
+          "options\u0000color-dark-aqua",
+          "options\u0000color-dark-blue",
+          "options\u0000color-dark-green",
+          "options\u0000color-dark-red",
+          "options\u0000color-gray",
+          "options\u0000color-green",
+          "options\u0000color-light-blue",
+          "options\u0000color-light-gray",
+          "options\u0000color-light-purple",
+          "options\u0000color-orange",
+          "options\u0000color-purple",
+          "options\u0000color-red",
+          "options\u0000color-white",
+          "options\u0000color-yellow",
+          "options\u0000hex-picker",
+          "options\u0000info",
+          "options\u0000separator",
+          "rows",
+          "sound",
+          "title"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/color-picker/themes.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__color-picker__themes.json",
+      "signature": {
+        "entryCount": 22,
+        "rootKeys": [
+          "options",
+          "rows",
+          "sound",
+          "title"
+        ],
+        "paths": [
+          "options",
+          "options\u0000back",
+          "options\u0000orange-stained-glass-pane",
+          "options\u0000themes",
+          "options\u0000yellow-stained-glass-pane",
+          "rows",
+          "sound",
+          "title"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/confirm/disband.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__confirm__disband.json",
+      "signature": {
+        "entryCount": 16,
+        "rootKeys": [
+          "options",
+          "sound",
+          "title",
+          "type"
+        ],
+        "paths": [
+          "options",
+          "options\u0000cancel",
+          "options\u0000confirm",
+          "sound",
+          "title",
+          "type"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/confirm/ranks/demote-all.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__confirm__ranks__demote-all.json",
+      "signature": {
+        "entryCount": 16,
+        "rootKeys": [
+          "options",
+          "sound",
+          "title",
+          "type"
+        ],
+        "paths": [
+          "options",
+          "options\u0000cancel",
+          "options\u0000confirm",
+          "sound",
+          "title",
+          "type"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/confirm/ranks/reset.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__confirm__ranks__reset.json",
+      "signature": {
+        "entryCount": 16,
+        "rootKeys": [
+          "options",
+          "sound",
+          "title",
+          "type"
+        ],
+        "paths": [
+          "options",
+          "options\u0000cancel",
+          "options\u0000confirm",
+          "sound",
+          "title",
+          "type"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/confirm/unclaimall.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__confirm__unclaimall.json",
+      "signature": {
+        "entryCount": 16,
+        "rootKeys": [
+          "options",
+          "sound",
+          "title",
+          "type"
+        ],
+        "paths": [
+          "options",
+          "options\u0000cancel",
+          "options\u0000confirm",
+          "sound",
+          "title",
+          "type"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/election-candidates.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__election-candidates.json",
+      "signature": {
+        "entryCount": 31,
+        "rootKeys": [
+          "options",
+          "rows",
+          "sound",
+          "title"
+        ],
+        "paths": [
+          "options",
+          "options\u0000candidates",
+          "options\u0000close",
+          "options\u0000next-page",
+          "options\u0000previous-page",
+          "options\u0000red-glass",
+          "rows",
+          "sound",
+          "title"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/error.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__error.json",
+      "signature": {
+        "entryCount": 9,
+        "rootKeys": [
+          "options",
+          "sound",
+          "title",
+          "type"
+        ],
+        "paths": [
+          "options",
+          "options\u0000error",
+          "sound",
+          "title",
+          "type"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/input.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__input.json",
+      "signature": {
+        "entryCount": 18,
+        "rootKeys": [
+          "options",
+          "sound",
+          "title",
+          "type"
+        ],
+        "paths": [
+          "options",
+          "options\u0000cancel",
+          "options\u0000done",
+          "options\u0000question",
+          "sound",
+          "title",
+          "type"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/invite-codes.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__invite-codes.json",
+      "signature": {
+        "entryCount": 31,
+        "rootKeys": [
+          "options",
+          "rows",
+          "sound",
+          "title"
+        ],
+        "paths": [
+          "options",
+          "options\u0000blue-glass",
+          "options\u0000delete-all",
+          "options\u0000info",
+          "options\u0000invite-codes",
+          "options\u0000new-invite-code",
+          "rows",
+          "sound",
+          "title"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/invites.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__invites.json",
+      "signature": {
+        "entryCount": 24,
+        "rootKeys": [
+          "options",
+          "rows",
+          "sound",
+          "title"
+        ],
+        "paths": [
+          "options",
+          "options\u0000blue-glass",
+          "options\u0000decline-all",
+          "options\u0000invite",
+          "rows",
+          "sound",
+          "title"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/invsee.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__invsee.json",
+      "signature": {
+        "entryCount": 55,
+        "rootKeys": [
+          "context-start-row",
+          "options",
+          "rows",
+          "sound",
+          "title"
+        ],
+        "paths": [
+          "context-start-row",
+          "options",
+          "options\u0000boots",
+          "options\u0000chestplate",
+          "options\u0000helmet",
+          "options\u0000leggings",
+          "options\u0000mainhand",
+          "options\u0000mainhand-indicator",
+          "options\u0000offhand",
+          "options\u0000offhand-indicator",
+          "options\u0000separators",
+          "rows",
+          "sound",
+          "title"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/kingdom-create.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__kingdom-create.json",
+      "signature": {
+        "entryCount": 15,
+        "rootKeys": [
+          "options",
+          "sound",
+          "title",
+          "type"
+        ],
+        "paths": [
+          "options",
+          "options\u0000aggressor",
+          "options\u0000pacifist",
+          "sound",
+          "title",
+          "type"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/kingdom-join-requests.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__kingdom-join-requests.json",
+      "signature": {
+        "entryCount": 28,
+        "rootKeys": [
+          "options",
+          "rows",
+          "sound",
+          "title"
+        ],
+        "paths": [
+          "options",
+          "options\u0000close",
+          "options\u0000next-page",
+          "options\u0000previous-page",
+          "options\u0000red-glass",
+          "options\u0000requests",
+          "rows",
+          "sound",
+          "title"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/kingdom-relation-requests.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__kingdom-relation-requests.json",
+      "signature": {
+        "entryCount": 24,
+        "rootKeys": [
+          "options",
+          "rows",
+          "sound",
+          "title"
+        ],
+        "paths": [
+          "options",
+          "options\u0000blue-glass",
+          "options\u0000decline-all",
+          "options\u0000request",
+          "rows",
+          "sound",
+          "title"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/language-packs.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__language-packs.json",
+      "signature": {
+        "entryCount": 33,
+        "rootKeys": [
+          "options",
+          "rows",
+          "title"
+        ],
+        "paths": [
+          "options",
+          "options\u0000decoration",
+          "options\u0000download-all",
+          "options\u0000info",
+          "options\u0000languages",
+          "rows",
+          "title"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/languages.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__languages.json",
+      "signature": {
+        "entryCount": 30,
+        "rootKeys": [
+          "options",
+          "rows",
+          "skulls",
+          "title"
+        ],
+        "paths": [
+          "options",
+          "options\u0000current-language",
+          "options\u0000decoration",
+          "options\u0000language",
+          "rows",
+          "skulls",
+          "skulls\u0000cs",
+          "skulls\u0000de",
+          "skulls\u0000en",
+          "skulls\u0000es",
+          "skulls\u0000hu",
+          "skulls\u0000it",
+          "skulls\u0000pl",
+          "skulls\u0000pt",
+          "skulls\u0000ru",
+          "skulls\u0000tr",
+          "skulls\u0000uk",
+          "skulls\u0000vi",
+          "skulls\u0000zh",
+          "title"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/mails/editor.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__mails__editor.json",
+      "signature": {
+        "entryCount": 28,
+        "rootKeys": [
+          "options",
+          "title",
+          "type"
+        ],
+        "paths": [
+          "options",
+          "options\u0000preview",
+          "options\u0000recipients",
+          "options\u0000reset",
+          "options\u0000subject",
+          "options\u0000summary",
+          "title",
+          "type"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/mails/mailbox.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__mails__mailbox.json",
+      "signature": {
+        "entryCount": 60,
+        "rootKeys": [
+          "interactable",
+          "options",
+          "rows",
+          "sound",
+          "title"
+        ],
+        "paths": [
+          "interactable",
+          "options",
+          "options\u0000back",
+          "options\u0000get-envelope",
+          "options\u0000inbox",
+          "options\u0000inbox-indicator",
+          "options\u0000next",
+          "options\u0000previous",
+          "options\u0000sent",
+          "options\u0000sent-indicator",
+          "options\u0000separators",
+          "rows",
+          "sound",
+          "title"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/mails/recipients.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__mails__recipients.json",
+      "signature": {
+        "entryCount": 29,
+        "rootKeys": [
+          "options",
+          "rows",
+          "title"
+        ],
+        "paths": [
+          "options",
+          "options\u0000back",
+          "options\u0000cc",
+          "options\u0000cc-add",
+          "options\u0000decoration",
+          "options\u0000to",
+          "rows",
+          "title"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/map-settings.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__map-settings.json",
+      "signature": {
+        "entryCount": 40,
+        "rootKeys": [
+          "options",
+          "title",
+          "type"
+        ],
+        "paths": [
+          "options",
+          "options\u0000auto",
+          "options\u0000gui",
+          "options\u0000reset",
+          "options\u0000resize",
+          "options\u0000scoreboard",
+          "title",
+          "type"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/map.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__map.json",
+      "signature": {
+        "entryCount": 7,
+        "rootKeys": [
+          "options",
+          "rows",
+          "sound",
+          "title"
+        ],
+        "paths": [
+          "options",
+          "options\u0000element",
+          "rows",
+          "sound",
+          "title"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/player-selectors/types.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__player-selectors__types.json",
+      "signature": {
+        "entryCount": 54,
+        "rootKeys": [
+          "options",
+          "rows",
+          "sound",
+          "title"
+        ],
+        "paths": [
+          "options",
+          "options\u0000cancel",
+          "options\u0000decoration",
+          "options\u0000decoration-middle",
+          "options\u0000kingdom",
+          "options\u0000nation",
+          "options\u0000rank",
+          "options\u0000relation",
+          "options\u0000union",
+          "options\u0000username",
+          "rows",
+          "sound",
+          "title"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/player-selectors/union.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__player-selectors__union.json",
+      "signature": {
+        "entryCount": 37,
+        "rootKeys": [
+          "options",
+          "rows",
+          "sound",
+          "title"
+        ],
+        "paths": [
+          "options",
+          "options\u0000add",
+          "options\u0000back",
+          "options\u0000decoration",
+          "options\u0000elements",
+          "options\u0000logic-toggle",
+          "rows",
+          "sound",
+          "title"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/protection-signs/access-entries.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__protection-signs__access-entries.json",
+      "signature": {
+        "entryCount": 49,
+        "rootKeys": [
+          "options",
+          "rows",
+          "sound",
+          "title"
+        ],
+        "paths": [
+          "options",
+          "options\u0000add",
+          "options\u0000back",
+          "options\u0000clear",
+          "options\u0000decoration",
+          "options\u0000entries",
+          "options\u0000info",
+          "rows",
+          "sound",
+          "title"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/protection-signs/access-entry.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__protection-signs__access-entry.json",
+      "signature": {
+        "entryCount": 29,
+        "rootKeys": [
+          "options",
+          "rows",
+          "sound",
+          "title"
+        ],
+        "paths": [
+          "options",
+          "options\u0000back",
+          "options\u0000decoration-green",
+          "options\u0000decoration-lime",
+          "options\u0000player-selector",
+          "options\u0000privilege",
+          "rows",
+          "sound",
+          "title"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/protection-signs/access-privileges.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__protection-signs__access-privileges.json",
+      "signature": {
+        "entryCount": 32,
+        "rootKeys": [
+          "options",
+          "sound",
+          "title",
+          "type"
+        ],
+        "paths": [
+          "options",
+          "options\u0000back",
+          "options\u0000privilege-allowed",
+          "options\u0000privilege-disallowed",
+          "options\u0000privilege-password",
+          "sound",
+          "title",
+          "type"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/protection-signs/protected-sign.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__protection-signs__protected-sign.json",
+      "signature": {
+        "entryCount": 41,
+        "rootKeys": [
+          "options",
+          "rows",
+          "sound",
+          "title"
+        ],
+        "paths": [
+          "options",
+          "options\u0000access-entries",
+          "options\u0000automatic-state-toggle-duration",
+          "options\u0000decoration-blue",
+          "options\u0000decoration-light-blue",
+          "options\u0000info",
+          "options\u0000protection-type",
+          "rows",
+          "sound",
+          "title"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/protection-signs/protection-type.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__protection-signs__protection-type.json",
+      "signature": {
+        "entryCount": 40,
+        "rootKeys": [
+          "options",
+          "sound",
+          "title",
+          "type"
+        ],
+        "paths": [
+          "options",
+          "options\u0000everyone",
+          "options\u0000everyone-in-kingdom",
+          "options\u0000protected",
+          "sound",
+          "title",
+          "type"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/structures/extractor.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__structures__extractor.json",
+      "signature": {
+        "entryCount": 51,
+        "rootKeys": [
+          "options",
+          "sound",
+          "title",
+          "type"
+        ],
+        "paths": [
+          "options",
+          "options\u0000break",
+          "options\u0000collect",
+          "options\u0000fuel",
+          "options\u0000repair",
+          "options\u0000upgrade",
+          "sound",
+          "title",
+          "type"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/structures/nexus/champion-settings.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__structures__nexus__champion-settings.json",
+      "signature": {
+        "entryCount": 19,
+        "rootKeys": [
+          "options",
+          "sound",
+          "title",
+          "type"
+        ],
+        "paths": [
+          "options",
+          "options\u0000back",
+          "options\u0000change",
+          "options\u0000upgrade",
+          "sound",
+          "title",
+          "type"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/structures/nexus/champion-upgrades.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__structures__nexus__champion-upgrades.json",
+      "signature": {
+        "entryCount": 117,
+        "rootKeys": [
+          "options",
+          "rows",
+          "sound",
+          "title"
+        ],
+        "paths": [
+          "options",
+          "options\u0000back",
+          "options\u0000black-glass",
+          "options\u0000burst",
+          "options\u0000damage-cap",
+          "options\u0000death-duel",
+          "options\u0000drag",
+          "options\u0000fangs",
+          "options\u0000focus",
+          "options\u0000health",
+          "options\u0000magenta-glass",
+          "options\u0000plow",
+          "options\u0000purple-glass",
+          "options\u0000reinforcements",
+          "options\u0000resistance",
+          "options\u0000settings",
+          "options\u0000speed",
+          "options\u0000strength",
+          "options\u0000thor",
+          "options\u0000throw",
+          "rows",
+          "sound",
+          "title"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/structures/nexus/champions.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__structures__nexus__champions.json",
+      "signature": {
+        "entryCount": 17,
+        "rootKeys": [
+          "options",
+          "sound",
+          "title",
+          "type"
+        ],
+        "paths": [
+          "options",
+          "options\u0000back",
+          "options\u0000skeleton",
+          "options\u0000zombie",
+          "sound",
+          "title",
+          "type"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/structures/nexus/logs-filters-and-sorting.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__structures__nexus__logs-filters-and-sorting.json",
+      "signature": {
+        "entryCount": 73,
+        "rootKeys": [
+          "options",
+          "rows",
+          "sound",
+          "title"
+        ],
+        "paths": [
+          "options",
+          "options\u0000back",
+          "options\u0000decoration",
+          "options\u0000filters-player",
+          "options\u0000filters-time",
+          "options\u0000filters-type",
+          "options\u0000sort-ascending-time",
+          "options\u0000sort-descending-time",
+          "options\u0000sort-type",
+          "rows",
+          "sound",
+          "title"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/structures/nexus/logs.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__structures__nexus__logs.json",
+      "signature": {
+        "entryCount": 236,
+        "rootKeys": [
+          "[type]",
+          "options",
+          "rows",
+          "sound",
+          "title"
+        ],
+        "paths": [
+          "[type]",
+          "[type]\u0000[else]",
+          "[type]\u0000extractor-collect",
+          "[type]\u0000group-tax-server-pay",
+          "[type]\u0000kingdom-challenge-challenged",
+          "[type]\u0000kingdom-challenge-challenger",
+          "[type]\u0000kingdom-champion-change",
+          "[type]\u0000kingdom-change-lore",
+          "[type]\u0000kingdom-change-tag",
+          "[type]\u0000kingdom-claim",
+          "[type]\u0000kingdom-invasion-invaded",
+          "[type]\u0000kingdom-invasion-invader",
+          "[type]\u0000kingdom-invite",
+          "[type]\u0000kingdom-join",
+          "[type]\u0000kingdom-kick",
+          "[type]\u0000kingdom-king-change",
+          "[type]\u0000kingdom-leave",
+          "[type]\u0000kingdom-nation-join",
+          "[type]\u0000kingdom-nation-leave",
+          "[type]\u0000kingdom-pacifism-change",
+          "[type]\u0000kingdom-relation-change",
+          "[type]\u0000kingdom-rename",
+          "[type]\u0000kingdom-resource-points-convert",
+          "[type]\u0000kingdom-structure-purchase",
+          "[type]\u0000kingdom-structure-upgrade",
+          "[type]\u0000kingdom-turret-purchase",
+          "[type]\u0000kingdom-turret-purchase-ammo",
+          "[type]\u0000kingdom-turret-upgrade",
+          "[type]\u0000kingdom-unclaim",
+          "[type]\u0000kingdom-upgrade-champion",
+          "[type]\u0000kingdom-upgrade-misc",
+          "[type]\u0000kingdom-upgrade-powerup",
+          "[type]\u0000kingdom-vault-inventory-change",
+          "[type]\u0000outpost-item-purchase",
+          "[type]\u0000PeaceTreaties:received",
+          "[type]\u0000PeaceTreaties:sent",
+          "[type]\u0000player-rank-change",
+          "[type]\u0000rank-change-color",
+          "[type]\u0000rank-change-material",
+          "[type]\u0000rank-change-max-claims",
+          "[type]\u0000rank-change-name",
+          "[type]\u0000rank-change-priority",
+          "[type]\u0000rank-change-symbol",
+          "[type]\u0000rank-create",
+          "[type]\u0000rank-delete",
+          "[type]\u0000shield-deactivation",
+          "[type]\u0000shield-purchase",
+          "[type]\u0000structures-nexus-move",
+          "[type]\u0000warppad-teleport",
+          "options",
+          "options\u0000back",
+          "options\u0000decoration",
+          "options\u0000entry",
+          "options\u0000filters-and-sorting",
+          "options\u0000next-page",
+          "options\u0000previous-page",
+          "rows",
+          "sound",
+          "title"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/structures/nexus/member.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__structures__nexus__member.json",
+      "signature": {
+        "entryCount": 40,
+        "rootKeys": [
+          "options",
+          "sound",
+          "title",
+          "type"
+        ],
+        "paths": [
+          "options",
+          "options\u0000back",
+          "options\u0000demote",
+          "options\u0000kick",
+          "options\u0000member",
+          "options\u0000promote",
+          "sound",
+          "title",
+          "type"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/structures/nexus/members.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__structures__nexus__members.json",
+      "signature": {
+        "entryCount": 29,
+        "rootKeys": [
+          "options",
+          "rows",
+          "sound",
+          "title"
+        ],
+        "paths": [
+          "options",
+          "options\u0000back",
+          "options\u0000members",
+          "options\u0000next-page",
+          "options\u0000previous-page",
+          "options\u0000red-glass",
+          "rows",
+          "sound",
+          "title"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/structures/nexus/misc-upgrades.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__structures__nexus__misc-upgrades.json",
+      "signature": {
+        "entryCount": 169,
+        "rootKeys": [
+          "[fn-misc-basic]",
+          "[fn-misc]",
+          "options",
+          "rows",
+          "sound",
+          "title"
+        ],
+        "paths": [
+          "[fn-misc-basic]",
+          "[fn-misc-basic]\u0000args",
+          "[fn-misc-basic]\u0000return",
+          "[fn-misc]",
+          "[fn-misc]\u0000args",
+          "[fn-misc]\u0000return",
+          "options",
+          "options\u0000anti-explosion",
+          "options\u0000anti-trample",
+          "options\u0000back",
+          "options\u0000chest-size",
+          "options\u0000cyan-glass",
+          "options\u0000flight",
+          "options\u0000glory",
+          "options\u0000guards",
+          "options\u0000insanity",
+          "options\u0000invasion-teleportation",
+          "options\u0000invasions",
+          "options\u0000keep-inventory",
+          "options\u0000light-blue-glass",
+          "options\u0000max-claims",
+          "options\u0000max-members",
+          "options\u0000max-turrets",
+          "options\u0000nexus-guards",
+          "rows",
+          "sound",
+          "title"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/structures/nexus/nation/nexus.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__structures__nexus__nation__nexus.json",
+      "signature": {
+        "entryCount": 30,
+        "rootKeys": [
+          "options",
+          "rows",
+          "sound",
+          "title"
+        ],
+        "paths": [
+          "options",
+          "options\u0000black-glass",
+          "options\u0000ranks",
+          "options\u0000red-glass",
+          "options\u0000resource-points",
+          "options\u0000settings",
+          "rows",
+          "sound",
+          "title"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/structures/nexus/nation/ranks/king-rank-editor.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__structures__nexus__nation__ranks__king-rank-editor.json",
+      "signature": {
+        "entryCount": 35,
+        "rootKeys": [
+          "options",
+          "rows",
+          "sound",
+          "title"
+        ],
+        "paths": [
+          "options",
+          "options\u0000back",
+          "options\u0000color",
+          "options\u0000material",
+          "options\u0000name",
+          "options\u0000symbol",
+          "rows",
+          "sound",
+          "title"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/structures/nexus/nation/ranks/permissions/categories.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__structures__nexus__nation__ranks__permissions__categories.json",
+      "signature": {
+        "entryCount": 36,
+        "rootKeys": [
+          "options",
+          "rows",
+          "title"
+        ],
+        "paths": [
+          "options",
+          "options\u0000back",
+          "options\u0000category-diplomacy",
+          "options\u0000category-economy",
+          "options\u0000category-members",
+          "options\u0000category-others",
+          "options\u0000decoration",
+          "rows",
+          "title"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/structures/nexus/nation/ranks/permissions/permissions.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__structures__nexus__nation__ranks__permissions__permissions.json",
+      "signature": {
+        "entryCount": 118,
+        "rootKeys": [
+          "(import)",
+          "[fn-perm]",
+          "[fn-std-perm]",
+          "[permission]",
+          "options",
+          "rows",
+          "title"
+        ],
+        "paths": [
+          "(import)",
+          "(import)\u0000pagination",
+          "[fn-perm]",
+          "[fn-perm]\u0000args",
+          "[fn-perm]\u0000return",
+          "[fn-std-perm]",
+          "[fn-std-perm]\u0000args",
+          "[fn-std-perm]\u0000return",
+          "[permission]",
+          "[permission]\u0000[else]",
+          "[permission]\u0000alliance",
+          "[permission]\u0000broadcast",
+          "[permission]\u0000build",
+          "[permission]\u0000edit-ranks",
+          "[permission]\u0000enemy",
+          "[permission]\u0000exclude-tax",
+          "[permission]\u0000home",
+          "[permission]\u0000invade",
+          "[permission]\u0000invite",
+          "[permission]\u0000kick",
+          "[permission]\u0000lore",
+          "[permission]\u0000manage-mails",
+          "[permission]\u0000manage-ranks",
+          "[permission]\u0000nation",
+          "[permission]\u0000nexus",
+          "[permission]\u0000nexus-build",
+          "[permission]\u0000nexus-chest",
+          "[permission]\u0000read-mails",
+          "[permission]\u0000relation-attributes",
+          "[permission]\u0000set-home",
+          "[permission]\u0000settings",
+          "[permission]\u0000truce",
+          "[permission]\u0000upgrade",
+          "[permission]\u0000view-logs",
+          "[permission]\u0000withdraw",
+          "options",
+          "options\u0000back",
+          "options\u0000decoration",
+          "options\u0000permissions",
+          "rows",
+          "title"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/structures/nexus/nation/ranks/rank-editor.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__structures__nexus__nation__ranks__rank-editor.json",
+      "signature": {
+        "entryCount": 74,
+        "rootKeys": [
+          "options",
+          "rows",
+          "sound",
+          "title"
+        ],
+        "paths": [
+          "options",
+          "options\u0000back",
+          "options\u0000color",
+          "options\u0000copy",
+          "options\u0000decoration",
+          "options\u0000delete",
+          "options\u0000material",
+          "options\u0000max-claims",
+          "options\u0000name",
+          "options\u0000node",
+          "options\u0000permissions",
+          "options\u0000priority",
+          "options\u0000symbol",
+          "rows",
+          "sound",
+          "title"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/structures/nexus/nation/ranks/rank-selector.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__structures__nexus__nation__ranks__rank-selector.json",
+      "signature": {
+        "entryCount": 18,
+        "rootKeys": [
+          "options",
+          "rows",
+          "sound",
+          "title"
+        ],
+        "paths": [
+          "options",
+          "options\u0000back",
+          "options\u0000black-glass",
+          "options\u0000ranks",
+          "rows",
+          "sound",
+          "title"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/structures/nexus/nation/ranks/ranks.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__structures__nexus__nation__ranks__ranks.json",
+      "signature": {
+        "entryCount": 35,
+        "rootKeys": [
+          "options",
+          "rows",
+          "sound",
+          "title"
+        ],
+        "paths": [
+          "options",
+          "options\u0000add",
+          "options\u0000back",
+          "options\u0000black-glass",
+          "options\u0000demote-all",
+          "options\u0000rank",
+          "options\u0000reset",
+          "rows",
+          "sound",
+          "title"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/structures/nexus/nation/resource-points-converter.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__structures__nexus__nation__resource-points-converter.json",
+      "signature": {
+        "entryCount": 30,
+        "rootKeys": [
+          "disallow-creative",
+          "interactable",
+          "options",
+          "rows",
+          "sound",
+          "title"
+        ],
+        "paths": [
+          "disallow-creative",
+          "interactable",
+          "options",
+          "options\u0000apply",
+          "options\u0000back",
+          "options\u0000info",
+          "options\u0000lime-glass",
+          "rows",
+          "sound",
+          "title"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/structures/nexus/nation/settings/banners.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__structures__nexus__nation__settings__banners.json",
+      "signature": {
+        "entryCount": 31,
+        "rootKeys": [
+          "options",
+          "rows",
+          "sound",
+          "title"
+        ],
+        "paths": [
+          "options",
+          "options\u0000back",
+          "options\u0000banner",
+          "options\u0000blue-stained-glass-pane",
+          "options\u0000flag",
+          "options\u0000orange-stained-glass-pane",
+          "rows",
+          "sound",
+          "title"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/structures/nexus/nation/settings/relation-editor.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__structures__nexus__nation__settings__relation-editor.json",
+      "signature": {
+        "entryCount": 131,
+        "rootKeys": [
+          "options",
+          "rows",
+          "sound",
+          "title"
+        ],
+        "paths": [
+          "options",
+          "options\u0000back",
+          "options\u0000build",
+          "options\u0000ceasefire",
+          "options\u0000fly",
+          "options\u0000interact",
+          "options\u0000manage-structures",
+          "options\u0000manage-turrets",
+          "options\u0000turret-ceasefire",
+          "options\u0000use",
+          "rows",
+          "sound",
+          "title"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/structures/nexus/nation/settings/relations.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__structures__nexus__nation__settings__relations.json",
+      "signature": {
+        "entryCount": 24,
+        "rootKeys": [
+          "options",
+          "sound",
+          "title",
+          "type"
+        ],
+        "paths": [
+          "options",
+          "options\u0000ally",
+          "options\u0000enemy",
+          "options\u0000nation",
+          "options\u0000neutral",
+          "options\u0000truce",
+          "sound",
+          "title",
+          "type"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/structures/nexus/nation/settings/settings.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__structures__nexus__nation__settings__settings.json",
+      "signature": {
+        "entryCount": 55,
+        "rootKeys": [
+          "options",
+          "rows",
+          "sound",
+          "title"
+        ],
+        "paths": [
+          "options",
+          "options\u0000back",
+          "options\u0000banners",
+          "options\u0000blue-stained-glass-pane",
+          "options\u0000color",
+          "options\u0000light-blue-stained-glass-pane",
+          "options\u0000public-home",
+          "options\u0000relations",
+          "options\u0000shields",
+          "options\u0000tax",
+          "rows",
+          "sound",
+          "title"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/structures/nexus/nation/settings/shields.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__structures__nexus__nation__settings__shields.json",
+      "signature": {
+        "entryCount": 84,
+        "rootKeys": [
+          "options",
+          "rows",
+          "sound",
+          "title"
+        ],
+        "paths": [
+          "options",
+          "options\u0000black-stained-glass-pane",
+          "options\u0000red-stained-glass-pane",
+          "options\u0000refund",
+          "options\u0000shield-12hr",
+          "options\u0000shield-1day",
+          "options\u0000shield-1month",
+          "options\u0000shield-1week",
+          "options\u0000shield-6hr",
+          "rows",
+          "sound",
+          "title"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/structures/nexus/nexus.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__structures__nexus__nexus.json",
+      "signature": {
+        "entryCount": 156,
+        "rootKeys": [
+          "forms",
+          "options",
+          "rows",
+          "sound",
+          "title"
+        ],
+        "paths": [
+          "forms",
+          "forms\u0000icon",
+          "forms\u0000options",
+          "forms\u0000title",
+          "forms\u0000type",
+          "options",
+          "options\u0000arrow-boost",
+          "options\u0000black-glass",
+          "options\u0000champion-upgrades",
+          "options\u0000damage-boost",
+          "options\u0000damage-reduction",
+          "options\u0000logs",
+          "options\u0000mailbox",
+          "options\u0000masswar",
+          "options\u0000members",
+          "options\u0000misc-upgrades",
+          "options\u0000nexus-chest",
+          "options\u0000ranks",
+          "options\u0000red-glass",
+          "options\u0000regeneration-boost",
+          "options\u0000resource-points",
+          "options\u0000settings",
+          "options\u0000structures",
+          "options\u0000turrets",
+          "rows",
+          "sound",
+          "title"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/structures/nexus/ranks/king-rank-editor.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__structures__nexus__ranks__king-rank-editor.json",
+      "signature": {
+        "entryCount": 35,
+        "rootKeys": [
+          "options",
+          "rows",
+          "sound",
+          "title"
+        ],
+        "paths": [
+          "options",
+          "options\u0000back",
+          "options\u0000color",
+          "options\u0000material",
+          "options\u0000name",
+          "options\u0000symbol",
+          "rows",
+          "sound",
+          "title"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/structures/nexus/ranks/permissions/categories.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__structures__nexus__ranks__permissions__categories.json",
+      "signature": {
+        "entryCount": 48,
+        "rootKeys": [
+          "options",
+          "rows",
+          "title"
+        ],
+        "paths": [
+          "options",
+          "options\u0000back",
+          "options\u0000category-building",
+          "options\u0000category-diplomacy",
+          "options\u0000category-economy",
+          "options\u0000category-land",
+          "options\u0000category-members",
+          "options\u0000category-others",
+          "options\u0000decoration",
+          "rows",
+          "title"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/structures/nexus/ranks/permissions/permissions.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__structures__nexus__ranks__permissions__permissions.json",
+      "signature": {
+        "entryCount": 160,
+        "rootKeys": [
+          "(import)",
+          "[fn-perm]",
+          "[fn-std-perm]",
+          "[permission]",
+          "options",
+          "rows",
+          "title"
+        ],
+        "paths": [
+          "(import)",
+          "(import)\u0000pagination",
+          "[fn-perm]",
+          "[fn-perm]\u0000args",
+          "[fn-perm]\u0000return",
+          "[fn-std-perm]",
+          "[fn-std-perm]\u0000args",
+          "[fn-std-perm]\u0000return",
+          "[permission]",
+          "[permission]\u0000[else]",
+          "[permission]\u0000alliance",
+          "[permission]\u0000broadcast",
+          "[permission]\u0000build",
+          "[permission]\u0000build-owned",
+          "[permission]\u0000claim",
+          "[permission]\u0000edit-ranks",
+          "[permission]\u0000enemy",
+          "[permission]\u0000exclude-tax",
+          "[permission]\u0000fly",
+          "[permission]\u0000home",
+          "[permission]\u0000instant-teleport",
+          "[permission]\u0000interact",
+          "[permission]\u0000invade",
+          "[permission]\u0000invite",
+          "[permission]\u0000invsee",
+          "[permission]\u0000kick",
+          "[permission]\u0000lore",
+          "[permission]\u0000manage-mails",
+          "[permission]\u0000manage-ranks",
+          "[permission]\u0000nation",
+          "[permission]\u0000nexus",
+          "[permission]\u0000nexus-build",
+          "[permission]\u0000nexus-chest",
+          "[permission]\u0000outpost",
+          "[permission]\u0000outposts:join",
+          "[permission]\u0000protection-signs",
+          "[permission]\u0000read-mails",
+          "[permission]\u0000relation-attributes",
+          "[permission]\u0000set-home",
+          "[permission]\u0000settings",
+          "[permission]\u0000structures",
+          "[permission]\u0000truce",
+          "[permission]\u0000turrets",
+          "[permission]\u0000unclaim",
+          "[permission]\u0000unclaim-owned",
+          "[permission]\u0000upgrade",
+          "[permission]\u0000use",
+          "[permission]\u0000view-logs",
+          "[permission]\u0000withdraw",
+          "options",
+          "options\u0000back",
+          "options\u0000decoration",
+          "options\u0000permissions",
+          "rows",
+          "title"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/structures/nexus/ranks/rank-editor.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__structures__nexus__ranks__rank-editor.json",
+      "signature": {
+        "entryCount": 74,
+        "rootKeys": [
+          "options",
+          "rows",
+          "sound",
+          "title"
+        ],
+        "paths": [
+          "options",
+          "options\u0000back",
+          "options\u0000color",
+          "options\u0000copy",
+          "options\u0000decoration",
+          "options\u0000delete",
+          "options\u0000material",
+          "options\u0000max-claims",
+          "options\u0000name",
+          "options\u0000node",
+          "options\u0000permissions",
+          "options\u0000priority",
+          "options\u0000symbol",
+          "rows",
+          "sound",
+          "title"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/structures/nexus/ranks/rank-selector.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__structures__nexus__ranks__rank-selector.json",
+      "signature": {
+        "entryCount": 18,
+        "rootKeys": [
+          "options",
+          "rows",
+          "sound",
+          "title"
+        ],
+        "paths": [
+          "options",
+          "options\u0000back",
+          "options\u0000black-glass",
+          "options\u0000ranks",
+          "rows",
+          "sound",
+          "title"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/structures/nexus/ranks/ranks.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__structures__nexus__ranks__ranks.json",
+      "signature": {
+        "entryCount": 35,
+        "rootKeys": [
+          "options",
+          "rows",
+          "sound",
+          "title"
+        ],
+        "paths": [
+          "options",
+          "options\u0000add",
+          "options\u0000back",
+          "options\u0000black-glass",
+          "options\u0000demote-all",
+          "options\u0000rank",
+          "options\u0000reset",
+          "rows",
+          "sound",
+          "title"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/structures/nexus/resource-points-converter.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__structures__nexus__resource-points-converter.json",
+      "signature": {
+        "entryCount": 43,
+        "rootKeys": [
+          "disallow-creative",
+          "interactable",
+          "options",
+          "rows",
+          "sound",
+          "title"
+        ],
+        "paths": [
+          "disallow-creative",
+          "interactable",
+          "options",
+          "options\u0000apply",
+          "options\u0000back",
+          "options\u0000deposit",
+          "options\u0000info",
+          "options\u0000lime-glass",
+          "options\u0000withdraw",
+          "rows",
+          "sound",
+          "title"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/structures/nexus/settings/banners.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__structures__nexus__settings__banners.json",
+      "signature": {
+        "entryCount": 31,
+        "rootKeys": [
+          "options",
+          "rows",
+          "sound",
+          "title"
+        ],
+        "paths": [
+          "options",
+          "options\u0000back",
+          "options\u0000banner",
+          "options\u0000blue-stained-glass-pane",
+          "options\u0000flag",
+          "options\u0000orange-stained-glass-pane",
+          "rows",
+          "sound",
+          "title"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/structures/nexus/settings/relation-editor.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__structures__nexus__settings__relation-editor.json",
+      "signature": {
+        "entryCount": 136,
+        "rootKeys": [
+          "options",
+          "rows",
+          "sound",
+          "title"
+        ],
+        "paths": [
+          "options",
+          "options\u0000back",
+          "options\u0000build",
+          "options\u0000ceasefire",
+          "options\u0000fly",
+          "options\u0000green-stained-glass-pane",
+          "options\u0000home",
+          "options\u0000interact",
+          "options\u0000manage-structures",
+          "options\u0000manage-turrets",
+          "options\u0000show-holograms",
+          "options\u0000turret-ceasefire",
+          "options\u0000use",
+          "rows",
+          "sound",
+          "title"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/structures/nexus/settings/relations.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__structures__nexus__settings__relations.json",
+      "signature": {
+        "entryCount": 26,
+        "rootKeys": [
+          "options",
+          "sound",
+          "title",
+          "type"
+        ],
+        "paths": [
+          "options",
+          "options\u0000ally",
+          "options\u0000back",
+          "options\u0000enemy",
+          "options\u0000neutral",
+          "options\u0000truce",
+          "sound",
+          "title",
+          "type"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/structures/nexus/settings/settings.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__structures__nexus__settings__settings.json",
+      "signature": {
+        "entryCount": 99,
+        "rootKeys": [
+          "options",
+          "rows",
+          "sound",
+          "title"
+        ],
+        "paths": [
+          "options",
+          "options\u0000back",
+          "options\u0000banners",
+          "options\u0000blue-stained-glass-pane",
+          "options\u0000color",
+          "options\u0000hidden",
+          "options\u0000invites",
+          "options\u0000light-blue-stained-glass-pane",
+          "options\u0000pacifism",
+          "options\u0000public-home",
+          "options\u0000relations",
+          "options\u0000shields",
+          "options\u0000tax",
+          "options\u0000upgrade",
+          "rows",
+          "sound",
+          "title"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/structures/nexus/settings/shields.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__structures__nexus__settings__shields.json",
+      "signature": {
+        "entryCount": 84,
+        "rootKeys": [
+          "options",
+          "rows",
+          "sound",
+          "title"
+        ],
+        "paths": [
+          "options",
+          "options\u0000black-stained-glass-pane",
+          "options\u0000red-stained-glass-pane",
+          "options\u0000refund",
+          "options\u0000shield-12hr",
+          "options\u0000shield-1day",
+          "options\u0000shield-1month",
+          "options\u0000shield-1week",
+          "options\u0000shield-6hr",
+          "rows",
+          "sound",
+          "title"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/structures/nexus/structures.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__structures__nexus__structures.json",
+      "signature": {
+        "entryCount": 67,
+        "rootKeys": [
+          "options",
+          "rows",
+          "sound",
+          "title"
+        ],
+        "paths": [
+          "options",
+          "options\u0000back",
+          "options\u0000cyan-glass",
+          "options\u0000extractor",
+          "options\u0000light-blue-glass",
+          "options\u0000outpost",
+          "options\u0000powercell",
+          "options\u0000regulator",
+          "options\u0000siege-cannon",
+          "options\u0000warppad",
+          "rows",
+          "sound",
+          "title"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/structures/nexus/turrets.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__structures__nexus__turrets.json",
+      "signature": {
+        "entryCount": 99,
+        "rootKeys": [
+          "options",
+          "rows",
+          "sound",
+          "title"
+        ],
+        "paths": [
+          "options",
+          "options\u0000arrow",
+          "options\u0000back",
+          "options\u0000chemical-mine",
+          "options\u0000Cyan-Glass",
+          "options\u0000explosive-mine",
+          "options\u0000flame",
+          "options\u0000healing",
+          "options\u0000heatbeam",
+          "options\u0000hellfire",
+          "options\u0000inferno",
+          "options\u0000Light-Blue-Glass",
+          "options\u0000psionic",
+          "options\u0000soldier",
+          "options\u0000spring",
+          "rows",
+          "sound",
+          "title"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/structures/outpost/1.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__structures__outpost__1.json",
+      "signature": {
+        "entryCount": 109,
+        "rootKeys": [
+          "(import)",
+          "options"
+        ],
+        "paths": [
+          "(import)",
+          "(import)\u0000outpost-page",
+          "options",
+          "options\u0000stock-blaze-powder",
+          "options\u0000stock-blaze-rod",
+          "options\u0000stock-book",
+          "options\u0000stock-brick",
+          "options\u0000stock-charcoal",
+          "options\u0000stock-coal",
+          "options\u0000stock-diamonds",
+          "options\u0000stock-dragon-breath",
+          "options\u0000stock-emerald",
+          "options\u0000stock-ender-eye",
+          "options\u0000stock-ender-pearl",
+          "options\u0000stock-flint",
+          "options\u0000stock-gold-ingot",
+          "options\u0000stock-golden-carrot",
+          "options\u0000stock-iron-ingot",
+          "options\u0000stock-lapis-lazuli",
+          "options\u0000stock-magma-cream",
+          "options\u0000stock-nether-brick",
+          "options\u0000stock-prismarine-crystals",
+          "options\u0000stock-slime-ball",
+          "options\u0000stock-xp-bottle"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/structures/outpost/2.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__structures__outpost__2.json",
+      "signature": {
+        "entryCount": 109,
+        "rootKeys": [
+          "(import)",
+          "options"
+        ],
+        "paths": [
+          "(import)",
+          "(import)\u0000outpost-page",
+          "options",
+          "options\u0000stock-bone-meal",
+          "options\u0000stock-bucket",
+          "options\u0000stock-comparator",
+          "options\u0000stock-cooked-beef",
+          "options\u0000stock-cooked-chicken",
+          "options\u0000stock-cooked-fish",
+          "options\u0000stock-cooked-mutton",
+          "options\u0000stock-cooked-porkchop",
+          "options\u0000stock-cooked-rabbit",
+          "options\u0000stock-cooked-salmon",
+          "options\u0000stock-dispenser",
+          "options\u0000stock-dropper",
+          "options\u0000stock-ghast-tear",
+          "options\u0000stock-glass",
+          "options\u0000stock-hopper",
+          "options\u0000stock-piston",
+          "options\u0000stock-rail",
+          "options\u0000stock-redstone-torch",
+          "options\u0000stock-repeater",
+          "options\u0000stock-string",
+          "options\u0000stock-wool"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/structures/outpost/amount-picker.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__structures__outpost__amount-picker.json",
+      "signature": {
+        "entryCount": 50,
+        "rootKeys": [
+          "options",
+          "rows",
+          "sound",
+          "title"
+        ],
+        "paths": [
+          "options",
+          "options\u0000black-stained-glass-pane",
+          "options\u0000cancel",
+          "options\u0000decrease",
+          "options\u0000done",
+          "options\u0000increase",
+          "options\u0000item",
+          "rows",
+          "sound",
+          "title"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/structures/outpost/selling.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__structures__outpost__selling.json",
+      "signature": {
+        "entryCount": 22,
+        "rootKeys": [
+          "disallow-creative",
+          "interactable",
+          "options",
+          "rows",
+          "sound",
+          "title"
+        ],
+        "paths": [
+          "disallow-creative",
+          "interactable",
+          "options",
+          "options\u0000apply",
+          "options\u0000back",
+          "options\u0000brown-stained-glass-pane",
+          "rows",
+          "sound",
+          "title"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/structures/powercell.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__structures__powercell.json",
+      "signature": {
+        "entryCount": 25,
+        "rootKeys": [
+          "options",
+          "sound",
+          "title",
+          "type"
+        ],
+        "paths": [
+          "options",
+          "options\u0000break",
+          "options\u0000close",
+          "options\u0000upgrade",
+          "sound",
+          "title",
+          "type"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/structures/regulator/attribute-editor.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__structures__regulator__attribute-editor.json",
+      "signature": {
+        "entryCount": 65,
+        "rootKeys": [
+          "options",
+          "sound",
+          "title",
+          "type"
+        ],
+        "paths": [
+          "options",
+          "options\u0000all",
+          "options\u0000build",
+          "options\u0000fly",
+          "options\u0000manage-turrets",
+          "options\u0000turret-ceasefire",
+          "sound",
+          "title",
+          "type"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/structures/regulator/attributes.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__structures__regulator__attributes.json",
+      "signature": {
+        "entryCount": 41,
+        "rootKeys": [
+          "options",
+          "rows",
+          "sound",
+          "title"
+        ],
+        "paths": [
+          "options",
+          "options\u0000add",
+          "options\u0000back",
+          "options\u0000members",
+          "options\u0000red-glass",
+          "options\u0000remove-all",
+          "rows",
+          "sound",
+          "title"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/structures/regulator/interaction-editor.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__structures__regulator__interaction-editor.json",
+      "signature": {
+        "entryCount": 256,
+        "rootKeys": [
+          "options",
+          "rows",
+          "sound",
+          "title"
+        ],
+        "paths": [
+          "options",
+          "options\u0000all",
+          "options\u0000anvils",
+          "options\u0000beacon",
+          "options\u0000beds",
+          "options\u0000brewing-stand",
+          "options\u0000buttons-and-levers",
+          "options\u0000cartography-tables",
+          "options\u0000chests",
+          "options\u0000crafting-table",
+          "options\u0000dispenser",
+          "options\u0000doors",
+          "options\u0000dropper",
+          "options\u0000enchantment-table",
+          "options\u0000furnaces",
+          "options\u0000hopper",
+          "options\u0000jigsaw",
+          "options\u0000loom",
+          "options\u0000plates",
+          "options\u0000shulker-boxes",
+          "options\u0000smithing-table",
+          "options\u0000smoker",
+          "rows",
+          "sound",
+          "title"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/structures/regulator/interactions.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__structures__regulator__interactions.json",
+      "signature": {
+        "entryCount": 41,
+        "rootKeys": [
+          "options",
+          "rows",
+          "sound",
+          "title"
+        ],
+        "paths": [
+          "options",
+          "options\u0000add",
+          "options\u0000back",
+          "options\u0000members",
+          "options\u0000red-glass",
+          "options\u0000remove-all",
+          "rows",
+          "sound",
+          "title"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/structures/regulator/regulator.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__structures__regulator__regulator.json",
+      "signature": {
+        "entryCount": 33,
+        "rootKeys": [
+          "options",
+          "sound",
+          "title",
+          "type"
+        ],
+        "paths": [
+          "options",
+          "options\u0000attributes",
+          "options\u0000break",
+          "options\u0000close",
+          "options\u0000interactions",
+          "options\u0000rules",
+          "sound",
+          "title",
+          "type"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/structures/regulator/rules.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__structures__regulator__rules.json",
+      "signature": {
+        "entryCount": 80,
+        "rootKeys": [
+          "options",
+          "rows",
+          "sound",
+          "title"
+        ],
+        "paths": [
+          "options",
+          "options\u0000allow-explosions",
+          "options\u0000allow-fire",
+          "options\u0000auto-fill-turrets",
+          "options\u0000back",
+          "options\u0000disable-animal-spawning",
+          "options\u0000disable-mob-spawning",
+          "options\u0000disable-turrets",
+          "options\u0000pink-stained-glass-pane",
+          "rows",
+          "sound",
+          "title"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/structures/siege-cannon.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__structures__siege-cannon.json",
+      "signature": {
+        "entryCount": 66,
+        "rootKeys": [
+          "options",
+          "rows",
+          "sound",
+          "title"
+        ],
+        "paths": [
+          "options",
+          "options\u0000ammo-info",
+          "options\u0000ammo-slot",
+          "options\u0000break",
+          "options\u0000close",
+          "options\u0000decorate-even",
+          "options\u0000decorate-odd",
+          "options\u0000repair",
+          "options\u0000sit",
+          "options\u0000upgrade",
+          "rows",
+          "sound",
+          "title"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/structures/warppad.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__structures__warppad.json",
+      "signature": {
+        "entryCount": 95,
+        "rootKeys": [
+          "options",
+          "rows",
+          "sound",
+          "title"
+        ],
+        "paths": [
+          "options",
+          "options\u0000break",
+          "options\u0000brown-stained-glass-pane",
+          "options\u0000close",
+          "options\u0000extractor",
+          "options\u0000green-stained-glass-pane",
+          "options\u0000lime-stained-glass-pane",
+          "options\u0000national-nexus",
+          "options\u0000next-page",
+          "options\u0000nexus",
+          "options\u0000orange-stained-glass-pane",
+          "options\u0000outpost",
+          "options\u0000powercell",
+          "options\u0000previous-page",
+          "options\u0000regulator",
+          "options\u0000rename",
+          "options\u0000warppad",
+          "options\u0000yellow-stained-glass-pane",
+          "rows",
+          "sound",
+          "title"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/surrender.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__surrender.json",
+      "signature": {
+        "entryCount": 52,
+        "rootKeys": [
+          "options",
+          "rows",
+          "title"
+        ],
+        "paths": [
+          "options",
+          "options\u0000attacking",
+          "options\u0000attacking-info",
+          "options\u0000black-stained-glass-pane",
+          "options\u0000defending",
+          "options\u0000defending-info",
+          "options\u0000invasion",
+          "options\u0000next-page",
+          "options\u0000previous-page",
+          "options\u0000purple-stained-glass-pane",
+          "rows",
+          "title"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/templates/outpost-page.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__templates__outpost-page.json",
+      "signature": {
+        "entryCount": 43,
+        "rootKeys": [
+          "(import)",
+          "(module)",
+          "base",
+          "options",
+          "rows",
+          "sound",
+          "title"
+        ],
+        "paths": [
+          "(import)",
+          "(import)\u0000pagination",
+          "(module)",
+          "(module)\u0000description",
+          "(module)\u0000parameters",
+          "base",
+          "base\u0000lore",
+          "base\u0000name",
+          "options",
+          "options\u0000black-glass",
+          "options\u0000break",
+          "options\u0000brown-stained-glass-pane",
+          "options\u0000close",
+          "options\u0000info",
+          "options\u0000nexus",
+          "rows",
+          "sound",
+          "title"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/templates/pagination.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__templates__pagination.json",
+      "signature": {
+        "entryCount": 21,
+        "rootKeys": [
+          "options"
+        ],
+        "paths": [
+          "options",
+          "options\u0000next-page",
+          "options\u0000previous-page"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/templates/turretgui.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__templates__turretgui.json",
+      "signature": {
+        "entryCount": 74,
+        "rootKeys": [
+          "(module)",
+          "options",
+          "rows",
+          "sound",
+          "title"
+        ],
+        "paths": [
+          "(module)",
+          "(module)\u0000description",
+          "(module)\u0000parameters",
+          "options",
+          "options\u0000ammo",
+          "options\u0000black-stained-glass-pane",
+          "options\u0000break",
+          "options\u0000close",
+          "options\u0000lime-stained-glass-pane",
+          "options\u0000manual",
+          "options\u0000repair",
+          "options\u0000upgrade",
+          "rows",
+          "sound",
+          "title"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/turrets/arrow.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__turrets__arrow.json",
+      "signature": {
+        "entryCount": 4,
+        "rootKeys": [
+          "(import)"
+        ],
+        "paths": [
+          "(import)",
+          "(import)\u0000turretgui"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/turrets/flame.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__turrets__flame.json",
+      "signature": {
+        "entryCount": 4,
+        "rootKeys": [
+          "(import)"
+        ],
+        "paths": [
+          "(import)",
+          "(import)\u0000turretgui"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/turrets/healing.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__turrets__healing.json",
+      "signature": {
+        "entryCount": 4,
+        "rootKeys": [
+          "(import)"
+        ],
+        "paths": [
+          "(import)",
+          "(import)\u0000turretgui"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/turrets/heatbeam.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__turrets__heatbeam.json",
+      "signature": {
+        "entryCount": 4,
+        "rootKeys": [
+          "(import)"
+        ],
+        "paths": [
+          "(import)",
+          "(import)\u0000turretgui"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/turrets/hellfire.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__turrets__hellfire.json",
+      "signature": {
+        "entryCount": 4,
+        "rootKeys": [
+          "(import)"
+        ],
+        "paths": [
+          "(import)",
+          "(import)\u0000turretgui"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/turrets/inferno.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__turrets__inferno.json",
+      "signature": {
+        "entryCount": 4,
+        "rootKeys": [
+          "(import)"
+        ],
+        "paths": [
+          "(import)",
+          "(import)\u0000turretgui"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/turrets/psionic.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__turrets__psionic.json",
+      "signature": {
+        "entryCount": 4,
+        "rootKeys": [
+          "(import)"
+        ],
+        "paths": [
+          "(import)",
+          "(import)\u0000turretgui"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/turrets/soldier.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__turrets__soldier.json",
+      "signature": {
+        "entryCount": 4,
+        "rootKeys": [
+          "(import)"
+        ],
+        "paths": [
+          "(import)",
+          "(import)\u0000turretgui"
+        ]
+      }
+    },
+    {
+      "resourceName": "guis/unclaimed-kingdom-item.yml",
+      "schemaId": "guis/schema",
+      "fileName": "default--guis__unclaimed-kingdom-item.json",
+      "signature": {
+        "entryCount": 12,
+        "rootKeys": [
+          "options",
+          "sound",
+          "title",
+          "type"
+        ],
+        "paths": [
+          "options",
+          "options\u0000break",
+          "options\u0000close",
+          "sound",
+          "title",
+          "type"
+        ]
+      }
+    },
+    {
+      "resourceName": "invasions.yml",
+      "schemaId": "invasions",
+      "fileName": "default--invasions.json",
+      "signature": {
+        "entryCount": 390,
+        "rootKeys": [
+          "adjoining-protection",
+          "allow",
+          "bonus",
+          "bossbar",
+          "challenges",
+          "champions",
+          "commands",
+          "cooldowns",
+          "costs",
+          "countdown",
+          "home",
+          "ignore-land-connection-checks",
+          "initial-location",
+          "items",
+          "masswar",
+          "multi-chunk-invasion",
+          "nations",
+          "on-nexus-loss",
+          "online-members",
+          "pacifism",
+          "player-deaths",
+          "plunder",
+          "scoreboard",
+          "shields",
+          "simultaneous-invasions",
+          "strength-comparison",
+          "surrender",
+          "teleportation",
+          "time-limit",
+          "unclaim-cooldown",
+          "visual-range"
+        ],
+        "paths": [
+          "adjoining-protection",
+          "adjoining-protection\u0000marginal-error-limit",
+          "adjoining-protection\u0000radius",
+          "allow",
+          "allow\u0000building",
+          "allow\u0000elytra",
+          "allow\u0000explosion",
+          "allow\u0000interactable",
+          "allow\u0000moving-nexus",
+          "allow\u0000teleportation",
+          "bonus",
+          "bonus\u0000bank",
+          "bonus\u0000item-rewards",
+          "bonus\u0000resource-points",
+          "bossbar",
+          "bossbar\u0000color",
+          "bossbar\u0000enabled",
+          "bossbar\u0000flags",
+          "bossbar\u0000reverse-progress",
+          "bossbar\u0000style",
+          "bossbar\u0000title",
+          "challenges",
+          "challenges\u0000duration",
+          "challenges\u0000enabled",
+          "champions",
+          "champions\u0000death-messages",
+          "champions\u0000disable-friendly-damage",
+          "champions\u0000disabled-damages",
+          "commands",
+          "commands\u0000defender",
+          "commands\u0000execute",
+          "commands\u0000invader",
+          "commands\u0000smart-command",
+          "cooldowns",
+          "cooldowns\u0000failed",
+          "cooldowns\u0000successful",
+          "costs",
+          "costs\u0000money",
+          "costs\u0000resource-points",
+          "countdown",
+          "countdown\u0000seconds",
+          "countdown\u0000show-to-defender",
+          "countdown\u0000sound",
+          "home",
+          "home\u0000disallow-public-teleportation",
+          "home\u0000move",
+          "home\u0000remove",
+          "ignore-land-connection-checks",
+          "initial-location",
+          "items",
+          "items\u0000list",
+          "items\u0000whitelist",
+          "masswar",
+          "masswar\u0000allow-invading",
+          "masswar\u0000allow-siege-cannons",
+          "masswar\u0000bossbar",
+          "masswar\u0000break-times",
+          "masswar\u0000commands",
+          "masswar\u0000disable-misc-upgrades",
+          "masswar\u0000disable-turrets",
+          "masswar\u0000during-masswar-only",
+          "masswar\u0000enabled",
+          "masswar\u0000interval",
+          "masswar\u0000start",
+          "masswar\u0000time",
+          "masswar\u0000titles",
+          "multi-chunk-invasion",
+          "multi-chunk-invasion\u0000radius",
+          "nations",
+          "nations\u0000capital-protection",
+          "nations\u0000nation-zone",
+          "nations\u0000requires-national-enemyship",
+          "nations\u0000use-capital-champion",
+          "nations\u0000use-shield",
+          "on-nexus-loss",
+          "on-nexus-loss\u0000alternate-to-home",
+          "on-nexus-loss\u0000bank",
+          "on-nexus-loss\u0000disband",
+          "on-nexus-loss\u0000drop-nexus-chest-items",
+          "on-nexus-loss\u0000lightning",
+          "on-nexus-loss\u0000resource-points",
+          "on-nexus-loss\u0000unclaim-all",
+          "online-members",
+          "online-members\u0000defender",
+          "online-members\u0000invader",
+          "online-members\u0000session-duration",
+          "pacifism",
+          "pacifism\u0000cooldowns",
+          "pacifism\u0000disable-pvp",
+          "pacifism\u0000enabled",
+          "player-deaths",
+          "player-deaths\u0000attacker",
+          "player-deaths\u0000defender",
+          "player-deaths\u0000keep",
+          "plunder",
+          "plunder\u0000capture-progress",
+          "plunder\u0000continue-if-champion-dies",
+          "plunder\u0000defender-bossbar",
+          "plunder\u0000enabled",
+          "plunder\u0000keep-champion",
+          "plunder\u0000participants",
+          "plunder\u0000particles",
+          "plunder\u0000vertical-boundaries",
+          "scoreboard",
+          "scoreboard\u0000enabled",
+          "scoreboard\u0000lines",
+          "scoreboard\u0000title",
+          "scoreboard\u0000update-rate",
+          "shields",
+          "shields\u0000disable-pvp",
+          "shields\u0000disallow-invasions",
+          "shields\u0000extra-deny-conditions",
+          "shields\u0000nation-shield-access-loss",
+          "shields\u0000purchase-cooldown",
+          "shields\u0000refund",
+          "simultaneous-invasions",
+          "strength-comparison",
+          "surrender",
+          "surrender\u0000attacker",
+          "surrender\u0000defender",
+          "surrender\u0000refund",
+          "teleportation",
+          "teleportation\u0000should-not-be-damaged",
+          "teleportation\u0000should-not-move",
+          "teleportation\u0000teleport-delay",
+          "teleportation\u0000use-timer-message",
+          "time-limit",
+          "time-limit\u0000bossbar",
+          "time-limit\u0000default",
+          "time-limit\u0000nexus",
+          "unclaim-cooldown",
+          "visual-range"
+        ]
+      }
+    },
+    {
+      "resourceName": "map.yml",
+      "schemaId": "map",
+      "fileName": "default--map.json",
+      "signature": {
+        "entryCount": 279,
+        "rootKeys": [
+          "begin",
+          "compass",
+          "distance",
+          "elements",
+          "footer",
+          "header",
+          "height",
+          "kingdom-member-only",
+          "limit",
+          "scoreboard",
+          "width"
+        ],
+        "paths": [
+          "begin",
+          "compass",
+          "distance",
+          "elements",
+          "elements\u0000clipboard",
+          "elements\u0000extractor",
+          "elements\u0000invasion",
+          "elements\u0000land",
+          "elements\u0000nation-zone",
+          "elements\u0000national-nexus",
+          "elements\u0000nexus",
+          "elements\u0000outpost",
+          "elements\u0000outpost-break-confirm",
+          "elements\u0000powercell",
+          "elements\u0000protected",
+          "elements\u0000regulator",
+          "elements\u0000siege-cannon",
+          "elements\u0000warppad",
+          "elements\u0000wilderness",
+          "elements\u0000you",
+          "footer",
+          "header",
+          "height",
+          "kingdom-member-only",
+          "limit",
+          "limit\u0000height",
+          "limit\u0000width",
+          "scoreboard",
+          "scoreboard\u0000begin",
+          "scoreboard\u0000header",
+          "width"
+        ]
+      }
+    },
+    {
+      "resourceName": "misc-upgrades.yml",
+      "schemaId": "misc-upgrades",
+      "fileName": "default--misc-upgrades.json",
+      "signature": {
+        "entryCount": 260,
+        "rootKeys": [
+          "[fn-add-permission]",
+          "[fn-remove-permission]",
+          "anti-explosion",
+          "anti-trample",
+          "chest-size",
+          "custom-misc-upgrade",
+          "flight",
+          "glory",
+          "guards",
+          "insanity",
+          "invasion-teleportation",
+          "invasions",
+          "keep-inventory",
+          "max-claims",
+          "max-members",
+          "max-turrets",
+          "nexus-guards"
+        ],
+        "paths": [
+          "[fn-add-permission]",
+          "[fn-add-permission]\u0000args",
+          "[fn-add-permission]\u0000return",
+          "[fn-remove-permission]",
+          "[fn-remove-permission]\u0000args",
+          "[fn-remove-permission]\u0000return",
+          "anti-explosion",
+          "anti-explosion\u0000auto-regenerate",
+          "anti-explosion\u0000cost",
+          "anti-explosion\u0000default-level",
+          "anti-explosion\u0000drop-destroyed-kingdom-items",
+          "anti-explosion\u0000enabled",
+          "anti-explosion\u0000explosions",
+          "anti-explosion\u0000fancy-explosions",
+          "anti-explosion\u0000max-level",
+          "anti-explosion\u0000wilderness",
+          "anti-trample",
+          "anti-trample\u0000blacklisted-animals",
+          "anti-trample\u0000cost",
+          "anti-trample\u0000default-level",
+          "anti-trample\u0000enable-ender-pearl-protection",
+          "anti-trample\u0000enabled",
+          "anti-trample\u0000max-level",
+          "chest-size",
+          "chest-size\u0000can-be-disabled",
+          "chest-size\u0000cost",
+          "chest-size\u0000default-level",
+          "chest-size\u0000enabled",
+          "chest-size\u0000items",
+          "chest-size\u0000max-level",
+          "chest-size\u0000scaling",
+          "custom-misc-upgrade",
+          "custom-misc-upgrade\u0000can-be-disabled",
+          "custom-misc-upgrade\u0000commands",
+          "custom-misc-upgrade\u0000enabled",
+          "custom-misc-upgrade\u0000max-level",
+          "custom-misc-upgrade\u0000permissions",
+          "flight",
+          "flight\u0000conditions",
+          "flight\u0000cost",
+          "flight\u0000default-level",
+          "flight\u0000enabled",
+          "flight\u0000max-level",
+          "glory",
+          "glory\u0000conditions",
+          "glory\u0000cost",
+          "glory\u0000default-level",
+          "glory\u0000enabled",
+          "glory\u0000max-level",
+          "glory\u0000xp",
+          "guards",
+          "guards\u0000can-be-disabled",
+          "guards\u0000condition",
+          "guards\u0000conditions",
+          "guards\u0000cost",
+          "guards\u0000default-level",
+          "guards\u0000enabled",
+          "guards\u0000levels",
+          "guards\u0000max-level",
+          "guards\u0000spawn-delay",
+          "insanity",
+          "insanity\u0000can-be-disabled",
+          "insanity\u0000conditions",
+          "insanity\u0000cost",
+          "insanity\u0000default-level",
+          "insanity\u0000effects",
+          "insanity\u0000enabled",
+          "insanity\u0000max-level",
+          "invasion-teleportation",
+          "invasion-teleportation\u0000cost",
+          "invasion-teleportation\u0000default-level",
+          "invasion-teleportation\u0000enabled",
+          "invasion-teleportation\u0000max-level",
+          "invasion-teleportation\u0000scaling",
+          "invasions",
+          "invasions\u0000cost",
+          "invasions\u0000default-level",
+          "invasions\u0000enabled",
+          "invasions\u0000max-level",
+          "invasions\u0000refresh-cooldown",
+          "invasions\u0000scaling",
+          "keep-inventory",
+          "keep-inventory\u0000conditions",
+          "keep-inventory\u0000cost",
+          "keep-inventory\u0000default-level",
+          "keep-inventory\u0000enabled",
+          "keep-inventory\u0000levels",
+          "keep-inventory\u0000max-level",
+          "max-claims",
+          "max-claims\u0000can-be-disabled",
+          "max-claims\u0000cost",
+          "max-claims\u0000default-level",
+          "max-claims\u0000enabled",
+          "max-claims\u0000max-level",
+          "max-claims\u0000scaling",
+          "max-members",
+          "max-members\u0000cost",
+          "max-members\u0000default-level",
+          "max-members\u0000enabled",
+          "max-members\u0000max-level",
+          "max-members\u0000scaling",
+          "max-turrets",
+          "max-turrets\u0000can-be-disabled",
+          "max-turrets\u0000cost",
+          "max-turrets\u0000default-level",
+          "max-turrets\u0000enabled",
+          "max-turrets\u0000max-level",
+          "max-turrets\u0000scaling",
+          "nexus-guards",
+          "nexus-guards\u0000can-be-disabled",
+          "nexus-guards\u0000condition",
+          "nexus-guards\u0000conditions",
+          "nexus-guards\u0000cost",
+          "nexus-guards\u0000default-level",
+          "nexus-guards\u0000enabled",
+          "nexus-guards\u0000levels",
+          "nexus-guards\u0000max-level",
+          "nexus-guards\u0000spawn-delay"
+        ]
+      }
+    },
+    {
+      "resourceName": "powers.yml",
+      "schemaId": "powers",
+      "fileName": "default--powers.json",
+      "signature": {
+        "entryCount": 50,
+        "rootKeys": [
+          "power",
+          "powerups"
+        ],
+        "paths": [
+          "power",
+          "power\u0000enabled",
+          "power\u0000faction",
+          "power\u0000player",
+          "powerups",
+          "powerups\u0000arrow-boost",
+          "powerups\u0000damage-boost",
+          "powerups\u0000damage-reduction",
+          "powerups\u0000regeneration-boost"
+        ]
+      }
+    },
+    {
+      "resourceName": "protection-signs.yml",
+      "schemaId": "protection-signs",
+      "fileName": "default--protection-signs.json",
+      "signature": {
+        "entryCount": 39,
+        "rootKeys": [
+          "blocks",
+          "case-sensitive-codes",
+          "codes",
+          "denied-sound",
+          "displayname",
+          "enabled",
+          "everyone",
+          "everyone-in-kingdom",
+          "gui",
+          "limits",
+          "lines",
+          "passwords",
+          "protect-unclaimed",
+          "protections",
+          "quick-protect",
+          "signs"
+        ],
+        "paths": [
+          "blocks",
+          "case-sensitive-codes",
+          "codes",
+          "denied-sound",
+          "displayname",
+          "enabled",
+          "everyone",
+          "everyone-in-kingdom",
+          "everyone-in-kingdom\u0000codes",
+          "everyone-in-kingdom\u0000displayname",
+          "everyone-in-kingdom\u0000enabled",
+          "everyone-in-kingdom\u0000lines",
+          "everyone\u0000codes",
+          "everyone\u0000displayname",
+          "everyone\u0000enabled",
+          "everyone\u0000lines",
+          "gui",
+          "limits",
+          "limits\u0000access-entries",
+          "lines",
+          "passwords",
+          "passwords\u0000cookies",
+          "passwords\u0000length",
+          "passwords\u0000max-attempts",
+          "passwords\u0000max-attempts-cooldown",
+          "protect-unclaimed",
+          "protections",
+          "protections\u0000container-transfers",
+          "protections\u0000explosion",
+          "protections\u0000piston",
+          "quick-protect",
+          "quick-protect\u0000enabled",
+          "quick-protect\u0000sneak",
+          "signs"
+        ]
+      }
+    },
+    {
+      "resourceName": "ranks.yml",
+      "schemaId": "ranks",
+      "fileName": "default--ranks.json",
+      "signature": {
+        "entryCount": 113,
+        "rootKeys": [
+          "custom-ranks",
+          "interact-blocks",
+          "kingdom-ranks",
+          "national-permission-categories",
+          "national-ranks",
+          "new-rank",
+          "permission-categories"
+        ],
+        "paths": [
+          "custom-ranks",
+          "custom-ranks\u0000enabled",
+          "custom-ranks\u0000limits",
+          "interact-blocks",
+          "kingdom-ranks",
+          "kingdom-ranks\u0000general",
+          "kingdom-ranks\u0000king",
+          "kingdom-ranks\u0000knight",
+          "kingdom-ranks\u0000member",
+          "national-permission-categories",
+          "national-permission-categories\u0000diplomacy",
+          "national-permission-categories\u0000economy",
+          "national-permission-categories\u0000members",
+          "national-permission-categories\u0000others",
+          "national-ranks",
+          "national-ranks\u0000duke",
+          "national-ranks\u0000emperor",
+          "national-ranks\u0000member",
+          "national-ranks\u0000viscount",
+          "new-rank",
+          "new-rank\u0000color",
+          "new-rank\u0000material",
+          "new-rank\u0000max-claims",
+          "new-rank\u0000name",
+          "new-rank\u0000node",
+          "new-rank\u0000permissions",
+          "new-rank\u0000priority",
+          "new-rank\u0000symbol",
+          "permission-categories",
+          "permission-categories\u0000building",
+          "permission-categories\u0000diplomacy",
+          "permission-categories\u0000economy",
+          "permission-categories\u0000land",
+          "permission-categories\u0000members",
+          "permission-categories\u0000others"
+        ]
+      }
+    },
+    {
+      "resourceName": "relations.yml",
+      "schemaId": "relations",
+      "fileName": "default--relations.json",
+      "signature": {
+        "entryCount": 96,
+        "rootKeys": [
+          "agreements",
+          "allow-relations-between-nation-kingdoms",
+          "force-survival-mode",
+          "prioritize-kingdom-relations",
+          "pvp",
+          "pvp-advanced",
+          "relations",
+          "request-expiration"
+        ],
+        "paths": [
+          "agreements",
+          "allow-relations-between-nation-kingdoms",
+          "force-survival-mode",
+          "prioritize-kingdom-relations",
+          "pvp",
+          "pvp-advanced",
+          "relations",
+          "relations\u0000ally",
+          "relations\u0000enemy",
+          "relations\u0000nation",
+          "relations\u0000neutral",
+          "relations\u0000self",
+          "relations\u0000truce",
+          "request-expiration"
+        ]
+      }
+    },
+    {
+      "resourceName": "resource-points.yml",
+      "schemaId": "resource-points",
+      "fileName": "default--resource-points.json",
+      "signature": {
+        "entryCount": 56,
+        "rootKeys": [
+          "advanced",
+          "custom",
+          "custom-items",
+          "death-penalty",
+          "for-each",
+          "general-filters",
+          "give",
+          "last-donation-duration"
+        ],
+        "paths": [
+          "advanced",
+          "advanced\u0000cor-lapis",
+          "advanced\u0000special-gravel",
+          "custom",
+          "custom-items",
+          "custom-items\u0000bush",
+          "custom-items\u0000crystal",
+          "custom\u0000BLAZE_POWDER",
+          "custom\u0000BLAZE_ROD",
+          "custom\u0000CHARCOAL",
+          "custom\u0000COAL",
+          "custom\u0000COAL_BLOCK",
+          "custom\u0000DIAMOND",
+          "custom\u0000DIAMOND_BLOCK",
+          "custom\u0000EMERALD",
+          "custom\u0000EMERALD_BLOCK",
+          "custom\u0000GOLD_BLOCK",
+          "custom\u0000GOLD_INGOT",
+          "custom\u0000GOLD_NUGGET",
+          "custom\u0000IRON_BLOCK",
+          "custom\u0000IRON_INGOT",
+          "custom\u0000LAPIS_BLOCK",
+          "custom\u0000LAPIS_LAZULI",
+          "custom\u0000REDSTONE",
+          "custom\u0000REDSTONE_BLOCK",
+          "death-penalty",
+          "death-penalty\u0000amount",
+          "death-penalty\u0000disabled-causes",
+          "death-penalty\u0000disabled-worlds",
+          "for-each",
+          "general-filters",
+          "general-filters\u0000enchants",
+          "general-filters\u0000lore",
+          "general-filters\u0000material",
+          "give",
+          "last-donation-duration"
+        ]
+      }
+    },
+    {
+      "resourceName": "structures.yml",
+      "schemaId": "structures",
+      "fileName": "default--structures.json",
+      "signature": {
+        "entryCount": 6,
+        "rootKeys": [
+          "disable-shift-click",
+          "limits",
+          "remove-unclaimed",
+          "to-inventory-on-break"
+        ],
+        "paths": [
+          "disable-shift-click",
+          "limits",
+          "limits\u0000per-land",
+          "limits\u0000total",
+          "remove-unclaimed",
+          "to-inventory-on-break"
+        ]
+      }
+    },
+    {
+      "resourceName": "Structures/extractor.yml",
+      "schemaId": "Structures/structure",
+      "fileName": "default--Structures__extractor.json",
+      "signature": {
+        "entryCount": 64,
+        "rootKeys": [
+          "(import)",
+          "capacity",
+          "conditions",
+          "cost",
+          "default-name",
+          "durability",
+          "fuel",
+          "generator",
+          "item",
+          "limits",
+          "max-level",
+          "name",
+          "sell",
+          "sounds",
+          "type",
+          "upgrade-cost"
+        ],
+        "paths": [
+          "(import)",
+          "(import)\u0000structure",
+          "capacity",
+          "conditions",
+          "conditions\u0000purchase",
+          "conditions\u0000upgrade",
+          "cost",
+          "default-name",
+          "durability",
+          "fuel",
+          "fuel\u0000allow-hoppers",
+          "fuel\u0000capacity",
+          "fuel\u0000enabled",
+          "fuel\u0000variants",
+          "generator",
+          "generator\u00001",
+          "generator\u00002",
+          "generator\u00003",
+          "item",
+          "item\u00001",
+          "limits",
+          "limits\u0000per-land",
+          "limits\u0000total",
+          "max-level",
+          "name",
+          "sell",
+          "sounds",
+          "sounds\u00001",
+          "type",
+          "upgrade-cost"
+        ]
+      }
+    },
+    {
+      "resourceName": "Structures/national-nexus.yml",
+      "schemaId": "Structures/structure",
+      "fileName": "default--Structures__national-nexus.json",
+      "signature": {
+        "entryCount": 26,
+        "rootKeys": [
+          "(import)",
+          "default-name",
+          "dont-update-holograms",
+          "name",
+          "particles",
+          "type"
+        ],
+        "paths": [
+          "(import)",
+          "(import)\u0000building",
+          "(import)\u0000structure",
+          "default-name",
+          "dont-update-holograms",
+          "name",
+          "particles",
+          "particles\u00001",
+          "type"
+        ]
+      }
+    },
+    {
+      "resourceName": "Structures/nexus.yml",
+      "schemaId": "Structures/structure",
+      "fileName": "default--Structures__nexus.json",
+      "signature": {
+        "entryCount": 40,
+        "rootKeys": [
+          "(import)",
+          "building",
+          "default-name",
+          "dont-update-holograms",
+          "hide-holograms",
+          "max-level",
+          "name",
+          "particles",
+          "type",
+          "upgrade-cost"
+        ],
+        "paths": [
+          "(import)",
+          "(import)\u0000building",
+          "(import)\u0000structure",
+          "building",
+          "building\u00004",
+          "building\u00005",
+          "default-name",
+          "dont-update-holograms",
+          "hide-holograms",
+          "max-level",
+          "name",
+          "particles",
+          "particles\u00001",
+          "type",
+          "upgrade-cost"
+        ]
+      }
+    },
+    {
+      "resourceName": "Structures/outpost.yml",
+      "schemaId": "Structures/structure",
+      "fileName": "default--Structures__outpost.json",
+      "signature": {
+        "entryCount": 95,
+        "rootKeys": [
+          "(import)",
+          "[fn-base]",
+          "conditions",
+          "cost",
+          "default-name",
+          "item",
+          "limits",
+          "name",
+          "sell",
+          "stocks",
+          "type"
+        ],
+        "paths": [
+          "(import)",
+          "(import)\u0000structure",
+          "[fn-base]",
+          "[fn-base]\u0000args",
+          "[fn-base]\u0000return",
+          "conditions",
+          "conditions\u0000purchase",
+          "cost",
+          "default-name",
+          "item",
+          "item\u00001",
+          "limits",
+          "limits\u0000per-land",
+          "limits\u0000total",
+          "name",
+          "sell",
+          "stocks",
+          "stocks\u0000blaze-powder",
+          "stocks\u0000blaze-rod",
+          "stocks\u0000bone-meal",
+          "stocks\u0000book",
+          "stocks\u0000brick",
+          "stocks\u0000bucket",
+          "stocks\u0000charcoal",
+          "stocks\u0000coal",
+          "stocks\u0000comparator",
+          "stocks\u0000cooked-beef",
+          "stocks\u0000cooked-chicken",
+          "stocks\u0000cooked-fish",
+          "stocks\u0000cooked-mutton",
+          "stocks\u0000cooked-porkchop",
+          "stocks\u0000cooked-rabbit",
+          "stocks\u0000cooked-salmon",
+          "stocks\u0000diamonds",
+          "stocks\u0000dispenser",
+          "stocks\u0000dragon-breath",
+          "stocks\u0000dropper",
+          "stocks\u0000emerald",
+          "stocks\u0000ender-eye",
+          "stocks\u0000ender-pearl",
+          "stocks\u0000flint",
+          "stocks\u0000ghast-tear",
+          "stocks\u0000glass",
+          "stocks\u0000gold-ingot",
+          "stocks\u0000golden-carrot",
+          "stocks\u0000hopper",
+          "stocks\u0000iron-ingot",
+          "stocks\u0000lapis-lazuli",
+          "stocks\u0000magma-cream",
+          "stocks\u0000nether-brick",
+          "stocks\u0000piston",
+          "stocks\u0000prismarine-crystals",
+          "stocks\u0000rail",
+          "stocks\u0000redstone-torch",
+          "stocks\u0000repeater",
+          "stocks\u0000slime-ball",
+          "stocks\u0000string",
+          "stocks\u0000wool",
+          "stocks\u0000xp-bottle",
+          "type"
+        ]
+      }
+    },
+    {
+      "resourceName": "Structures/powercell.yml",
+      "schemaId": "Structures/structure",
+      "fileName": "default--Structures__powercell.json",
+      "signature": {
+        "entryCount": 28,
+        "rootKeys": [
+          "(import)",
+          "conditions",
+          "cost",
+          "default-name",
+          "dont-update-holograms",
+          "item",
+          "max-level",
+          "name",
+          "sell",
+          "type",
+          "upgrade-cost"
+        ],
+        "paths": [
+          "(import)",
+          "(import)\u0000structure",
+          "conditions",
+          "conditions\u0000purchase",
+          "conditions\u0000upgrade",
+          "cost",
+          "default-name",
+          "dont-update-holograms",
+          "item",
+          "item\u00001",
+          "max-level",
+          "name",
+          "sell",
+          "type",
+          "upgrade-cost"
+        ]
+      }
+    },
+    {
+      "resourceName": "Structures/regulator.yml",
+      "schemaId": "Structures/structure",
+      "fileName": "default--Structures__regulator.json",
+      "signature": {
+        "entryCount": 26,
+        "rootKeys": [
+          "(import)",
+          "auto-fill-cost",
+          "conditions",
+          "cost",
+          "default-name",
+          "defaults",
+          "item",
+          "name",
+          "sell",
+          "type"
+        ],
+        "paths": [
+          "(import)",
+          "(import)\u0000structure",
+          "auto-fill-cost",
+          "conditions",
+          "conditions\u0000purchase",
+          "cost",
+          "default-name",
+          "defaults",
+          "defaults\u0000attributes",
+          "item",
+          "item\u00001",
+          "name",
+          "sell",
+          "type"
+        ]
+      }
+    },
+    {
+      "resourceName": "Structures/siege-cannon.yml",
+      "schemaId": "Structures/structure",
+      "fileName": "default--Structures__siege-cannon.json",
+      "signature": {
+        "entryCount": 137,
+        "rootKeys": [
+          "(import)",
+          "actionbar",
+          "allow-damaging",
+          "armor-damage",
+          "attacker-shield-damage",
+          "block",
+          "conditions",
+          "cooldown",
+          "cost",
+          "damage",
+          "default-name",
+          "durability",
+          "explosion-radius",
+          "hologram",
+          "invasion-only",
+          "item",
+          "knockback",
+          "max-level",
+          "name",
+          "particles",
+          "projectiles",
+          "sell",
+          "shield-damage",
+          "sounds",
+          "tube-textures",
+          "type",
+          "upgrade-cost"
+        ],
+        "paths": [
+          "(import)",
+          "(import)\u0000structure",
+          "actionbar",
+          "actionbar\u0000cooldown",
+          "actionbar\u0000fire",
+          "actionbar\u0000not-loaded",
+          "actionbar\u0000sit",
+          "allow-damaging",
+          "allow-damaging\u00001",
+          "allow-damaging\u00002",
+          "allow-damaging\u00003",
+          "armor-damage",
+          "attacker-shield-damage",
+          "block",
+          "block\u00001",
+          "conditions",
+          "conditions\u0000purchase",
+          "conditions\u0000upgrade",
+          "cooldown",
+          "cooldown\u00001",
+          "cooldown\u00002",
+          "cooldown\u00003",
+          "cost",
+          "damage",
+          "default-name",
+          "durability",
+          "explosion-radius",
+          "explosion-radius\u00001",
+          "explosion-radius\u00002",
+          "explosion-radius\u00003",
+          "hologram",
+          "hologram\u00001",
+          "invasion-only",
+          "item",
+          "item\u00001",
+          "knockback",
+          "max-level",
+          "name",
+          "particles",
+          "particles\u00001",
+          "projectiles",
+          "projectiles\u0000high-tier",
+          "projectiles\u0000low-tier-god",
+          "projectiles\u0000mid-tier",
+          "sell",
+          "shield-damage",
+          "shield-damage\u00001",
+          "shield-damage\u00002",
+          "shield-damage\u00003",
+          "sounds",
+          "sounds\u00001",
+          "tube-textures",
+          "tube-textures\u00001",
+          "tube-textures\u00002",
+          "tube-textures\u00003",
+          "type",
+          "upgrade-cost"
+        ]
+      }
+    },
+    {
+      "resourceName": "Structures/warppad.yml",
+      "schemaId": "Structures/structure",
+      "fileName": "default--Structures__warppad.json",
+      "signature": {
+        "entryCount": 46,
+        "rootKeys": [
+          "(import)",
+          "conditions",
+          "cost",
+          "default-name",
+          "fuel",
+          "item",
+          "limits",
+          "name",
+          "other-world-distance-factor",
+          "sell",
+          "sounds",
+          "teleport-delay",
+          "teleport-fuel-cost",
+          "type"
+        ],
+        "paths": [
+          "(import)",
+          "(import)\u0000structure",
+          "conditions",
+          "conditions\u0000purchase",
+          "cost",
+          "default-name",
+          "fuel",
+          "fuel\u0000capacity",
+          "fuel\u0000enabled",
+          "fuel\u0000variants",
+          "item",
+          "item\u00001",
+          "limits",
+          "limits\u0000per-land",
+          "limits\u0000total",
+          "name",
+          "other-world-distance-factor",
+          "sell",
+          "sounds",
+          "sounds\u00001",
+          "teleport-delay",
+          "teleport-fuel-cost",
+          "type"
+        ]
+      }
+    },
+    {
+      "resourceName": "turrets.yml",
+      "schemaId": "turrets",
+      "fileName": "default--turrets.json",
+      "signature": {
+        "entryCount": 60,
+        "rootKeys": [
+          "accuracy",
+          "allow-targetting-npcs",
+          "disable-shift-click",
+          "disallow-accidental-mob-damage",
+          "effects",
+          "enabled",
+          "limits",
+          "manual-by-default",
+          "pacifists",
+          "remove-unclaimed",
+          "teleportation-invulnerability",
+          "temporary-hologram-display",
+          "to-inventory-on-break",
+          "update-ticks"
+        ],
+        "paths": [
+          "accuracy",
+          "allow-targetting-npcs",
+          "disable-shift-click",
+          "disallow-accidental-mob-damage",
+          "disallow-accidental-mob-damage\u0000friendly",
+          "disallow-accidental-mob-damage\u0000others",
+          "effects",
+          "effects\u0000damage",
+          "effects\u0000hypnosis",
+          "effects\u0000paralysis",
+          "effects\u0000slowness",
+          "effects\u0000weakness",
+          "enabled",
+          "limits",
+          "limits\u0000per-land",
+          "limits\u0000total",
+          "manual-by-default",
+          "pacifists",
+          "pacifists\u0000enabled",
+          "pacifists\u0000target",
+          "remove-unclaimed",
+          "teleportation-invulnerability",
+          "temporary-hologram-display",
+          "to-inventory-on-break",
+          "update-ticks"
+        ]
+      }
+    },
+    {
+      "resourceName": "Turrets/arrow.yml",
+      "schemaId": "Turrets/turret",
+      "fileName": "default--Turrets__arrow.json",
+      "signature": {
+        "entryCount": 43,
+        "rootKeys": [
+          "(import)",
+          "biomes",
+          "cooldown",
+          "cost",
+          "damage",
+          "death-messages",
+          "dont-update-holograms",
+          "dropped-exp",
+          "effects",
+          "fire",
+          "hide-holograms",
+          "item",
+          "manual",
+          "max-ammo",
+          "max-targets",
+          "name",
+          "projectile",
+          "range",
+          "sell",
+          "speed",
+          "type",
+          "upgrade-cost"
+        ],
+        "paths": [
+          "(import)",
+          "(import)\u0000turret",
+          "biomes",
+          "biomes\u0000world",
+          "cooldown",
+          "cost",
+          "damage",
+          "death-messages",
+          "dont-update-holograms",
+          "dropped-exp",
+          "dropped-exp\u0000SKELETON",
+          "dropped-exp\u0000SLIME",
+          "dropped-exp\u0000ZOMBIE",
+          "effects",
+          "effects\u00001",
+          "fire",
+          "hide-holograms",
+          "item",
+          "item\u00001",
+          "manual",
+          "max-ammo",
+          "max-targets",
+          "name",
+          "projectile",
+          "projectile\u00001",
+          "range",
+          "sell",
+          "speed",
+          "type",
+          "upgrade-cost"
+        ]
+      }
+    },
+    {
+      "resourceName": "Turrets/chemical-mine.yml",
+      "schemaId": "Turrets/turret",
+      "fileName": "default--Turrets__chemical-mine.json",
+      "signature": {
+        "entryCount": 35,
+        "rootKeys": [
+          "(import)",
+          "cost",
+          "damage",
+          "effects",
+          "item",
+          "lingering",
+          "name",
+          "sell",
+          "sounds",
+          "type",
+          "upgrade-cost"
+        ],
+        "paths": [
+          "(import)",
+          "(import)\u0000mine",
+          "cost",
+          "damage",
+          "effects",
+          "effects\u00001",
+          "item",
+          "item\u00001",
+          "lingering",
+          "name",
+          "sell",
+          "sounds",
+          "sounds\u00001",
+          "type",
+          "upgrade-cost"
+        ]
+      }
+    },
+    {
+      "resourceName": "Turrets/explosive-mine.yml",
+      "schemaId": "Turrets/turret",
+      "fileName": "default--Turrets__explosive-mine.json",
+      "signature": {
+        "entryCount": 37,
+        "rootKeys": [
+          "(import)",
+          "cost",
+          "damage",
+          "effects",
+          "explosion",
+          "item",
+          "name",
+          "sell",
+          "sounds",
+          "type",
+          "upgrade-cost"
+        ],
+        "paths": [
+          "(import)",
+          "(import)\u0000mine",
+          "cost",
+          "damage",
+          "effects",
+          "explosion",
+          "explosion\u0000fire",
+          "explosion\u0000level",
+          "explosion\u0000power",
+          "item",
+          "item\u00001",
+          "name",
+          "sell",
+          "sounds",
+          "sounds\u00001",
+          "type",
+          "upgrade-cost"
+        ]
+      }
+    },
+    {
+      "resourceName": "Turrets/flame.yml",
+      "schemaId": "Turrets/turret",
+      "fileName": "default--Turrets__flame.json",
+      "signature": {
+        "entryCount": 54,
+        "rootKeys": [
+          "(import)",
+          "conditions",
+          "cooldown",
+          "cost",
+          "damage",
+          "effects",
+          "fire",
+          "item",
+          "max-ammo",
+          "max-level",
+          "max-targets",
+          "name",
+          "particle",
+          "projectile",
+          "range",
+          "sell",
+          "sounds",
+          "speed",
+          "type",
+          "upgrade-cost"
+        ],
+        "paths": [
+          "(import)",
+          "(import)\u0000turret",
+          "conditions",
+          "conditions\u0000purchase",
+          "conditions\u0000upgrade",
+          "cooldown",
+          "cost",
+          "damage",
+          "effects",
+          "effects\u00001",
+          "fire",
+          "item",
+          "item\u00001",
+          "max-ammo",
+          "max-level",
+          "max-targets",
+          "name",
+          "particle",
+          "projectile",
+          "projectile\u00001",
+          "projectile\u00003",
+          "range",
+          "sell",
+          "sounds",
+          "sounds\u00001",
+          "speed",
+          "type",
+          "upgrade-cost"
+        ]
+      }
+    },
+    {
+      "resourceName": "Turrets/healing.yml",
+      "schemaId": "Turrets/turret",
+      "fileName": "default--Turrets__healing.json",
+      "signature": {
+        "entryCount": 47,
+        "rootKeys": [
+          "(import)",
+          "conditions",
+          "cooldown",
+          "cost",
+          "damage",
+          "effects",
+          "entities",
+          "fire",
+          "item",
+          "max-ammo",
+          "max-level",
+          "max-targets",
+          "name",
+          "particle",
+          "projectile",
+          "range",
+          "repair-armor",
+          "sell",
+          "speed",
+          "type",
+          "upgrade-cost",
+          "whitelist"
+        ],
+        "paths": [
+          "(import)",
+          "(import)\u0000turret",
+          "conditions",
+          "conditions\u0000purchase",
+          "conditions\u0000upgrade",
+          "cooldown",
+          "cost",
+          "damage",
+          "effects",
+          "effects\u00002",
+          "effects\u00003",
+          "entities",
+          "entities\u0000list",
+          "entities\u0000whitelist",
+          "fire",
+          "item",
+          "item\u00001",
+          "max-ammo",
+          "max-level",
+          "max-targets",
+          "name",
+          "particle",
+          "particle\u00001",
+          "projectile",
+          "range",
+          "repair-armor",
+          "sell",
+          "speed",
+          "type",
+          "upgrade-cost",
+          "whitelist"
+        ]
+      }
+    },
+    {
+      "resourceName": "Turrets/heatbeam.yml",
+      "schemaId": "Turrets/turret",
+      "fileName": "default--Turrets__heatbeam.json",
+      "signature": {
+        "entryCount": 59,
+        "rootKeys": [
+          "(import)",
+          "armor-damage",
+          "conditions",
+          "cooldown",
+          "cost",
+          "damage",
+          "effects",
+          "fire",
+          "item",
+          "max-ammo",
+          "max-level",
+          "max-targets",
+          "name",
+          "particle",
+          "pass-through",
+          "projectile",
+          "range",
+          "sell",
+          "sounds",
+          "speed",
+          "type",
+          "upgrade-cost"
+        ],
+        "paths": [
+          "(import)",
+          "(import)\u0000turret",
+          "armor-damage",
+          "conditions",
+          "conditions\u0000purchase",
+          "conditions\u0000upgrade",
+          "cooldown",
+          "cost",
+          "damage",
+          "effects",
+          "effects\u00001",
+          "effects\u00002",
+          "effects\u00003",
+          "fire",
+          "item",
+          "item\u00001",
+          "max-ammo",
+          "max-level",
+          "max-targets",
+          "name",
+          "particle",
+          "particle\u00001",
+          "pass-through",
+          "projectile",
+          "range",
+          "sell",
+          "sounds",
+          "sounds\u00001",
+          "speed",
+          "type",
+          "upgrade-cost"
+        ]
+      }
+    },
+    {
+      "resourceName": "Turrets/hellfire.yml",
+      "schemaId": "Turrets/turret",
+      "fileName": "default--Turrets__hellfire.json",
+      "signature": {
+        "entryCount": 52,
+        "rootKeys": [
+          "(import)",
+          "conditions",
+          "cooldown",
+          "cost",
+          "damage",
+          "effects",
+          "fire",
+          "item",
+          "max-ammo",
+          "max-level",
+          "max-targets",
+          "name",
+          "particle",
+          "projectile",
+          "range",
+          "sell",
+          "sounds",
+          "speed",
+          "type",
+          "upgrade-cost"
+        ],
+        "paths": [
+          "(import)",
+          "(import)\u0000turret",
+          "conditions",
+          "conditions\u0000purchase",
+          "conditions\u0000upgrade",
+          "cooldown",
+          "cost",
+          "damage",
+          "effects",
+          "effects\u00001",
+          "fire",
+          "item",
+          "item\u00001",
+          "max-ammo",
+          "max-level",
+          "max-targets",
+          "name",
+          "particle",
+          "projectile",
+          "projectile\u00001",
+          "range",
+          "sell",
+          "sounds",
+          "sounds\u00001",
+          "speed",
+          "type",
+          "upgrade-cost"
+        ]
+      }
+    },
+    {
+      "resourceName": "Turrets/inferno.yml",
+      "schemaId": "Turrets/turret",
+      "fileName": "default--Turrets__inferno.json",
+      "signature": {
+        "entryCount": 49,
+        "rootKeys": [
+          "(import)",
+          "conditions",
+          "cooldown",
+          "cost",
+          "damage",
+          "damage-modifier",
+          "damage-modifier-phases",
+          "fire",
+          "item",
+          "limits",
+          "max-ammo",
+          "max-level",
+          "max-targets",
+          "name",
+          "range",
+          "sell",
+          "sounds",
+          "type",
+          "upgrade-cost"
+        ],
+        "paths": [
+          "(import)",
+          "(import)\u0000turret",
+          "conditions",
+          "conditions\u0000purchase",
+          "cooldown",
+          "cost",
+          "damage",
+          "damage-modifier",
+          "damage-modifier-phases",
+          "fire",
+          "item",
+          "item\u00001",
+          "limits",
+          "limits\u0000per-land",
+          "limits\u0000total",
+          "max-ammo",
+          "max-level",
+          "max-targets",
+          "name",
+          "range",
+          "sell",
+          "sounds",
+          "sounds\u00001",
+          "type",
+          "upgrade-cost"
+        ]
+      }
+    },
+    {
+      "resourceName": "Turrets/psionic.yml",
+      "schemaId": "Turrets/turret",
+      "fileName": "default--Turrets__psionic.json",
+      "signature": {
+        "entryCount": 69,
+        "rootKeys": [
+          "(import)",
+          "conditions",
+          "cooldown",
+          "cost",
+          "damage",
+          "effects",
+          "entities",
+          "fire",
+          "item",
+          "knockback",
+          "max-ammo",
+          "max-level",
+          "max-targets",
+          "name",
+          "particle",
+          "projectile",
+          "range",
+          "sell",
+          "sounds",
+          "speed",
+          "type",
+          "upgrade-cost",
+          "whitelist"
+        ],
+        "paths": [
+          "(import)",
+          "(import)\u0000turret",
+          "conditions",
+          "conditions\u0000purchase",
+          "conditions\u0000upgrade",
+          "cooldown",
+          "cost",
+          "damage",
+          "effects",
+          "effects\u00001",
+          "effects\u00002",
+          "effects\u00003",
+          "entities",
+          "entities\u0000list",
+          "entities\u0000whitelist",
+          "fire",
+          "item",
+          "item\u00001",
+          "knockback",
+          "max-ammo",
+          "max-level",
+          "max-targets",
+          "name",
+          "particle",
+          "particle\u00001",
+          "particle\u00002",
+          "particle\u00003",
+          "projectile",
+          "range",
+          "sell",
+          "sounds",
+          "sounds\u00001",
+          "speed",
+          "type",
+          "upgrade-cost",
+          "whitelist"
+        ]
+      }
+    },
+    {
+      "resourceName": "Turrets/soldier.yml",
+      "schemaId": "Turrets/turret",
+      "fileName": "default--Turrets__soldier.json",
+      "signature": {
+        "entryCount": 82,
+        "rootKeys": [
+          "(import)",
+          "conditions",
+          "cooldown",
+          "cost",
+          "entities",
+          "item",
+          "max-ammo",
+          "max-level",
+          "name",
+          "range",
+          "sell",
+          "soldiers",
+          "sounds",
+          "type",
+          "upgrade-cost",
+          "whitelist"
+        ],
+        "paths": [
+          "(import)",
+          "(import)\u0000turret",
+          "conditions",
+          "conditions\u0000purchase",
+          "conditions\u0000upgrade",
+          "cooldown",
+          "cost",
+          "entities",
+          "entities\u0000list",
+          "entities\u0000whitelist",
+          "item",
+          "item\u00001",
+          "max-ammo",
+          "max-level",
+          "name",
+          "range",
+          "sell",
+          "soldiers",
+          "soldiers\u00001",
+          "soldiers\u00002",
+          "soldiers\u00003",
+          "sounds",
+          "sounds\u00001",
+          "type",
+          "upgrade-cost",
+          "whitelist"
+        ]
+      }
+    },
+    {
+      "resourceName": "Turrets/spring.yml",
+      "schemaId": "Turrets/turret",
+      "fileName": "default--Turrets__spring.json",
+      "signature": {
+        "entryCount": 33,
+        "rootKeys": [
+          "(import)",
+          "cost",
+          "item",
+          "knockback",
+          "name",
+          "sell",
+          "sounds",
+          "type",
+          "vertical-knockback"
+        ],
+        "paths": [
+          "(import)",
+          "(import)\u0000mine",
+          "cost",
+          "item",
+          "item\u00001",
+          "knockback",
+          "name",
+          "sell",
+          "sounds",
+          "sounds\u00001",
+          "type",
+          "vertical-knockback"
+        ]
+      }
+    }
+  ],
+  "schemas": [
+    {
+      "id": "champion-upgrades",
+      "resourceName": "champion-upgrades.yml",
+      "fileName": "champion-upgrades.json"
+    },
+    {
+      "id": "chat",
+      "resourceName": "chat.yml",
+      "fileName": "chat.json"
+    },
+    {
+      "id": "claims",
+      "resourceName": "claims.yml",
+      "fileName": "claims.json"
+    },
+    {
+      "id": "commands",
+      "resourceName": "commands.yml",
+      "fileName": "commands.json"
+    },
+    {
+      "id": "config",
+      "resourceName": "config.yml",
+      "fileName": "config.json"
+    },
+    {
+      "id": "entity",
+      "resourceName": "entity.yml",
+      "fileName": "entity.json"
+    },
+    {
+      "id": "guis/schema",
+      "resourceName": "guis/schema.yml",
+      "fileName": "guis__schema.json"
+    },
+    {
+      "id": "invasions",
+      "resourceName": "invasions.yml",
+      "fileName": "invasions.json"
+    },
+    {
+      "id": "item-matcher",
+      "resourceName": "item-matcher.yml",
+      "fileName": "item-matcher.json"
+    },
+    {
+      "id": "item-stack",
+      "resourceName": "item-stack.yml",
+      "fileName": "item-stack.json"
+    },
+    {
+      "id": "map",
+      "resourceName": "map.yml",
+      "fileName": "map.json"
+    },
+    {
+      "id": "misc-upgrades",
+      "resourceName": "misc-upgrades.yml",
+      "fileName": "misc-upgrades.json"
+    },
+    {
+      "id": "permission",
+      "resourceName": "permission.yml",
+      "fileName": "permission.json"
+    },
+    {
+      "id": "powers",
+      "resourceName": "powers.yml",
+      "fileName": "powers.json"
+    },
+    {
+      "id": "protection-signs",
+      "resourceName": "protection-signs.yml",
+      "fileName": "protection-signs.json"
+    },
+    {
+      "id": "ranks",
+      "resourceName": "ranks.yml",
+      "fileName": "ranks.json"
+    },
+    {
+      "id": "relations",
+      "resourceName": "relations.yml",
+      "fileName": "relations.json"
+    },
+    {
+      "id": "resource-points",
+      "resourceName": "resource-points.yml",
+      "fileName": "resource-points.json"
+    },
+    {
+      "id": "structures",
+      "resourceName": "structures.yml",
+      "fileName": "structures.json"
+    },
+    {
+      "id": "Structures/structure",
+      "resourceName": "Structures/structure.yml",
+      "fileName": "Structures__structure.json"
+    },
+    {
+      "id": "turrets",
+      "resourceName": "turrets.yml",
+      "fileName": "turrets.json"
+    },
+    {
+      "id": "Turrets/turret",
+      "resourceName": "Turrets/turret.yml",
+      "fileName": "Turrets__turret.json"
+    }
+  ]
+}

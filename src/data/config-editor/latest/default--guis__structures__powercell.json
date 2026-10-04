@@ -1,0 +1,344 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "guis/structures/powercell.yml",
+  "schemaId": "guis/schema",
+  "options": [
+    {
+      "path": [
+        "title"
+      ],
+      "source": "\"&cPowercell\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "type"
+      ],
+      "source": "HOPPER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sound"
+      ],
+      "source": "BLOCK_REDSTONE_TORCH_BURNOUT",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options"
+      ],
+      "source": "\r\n  break:\r\n    name: \"&4Break\"\r\n    material: REDSTONE_BLOCK\r\n    lore:\r\n      - \"{$s}Breaks the structure.\"\r\n    slot: 0\r\n  upgrade:\r\n    slot: 2\r\n    upgrade:\r\n      condition: \"level < max_level\"\r\n      name: \"{$sp}Upgrade{$colon} {$s}%roman@level% {$sep}➛ {$s}%roman@next_level%\"\r\n      material: NETHER_STAR\r\n      lore:\r\n        - \"{$dot} {$p}Range{$colon} {$s}1 {$sep}➔ {$s}2\"\r\n        - \"\"\r\n        - \"{$dot} {$p}Max Level{$colon} {$s}%roman@next_level%\"\r\n        - \"{$dot} {$p}Cost{$colon} {$s}%upgrade_cost%\"\r\n    maxxed:\r\n      name: \"{$sp}Level{$colon} {$s}%roman@level%\"\r\n      material: NETHER_STAR\r\n      lore:\r\n        - \"{$dot} {$p}Range{$colon} {$s}2\"\r\n  close:\r\n    name: \"{$p}Close\"\r\n    material: BARRIER\r\n    lore:\r\n      - \"{$s}Close the GUI.\"\r\n    slot: 4",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "break"
+      ],
+      "source": "\r\n    name: \"&4Break\"\r\n    material: REDSTONE_BLOCK\r\n    lore:\r\n      - \"{$s}Breaks the structure.\"\r\n    slot: 0\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "break",
+        "name"
+      ],
+      "source": "\"&4Break\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "break",
+        "material"
+      ],
+      "source": "REDSTONE_BLOCK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "break",
+        "lore"
+      ],
+      "source": "\r\n      - \"{$s}Breaks the structure.\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$s}Breaks the structure.\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "break",
+        "slot"
+      ],
+      "source": "0",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "upgrade"
+      ],
+      "source": "\r\n    slot: 2\r\n    upgrade:\r\n      condition: \"level < max_level\"\r\n      name: \"{$sp}Upgrade{$colon} {$s}%roman@level% {$sep}➛ {$s}%roman@next_level%\"\r\n      material: NETHER_STAR\r\n      lore:\r\n        - \"{$dot} {$p}Range{$colon} {$s}1 {$sep}➔ {$s}2\"\r\n        - \"\"\r\n        - \"{$dot} {$p}Max Level{$colon} {$s}%roman@next_level%\"\r\n        - \"{$dot} {$p}Cost{$colon} {$s}%upgrade_cost%\"\r\n    maxxed:\r\n      name: \"{$sp}Level{$colon} {$s}%roman@level%\"\r\n      material: NETHER_STAR\r\n      lore:\r\n        - \"{$dot} {$p}Range{$colon} {$s}2\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "upgrade",
+        "slot"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "upgrade",
+        "upgrade"
+      ],
+      "source": "\r\n      condition: \"level < max_level\"\r\n      name: \"{$sp}Upgrade{$colon} {$s}%roman@level% {$sep}➛ {$s}%roman@next_level%\"\r\n      material: NETHER_STAR\r\n      lore:\r\n        - \"{$dot} {$p}Range{$colon} {$s}1 {$sep}➔ {$s}2\"\r\n        - \"\"\r\n        - \"{$dot} {$p}Max Level{$colon} {$s}%roman@next_level%\"\r\n        - \"{$dot} {$p}Cost{$colon} {$s}%upgrade_cost%\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "upgrade",
+        "upgrade",
+        "condition"
+      ],
+      "source": "\"level < max_level\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "upgrade",
+        "upgrade",
+        "name"
+      ],
+      "source": "\"{$sp}Upgrade{$colon} {$s}%roman@level% {$sep}➛ {$s}%roman@next_level%\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "upgrade",
+        "upgrade",
+        "material"
+      ],
+      "source": "NETHER_STAR",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "upgrade",
+        "upgrade",
+        "lore"
+      ],
+      "source": "\r\n        - \"{$dot} {$p}Range{$colon} {$s}1 {$sep}➔ {$s}2\"\r\n        - \"\"\r\n        - \"{$dot} {$p}Max Level{$colon} {$s}%roman@next_level%\"\r\n        - \"{$dot} {$p}Cost{$colon} {$s}%upgrade_cost%\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$dot} {$p}Range{$colon} {$s}1 {$sep}➔ {$s}2\"",
+        "\"\"",
+        "\"{$dot} {$p}Max Level{$colon} {$s}%roman@next_level%\"",
+        "\"{$dot} {$p}Cost{$colon} {$s}%upgrade_cost%\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "upgrade",
+        "maxxed"
+      ],
+      "source": "\r\n      name: \"{$sp}Level{$colon} {$s}%roman@level%\"\r\n      material: NETHER_STAR\r\n      lore:\r\n        - \"{$dot} {$p}Range{$colon} {$s}2\"\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "upgrade",
+        "maxxed",
+        "name"
+      ],
+      "source": "\"{$sp}Level{$colon} {$s}%roman@level%\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "upgrade",
+        "maxxed",
+        "material"
+      ],
+      "source": "NETHER_STAR",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "upgrade",
+        "maxxed",
+        "lore"
+      ],
+      "source": "\r\n        - \"{$dot} {$p}Range{$colon} {$s}2\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$dot} {$p}Range{$colon} {$s}2\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "close"
+      ],
+      "source": "\r\n    name: \"{$p}Close\"\r\n    material: BARRIER\r\n    lore:\r\n      - \"{$s}Close the GUI.\"\r\n    slot: 4",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "close",
+        "name"
+      ],
+      "source": "\"{$p}Close\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "close",
+        "material"
+      ],
+      "source": "BARRIER",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "close",
+        "lore"
+      ],
+      "source": "\r\n      - \"{$s}Close the GUI.\"\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "\"{$s}Close the GUI.\""
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "close",
+        "slot"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    }
+  ]
+}

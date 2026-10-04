@@ -1,0 +1,218 @@
+{
+  "formatVersion": 1,
+  "source": {
+    "addonId": "peace-treaties",
+    "artifactPath": "addons/Kingdoms-Addon-Peace-Treaties-1.2.8.3.jar",
+    "artifactBlobSha": "65c542bd55dc6dfed6e222f079d37971fd24a682",
+    "artifactSha256": "54b2f1a879e10403200f218d852deb8d80c721cc933777812bbdcfcac5ca9f03",
+    "addonVersion": "1.2.8.3"
+  },
+  "id": "addons/peace-treaties",
+  "resourceName": "schemas/peace-treaties.yml",
+  "reason": null,
+  "schema": {
+    "kind": "object",
+    "fields": [
+      {
+        "key": "duration",
+        "type": {
+          "kind": "duration",
+          "typeName": "Period"
+        }
+      },
+      {
+        "key": "force-accept",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "condition",
+              "type": {
+                "kind": "expression",
+                "language": "condition"
+              }
+            },
+            {
+              "key": "war-points",
+              "type": {
+                "kind": "decimal"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "war-points",
+        "type": {
+          "kind": "object",
+          "fields": [
+            {
+              "key": "initial",
+              "type": {
+                "kind": "expression",
+                "language": "math"
+              }
+            },
+            {
+              "key": "max",
+              "type": {
+                "kind": "expression",
+                "language": "math"
+              }
+            },
+            {
+              "key": "allowed-relationships",
+              "type": {
+                "kind": "set",
+                "elements": {
+                  "kind": "advanced",
+                  "typeName": "any"
+                }
+              }
+            },
+            {
+              "key": "scores",
+              "type": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "key": "gain",
+                    "type": {
+                      "kind": "mapping",
+                      "keys": {
+                        "kind": "enum",
+                        "values": [
+                          "kill",
+                          "invade",
+                          "break-turret",
+                          "break-structure"
+                        ],
+                        "allowCustom": false
+                      },
+                      "values": {
+                        "kind": "expression",
+                        "language": "math"
+                      },
+                      "fields": []
+                    }
+                  },
+                  {
+                    "key": "lose",
+                    "type": {
+                      "kind": "mapping",
+                      "keys": {
+                        "kind": "enum",
+                        "values": [
+                          "kill",
+                          "invade",
+                          "break-turret",
+                          "break-structure"
+                        ],
+                        "allowCustom": false
+                      },
+                      "values": {
+                        "kind": "expression",
+                        "language": "math"
+                      },
+                      "fields": []
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "min-terms",
+        "type": {
+          "kind": "integer"
+        }
+      },
+      {
+        "key": "terms",
+        "type": {
+          "kind": "mapping",
+          "keys": {
+            "kind": "string",
+            "typeName": "str"
+          },
+          "values": {
+            "kind": "object",
+            "fields": [
+              {
+                "key": "war-points",
+                "type": {
+                  "kind": "expression",
+                  "language": "math"
+                }
+              },
+              {
+                "key": "terms",
+                "type": {
+                  "kind": "set",
+                  "elements": {
+                    "kind": "advanced",
+                    "typeName": "Term"
+                  }
+                }
+              },
+              {
+                "key": "conditions",
+                "type": {
+                  "kind": "mapping",
+                  "keys": {
+                    "kind": "expression",
+                    "language": "condition"
+                  },
+                  "values": {
+                    "kind": "string",
+                    "typeName": "MessageEntry"
+                  },
+                  "fields": []
+                }
+              },
+              {
+                "key": "term-options",
+                "type": {
+                  "kind": "mapping",
+                  "keys": {
+                    "kind": "advanced",
+                    "typeName": "Term"
+                  },
+                  "values": {
+                    "kind": "object",
+                    "fields": [
+                      {
+                        "key": "conditions",
+                        "type": {
+                          "kind": "mapping",
+                          "keys": {
+                            "kind": "expression",
+                            "language": "condition"
+                          },
+                          "values": {
+                            "kind": "string",
+                            "typeName": "MessageEntry"
+                          },
+                          "fields": []
+                        }
+                      }
+                    ]
+                  },
+                  "fields": []
+                }
+              }
+            ],
+            "required": [
+              "terms",
+              "war-points"
+            ]
+          },
+          "fields": [],
+          "optional": true
+        }
+      }
+    ]
+  }
+}

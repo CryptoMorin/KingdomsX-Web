@@ -1,4 +1,5 @@
 import { Modal } from "bootstrap";
+import { formatDate } from "../site-date.js";
 import { fillManageModal, fillReasonModal } from "./admin-modals.js";
 import {
   createOwnerStat,
@@ -9,7 +10,6 @@ import {
   createServerLink,
   createServerStat,
   createServerStatus,
-  formatDate,
   formatNumber,
   playerCountLabel,
   renderServerCards,
@@ -79,12 +79,12 @@ const ADMIN_MESSAGES = {
       {
         code: "inappropriate_or_unsafe",
         title: "Inappropriate or unsafe listing",
-        text: "This listing contains inappropriate, misleading, unsafe, or policy-violating content. Remove the problematic content before resubmitting.",
+        text: "This listing contains inappropriate, misleading, unsafe, or other content that is not allowed in the server list. Remove it before resubmitting.",
       },
     ],
     suspend: [
       {
-        title: "Policy violation",
+        title: "Server listing rules",
         text: "This listing is suspended because staff found content or behavior that violates the server listing rules. Contact staff after correcting the issue.",
       },
       {
@@ -214,8 +214,7 @@ const createAdminCard = (server) => {
 
   return createServerCardShell({
     server,
-    cardClassName:
-      "server-card surface-panel surface-lift d-flex flex-column gap-3 w-100 h-100 p-3 overflow-hidden rounded-3",
+    cardClassName: "server-card surface-panel surface-lift d-flex flex-column gap-3 w-100 h-100 p-3 overflow-hidden rounded-3",
     dataset: { serverId: server.id },
     chips,
     description: server.description,
@@ -443,6 +442,7 @@ const initServerAdmin = () => {
       url.searchParams.set("page", String(page));
       url.searchParams.set("limit", String(ADMIN_PAGE_SIZE));
       url.searchParams.set("sort", sort);
+
       const response = await fetch(url, { headers: adminHeaders() });
       const data = await response.json().catch(() => ({}));
 
@@ -501,6 +501,7 @@ const initServerAdmin = () => {
 
   const refreshServerCard = (server) => {
     servers.set(server.id, server);
+
     const current = list.querySelector(`[data-server-id="${CSS.escape(server.id)}"]`);
     const replacement = createAdminCard(server);
 

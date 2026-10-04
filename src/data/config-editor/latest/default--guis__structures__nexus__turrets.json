@@ -1,0 +1,1297 @@
+{
+  "formatVersion": 3,
+  "source": {
+    "kind": "kingdomsx-jar",
+    "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
+    "pluginVersion": "1.17.27.3"
+  },
+  "resourceName": "guis/structures/nexus/turrets.yml",
+  "schemaId": "guis/schema",
+  "options": [
+    {
+      "path": [
+        "title"
+      ],
+      "source": "\"{$sep}-=( {$sp}Turrets {$sep})=-\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "rows"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "sound"
+      ],
+      "source": "ITEM_FIRECHARGE_USE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options"
+      ],
+      "source": "\r\n  arrow:\r\n    name: \"{$p}Arrow\"\r\n    material: ARROW\r\n    sound: ENTITY_ARROW_SHOOT\r\n    lore: |\r\n      {$s}A simple turret that fires plain\r\n      arrows at enemies at a moderate rate.\r\n\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n    posx: 2\r\n    posy: 2\r\n  flame:\r\n    name: \"&3Flame\"\r\n    material: SPECTRAL_ARROW\r\n    sound: ITEM_FLINTANDSTEEL_USE\r\n    flags: [ ALL ]\r\n    lore: |\r\n      {$s}Fast-firing turret that sets\r\n      targets ablaze.\r\n\r\n      {$chk-kingdom-lvl-II}\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n    posx: 3\r\n    posy: 2\r\n  healing:\r\n    name: \"&dHealing\"\r\n    material: TIPPED_ARROW\r\n    sound: ENTITY_ZOMBIE_VILLAGER_CURE\r\n    flags: [ ALL ]\r\n    lore: |\r\n      {$s}Heals nearby members and allies.\r\n\r\n      {$chk-kingdom-lvl-II}\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n    posx: 4\r\n    posy: 2\r\n  psionic:\r\n    name: \"&aPsionic\"\r\n    material: TRIPWIRE_HOOK\r\n    sound: ENTITY_PLAYER_HURT_ON_FIRE\r\n    flags: [ ALL ]\r\n    lore: |\r\n      {$s}Effects the enemies nearby.\r\n      Higher levels add more effects.\r\n      But never deals killing damage.\r\n\r\n      {$chk-kingdom-lvl-III}\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n    posx: 5\r\n    posy: 2\r\n  hellfire:\r\n    name: \"&cHellfire\"\r\n    material: FIRE_CHARGE\r\n    sound: ITEM_FIRECHARGE_USE\r\n    lore: |\r\n      {$s}Powerful turret that fires quickly\r\n      with high damage.\r\n\r\n      {$chk-kingdom-lvl-III}\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n    posx: 6\r\n    posy: 2\r\n  soldier:\r\n    name: \"&5Soldier\"\r\n    sound: ENTITY_ZOMBIE_VILLAGER_CONVERTED\r\n    material: ZOMBIE_HEAD\r\n    lore: |\r\n      {$s}Spawns guards to kill the\r\n      target player.\r\n\r\n      {$chk-kingdom-lvl-IV}\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n    posx: 7\r\n    posy: 2\r\n  heatbeam:\r\n    name: \"&3Heatbeam\"\r\n    sound: ENTITY_GUARDIAN_ATTACK\r\n    material: MAGMA_CREAM\r\n    lore: |\r\n      {$s}Targets singular targets and deals\r\n      a high amount of damage.\r\n\r\n      {$chk-kingdom-lvl-IV}\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n    posx: 8\r\n    posy: 2\r\n  inferno:\r\n    name: \"&4Inferno\"\r\n    material: END_CRYSTAL\r\n    sound: ENTITY_ELDER_GUARDIAN_CURSE\r\n    lore: |\r\n      {$s}Similar to Heatbeams.\r\n\r\n      {$chk-kingdom-lvl-V}\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n    posx: 5\r\n    posy: 1\r\n  spring:\r\n    name: \"{$sep}Spring\"\r\n    material: OAK_PRESSURE_PLATE\r\n    sound: BLOCK_STONE_PRESSURE_PLATE_CLICK_ON\r\n    lore: |\r\n      {$s}A mine that\r\n      throws the player into\r\n      the air when stepped on.\r\n\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n    posx: 5\r\n    posy: 3\r\n  explosive-mine:\r\n    name: \"{$sep}Explosive Mine\"\r\n    material: HEAVY_WEIGHTED_PRESSURE_PLATE\r\n    sound: BLOCK_STONE_PRESSURE_PLATE_CLICK_ON\r\n    lore: |\r\n      {$s}A mine that\r\n      explodes when stepped on.\r\n\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n    posx: 6\r\n    posy: 3\r\n  chemical-mine:\r\n    name: \"&8Chemical Mine\"\r\n    material: LIGHT_WEIGHTED_PRESSURE_PLATE\r\n    sound: BLOCK_METAL_PRESSURE_PLATE_CLICK_ON\r\n    lore: |\r\n      {$s}A mine that gives\r\n      the player debuffs when stepped on.\r\n\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n    posx: 4\r\n    posy: 3\r\n  back:\r\n    name: \"{$p}Back\"\r\n    material: PLAYER_HEAD\r\n    skull: \"{$gui-back}\"\r\n    lore: |\r\n      {$s}Go back to nexus menu.\r\n    posx: 5\r\n    posy: 4\r\n  Cyan-Glass:\r\n    name: \"\"\r\n    material: CYAN_STAINED_GLASS_PANE\r\n    slots: [ 1, 7, 9, 17, 18, 26, 28, 34 ]\r\n  Light-Blue-Glass:\r\n    name: \"\"\r\n    material: LIGHT_BLUE_STAINED_GLASS_PANE\r\n    slots: [ 0, 8, 27, 35 ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "arrow"
+      ],
+      "source": "\r\n    name: \"{$p}Arrow\"\r\n    material: ARROW\r\n    sound: ENTITY_ARROW_SHOOT\r\n    lore: |\r\n      {$s}A simple turret that fires plain\r\n      arrows at enemies at a moderate rate.\r\n\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n    posx: 2\r\n    posy: 2\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "arrow",
+        "name"
+      ],
+      "source": "\"{$p}Arrow\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "arrow",
+        "material"
+      ],
+      "source": "ARROW",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "arrow",
+        "sound"
+      ],
+      "source": "ENTITY_ARROW_SHOOT",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "arrow",
+        "lore"
+      ],
+      "source": "|\r\n      {$s}A simple turret that fires plain\r\n      arrows at enemies at a moderate rate.\r\n\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "arrow",
+        "posx"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "arrow",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flame"
+      ],
+      "source": "\r\n    name: \"&3Flame\"\r\n    material: SPECTRAL_ARROW\r\n    sound: ITEM_FLINTANDSTEEL_USE\r\n    flags: [ ALL ]\r\n    lore: |\r\n      {$s}Fast-firing turret that sets\r\n      targets ablaze.\r\n\r\n      {$chk-kingdom-lvl-II}\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n    posx: 3\r\n    posy: 2\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flame",
+        "name"
+      ],
+      "source": "\"&3Flame\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flame",
+        "material"
+      ],
+      "source": "SPECTRAL_ARROW",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flame",
+        "sound"
+      ],
+      "source": "ITEM_FLINTANDSTEEL_USE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flame",
+        "flags"
+      ],
+      "source": "[ ALL ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "ALL"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "flame",
+        "lore"
+      ],
+      "source": "|\r\n      {$s}Fast-firing turret that sets\r\n      targets ablaze.\r\n\r\n      {$chk-kingdom-lvl-II}\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flame",
+        "posx"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "flame",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "healing"
+      ],
+      "source": "\r\n    name: \"&dHealing\"\r\n    material: TIPPED_ARROW\r\n    sound: ENTITY_ZOMBIE_VILLAGER_CURE\r\n    flags: [ ALL ]\r\n    lore: |\r\n      {$s}Heals nearby members and allies.\r\n\r\n      {$chk-kingdom-lvl-II}\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n    posx: 4\r\n    posy: 2\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "healing",
+        "name"
+      ],
+      "source": "\"&dHealing\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "healing",
+        "material"
+      ],
+      "source": "TIPPED_ARROW",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "healing",
+        "sound"
+      ],
+      "source": "ENTITY_ZOMBIE_VILLAGER_CURE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "healing",
+        "flags"
+      ],
+      "source": "[ ALL ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "ALL"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "healing",
+        "lore"
+      ],
+      "source": "|\r\n      {$s}Heals nearby members and allies.\r\n\r\n      {$chk-kingdom-lvl-II}\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "healing",
+        "posx"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "healing",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "psionic"
+      ],
+      "source": "\r\n    name: \"&aPsionic\"\r\n    material: TRIPWIRE_HOOK\r\n    sound: ENTITY_PLAYER_HURT_ON_FIRE\r\n    flags: [ ALL ]\r\n    lore: |\r\n      {$s}Effects the enemies nearby.\r\n      Higher levels add more effects.\r\n      But never deals killing damage.\r\n\r\n      {$chk-kingdom-lvl-III}\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n    posx: 5\r\n    posy: 2\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "psionic",
+        "name"
+      ],
+      "source": "\"&aPsionic\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "psionic",
+        "material"
+      ],
+      "source": "TRIPWIRE_HOOK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "psionic",
+        "sound"
+      ],
+      "source": "ENTITY_PLAYER_HURT_ON_FIRE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "psionic",
+        "flags"
+      ],
+      "source": "[ ALL ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "ALL"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "psionic",
+        "lore"
+      ],
+      "source": "|\r\n      {$s}Effects the enemies nearby.\r\n      Higher levels add more effects.\r\n      But never deals killing damage.\r\n\r\n      {$chk-kingdom-lvl-III}\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "psionic",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "psionic",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "hellfire"
+      ],
+      "source": "\r\n    name: \"&cHellfire\"\r\n    material: FIRE_CHARGE\r\n    sound: ITEM_FIRECHARGE_USE\r\n    lore: |\r\n      {$s}Powerful turret that fires quickly\r\n      with high damage.\r\n\r\n      {$chk-kingdom-lvl-III}\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n    posx: 6\r\n    posy: 2\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "hellfire",
+        "name"
+      ],
+      "source": "\"&cHellfire\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "hellfire",
+        "material"
+      ],
+      "source": "FIRE_CHARGE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "hellfire",
+        "sound"
+      ],
+      "source": "ITEM_FIRECHARGE_USE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "hellfire",
+        "lore"
+      ],
+      "source": "|\r\n      {$s}Powerful turret that fires quickly\r\n      with high damage.\r\n\r\n      {$chk-kingdom-lvl-III}\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "hellfire",
+        "posx"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "hellfire",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "soldier"
+      ],
+      "source": "\r\n    name: \"&5Soldier\"\r\n    sound: ENTITY_ZOMBIE_VILLAGER_CONVERTED\r\n    material: ZOMBIE_HEAD\r\n    lore: |\r\n      {$s}Spawns guards to kill the\r\n      target player.\r\n\r\n      {$chk-kingdom-lvl-IV}\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n    posx: 7\r\n    posy: 2\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "soldier",
+        "name"
+      ],
+      "source": "\"&5Soldier\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "soldier",
+        "sound"
+      ],
+      "source": "ENTITY_ZOMBIE_VILLAGER_CONVERTED",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "soldier",
+        "material"
+      ],
+      "source": "ZOMBIE_HEAD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "soldier",
+        "lore"
+      ],
+      "source": "|\r\n      {$s}Spawns guards to kill the\r\n      target player.\r\n\r\n      {$chk-kingdom-lvl-IV}\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "soldier",
+        "posx"
+      ],
+      "source": "7",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "soldier",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "heatbeam"
+      ],
+      "source": "\r\n    name: \"&3Heatbeam\"\r\n    sound: ENTITY_GUARDIAN_ATTACK\r\n    material: MAGMA_CREAM\r\n    lore: |\r\n      {$s}Targets singular targets and deals\r\n      a high amount of damage.\r\n\r\n      {$chk-kingdom-lvl-IV}\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n    posx: 8\r\n    posy: 2\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "heatbeam",
+        "name"
+      ],
+      "source": "\"&3Heatbeam\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "heatbeam",
+        "sound"
+      ],
+      "source": "ENTITY_GUARDIAN_ATTACK",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "heatbeam",
+        "material"
+      ],
+      "source": "MAGMA_CREAM",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "heatbeam",
+        "lore"
+      ],
+      "source": "|\r\n      {$s}Targets singular targets and deals\r\n      a high amount of damage.\r\n\r\n      {$chk-kingdom-lvl-IV}\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "heatbeam",
+        "posx"
+      ],
+      "source": "8",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "heatbeam",
+        "posy"
+      ],
+      "source": "2",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "inferno"
+      ],
+      "source": "\r\n    name: \"&4Inferno\"\r\n    material: END_CRYSTAL\r\n    sound: ENTITY_ELDER_GUARDIAN_CURSE\r\n    lore: |\r\n      {$s}Similar to Heatbeams.\r\n\r\n      {$chk-kingdom-lvl-V}\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n    posx: 5\r\n    posy: 1\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "inferno",
+        "name"
+      ],
+      "source": "\"&4Inferno\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "inferno",
+        "material"
+      ],
+      "source": "END_CRYSTAL",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "inferno",
+        "sound"
+      ],
+      "source": "ENTITY_ELDER_GUARDIAN_CURSE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "inferno",
+        "lore"
+      ],
+      "source": "|\r\n      {$s}Similar to Heatbeams.\r\n\r\n      {$chk-kingdom-lvl-V}\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "inferno",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "inferno",
+        "posy"
+      ],
+      "source": "1",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "spring"
+      ],
+      "source": "\r\n    name: \"{$sep}Spring\"\r\n    material: OAK_PRESSURE_PLATE\r\n    sound: BLOCK_STONE_PRESSURE_PLATE_CLICK_ON\r\n    lore: |\r\n      {$s}A mine that\r\n      throws the player into\r\n      the air when stepped on.\r\n\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n    posx: 5\r\n    posy: 3\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "spring",
+        "name"
+      ],
+      "source": "\"{$sep}Spring\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "spring",
+        "material"
+      ],
+      "source": "OAK_PRESSURE_PLATE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "spring",
+        "sound"
+      ],
+      "source": "BLOCK_STONE_PRESSURE_PLATE_CLICK_ON",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "spring",
+        "lore"
+      ],
+      "source": "|\r\n      {$s}A mine that\r\n      throws the player into\r\n      the air when stepped on.\r\n\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "spring",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "spring",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "explosive-mine"
+      ],
+      "source": "\r\n    name: \"{$sep}Explosive Mine\"\r\n    material: HEAVY_WEIGHTED_PRESSURE_PLATE\r\n    sound: BLOCK_STONE_PRESSURE_PLATE_CLICK_ON\r\n    lore: |\r\n      {$s}A mine that\r\n      explodes when stepped on.\r\n\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n    posx: 6\r\n    posy: 3\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "explosive-mine",
+        "name"
+      ],
+      "source": "\"{$sep}Explosive Mine\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "explosive-mine",
+        "material"
+      ],
+      "source": "HEAVY_WEIGHTED_PRESSURE_PLATE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "explosive-mine",
+        "sound"
+      ],
+      "source": "BLOCK_STONE_PRESSURE_PLATE_CLICK_ON",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "explosive-mine",
+        "lore"
+      ],
+      "source": "|\r\n      {$s}A mine that\r\n      explodes when stepped on.\r\n\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "explosive-mine",
+        "posx"
+      ],
+      "source": "6",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "explosive-mine",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "chemical-mine"
+      ],
+      "source": "\r\n    name: \"&8Chemical Mine\"\r\n    material: LIGHT_WEIGHTED_PRESSURE_PLATE\r\n    sound: BLOCK_METAL_PRESSURE_PLATE_CLICK_ON\r\n    lore: |\r\n      {$s}A mine that gives\r\n      the player debuffs when stepped on.\r\n\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n    posx: 4\r\n    posy: 3\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "chemical-mine",
+        "name"
+      ],
+      "source": "\"&8Chemical Mine\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "chemical-mine",
+        "material"
+      ],
+      "source": "LIGHT_WEIGHTED_PRESSURE_PLATE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "chemical-mine",
+        "sound"
+      ],
+      "source": "BLOCK_METAL_PRESSURE_PLATE_CLICK_ON",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "chemical-mine",
+        "lore"
+      ],
+      "source": "|\r\n      {$s}A mine that gives\r\n      the player debuffs when stepped on.\r\n\r\n      {$p}Cost{$colon} {$s}%fancy@cost%\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "chemical-mine",
+        "posx"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "chemical-mine",
+        "posy"
+      ],
+      "source": "3",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back"
+      ],
+      "source": "\r\n    name: \"{$p}Back\"\r\n    material: PLAYER_HEAD\r\n    skull: \"{$gui-back}\"\r\n    lore: |\r\n      {$s}Go back to nexus menu.\r\n    posx: 5\r\n    posy: 4\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "name"
+      ],
+      "source": "\"{$p}Back\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "material"
+      ],
+      "source": "PLAYER_HEAD",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "skull"
+      ],
+      "source": "\"{$gui-back}\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "lore"
+      ],
+      "source": "|\r\n      {$s}Go back to nexus menu.\r\n",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "posx"
+      ],
+      "source": "5",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "back",
+        "posy"
+      ],
+      "source": "4",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "Cyan-Glass"
+      ],
+      "source": "\r\n    name: \"\"\r\n    material: CYAN_STAINED_GLASS_PANE\r\n    slots: [ 1, 7, 9, 17, 18, 26, 28, 34 ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "Cyan-Glass",
+        "name"
+      ],
+      "source": "\"\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "Cyan-Glass",
+        "material"
+      ],
+      "source": "CYAN_STAINED_GLASS_PANE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "Cyan-Glass",
+        "slots"
+      ],
+      "source": "[ 1, 7, 9, 17, 18, 26, 28, 34 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "1",
+        "7",
+        "9",
+        "17",
+        "18",
+        "26",
+        "28",
+        "34"
+      ]
+    },
+    {
+      "path": [
+        "options",
+        "Light-Blue-Glass"
+      ],
+      "source": "\r\n    name: \"\"\r\n    material: LIGHT_BLUE_STAINED_GLASS_PANE\r\n    slots: [ 0, 8, 27, 35 ]\r\n",
+      "comments": [],
+      "container": true,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "Light-Blue-Glass",
+        "name"
+      ],
+      "source": "\"\"",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "Light-Blue-Glass",
+        "material"
+      ],
+      "source": "LIGHT_BLUE_STAINED_GLASS_PANE",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": null
+    },
+    {
+      "path": [
+        "options",
+        "Light-Blue-Glass",
+        "slots"
+      ],
+      "source": "[ 0, 8, 27, 35 ]",
+      "comments": [],
+      "container": false,
+      "emptyMapping": false,
+      "complexSequence": false,
+      "collectionItems": [
+        "0",
+        "8",
+        "27",
+        "35"
+      ]
+    }
+  ]
+}
