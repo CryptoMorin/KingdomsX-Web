@@ -3764,10 +3764,6 @@ html[data-editor-input-font="minecraft"][data-editor-text-size="large"] :is(.con
     min-height: 2.25rem;
   }
 
-  .editor-header-actions [data-save-workspace] {
-    padding: 0 0.625rem;
-  }
-
   .editor-tools {
     grid-template-columns: minmax(0, 1fr) auto;
   }

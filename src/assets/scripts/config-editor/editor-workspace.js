@@ -1527,7 +1527,7 @@ function setEditorNavigationDrawerOpen(expanded, { restoreFocus = true } = {}) {
   renderEditorNavigation();
 
   if (expanded) {
-    window.requestAnimationFrame(() => elements.navigationClose.focus());
+    elements.navigationClose.focus({ preventScroll: true });
   } else if (restoreFocus) {
     navigationOpener?.focus?.({ preventScroll: true });
   }

@@ -152,15 +152,15 @@ const allowManualWorkspaces = import.meta.env.DEV || process.env.EDITOR_MANUAL_W
             </button>
           </div>
 
-          <div class="editor-header-actions ms-auto d-flex align-items-center justify-content-end gap-2 gap-lg-3" data-loaded-action hidden>
+          <div class="editor-header-actions ms-auto d-flex align-items-center justify-content-end gap-1 gap-sm-2 gap-lg-3" data-loaded-action hidden>
             <span class="editor-change-status d-none d-lg-inline" data-change-status>No changes yet</span>
             <span class="editor-control-hint text-nowrap d-none d-lg-inline" data-editor-session-time hidden></span>
-            <button class="editor-header-action-button btn btn-site-secondary btn-site-sm d-inline-flex align-items-center justify-content-center gap-2" type="button" data-preview-yaml aria-label="Review changes">
+            <button class="editor-header-action-button btn btn-site-secondary btn-site-sm d-inline-flex align-items-center justify-content-center gap-2 px-2 px-sm-3" type="button" data-preview-yaml aria-label="Review changes">
               <i class="fa-regular fa-file-code"></i>
               <span>Review<span class="d-none d-sm-inline"> changes</span></span>
             </button>
             <div class="dropdown flex-shrink-0" data-editor-save-actions>
-              <button class="editor-header-action-button btn btn-site btn-site-primary btn-site-sm d-inline-flex align-items-center justify-content-center gap-2 fw-bold w-auto flex-shrink-0 text-nowrap" type="button" data-save-workspace data-editor-primary-action aria-label="Download file">
+              <button class="editor-header-action-button btn btn-site btn-site-primary btn-site-sm d-inline-flex align-items-center justify-content-center gap-2 fw-bold w-auto flex-shrink-0 text-nowrap px-1 px-sm-3" type="button" data-save-workspace data-editor-primary-action aria-label="Download file">
                 <i class="fa-solid fa-download" aria-hidden="true"></i>
                 <span data-download-label>Download file</span>
               </button>

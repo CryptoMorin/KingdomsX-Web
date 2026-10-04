@@ -157,8 +157,12 @@ test("mobile sidebar controls remain usable for a single file and relocate on de
   await expect(page.locator(".cm-content")).toBeFocused();
   await expect(toggle).toHaveAttribute("aria-expanded", "false");
   await expect(toggle).toBeVisible();
-  await openEditorNavigation(page);
-  await visualMode.focus();
+  await page.evaluate(async () => {
+    document.querySelector("[data-toggle-editor-navigation]").click();
+    document.querySelector('[data-editor-mode="visual"]').focus();
+    await new Promise(requestAnimationFrame);
+  });
+  await expect(visualMode).toBeFocused();
   await page.keyboard.press("Enter");
   await expect(page.locator("[data-visual-workspace]")).toBeVisible();
   await expect(page.locator("[data-current-section]")).toBeFocused();

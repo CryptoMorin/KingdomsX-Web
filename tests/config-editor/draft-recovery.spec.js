@@ -372,6 +372,7 @@ test("remote toolbar keeps full save and backup labels with a stable caret width
         const text = range.getBoundingClientRect();
         const control = button.getBoundingClientRect();
         const review = document.querySelector(".editor-header-actions [data-preview-yaml]").getBoundingClientRect();
+        const actions = document.querySelector(".editor-header-actions").getBoundingClientRect();
         return {
           textLeft: text.left,
           textRight: text.right,
@@ -383,6 +384,8 @@ test("remote toolbar keeps full save and backup labels with a stable caret width
           reviewRight: review.right,
           reviewTop: review.top,
           reviewHeight: review.height,
+          actionsLeft: actions.left,
+          actionsRight: actions.right,
           pageWidth: document.documentElement.scrollWidth
         };
       });
@@ -400,6 +403,10 @@ test("remote toolbar keeps full save and backup labels with a stable caret width
       expect(caretBounds.y).toBeCloseTo(bounds.top, 1);
       expect(caretBounds.x).toBeGreaterThanOrEqual(bounds.right - 1);
       expect(caretBounds.x + caretBounds.width).toBeLessThanOrEqual(width);
+
+      if (width < 997) {
+        expect((bounds.actionsLeft + bounds.actionsRight) / 2).toBeCloseTo(width / 2, 0);
+      }
 
       if (label === "Download backup" && [390, 320].includes(width)) {
         await page.screenshot({ path: testInfo.outputPath(`backup-toolbar-${width}.png`), animations: "disabled" });
