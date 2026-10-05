@@ -8,6 +8,10 @@
   "workers_dev": false,
   "preview_urls": false,
   "upload_source_maps": true,
+  "vars": {
+    "EDITOR_DAILY_SESSION_LIMIT": "500",
+    "EDITOR_HOURLY_SESSION_LIMIT": "100"
+  },
   "routes": [
     {
       "pattern": "editor.kingdomsx.com",
@@ -28,6 +32,10 @@
       {
         "name": "EDITOR_SESSIONS",
         "class_name": "EditorSession"
+      },
+      {
+        "name": "EDITOR_ADMISSION",
+        "class_name": "EditorAdmission"
       }
     ]
   },
@@ -35,6 +43,10 @@
     {
       "tag": "editor-sessions-v1",
       "new_sqlite_classes": ["EditorSession"]
+    },
+    {
+      "tag": "editor-admission-v1",
+      "new_sqlite_classes": ["EditorAdmission"]
     }
   ],
   "r2_buckets": [

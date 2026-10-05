@@ -1,7 +1,9 @@
-import { EditorSession } from "./editor-session";
-import { problem } from "./http";
+import { EditorSession, validateCreateSession } from "./editor-session";
+import { EditorAdmission } from "./editor-admission";
+import { type CreateSessionRequest } from "./contracts";
+import { discardRequestBody, logUnexpectedError, problem, readJson, RequestProblem } from "./http";
 
-export { EditorSession };
+export { EditorAdmission, EditorSession };
 
 const API_ROUTE = /^\/api\/editor\/v1\/sessions\/([A-Za-z0-9_-]{22})(?:\/.*)?$/;
 const SOCKET_ROUTE = /^\/socket\/editor\/v1\/sessions\/([A-Za-z0-9_-]{22})$/;
@@ -21,6 +23,30 @@ async function fetchEditorRequest(request: Request, env: Cloudflare.Env): Promis
       if (!limited) {
         return problem(429, "rate_limited", "Too many editor sessions were created from this connection.");
       }
+
+      let input: CreateSessionRequest;
+
+      try {
+        input = await readJson<CreateSessionRequest>(request);
+        validateCreateSession(input);
+      } catch (error) {
+        await discardRequestBody(request);
+
+        if (error instanceof RequestProblem) {
+          return problem(error.status, error.code, error.message);
+        }
+
+        logUnexpectedError("create_session", error);
+        return problem(500, "internal_error", "The editor session could not process this request.");
+      }
+
+      const headers = new Headers(request.headers);
+      headers.delete("Content-Length");
+
+      return env.EDITOR_SESSIONS.getByName(id).fetch(new Request(request, {
+        headers,
+        body: JSON.stringify(input)
+      }));
     } else {
       const limited = await sessionTrafficAllowed(request, id, env.EDITOR_SESSION_TRAFFIC);
 

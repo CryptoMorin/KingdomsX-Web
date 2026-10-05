@@ -4,6 +4,10 @@
   "main": "./index.ts",
   "compatibility_date": "2026-07-29",
   "compatibility_flags": ["global_fetch_strictly_public"],
+  "vars": {
+    "EDITOR_DAILY_SESSION_LIMIT": "500",
+    "EDITOR_HOURLY_SESSION_LIMIT": "100"
+  },
   "assets": {
     "directory": "./tests/static",
     "binding": "ASSETS",
@@ -18,6 +22,10 @@
       {
         "name": "EDITOR_SESSIONS",
         "class_name": "EditorSession"
+      },
+      {
+        "name": "EDITOR_ADMISSION",
+        "class_name": "EditorAdmission"
       }
     ]
   },
@@ -25,6 +33,10 @@
     {
       "tag": "editor-sessions-v1",
       "new_sqlite_classes": ["EditorSession"]
+    },
+    {
+      "tag": "editor-admission-v1",
+      "new_sqlite_classes": ["EditorAdmission"]
     }
   ],
   "r2_buckets": [

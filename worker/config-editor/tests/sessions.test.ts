@@ -35,6 +35,44 @@ beforeEach(() => {
 });
 
 describe("editor Worker routes", () => {
+  it("forwards valid creation metadata with whitespace and unknown fields", async () => {
+    const body = JSON.stringify(createBody({ futureMetadata: { label: "é" } }), null, 2);
+    const response = await api("", {
+      method: "PUT",
+      headers: { "Content-Length": String(new TextEncoder().encode(body).byteLength) },
+      body
+    });
+
+    expect(response.status).toBe(201);
+    await expect(response.json()).resolves.toMatchObject({ state: "awaiting_original" });
+  });
+
+  it("rejects malformed creation requests before contacting a Durable Object", async () => {
+    const runtimeEnv: Cloudflare.Env = {
+      ...env,
+      EDITOR_SESSIONS: new Proxy(env.EDITOR_SESSIONS, {
+        get(target, property, receiver) {
+          if (property === "getByName") {
+            throw new Error("Malformed session creation reached Durable Object storage.");
+          }
+
+          return Reflect.get(target, property, receiver);
+        }
+      })
+    };
+
+    for (const [body, status, code] of [
+      ["{}", 400, "invalid_session"],
+      ["{", 400, "invalid_json"],
+      [" ".repeat(9 * 1024), 413, "request_too_large"]
+    ] as const) {
+      const response = await editorWorker.fetch(sessionRequest("", { method: "PUT", body }), runtimeEnv);
+
+      expect(response.status).toBe(status);
+      await expect(response.json()).resolves.toMatchObject({ error: code });
+    }
+  });
+
   it("rejects new sessions when the rate limit is reached", async () => {
     const runtimeEnv: Cloudflare.Env = {
       ...env,
@@ -148,6 +186,80 @@ describe("editor sessions", () => {
       body: JSON.stringify(createBody({ name: "different.zip" }))
     });
     expect(mismatch.status).toBe(409);
+  });
+
+  it("preserves retries and reads at the global cap but charges cleaned-up IDs again", async () => {
+    const stub = env.EDITOR_SESSIONS.getByName(sessionId);
+    await runInDurableObject(stub, async (_instance: EditorSession, state) => {
+      const admission = env.EDITOR_ADMISSION.getByName(`budget-${sessionId}`);
+      const instance = new EditorSession(state, {
+        ...env,
+        EDITOR_ADMISSION: new Proxy(env.EDITOR_ADMISSION, {
+          get(target, property, receiver) {
+            return property === "getByName"
+              ? () => env.EDITOR_ADMISSION.getByName(`budget-${sessionId}`)
+              : Reflect.get(target, property, receiver);
+          }
+        })
+      });
+      const create = (overrides = {}) => instance.fetch(sessionRequest("", { method: "PUT", body: JSON.stringify(createBody(overrides)) }));
+      const concurrent = await Promise.all([create(), create()]);
+      expect(concurrent.map((response) => response.status).sort()).toEqual([200, 201]);
+
+      await runInDurableObject(admission, async (_admission, admissionState) => {
+        expect(admissionState.storage.sql.exec<{ count: number }>("SELECT COUNT(*) AS count FROM admissions").one().count).toBe(1);
+        admissionState.storage.sql.exec(
+          "WITH RECURSIVE slots(n) AS (SELECT 1 UNION ALL SELECT n + 1 FROM slots WHERE n < ?) INSERT INTO admissions (admitted_at) SELECT ? FROM slots",
+          Number(env.EDITOR_DAILY_SESSION_LIMIT) - 1,
+          Date.now()
+        );
+      });
+
+      expect((await create()).status).toBe(200);
+      expect((await instance.fetch(sessionRequest("", { headers: auth(browserToken) }))).status).toBe(200);
+      expect((await create({ name: "different.zip" })).status).toBe(409);
+
+      await state.storage.deleteAll();
+      const rejected = await create();
+      expect(rejected.status).toBe(429);
+      expect(Number(rejected.headers.get("Retry-After"))).toBeGreaterThan(0);
+      await expect(rejected.json()).resolves.toMatchObject({ error: "rate_limited" });
+      expect(await state.storage.get("session")).toBeUndefined();
+      expect(await state.storage.getAlarm()).toBeNull();
+    });
+  });
+
+  it("fails closed when the global admission binding is unavailable", async () => {
+    const stub = env.EDITOR_SESSIONS.getByName(sessionId);
+    const errorLog = vi.spyOn(console, "error").mockImplementation(() => undefined);
+
+    try {
+      await runInDurableObject(stub, async (instance: EditorSession, state) => {
+        const runtimeEnv = objectEnv(instance);
+        const originalAdmission = runtimeEnv.EDITOR_ADMISSION;
+        runtimeEnv.EDITOR_ADMISSION = new Proxy(originalAdmission, {
+          get(target, property, receiver) {
+            if (property === "getByName") {
+              throw new Error("Admission is unavailable.");
+            }
+
+            return Reflect.get(target, property, receiver);
+          }
+        });
+
+        try {
+          const response = await instance.fetch(sessionRequest("", { method: "PUT", body: JSON.stringify(createBody()) }));
+          expect(response.status).toBe(500);
+          await expect(response.json()).resolves.toMatchObject({ error: "internal_error" });
+          expect(await state.storage.get("session")).toBeUndefined();
+          expect(await state.storage.getAlarm()).toBeNull();
+        } finally {
+          runtimeEnv.EDITOR_ADMISSION = originalAdmission;
+        }
+      });
+    } finally {
+      errorLog.mockRestore();
+    }
   });
 
   it("accepts only exact file routes and plain decimal revision numbers", async () => {
@@ -724,6 +836,36 @@ describe("editor sessions", () => {
     }
   });
 
+  it("cleans an unused session without scanning R2", async () => {
+    await createSession();
+    expect((await api("", { method: "DELETE", headers: auth(serverToken) })).status).toBe(200);
+    const stub = env.EDITOR_SESSIONS.getByName(sessionId);
+    const remaining = await runInDurableObject(stub, async (instance: EditorSession, state) => {
+      const record = await state.storage.get<SessionRecord>("session");
+
+      if (!record) {
+        throw new Error("Expected the test session record.");
+      }
+
+      record.cleanupAt = Date.now() - 1;
+      await state.storage.put("session", record);
+      const restore = replaceBucket(instance, {
+        list: async () => {
+          throw new Error("Unused session cleanup scanned R2.");
+        }
+      });
+
+      try {
+        await instance.alarm();
+        return state.storage.get("session");
+      } finally {
+        restore();
+      }
+    });
+
+    expect(remaining).toBeUndefined();
+  });
+
   it("retries cleanup after some R2 files fail", async () => {
     await createSession();
     const stub = env.EDITOR_SESSIONS.getByName(sessionId);
@@ -831,6 +973,35 @@ describe("editor sessions", () => {
     });
     expect(JSON.parse(message)).toMatchObject({ type: "session", protocol: 1 });
     socket?.close();
+  });
+
+  it.each(["unsupported text", new Uint8Array([0, 1]).buffer])("closes sockets sending unsupported messages while preserving ping", async (message) => {
+    await createSession();
+    const response = await browserSocket();
+    const socket = response.webSocket;
+
+    if (!socket) {
+      throw new Error("Expected the editor WebSocket.");
+    }
+
+    socket.accept();
+
+    try {
+      await new Promise<void>((resolve) => socket.addEventListener("message", () => resolve(), { once: true }));
+      const pong = new Promise<unknown>((resolve) => {
+        socket.addEventListener("message", (event) => resolve(event.data), { once: true });
+      });
+      socket.send("ping");
+      expect(await pong).toBe("pong");
+
+      const closed = new Promise<CloseEvent>((resolve) => {
+        socket.addEventListener("close", resolve, { once: true });
+      });
+      socket.send(message);
+      expect((await closed).code).toBe(1008);
+    } finally {
+      socket.close();
+    }
   });
 
   it("limits simultaneous browser WebSockets for each session", async () => {

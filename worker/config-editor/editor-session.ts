@@ -17,7 +17,7 @@ import {
   type SessionState,
   type SessionSnapshot
 } from "./contracts";
-import { json, problem, readJson, RequestProblem } from "./http";
+import { discardRequestBody, json, logUnexpectedError, problem, readJson, RequestProblem } from "./http";
 
 const RECORD_KEY = "session";
 const API_PREFIX = "/api/editor/v1/sessions/";
@@ -182,7 +182,11 @@ export class EditorSession extends DurableObject<Cloudflare.Env> {
         const now = Date.now();
 
         if (record.cleanupAt && now >= record.cleanupAt) {
-          return { id: record.id, cleanupAt: record.cleanupAt };
+          return {
+            id: record.id,
+            cleanupAt: record.cleanupAt,
+            hasUploads: record.uploadedBytes !== 0 || Boolean(record.pending) || record.resultRevision !== 0
+          };
         }
 
         if (!(record.state === "expired" || record.state === "cancelled") && now >= record.expiresAt) {
@@ -199,7 +203,9 @@ export class EditorSession extends DurableObject<Cloudflare.Env> {
       }
 
       try {
-        await this.deleteSessionPayloads(cleanup.id);
+        if (cleanup.hasUploads) {
+          await this.deleteSessionPayloads(cleanup.id);
+        }
       } catch (error) {
         logUnexpectedError("cleanup_payloads", error);
         await this.scheduleCleanupRetry(cleanup.id, cleanup.cleanupAt);
@@ -224,7 +230,10 @@ export class EditorSession extends DurableObject<Cloudflare.Env> {
   webSocketMessage(socket: WebSocket, message: string | ArrayBuffer): void {
     if (typeof message === "string" && message === "ping") {
       socket.send("pong");
+      return;
     }
+
+    socket.close(1008, "Editor sockets accept only ping messages");
   }
 
   webSocketError(socket: WebSocket): void {
@@ -234,7 +243,7 @@ export class EditorSession extends DurableObject<Cloudflare.Env> {
   private async create(request: Request, id: string): Promise<Response> {
     const input = await readJson<CreateSessionRequest>(request);
 
-    validateCreate(input);
+    validateCreateSession(input);
 
     const comparable = {
       protocol: input.protocol,
@@ -257,6 +266,16 @@ export class EditorSession extends DurableObject<Cloudflare.Env> {
         return matches
           ? json(this.snapshot(existing))
           : problem(409, "session_exists", "That session identifier is already in use.");
+      }
+
+      // Existing records are retries but recreating a cleaned session needs admission
+      const admission = await this.env.EDITOR_ADMISSION.getByName("global").admit();
+
+      if (!admission.allowed) {
+        const response = problem(429, "rate_limited", "The editor has reached its new session limit. Try again later.");
+        response.headers.set("Retry-After", String(admission.retryAfter));
+
+        return response;
       }
 
       const createdAt = Date.now();
@@ -940,16 +959,6 @@ export class EditorSession extends DurableObject<Cloudflare.Env> {
   }
 }
 
-async function discardRequestBody(request: Request): Promise<void> {
-  if (!request.body || request.body.locked) {
-    return;
-  }
-
-  try {
-    await request.body.cancel();
-  } catch {}
-}
-
 async function consumeRequestBody(request: Request): Promise<void> {
   if (!request.body || request.body.locked) {
     return;
@@ -958,7 +967,7 @@ async function consumeRequestBody(request: Request): Promise<void> {
   await request.body.pipeTo(new WritableStream());
 }
 
-function validateCreate(input: CreateSessionRequest): void {
+export function validateCreateSession(input: CreateSessionRequest): void {
   const valid = input
     && input.protocol === EDITOR_PROTOCOL
     && typeof input.name === "string"
@@ -1159,19 +1168,6 @@ function downloadedBytes(record: SessionRecord): number {
   return Number.isSafeInteger(record.downloadedBytes) && record.downloadedBytes >= 0
     ? record.downloadedBytes
     : 0;
-}
-
-function logUnexpectedError(operation: string, error: unknown): void {
-  const knownErrorNames = ["Error", "TypeError", "RangeError", "SyntaxError"];
-  const errorName = error instanceof Error && knownErrorNames.includes(error.name)
-    ? error.name
-    : error instanceof Error ? "Error" : typeof error;
-
-  console.error(JSON.stringify({
-    event: "editor_session_unexpected_error",
-    operation,
-    error: errorName
-  }));
 }
 
 function hexBytes(value: string): Uint8Array {

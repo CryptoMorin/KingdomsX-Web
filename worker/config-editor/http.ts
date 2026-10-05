@@ -12,6 +12,29 @@ export function problem(status: number, code: string, message: string): Response
   return json({ error: code, message }, status);
 }
 
+export async function discardRequestBody(request: Request): Promise<void> {
+  if (!request.body || request.body.locked) {
+    return;
+  }
+
+  try {
+    await request.body.cancel();
+  } catch {}
+}
+
+export function logUnexpectedError(operation: string, error: unknown): void {
+  const knownErrorNames = ["Error", "TypeError", "RangeError", "SyntaxError"];
+  const errorName = error instanceof Error && knownErrorNames.includes(error.name)
+    ? error.name
+    : error instanceof Error ? "Error" : typeof error;
+
+  console.error(JSON.stringify({
+    event: "editor_session_unexpected_error",
+    operation,
+    error: errorName
+  }));
+}
+
 export async function readJson<T>(request: Request, maxBytes = 8 * 1024): Promise<T> {
   const length = Number(request.headers.get("Content-Length") ?? "0");
 
