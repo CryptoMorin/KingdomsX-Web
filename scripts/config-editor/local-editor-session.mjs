@@ -299,7 +299,6 @@ async function createSession(origin, source) {
   await apiJson(origin, id, "", {
     method: "PUT",
     headers: {
-      "CF-Connecting-IP": "127.0.0.1",
       "Content-Type": "application/json"
     },
     body: JSON.stringify({
