@@ -1202,10 +1202,11 @@ function renderFileDetails() {
     label.textContent = archiveDownload ? "Download original ZIP" : "Download original backup";
   });
   elements.originalDownloadButtons.forEach((button) => {
-    button.hidden = Boolean(state.remoteSession);
+    button.hidden = Boolean(state.remoteSession) || state.workspace.sourceKind === "example";
   });
-  elements.reviewEyebrow.textContent = state.remoteSession ? "Review before saving" : "Review before download";
-  elements.reviewWarningHeading.textContent = state.remoteSession ? "Check before saving" : "Check before downloading";
+  const serverSave = state.remoteSession || state.workspace.sourceKind === "example";
+  elements.reviewEyebrow.textContent = serverSave ? "Review before saving" : "Review before download";
+  elements.reviewWarningHeading.textContent = serverSave ? "Check before saving" : "Check before downloading";
 }
 
 function renderSaveAction(archiveDownload = state.workspace?.sourceKind === "zip" || state.workspace?.files.length > 1) {
@@ -1215,10 +1216,12 @@ function renderSaveAction(archiveDownload = state.workspace?.sourceKind === "zip
 
   const remoteIssue = remoteWorkspaceIssue();
   const expired = remoteIssue?.key === "expired";
+  const demo = state.workspace.sourceKind === "example";
+  const serverSave = Boolean(state.remoteSession) || demo;
   const saveLabel = state.saving
     ? "Saving…"
-    : state.remoteSession ? "Save to server" : archiveDownload ? "Download ZIP" : "Download file";
-  const disabled = editorBusy || state.downloadingRecovery || Boolean(state.remoteSession
+    : serverSave ? "Save to server" : archiveDownload ? "Download ZIP" : "Download file";
+  const disabled = demo || editorBusy || state.downloadingRecovery || Boolean(state.remoteSession
     && (!workspaceHasUnexportedChanges(state.workspace) || remoteIssue));
 
   elements.saveActions.classList.toggle("btn-group", Boolean(state.remoteSession));
@@ -1232,8 +1235,8 @@ function renderSaveAction(archiveDownload = state.workspace?.sourceKind === "zip
     button.disabled = backup ? editorBusy || state.downloadingRecovery : disabled;
     button.setAttribute("aria-label", state.saving ? "Saving changes to server" : label);
     const icon = button.querySelector("i");
-    icon?.classList.toggle("fa-download", backup || (!state.saving && !state.remoteSession));
-    icon?.classList.toggle("fa-cloud-arrow-up", !backup && !state.saving && Boolean(state.remoteSession));
+    icon?.classList.toggle("fa-download", backup || (!state.saving && !serverSave));
+    icon?.classList.toggle("fa-cloud-arrow-up", !backup && !state.saving && serverSave);
     icon?.classList.toggle("fa-circle-notch", state.saving);
     icon?.classList.toggle("fa-spin", state.saving);
   });
@@ -1533,25 +1536,13 @@ function setEditorNavigationDrawerOpen(expanded, { restoreFocus = true } = {}) {
   }
 }
 
-function setEditorNavigationPanel(panel, { focusPanel = false } = {}) {
+function setEditorNavigationPanel(panel) {
   if (!["files", "sections"].includes(panel) || desktopSidebarQuery.matches) {
     return;
   }
 
   state.navigationPanel = panel;
   renderEditorNavigation();
-
-  if (!focusPanel) {
-    return;
-  }
-
-  window.requestAnimationFrame(() => {
-    if (panel === "files") {
-      focusWorkspaceFile(state.session?.fileName);
-    } else {
-      focusSectionButton(state.activeSection);
-    }
-  });
 }
 
 function handleEditorNavigationTabKeydown(event) {
@@ -1695,7 +1686,8 @@ function workspaceFileButton(session, name, addon, inheritedAddon) {
       renderWorkspace();
       scrollEditorToTop();
       if (!desktopSidebarQuery.matches) {
-        setEditorNavigationPanel("sections", { focusPanel: true });
+        setEditorNavigationDrawerOpen(false, { restoreFocus: false });
+        focusSectionHeading();
       }
 
       return;
@@ -1703,18 +1695,13 @@ function workspaceFileButton(session, name, addon, inheritedAddon) {
 
     const focusNavigation = document.activeElement === button;
     const mobileNavigation = !desktopSidebarQuery.matches;
-    const advanceToSections = mobileNavigation && state.editorMode !== "source";
     const opened = await openWorkspaceFile(session.fileName, {
-      focusFile: focusNavigation && !mobileNavigation,
-      focusContent: focusNavigation && mobileNavigation && !advanceToSections
+      focusFile: focusNavigation && !mobileNavigation
     });
 
     if (mobileNavigation && (opened || state.session === session)) {
-      if (advanceToSections) {
-        setEditorNavigationPanel("sections", { focusPanel: true });
-      } else {
-        setEditorNavigationDrawerOpen(false, { restoreFocus: false });
-      }
+      setEditorNavigationDrawerOpen(false, { restoreFocus: false });
+      renderEditorMode({ focus: true });
     }
   });
   return button;
@@ -2637,7 +2624,7 @@ function renderGuiStates(preview) {
   const options = preview.options.filter((option) => option.states.length && option.slots.length);
   elements.guiPreviewStates.hidden = options.length === 0;
   elements.guiPreviewStatesList.replaceChildren(...options.map((option) => {
-    const card = element("article", "editor-gui-condition-card editor-surface-card rounded-3 p-3");
+    const card = element("article", "editor-gui-condition-card editor-surface-card min-w-0 rounded-3 p-3");
     const cardKey = `${state.session.fileName}\u0000${option.path.join("\u0000")}`;
     const collapsed = state.collapsedGuiStateCards.has(cardKey);
     const title = element("div", "d-flex align-items-center justify-content-between gap-3");
@@ -2720,10 +2707,10 @@ function guiAppearanceButton(option, appearance, { direct = false } = {}) {
     components: appearance.components
   });
   const tooltip = guiItemTooltip(appearance);
-  tooltip.classList.add("editor-gui-item-tooltip");
+  tooltip.classList.add("editor-gui-item-tooltip", "mw-100");
   const itemPreview = element(
     "span",
-    `editor-gui-item d-flex align-items-start gap-3 min-w-0${direct ? "" : " mt-2"}`
+    `editor-gui-item d-flex flex-column flex-sm-row align-items-start gap-3 min-w-0${direct ? "" : " mt-2"}`
   );
   itemPreview.append(item, tooltip);
   button.append(itemPreview);
@@ -3095,7 +3082,7 @@ function guiItemTooltip(option) {
 }
 
 function guiItemNameTooltip(appearance, fallback) {
-  const tooltip = element("span", "editor-minecraft-tooltip editor-gui-item-tooltip");
+  const tooltip = element("span", "editor-minecraft-tooltip editor-gui-item-tooltip mw-100");
   tooltip.role = "tooltip";
   const name = previewGuiMessage(
     appearance.previewName ?? appearance.name ?? fallback.previewName ?? fallback.name,
@@ -5035,7 +5022,7 @@ function focusSectionButton(sectionKey) {
 
 function focusSectionHeading() {
   elements.sectionTitle.tabIndex = -1;
-  elements.sectionTitle.focus();
+  elements.sectionTitle.focus({ preventScroll: true });
   elements.sectionTitle.addEventListener("blur", () => elements.sectionTitle.removeAttribute("tabindex"), { once: true });
 }
 
@@ -5864,7 +5851,8 @@ async function collectWorkspaceWarnings(sessions = state.workspace.files) {
 }
 
 async function saveCurrentWorkspace() {
-  if (!state.workspace || editorBusy || state.saving || state.downloadingRecovery) {
+  if (!state.workspace || state.workspace.sourceKind === "example"
+    || editorBusy || state.saving || state.downloadingRecovery) {
     return;
   }
 

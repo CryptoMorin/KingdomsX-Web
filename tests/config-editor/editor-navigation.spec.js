@@ -3,6 +3,7 @@ import {
   capturePageErrors,
   openEditorNavigation,
   openEditorWorkspace,
+  openWorkspaceFile,
   switchEditorMode
 } from "./editor-test-support.js";
 
@@ -77,7 +78,12 @@ test("navigation works as an accessible drawer and desktop sidebar", async ({ pa
   await openEditorNavigation(page, { panel: "files" });
   await page.locator('[data-workspace-file="turrets.yml"]').click();
   await expect(page.locator("[data-current-file]")).toHaveText("turrets.yml");
-  await expect(toggle).toHaveAttribute("aria-expanded", "true");
+  await expect(toggle).toHaveAttribute("aria-expanded", "false");
+  await expect(navigation).toHaveAttribute("inert", "");
+  await expect(page.locator("[data-current-section]")).toHaveText("General");
+  await expect(page.locator("[data-current-section]")).toBeFocused();
+
+  await openEditorNavigation(page);
   await expect(sectionsPanel).toBeVisible();
 
   await page.locator("[data-editor-section-key]").filter({ hasText: /^Effects\d*$/ }).click();
@@ -85,8 +91,15 @@ test("navigation works as an accessible drawer and desktop sidebar", async ({ pa
   await expect(page.locator("[data-current-section]")).toHaveText("Effects");
   await expect(page.locator("[data-current-section]")).toBeFocused();
 
+  await openWorkspaceFile(page, "resource-points.yml");
+  await openWorkspaceFile(page, "turrets.yml");
+  await expect(page.locator("[data-current-section]")).toHaveText("General");
+
   await switchEditorMode(page, "source");
   await expect(page.locator("[data-source-workspace]")).toBeVisible();
+  await openWorkspaceFile(page, "resource-points.yml");
+  await expect(toggle).toHaveAttribute("aria-expanded", "false");
+  await expect(page.locator(".cm-content")).toBeFocused();
   await openEditorNavigation(page);
   await expect(navigation).toHaveAttribute("aria-modal", "true");
   await expect(tabs).toBeHidden();

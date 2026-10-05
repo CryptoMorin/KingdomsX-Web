@@ -103,9 +103,9 @@ const allowManualWorkspaces = import.meta.env.DEV || process.env.EDITOR_MANUAL_W
   </div>
 
   <main class="config-editor page min-vh-100 d-flex flex-column overflow-hidden" data-editor-shell hidden>
-    <header class="site-header editor-header position-relative flex-shrink-0 user-select-none">
+    <header class="site-header editor-header position-absolute top-0 start-0 w-100 user-select-none">
       <nav class="navbar py-1 py-sm-2" aria-label="Config editor navigation">
-        <div class="editor-header-layout container-fluid">
+        <div class="editor-header-layout container-fluid gx-3 gx-sm-4">
           <a class="navbar-brand brand d-inline-flex align-items-center gap-3 mb-0 fw-bold" href={canonicalUrl} aria-label="KingdomsX Config Editor home">
             <img class="object-fit-contain" src={logo.src} width="40" height="40" alt="" draggable="false" />
             <span class="editor-brand-copy d-flex flex-column justify-content-center">
@@ -155,12 +155,12 @@ const allowManualWorkspaces = import.meta.env.DEV || process.env.EDITOR_MANUAL_W
           <div class="editor-header-actions ms-auto d-flex align-items-center justify-content-end gap-1 gap-sm-2 gap-lg-3" data-loaded-action hidden>
             <span class="editor-change-status d-none d-lg-inline" data-change-status>No changes yet</span>
             <span class="editor-control-hint text-nowrap d-none d-lg-inline" data-editor-session-time hidden></span>
-            <button class="editor-header-action-button btn btn-site-secondary btn-site-sm d-inline-flex align-items-center justify-content-center gap-2 px-2 px-sm-3" type="button" data-preview-yaml aria-label="Review changes">
+            <button class="editor-header-action-button btn btn-site-secondary btn-site-sm d-inline-flex align-items-center justify-content-center gap-1 gap-sm-2 fw-semibold px-2 px-sm-3" type="button" data-preview-yaml aria-label="Review changes">
               <i class="fa-regular fa-file-code"></i>
               <span>Review<span class="d-none d-sm-inline"> changes</span></span>
             </button>
             <div class="dropdown flex-shrink-0" data-editor-save-actions>
-              <button class="editor-header-action-button btn btn-site btn-site-primary btn-site-sm d-inline-flex align-items-center justify-content-center gap-2 fw-bold w-auto flex-shrink-0 text-nowrap px-1 px-sm-3" type="button" data-save-workspace data-editor-primary-action aria-label="Download file">
+              <button class="editor-header-action-button btn btn-site btn-site-primary btn-site-sm d-inline-flex align-items-center justify-content-center gap-1 gap-sm-2 fw-semibold w-auto flex-shrink-0 text-nowrap px-2 px-sm-3" type="button" data-save-workspace data-editor-primary-action aria-label="Download file">
                 <i class="fa-solid fa-download" aria-hidden="true"></i>
                 <span data-download-label>Download file</span>
               </button>
@@ -489,7 +489,7 @@ const allowManualWorkspaces = import.meta.env.DEV || process.env.EDITOR_MANUAL_W
         </div>
 
         <div class="editor-gui-preview-backdrop" data-gui-preview-backdrop hidden></div>
-        <section class="h-100 min-h-0" data-source-workspace hidden>
+        <section class="editor-source-workspace h-100 min-h-0" data-source-workspace hidden>
           <form class="editor-source-workspace-form h-100 d-grid min-h-0" data-source-form>
             <header class="editor-source-workspace-header d-flex flex-column flex-lg-row align-items-lg-center justify-content-between gap-3 px-3 px-lg-4 py-3">
               <div class="min-w-0">

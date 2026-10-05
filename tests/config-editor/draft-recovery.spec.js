@@ -303,7 +303,7 @@ test("keeps expired unsaved Code selectable and downloadable while clearing the 
   await expect(particleInput).not.toBeFocused();
   await expect(page.locator("[data-toggle-editor-navigation]")).toHaveAttribute("aria-expanded", "false");
   await openWorkspaceFile(page, "config.yml");
-  await page.locator("[data-close-editor-navigation]").click();
+  await expect(page.locator("[data-toggle-editor-navigation]")).toHaveAttribute("aria-expanded", "false");
   await switchEditorMode(page, "source");
   await expect(code).toContainText("# unfinished change");
   await expect(code).toHaveAttribute("contenteditable", "false");
@@ -394,6 +394,7 @@ test("remote toolbar keeps full save and backup labels with a stable caret width
       expect(bounds.right).toBeLessThanOrEqual(width);
       expect(bounds.pageWidth).toBeLessThanOrEqual(width);
       expect(bounds.reviewRight).toBeLessThanOrEqual(bounds.left);
+      expect(bounds.reviewHeight).toBeCloseTo(bounds.height, 1);
       expect(bounds.reviewTop + bounds.reviewHeight / 2).toBeCloseTo(bounds.top + bounds.height / 2, 0);
       const controlsHost = width < 997 ? "[data-editor-sidebar-controls]" : "[data-editor-header-controls]";
       await expect(page.locator(`${controlsHost} [data-editor-controls]`)).toHaveCount(1);

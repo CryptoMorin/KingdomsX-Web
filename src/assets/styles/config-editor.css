@@ -69,7 +69,7 @@ html[data-editor-session-pending] [data-editor-session-loading] {
 .editor-header {
   z-index: 50;
   border-bottom-color: #383020;
-  background: rgba(7, 16, 25, 0.325);
+  background: rgba(7, 16, 25, 0.45);
 }
 
 .editor-brand-copy {
@@ -254,6 +254,7 @@ html[data-editor-session-pending] [data-editor-session-loading] {
 
 .editor-workspace {
   grid-template-columns: var(--editor-sidebar-width) minmax(0, 1fr);
+  padding-top: var(--editor-header-offset, 0px);
 }
 
 .editor-workspace.has-file-rail {
@@ -529,7 +530,14 @@ html[data-editor-session-pending] [data-editor-session-loading] {
 .editor-main {
   --editor-group-header-height: 52px;
   --editor-stuck-header-height: 40px;
+  /* Let content scroll behind the topbar while the sidebar stays below it */
+  margin-top: calc(-1 * var(--editor-header-offset, 0px));
   background: transparent;
+}
+
+.editor-visual-workspace,
+.editor-source-workspace {
+  padding-top: var(--editor-header-offset, 0px);
 }
 
 .editor-template-card {
@@ -595,7 +603,7 @@ html[data-editor-session-pending] [data-editor-session-loading] {
 .editor-tools {
   position: sticky;
   z-index: 40;
-  top: 0;
+  top: var(--editor-header-offset, 0px);
   grid-template-columns: minmax(18rem, 1fr) auto;
   border-bottom: 0.0625rem solid var(--editor-panel-border);
   background: rgba(7, 16, 25, 0.45);
@@ -793,6 +801,7 @@ html[data-editor-session-pending] [data-editor-session-loading] {
   pointer-events: auto;
 }
 
+body.editor-navigation-open .editor-gui-preview-launcher,
 .editor-gui-preview-launcher[hidden],
 .editor-gui-preview-backdrop[hidden] {
   display: none !important;
@@ -1098,13 +1107,11 @@ html[data-editor-session-pending] [data-editor-session-loading] {
 .editor-minecraft-tooltip .editor-message-preview-line {
   min-height: 1.3em;
   color: #fff;
-  font-family: monospace;
-  font-size: 0.9rem;
   text-shadow: 0.06rem 0.06rem #202020;
 }
 
 .editor-condition-label {
-  min-width: 13rem;
+  min-width: min(13rem, 100%);
   padding: 0.15rem 0.2rem 0.35rem;
   color: #d8b8ff;
   font-family: var(--editor-mono);
@@ -1194,7 +1201,6 @@ html[data-editor-session-pending] [data-editor-session-loading] {
   display: block;
   width: max-content;
   min-width: 0;
-  max-width: calc(100% - 4rem);
   flex: 0 1 auto;
   transform: none;
 }
@@ -1258,7 +1264,8 @@ html[data-editor-session-pending] [data-editor-session-loading] {
 .editor-group-sticky {
   position: sticky;
   top: calc(
-    var(--editor-tools-offset, 0px)
+    var(--editor-header-offset, 0px)
+    + var(--editor-tools-offset, 0px)
     + (var(--editor-group-depth, 1) - 1) * var(--editor-stuck-header-height, 40px)
   );
   z-index: calc(15 - var(--editor-group-depth, 1));
@@ -3554,7 +3561,7 @@ html[data-editor-input-font="minecraft"][data-editor-text-size="large"] :is(.con
   .editor-mobile-group-sticky {
     position: sticky;
     z-index: 16;
-    top: var(--editor-tools-offset, 0px);
+    top: calc(var(--editor-header-offset, 0px) + var(--editor-tools-offset, 0px));
     display: block;
     height: 0;
     pointer-events: none;
@@ -3683,10 +3690,6 @@ html[data-editor-input-font="minecraft"][data-editor-text-size="large"] :is(.con
     padding-inline: 0.58rem;
   }
 
-  .editor-tools {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
   .editor-gui-preview.is-expanded {
     top: 0.5rem;
     right: 0.5rem;
@@ -3760,8 +3763,7 @@ html[data-editor-input-font="minecraft"][data-editor-text-size="large"] :is(.con
   }
 
   .editor-header-action-button {
-    height: 2.25rem;
-    min-height: 2.25rem;
+    min-height: 2.5rem;
   }
 
   .editor-tools {
