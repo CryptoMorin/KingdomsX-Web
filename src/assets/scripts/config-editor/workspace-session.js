@@ -670,9 +670,15 @@ export async function workspaceRecoveryArtifact(workspace, codeDraft = null) {
 
   entries["README.txt"] = UTF8_ENCODER.encode(`${instructions.join("\n")}\n`);
 
+  const now = new Date();
+  const date = [now.getDate(), now.getMonth() + 1, now.getFullYear()]
+    .map((value) => String(value).padStart(2, "0")).join("-");
+  const time = [now.getHours(), now.getMinutes(), now.getSeconds()]
+    .map((value) => String(value).padStart(2, "0")).join("-");
+
   return {
     blob: new Blob([await zipArchive(entries)], { type: "application/zip" }),
-    name: "kingdomsx-configs-recovery.zip"
+    name: `kingdomsx-configs-recovery-${date}_${time}.zip`
   };
 }
 
@@ -844,7 +850,7 @@ async function openZipWorkspace(file, {
   }
 
   return createWorkspace({
-    name: file.name,
+    name: remoteContract ? "KingdomsX configs" : file.name,
     sourceKind: "zip",
     sessions,
     archiveEntries: extracted,

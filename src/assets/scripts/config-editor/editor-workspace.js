@@ -1224,8 +1224,9 @@ function renderSaveAction(archiveDownload = state.workspace?.sourceKind === "zip
   const disabled = demo || editorBusy || state.downloadingRecovery || Boolean(state.remoteSession
     && (!workspaceHasUnexportedChanges(state.workspace) || remoteIssue));
 
-  elements.saveActions.classList.toggle("btn-group", Boolean(state.remoteSession));
-  elements.saveMenuToggle.hidden = !state.remoteSession;
+  const showBackupMenu = Boolean(state.remoteSession) && !expired;
+  elements.saveActions.classList.toggle("btn-group", showBackupMenu);
+  elements.saveMenuToggle.hidden = !showBackupMenu;
   elements.saveMenuToggle.disabled = editorBusy || state.downloadingRecovery;
 
   elements.saveButtons.forEach((button) => {

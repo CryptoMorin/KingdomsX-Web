@@ -1,5 +1,5 @@
 import { unzipSync, zipSync } from "fflate";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { replaceDocumentValue } from "./yaml-source.js";
 import { sha256Hex } from "./remote-session-crypto.js";
 import { customYamlWarnings } from "./kingdoms-yaml-validation.js";
@@ -389,6 +389,20 @@ describe("config files and ZIPs", () => {
     const output = unzipSync(new Uint8Array(await (await workspaceDownloadArtifact(restored)).blob.arrayBuffer()));
     expect(decoder.decode(output["config.yml"])).toBe("enabled: false\n");
     expect(decoder.decode(output["guis/en/structures/outpost/2.yml"])).toBe("title: Second\n");
+  });
+
+  it("names recovery downloads with the current local date and time", async () => {
+    const workspace = await openWorkspaceSelection([new File(["enabled: true\n"], "config.yml")]);
+    vi.useFakeTimers({ toFake: ["Date"] });
+
+    try {
+      vi.setSystemTime(new Date(2026, 9, 6, 8, 35, 33));
+      expect((await workspaceRecoveryArtifact(workspace)).name).toBe("kingdomsx-configs-recovery-06-10-2026_08-35-33.zip");
+      vi.setSystemTime(new Date(2027, 0, 23, 0, 1, 2));
+      expect((await workspaceRecoveryArtifact(workspace)).name).toBe("kingdomsx-configs-recovery-23-01-2027_00-01-02.zip");
+    } finally {
+      vi.useRealTimers();
+    }
   });
 
   it("backs up current files and raw pending Code text without saving the server workspace", async () => {

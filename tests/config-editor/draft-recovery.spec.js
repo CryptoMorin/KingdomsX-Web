@@ -87,6 +87,7 @@ async function downloadRecovery(page, button) {
   await button.click();
   const download = await downloadPromise;
 
+  expect(download.suggestedFilename()).toMatch(/^kingdomsx-configs-recovery-\d{2}-\d{2}-\d{4}_\d{2}-\d{2}-\d{2}\.zip$/);
   return unzipSync(await readFile(await download.path()));
 }
 
@@ -162,6 +163,7 @@ test("warns before session expiry and downloads work without saving it to the se
   const pageErrors = capturePageErrors(page);
   await page.goto(link);
   await expect(page.locator("[data-editor-workspace]")).toBeVisible();
+  await expect(page.locator("[data-workspace-name]")).toHaveText("KingdomsX configs");
   const timer = page.locator("[data-editor-session-time]:visible");
   const save = page.locator(".editor-header-actions [data-save-workspace]");
   await expect(timer).toContainText("60:00");
@@ -196,6 +198,9 @@ test("warns before session expiry and downloads work without saving it to the se
     await expect(save).toBeEnabled();
   }
 
+  await menuToggle.focus();
+  await page.keyboard.press("ArrowDown");
+  await expect(menuBackup).toBeVisible();
   await page.clock.setFixedTime(expiresAt);
   const expiredDialog = page.locator("[data-editor-session-expired-dialog]");
   await expect(expiredDialog).toBeVisible();
@@ -205,10 +210,15 @@ test("warns before session expiry and downloads work without saving it to the se
   await expect(save).toHaveAccessibleName(/download backup/i);
   await expect(save).toBeEnabled();
   await expect(save).toBeFocused();
+  await expect(menuToggle).toBeHidden();
+  await expect(menuToggle).toHaveAttribute("aria-expanded", "false");
+  await expect(menuBackup).toBeHidden();
+  await expect(page.locator("[data-editor-save-actions]")).not.toHaveClass(/btn-group/);
 
   await page.locator("[data-preview-yaml]").click();
   const reviewDialog = page.locator("[data-preview-dialog]");
   await expect(reviewDialog).toBeVisible();
+  await expect(reviewDialog.locator("[data-preview-name]")).toHaveText("KingdomsX configs");
   await expect(reviewDialog.locator("[data-save-workspace]")).toBeDisabled();
   await reviewDialog.locator("[data-close-preview]").first().click();
   await page.clock.setFixedTime(expiresAt + 60_000);
@@ -345,7 +355,7 @@ test("downloading from the expiry dialog dismisses it and returns focus to the t
   expect(pageErrors).toEqual([]);
 });
 
-test("remote toolbar keeps full save and backup labels with a stable caret width", async ({ context, page }, testInfo) => {
+test("remote toolbar keeps full save and backup labels and hides the caret after expiry", async ({ context, page }, testInfo) => {
   const now = Date.UTC(2026, 9, 4, 12);
   await page.clock.setFixedTime(now);
   const { expiresAt, link } = await mockRemoteWorkspace(context, { now });
@@ -398,12 +408,17 @@ test("remote toolbar keeps full save and backup labels with a stable caret width
       expect(bounds.reviewTop + bounds.reviewHeight / 2).toBeCloseTo(bounds.top + bounds.height / 2, 0);
       const controlsHost = width < 997 ? "[data-editor-sidebar-controls]" : "[data-editor-header-controls]";
       await expect(page.locator(`${controlsHost} [data-editor-controls]`)).toHaveCount(1);
-      const caretBounds = await caret.boundingBox();
-      expect(caretBounds.width).toBeCloseTo(desktopCaretWidth, 0);
-      expect(caretBounds.height).toBeCloseTo(bounds.height, 1);
-      expect(caretBounds.y).toBeCloseTo(bounds.top, 1);
-      expect(caretBounds.x).toBeGreaterThanOrEqual(bounds.right - 1);
-      expect(caretBounds.x + caretBounds.width).toBeLessThanOrEqual(width);
+      if (label === "Save to server") {
+        const caretBounds = await caret.boundingBox();
+        expect(caretBounds.width).toBeCloseTo(desktopCaretWidth, 0);
+        expect(caretBounds.height).toBeCloseTo(bounds.height, 1);
+        expect(caretBounds.y).toBeCloseTo(bounds.top, 1);
+        expect(caretBounds.x).toBeGreaterThanOrEqual(bounds.right - 1);
+        expect(caretBounds.x + caretBounds.width).toBeLessThanOrEqual(width);
+      } else {
+        await expect(caret).toBeHidden();
+        await expect(page.locator("[data-editor-save-actions]")).not.toHaveClass(/btn-group/);
+      }
 
       if (width < 997) {
         expect((bounds.actionsLeft + bounds.actionsRight) / 2).toBeCloseTo(width / 2, 0);
