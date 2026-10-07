@@ -32,7 +32,7 @@ const editorFoundationTheme = EditorView.theme({
 });
 
 const kingdomsDarkTheme = EditorView.theme({
-  "&": { backgroundColor: "#08131c", color: "#dce7ef" },
+  "&": { backgroundColor: "#08131c", color: "var(--text)" },
   ".cm-content": { caretColor: "#ffffff" },
   ".cm-cursor, .cm-dropCursor": { borderLeftColor: "#ffffff" },
   ".cm-content::selection, .cm-content ::selection": {
@@ -48,7 +48,7 @@ const kingdomsDarkTheme = EditorView.theme({
   ".cm-gutters": {
     borderRight: "0.0625rem solid #243747",
     backgroundColor: "#08131c",
-    color: "#71869a"
+    color: "var(--dim)"
   },
   ".cm-activeLine, .cm-activeLineGutter": { backgroundColor: "#102331" },
   "&:has(.cm-selectionBackground) .cm-activeLine": {
@@ -61,8 +61,8 @@ const kingdomsDarkTheme = EditorView.theme({
   ".cm-panels": {
     borderColor: "rgba(115, 144, 169, 0.3)",
     backgroundColor: "rgba(7, 16, 25, 0.975)",
-    color: "#dce7ef",
-    fontFamily: "var(--editor-sans)",
+    color: "var(--text)",
+    fontFamily: "var(--kingdomsx-font-body)",
     boxShadow: "0 -0.75rem 2rem rgba(0, 0, 0, 0.2)"
   },
   ".cm-panels-bottom": {
@@ -87,10 +87,10 @@ const kingdomsDarkTheme = EditorView.theme({
     minHeight: "2.15rem",
     padding: "0.4rem 0.65rem",
     border: "0.0625rem solid rgba(115, 144, 169, 0.4)",
-    borderRadius: "0.45rem",
+    borderRadius: "var(--kingdomsx-radius-compact)",
     outline: "none",
     backgroundColor: "rgba(12, 30, 42, 0.95)",
-    color: "#dce7ef",
+    color: "var(--text)",
     fontFamily: "var(--editor-mono)",
     fontSize: "0.75rem"
   },
@@ -113,35 +113,35 @@ const kingdomsDarkTheme = EditorView.theme({
     boxShadow: "0 0 0 0.1875rem rgba(251, 176, 59, 0.15)"
   },
   ".cm-panel.cm-search .cm-textfield::placeholder": {
-    color: "#71869a"
+    color: "var(--dim)"
   },
   ".cm-panel.cm-search .cm-button": {
     minHeight: "2.15rem",
     padding: "0.4rem 0.7rem",
     border: "0.0625rem solid rgba(115, 144, 169, 0.35)",
-    borderRadius: "0.45rem",
+    borderRadius: "var(--kingdomsx-radius-compact)",
     backgroundColor: "rgba(16, 29, 41, 0.95)",
     backgroundImage: "none",
-    color: "#dce7ef",
-    fontFamily: "var(--editor-sans)",
+    color: "var(--text)",
+    fontFamily: "var(--kingdomsx-font-body)",
     fontSize: "0.7rem",
     fontWeight: "700",
     textTransform: "capitalize",
     cursor: "pointer"
   },
   ".cm-panel.cm-search .cm-button:hover, .cm-panel.cm-search .cm-button:focus-visible": {
-    borderColor: "#fbb03b",
+    borderColor: "var(--amber)",
     outline: "none",
-    backgroundColor: "rgba(251, 176, 59, 0.125)",
-    color: "#fbb03b",
-    boxShadow: "0 0 0 0.1875rem rgba(251, 176, 59, 0.1)"
+    backgroundColor: "var(--kingdomsx-control-hover-background)",
+    color: "var(--text)",
+    boxShadow: "var(--kingdomsx-control-hover-shadow)"
   },
   ".cm-panel.cm-search label": {
     display: "inline-flex",
     alignItems: "center",
     gap: "0.3rem",
-    color: "#9aabba",
-    fontFamily: "var(--editor-sans)",
+    color: "var(--muted)",
+    fontFamily: "var(--kingdomsx-font-body)",
     fontSize: "0.7rem",
     whiteSpace: "nowrap",
     cursor: "pointer"
@@ -150,7 +150,7 @@ const kingdomsDarkTheme = EditorView.theme({
     width: "0.95rem",
     height: "0.95rem",
     margin: "0",
-    accentColor: "#fbb03b",
+    accentColor: "var(--amber)",
     cursor: "pointer"
   },
   ".cm-panel.cm-search [name=close]": {
@@ -162,19 +162,19 @@ const kingdomsDarkTheme = EditorView.theme({
     padding: "0",
     placeItems: "center",
     border: "0.0625rem solid rgba(115, 144, 169, 0.35)",
-    borderRadius: "0.45rem",
+    borderRadius: "var(--kingdomsx-radius-compact)",
     backgroundColor: "rgba(16, 29, 41, 0.95)",
-    color: "#9aabba",
-    fontFamily: "var(--editor-sans)",
+    color: "var(--muted)",
+    fontFamily: "var(--kingdomsx-font-body)",
     fontSize: "1rem",
     lineHeight: "1",
     cursor: "pointer"
   },
   ".cm-panel.cm-search [name=close]:hover, .cm-panel.cm-search [name=close]:focus-visible": {
-    borderColor: "#fbb03b",
+    borderColor: "var(--amber)",
     outline: "none",
-    color: "#fbb03b",
-    boxShadow: "0 0 0 0.1875rem rgba(251, 176, 59, 0.1)"
+    color: "var(--amber)",
+    boxShadow: "var(--kingdomsx-control-hover-shadow)"
   },
   ".cm-searchMatch": {
     backgroundColor: "rgba(251, 176, 59, 0.225)",

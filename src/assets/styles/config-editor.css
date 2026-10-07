@@ -1,12 +1,11 @@
 .config-editor {
   --editor-files-rail-width: 20rem;
   --editor-sidebar-width: 16.5rem;
-  --editor-button-radius: 0.5rem;
-  --editor-panel-border: rgba(115, 144, 169, 0.225);
+  --editor-button-radius: var(--kingdomsx-radius-control);
+  --editor-panel-border: var(--kingdomsx-line);
   --editor-surface: rgba(7, 16, 25, 0.95);
   --editor-surface-raised: rgba(16, 29, 41, 0.875);
-  --editor-surface-subtle: rgba(12, 30, 42, 0.725);
-  --editor-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --editor-mono: var(--kingdomsx-font-mono);
   --editor-value-font: var(--editor-mono);
   --font-mono: var(--editor-mono);
   --mono-font-family: var(--editor-mono);
@@ -14,11 +13,6 @@
   scrollbar-color: orange #191d24;
   position: relative;
   height: 100dvh;
-}
-
-.config-editor button,
-.editor-dialog button {
-  border-radius: var(--editor-button-radius);
 }
 
 /* Avoid repainting the full editor on every pointer move */
@@ -49,26 +43,28 @@ html[data-editor-session-pending] [data-editor-session-loading] {
 
 .editor-surface-card {
   border: 0.0625rem solid var(--editor-panel-border);
-  background: var(--editor-surface-subtle);
+  background: var(--kingdomsx-nested-background);
+  box-shadow: var(--kingdomsx-nested-shadow);
 }
 
 .editor-ghost-card {
-  border: 0.0625rem solid rgba(255, 255, 255, 0.1);
-  background: rgba(255, 255, 255, 0.025);
+  border: 0.0625rem solid var(--editor-panel-border);
+  background: var(--kingdomsx-nested-background);
+  box-shadow: var(--kingdomsx-nested-shadow);
 }
 
 .editor-pill {
   padding: 0.2rem 0.55rem;
-  border: 0.0625rem solid rgba(255, 255, 255, 0.125);
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.025);
+  border: 0.0625rem solid var(--editor-panel-border);
+  border-radius: var(--kingdomsx-radius-compact);
+  background: var(--kingdomsx-surface-inset);
   font-size: 0.65rem;
   line-height: 1.2;
 }
 
 .editor-header {
   z-index: 50;
-  border-bottom-color: #383020;
+  border-bottom-color: var(--kingdomsx-line-warm);
   background: rgba(7, 16, 25, 0.45);
 }
 
@@ -416,10 +412,15 @@ html[data-editor-session-pending] [data-editor-session-loading] {
 
 .editor-interactive-surface:hover,
 .editor-interactive-surface:focus-visible {
-  transform: translateY(-0.125rem);
+  transform: translateY(var(--kingdomsx-lift));
   border-color: var(--amber);
-  background: rgba(28, 44, 60, 0.9);
-  box-shadow: 0 0.65rem 1.5rem rgba(0, 0, 0, 0.225);
+  background: var(--kingdomsx-control-hover-background);
+  box-shadow: var(--kingdomsx-control-hover-shadow);
+}
+
+.editor-interactive-surface:focus-visible {
+  outline: var(--kingdomsx-focus-ring);
+  outline-offset: var(--kingdomsx-focus-offset);
 }
 
 .editor-file-folder,
@@ -429,7 +430,7 @@ html[data-editor-session-pending] [data-editor-session-loading] {
   padding: 0.55rem 0.75rem;
   border: 0.0625rem solid var(--editor-panel-border);
   border-radius: var(--editor-button-radius);
-  background: transparent;
+  background: var(--kingdomsx-control-background);
   color: var(--muted);
   font-size: 0.82rem;
   line-height: 1.25;
@@ -457,10 +458,11 @@ html[data-editor-session-pending] [data-editor-session-loading] {
 
 .editor-workspace-file.is-active,
 .editor-section.is-active {
-  border-color: rgba(251, 176, 59, 0.45);
-  background: rgba(251, 176, 59, 0.1);
-  color: var(--amber);
-  box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.175);
+  transform: none;
+  border-color: var(--kingdomsx-selected-border);
+  background: var(--kingdomsx-selected-background);
+  color: var(--text);
+  box-shadow: none;
 }
 
 .editor-workspace-file--schematic i {
@@ -489,7 +491,7 @@ html[data-editor-session-pending] [data-editor-session-loading] {
   min-width: 1.5rem;
   min-height: 1.4rem;
   padding: 0.1rem 0.38rem;
-  border-radius: var(--editor-button-radius);
+  border-radius: var(--kingdomsx-radius-compact);
   font-size: 0.6rem;
   line-height: 1;
 }
@@ -509,7 +511,7 @@ html[data-editor-session-pending] [data-editor-session-loading] {
   padding: 0.16rem 0.42rem;
   border-color: rgba(88, 199, 243, 0.3);
   background: rgba(88, 199, 243, 0.1);
-  color: #a9e8ff;
+  color: var(--info-text);
   font-size: 0.56rem;
   letter-spacing: 0.015em;
   text-overflow: ellipsis;
@@ -1365,9 +1367,9 @@ body.editor-navigation-open .editor-gui-preview-launcher,
   color: var(--muted);
   font-family: var(--editor-mono);
   font-weight: 600;
-  background: color-mix(in srgb, var(--surface-2, #1a1a1a) 80%, transparent);
-  border: 1px solid color-mix(in srgb, var(--border, #444) 70%, transparent);
-  border-radius: 0.35rem;
+  background: var(--kingdomsx-surface-inset);
+  border: 0.0625rem solid var(--editor-panel-border);
+  border-radius: var(--kingdomsx-radius-compact);
   padding: 0.1rem 0.4rem;
 }
 
@@ -1475,7 +1477,7 @@ body.editor-navigation-open .editor-gui-preview-launcher,
   z-index: 1;
   top: 1.75rem;
   right: 0.35rem;
-  background: color-mix(in srgb, var(--surface-2, #15202b) 92%, transparent) !important;
+  background: color-mix(in srgb, var(--kingdomsx-surface-raised) 92%, transparent) !important;
 }
 
 .editor-setting-default:has(details[open]) :is(.editor-setting-default-values, .editor-setting-default-source) {
@@ -1494,7 +1496,7 @@ body.editor-navigation-open .editor-gui-preview-launcher,
 .editor-setting-default-source {
   max-height: 12rem;
   border: 0.0625rem solid var(--editor-panel-border);
-  background: color-mix(in srgb, var(--surface-2, #15202b) 88%, transparent);
+  background: color-mix(in srgb, var(--kingdomsx-surface-raised) 88%, transparent);
 }
 
 .editor-setting-default-source {
@@ -1507,7 +1509,7 @@ body.editor-navigation-open .editor-gui-preview-launcher,
 
 .editor-available-chip {
   border-color: var(--editor-panel-border);
-  background: color-mix(in srgb, var(--surface-2, #15202b) 88%, transparent);
+  background: color-mix(in srgb, var(--kingdomsx-surface-raised) 88%, transparent);
   color: var(--text);
   font-size: 0.68rem;
   font-weight: 600;
@@ -2174,7 +2176,7 @@ html[data-editor-text-size="large"] :is(.config-editor, .editor-dialog) :is(
 
 .editor-message-preview-color-label {
   color: var(--muted);
-  font-family: var(--editor-sans);
+  font-family: var(--kingdomsx-font-body);
   font-size: 0.65rem;
 }
 
@@ -2281,7 +2283,7 @@ html[data-editor-text-size="large"] :is(.config-editor, .editor-dialog) :is(
 }
 
 .editor-control-hint.is-error {
-  color: #ff918b;
+  color: var(--danger-text);
 }
 
 .editor-reusable-icon {
@@ -2474,9 +2476,10 @@ html[data-editor-text-size="large"] :is(.config-editor, .editor-dialog) :is(
 
 .editor-color-value-control-preview:hover,
 .editor-color-value-control-preview:focus-visible {
-  border-color: rgba(96, 225, 199, 0.45);
-  box-shadow: 0 0 0 0.18rem rgba(96, 225, 199, 0.1);
-  outline: none;
+  border-color: var(--amber);
+  box-shadow: var(--kingdomsx-control-hover-shadow);
+  outline: var(--kingdomsx-focus-ring);
+  outline-offset: var(--kingdomsx-focus-offset);
 }
 
 .editor-subfield-label {
@@ -2857,9 +2860,9 @@ html[data-editor-text-size="large"] :is(.config-editor, .editor-dialog) :is(
 }
 
 .editor-dialog {
-  --editor-button-radius: 0.5rem;
-  --editor-panel-border: rgba(115, 144, 169, 0.225);
-  --editor-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --editor-button-radius: var(--kingdomsx-radius-control);
+  --editor-panel-border: var(--kingdomsx-line);
+  --editor-mono: var(--kingdomsx-font-mono);
   --editor-value-font: var(--editor-mono);
   width: min(56rem, calc(100vw - 2rem));
   max-height: calc(100dvh - 2rem);
@@ -3100,7 +3103,7 @@ html[data-editor-reduce-motion="true"] :is(.config-editor, .editor-dialog) *::af
 
 .editor-review-change-kind {
   border-color: transparent;
-  color: #9ce8ff;
+  color: var(--info-text);
   background: rgba(88, 199, 243, 0.1);
   font-size: 0.58rem;
   font-weight: 800;
@@ -3109,9 +3112,9 @@ html[data-editor-reduce-motion="true"] :is(.config-editor, .editor-dialog) *::af
 }
 
 .editor-review-warnings {
-  border: 0.0625rem solid rgba(255, 173, 102, 0.25);
-  color: #f3ce84;
-  background: rgba(255, 173, 102, 0.075);
+  border: 0.0625rem solid color-mix(in srgb, var(--warning) 25%, transparent);
+  color: var(--warning-text);
+  background: color-mix(in srgb, var(--warning) 7.5%, transparent);
   font-size: 0.67rem;
 }
 
@@ -3120,7 +3123,7 @@ html[data-editor-reduce-motion="true"] :is(.config-editor, .editor-dialog) *::af
 }
 
 .editor-review-source summary {
-  color: #9ce8ff;
+  color: var(--info-text);
   cursor: pointer;
   font-size: 0.72rem;
 }
@@ -3395,7 +3398,7 @@ html[data-editor-input-font="minecraft"][data-editor-text-size="large"] :is(.con
     right: 0;
     bottom: 0;
     display: flex;
-    width: min(23rem, calc(100vw - 2rem));
+    width: min(var(--kingdomsx-drawer-width), calc(100vw - 2rem));
     min-width: 0;
     flex-direction: column;
     border-left: 0.0625rem solid rgba(251, 176, 59, 0.25);
@@ -3499,8 +3502,8 @@ html[data-editor-input-font="minecraft"][data-editor-text-size="large"] :is(.con
 
   .editor-navigation .editor-workspace-file.is-active,
   .editor-navigation .editor-section.is-active {
-    border-color: var(--amber);
-    background: color-mix(in srgb, var(--amber) 15%, #101b27);
+    border-color: var(--kingdomsx-selected-border);
+    background: var(--kingdomsx-selected-background);
     color: var(--text);
     box-shadow: none;
   }
@@ -3752,8 +3755,8 @@ html[data-editor-input-font="minecraft"][data-editor-text-size="large"] :is(.con
   }
 
   .editor-header-layout > .brand img {
-    width: 2.125rem;
-    height: 2.125rem;
+    width: var(--kingdomsx-brand-size);
+    height: var(--kingdomsx-brand-size);
   }
 
   .editor-header-icon-button {
