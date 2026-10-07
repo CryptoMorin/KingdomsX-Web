@@ -86,6 +86,11 @@
     "wrangler": "^4.147.0",
     "yaml": "^2.9.1"
   },
+  "overrides": {
+    "miniflare": {
+      "sharp": "0.35.5"
+    }
+  },
   "allowScripts": {
     "@tsparticles/engine": false,
     "esbuild@0.28.1": true,
