@@ -215,8 +215,7 @@ img {
   opacity: 0.4;
   background-image:
     linear-gradient(rgba(251, 176, 59, 0.075) 0.0625rem, transparent 0.0625rem),
-    linear-gradient(90deg, rgba(251, 176, 59, 0.075) 0.0625rem, transparent 0.0625rem),
-    repeating-linear-gradient(90deg, transparent 0 3.625rem, rgba(251, 176, 59, 0.025) 3.625rem 3.75rem);
+    linear-gradient(90deg, rgba(251, 176, 59, 0.075) 0.0625rem, transparent 0.0625rem);
   background-size: 5rem 5rem;
   mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.8) 58%, rgba(0, 0, 0, 0.3) 100%);
 }
