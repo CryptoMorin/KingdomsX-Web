@@ -7,5 +7,6 @@
   "include": [
     "bindings.local.d.ts",
     "tests/**/*.ts"
-  ]
+  ],
+  "exclude": []
 }

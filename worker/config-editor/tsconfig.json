@@ -12,7 +12,7 @@
   },
   "include": [
     "bindings.production.d.ts",
-    "*.ts"
+    "index.ts"
   ],
   "exclude": [
     "*.test.ts",
