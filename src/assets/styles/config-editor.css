@@ -1,3 +1,15 @@
+html:has(.config-editor:not([hidden])) {
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+/* Fix the body too since Safari can ignore overflow hidden when the visual viewport shrinks */
+body:has(.config-editor:not([hidden])) {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+}
+
 .config-editor {
   --editor-files-rail-width: 20rem;
   --editor-sidebar-width: 16.5rem;
@@ -3377,10 +3389,6 @@ html[data-editor-input-font="minecraft"][data-editor-text-size="large"] :is(.con
   body:has(.editor-workspace.is-source-mode) .editor-corner-stack {
     top: 4.5rem;
     bottom: auto;
-  }
-
-  body.editor-navigation-open {
-    overflow: hidden;
   }
 
   .editor-workspace,

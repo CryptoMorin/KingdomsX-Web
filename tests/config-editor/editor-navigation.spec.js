@@ -224,3 +224,49 @@ test("mobile sidebar footer stays visible while files scroll", async ({ page }, 
   await expect(footer.locator("[data-open-editor-settings]")).toBeInViewport();
   await page.screenshot({ path: testInfo.outputPath("mobile-sidebar-scrolled.png"), animations: "disabled" });
 });
+
+test.describe("editor touch scrolling", () => {
+  test.use({ isMobile: true, hasTouch: true, viewport: { width: 390, height: 724 } });
+
+  test("keeps the navbar visible during touch scrolling", async ({ page, context }) => {
+    await page.goto("/editor");
+    await page.locator("[data-example]").click();
+    await expect(page.locator("[data-editor-workspace]")).toBeVisible();
+
+    // Model Safari keeping vh at the larger viewport height while browser controls reduce dvh
+    await page.addStyleTag({ content: ".min-vh-100 { min-height: 844px !important; }" });
+    const shell = page.locator("[data-editor-shell]");
+    const header = page.locator(".editor-header");
+    const content = page.locator("[data-editor-scroll]");
+    await expect.poll(() => shell.evaluate((element) => element.getBoundingClientRect().height)).toBe(724);
+    await expect.poll(() => header.evaluate((element) => element.getBoundingClientRect().top)).toBe(0);
+
+    const cdp = await context.newCDPSession(page);
+    const swipe = async (startY, endY) => {
+      await cdp.send("Input.dispatchTouchEvent", {
+        type: "touchStart", touchPoints: [{ x: 195, y: startY }]
+      });
+
+      for (let step = 1; step <= 12; step++) {
+        await cdp.send("Input.dispatchTouchEvent", {
+          type: "touchMove", touchPoints: [{ x: 195, y: startY + (endY - startY) * step / 12 }]
+        });
+        await page.waitForTimeout(25);
+      }
+
+      await cdp.send("Input.dispatchTouchEvent", { type: "touchEnd", touchPoints: [] });
+    };
+
+    await swipe(75, 5);
+    expect(await page.evaluate(() => window.scrollY)).toBe(0);
+    expect(await header.evaluate((element) => element.getBoundingClientRect().top)).toBe(0);
+    expect(await content.evaluate((element) => element.scrollTop)).toBe(0);
+
+    await swipe(550, 250);
+    await expect.poll(() => content.evaluate((element) => element.scrollTop)).toBeGreaterThan(0);
+    expect(await page.evaluate(() => window.scrollY)).toBe(0);
+    expect(await header.evaluate((element) => element.getBoundingClientRect().top)).toBe(0);
+
+    await cdp.detach();
+  });
+});
