@@ -252,19 +252,20 @@ img {
 
 @supports (-webkit-touch-callout: none) {
   @media (hover: none) and (pointer: coarse) {
-    /* Safari samples 4px inside the viewport over a 2px strip to fill its status area
-       Keep that edge opaque above the navbar and drawer's backdrop filters
-       Otherwise, the safe area will be completely transparent and look weird */
-    .site-header.sticky-top::after {
-      content: "";
-      position: fixed;
-      top: calc(-1 * env(safe-area-inset-top, 0px));
-      left: 0;
-      right: 0;
-      height: calc(env(safe-area-inset-top, 0px) + 6px);
-      z-index: 1081;
-      pointer-events: none;
-      background: var(--kingdomsx-bg);
+    /* Safari extends the sticky container's background color into its status area
+       Keep backdrop filters on separate pseudo-elements so it can use that color */
+    .site-header.sticky-top {
+      background: color-mix(in srgb, var(--bg) 45%, transparent);
+    }
+
+    .site-header.sticky-top .main-navigation {
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+    }
+
+    .site-header.sticky-top .main-navigation::before {
+      -webkit-backdrop-filter: var(--navigation-blur);
+      backdrop-filter: var(--navigation-blur);
     }
   }
 }
