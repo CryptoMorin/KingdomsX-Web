@@ -250,19 +250,23 @@ img {
   backdrop-filter: var(--navigation-blur);
 }
 
-/* Safari samples 4px inside the viewport over a 2px strip to fill its status area
-   Keep that edge opaque above the navbar and drawer's backdrop filters
-   Otherwise, the backdrop area will be completely transparent and look weird */
-.site-header.sticky-top::after {
-  content: "";
-  position: fixed;
-  top: calc(-1 * env(safe-area-inset-top, 0px));
-  left: 0;
-  right: 0;
-  height: calc(env(safe-area-inset-top, 0px) + 6px);
-  z-index: 1081;
-  pointer-events: none;
-  background: var(--kingdomsx-bg);
+@supports (-webkit-touch-callout: none) {
+  @media (hover: none) and (pointer: coarse) {
+    /* Safari samples 4px inside the viewport over a 2px strip to fill its status area
+       Keep that edge opaque above the navbar and drawer's backdrop filters
+       Otherwise, the safe area will be completely transparent and look weird */
+    .site-header.sticky-top::after {
+      content: "";
+      position: fixed;
+      top: calc(-1 * env(safe-area-inset-top, 0px));
+      left: 0;
+      right: 0;
+      height: calc(env(safe-area-inset-top, 0px) + 6px);
+      z-index: 1081;
+      pointer-events: none;
+      background: var(--kingdomsx-bg);
+    }
+  }
 }
 
 .site-header .navbar {
