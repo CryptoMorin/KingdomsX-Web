@@ -599,7 +599,7 @@ export const createVerificationController = ({
       noticeMain.className = "d-flex align-items-start align-items-md-center gap-3 flex-grow-1 min-w-0";
 
       const icon = document.createElement("i");
-      icon.className = `${status === "verified" ? "fa-solid fa-circle-check" : status === "expired" ? "fa-solid fa-triangle-exclamation" : "fa-solid fa-clock"} align-self-center`;
+      icon.className = `${status === "verified" ? "fa-solid fa-check" : status === "expired" ? "fa-solid fa-exclamation" : "fa-solid fa-clock"} site-feedback-icon d-inline-flex align-items-center justify-content-center flex-shrink-0 align-self-center`;
       icon.setAttribute("aria-hidden", "true");
 
       const content = document.createElement("div");

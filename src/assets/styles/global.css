@@ -175,6 +175,16 @@ img {
   justify-self: start;
 }
 
+.site-feedback-icon {
+  width: var(--site-feedback-icon-size, 2.5rem);
+  height: var(--site-feedback-icon-size, 2.5rem);
+  border: 0.0625rem solid color-mix(in srgb, currentColor 20%, transparent);
+  border-radius: var(--kingdomsx-radius-control);
+  background: color-mix(in srgb, currentColor 10%, transparent);
+  color: var(--amber);
+  font-size: 1rem;
+}
+
 .page {
   --page-glow-x: 0%;
   --page-glow-y: 0%;
@@ -2272,8 +2282,7 @@ h3 {
 }
 
 .servers-state-icon {
-  width: 3.5rem;
-  height: 3.5rem;
+  --site-feedback-icon-size: 3.5rem;
   color: var(--amber);
   font-size: 2.125rem;
   filter: drop-shadow(0 0.5rem 1.25rem rgba(255, 116, 23, 0.25));
@@ -2513,6 +2522,7 @@ h3 {
 }
 
 .site-toast-header i {
+  --site-feedback-icon-size: 2rem;
   color: var(--amber);
   font-size: 1rem;
 }
@@ -2590,8 +2600,8 @@ h3 {
   line-height: 1.2;
 }
 
-.server-submit-notice > i,
-.server-submit-reason > i {
+.server-submit-notice .site-feedback-icon,
+.server-submit-reason .site-feedback-icon {
   color: var(--amber);
   font-size: 1.25rem;
 }
@@ -2612,7 +2622,7 @@ h3 {
   color: #fecaca;
 }
 
-.server-submit-reason > i {
+.server-submit-reason .site-feedback-icon {
   color: #fecaca;
 }
 
@@ -2623,7 +2633,7 @@ h3 {
     rgba(16, 27, 39, 0.7);
 }
 
-.server-submit-notice.is-error > i {
+.server-submit-notice.is-error .site-feedback-icon {
   color: #fecaca;
 }
 
@@ -2634,7 +2644,7 @@ h3 {
     rgba(16, 27, 39, 0.7);
 }
 
-.server-submit-notice.is-success > i {
+.server-submit-notice.is-success .site-feedback-icon {
   color: #a7f3d0;
 }
 
@@ -2645,7 +2655,7 @@ h3 {
     rgba(16, 27, 39, 0.7);
 }
 
-.server-submit-notice.is-warning > i {
+.server-submit-notice.is-warning .site-feedback-icon {
   color: var(--amber);
 }
 

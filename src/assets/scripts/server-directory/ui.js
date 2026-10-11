@@ -436,7 +436,7 @@ export const renderServerState = (
   state.className = `servers-state d-flex flex-column align-items-center justify-content-center text-center gap-2 p-4 rounded-2 ${kind}`.trim();
 
   const stateIcon = document.createElement("i");
-  stateIcon.className = `servers-state-icon d-inline-flex align-items-center justify-content-center fa-solid ${icon}`;
+  stateIcon.className = `servers-state-icon site-feedback-icon d-inline-flex align-items-center justify-content-center flex-shrink-0 fa-solid ${icon}`;
   stateIcon.setAttribute("aria-hidden", "true");
 
   const stateTitle = document.createElement("strong");

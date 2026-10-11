@@ -38,7 +38,7 @@ export const createSubmitFormKit = ({
     panel.className = `servers-state d-flex flex-column align-items-center justify-content-center text-center gap-2 p-4 rounded-2 ${kind}`.trim();
 
     const icon = document.createElement("i");
-    icon.className = `servers-state-icon d-inline-flex align-items-center justify-content-center ${iconClass}`;
+    icon.className = `servers-state-icon site-feedback-icon d-inline-flex align-items-center justify-content-center flex-shrink-0 ${iconClass}`;
     icon.setAttribute("aria-hidden", "true");
 
     const heading = document.createElement("strong");

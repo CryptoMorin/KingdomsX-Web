@@ -233,7 +233,7 @@ const createCurrentModerationReason = (server, messages) => {
   notice.className = "server-submit-notice is-error d-flex align-items-center gap-3 p-3 rounded-3";
 
   const icon = document.createElement("i");
-  icon.className = "fa-solid fa-circle-exclamation d-inline-flex align-items-center justify-content-center flex-shrink-0";
+  icon.className = "fa-solid fa-exclamation site-feedback-icon d-inline-flex align-items-center justify-content-center flex-shrink-0";
   icon.setAttribute("aria-hidden", "true");
 
   const content = document.createElement("div");

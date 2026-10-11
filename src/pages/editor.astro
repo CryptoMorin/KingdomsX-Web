@@ -500,7 +500,7 @@ const allowManualWorkspaces = import.meta.env.DEV || process.env.EDITOR_MANUAL_W
             <div class="editor-source-workspace-body min-h-0 d-grid px-3 px-lg-4 pb-3">
               <div class="editor-source-code h-100 min-h-0 overflow-hidden" data-source-editor></div>
               <div class="editor-review-warnings rounded-3 p-3 mt-3" data-source-warnings hidden>
-                <strong><i class="fa-solid fa-triangle-exclamation me-2"></i>Check this source</strong>
+                <strong class="d-flex align-items-center gap-2"><i class="fa-solid fa-exclamation site-feedback-icon d-inline-flex align-items-center justify-content-center flex-shrink-0" aria-hidden="true"></i>Check this source</strong>
                 <ul class="mb-0 ps-3" data-source-warning-list></ul>
               </div>
             </div>
@@ -595,7 +595,7 @@ const allowManualWorkspaces = import.meta.env.DEV || process.env.EDITOR_MANUAL_W
       <p class="editor-review-empty mb-0" data-preview-changes-empty>No settings have been changed.</p>
       <div class="d-grid gap-2" data-preview-changes></div>
       <div class="editor-review-warnings rounded-3 p-3 mt-3" data-preview-warnings-panel hidden>
-        <strong><i class="fa-solid fa-triangle-exclamation me-2"></i><span data-review-warning-heading>Check before downloading</span></strong>
+        <strong class="d-flex align-items-center gap-2"><i class="fa-solid fa-exclamation site-feedback-icon d-inline-flex align-items-center justify-content-center flex-shrink-0" aria-hidden="true"></i><span data-review-warning-heading>Check before downloading</span></strong>
         <ul class="mb-0 ps-3" data-preview-warnings></ul>
       </div>
       <details class="editor-review-source mt-4" data-preview-source-details>
@@ -638,7 +638,7 @@ const allowManualWorkspaces = import.meta.env.DEV || process.env.EDITOR_MANUAL_W
           <label class="editor-subfield-label d-block mb-2 fw-bold" for="editor-schematic-file">Schematic file</label>
           <input class="form-control editor-input" id="editor-schematic-file" type="file" accept=".schematic,.schem,application/octet-stream" data-add-schematic-file required />
         </div>
-        <p class="editor-dialog-hint mt-3 mb-0"><i class="fa-solid fa-circle-info me-2"></i><span data-add-schematic-hint></span></p>
+        <p class="editor-dialog-hint d-flex align-items-start gap-2 mt-3 mb-0"><i class="fa-solid fa-info site-feedback-icon d-inline-flex align-items-center justify-content-center flex-shrink-0" aria-hidden="true"></i><span data-add-schematic-hint></span></p>
         <p class="editor-dialog-hint mt-2 mb-0">Archive path: <code data-add-schematic-path></code></p>
       </div>
       <div class="editor-dialog-footer site-modal-footer d-flex justify-content-end gap-2">
@@ -677,7 +677,7 @@ const allowManualWorkspaces = import.meta.env.DEV || process.env.EDITOR_MANUAL_W
           </select>
           <label for="editor-mapping-shape">Value shape</label>
         </div>
-        <p class="editor-dialog-hint mt-3 mb-0"><i class="fa-solid fa-circle-info me-2"></i><span data-mapping-hint></span></p>
+        <p class="editor-dialog-hint d-flex align-items-start gap-2 mt-3 mb-0"><i class="fa-solid fa-info site-feedback-icon d-inline-flex align-items-center justify-content-center flex-shrink-0" aria-hidden="true"></i><span data-mapping-hint></span></p>
       </div>
       <div class="editor-dialog-footer site-modal-footer d-flex justify-content-end gap-2">
         <button class="btn btn-site-secondary btn-site-sm" type="button" data-close-mapping>Cancel</button>
@@ -701,7 +701,7 @@ const allowManualWorkspaces = import.meta.env.DEV || process.env.EDITOR_MANUAL_W
           <input class="form-control editor-input editor-input--code" id="editor-anchor-name" type="text" autocomplete="off" placeholder="Shared value name" pattern="[A-Za-z0-9_\-]+" data-anchor-name required />
           <label for="editor-anchor-name" data-anchor-name-label>Shared value name</label>
         </div>
-        <p class="editor-dialog-hint mt-2 mb-0"><i class="fa-solid fa-circle-info me-2"></i><span data-anchor-name-hint>Use letters, numbers, underscores, or hyphens. The name is available later in this file.</span></p>
+        <p class="editor-dialog-hint d-flex align-items-start gap-2 mt-2 mb-0"><i class="fa-solid fa-info site-feedback-icon d-inline-flex align-items-center justify-content-center flex-shrink-0" aria-hidden="true"></i><span data-anchor-name-hint>Use letters, numbers, underscores, or hyphens. The name is available later in this file.</span></p>
       </div>
       <div class="editor-dialog-footer site-modal-footer d-flex justify-content-end gap-2">
         <button class="btn btn-site-secondary btn-site-sm" type="button" data-close-anchor><span data-anchor-close-label>Cancel</span></button>
@@ -725,7 +725,7 @@ const allowManualWorkspaces = import.meta.env.DEV || process.env.EDITOR_MANUAL_W
           <select class="form-select editor-input editor-input--code" id="editor-use-saved-name" data-use-saved-name required></select>
           <label for="editor-use-saved-name">Shared value</label>
         </div>
-        <p class="editor-dialog-hint mt-3 mb-0"><i class="fa-solid fa-circle-info me-2"></i>Only compatible values defined earlier in the file are shown.</p>
+        <p class="editor-dialog-hint d-flex align-items-start gap-2 mt-3 mb-0"><i class="fa-solid fa-info site-feedback-icon d-inline-flex align-items-center justify-content-center flex-shrink-0" aria-hidden="true"></i><span>Only compatible values defined earlier in the file are shown.</span></p>
       </div>
       <div class="editor-dialog-footer site-modal-footer d-flex justify-content-end gap-2">
         <button class="btn btn-site-secondary btn-site-sm" type="button" data-close-use-saved>Cancel</button>

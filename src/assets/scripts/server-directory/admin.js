@@ -119,7 +119,7 @@ const createLocalAdminUnlock = (message, onSubmit) => {
   state.className = "servers-state servers-state-error d-flex flex-column align-items-center justify-content-center text-center gap-3 p-4 rounded-2";
 
   const icon = document.createElement("i");
-  icon.className = "servers-state-icon d-inline-flex align-items-center justify-content-center fa-solid fa-lock";
+  icon.className = "servers-state-icon site-feedback-icon d-inline-flex align-items-center justify-content-center flex-shrink-0 fa-solid fa-lock";
   icon.setAttribute("aria-hidden", "true");
 
   const title = document.createElement("strong");
@@ -490,7 +490,7 @@ const initServerAdmin = () => {
         ADMIN_MESSAGES.states.unavailableTitle,
         error instanceof Error ? error.message : ADMIN_MESSAGES.states.unavailableMessage,
         "servers-state-error",
-        "fa-triangle-exclamation"
+        "fa-exclamation"
       );
       setMessage(
         error instanceof Error ? error.message : ADMIN_MESSAGES.states.unavailableTitle,

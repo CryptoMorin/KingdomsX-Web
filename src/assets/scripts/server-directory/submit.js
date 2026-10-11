@@ -299,7 +299,7 @@ const initServerSubmit = () => {
       notice.className = "server-submit-notice is-error d-flex align-items-center gap-3 p-3 rounded-3";
 
       const icon = document.createElement("i");
-      icon.className = "fa-solid fa-triangle-exclamation d-inline-flex align-items-center justify-content-center flex-shrink-0";
+      icon.className = "fa-solid fa-exclamation site-feedback-icon d-inline-flex align-items-center justify-content-center flex-shrink-0";
       icon.setAttribute("aria-hidden", "true");
 
       const content = document.createElement("div");
@@ -327,7 +327,7 @@ const initServerSubmit = () => {
       notice.className = "server-submit-notice is-success d-flex align-items-center gap-3 p-3 rounded-3";
 
       const icon = document.createElement("i");
-      icon.className = "fa-solid fa-circle-check d-inline-flex align-items-center justify-content-center flex-shrink-0";
+      icon.className = "fa-solid fa-check site-feedback-icon d-inline-flex align-items-center justify-content-center flex-shrink-0";
       icon.setAttribute("aria-hidden", "true");
 
       const content = document.createElement("div");
@@ -688,7 +688,7 @@ const initServerSubmit = () => {
   const createReviewFeedback = (item) => {
     const reason = document.createElement("section");
     reason.className = "server-submit-reason surface-lift d-flex gap-3 p-3 rounded-3";
-    reason.innerHTML = '<i class="fa-solid fa-circle-exclamation flex-shrink-0" aria-hidden="true"></i>';
+    reason.innerHTML = '<i class="fa-solid fa-exclamation site-feedback-icon d-inline-flex align-items-center justify-content-center flex-shrink-0" aria-hidden="true"></i>';
 
     const content = document.createElement("div");
     content.className = "d-grid gap-2";
@@ -721,10 +721,10 @@ const initServerSubmit = () => {
           : "is-error",
     icon:
       item.reviewStatus === "approved"
-        ? "fa-solid fa-circle-check"
+        ? "fa-solid fa-check"
         : item.reviewStatus === "pending"
           ? "fa-solid fa-clock"
-          : "fa-solid fa-circle-exclamation",
+          : "fa-solid fa-exclamation",
     title:
       item.reviewStatus === "approved"
         ? SERVER_MESSAGES.submit.notifications.approvedTitle
@@ -743,7 +743,7 @@ const initServerSubmit = () => {
       notice.className = `server-submit-notice surface-lift d-flex align-items-center gap-3 p-3 rounded-3 ${item.kind || ""}`.trim();
 
       const icon = document.createElement("i");
-      icon.className = `${item.icon || "fa-solid fa-circle-info"} d-inline-flex align-items-center justify-content-center flex-shrink-0`;
+      icon.className = `${item.icon || "fa-solid fa-info"} site-feedback-icon d-inline-flex align-items-center justify-content-center flex-shrink-0`;
       icon.setAttribute("aria-hidden", "true");
 
       const content = document.createElement("div");
@@ -1052,7 +1052,7 @@ const initServerSubmit = () => {
           createNotificationArea([
             {
               kind: "is-error",
-              icon: "fa-solid fa-triangle-exclamation",
+              icon: "fa-solid fa-exclamation",
               title: SERVER_MESSAGES.submit.toasts.failure.deleteTitle,
               message:
                 error instanceof Error
@@ -1124,7 +1124,7 @@ const initServerSubmit = () => {
           error instanceof Error
             ? error.message
             : SERVER_MESSAGES.submit.dashboardUnavailableMessage,
-          "fa-solid fa-triangle-exclamation",
+          "fa-solid fa-exclamation",
           "servers-state-error"
         )
       );

@@ -39,7 +39,7 @@ const MESSAGES = {
       onlineCount === allCount
         ? "Every approved server currently appears online. Try the Online or All filter."
         : "Try the Online or All filter to browse approved servers.",
-    icon: "fa-circle-check",
+    icon: "fa-check",
   },
   noFilterMatch: {
     title: "No servers match this filter.",
@@ -307,7 +307,7 @@ const initServerLists = () => {
           MESSAGES.unavailable.title,
           MESSAGES.unavailable.message,
           "servers-state-error",
-          "fa-triangle-exclamation",
+          "fa-exclamation",
         );
       }
     };

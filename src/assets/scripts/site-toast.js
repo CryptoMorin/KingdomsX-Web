@@ -1,8 +1,8 @@
 import { Toast } from "bootstrap";
 
 const TOAST_ICONS = {
-  "is-success": "fa-solid fa-circle-check",
-  "is-error": "fa-solid fa-triangle-exclamation",
+  "is-success": "fa-solid fa-check",
+  "is-error": "fa-solid fa-exclamation",
   "is-warning": "fa-solid fa-clock"
 };
 
@@ -34,7 +34,7 @@ export function showSiteToast({
   header.className = "toast-header site-toast-header";
 
   const icon = document.createElement("i");
-  icon.className = `${TOAST_ICONS[kind] || "fa-solid fa-circle-info"} me-2`;
+  icon.className = `${TOAST_ICONS[kind] || "fa-solid fa-info"} site-feedback-icon d-inline-flex align-items-center justify-content-center flex-shrink-0 me-2`;
   icon.setAttribute("aria-hidden", "true");
 
   const heading = document.createElement("strong");

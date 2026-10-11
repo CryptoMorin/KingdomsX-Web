@@ -3243,7 +3243,9 @@ function renderWarnings() {
 
   for (const warning of warnings) {
     const item = element("div", "editor-warning d-flex align-items-start gap-2");
-    item.append(element("i", "fa-solid fa-triangle-exclamation"), document.createTextNode(warning));
+    const icon = element("i", "fa-solid fa-exclamation site-feedback-icon d-inline-flex align-items-center justify-content-center flex-shrink-0");
+    icon.setAttribute("aria-hidden", "true");
+    item.append(icon, document.createTextNode(warning));
     elements.warnings.append(item);
   }
 }

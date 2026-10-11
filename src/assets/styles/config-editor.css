@@ -2866,9 +2866,12 @@ html[data-editor-text-size="large"] :is(.config-editor, .editor-dialog) :is(
   font-size: 0.75rem;
 }
 
-.editor-warning i {
-  margin-top: 0.14rem;
+.editor-warning .site-feedback-icon,
+.editor-review-warnings .site-feedback-icon,
+.editor-dialog-hint .site-feedback-icon {
+  --site-feedback-icon-size: 1.5rem;
   color: var(--amber);
+  font-size: 0.75rem;
 }
 
 .editor-dialog {
