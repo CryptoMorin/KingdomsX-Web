@@ -3431,10 +3431,7 @@ html[data-editor-input-font="minecraft"][data-editor-text-size="large"] :is(.con
     inset: 0;
     background:
       radial-gradient(circle at 78% 12%, rgba(251, 176, 59, 0.1), transparent 12rem),
-      radial-gradient(circle at 20% 58%, rgba(45, 64, 83, 0.2), transparent 15rem),
-      linear-gradient(rgba(251, 176, 59, 0.05) 0.0625rem, transparent 0.0625rem),
-      linear-gradient(90deg, rgba(251, 176, 59, 0.05) 0.0625rem, transparent 0.0625rem);
-    background-size: auto, auto, 4.5rem 4.5rem, 4.5rem 4.5rem;
+      radial-gradient(circle at 20% 58%, rgba(45, 64, 83, 0.2), transparent 15rem);
     content: "";
     opacity: 0.9;
     pointer-events: none;

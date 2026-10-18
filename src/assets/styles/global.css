@@ -200,8 +200,7 @@ img {
     linear-gradient(180deg, var(--page-bg-top) 0%, var(--page-bg-mid) 24%, #07111b 44%, var(--page-bg-low) 72%, var(--page-bg-bottom) 100%);
 }
 
-.page::before,
-.page::after {
+.page::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -219,15 +218,6 @@ img {
   opacity: 0.95;
   animation: pageGlowBreathe 10s ease-in-out infinite;
   will-change: opacity, filter;
-}
-
-.page::after {
-  opacity: 0.4;
-  background-image:
-    linear-gradient(rgba(251, 176, 59, 0.075) 0.0625rem, transparent 0.0625rem),
-    linear-gradient(90deg, rgba(251, 176, 59, 0.075) 0.0625rem, transparent 0.0625rem);
-  background-size: 5rem 5rem;
-  mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.8) 58%, rgba(0, 0, 0, 0.3) 100%);
 }
 
 @keyframes pageGlowBreathe {
@@ -3348,10 +3338,7 @@ h3 {
     pointer-events: none;
     background:
       radial-gradient(circle at 78% 12%, rgba(251, 176, 59, 0.1), transparent 12rem),
-      radial-gradient(circle at 20% 58%, rgba(45, 64, 83, 0.2), transparent 15rem),
-      linear-gradient(rgba(251, 176, 59, 0.05) 0.0625rem, transparent 0.0625rem),
-      linear-gradient(90deg, rgba(251, 176, 59, 0.05) 0.0625rem, transparent 0.0625rem);
-    background-size: auto, auto, 4.5rem 4.5rem, 4.5rem 4.5rem;
+      radial-gradient(circle at 20% 58%, rgba(45, 64, 83, 0.2), transparent 15rem);
     opacity: 0.9;
   }
 
