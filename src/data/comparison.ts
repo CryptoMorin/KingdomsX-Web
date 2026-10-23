@@ -1,6 +1,6 @@
 export type PluginId = "kingdomsx" | "factionsuuid" | "lands" | "towny" | "griefprevention" | "residence";
 
-export type CellValue = "yes" | "partial" | "addon" | "no" | "na" | string;
+export type CellValue = "yes" | "partial" | "addon" | "no" | "na" | string | { label: string; hint?: string; href?: string };
 
 export type ComparisonRow = {
   feature: string;
@@ -47,11 +47,14 @@ export const comparisonCategories: ComparisonCategory[] = [
         hint: "Whether downloading the plugin requires purchasing it or not.",
         values: {
           kingdomsx: "Free (Discord)",
-          factionsuuid: "Premium",
+          factionsuuid: {
+            label: "Premium",
+            hint: "Free development builds are available, but support is only offered to users who purchase the plugin.",
+          },
           lands: "Premium",
           towny: "Free",
           griefprevention: "Free",
-          residence: "Free",
+          residence: "Free (Dev builds)",
         },
       },
       {
@@ -64,6 +67,21 @@ export const comparisonCategories: ComparisonCategory[] = [
           towny: "Source available",
           griefprevention: "yes",
           residence: "yes",
+        },
+      },
+      {
+        feature: "Minecraft version support",
+        hint: "The Minecraft server versions supported by current latest plugin version.",
+        values: {
+          kingdomsx: {
+            label: "1.9–26.2",
+            href: "https://wiki.kingdomsx.com/FAQ#supported-server-versions-by-the-plugin",
+          },
+          factionsuuid: "26.2–26.3",
+          lands: "1.21–26.3",
+          towny: "1.19–26.2",
+          griefprevention: "1.21.10–26.3",
+          residence: "1.7.10–26.3",
         },
       },
       {
