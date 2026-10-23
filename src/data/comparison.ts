@@ -51,7 +51,7 @@ export const comparisonCategories: ComparisonCategory[] = [
           lands: "Premium",
           towny: "Free",
           griefprevention: "Free",
-          residence: "Free (Dev builds)",
+          residence: "Free",
         },
       },
       {
@@ -61,7 +61,7 @@ export const comparisonCategories: ComparisonCategory[] = [
           kingdomsx: "partial",
           factionsuuid: "yes",
           lands: "no",
-          towny: "yes",
+          towny: "Source available",
           griefprevention: "yes",
           residence: "yes",
         },
@@ -99,7 +99,31 @@ export const comparisonCategories: ComparisonCategory[] = [
       },
       {
         feature: "Dynamic claim limits",
-        hint: "Whether claim limits can scale with power, members, upgrades, economy, levels, or playtime.",
+        hint: "Whether claim limits can grow with membership, upgrades, activity or other progression.",
+        values: {
+          kingdomsx: "yes",
+          factionsuuid: "yes",
+          lands: "yes",
+          towny: "yes",
+          griefprevention: "yes",
+          residence: "partial",
+        },
+      },
+      {
+        feature: "Map-based claiming",
+        hint: "Whether players can claim and unclaim territory by clicking an in-game map.",
+        values: {
+          kingdomsx: "yes",
+          factionsuuid: "no",
+          lands: "yes",
+          towny: "partial",
+          griefprevention: "no",
+          residence: "no",
+        },
+      },
+      {
+        feature: "Detached claims",
+        hint: "Whether a group can claim land away from its main territory and in separate claim clusters.",
         values: {
           kingdomsx: "yes",
           factionsuuid: "yes",
@@ -110,31 +134,7 @@ export const comparisonCategories: ComparisonCategory[] = [
         },
       },
       {
-        feature: "Map-based claiming",
-        hint: "Whether players can claim land from an in-game territory map instead of only standing in the claim.",
-        values: {
-          kingdomsx: "yes",
-          factionsuuid: "no",
-          lands: "yes",
-          towny: "no",
-          griefprevention: "no",
-          residence: "no",
-        },
-      },
-      {
-        feature: "Detached claims",
-        hint: "Whether a group can claim land away from its main territory and in separate claim clusters.",
-        values: {
-          kingdomsx: "yes",
-          factionsuuid: "partial",
-          lands: "partial",
-          towny: "yes",
-          griefprevention: "no",
-          residence: "yes",
-        },
-      },
-      {
-        feature: "Solo or starter claims",
+        feature: "Solo claiming",
         hint: "Whether a player can protect land without joining a larger group, including starter camps or automatic first claims.",
         values: {
           kingdomsx: "partial",
@@ -152,14 +152,14 @@ export const comparisonCategories: ComparisonCategory[] = [
           kingdomsx: "yes",
           factionsuuid: "yes",
           lands: "yes",
-          towny: "partial",
+          towny: "yes",
           griefprevention: "yes",
           residence: "yes",
         },
       },
       {
         feature: "Subclaims / areas",
-        hint: "Whether a claim can be divided into smaller managed areas, plots, zones, subdivisions, or equivalent per-area controls.",
+        hint: "Whether territory can be divided into smaller areas (plots, zones, etc.) with separate ownership or permissions.",
         values: {
           kingdomsx: "partial",
           factionsuuid: "yes",
@@ -171,7 +171,7 @@ export const comparisonCategories: ComparisonCategory[] = [
       },
       {
         feature: "Land rent / sale",
-        hint: "Whether players can rent, sell, or market specific land areas to other players.",
+        hint: "Whether players can rent or sell specific land areas to other players.",
         values: {
           kingdomsx: "no",
           factionsuuid: "no",
@@ -205,10 +205,10 @@ export const comparisonCategories: ComparisonCategory[] = [
         hint: "Whether the plugin has built-in GUIs for managing claims, members, roles, and other settings.",
         values: {
           kingdomsx: "yes",
-          factionsuuid: "no",
+          factionsuuid: "partial",
           lands: "yes",
-          towny: "addon",
-          griefprevention: "no",
+          towny: "partial",
+          griefprevention: "addon",
           residence: "partial",
         },
       },
@@ -218,15 +218,15 @@ export const comparisonCategories: ComparisonCategory[] = [
         values: {
           kingdomsx: "yes",
           factionsuuid: "yes",
-          lands: "partial",
-          towny: "no",
+          lands: "yes",
+          towny: "yes",
           griefprevention: "no",
           residence: "yes",
         },
       },
       {
         feature: "Interactive claim map",
-        hint: "Whether the in-game map can show territory details and support direct claim-related actions.",
+        hint: "Whether players can inspect territory details and manage claims directly from an in-game map.",
         values: {
           kingdomsx: "yes",
           factionsuuid: "no",
@@ -238,14 +238,14 @@ export const comparisonCategories: ComparisonCategory[] = [
       },
       {
         feature: "Bedrock form support",
-        hint: "Whether Bedrock / Geyser players get native forms or partial form-compatible GUI behavior.",
+        hint: "Whether Bedrock players can use native forms through Geyser/Floodgate.",
         values: {
           kingdomsx: "partial",
           factionsuuid: "no",
           lands: "yes",
           towny: "no",
           griefprevention: "no",
-          residence: "na",
+          residence: "no",
         },
       },
     ],
@@ -269,7 +269,7 @@ export const comparisonCategories: ComparisonCategory[] = [
       },
       {
         feature: "Group chat channels",
-        hint: "Dedicated chat channels for kingdoms, factions, lands, towns, nations, allies, or similar groups.",
+        hint: "Whether groups have dedicated private chat channels.",
         values: {
           kingdomsx: "yes",
           factionsuuid: "yes",
@@ -281,14 +281,14 @@ export const comparisonCategories: ComparisonCategory[] = [
       },
       {
         feature: "Contextual messages",
-        hint: "Different messages based on the viewer, owner, faction, kingdom relation, or land relation. E.g. server join/leave messages.",
+        hint: "Whether messages can change based on the viewer's relationship to another player or group.",
         values: {
           kingdomsx: "yes",
-          factionsuuid: "no",
-          lands: "yes",
-          towny: "partial",
+          factionsuuid: "partial",
+          lands: "partial",
+          towny: "no",
           griefprevention: "no",
-          residence: "yes",
+          residence: "no",
         },
       },
     ],
@@ -300,19 +300,19 @@ export const comparisonCategories: ComparisonCategory[] = [
     rows: [
       {
         feature: "Built-in placeholders",
-        hint: "Placeholders usable inside the plugin's own messages, GUIs, or configs without requiring PlaceholderAPI.",
+        hint: "Whether player, group and economy placeholders work across the plugin's messages, GUIs and configs without requiring PlaceholderAPI.",
         values: {
           kingdomsx: "yes",
-          factionsuuid: "partial",
+          factionsuuid: "yes",
           lands: "partial",
           towny: "partial",
-          griefprevention: "no",
-          residence: "yes",
+          griefprevention: "partial",
+          residence: "partial",
         },
       },
       {
         feature: "PlaceholderAPI support",
-        hint: "Whether the plugin exposes PlaceholderAPI placeholders for scoreboards, chat plugins, menus, or other integrations.",
+        hint: "Whether the plugin exposes its data to other plugins through PlaceholderAPI.",
         values: {
           kingdomsx: "yes",
           factionsuuid: "yes",
@@ -336,7 +336,7 @@ export const comparisonCategories: ComparisonCategory[] = [
       },
       {
         feature: "Editable language files",
-        hint: "Whether server owners can edit player messages through language or message files.",
+        hint: "Whether the plugin messages can be customized through language or message files.",
         values: {
           kingdomsx: "yes",
           factionsuuid: "yes",
@@ -348,31 +348,31 @@ export const comparisonCategories: ComparisonCategory[] = [
       },
       {
         feature: "Custom GUI files",
-        hint: "Whether server owners can edit GUI layouts, items, names, lore, slots, or actions through config files.",
+        hint: "Whether GUI layouts, items, conditions and actions can be configured through config files.",
         values: {
           kingdomsx: "yes",
-          factionsuuid: "no",
+          factionsuuid: "partial",
           lands: "yes",
-          towny: "partial",
+          towny: "addon",
           griefprevention: "addon",
           residence: "partial",
         },
       },
       {
         feature: "Automatic config updates",
-        hint: "Updates config files across plugin versions while keeping existing values and comments where supported.",
+        hint: "Whether new config entries are added automatically between plugin versions while keeping existing values and default comments.",
         values: {
           kingdomsx: "yes",
           factionsuuid: "yes",
-          lands: "yes",
+          lands: "Unverified",
           towny: "yes",
-          griefprevention: "no",
-          residence: "partial",
+          griefprevention: "partial",
+          residence: "yes",
         },
       },
       {
         feature: "Automatic config reloads",
-        hint: "Watches config files and reloads changed files automatically without running a reload command.",
+        hint: "Whether config changes are applied automatically without a reload command.",
         values: {
           kingdomsx: "yes",
           factionsuuid: "no",
@@ -384,11 +384,11 @@ export const comparisonCategories: ComparisonCategory[] = [
       },
       {
         feature: "Startup config validation",
-        hint: "Validates and optimizes config values during server startup.",
+        hint: "Whether setting types, values and expressions are checked for errors during startup.",
         values: {
           kingdomsx: "yes",
-          factionsuuid: "no",
-          lands: "partial",
+          factionsuuid: "partial",
+          lands: "Unverified",
           towny: "partial",
           griefprevention: "partial",
           residence: "partial",
@@ -403,7 +403,7 @@ export const comparisonCategories: ComparisonCategory[] = [
     rows: [
       {
         feature: "Group bank",
-        hint: "Whether the group can store money in a shared bank, treasury, or balance.",
+        hint: "Whether members can deposit and withdraw money from a shared group balance.",
         values: {
           kingdomsx: "yes",
           factionsuuid: "yes",
@@ -415,11 +415,11 @@ export const comparisonCategories: ComparisonCategory[] = [
       },
       {
         feature: "Group vaults / storage",
-        hint: "Built-in or integrated item storage for group resources.",
+        hint: "Whether members can store items in a shared group inventory.",
         values: {
           kingdomsx: "yes",
           factionsuuid: "addon",
-          lands: "yes",
+          lands: "partial",
           towny: "no",
           griefprevention: "no",
           residence: "no",
@@ -427,7 +427,7 @@ export const comparisonCategories: ComparisonCategory[] = [
       },
       {
         feature: "Plugin-specific currency",
-        hint: "Currency distinct from Vault economy (e.g. resource points).",
+        hint: "Whether the plugin provides its own group currency (distinct from Vault economy) for upgrades and other gameplay costs (e.g. resource points).",
         values: {
           kingdomsx: "yes",
           factionsuuid: "no",
@@ -442,23 +442,23 @@ export const comparisonCategories: ComparisonCategory[] = [
         hint: "Whether taxes, upkeep, or treasury calculations can be configured by server owners.",
         values: {
           kingdomsx: "yes",
-          factionsuuid: "no",
+          factionsuuid: "yes",
           lands: "partial",
-          towny: "yes",
+          towny: "partial",
           griefprevention: "na",
           residence: "partial",
         },
       },
       {
         feature: "Custom ranks / roles",
-        hint: "Whether groups can define or use internal ranks, roles, permissions, or trusted member tiers.",
+        hint: "Whether groups can create ranks or roles and configure their permissions.",
         values: {
           kingdomsx: "yes",
           factionsuuid: "partial",
           lands: "yes",
-          towny: "yes",
+          towny: "partial",
           griefprevention: "no",
-          residence: "partial",
+          residence: "no",
         },
       },
       {
@@ -475,7 +475,7 @@ export const comparisonCategories: ComparisonCategory[] = [
       },
       {
         feature: "Top lists / leaderboards",
-        hint: "Whether the plugin has ranking commands, top lists, placeholders, signs, holograms, or leaderboard-style sorting.",
+        hint: "Whether the plugin has a mechanism to rank groups based on scores, wealth or progression (e.g. top lists, placeholders, leaderboards, etc.).",
         values: {
           kingdomsx: "yes",
           factionsuuid: "yes",
@@ -494,14 +494,14 @@ export const comparisonCategories: ComparisonCategory[] = [
     rows: [
       {
         feature: "Restore land on unclaim",
-        hint: "Whether land can be restored after being unclaimed.",
+        hint: "Whether land can be restored automatically after being unclaimed.",
         values: {
           kingdomsx: "yes",
           factionsuuid: "no",
           lands: "addon",
           towny: "yes",
           griefprevention: "partial",
-          residence: "partial",
+          residence: "no",
         },
       },
       {
@@ -511,7 +511,7 @@ export const comparisonCategories: ComparisonCategory[] = [
           kingdomsx: "yes",
           factionsuuid: "yes",
           lands: "yes",
-          towny: "partial",
+          towny: "yes",
           griefprevention: "yes",
           residence: "yes",
         },
@@ -522,10 +522,10 @@ export const comparisonCategories: ComparisonCategory[] = [
         values: {
           kingdomsx: "yes",
           factionsuuid: "no",
-          lands: "partial",
-          towny: "partial",
-          griefprevention: "partial",
-          residence: "partial",
+          lands: "addon",
+          towny: "no",
+          griefprevention: "no",
+          residence: "addon",
         },
       },
       {
@@ -534,10 +534,10 @@ export const comparisonCategories: ComparisonCategory[] = [
         values: {
           kingdomsx: "yes",
           factionsuuid: "no",
-          lands: "partial",
-          towny: "partial",
-          griefprevention: "partial",
-          residence: "partial",
+          lands: "addon",
+          towny: "no",
+          griefprevention: "no",
+          residence: "addon",
         },
       },
     ],
@@ -556,24 +556,24 @@ export const comparisonCategories: ComparisonCategory[] = [
           lands: "yes",
           towny: "partial",
           griefprevention: "partial",
-          residence: "yes",
+          residence: "partial",
         },
       },
       {
         feature: "War shields",
-        hint: "Temporary protection period preventing invasions or raids after a war ends or by player choice.",
+        hint: "Whether players can activate timed shields to protect their territory from attacks.",
         values: {
           kingdomsx: "yes",
-          factionsuuid: "yes",
-          lands: "yes",
+          factionsuuid: "partial",
+          lands: "partial",
           towny: "addon",
           griefprevention: "no",
-          residence: "yes",
+          residence: "partial",
         },
       },
       {
         feature: "Turrets / placeable defenses",
-        hint: "Whether the plugin includes placeable defensive blocks, turrets, siege equipment or other structures.",
+        hint: "Whether the plugin has placeable defenses or siege buildings, such as turrets, cannons or other structures.",
         values: {
           kingdomsx: "yes",
           factionsuuid: "no",
@@ -584,14 +584,14 @@ export const comparisonCategories: ComparisonCategory[] = [
         },
       },
       {
-        feature: "Explosion rollback / regen",
-        hint: "Track and restore TNT / creeper explosion damage in claimed or protected land.",
+        feature: "Explosion regeneration",
+        hint: "Whether the plugin has a mechanism to track and restore explosion damage in claimed territory (e.g. TNT or Creeper explosions).",
         values: {
           kingdomsx: "yes",
           factionsuuid: "no",
-          lands: "addon",
-          towny: "yes",
-          griefprevention: "partial",
+          lands: "no",
+          towny: "partial",
+          griefprevention: "no",
           residence: "no",
         },
       },
@@ -609,7 +609,7 @@ export const comparisonCategories: ComparisonCategory[] = [
       },
       {
         feature: "Peace treaties / war terms",
-        hint: "Formal surrender, settlement, tribute, or treaty mechanics after war.",
+        hint: "Whether groups can agree on peace terms, such as reparations, territory or ongoing obligations.",
         values: {
           kingdomsx: "addon",
           factionsuuid: "no",
@@ -621,7 +621,7 @@ export const comparisonCategories: ComparisonCategory[] = [
       },
       {
         feature: "Elections / voting",
-        hint: "Whether group leadership or political decisions can be handled through built-in voting or election mechanics.",
+        hint: "Whether group leadership can be chosen through elections or member voting.",
         values: {
           kingdomsx: "yes",
           factionsuuid: "no",
@@ -633,7 +633,7 @@ export const comparisonCategories: ComparisonCategory[] = [
       },
       {
         feature: "Nations / federations",
-        hint: "Whether multiple groups can join a higher-level nation, federation, or equivalent alliance structure.",
+        hint: "Whether multiple groups can form a shared group entity with shared leadership and settings (e.g. nations).",
         values: {
           kingdomsx: "yes",
           factionsuuid: "no",
@@ -645,7 +645,7 @@ export const comparisonCategories: ComparisonCategory[] = [
       },
       {
         feature: "Configurable relation rules",
-        hint: "Whether server or group owners (kings, leaders, etc.) can configure what different relations are allowed to do in claims or wars.",
+        hint: "Whether group leaders can configure access and combat rules for allies, truces and enemies.",
         values: {
           kingdomsx: "yes",
           factionsuuid: "partial",
@@ -664,7 +664,7 @@ export const comparisonCategories: ComparisonCategory[] = [
     rows: [
       {
         feature: "No required dependencies",
-        hint: "Whether the plugin can run by itself without another plugin being required first.",
+        hint: "Whether the plugin can run by itself, without requiring another plugin to be installed.",
         values: {
           kingdomsx: "yes",
           factionsuuid: "yes",
@@ -675,7 +675,7 @@ export const comparisonCategories: ComparisonCategory[] = [
         },
       },
       {
-        feature: "Multiple database backend options",
+        feature: "Multiple storage backends",
         hint: "Whether the plugin supports more than one storage backend, such as flatfile, SQLite, MySQL, or similar databases.",
         values: {
           kingdomsx: "yes",
@@ -692,15 +692,15 @@ export const comparisonCategories: ComparisonCategory[] = [
         values: {
           kingdomsx: "yes",
           factionsuuid: "no",
-          lands: "no",
+          lands: "yes",
           towny: "yes",
           griefprevention: "no",
-          residence: "no",
+          residence: "partial",
         },
       },
       {
         feature: "Webmap plugin support",
-        hint: "Dynmap, BlueMap, Squaremap, Pl3xMap, etc.",
+        hint: "Whether claims can be displayed on browser maps such as Dynmap, BlueMap or squaremap.",
         values: {
           kingdomsx: "addon",
           factionsuuid: "yes",
@@ -712,23 +712,23 @@ export const comparisonCategories: ComparisonCategory[] = [
       },
       {
         feature: "WorldGuard support",
-        hint: "Prevents claiming inside server regions (e.g. spawn).",
+        hint: "Whether claiming can be restricted inside WorldGuard regions (e.g. spawn).",
         values: {
           kingdomsx: "addon",
-          factionsuuid: "partial",
+          factionsuuid: "yes",
           lands: "yes",
           towny: "addon",
-          griefprevention: "partial",
+          griefprevention: "yes",
           residence: "yes",
         },
       },
       {
         feature: "Discord bridge",
-        hint: "Native or officially-supported Discord bridge for land/group event announcements or messages.",
+        hint: "Whether group chat or event announcements can be bridged to Discord.",
         values: {
           kingdomsx: "yes",
           factionsuuid: "no",
-          lands: "yes",
+          lands: "addon",
           towny: "addon",
           griefprevention: "no",
           residence: "no",
