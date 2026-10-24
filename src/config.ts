@@ -30,7 +30,7 @@ const serverPath = (path = "") => {
 export const SITE = {
   name: "KingdomsX",
   url: siteUrl,
-  wiki: "https://wiki.kingdomsx.com",
+  wiki: "https://kingdoms.wiki",
   discord: "https://discord.kingdomsx.com",
   download: "https://download.kingdomsx.com",
   serverDirectoryUrl,

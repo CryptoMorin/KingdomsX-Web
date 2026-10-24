@@ -48,7 +48,7 @@ export function appendDescriptionText(container, value) {
 }
 
 function descriptionUrl(url) {
-  return String(url).replace(LEGACY_WIKI_PREFIX, "https://wiki.kingdomsx.com");
+  return String(url).replace(LEGACY_WIKI_PREFIX, "https://kingdoms.wiki");
 }
 
 function trimTrailingPunctuation(url) {

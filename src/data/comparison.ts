@@ -75,7 +75,7 @@ export const comparisonCategories: ComparisonCategory[] = [
         values: {
           kingdomsx: {
             label: "1.9–26.2",
-            href: "https://wiki.kingdomsx.com/FAQ#supported-server-versions-by-the-plugin",
+            href: "https://kingdoms.wiki/FAQ#supported-server-versions-by-the-plugin",
           },
           factionsuuid: "26.2–26.3",
           lands: "1.21–26.3",
