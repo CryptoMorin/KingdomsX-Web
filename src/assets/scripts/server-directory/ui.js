@@ -1,120 +1,13 @@
 import { formatDate } from "../site-date.js";
+import { checkedAgoLabel, FALLBACK_SERVER_ICON, paginationControls, SOCIAL_ICON_CLASSES, SOCIAL_PLATFORMS } from "./listing-presentation.ts";
+export { checkedAgoLabel, formatNumber, playerCountLabel, SERVER_DESCRIPTION_LIMIT, SOCIAL_PLATFORMS, truncateServerDescription, versionLabel } from "./listing-presentation.ts";
 
-export const SERVER_DESCRIPTION_LIMIT = 240;
-
-const FALLBACK_SERVER_ICON = "/apple-touch-icon.png";
-const numberFormatter = new Intl.NumberFormat();
 const copyResetTimers = new WeakMap();
-
-// Drives submit form fields and listing link icons
-export const SOCIAL_PLATFORMS = Object.freeze([
-  {
-    key: "discord",
-    label: "Discord",
-    icon: "fa-brands fa-discord",
-    placeholder: "discord.gg/invite or invite-code",
-  },
-  {
-    key: "facebook",
-    label: "Facebook",
-    icon: "fa-brands fa-facebook-f",
-    placeholder: "@page or facebook.com/page",
-  },
-  {
-    key: "instagram",
-    label: "Instagram",
-    icon: "fa-brands fa-instagram",
-    placeholder: "@username",
-  },
-  { key: "x", label: "Twitter/X", icon: "fa-brands fa-x-twitter", placeholder: "@username" },
-  {
-    key: "youtube",
-    label: "YouTube",
-    icon: "fa-brands fa-youtube",
-    placeholder: "@handle or youtube.com/@handle",
-  },
-  {
-    key: "tiktok",
-    label: "TikTok",
-    icon: "fa-brands fa-tiktok",
-    placeholder: "@username or tiktok.com/@username",
-  },
-  {
-    key: "twitch",
-    label: "Twitch",
-    icon: "fa-brands fa-twitch",
-    placeholder: "username or twitch.tv/username",
-  },
-]);
-
-const SOCIAL_ICON_CLASSES = Object.freeze({
-  website: "fa-solid fa-globe",
-  ...Object.fromEntries(SOCIAL_PLATFORMS.map(({ key, icon }) => [key, icon])),
-});
-
-export const truncateServerDescription = (value, max = SERVER_DESCRIPTION_LIMIT) => {
-  const text = String(value ?? "").trim();
-
-  return text.length <= max ? text : `${text.slice(0, max - 1).trimEnd()}…`;
-};
-
-export const formatNumber = (value) => numberFormatter.format(value);
 
 export const titleCase = (value) =>
   String(value ?? "unknown")
     .replace(/[_-]+/g, " ")
     .replace(/\b\w/g, (letter) => letter.toUpperCase());
-
-export const checkedAgoLabel = (status) => {
-  if (!status?.checkedAt) {
-    return "(not checked yet)";
-  }
-
-  const checkedTime = new Date(status.checkedAt).getTime();
-
-  if (!Number.isFinite(checkedTime)) {
-    return "(not checked yet)";
-  }
-
-  const elapsedSeconds = Math.max(0, Math.floor((Date.now() - checkedTime) / 1000));
-
-  if (elapsedSeconds < 60) {
-    return "(<1m ago)";
-  }
-
-  const elapsedMinutes = Math.floor(elapsedSeconds / 60);
-
-  if (elapsedMinutes < 60) {
-    return `(${elapsedMinutes}m ago)`;
-  }
-
-  const elapsedHours = Math.floor(elapsedMinutes / 60);
-
-  if (elapsedHours < 24) {
-    return `(${elapsedHours}h ago)`;
-  }
-
-  return `(${Math.floor(elapsedHours / 24)}d ago)`;
-};
-
-export const playerCountLabel = (status) => {
-  if (status?.online === false) {
-    return "-";
-  }
-
-  if (typeof status?.playersMax === "number") {
-    return `${formatNumber(status.playersOnline ?? 0)} / ${formatNumber(status.playersMax)}`;
-  }
-
-  if (typeof status?.playersOnline === "number") {
-    return `${formatNumber(status.playersOnline)} online`;
-  }
-
-  return "Players unknown";
-};
-
-export const versionLabel = (status) =>
-  status?.online === false ? "-" : status?.version || "Version unknown";
 
 export const reviewStatusLabel = (server) =>
   ({
@@ -485,36 +378,7 @@ export const renderPagination = (container, currentPage, totalPages, createContr
 
   container.replaceChildren();
 
-  if (totalPages <= 1) {
-    return;
-  }
-
-  const controls = [
-    {
-      label: "Previous",
-      page: Math.max(1, currentPage - 1),
-      disabled: currentPage === 1,
-      iconClass: "fa-solid fa-chevron-left",
-    }
-  ];
-
-  for (let page = 1; page <= totalPages; page += 1) {
-    if (page === 1 || page === totalPages || Math.abs(page - currentPage) <= 1) {
-      controls.push({ label: String(page), page, current: page === currentPage });
-    } else if (Math.abs(page - currentPage) === 2) {
-      controls.push({ ellipsis: true });
-    }
-  }
-
-  controls.push({
-    label: "Next",
-    page: Math.min(totalPages, currentPage + 1),
-    disabled: currentPage === totalPages,
-    iconClass: "fa-solid fa-chevron-right",
-    iconAfter: true,
-  });
-
-  controls.forEach((control) => {
+  paginationControls(currentPage, totalPages).forEach((control) => {
     if (control.ellipsis) {
       const ellipsis = document.createElement("span");
       ellipsis.className = "servers-pagination-ellipsis";

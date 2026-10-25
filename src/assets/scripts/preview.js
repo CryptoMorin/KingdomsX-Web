@@ -48,8 +48,6 @@
     preloadedFrames.add(normalizedStep);
   };
 
-  preloadFrame(activeStep);
-
   const scrollToNewestEntry = (step) => {
     if (!terminalHistory || mobilePreview.matches || !isPreviewVisible) {
       return;
@@ -214,7 +212,10 @@
     }
 
     scrollToNewestEntry(normalizedStep);
-    preloadFrame(normalizedStep + 1);
+    if (isPreviewVisible) {
+      preloadFrame(normalizedStep);
+      preloadFrame(normalizedStep + 1);
+    }
 
     if (!options.skipSchedule) {
       scheduleNextFrame(nextDelay);

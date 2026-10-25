@@ -1,4 +1,4 @@
-const trimTrailingSlash = (value: string) => value.replace(/\/+$/, "");
+const trimTrailingSlash = (value: string) => value.trim().replace(/\/+$/, "");
 const getGitSha = (value: string | undefined) => {
   const sha = value?.trim() ?? "";
 

@@ -102,28 +102,21 @@ describe("server directory Worker routing", () => {
     const sitemapXml = await sitemap.text();
 
     expect(sitemapXml).toContain("<loc>https://servers.kingdomsx.com/</loc>");
-    expect(sitemapXml).toContain("<loc>https://servers.kingdomsx.com/all</loc>");
-    expect(sitemapXml).toContain("<loc>https://servers.kingdomsx.com/offline</loc>");
+    expect(sitemapXml).not.toContain("<loc>https://servers.kingdomsx.com/all</loc>");
+    expect(sitemapXml).not.toContain("<loc>https://servers.kingdomsx.com/offline</loc>");
     expect(sitemapXml).not.toContain("/submit");
     expect(sitemapXml).not.toContain("/admin");
   });
 
   it.each([
-    ["/", "Servers | KingdomsX", "https://servers.kingdomsx.com/", false],
-    ["/all", "All Servers | KingdomsX", "https://servers.kingdomsx.com/all", false],
-    ["/offline", "Offline Servers | KingdomsX", "https://servers.kingdomsx.com/offline", false],
-    ["/sort/name", "Servers | KingdomsX", "https://servers.kingdomsx.com/sort/name", false],
-    [
-      "/all/sort/players/page/2",
-      "All Servers - Page 2 | KingdomsX",
-      "https://servers.kingdomsx.com/all/sort/players/page/2",
-      true
-    ]
+    ["/", "Servers | KingdomsX", "https://servers.kingdomsx.com/"],
+    ["/all", "All Servers | KingdomsX", "https://servers.kingdomsx.com/all"],
+    ["/offline", "Offline Servers | KingdomsX", "https://servers.kingdomsx.com/offline"],
+    ["/sort/name", "Servers | KingdomsX", "https://servers.kingdomsx.com/sort/name"]
   ])("keeps metadata and JSON-LD consistent for %s", async (
     pathname,
     title,
-    canonicalUrl,
-    laterPage
+    canonicalUrl
   ) => {
     const response = await workerRoute(
       `https://servers.kingdomsx.com${pathname}`,
@@ -141,9 +134,7 @@ describe("server directory Worker routing", () => {
     expect(structuredDataMatch).not.toBeNull();
 
     const structuredData = JSON.parse(structuredDataMatch?.[1] ?? "null");
-    const expectedDescription = laterPage
-      ? "Browse public servers running KingdomsX, whether you want to test the plugin or find a community already using it. Page 2."
-      : "Browse public servers running KingdomsX, whether you want to test the plugin or find a community already using it.";
+    const expectedDescription = "Browse public servers running KingdomsX, whether you want to test the plugin or find a community already using it.";
 
     expect(html).toContain(`name="description" content="${expectedDescription}"`);
     expect(structuredData).toMatchObject({
@@ -157,7 +148,7 @@ describe("server directory Worker routing", () => {
   });
 
   it.each([
-    ["https://servers.kingdomsx.com/all/sort/name/page/2", 200, "/servers.html"],
+    ["https://servers.kingdomsx.com/all/sort/name/page/2", 404, "/404"],
     ["https://servers.kingdomsx.com/submit", 200, "/servers/submit.html"],
     ["https://servers.kingdomsx.com/page/101", 404, "/404"],
     ["https://kingdomsx.com/", 404, "/404"]

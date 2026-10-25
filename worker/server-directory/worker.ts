@@ -4,6 +4,10 @@ import {
   scheduleServerDirectoryRefresh
 } from "./index";
 import type { DirectoryEnv } from "./contracts";
+import { routePublicCollections, type PublicServerCollection } from "./public-directory/listings";
+import { logError } from "./core/runtime";
+import { publicDirectoryHtml, publicDirectoryStateHtml, publicPaginationHtml } from "../../src/assets/scripts/server-directory/listing-html";
+import { DIRECTORY_UNAVAILABLE, publicDirectoryPath as directoryPath } from "../../src/assets/scripts/server-directory/listing-presentation";
 
 type WorkerEnv = Omit<Cloudflare.Env, "APP_ENVIRONMENT"> & DirectoryEnv;
 
@@ -11,7 +15,7 @@ const APEX_HOST = "kingdomsx.com";
 const SERVERS_HOST = "servers.kingdomsx.com";
 const SERVERS_ORIGIN = `https://${SERVERS_HOST}`;
 const SERVER_DIRECTORY_DESCRIPTION = "Browse public servers running KingdomsX, whether you want to test the plugin or find a community already using it.";
-const SERVER_DIRECTORY_SITEMAP_PATHS = ["/", "/all", "/offline"] as const;
+const SERVER_DIRECTORY_SITEMAP_PATHS = ["/"] as const;
 
 type DirectoryStatus = "all" | "online" | "offline";
 type DirectorySort = "newest" | "players" | "name";
@@ -42,7 +46,7 @@ export default {
       return seoResponse;
     }
 
-    const serverResponse = await serveServerSurface(request, url, env);
+    const serverResponse = await serveServerSurface(request, url, env, ctx);
 
     if (serverResponse) {
       return serverResponse;
@@ -71,7 +75,8 @@ export default {
 async function serveServerSurface(
   request: Request,
   url: URL,
-  env: WorkerEnv
+  env: WorkerEnv,
+  ctx: ExecutionContext
 ): Promise<Response | null> {
   const normalizedPath = normalizeServerHtmlPath(url.pathname);
   const utilityAsset = serverUtilityAsset(normalizedPath);
@@ -91,7 +96,7 @@ async function serveServerSurface(
 
   const route = parseDirectoryRoute(normalizedPath);
 
-  return route ? serveDirectoryPage(request, url, env, route) : null;
+  return route ? serveDirectoryPage(request, url, env, route, ctx) : null;
 }
 
 function serverUtilityAsset(pathname: string): { publicPath: string; assetPath: string } | null {
@@ -211,7 +216,7 @@ function parseDirectoryRoute(pathname: string): DirectoryRoute | null {
   }
 
   if (segments.length === 0) {
-    return { status, sort, page: 1, canonicalPath: directoryPath(status, sort, 1) };
+    return { status, sort, page: 1, canonicalPath: directoryPath(status, 1, sort) };
   }
 
   if (segments.length !== 2 || segments[0] !== "page" || !/^[1-9]\d*$/.test(segments[1])) {
@@ -221,35 +226,16 @@ function parseDirectoryRoute(pathname: string): DirectoryRoute | null {
   const page = Number(segments[1]);
 
   return page <= PUBLIC_DIRECTORY_MAX_PAGE
-    ? { status, sort, page, canonicalPath: directoryPath(status, sort, page) }
+    ? { status, sort, page, canonicalPath: directoryPath(status, page, sort) }
     : null;
-}
-
-function directoryPath(
-  status: DirectoryStatus,
-  sort: DirectorySort,
-  page: number
-): string {
-  const segments: string[] = status === "online" ? [] : [status];
-
-  if (sort !== "newest") {
-    segments.push("sort", sort);
-  }
-
-  if (page > 1) {
-    segments.push("page", String(page));
-  }
-
-  const suffix = segments.length ? `/${segments.join("/")}` : "";
-
-  return suffix || "/";
 }
 
 async function serveDirectoryPage(
   request: Request,
   url: URL,
   env: WorkerEnv,
-  route: DirectoryRoute
+  route: DirectoryRoute,
+  ctx: ExecutionContext
 ): Promise<Response> {
   if (request.method !== "GET" && request.method !== "HEAD") {
     return new Response("Method not allowed", {
@@ -265,7 +251,7 @@ async function serveDirectoryPage(
   if (url.searchParams.has("sort")) {
     const querySort = parseDirectorySort(url.searchParams.get("sort"));
     const redirect = new URL(url);
-    redirect.pathname = directoryPath(route.status, querySort, route.page);
+    redirect.pathname = directoryPath(route.status, route.page, querySort);
     redirect.searchParams.delete("sort");
 
     return Response.redirect(redirect.toString(), 301);
@@ -278,27 +264,56 @@ async function serveDirectoryPage(
     return Response.redirect(redirect.toString(), 301);
   }
 
+  let data: PublicServerCollection | null = null;
+  let status = 200;
+  let retryAfter: string | null = null;
+
+  try {
+    const apiUrl = new URL("/api/servers", url);
+    apiUrl.searchParams.set("limit", "8");
+    apiUrl.searchParams.set("page", String(route.page));
+    apiUrl.searchParams.set("status", route.status);
+    apiUrl.searchParams.set("sort", route.sort);
+
+    // Share the API's approved projection, normalized cache and rate limits without an HTTP request
+    const collection = await routePublicCollections({
+      request: new Request(apiUrl, { headers: request.headers }),
+      url: apiUrl,
+      env,
+      executionCtx: ctx
+    });
+
+    if (collection?.ok) {
+      data = await collection.json<PublicServerCollection>();
+    } else {
+      status = collection?.status === 429 ? 429 : 503;
+      retryAfter = collection?.headers.get("retry-after") ?? null;
+    }
+  } catch (error) {
+    logError("public_directory.page_failed", error);
+    status = 503;
+  }
+
+  if (data && route.page > data.totalPages) {
+    return renderNotFoundPage(request, env);
+  }
+
   const response = await fetchAsset(request, url, env, "/servers.html");
   const canonical = new URL(route.canonicalPath, url);
   canonical.search = "";
   canonical.hash = "";
 
-  if (request.method === "HEAD") {
-    const headers = new Headers(response.headers);
-    headers.set("Link", `<${canonical.toString()}>; rel="canonical"`);
-
-    return new Response(null, {
-      status: response.status,
-      statusText: response.statusText,
-      headers
-    });
-  }
-
   if (!response.ok || !response.headers.get("content-type")?.includes("text/html")) {
     return response;
   }
 
-  return rewriteDirectoryMetadata(response, canonical.toString(), route);
+  const headers = new Headers(response.headers);
+
+  if (retryAfter) {
+    headers.set("Retry-After", retryAfter);
+  }
+
+  return rewriteDirectoryMetadata(new Response(request.method === "HEAD" ? null : response.body, { status, headers }), canonical.toString(), route, data);
 }
 
 function parseDirectorySort(value: string | null): DirectorySort {
@@ -328,7 +343,8 @@ function fetchAsset(
 function rewriteDirectoryMetadata(
   response: Response,
   canonicalUrl: string,
-  route: DirectoryRoute
+  route: DirectoryRoute,
+  data: PublicServerCollection | null
 ): Response {
   const statusLabel = route.status === "all" ? "All" : route.status === "offline" ? "Offline" : "Online";
   const pageLabel = route.page > 1 ? ` - Page ${route.page}` : "";
@@ -343,7 +359,17 @@ function rewriteDirectoryMetadata(
   // Remove length and validator headers because HTMLRewriter changes the body
   headers.delete("Content-Length");
   headers.delete("ETag");
+  headers.delete("Last-Modified");
   headers.set("Link", `<${canonicalUrl}>; rel="canonical"`);
+  const robots = response.ok && route.status === "online" && route.sort === "newest"
+    ? "index, follow, max-image-preview:large"
+    : "noindex, follow";
+  headers.set("X-Robots-Tag", robots);
+  headers.set("Cache-Control", "no-store");
+
+  if (!response.body) {
+    return new Response(null, { status: response.status, headers });
+  }
 
   const webPageStructuredData = JSON.stringify({
     "@context": "https://schema.org",
@@ -352,7 +378,7 @@ function rewriteDirectoryMetadata(
     "url": canonicalUrl,
     "name": title,
     "description": description,
-    "isPartOf": { "@id": `https://${APEX_HOST}/#website` },
+    "isPartOf": { "@id": `${new URL(canonicalUrl).origin}/#website` },
     "about": { "@id": `https://${APEX_HOST}/#software` },
     "inLanguage": "en"
   });
@@ -365,12 +391,49 @@ function rewriteDirectoryMetadata(
     .on('meta[property="og:title"]', new AttributeHandler("content", title))
     .on('meta[name="twitter:title"]', new AttributeHandler("content", title))
     .on('meta[name="description"]', new AttributeHandler("content", description))
+    .on('meta[name="robots"], meta[name="googlebot"]', new AttributeHandler("content", robots))
     .on('meta[property="og:description"]', new AttributeHandler("content", description))
     .on('meta[name="twitter:description"]', new AttributeHandler("content", description))
     .on(
       'script[data-structured-data="webpage"]',
       new TextContentHandler(webPageStructuredData)
     )
+    .on('[data-server-list]', {
+      element(element) {
+        element.setAttribute("data-server-rendered", "true");
+        element.removeAttribute("aria-busy");
+        element.setInnerContent(data ? publicDirectoryHtml(data, route.status) : publicDirectoryStateHtml(DIRECTORY_UNAVAILABLE, true), { html: true });
+      }
+    })
+    .on('[data-server-pagination]', {
+      element(element) {
+        element.setInnerContent(data ? publicPaginationHtml(data, route.status) : "", { html: true });
+      }
+    })
+    .on('[data-server-filter]', {
+      element(element) {
+        const filter = element.getAttribute("data-server-filter") as DirectoryStatus;
+        element.setAttribute("href", directoryPath(filter, 1, route.sort));
+        element.setAttribute("class", `btn btn-site${filter === route.status ? " is-active" : ""}`);
+
+        if (filter === route.status) {
+          element.setAttribute("aria-current", "page");
+        } else {
+          element.removeAttribute("aria-current");
+        }
+      }
+    })
+    .on('[data-server-sort] option', {
+      element(element) {
+        if (element.getAttribute("value") === route.sort) {
+          element.setAttribute("selected", "");
+        } else {
+          element.removeAttribute("selected");
+        }
+      }
+    })
+    .on('[data-server-sort-form]', new AttributeHandler("action", directoryPath(route.status, 1)))
+    .on('[data-server-noscript]', { element(element) { element.remove(); } })
     .transform(
       new Response(response.body, {
         status: response.status,
@@ -411,6 +474,15 @@ async function renderNotFoundPage(
   const response = await env.ASSETS.fetch(new Request(url, request));
   const headers = new Headers(response.headers);
   headers.delete("Location");
+  headers.set("X-Robots-Tag", "noindex, follow");
+
+  if (request.method === "HEAD") {
+    return new Response(null, {
+      status: 404,
+      statusText: "Not Found",
+      headers
+    });
+  }
 
   if (!response.body) {
     headers.set("Content-Type", "text/plain; charset=utf-8");

@@ -92,7 +92,7 @@ const getPswpType = (type: string) => (type === "video" ? "html" : undefined);
               {featuredItem.type === "video" ? (
                 <video src={featuredItem.src} aria-label={featuredItem.alt} width={featuredItem.width} height={featuredItem.height} autoplay muted loop playsinline preload="metadata"></video>
               ) : (
-                <img src={featuredItem.src} alt={featuredItem.alt} width={featuredItem.width} height={featuredItem.height} decoding="async" draggable="false" />
+                <img src={featuredItem.src} alt={featuredItem.alt} width={featuredItem.width} height={featuredItem.height} loading="lazy" decoding="async" draggable="false" />
               )}
             </span>
             <span class="gallery-card-content position-relative z-1 align-self-end">

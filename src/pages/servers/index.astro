@@ -23,6 +23,8 @@ const pageDescription = "Browse public servers running KingdomsX, whether you wa
   description={pageDescription}
   canonicalPath={SITE.isStandaloneServerDirectory ? "/" : "/servers"}
   canonicalUrl={canonicalUrl}
+  websiteUrl={canonicalUrl}
+  websiteName="KingdomsX Servers"
   preloadHeroImage={false}
   includeSiteScript={false}
 >
@@ -49,24 +51,26 @@ const pageDescription = "Browse public servers running KingdomsX, whether you wa
                   <i class="fa-solid fa-arrow-down-wide-short"></i>
                 </span>
                 <label class="visually-hidden" for="servers-sort">Sort servers</label>
-                <select class="form-select dark-select servers-sort-select" id="servers-sort" data-server-sort aria-label="Sort servers">
+                <select class="form-select dark-select servers-sort-select" id="servers-sort" name="sort" form="server-sort-form" data-server-sort aria-label="Sort servers">
                   <option value="newest" selected>Newest</option>
                   <option value="players">Most players</option>
                   <option value="name">Name A-Z</option>
                 </select>
               </div>
+              <noscript><button class="btn btn-site w-auto" type="submit" form="server-sort-form">Sort</button></noscript>
             </div>
             <a class="btn btn-site btn-site-primary d-inline-flex align-items-center justify-content-center gap-2 fw-bold" href={SITE.serverSubmit}>
               <i class="fa-solid fa-plus" aria-hidden="true"></i> Submit Your Server
             </a>
           </div>
+          <form id="server-sort-form" method="get" action={filterUrl("online")} data-server-sort-form hidden></form>
 
           <div class="servers-list" data-server-list data-server-mode="paged" data-server-limit="8" data-server-api-base={SITE.serverDirectoryUrl} aria-live="polite">
             <ServerCardSkeletons count={8} />
           </div>
           <nav class="servers-pagination d-flex justify-content-center gap-2" aria-label="Servers pagination" data-server-pagination></nav>
 
-          <noscript>
+          <noscript data-server-noscript>
             <p class="servers-state">JavaScript is required to load the server listings.</p>
           </noscript>
         </div>

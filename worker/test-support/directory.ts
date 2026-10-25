@@ -285,6 +285,7 @@ function assetBinding(requestedAssets: string[]): Fetcher {
         `<!doctype html><html><head>
           <title>Test</title>
           <meta name="description" content="Test description">
+          <meta name="robots" content="index, follow">
           <link rel="canonical" href="https://kingdomsx.com/servers">
           <link rel="alternate" hreflang="en" href="https://kingdomsx.com/servers">
           <meta property="og:url" content="https://kingdomsx.com/servers">
@@ -293,7 +294,16 @@ function assetBinding(requestedAssets: string[]): Fetcher {
           <meta name="twitter:title" content="Test">
           <meta name="twitter:description" content="Test description">
           <script type="application/ld+json" data-structured-data="webpage">{"@context":"https://schema.org","@type":"WebPage","url":"https://kingdomsx.com/servers","name":"Test"}</script>
-        </head><body>Asset</body></html>`,
+        </head><body>
+          <a class="btn btn-site" data-server-filter="all"></a>
+          <a class="btn btn-site" data-server-filter="online"></a>
+          <a class="btn btn-site" data-server-filter="offline"></a>
+          <form data-server-sort-form></form>
+          <select data-server-sort><option value="newest" selected>Newest</option><option value="name">Name</option><option value="players">Players</option></select>
+          <div data-server-list aria-busy="true">Skeleton</div>
+          <nav data-server-pagination></nav>
+          <noscript data-server-noscript>JavaScript required</noscript>
+        </body></html>`,
         {
           headers: { "content-type": "text/html; charset=utf-8" }
         }
@@ -314,7 +324,11 @@ async function workerRoute(
   } as Parameters<typeof worker.fetch>[1];
   const ctx = createExecutionContext();
 
-  return worker.fetch(new Request(url), routeEnv, ctx);
+  const response = await worker.fetch(new Request(url), routeEnv, ctx);
+
+  await waitOnExecutionContext(ctx);
+
+  return response;
 }
 
 function webWorkerRoute(url: string, requestedAssets: string[]): Promise<Response> {
@@ -401,6 +415,7 @@ export {
   stubSubmissionServices,
   captureDiscordRequests,
   workerRoute,
+  assetBinding,
   webWorkerRoute,
   seedOwnedServer,
   seedDiscordEmbed

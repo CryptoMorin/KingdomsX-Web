@@ -4,6 +4,7 @@ import heroBanner from "../assets/images/cta-castle-banner.webp";
 import { Font } from "astro:assets";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
+import "../assets/styles/icon-fonts.css";
 import "../assets/styles/global.css";
 
 interface Props {
@@ -18,6 +19,8 @@ interface Props {
   includeEditorFont?: boolean;
   editorFontLicenseUrl?: string;
   publicAssetsSameOrigin?: boolean;
+  websiteUrl?: string;
+  websiteName?: string;
 }
 
 const defaultTitle = "KingdomsX | Battles for might, land and glory";
@@ -33,12 +36,16 @@ const {
   includeSiteScript = true,
   includeEditorFont = false,
   editorFontLicenseUrl = "",
-  publicAssetsSameOrigin = false
+  publicAssetsSameOrigin = false,
+  websiteUrl: websiteUrlOverride = "",
+  websiteName = SITE.name
 } = Astro.props;
 const normalizedCanonicalPath = canonicalPath === "/" ? "/" : `/${canonicalPath.replace(/^\/+|\/+$/g, "")}`;
 const siteUrl = SITE.url || "";
 const shouldIncludeStructuredData = includeStructuredData && siteUrl;
 const canonicalUrl = canonicalUrlOverride || (siteUrl ? `${siteUrl}${normalizedCanonicalPath}` : normalizedCanonicalPath);
+const websiteUrl = websiteUrlOverride || (siteUrl ? `${siteUrl}/` : "");
+const serializeStructuredData = (value: unknown) => JSON.stringify(value).replace(/</g, "\\u003c");
 const publicUrl = (path: string) => {
   const normalizedPath = `/${path.replace(/^\/+/, "")}`;
 
@@ -52,6 +59,7 @@ const appleTouchIconUrl = publicUrl("apple-touch-icon.png");
 const manifestUrl = publicUrl("site.webmanifest");
 const manifestIconUrl = publicUrl("web-app-manifest-512x512.png");
 const ogImageUrl = publicUrl("og-img.png");
+const heroAssetOrigin = siteUrl ? new URL(heroBannerUrl, siteUrl).origin : "";
 ---
 <!doctype html>
 <html lang="en" data-bs-theme="dark">
@@ -80,7 +88,7 @@ const ogImageUrl = publicUrl("og-img.png");
     <meta name="msapplication-TileColor" content="#071019" />
     <link rel="manifest" href={manifestUrl} />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="KingdomsX" />
+    <meta property="og:site_name" content={websiteName} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
@@ -96,20 +104,21 @@ const ogImageUrl = publicUrl("og-img.png");
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageUrl} />
     <meta name="twitter:image:alt" content="KingdomsX plugin banner" />
+    {preloadHeroImage && heroAssetOrigin && heroAssetOrigin !== new URL(siteUrl).origin && <link rel="preconnect" href={heroAssetOrigin} />}
     {preloadHeroImage && <link rel="preload" as="image" href={heroBannerUrl} fetchpriority="high" />}
     <Font cssVariable="--font-lora" preload />
     {includeEditorFont && <Font cssVariable="--font-minecraft-ui" />}
     {editorFontLicenseUrl && <link rel="license" href={editorFontLicenseUrl} type="text/plain" />}
     {shouldIncludeStructuredData && (
-      <script type="application/ld+json" data-structured-data="site" set:html={JSON.stringify({
+      <script type="application/ld+json" data-structured-data="site" set:html={serializeStructuredData({
         "@context": "https://schema.org",
         "@graph": [
           {
             "@type": "WebSite",
-            "@id": `${siteUrl}/#website`,
-            "name": SITE.name,
-            "url": `${siteUrl}/`,
-            "description": defaultDescription,
+            "@id": `${websiteUrl}#website`,
+            "name": websiteName,
+            "url": websiteUrl,
+            "description": websiteUrlOverride ? description : defaultDescription,
             "inLanguage": "en",
             "publisher": { "@id": `${siteUrl}/#organization` }
           },
@@ -123,14 +132,14 @@ const ogImageUrl = publicUrl("og-img.png");
               "url": manifestIconUrl,
               "width": 512,
               "height": 512
-            },
-            "sameAs": [SITE.github, SITE.spigot, SITE.modrinth, SITE.discord, SITE.wiki]
+            }
           },
           {
             "@type": "SoftwareApplication",
             "@id": `${siteUrl}/#software`,
             "name": SITE.name,
             "applicationCategory": "GameApplication",
+            "sameAs": [SITE.github, SITE.spigot, SITE.modrinth],
             "operatingSystem": "Minecraft server",
             "url": `${siteUrl}/`,
             "downloadUrl": SITE.spigot,
@@ -145,14 +154,14 @@ const ogImageUrl = publicUrl("og-img.png");
       })} />
     )}
     {shouldIncludeStructuredData && (
-      <script type="application/ld+json" data-structured-data="webpage" set:html={JSON.stringify({
+      <script type="application/ld+json" data-structured-data="webpage" set:html={serializeStructuredData({
         "@context": "https://schema.org",
         "@type": "WebPage",
         "@id": `${canonicalUrl}#webpage`,
         "url": canonicalUrl,
         "name": title,
         "description": description,
-        "isPartOf": { "@id": `${siteUrl}/#website` },
+        "isPartOf": { "@id": `${websiteUrl}#website` },
         "about": { "@id": `${siteUrl}/#software` },
         "inLanguage": "en"
       })} />

@@ -94,7 +94,8 @@ const previewFrames = [
             alt={frame.alt}
             width="1448"
             height="1086"
-            loading={index === 0 ? undefined : "lazy"}
+            loading="lazy"
+            decoding="async"
             draggable="false"
           />
         ))}

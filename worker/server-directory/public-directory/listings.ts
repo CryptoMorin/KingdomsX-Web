@@ -26,6 +26,18 @@ import {
   recentPublicServerRows
 } from "./listing-queries";
 
+export type PublicServer = ReturnType<typeof toPublicServer>;
+
+export interface PublicServerCollection {
+  items: PublicServer[];
+  page: number;
+  limit: number;
+  sort: PublicSort;
+  total: number;
+  totalPages: number;
+  counts: Record<PublicStatusFilter, number>;
+}
+
 export async function routePublicCollections(
   context: DirectoryRequestContext
 ): Promise<Response | null> {
