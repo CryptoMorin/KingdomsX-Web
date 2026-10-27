@@ -2898,16 +2898,6 @@ html[data-editor-text-size="large"] :is(.config-editor, .editor-dialog) :is(
   width: min(46rem, calc(100vw - 2rem));
 }
 
-.editor-confirmation-icon {
-  width: 2.5rem;
-  height: 2.5rem;
-  place-items: center;
-  border: 0.0625rem solid rgba(251, 176, 59, 0.3);
-  border-radius: 0.5rem;
-  background: rgba(251, 176, 59, 0.1);
-  color: var(--amber);
-}
-
 @media (max-width: 575.98px) {
   .editor-confirmation-dialog .editor-dialog-footer > .btn {
     flex: 1 1 9rem;
@@ -2920,6 +2910,7 @@ html[data-editor-text-size="large"] :is(.config-editor, .editor-dialog) :is(
 .editor-confirmation-message {
   color: var(--muted);
   line-height: 1.65;
+  white-space: pre-line;
 }
 
 .editor-save-overlay {

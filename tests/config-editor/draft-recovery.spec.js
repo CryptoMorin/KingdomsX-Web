@@ -64,10 +64,17 @@ async function mockRemoteWorkspace(context, { now = Date.now(), files = { "confi
       return;
     }
 
+    const uploadedRevision = route.request().url().match(/\/payloads\/result\/(\d+)$/);
+    if (route.request().method() === "PUT" && uploadedRevision) {
+      snapshot.state = "result_ready";
+      snapshot.resultRevision = Number(uploadedRevision[1]);
+      snapshot.sequence += 1;
+    }
+
     await route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify(snapshot) });
   });
 
-  return { expiresAt, link: `/editor#s/v1/${linkSeed}`, mutations };
+  return { expiresAt, link: `/editor#s/v1/${linkSeed}`, mutations, snapshot };
 }
 
 async function editCode(page, source) {
@@ -106,6 +113,49 @@ async function persistedDrafts(page) {
     };
   }));
 }
+
+test("a timed-out save preserves edits, observes a late acknowledgement, and can be saved again", async ({ context, page }) => {
+  await page.clock.install();
+  const { link, mutations, snapshot } = await mockRemoteWorkspace(context);
+  const pageErrors = capturePageErrors(page);
+  await page.goto(link);
+  await expect(page.locator("[data-editor-workspace]")).toBeVisible();
+  await editCode(page, "enabled: false\n");
+  await switchEditorMode(page, "visual");
+  const save = page.locator(".editor-header-actions [data-save-workspace]");
+  await save.click();
+  await expect(page.locator("[data-editor-save-overlay]")).toBeVisible();
+  await expect.poll(() => snapshot.resultRevision).toBe(1);
+  await page.clock.fastForward(60_000);
+
+  const timeout = page.getByRole("dialog", { name: "Server save not confirmed" });
+  await expect(timeout).toBeVisible();
+  await expect(page.locator("[data-editor-save-overlay]")).toBeHidden();
+  await expect(page.locator("[data-editor-shell]")).toHaveJSProperty("inert", false);
+  await timeout.getByRole("button", { name: "Back to editor" }).click();
+  await expect(page.locator("[data-change-status]")).toContainText("ready to save");
+  expect(mutations).toHaveLength(1);
+
+  snapshot.state = "applying";
+  snapshot.sequence += 1;
+  await page.clock.runFor(60_000);
+  await expect(save).toBeDisabled();
+
+  snapshot.state = "applied";
+  snapshot.sequence += 1;
+  await page.clock.runFor(60_000);
+  await expect(save).toBeEnabled();
+  await save.click();
+  await expect.poll(() => snapshot.resultRevision).toBe(2);
+  snapshot.state = "applied";
+  snapshot.sequence += 1;
+  await page.clock.runFor(2_500);
+  await expect(page.locator("[data-editor-save-overlay]")).toBeHidden();
+  await expect(page.locator("[data-change-status]")).toHaveText("Saved to server");
+  await expect(save).toBeDisabled();
+  expect(mutations).toHaveLength(2);
+  expect(pageErrors).toEqual([]);
+});
 
 test("restores an encrypted Code mode draft after the console link is reopened", async ({ context, page }) => {
   const { link } = await mockRemoteWorkspace(context);

@@ -11,6 +11,7 @@ const RECONNECT_BACKOFF_MS = [1_000, 2_000, 4_000, 8_000, 15_000, 30_000];
 const BACKOFF_JITTER = 0.2;
 const REQUEST_TIMEOUT_MS = 30_000;
 const PAYLOAD_REQUEST_TIMEOUT_MS = 120_000;
+const APPLY_TIMEOUT_MS = 60_000;
 const SOCKET_OPEN = 1;
 const NON_RECONNECTING_STATES = new Set(["conflicted", "cancelled", "expired"]);
 const UPLOADABLE_STATES = new Set(["ready", "result_ready", "applied", "validation_rejected", "failed"]);
@@ -155,11 +156,9 @@ export class RemoteEditorSession {
     }
 
     for (const waiter of this.waiters) {
-      globalThis.clearTimeout(waiter.timer);
+      this.removeWaiter(waiter);
       waiter.reject(new Error("The remote editor session was closed."));
     }
-
-    this.waiters.clear();
   }
 
   async getStatus() {
@@ -228,10 +227,20 @@ export class RemoteEditorSession {
     }
 
     return new Promise((resolve, reject) => {
-      const waiter = { revision, resolve, reject, timer: 0, pollAttempt: 0 };
+      const waiter = { revision, resolve, reject, timer: 0, deadlineTimer: 0, pollAttempt: 0 };
       this.waiters.add(waiter);
+      waiter.deadlineTimer = globalThis.setTimeout(() => {
+        // Keep monitoring so a late acknowledgement can unlock saving without a WebSocket
+        reject(new RemoteApplyTimeoutError());
+      }, APPLY_TIMEOUT_MS);
       this.scheduleWaiterPoll(waiter);
     });
+  }
+
+  removeWaiter(waiter) {
+    this.waiters.delete(waiter);
+    globalThis.clearTimeout(waiter.timer);
+    globalThis.clearTimeout(waiter.deadlineTimer);
   }
 
   receive(snapshot) {
@@ -247,14 +256,19 @@ export class RemoteEditorSession {
     this.onSnapshot(snapshot);
 
     for (const waiter of [...this.waiters]) {
+      if (snapshot.resultRevision > waiter.revision) {
+        this.removeWaiter(waiter);
+        waiter.reject(new Error("A newer config revision replaced this save."));
+        continue;
+      }
+
       const outcome = this.applyOutcome(waiter.revision);
 
       if (!outcome) {
         continue;
       }
 
-      this.waiters.delete(waiter);
-      globalThis.clearTimeout(waiter.timer);
+      this.removeWaiter(waiter);
       outcome === "applied"
         ? waiter.resolve(outcome)
         : waiter.reject(applyError(outcome, snapshot.failureCode));
@@ -374,11 +388,10 @@ export class RemoteEditorSession {
     }
 
     for (const waiter of this.waiters) {
-      globalThis.clearTimeout(waiter.timer);
+      this.removeWaiter(waiter);
       waiter.reject(expired ? new Error("This editor session has expired.") : error);
     }
 
-    this.waiters.clear();
     return true;
   }
 
@@ -540,6 +553,12 @@ class RemoteSessionError extends Error {
   constructor(message, status) {
     super(message);
     this.status = status;
+  }
+}
+
+export class RemoteApplyTimeoutError extends Error {
+  constructor() {
+    super("Your Minecraft server has not confirmed this save within one minute. It may still apply the uploaded configs. Your changes are still available in this tab. You can save again when the server is ready, or download a backup from the Save menu.");
   }
 }
 

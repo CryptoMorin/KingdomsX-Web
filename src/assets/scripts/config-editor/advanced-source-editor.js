@@ -7,6 +7,7 @@ import { tags } from "@lezer/highlight";
 import { basicSetup } from "codemirror";
 
 import { customYamlWarnings } from "./kingdoms-yaml-validation.js";
+import { confirmEditorAction } from "./editor-confirmation.js";
 import { indexYamlSource, replaceDocumentSource } from "./yaml-source.js";
 
 const editorFoundationTheme = EditorView.theme({
@@ -325,7 +326,11 @@ export function createAdvancedSourceEditor({
 
   function confirmDiscard() {
     return !hasDraftChanges()
-      || window.confirm("Discard the code changes that have not been applied?");
+      || confirmEditorAction({
+        title: "Discard code changes?",
+        message: "Discard the code changes that have not been applied?",
+        confirmLabel: "Discard changes"
+      });
   }
 
   function discardDraft() {
@@ -476,7 +481,15 @@ export function createAdvancedSourceEditor({
     }
 
     if (validation.warnings.length
-      && !window.confirm(`${pluralize(validation.warnings.length, "warning")} remain in this source. Save it anyway?`)) {
+      && !await confirmEditorAction({
+        title: "Apply code with warnings?",
+        message: `${pluralize(validation.warnings.length, "warning")} remain in this source. Save it anyway?`,
+        confirmLabel: "Apply anyway"
+      })) {
+      return false;
+    }
+
+    if (readOnly) {
       return false;
     }
 

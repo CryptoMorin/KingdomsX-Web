@@ -26,7 +26,8 @@ import {
 import { formatDate } from "../site-date.js";
 import { forgetRemoteEditorLink, takeRemoteEditorLink } from "./remote-editor-link.js";
 import { createRemoteDraftRecovery } from "./remote-draft-recovery.js";
-import { RemoteEditorSession } from "./remote-editor-session.js";
+import { RemoteApplyTimeoutError, RemoteEditorSession } from "./remote-editor-session.js";
+import { confirmEditorAction } from "./editor-confirmation.js";
 import { initialValueForType, renderOptionField } from "./setting-controls.js";
 import {
   availableGuiSlots,
@@ -340,9 +341,6 @@ const elements = {
   annotationTarget: document.querySelector("[data-annotation-target]"),
   annotationPolicies: document.querySelectorAll("[data-annotation-policy]"),
   annotationCloseButtons: document.querySelectorAll("[data-close-annotation]"),
-  confirmationDialog: document.querySelector("[data-editor-confirmation-dialog]"),
-  confirmationMessage: document.querySelector("[data-editor-confirmation-message]"),
-  confirmationConfirm: document.querySelector("[data-editor-confirmation-confirm]"),
   saveOverlay: document.querySelector("[data-editor-save-overlay]"),
   saveStatus: document.querySelector("[data-editor-save-status]"),
   saveProgress: document.querySelector("[data-editor-save-progress]"),
@@ -943,12 +941,16 @@ async function loadSelection(files) {
     return;
   }
 
-  if (sourceEditor?.hasDraftChanges() && !sourceEditor.confirmDiscard()) {
+  if (sourceEditor?.hasDraftChanges() && !await sourceEditor.confirmDiscard()) {
     return;
   }
 
   if (workspaceHasUnexportedChanges(state.workspace)
-    && !window.confirm(`Replace the open files? Changes that have not been ${state.remoteSession ? "saved to the server" : "downloaded"} will be lost.`)) {
+    && !await confirmEditorAction({
+      title: "Replace the open files?",
+      message: `Changes that have not been ${state.remoteSession ? "saved to the server" : "downloaded"} will be lost.`,
+      confirmLabel: "Replace files"
+    })) {
     return;
   }
 
@@ -1896,7 +1898,11 @@ async function removeActiveSchematic() {
     return;
   }
 
-  if (!window.confirm(`Remove ${path} from the edited ZIP? The original backup will remain unchanged.`)) {
+  if (!await confirmEditorAction({
+    title: "Remove schematic?",
+    message: `Remove ${path} from the edited ZIP? The original backup will remain unchanged.`,
+    confirmLabel: "Remove schematic"
+  })) {
     return;
   }
 
@@ -2512,7 +2518,11 @@ async function deleteOutpostPage() {
     return;
   }
 
-  if (!window.confirm(`Delete outpost page ${current.page}? Stock buttons on this page will be removed from the downloaded config.`)) {
+  if (!await confirmEditorAction({
+    title: "Delete outpost page?",
+    message: `Delete outpost page ${current.page}? Stock buttons on this page will be removed from the downloaded config.`,
+    confirmLabel: "Delete page"
+  })) {
     return;
   }
 
@@ -2981,7 +2991,7 @@ function openGuiOption(option) {
   materializeEffectiveEntry(option.path, option.label);
 }
 
-function materializeEffectiveEntry(optionPath, label) {
+async function materializeEffectiveEntry(optionPath, label) {
   const entry = state.effectiveIndex?.byPath.get(pathKey(optionPath));
 
   if (!canMaterializeEffectiveEntry(entry)) {
@@ -3008,7 +3018,12 @@ function materializeEffectiveEntry(optionPath, label) {
 
   const source = entry.generated ? `the generated “${entry.generatedBy}” settings` : "a shared template";
 
-  if (!window.confirm(`Customize ${label} here? Its effective settings from ${source} will be copied into this file as an override.`)) {
+  if (!await confirmEditorAction({
+    title: "Customize inherited settings?",
+    message: `Customize ${label} here? Its effective settings from ${source} will be copied into this file as an override.`,
+    confirmLabel: "Customize here",
+    confirmIcon: "fa-copy"
+  })) {
     return;
   }
 
@@ -4194,10 +4209,14 @@ function renameAnchorDefinition(path, nextName, currentName = "") {
   }
 }
 
-function removeAnchorDefinition(path, name) {
+async function removeAnchorDefinition(path, name) {
   const warning = `Stop sharing “${name}”? Every linked setting will keep the same values as an independent copy.`;
 
-  if (!window.confirm(warning)) {
+  if (!await confirmEditorAction({
+    title: "Stop sharing this value?",
+    message: warning,
+    confirmLabel: "Stop sharing"
+  })) {
     return;
   }
 
@@ -4255,8 +4274,12 @@ function detachListAnchorReference(target, name) {
   }
 }
 
-function removeListAnchorDefinition(target, name) {
-  if (!window.confirm(`Stop sharing “${name}”? Every linked list item will keep the same independent value.`)) {
+async function removeListAnchorDefinition(target, name) {
+  if (!await confirmEditorAction({
+    title: "Stop sharing this list item?",
+    message: `Stop sharing “${name}”? Every linked list item will keep the same independent value.`,
+    confirmLabel: "Stop sharing"
+  })) {
     return;
   }
 
@@ -4647,14 +4670,18 @@ function directMappingEntries(document, parentPath) {
   );
 }
 
-function updateOption(optionPath, replacement, { literal, renderDelay = 0 }) {
-  const warning = riskyChangeWarning(optionPath, replacement);
-
-  if (warning && !window.confirm(`${warning}\n\nApply this change anyway?`)) {
-    return false;
-  }
-
+async function updateOption(optionPath, replacement, { literal, renderDelay = 0 }) {
   try {
+    const warning = riskyChangeWarning(optionPath, replacement);
+
+    if (warning && !await confirmEditorAction({
+      title: "Apply this change?",
+      message: `${warning}\n\nApply this change anyway?`,
+      confirmLabel: "Apply change"
+    })) {
+      return false;
+    }
+
     if (literal) {
       replaceDocumentLiteral(state.session.document, optionPath, replacement);
     } else {
@@ -4682,8 +4709,8 @@ function updateOption(optionPath, replacement, { literal, renderDelay = 0 }) {
   }
 }
 
-function resetOptionToDefault(optionPath, defaultOption) {
-  if (!updateOption(optionPath, defaultOption.source, { literal: true })) {
+async function resetOptionToDefault(optionPath, defaultOption) {
+  if (!await updateOption(optionPath, defaultOption.source, { literal: true })) {
     return;
   }
 
@@ -4710,25 +4737,35 @@ function riskyChangeWarning(path, replacement) {
 
   const value = parseSimpleLiteral(replacement);
   const enabled = value.kind === "boolean" && value.value;
-  const warnings = new Map([
-    [pathKey(["debug"]), "Debug logging can be extremely noisy and may expose database connection details."],
-    [pathKey(["disable-debug-tracing"]), "Disabling debug tracing reduces diagnostic information and may make support investigations harder."],
-    [pathKey(["updates", "download"]), "Automatic update downloads can replace production plugin builds after a restart."],
-    [pathKey(["updates", "configs"]), "Automatic config updating is experimental and can change settings silently."],
-    [pathKey(["updates", "synchronize-guis", "automatic"]), "Automatic GUI synchronization copies layout changes between languages."],
-    [pathKey(["development-mode"]), "Development mode is intended for testing, not an ordinary production server."]
+  const confirmOnEnable = new Set([
+    pathKey(["debug"]),
+    pathKey(["disable-debug-tracing"]),
+    pathKey(["updates", "download"]),
+    pathKey(["updates", "configs"]),
+    pathKey(["updates", "synchronize-guis", "automatic"]),
+    pathKey(["development-mode"])
   ]);
   const key = pathKey(path);
 
-  if (enabled && warnings.has(key)) {
-    return warnings.get(key);
+  if (key !== pathKey(["iSwearIKnowWhatTheFuckIAmDoingRightNow"])
+    && (!enabled || !confirmOnEnable.has(key))) {
+    return "";
   }
 
-  if (key === pathKey(["iSwearIKnowWhatTheFuckIAmDoingRightNow"])) {
-    return "This setting is intended for expert use. Change it only when KingdomsX documentation explicitly requires a different value.";
-  }
+  // The experimental GUI synchronization warning belongs to the parent section
+  const warningPaths = key === pathKey(["updates", "synchronize-guis", "automatic"])
+    ? [path.slice(0, -1), path]
+    : [path];
 
-  return "";
+  return warningPaths.map((warningPath) => {
+    const option = state.defaultConfigOptions.find((candidate) => pathKey(candidate.path) === pathKey(warningPath));
+
+    if (!option?.comments?.length) {
+      throw new Error(`The default config warning for “${warningPath.join(".")}” is unavailable. Reload the editor before changing this setting.`);
+    }
+
+    return option.comments.join(" ");
+  }).join("\n\n");
 }
 
 function undoOption(optionPath) {
@@ -4788,10 +4825,14 @@ function undoOption(optionPath) {
   }
 }
 
-function removeOption(optionPath) {
+async function removeOption(optionPath) {
   const label = optionPath.map(labelForKey).join(" / ");
 
-  if (!window.confirm(`Remove ${label}? This setting can be removed from the file.`)) {
+  if (!await confirmEditorAction({
+    title: "Remove this setting?",
+    message: `Remove ${label}? This setting can be removed from the file.`,
+    confirmLabel: "Remove setting"
+  })) {
     return;
   }
 
@@ -5884,6 +5925,7 @@ async function saveCurrentWorkspace() {
   }
 
   const remoteSave = Boolean(state.remoteSession);
+  let applyTimeout = null;
 
   try {
     if (remoteSave) {
@@ -5901,7 +5943,11 @@ async function saveCurrentWorkspace() {
     const warnings = await collectWorkspaceWarnings(changedSessions);
     const action = state.remoteSession ? "save to the server" : "download";
 
-    if (warnings.length && !window.confirm(`${pluralize(warnings.length, "warning")} still need review in the changed configs. ${action[0].toLocaleUpperCase("en-US")}${action.slice(1)} anyway?`)) {
+    if (warnings.length && !await confirmEditorAction({
+      title: remoteSave ? "Save with warnings?" : "Download with warnings?",
+      message: `${pluralize(warnings.length, "warning")} still need review in the changed configs. ${action[0].toLocaleUpperCase("en-US")}${action.slice(1)} anyway?`,
+      confirmLabel: remoteSave ? "Save anyway" : "Download anyway"
+    })) {
       return;
     }
 
@@ -5928,7 +5974,11 @@ async function saveCurrentWorkspace() {
       syncUploadedRemoteRevision();
     }
 
-    announce(error.message, true);
+    if (error instanceof RemoteApplyTimeoutError) {
+      applyTimeout = error;
+    } else {
+      announce(error.message, true);
+    }
   } finally {
     if (remoteSave) {
       setSaving(false);
@@ -5938,6 +5988,18 @@ async function saveCurrentWorkspace() {
     } else {
       setBusy(false);
     }
+  }
+
+  if (applyTimeout && !remoteWorkspaceIssue()?.terminal) {
+    await confirmEditorAction({
+      title: "Server save not confirmed",
+      eyebrow: "Save timed out",
+      message: applyTimeout.message,
+      confirmLabel: "Back to editor",
+      cancelLabel: null,
+      confirmIcon: "fa-arrow-left",
+      focusConfirm: true
+    });
   }
 }
 
@@ -6168,6 +6230,10 @@ function handleRemoteSnapshot(remoteSession) {
 
   state.remoteIssueKey = issue.key;
 
+  if (issue.locksEditor) {
+    document.querySelector("[data-editor-confirmation-dialog][open]")?.close();
+  }
+
   if (issue.key === "expired") {
     for (const dialog of document.querySelectorAll("dialog[open]")) {
       dialog.close();
@@ -6239,20 +6305,15 @@ function setSavingProgress(message) {
 }
 
 function confirmDraftRecovery(savedAt) {
-  elements.confirmationMessage.textContent = `Unsaved changes from ${formatDate(savedAt, { timeSeparator: " " })} were found on this device. Restore them, or discard them and open the configs currently running on your Minecraft server.`;
-  elements.confirmationDialog.returnValue = "";
-
-  return new Promise((resolve) => {
-    const preventAccidentalDismissal = (event) => {
-      event.preventDefault();
-    };
-    elements.confirmationDialog.addEventListener("close", () => {
-      elements.confirmationDialog.removeEventListener("cancel", preventAccidentalDismissal);
-      resolve(elements.confirmationDialog.returnValue === "confirm");
-    }, { once: true });
-    elements.confirmationDialog.addEventListener("cancel", preventAccidentalDismissal);
-    elements.confirmationDialog.showModal();
-    elements.confirmationConfirm.focus();
+  return confirmEditorAction({
+    title: "Restore unsaved changes?",
+    message: `Unsaved changes from ${formatDate(savedAt, { timeSeparator: " " })} were found on this device. Restore them, or discard them and open the configs currently running on your Minecraft server.`,
+    confirmLabel: "Restore draft",
+    cancelLabel: "Use server version",
+    eyebrow: "Unsaved local draft",
+    confirmIcon: "fa-clock-rotate-left",
+    dismissible: false,
+    focusConfirm: true
   });
 }
 

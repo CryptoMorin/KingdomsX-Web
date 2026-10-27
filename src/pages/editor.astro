@@ -765,22 +765,17 @@ const allowManualWorkspaces = import.meta.env.DEV || process.env.EDITOR_MANUAL_W
     </form>
   </dialog>
 
-  <dialog class="editor-dialog editor-dialog--form editor-confirmation-dialog surface-panel site-modal-surface p-0" aria-labelledby="editor-confirmation-title" aria-describedby="editor-confirmation-message" data-editor-confirmation-dialog>
-    <form method="dialog" data-editor-confirmation-form>
-      <div class="editor-dialog-header site-modal-header d-flex align-items-start gap-3">
-        <span class="editor-confirmation-icon d-inline-grid flex-shrink-0" aria-hidden="true"><i class="fa-solid fa-clock-rotate-left"></i></span>
-        <div class="min-w-0">
-          <span class="editor-eyebrow" data-editor-confirmation-eyebrow>Unsaved local draft</span>
-          <h2 class="mb-1 mt-1" id="editor-confirmation-title" data-editor-confirmation-title>Restore unsaved changes?</h2>
-        </div>
-      </div>
-      <div class="site-modal-body">
-        <p class="editor-confirmation-message mb-0" id="editor-confirmation-message" data-editor-confirmation-message></p>
-      </div>
-      <div class="editor-dialog-footer site-modal-footer d-flex flex-wrap justify-content-center justify-content-sm-end gap-2">
-        <button class="btn btn-site-secondary btn-site-sm" type="submit" value="cancel" data-editor-confirmation-cancel>Use server version</button>
-        <button class="btn btn-site btn-site-primary btn-site-sm fw-bold" type="submit" value="confirm" data-editor-confirmation-confirm><i class="fa-solid fa-clock-rotate-left me-2" aria-hidden="true"></i><span>Restore draft</span></button>
-      </div>
+  <dialog class="editor-dialog editor-dialog--form editor-dialog--scrollable editor-confirmation-dialog surface-panel site-modal-surface p-0" aria-labelledby="editor-confirmation-title" aria-describedby="editor-confirmation-message" data-editor-confirmation-dialog>
+    <div class="editor-dialog-header site-modal-header">
+      <span class="editor-eyebrow" data-editor-confirmation-eyebrow>Unsaved local draft</span>
+      <h2 class="mb-1 mt-1" id="editor-confirmation-title" data-editor-confirmation-title>Restore unsaved changes?</h2>
+    </div>
+    <div class="site-modal-body overflow-auto">
+      <p class="editor-confirmation-message text-break mb-0" id="editor-confirmation-message" data-editor-confirmation-message></p>
+    </div>
+    <form class="editor-dialog-footer site-modal-footer d-flex flex-wrap justify-content-center justify-content-sm-end gap-2" method="dialog" data-editor-confirmation-form>
+      <button class="btn btn-site-secondary btn-site-sm" type="submit" value="cancel" data-editor-confirmation-cancel>Use server version</button>
+      <button class="btn btn-site btn-site-primary btn-site-sm fw-bold" type="submit" value="confirm" data-editor-confirmation-confirm><i class="fa-solid fa-clock-rotate-left me-2" aria-hidden="true"></i><span>Restore draft</span></button>
     </form>
   </dialog>
 

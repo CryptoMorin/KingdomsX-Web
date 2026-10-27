@@ -1256,11 +1256,11 @@ function booleanControl(entry, enabled, onChange) {
   const track = element("span", "editor-switch-track position-relative flex-shrink-0");
   track.setAttribute("aria-hidden", "true");
   const state = element("span", "editor-switch-state fw-bold", enabled ? "On" : "Off");
-  input.addEventListener("change", () => {
+  input.addEventListener("change", async () => {
     const nextEnabled = input.checked;
     state.textContent = nextEnabled ? "On" : "Off";
     input.setAttribute("aria-label", `${labelForKey(entry.key)}: ${nextEnabled ? "On" : "Off"}`);
-    const applied = onChange(entry.path, nextEnabled ? "true" : "false", {
+    const applied = await onChange(entry.path, nextEnabled ? "true" : "false", {
       literal: false,
       renderDelay: switchTransitionDuration(track)
     });
