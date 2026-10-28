@@ -9,7 +9,7 @@ import {
 
 export const createSubmitFormKit = ({
   root,
-  page: { apiUrl, currentReturnPath, serversUrl, turnstileSiteKey },
+  page: { apiUrl, currentReturnPath, serversUrl, discordUrl, turnstileSiteKey },
   messages,
   render: { setSubmitView, replaceRoot, reload },
 }) => {
@@ -52,6 +52,30 @@ export const createSubmitFormKit = ({
     }
 
     return panel;
+  };
+
+  const createSubmitNotice = (item) => {
+    const notice = document.createElement("section");
+    notice.className = `server-submit-notice surface-lift d-flex align-items-center gap-3 p-3 rounded-3 ${item.kind || ""}`.trim();
+
+    const icon = document.createElement("i");
+    icon.className = `${item.icon || "fa-solid fa-info"} site-feedback-icon d-inline-flex align-items-center justify-content-center flex-shrink-0`;
+    icon.setAttribute("aria-hidden", "true");
+
+    const content = document.createElement("div");
+    content.className = "d-grid gap-1 flex-grow-1 min-w-0";
+
+    const title = document.createElement("strong");
+    title.textContent = item.title;
+
+    const message = document.createElement("p");
+    message.className = "mb-0";
+    message.textContent = item.message;
+
+    content.append(title, message);
+    notice.append(icon, content);
+
+    return notice;
   };
 
   const createSubmitLoadingSkeleton = () => {
@@ -158,7 +182,7 @@ export const createSubmitFormKit = ({
     return bar;
   };
 
-  const renderLoggedOut = () => {
+  const renderLoggedOut = (showMembershipWarning = false) => {
     setSubmitView("logged-out");
 
     const panel = document.createElement("div");
@@ -197,10 +221,13 @@ export const createSubmitFormKit = ({
     const login = document.createElement("a");
     login.className = "btn btn-site btn-discord d-inline-flex align-items-center justify-content-center gap-2 fw-bold";
     const loginUrl = apiUrl("/api/auth/discord/login");
+    const defaultLoginContent = '<i class="fa-brands fa-discord" aria-hidden="true"></i> Continue with Discord';
 
     loginUrl.searchParams.set("returnTo", currentReturnPath());
     login.href = loginUrl.toString();
-    login.innerHTML = '<i class="fa-brands fa-discord" aria-hidden="true"></i> Continue with Discord';
+    login.innerHTML = showMembershipWarning
+      ? '<i class="fa-solid fa-arrow-rotate-right" aria-hidden="true"></i> Try Sign-In Again'
+      : defaultLoginContent;
 
     const back = document.createElement("a");
     back.className = "btn btn-site d-inline-flex align-items-center justify-content-center gap-2 fw-bold";
@@ -212,8 +239,49 @@ export const createSubmitFormKit = ({
     notice.textContent = "Signing in with Discord doesn't give us access to your messages or other private account activity. It only lets us see your user ID, name, and avatar, and confirm that you're a member of the KingdomsX Discord server. We use this information only to create your account on the KingdomsX website and keep it secure.";
 
     actions.append(login, back);
-    panel.append(process, actions, notice);
+    panel.append(process);
+
+    let membershipWarning = null;
+
+    if (showMembershipWarning) {
+      const join = document.createElement("a");
+      join.className = "btn btn-site btn-site-primary d-inline-flex align-items-center justify-content-center gap-2 fw-bold";
+      join.href = discordUrl;
+      join.target = "_blank";
+      join.rel = "noopener noreferrer";
+      join.innerHTML = '<i class="fa-brands fa-discord" aria-hidden="true"></i> Join Discord';
+      actions.prepend(join);
+
+      membershipWarning = createSubmitNotice({
+        ...messages.submit.membershipRequired,
+        kind: "is-error",
+        icon: "fa-solid fa-exclamation",
+      });
+      membershipWarning.classList.add("text-start", "mb-4");
+      membershipWarning.dataset.serverMembershipWarning = "";
+      membershipWarning.setAttribute("role", "alert");
+
+      const dismiss = document.createElement("button");
+      dismiss.className = "btn-close align-self-start flex-shrink-0";
+      dismiss.type = "button";
+      dismiss.setAttribute("aria-label", "Dismiss membership warning");
+      dismiss.addEventListener("click", () => {
+        membershipWarning.remove();
+        join.remove();
+        login.innerHTML = defaultLoginContent;
+        login.focus();
+      });
+
+      membershipWarning.append(dismiss);
+      panel.append(membershipWarning);
+    }
+
+    panel.append(actions, notice);
     replaceRoot(panel);
+
+    if (membershipWarning) {
+      membershipWarning.scrollIntoView({ block: "center", behavior: "instant" });
+    }
   };
 
   const ownerHost = (item) => item?.host || String(item?.address || "").split(":")[0] || "";
@@ -614,6 +682,7 @@ export const createSubmitFormKit = ({
     initTooltips,
     disposeTooltips,
     statePanel,
+    createSubmitNotice,
     createSubmitLoadingSkeleton,
     renderSubmitLoading,
     createAccountBar,

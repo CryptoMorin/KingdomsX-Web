@@ -21,6 +21,10 @@ import { createSubmitFormKit } from "./submit-forms.js";
 
 const SERVER_MESSAGES = {
   submit: {
+    membershipRequired: {
+      title: "Discord membership required",
+      message: "You need to be a member of our Discord server to be able to log in and submit your server. Join using the same Discord account, then return here and try signing in again.",
+    },
     loggedOutSteps: [
       {
         icon: "fa-brands fa-discord",
@@ -156,11 +160,17 @@ const initServerSubmit = () => {
   const turnstileSiteKey = root.dataset.turnstileSiteKey || "";
   const isLocalBuild = root.dataset.localBuild === "true";
   const serversUrl = root.dataset.serversUrl || "/servers";
+  const discordUrl = root.dataset.discordUrl;
   const submitSection = root.closest(".servers-submit");
   let currentState = null;
 
   const apiUrl = (path) => new URL(path, apiBase);
-  const currentReturnPath = () => `${window.location.pathname}${window.location.search}`;
+  const currentReturnPath = () => {
+    const url = new URL(window.location.href);
+    url.searchParams.delete("auth");
+
+    return `${url.pathname}${url.search}`;
+  };
 
   const ensureToastContainer = () => {
     let container = document.querySelector("[data-server-submit-toast-container]");
@@ -189,7 +199,7 @@ const initServerSubmit = () => {
 
   const forms = createSubmitFormKit({
     root,
-    page: { apiUrl, currentReturnPath, serversUrl, turnstileSiteKey },
+    page: { apiUrl, currentReturnPath, serversUrl, discordUrl, turnstileSiteKey },
     messages: SERVER_MESSAGES,
     render: {
       setSubmitView,
@@ -202,6 +212,7 @@ const initServerSubmit = () => {
     initTooltips,
     disposeTooltips,
     statePanel,
+    createSubmitNotice,
     createSubmitLoadingSkeleton,
     renderSubmitLoading,
     createAccountBar,
@@ -738,28 +749,7 @@ const initServerSubmit = () => {
     const area = document.createElement("div");
     area.className = "server-submit-notifications d-flex flex-column gap-3";
 
-    items.filter(Boolean).forEach((item) => {
-      const notice = document.createElement("section");
-      notice.className = `server-submit-notice surface-lift d-flex align-items-center gap-3 p-3 rounded-3 ${item.kind || ""}`.trim();
-
-      const icon = document.createElement("i");
-      icon.className = `${item.icon || "fa-solid fa-info"} site-feedback-icon d-inline-flex align-items-center justify-content-center flex-shrink-0`;
-      icon.setAttribute("aria-hidden", "true");
-
-      const content = document.createElement("div");
-      content.className = "d-grid gap-1 min-w-0";
-
-      const title = document.createElement("strong");
-      title.textContent = item.title;
-
-      const message = document.createElement("p");
-      message.className = "mb-0";
-      message.textContent = item.message;
-
-      content.append(title, message);
-      notice.append(icon, content);
-      area.append(notice);
-    });
+    area.append(...items.filter(Boolean).map(createSubmitNotice));
 
     return area;
   };
@@ -1111,7 +1101,15 @@ const initServerSubmit = () => {
 
       if (!data.authenticated) {
         currentState = null;
-        renderLoggedOut();
+        const url = new URL(window.location.href);
+        const membershipRequired = url.searchParams.get("auth") === "not-member";
+
+        renderLoggedOut(membershipRequired);
+
+        if (membershipRequired) {
+          url.searchParams.delete("auth");
+          window.history.replaceState(window.history.state, "", url);
+        }
 
         return;
       }
