@@ -140,20 +140,28 @@ test("a timed-out save preserves edits, observes a late acknowledgement, and can
 
   snapshot.state = "applying";
   snapshot.sequence += 1;
-  await page.clock.runFor(60_000);
+  await expect.poll(async () => {
+    await page.clock.runFor(5_000);
+    return page.locator("[data-change-status]").textContent();
+  }, { intervals: [100] }).toBe("Server is applying changes");
   await expect(save).toBeDisabled();
 
   snapshot.state = "applied";
   snapshot.sequence += 1;
-  await page.clock.runFor(60_000);
+  await expect.poll(async () => {
+    await page.clock.runFor(5_000);
+    return page.locator("[data-change-status]").textContent();
+  }, { intervals: [100] }).toContain("ready to save");
   await expect(save).toBeEnabled();
   await save.click();
   await expect.poll(() => snapshot.resultRevision).toBe(2);
   snapshot.state = "applied";
   snapshot.sequence += 1;
-  await page.clock.runFor(2_500);
+  await expect.poll(async () => {
+    await page.clock.runFor(5_000);
+    return page.locator("[data-change-status]").textContent();
+  }, { intervals: [100] }).toBe("Saved to server");
   await expect(page.locator("[data-editor-save-overlay]")).toBeHidden();
-  await expect(page.locator("[data-change-status]")).toHaveText("Saved to server");
   await expect(save).toBeDisabled();
   expect(mutations).toHaveLength(2);
   expect(pageErrors).toEqual([]);
