@@ -8,6 +8,7 @@ import {
   sha256Hex
 } from "../../src/assets/scripts/config-editor/remote-session-crypto.js";
 import {
+  acknowledgeExperimentalEditor,
   capturePageErrors,
   openEditorSection,
   openEditorSettings,
@@ -119,6 +120,7 @@ test("a timed-out save preserves edits, observes a late acknowledgement, and can
   const { link, mutations, snapshot } = await mockRemoteWorkspace(context);
   const pageErrors = capturePageErrors(page);
   await page.goto(link);
+  await acknowledgeExperimentalEditor(page);
   await expect(page.locator("[data-editor-workspace]")).toBeVisible();
   await editCode(page, "enabled: false\n");
   await switchEditorMode(page, "visual");
@@ -161,6 +163,7 @@ test("restores an encrypted Code mode draft after the console link is reopened",
   const { link } = await mockRemoteWorkspace(context);
   const firstPageErrors = capturePageErrors(page);
   await page.goto(link);
+  await acknowledgeExperimentalEditor(page);
   await page.locator("[data-editor-workspace]").waitFor({ state: "visible" });
   await switchEditorMode(page, "source");
   const code = page.locator("[data-source-editor] .cm-content");
@@ -175,6 +178,7 @@ test("restores an encrypted Code mode draft after the console link is reopened",
   const restoredPage = await context.newPage();
   const restoredPageErrors = capturePageErrors(restoredPage);
   await restoredPage.goto(link);
+  await acknowledgeExperimentalEditor(restoredPage);
   const recoveryDialog = restoredPage.locator("[data-editor-confirmation-dialog]");
   await expect(recoveryDialog).toBeVisible();
   await expect(recoveryDialog).toHaveAttribute("aria-labelledby", "editor-confirmation-title");
@@ -212,6 +216,7 @@ test("warns before session expiry and downloads work without saving it to the se
   const { expiresAt, link, mutations } = await mockRemoteWorkspace(context, { now });
   const pageErrors = capturePageErrors(page);
   await page.goto(link);
+  await acknowledgeExperimentalEditor(page);
   await expect(page.locator("[data-editor-workspace]")).toBeVisible();
   await expect(page.locator("[data-workspace-name]")).toHaveText("KingdomsX configs");
   const timer = page.locator("[data-editor-session-time]:visible");
@@ -291,6 +296,7 @@ test("keeps expired unsaved Code selectable and downloadable while clearing the 
   const pageErrors = capturePageErrors(page);
   const pendingSource = "enabled: [\n# unfinished change\n";
   await page.goto(link);
+  await acknowledgeExperimentalEditor(page);
   await expect(page.locator("[data-editor-workspace]")).toBeVisible();
   await editCode(page, pendingSource);
   await expect(page.locator("[data-source-editor] .cm-content")).toContainText("# unfinished change");
@@ -385,6 +391,7 @@ test("downloading from the expiry dialog dismisses it and returns focus to the t
   const { expiresAt, link, mutations } = await mockRemoteWorkspace(context, { now });
   const pageErrors = capturePageErrors(page);
   await page.goto(link);
+  await acknowledgeExperimentalEditor(page);
   await expect(page.locator("[data-editor-workspace]")).toBeVisible();
   await page.clock.setFixedTime(expiresAt);
 
@@ -410,6 +417,7 @@ test("remote toolbar keeps full save and backup labels and hides the caret after
   await page.clock.setFixedTime(now);
   const { expiresAt, link } = await mockRemoteWorkspace(context, { now });
   await page.goto(link);
+  await acknowledgeExperimentalEditor(page);
   await expect(page.locator("[data-editor-workspace]")).toBeVisible();
   const save = page.locator("[data-editor-primary-action]");
   const caret = page.locator("[data-editor-save-menu-toggle]");

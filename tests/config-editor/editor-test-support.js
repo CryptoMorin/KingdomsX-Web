@@ -7,7 +7,15 @@ export function usesEditorNavigationDrawer(page) {
 export async function openEditorWorkspace(page, inputFiles) {
   await page.goto("/editor");
   await page.locator("[data-file-input]").setInputFiles(inputFiles);
+  await acknowledgeExperimentalEditor(page);
   await page.locator("[data-editor-workspace]").waitFor({ state: "visible" });
+}
+
+export async function acknowledgeExperimentalEditor(page) {
+  const dialog = page.locator("[data-editor-experimental-dialog]");
+  await expect(dialog).toBeVisible();
+  await dialog.getByRole("button", { name: "I understand, continue" }).click();
+  await expect(dialog).toBeHidden();
 }
 
 export function capturePageErrors(page) {

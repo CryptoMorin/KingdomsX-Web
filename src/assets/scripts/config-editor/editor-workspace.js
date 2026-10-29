@@ -409,6 +409,7 @@ let editorBusy = false;
 let saveOpener = null;
 let sessionExpiryTimer = 0;
 let sessionExpiryWarning = 0;
+let experimentalAcknowledgement;
 const manualWorkspacesAllowed = Boolean(elements.fileInput);
 
 const editorContentTransition = createEditorContentTransition({
@@ -987,11 +988,31 @@ async function loadDemoWorkspace(event) {
   }
 }
 
+function acknowledgeExperimentalEditor() {
+  if (!experimentalAcknowledgement) {
+    const dialog = document.querySelector("[data-editor-experimental-dialog]");
+    const preventDismiss = (event) => event.preventDefault();
+
+    experimentalAcknowledgement = new Promise((resolve) => {
+      dialog.addEventListener("cancel", preventDismiss);
+      dialog.addEventListener("close", () => {
+        dialog.removeEventListener("cancel", preventDismiss);
+        resolve();
+      }, { once: true });
+      dialog.showModal();
+    });
+  }
+
+  return experimentalAcknowledgement;
+}
+
 async function loadWorkspace(workspace, {
   remoteSession = null,
   draftRecovery = null,
   announceOpen = true
 } = {}) {
+  await acknowledgeExperimentalEditor();
+
   elements.expiredDialog.close();
   Dropdown.getInstance(elements.saveMenuToggle)?.hide();
   state.editorMode = "visual";
@@ -6332,6 +6353,8 @@ async function openRemoteWorkspace() {
     finishRemoteSessionBootstrap();
     return;
   }
+
+  await acknowledgeExperimentalEditor();
 
   const remoteSession = new RemoteEditorSession(link, {
     onSnapshot() {

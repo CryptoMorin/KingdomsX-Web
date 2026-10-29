@@ -1,5 +1,6 @@
 import { expect, test } from "@playwright/test";
 import {
+  acknowledgeExperimentalEditor,
   capturePageErrors,
   openEditorNavigation,
   openEditorWorkspace,
@@ -204,6 +205,7 @@ test("mobile sidebar footer stays visible while files scroll", async ({ page }, 
   await page.setViewportSize({ width: 390, height: 480 });
   await page.goto("/editor");
   await page.locator("[data-example]").click();
+  await acknowledgeExperimentalEditor(page);
   await expect(page.locator("[data-editor-workspace]")).toBeVisible();
   await page.screenshot({ path: testInfo.outputPath("mobile-toolbar.png"), animations: "disabled" });
   await openEditorNavigation(page, { panel: "files" });
@@ -231,6 +233,7 @@ test.describe("editor touch scrolling", () => {
   test("keeps the navbar visible during touch scrolling", async ({ page, context }) => {
     await page.goto("/editor");
     await page.locator("[data-example]").click();
+    await acknowledgeExperimentalEditor(page);
     await expect(page.locator("[data-editor-workspace]")).toBeVisible();
 
     // Model Safari keeping vh at the larger viewport height while browser controls reduce dvh

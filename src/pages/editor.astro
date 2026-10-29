@@ -518,6 +518,20 @@ const allowManualWorkspaces = import.meta.env.DEV || process.env.EDITOR_MANUAL_W
     </section>
   </main>
 
+  <dialog class="editor-dialog editor-dialog--form surface-panel site-modal-surface p-0" aria-labelledby="editor-experimental-title" aria-describedby="editor-experimental-message" closedby="none" data-editor-experimental-dialog>
+    <div class="editor-dialog-header site-modal-header">
+      <span class="editor-eyebrow">Warning</span>
+      <h2 class="mb-0 mt-1" id="editor-experimental-title">Before you begin...</h2>
+    </div>
+    <div class="site-modal-body">
+      <p class="editor-confirmation-message mb-3" id="editor-experimental-message">The config editor is still experimental. Unexpected issues may occur and could damage or overwrite your configs when saving changes to your server.</p>
+      <p class="editor-confirmation-message mb-0"><strong>Please back up your KingdomsX configs before using the editor.</strong> Review your changes before saving and help us out by <a href={SITE.discord} target="_blank" rel="noopener noreferrer" class="text-decoration-underline">reporting any bugs on Discord</a>.</p>
+    </div>
+    <form class="editor-dialog-footer site-modal-footer d-flex justify-content-end" method="dialog">
+      <button class="btn btn-site btn-site-primary btn-site-sm fw-bold" type="submit" value="acknowledged" autofocus><i class="fa-solid fa-check me-2" aria-hidden="true"></i>I understand, continue</button>
+    </form>
+  </dialog>
+
   <dialog class="editor-dialog editor-settings-dialog surface-panel site-modal-surface p-0" aria-labelledby="editor-settings-title" data-editor-settings-dialog>
     <form data-editor-settings-form>
       <div class="editor-dialog-header site-modal-header d-flex align-items-start justify-content-between gap-3">

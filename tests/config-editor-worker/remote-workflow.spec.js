@@ -8,7 +8,7 @@ import {
   REMOTE_PAYLOAD_KIND,
   sha256Hex
 } from "../../src/assets/scripts/config-editor/remote-session-crypto.js";
-import { openEditorSection } from "../config-editor/editor-test-support.js";
+import { acknowledgeExperimentalEditor, openEditorSection } from "../config-editor/editor-test-support.js";
 
 const encoder = new TextEncoder();
 const decoder = new TextDecoder();
@@ -96,6 +96,7 @@ test("editor sends encrypted configs through the real Worker and receives the sa
   expect(navigation?.headers()["content-security-policy"]).toContain("default-src 'none'");
   await expect(page.locator("[data-editor-session-loading]")).toBeVisible();
   await expect(page.locator("[data-editor-empty]")).toBeHidden();
+  await acknowledgeExperimentalEditor(page);
   continueOpeningSession();
   await page.locator("[data-editor-workspace]").waitFor({ state: "visible" });
   await page.unroute(`**/api/editor/v1/sessions/${sessionId}`);
@@ -111,6 +112,7 @@ test("editor sends encrypted configs through the real Worker and receives the sa
   const stalePageErrors = [];
   stalePage.on("pageerror", (error) => stalePageErrors.push(error.message));
   await stalePage.goto(`/#s/v1/${linkSeed}`);
+  await acknowledgeExperimentalEditor(stalePage);
   await stalePage.locator("[data-editor-workspace]").waitFor({ state: "visible" });
 
   await openEditorSection(page, /^Updates\d*$/);
