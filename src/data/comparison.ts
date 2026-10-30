@@ -1,3 +1,5 @@
+import { SITE } from "../config";
+
 export type PluginId = "kingdomsx" | "factionsuuid" | "lands" | "towny" | "griefprevention" | "residence";
 
 export type CellValue = "yes" | "partial" | "addon" | "no" | "na" | string | { label: string; hint?: string; href?: string };
@@ -316,6 +318,21 @@ export const comparisonCategories: ComparisonCategory[] = [
     label: "Configuration & placeholders",
     defaultOpen: false,
     rows: [
+      {
+        feature: "Web-based config editor",
+        hint: "Whether server owners can edit the plugin's configuration files visually in a web browser.",
+        values: {
+          kingdomsx: {
+            label: "yes",
+            href: SITE.editor,
+          },
+          factionsuuid: "no",
+          lands: "no",
+          towny: "no",
+          griefprevention: "no",
+          residence: "no",
+        },
+      },
       {
         feature: "Built-in placeholders",
         hint: "Whether player, group and economy placeholders work across the plugin's messages, GUIs and configs without requiring PlaceholderAPI.",
