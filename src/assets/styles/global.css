@@ -1716,9 +1716,12 @@ h3 {
   vertical-align: middle;
 }
 
-.comparison-table tbody tr:hover td,
-.comparison-table tbody tr:hover th[scope="row"] {
+.comparison-table tbody tr:hover td {
   background: rgba(251, 176, 59, 0.05) !important;
+}
+
+.comparison-table tbody tr:hover th[scope="row"] {
+  background: linear-gradient(var(--bs-table-hover-bg), var(--bs-table-hover-bg)), rgb(13, 24, 37) !important;
 }
 
 .comparison-table td:not(.kingdomsx-column) {
