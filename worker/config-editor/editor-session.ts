@@ -1,4 +1,5 @@
 import { DurableObject } from "cloudflare:workers";
+import { MINIMUM_KINGDOMSX_WEB_VERSION, supportsKingdomsWebIntegrations } from "../../src/kingdomsx-version";
 import {
   CAPABILITY_HASH,
   EDITOR_PROTOCOL,
@@ -986,6 +987,10 @@ export function validateCreateSession(input: CreateSessionRequest): void {
 
   if (!valid) {
     throw new RequestProblem(400, "invalid_session", "The editor session metadata is invalid.");
+  }
+
+  if (!supportsKingdomsWebIntegrations(input.pluginVersion)) {
+    throw new RequestProblem(400, "invalid_session", `The config editor requires KingdomsX ${MINIMUM_KINGDOMSX_WEB_VERSION} or newer. Update KingdomsX and start a new editor session.`);
   }
 }
 

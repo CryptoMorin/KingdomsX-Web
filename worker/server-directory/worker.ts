@@ -8,6 +8,7 @@ import { routePublicCollections, type PublicServerCollection } from "./public-di
 import { logError } from "./core/runtime";
 import { publicDirectoryHtml, publicDirectoryStateHtml, publicPaginationHtml } from "../../src/assets/scripts/server-directory/listing-html";
 import { DIRECTORY_UNAVAILABLE, publicDirectoryPath as directoryPath } from "../../src/assets/scripts/server-directory/listing-presentation";
+import { normalizeServerRegionFilter } from "../../src/server-listing-metadata";
 
 type WorkerEnv = Omit<Cloudflare.Env, "APP_ENVIRONMENT"> & DirectoryEnv;
 
@@ -25,6 +26,7 @@ interface DirectoryRoute {
   sort: DirectorySort;
   page: number;
   canonicalPath: string;
+  region?: string;
 }
 
 export default {
@@ -237,6 +239,8 @@ async function serveDirectoryPage(
   route: DirectoryRoute,
   ctx: ExecutionContext
 ): Promise<Response> {
+  route = { ...route, region: normalizeServerRegionFilter(url.searchParams.get("region")) };
+
   if (request.method !== "GET" && request.method !== "HEAD") {
     return new Response("Method not allowed", {
       status: 405,
@@ -275,6 +279,10 @@ async function serveDirectoryPage(
     apiUrl.searchParams.set("status", route.status);
     apiUrl.searchParams.set("sort", route.sort);
 
+    if (route.region) {
+      apiUrl.searchParams.set("region", route.region);
+    }
+
     // Share the API's approved projection, normalized cache and rate limits without an HTTP request
     const collection = await routePublicCollections({
       request: new Request(apiUrl, { headers: request.headers }),
@@ -302,6 +310,10 @@ async function serveDirectoryPage(
   const canonical = new URL(route.canonicalPath, url);
   canonical.search = "";
   canonical.hash = "";
+
+  if (route.region) {
+    canonical.searchParams.set("region", route.region);
+  }
 
   if (!response.ok || !response.headers.get("content-type")?.includes("text/html")) {
     return response;
@@ -361,7 +373,7 @@ function rewriteDirectoryMetadata(
   headers.delete("ETag");
   headers.delete("Last-Modified");
   headers.set("Link", `<${canonicalUrl}>; rel="canonical"`);
-  const robots = response.ok && route.status === "online" && route.sort === "newest"
+  const robots = response.ok && route.status === "online" && route.sort === "newest" && !route.region
     ? "index, follow, max-image-preview:large"
     : "noindex, follow";
   headers.set("X-Robots-Tag", robots);
@@ -413,7 +425,7 @@ function rewriteDirectoryMetadata(
     .on('[data-server-filter]', {
       element(element) {
         const filter = element.getAttribute("data-server-filter") as DirectoryStatus;
-        element.setAttribute("href", directoryPath(filter, 1, route.sort));
+        element.setAttribute("href", directoryPath(filter, 1, route.sort, "", route.region));
         element.setAttribute("class", `btn btn-site${filter === route.status ? " is-active" : ""}`);
 
         if (filter === route.status) {
@@ -426,6 +438,15 @@ function rewriteDirectoryMetadata(
     .on('[data-server-sort] option', {
       element(element) {
         if (element.getAttribute("value") === route.sort) {
+          element.setAttribute("selected", "");
+        } else {
+          element.removeAttribute("selected");
+        }
+      }
+    })
+    .on('[data-server-region] option', {
+      element(element) {
+        if (element.getAttribute("value") === route.region) {
           element.setAttribute("selected", "");
         } else {
           element.removeAttribute("selected");

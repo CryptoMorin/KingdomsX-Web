@@ -34,6 +34,8 @@ interface CapturedRequest {
 interface PublicDetailsInput {
   name?: string;
   description: string;
+  regions?: string[];
+  languages?: string[];
   websiteUrl?: string;
   socialLinks?: Record<string, string>;
 }
@@ -184,7 +186,7 @@ async function requestChallenge(
 function pluginPayload(code: string) {
   return {
     code,
-    pluginVersion: "1.17.27.1.1",
+    pluginVersion: "1.17.28",
     serverSoftware: "Paper",
     minecraftVersion: "26.1.2"
   };
@@ -300,6 +302,7 @@ function assetBinding(requestedAssets: string[]): Fetcher {
           <a class="btn btn-site" data-server-filter="offline"></a>
           <form data-server-sort-form></form>
           <select data-server-sort><option value="newest" selected>Newest</option><option value="name">Name</option><option value="players">Players</option></select>
+          <select data-server-region name="region"><option value="" selected>All regions</option><option value="eu-west">EU West</option><option value="na-east">NA East</option><option value="oceania">Oceania</option></select>
           <div data-server-list aria-busy="true">Skeleton</div>
           <nav data-server-pagination></nav>
           <noscript data-server-noscript>JavaScript required</noscript>
@@ -350,10 +353,10 @@ async function seedOwnedServer(
   await testEnv.DB.prepare(
     `
     INSERT INTO servers (
-      id, slug, name, description, normalized_host, port, website_url, social_links_json,
+      id, slug, name, description, regions_json, normalized_host, port, website_url, social_links_json,
       status, owner_account_id, approved_at, created_at, updated_at
     )
-    VALUES (?, ?, ?, ?, ?, 25565, NULL, '[]', ?, ?, ?, ?, ?)
+    VALUES (?, ?, ?, ?, '["eu-west"]', ?, 25565, NULL, '[]', ?, ?, ?, ?, ?)
   `
   )
     .bind(

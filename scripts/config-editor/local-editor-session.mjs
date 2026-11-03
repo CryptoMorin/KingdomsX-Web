@@ -5,6 +5,7 @@ import path from "node:path";
 import process from "node:process";
 import { pathToFileURL } from "node:url";
 import { zipSync } from "fflate";
+import { MINIMUM_KINGDOMSX_WEB_VERSION } from "../../src/kingdomsx-version.ts";
 import {
   decryptRemotePayload,
   deriveRemoteEditorSecrets,
@@ -22,6 +23,7 @@ import { extractWorkspaceArchive } from "../../src/assets/scripts/config-editor/
 const DEFAULT_ORIGIN = "http://localhost:8788";
 const DEFAULT_SOURCE = "updates:\n  check: false\n";
 const MANIFEST_PATH = "kingdomsx-editor.json";
+const PLUGIN_VERSION = `${MINIMUM_KINGDOMSX_WEB_VERSION}+local-preview`;
 const YAML_FILE = /\.ya?ml$/i;
 const SCHEMATIC_FILE = /^(?:(.+)\/)?schematics\/(structures|turrets)\/([^/]+)\/([1-9]\d*)\.(?:schematic|schem)$/i;
 const BUILDING_CONFIG = /^(?:(.+)\/)?(Structures|Turrets)\/([^/]+)\.ya?ml$/i;
@@ -267,7 +269,7 @@ async function createSession(origin, source) {
   })));
   const manifest = encoder.encode(JSON.stringify({
     protocol: 1,
-    pluginVersion: "local-preview",
+    pluginVersion: PLUGIN_VERSION,
     files,
     capabilities: source.capabilities
   }));
@@ -304,7 +306,7 @@ async function createSession(origin, source) {
     body: JSON.stringify({
       protocol: 1,
       name: source.name,
-      pluginVersion: "local-preview",
+      pluginVersion: PLUGIN_VERSION,
       serverTokenHash: await tokenHash(serverToken),
       browserTokenHash: await tokenHash(browserToken),
       original: {

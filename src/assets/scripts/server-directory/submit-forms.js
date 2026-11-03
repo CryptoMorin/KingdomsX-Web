@@ -1,4 +1,12 @@
-import { Tooltip } from "bootstrap";
+import { Dropdown, Tooltip } from "bootstrap";
+import {
+  comparableServerLanguages,
+  comparableServerRegions,
+  SERVER_LANGUAGE_LIMIT,
+  SERVER_LANGUAGE_MAX_LENGTH,
+  SERVER_REGIONS,
+  serverRegionsLabel,
+} from "../../../server-listing-metadata";
 import {
   createSkeletonBlock,
   readSocialFormValues,
@@ -295,11 +303,30 @@ export const createSubmitFormKit = ({
 
   const comparableValue = (value) => String(value ?? "").trim();
 
+  const readLanguagesInput = (value) => String(value ?? "")
+    .split(",")
+    .map((language) => language.trim().replace(/\s+/g, " "))
+    .filter(Boolean);
+
   const publicSnapshot = (item) => ({
     description: comparableValue(item?.description),
+    regions: comparableServerRegions(item?.regions ?? []),
+    languages: comparableServerLanguages(item?.languages ?? []),
     websiteUrl: comparableValue(item?.websiteUrl),
     ...readSocialValues(item),
   });
+
+  const publicFormSnapshot = (form) => {
+    const formData = new FormData(form);
+
+    return {
+      description: comparableValue(formData.get("description")),
+      regions: comparableServerRegions(formData.getAll("regions")),
+      languages: comparableServerLanguages(readLanguagesInput(formData.get("languages"))),
+      websiteUrl: comparableValue(formData.get("websiteUrl")),
+      ...readSocialFormValues(formData, comparableValue),
+    };
+  };
 
   const identitySnapshot = (item) => ({
     name: comparableValue(item?.name),
@@ -396,11 +423,141 @@ export const createSubmitFormKit = ({
     if (options.help) {
       const help = document.createElement("p");
       help.className = "form-text";
+      help.id = `${control.id}-help`;
       help.textContent = options.help;
+      control.setAttribute("aria-describedby", [control.getAttribute("aria-describedby"), help.id].filter(Boolean).join(" "));
       wrap.append(help);
     }
 
     return wrap;
+  };
+
+  const createRegionsField = (item = null) => {
+    const wrap = document.createElement("div");
+    wrap.className = "col-md-6";
+    const picker = document.createElement("div");
+    picker.className = "dropdown form-floating server-submit-floating";
+
+    const toggle = document.createElement("button");
+    toggle.type = "button";
+    toggle.className = "form-select dark-select server-submit-region-toggle text-start w-100";
+    toggle.id = "server-regions";
+    toggle.dataset.bsToggle = "dropdown";
+    toggle.dataset.serverRegionsToggle = "";
+    toggle.setAttribute("aria-label", "Server region(s)");
+    toggle.setAttribute("aria-expanded", "false");
+    toggle.setAttribute("aria-controls", "server-regions-options");
+    toggle.setAttribute("aria-describedby", "server-regions-instructions");
+
+    const instructions = document.createElement("span");
+    instructions.className = "visually-hidden";
+    instructions.id = "server-regions-instructions";
+    instructions.textContent = "Required. Select one or more server regions.";
+
+    const summary = document.createElement("span");
+    summary.className = "d-block text-truncate";
+    toggle.append(summary);
+
+    const label = document.createElement("label");
+    label.htmlFor = toggle.id;
+    label.textContent = "Server region(s)";
+
+    const menu = document.createElement("div");
+    menu.className = "dropdown-menu server-submit-region-menu w-100 p-2 overflow-y-auto";
+    menu.id = "server-regions-options";
+    menu.setAttribute("role", "group");
+    menu.setAttribute("aria-label", "Server regions");
+
+    const invalid = document.createElement("p");
+    invalid.className = "invalid-feedback mb-0";
+    invalid.id = "server-regions-error";
+    invalid.textContent = "Select at least one server region.";
+    invalid.setAttribute("role", "alert");
+
+    picker.append(toggle, label, instructions, menu);
+    wrap.append(picker, invalid);
+    const dropdown = Dropdown.getOrCreateInstance(toggle, { autoClose: "outside" });
+    const checkboxes = SERVER_REGIONS.map(({ value, label }) => {
+      const option = document.createElement("label");
+      option.className = "dropdown-item form-check d-flex align-items-center gap-2 py-2 ps-2 pe-3 mb-0 rounded-2";
+      option.tabIndex = -1;
+      const checkbox = document.createElement("input");
+      checkbox.className = "form-check-input flex-shrink-0 m-0";
+      checkbox.type = "checkbox";
+      checkbox.name = "regions";
+      checkbox.value = value;
+      checkbox.checked = item?.regions?.includes(value) ?? false;
+      // Bootstrap arrow navigation focuses menu items, so move focus to their checkboxes
+      option.addEventListener("focus", () => checkbox.focus());
+      const text = document.createElement("span");
+      text.textContent = label;
+      option.append(checkbox, text);
+      menu.append(option);
+
+      return checkbox;
+    });
+
+    const updateRegions = () => {
+      const selected = checkboxes.filter((checkbox) => checkbox.checked).map((checkbox) => checkbox.value);
+      const label = selected.length ? serverRegionsLabel(selected) : "Select server region(s)";
+      summary.textContent = label;
+      toggle.title = label;
+      checkboxes[0].setCustomValidity(selected.length ? "" : invalid.textContent);
+
+      if (selected.length) {
+        invalid.classList.remove("d-block");
+        toggle.removeAttribute("aria-invalid");
+        toggle.setAttribute("aria-describedby", instructions.id);
+      }
+    };
+
+    checkboxes.forEach((checkbox, index) => {
+      checkbox.addEventListener("change", updateRegions);
+      checkbox.addEventListener("keydown", (event) => {
+        const nextIndex = {
+          ArrowDown: (index + 1) % checkboxes.length,
+          ArrowUp: (index - 1 + checkboxes.length) % checkboxes.length,
+          Home: 0,
+          End: checkboxes.length - 1,
+        }[event.key];
+
+        if (nextIndex !== undefined) {
+          event.preventDefault();
+          event.stopPropagation();
+          checkboxes[nextIndex].focus();
+        } else if (event.key === "Enter") {
+          event.preventDefault();
+          checkbox.click();
+        }
+      });
+    });
+    checkboxes[0].addEventListener("invalid", (event) => {
+      event.preventDefault();
+      invalid.classList.add("d-block");
+      toggle.setAttribute("aria-invalid", "true");
+      toggle.setAttribute("aria-describedby", `${instructions.id} ${invalid.id}`);
+      dropdown.show();
+      checkboxes[0].focus();
+    });
+    picker.addEventListener("focusout", (event) => {
+      if (event.relatedTarget && !picker.contains(event.relatedTarget)) {
+        dropdown.hide();
+      }
+    });
+    updateRegions();
+
+    return wrap;
+  };
+
+  const createListingMetadataFields = (item = null) => {
+    return [
+      createRegionsField(item),
+      field("languages", "Server language(s)", {
+        value: item?.languages?.join(", "),
+        maxLength: SERVER_LANGUAGE_LIMIT * SERVER_LANGUAGE_MAX_LENGTH + (SERVER_LANGUAGE_LIMIT - 1) * 2,
+        placeholder: "English, or: Spanish, French",
+      }),
+    ];
   };
 
   const parseAddressPort = (value) => {
@@ -597,6 +754,8 @@ export const createSubmitFormKit = ({
 
     return {
       description: String(formData.get("description") ?? ""),
+      regions: formData.getAll("regions"),
+      languages: readLanguagesInput(formData.get("languages")),
       websiteUrl: String(formData.get("websiteUrl") ?? ""),
       socialLinks: readSocialFormValues(formData),
     };
@@ -680,7 +839,10 @@ export const createSubmitFormKit = ({
 
   return {
     initTooltips,
-    disposeTooltips,
+    disposeControls: () => {
+      disposeTooltips();
+      root.querySelectorAll("[data-server-regions-toggle]").forEach((toggle) => Dropdown.getInstance(toggle)?.dispose());
+    },
     statePanel,
     createSubmitNotice,
     createSubmitLoadingSkeleton,
@@ -691,8 +853,10 @@ export const createSubmitFormKit = ({
     ownerPort,
     comparableValue,
     publicSnapshot,
+    publicFormSnapshot,
     identitySnapshot,
     field,
+    createListingMetadataFields,
     parseAddressPort,
     isValidPublicServerAddress,
     createAddressPortGroup,

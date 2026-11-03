@@ -18,6 +18,22 @@ import {
 beforeEach(resetDatabase);
 
 describe("Plugin verification API", () => {
+  it("rejects an outdated plugin without verifying the challenge", async () => {
+    const cookie = await seedSubmitter("outdated-plugin");
+    const challenge = await createChallenge(cookie);
+    const response = await jsonApi("/api/v1/plugin/verify", "POST", {
+      ...pluginPayload(String(challenge.code)),
+      pluginVersion: "1.17.27.3"
+    });
+
+    expect(response.status).toBe(400);
+    const row = await testEnv.DB.prepare("SELECT status FROM server_verification_challenges WHERE id = ?")
+      .bind(challenge.id)
+      .first<{ status: string }>();
+
+    expect(row?.status).toBe("pending");
+  });
+
   it.each([
     {
       name: "malformed code",
@@ -289,6 +305,7 @@ describe("Verification codes and daily limits", () => {
         name: "Verification Test",
         address: "play.cubecraft.net",
         port: 25565,
+        regions: ["eu-west"],
         description: "This test description is long enough for server verification.",
         verificationChallengeId: created.id,
         turnstileToken: "test-token",
@@ -371,6 +388,7 @@ describe("Verification codes and daily limits", () => {
         address: "mc.hypixel.net",
         port: 25565,
         description: "This test description is long enough for server verification.",
+        regions: ["eu-west"],
         verificationChallengeId: created.id,
         turnstileToken: "test-token",
         socialLinks: {}

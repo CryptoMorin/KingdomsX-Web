@@ -2,10 +2,10 @@
   "formatVersion": 1,
   "source": {
     "addonId": "enginehub",
-    "artifactPath": "addons/Kingdoms-Addon-EngineHub-1.6.0.jar",
-    "artifactBlobSha": "67f070da4d22ca24adbed543854603585d031d35",
-    "artifactSha256": "5031072f65ae645269301935d8b38dcf26df31572b420e3f437dc8042d2a0423",
-    "addonVersion": "1.6.0"
+    "artifactPath": "addons/Kingdoms-Addon-EngineHub-1.6.1.jar",
+    "artifactBlobSha": "b51ea18741874b0b03e961ab8085eab0369d9662",
+    "artifactSha256": "e83ae18389e7de50c32b86fdfa81a336db892630da5e6aa8a5214b584b7662aa",
+    "addonVersion": "1.6.1"
   },
   "id": "addons/enginehub",
   "resourceName": "enginehub.yml",

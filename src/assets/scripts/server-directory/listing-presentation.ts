@@ -1,3 +1,5 @@
+import { normalizeServerRegionFilter, serverRegionsLabel } from "../../../server-listing-metadata";
+
 interface StatusPresentation {
   online?: boolean;
   playersOnline?: number | null;
@@ -27,6 +29,34 @@ export const SOCIAL_ICON_CLASSES: Readonly<Record<string, string>> = Object.free
 });
 
 export const formatNumber = (value: number) => numberFormatter.format(value);
+
+function metadataSummary(
+  singularLabel: string,
+  values: readonly string[],
+  iconClass: string,
+  format: (values: readonly string[]) => string = (values) => values.join(", ")
+) {
+  const visibleValues = values.slice(0, 2);
+  const remainingValues = values.slice(2);
+
+  return {
+    label: values.length > 1 ? `${singularLabel}s` : singularLabel,
+    value: format(visibleValues) || "Not specified",
+    iconClass,
+    more: remainingValues.length ? {
+      text: `(+ ${remainingValues.length} more)`,
+      title: format(remainingValues),
+      label: `Show ${remainingValues.length} more ${singularLabel.toLowerCase()}${remainingValues.length > 1 ? "s" : ""}`
+    } : null
+  };
+}
+
+export function serverMetadataSummaries(server: { regions?: readonly string[]; languages?: readonly string[] }) {
+  return [
+    metadataSummary("Region", server.regions ?? [], "fa-solid fa-location-dot", serverRegionsLabel),
+    metadataSummary("Server language", server.languages ?? [], "fa-solid fa-language")
+  ];
+}
 
 export function truncateServerDescription(value: unknown, max = SERVER_DESCRIPTION_LIMIT): string {
   const text = String(value ?? "").trim();
@@ -118,7 +148,7 @@ export function paginationControls(currentPage: number, totalPages: number): Pag
   return controls;
 }
 
-export function publicDirectoryPath(status: string, page: number, sort = "newest", basePath = ""): string {
+export function publicDirectoryPath(status: string, page: number, sort = "newest", basePath = "", region = ""): string {
   const segments = status === "online" ? [] : [status];
 
   if (sort !== "newest") {
@@ -131,7 +161,10 @@ export function publicDirectoryPath(status: string, page: number, sort = "newest
 
   const path = [basePath, ...segments].filter(Boolean).join("/");
 
-  return path ? `/${path.replace(/^\/+/, "")}` : "/";
+  const pathname = path ? `/${path.replace(/^\/+/, "")}` : "/";
+  const regionFilter = normalizeServerRegionFilter(region);
+
+  return regionFilter ? `${pathname}?region=${regionFilter}` : pathname;
 }
 
 export const DIRECTORY_UNAVAILABLE = {
@@ -139,12 +172,17 @@ export const DIRECTORY_UNAVAILABLE = {
   message: "Please try again soon."
 };
 
-export function emptyDirectoryState({ mode = "paged", status = "all", counts = {} }: {
+export function emptyDirectoryState({ mode = "paged", status = "all", counts = {}, region = "" }: {
   mode?: string;
   status?: string;
   counts?: Partial<Record<"all" | "online" | "offline", number>>;
+  region?: string;
 } = {}) {
   const allCount = Number(counts.all ?? 0);
+
+  if (region && allCount === 0) {
+    return { title: "No servers match this region.", message: "Try another region or choose All regions.", icon: "fa-filter" };
+  }
 
   if (mode === "recent" || allCount === 0) {
     return { title: "No approved servers yet.", message: "Check back soon or submit your KingdomsX server for review.", icon: "fa-flag" };

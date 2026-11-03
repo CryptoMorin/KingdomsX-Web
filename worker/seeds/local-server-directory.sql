@@ -263,3 +263,18 @@ INSERT OR REPLACE INTO moderation_events (
   ('local-event-pikanetwork', 'local-pikanetwork', 'system', 'approved', 'Seeded approved listing for local development.', strftime('%Y-%m-%dT%H:%M:%fZ', 'now')),
   ('local-event-jartex', 'local-jartex', 'system', 'approved', 'Seeded approved listing for local development.', strftime('%Y-%m-%dT%H:%M:%fZ', 'now')),
   ('local-event-pending-1', 'local-pending-1', 'system', 'submitted', 'Seeded pending listing for local development.', strftime('%Y-%m-%dT%H:%M:%fZ', 'now'));
+
+-- Sample metadata for local layout and moderation checks
+UPDATE servers
+SET regions_json = CASE id
+      WHEN 'local-hypixel' THEN '["na-east"]'
+      WHEN 'local-cubecraft' THEN '["eu-west","na-east"]'
+      ELSE '["eu-west"]'
+    END,
+    languages_json = CASE id
+      WHEN 'local-hypixel' THEN '["English"]'
+      WHEN 'local-cubecraft' THEN '["English","Dutch"]'
+      WHEN 'local-pending-1' THEN '["English","日本語"]'
+      ELSE '[]'
+    END
+WHERE id LIKE 'local-%';

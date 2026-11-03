@@ -1,5 +1,6 @@
 import { formatDate } from "../site-date.js";
-import { checkedAgoLabel, FALLBACK_SERVER_ICON, paginationControls, SOCIAL_ICON_CLASSES, SOCIAL_PLATFORMS } from "./listing-presentation.ts";
+import { Tooltip } from "bootstrap";
+import { checkedAgoLabel, FALLBACK_SERVER_ICON, paginationControls, serverMetadataSummaries, SOCIAL_ICON_CLASSES, SOCIAL_PLATFORMS } from "./listing-presentation.ts";
 export { checkedAgoLabel, formatNumber, playerCountLabel, SERVER_DESCRIPTION_LIMIT, SOCIAL_PLATFORMS, truncateServerDescription, versionLabel } from "./listing-presentation.ts";
 
 const copyResetTimers = new WeakMap();
@@ -132,6 +133,47 @@ export const createOwnerStat = (owner, columnClass = "col") => {
     columnClass,
     `@${username}`
   );
+};
+
+export const createServerMetadataStats = (server) => {
+  return serverMetadataSummaries(server).map((summary) => {
+    const stat = createServerStat(summary.label, summary.value, summary.iconClass);
+    const value = stat.querySelector(".server-stat-value");
+    value.classList.remove("text-truncate");
+    value.classList.add("text-break");
+    value.removeAttribute("title");
+
+    if (summary.more) {
+      const more = document.createElement("button");
+      more.type = "button";
+      more.className = "border-0 bg-transparent p-0 small fw-normal text-body-secondary text-nowrap";
+      more.dataset.serverMetadataMore = "";
+      more.dataset.bsToggle = "tooltip";
+      more.dataset.bsTitle = summary.more.title;
+      more.dataset.bsPlacement = "top";
+      more.title = summary.more.title;
+      more.setAttribute("aria-label", summary.more.label);
+      more.textContent = summary.more.text;
+      value.append(" ", more);
+    }
+
+    return stat;
+  });
+};
+
+export const initServerMetadataTooltips = (container) => {
+  container.querySelectorAll("[data-server-metadata-more]").forEach((element) => {
+    Tooltip.getOrCreateInstance(element, {
+      container: "body",
+      customClass: "comparison-tooltip",
+      trigger: "hover focus",
+      html: false
+    });
+  });
+};
+
+export const disposeServerMetadataTooltips = (container) => {
+  container.querySelectorAll("[data-server-metadata-more]").forEach((element) => Tooltip.getInstance(element)?.dispose());
 };
 
 export const createServerLink = (url, label, key = "", visibleLabel = label) => {

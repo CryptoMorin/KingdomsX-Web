@@ -5,10 +5,10 @@
   "sources": {
     "schema": {
       "addonId": "map-viewers",
-      "artifactPath": "addons/Kingdoms-Addon-Map-Viewers-3.2.2.jar",
-      "artifactBlobSha": "29aaabc3ae8f20ecc1fe6ff4ea14652e4f5e96ac",
-      "artifactSha256": "b169a040912e6c578a6092569ea0e64e092b530f846bbb40b9f56f11104dcf4e",
-      "addonVersion": "3.2.2",
+      "artifactPath": "addons/Kingdoms-Addon-Map-Viewers-3.2.2.1.jar",
+      "artifactBlobSha": "7f6adfb83c7e635c0caccd45962ccca029fea121",
+      "artifactSha256": "4c30c8c5f98b35920ba4952f59cec5b8463bb53329a6aaca64a961f766ec1fd9",
+      "addonVersion": "3.2.2.1",
       "fileName": "schema--addons__maps__marker.json"
     },
     "defaults": [

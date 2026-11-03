@@ -37,17 +37,20 @@ function publicWhere(status: PublicStatusFilter): string {
   return "s.status = 'approved'";
 }
 
+const REGION_FILTER_SQL = "EXISTS (SELECT 1 FROM json_each(s.regions_json) server_region WHERE server_region.value = ?)";
+
 export async function listPublicServerRows(
   env: DirectoryEnv,
   status: PublicStatusFilter,
   sort: PublicSort,
   limit: number,
-  offset: number
+  offset: number,
+  region = ""
 ): Promise<PublicServerRow[]> {
   const rows = await env.DB.prepare(
-    publicSelectSql(publicWhere(status), publicOrderBy(sort), "LIMIT ? OFFSET ?")
+    publicSelectSql(`${publicWhere(status)}${region ? ` AND ${REGION_FILTER_SQL}` : ""}`, publicOrderBy(sort), "LIMIT ? OFFSET ?")
   )
-    .bind(limit, offset)
+    .bind(...(region ? [region] : []), limit, offset)
     .all<PublicServerRow>();
 
   return rows.results;
@@ -78,7 +81,8 @@ export function getPublicServerRow(
 }
 
 export async function publicStatusCounts(
-  env: DirectoryEnv
+  env: DirectoryEnv,
+  region = ""
 ): Promise<Record<PublicStatusFilter, number>> {
   const row = await env.DB.prepare(
     `
@@ -88,9 +92,9 @@ export async function publicStatusCounts(
       COALESCE(SUM(CASE WHEN COALESCE(ss.online, 0) = 0 THEN 1 ELSE 0 END), 0) AS offline_total
     FROM servers s
     LEFT JOIN server_status ss ON ss.server_id = s.id
-    WHERE s.status = 'approved'
+    WHERE s.status = 'approved'${region ? ` AND ${REGION_FILTER_SQL}` : ""}
   `
-  ).first<{ all_total: number; online_total: number; offline_total: number }>();
+  ).bind(...(region ? [region] : [])).first<{ all_total: number; online_total: number; offline_total: number }>();
 
   return {
     all: row?.all_total ?? 0,

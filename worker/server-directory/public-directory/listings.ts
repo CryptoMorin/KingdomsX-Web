@@ -14,6 +14,8 @@ import type {
 } from "../contracts";
 import { clampInt, publicJson } from "../core/http";
 import { optionalUrl } from "../core/network-validation";
+import { parseStoredServerLanguages, parseStoredServerRegions } from "../core/listing-fields";
+import { normalizeServerRegionFilter } from "../../../src/server-listing-metadata";
 import { publicApiRateLimit, rateLimitResponse } from "../core/rate-limit";
 import { logWarn } from "../core/runtime";
 import { safeParseSocialLinks } from "../core/social-links";
@@ -33,6 +35,7 @@ export interface PublicServerCollection {
   page: number;
   limit: number;
   sort: PublicSort;
+  region: string;
   total: number;
   totalPages: number;
   counts: Record<PublicStatusFilter, number>;
@@ -88,19 +91,21 @@ async function listPublicServers(url: URL, env: DirectoryRequestContext["env"]):
   const limit = parsePublicDirectoryLimit(url.searchParams.get("limit"));
   const status = parseStatusFilter(url.searchParams.get("status"));
   const sort = parsePublicSort(url.searchParams.get("sort"));
-  const counts = await publicStatusCounts(env);
+  const region = normalizeServerRegionFilter(url.searchParams.get("region"));
+  const counts = await publicStatusCounts(env, region);
   const total = counts[status];
   const totalPages = Math.max(1, Math.ceil(total / limit));
   const rows =
     page > totalPages
       ? []
-      : await listPublicServerRows(env, status, sort, limit, (page - 1) * limit);
+      : await listPublicServerRows(env, status, sort, limit, (page - 1) * limit, region);
 
   return publicJson({
     items: rows.map(toPublicServer),
     page,
     limit,
     sort,
+    region,
     total,
     totalPages,
     counts
@@ -237,6 +242,11 @@ function publicServersCacheKey(url: URL): Request {
   );
   normalized.searchParams.set("sort", parsePublicSort(url.searchParams.get("sort")));
   normalized.searchParams.set("status", parseStatusFilter(url.searchParams.get("status")));
+  const region = normalizeServerRegionFilter(url.searchParams.get("region"));
+
+  if (region) {
+    normalized.searchParams.set("region", region);
+  }
 
   return new Request(normalized.toString(), { method: "GET" });
 }
@@ -264,6 +274,8 @@ export function toPublicServer(row: PublicServerRow) {
     slug: row.slug,
     name: row.name,
     description: row.description,
+    regions: parseStoredServerRegions(row.regions_json),
+    languages: parseStoredServerLanguages(row.languages_json),
     address: row.port === 25565 ? row.normalized_host : `${row.normalized_host}:${row.port}`,
     websiteUrl: optionalUrl(row.website_url ?? ""),
     socialLinks: safeParseSocialLinks(row.social_links_json),

@@ -45,6 +45,7 @@ describe("Moderation and submission jobs", () => {
         address: "mc.hypixel.net",
         port: 25565,
         description: "A public server description ready for staff review.",
+        regions: ["eu-west"],
         verificationChallengeId: challenge.id,
         turnstileToken: "test-token",
         websiteUrl: "https://kingdomsx.com",

@@ -1,5 +1,5 @@
 {
-  "apiVersion": "26.2-R0.1-SNAPSHOT",
-  "artifactVersion": "26.2-R0.1-20260808.232455-11",
-  "artifactSha256": "b4928c151343df9a2c5fe42b6f73c180e906374e7780bcc84f1d83e2b0a76f7d"
+  "apiVersion": "26.3-R0.1-SNAPSHOT",
+  "artifactVersion": "26.3-R0.1-20261026.080323-10",
+  "artifactSha256": "8fedd1e486b23f38633d9ffcc6c774b3cd5b411a19fb2dacf43e0831695c3dc3"
 }

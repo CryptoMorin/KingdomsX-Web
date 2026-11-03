@@ -5,7 +5,10 @@ import {
   createReviewStatus,
   createServerIcon,
   createServerLink,
+  createServerMetadataStats,
   createServerStat,
+  disposeServerMetadataTooltips,
+  initServerMetadataTooltips,
   playerCountLabel,
   versionLabel,
 } from "./ui.js";
@@ -261,11 +264,16 @@ export const fillManageModal = (modal, server, messages) => {
     title.textContent = server.name;
   }
 
+  disposeServerMetadataTooltips(modal);
   body.replaceChildren();
   footer.replaceChildren();
   modal.dataset.serverId = server.id;
 
   const description = createTextBlock(server.description, "server-admin-description mb-0");
+
+  const information = document.createElement("div");
+  information.className = "server-stats row row-cols-1 row-cols-sm-2 g-2";
+  information.append(...createServerMetadataStats(server));
 
   const stats = document.createElement("div");
   stats.className = "server-stats row row-cols-1 row-cols-sm-2 row-cols-xl-4 g-2";
@@ -348,6 +356,7 @@ export const fillManageModal = (modal, server, messages) => {
     createCurrentModerationReason(server, messages),
     createModalSection("Overview", createOverview(server)),
     createModalSection("Description", description),
+    createModalSection("Server Information", information),
     createModalSection(`Server Status (${providerName(server.provider)})`, stats),
     createModalSection("Website & Socials", socialsContent),
     createModalSection("Discord Embed", createDiscordEmbed(server)),
@@ -377,6 +386,7 @@ export const fillManageModal = (modal, server, messages) => {
   );
 
   footer.append(refreshGroup, moderationGroup);
+  initServerMetadataTooltips(modal);
 
   return null;
 };
@@ -395,6 +405,7 @@ export const fillReasonModal = (modal, server, action, messages) => {
     title.textContent = `${action === "suspend" ? "Suspend" : "Reject"} ${server.name}`;
   }
 
+  disposeServerMetadataTooltips(modal);
   body.replaceChildren();
   footer.replaceChildren();
   modal.dataset.serverId = server.id;

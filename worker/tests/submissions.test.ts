@@ -15,10 +15,33 @@ import {
 beforeEach(resetDatabase);
 
 describe("Resubmission rules", () => {
-  it("keeps an approved listing approved after a verified address change", async () => {
-    const cookie = await seedSubmitter("approved-address");
+  it.each([
+    { label: "missing", regions: undefined },
+    { label: "empty", regions: [] }
+  ])("requires supported regions for a new listing ($label)", async ({ label, regions }) => {
+    const cookie = await seedSubmitter(`required-regions-${label}`);
+    const response = await jsonApi("/api/servers/submit", "POST", {
+      name: "Metadata Server",
+      address: "mc.hypixel.net",
+      port: 25565,
+      description: "This server description is long enough for a new listing review.",
+      regions,
+      turnstileToken: "test-token"
+    }, { cookie });
 
-    await seedOwnedServer("approved-address");
+    expect(response.status).toBe(400);
+    await expect(response.json()).resolves.toMatchObject({ error: expect.stringContaining("region") });
+    expect(await testEnv.DB.prepare("SELECT COUNT(*) AS total FROM servers").first()).toEqual({ total: 0 });
+  });
+
+  it.each([true, false])("keeps approval and handles metadata on verified address changes (metadata supplied: %s)", async (includesMetadata) => {
+    const suffix = `approved-address-${includesMetadata}`;
+    const cookie = await seedSubmitter(suffix);
+
+    await seedOwnedServer(suffix);
+    await testEnv.DB.prepare("UPDATE servers SET regions_json = '[\"eu-west\"]', languages_json = '[\"English\"]' WHERE id = ?")
+      .bind(`server-${suffix}`)
+      .run();
     const created = await createChallenge(cookie, "mc.hypixel.net", "198.51.100.180");
     const verify = await verifyPlugin(String(created.code), "203.0.113.180");
 
@@ -34,6 +57,7 @@ describe("Resubmission rules", () => {
         address: "mc.hypixel.net",
         port: 25565,
         description: "This approved server description remains valid after its address changes.",
+        ...(includesMetadata ? { regions: ["na-east", "eu-central"], languages: ["English", "French"] } : {}),
         verificationChallengeId: created.id,
         turnstileToken: "test-token",
         websiteUrl: "",
@@ -47,16 +71,18 @@ describe("Resubmission rules", () => {
 
     const server = await testEnv.DB.prepare(
       `
-      SELECT name, normalized_host, port, status, approved_at
+      SELECT name, normalized_host, port, status, approved_at, regions_json, languages_json
       FROM servers
-      WHERE id = 'server-approved-address'
+      WHERE id = ?
     `
-    ).first<{
+    ).bind(`server-${suffix}`).first<{
       name: string;
       normalized_host: string;
       port: number;
       status: string;
       approved_at: string | null;
+      regions_json: string;
+      languages_json: string;
     }>();
 
     expect(server).toEqual({
@@ -64,7 +90,43 @@ describe("Resubmission rules", () => {
       normalized_host: "mc.hypixel.net",
       port: 25565,
       status: "approved",
-      approved_at: "2026-01-01T00:00:00.000Z"
+      approved_at: "2026-01-01T00:00:00.000Z",
+      regions_json: includesMetadata ? '["na-east","eu-central"]' : '["eu-west"]',
+      languages_json: includesMetadata ? '["English","French"]' : '["English"]'
+    });
+  });
+
+  it("stores normalized regions and languages when creating a listing", async () => {
+    const cookie = await seedSubmitter("new-metadata");
+    const challenge = await createChallenge(cookie);
+
+    expect((await verifyPlugin(String(challenge.code))).status).toBe(200);
+    stubSubmissionServices();
+
+    const response = await jsonApi("/api/servers/submit", "POST", {
+      name: "Metadata Server",
+      address: "mc.hypixel.net",
+      port: 25565,
+      description: "This server description is long enough for a new listing review.",
+      regions: [" EU-CENTRAL ", "na-east", "eu-central"],
+      languages: [" English ", "German", "english", "Bosanski jezik"],
+      verificationChallengeId: challenge.id,
+      turnstileToken: "test-token"
+    }, { cookie, clientIp: "198.51.100.190" });
+
+    expect(response.status).toBe(202);
+
+    const owner = await api("/api/servers/me", { headers: { cookie } });
+
+    await expect(owner.json()).resolves.toMatchObject({
+      item: { regions: ["eu-central", "na-east"], languages: ["English", "German", "Bosanski jezik"] }
+    });
+    const admin = await api("/api/admin/servers?status=pending", {
+      headers: { "x-admin-token": "local-admin-token" }
+    });
+
+    await expect(admin.json()).resolves.toMatchObject({
+      items: [{ regions: ["eu-central", "na-east"], languages: ["English", "German", "Bosanski jezik"] }]
     });
   });
 

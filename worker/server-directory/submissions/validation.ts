@@ -11,17 +11,22 @@ import { ApiError, isRecord, stringField } from "../core/http";
 import { logError } from "../core/runtime";
 import { optionalUrl } from "../core/network-validation";
 import { safeParseSocialLinks } from "../core/social-links";
-import { validateListingNameAndDescription } from "../core/listing-fields";
+import { parseListingMetadata, parseStoredServerLanguages, parseStoredServerRegions, validateListingNameAndDescription } from "../core/listing-fields";
+import { comparableServerLanguages, comparableServerRegions } from "../../../src/server-listing-metadata";
 
 export function parsePublicDetailsInput(
   body: Record<string, unknown>,
-  currentName: string
-): { name: string; description: string; websiteUrl: string | null; socialLinks: SocialLink[] } {
-  const name = Object.hasOwn(body, "name") ? stringField(body, "name", 80) : currentName;
+  current: AdminServerRow
+): { name: string; description: string; regions: string[]; languages: string[]; websiteUrl: string | null; socialLinks: SocialLink[] } {
+  const name = Object.hasOwn(body, "name") ? stringField(body, "name", 80) : current.name;
   const description = stringField(body, "description", SUBMISSION_DESCRIPTION_MAX_LENGTH);
   const websiteValue = stringField(body, "websiteUrl", 255, false);
   const websiteUrl = normalizeWebsiteInput(websiteValue);
   const socialLinks = parseSocialLinks(body.socialLinks);
+  const metadata = parseListingMetadata(body, {
+    regions: parseStoredServerRegions(current.regions_json),
+    languages: parseStoredServerLanguages(current.languages_json)
+  });
 
   validateListingNameAndDescription(name, description);
 
@@ -32,6 +37,7 @@ export function parsePublicDetailsInput(
   return {
     name,
     description: description.trim(),
+    ...metadata,
     websiteUrl,
     socialLinks
   };
@@ -42,6 +48,8 @@ export function publicDetailsMatch(
   details: {
     name: string;
     description: string;
+    regions: string[];
+    languages: string[];
     websiteUrl: string | null;
     socialLinks: SocialLink[];
   }
@@ -49,6 +57,8 @@ export function publicDetailsMatch(
   return (
     owned.name === details.name &&
     owned.description === details.description &&
+    comparableServerRegions(parseStoredServerRegions(owned.regions_json)) === comparableServerRegions(details.regions) &&
+    comparableServerLanguages(parseStoredServerLanguages(owned.languages_json)) === comparableServerLanguages(details.languages) &&
     owned.website_url === details.websiteUrl &&
     comparableSocialLinks(safeParseSocialLinks(owned.social_links_json)) ===
       comparableSocialLinks(details.socialLinks)

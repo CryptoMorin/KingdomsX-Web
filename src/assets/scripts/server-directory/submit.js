@@ -6,10 +6,10 @@ import {
   createReviewDateStat,
   createReviewStatus,
   createServerCardShell,
+  createServerMetadataStats,
   createServerStat,
   createServerStatus,
   playerCountLabel,
-  readSocialFormValues,
   SERVER_DESCRIPTION_LIMIT,
   versionLabel,
 } from "./ui.js";
@@ -210,7 +210,7 @@ const initServerSubmit = () => {
 
   const {
     initTooltips,
-    disposeTooltips,
+    disposeControls,
     statePanel,
     createSubmitNotice,
     createSubmitLoadingSkeleton,
@@ -221,8 +221,10 @@ const initServerSubmit = () => {
     ownerPort,
     comparableValue,
     publicSnapshot,
+    publicFormSnapshot,
     identitySnapshot,
     field,
+    createListingMetadataFields,
     parseAddressPort,
     isValidPublicServerAddress,
     createAddressPortGroup,
@@ -237,7 +239,7 @@ const initServerSubmit = () => {
   } = forms;
 
   replaceRoot = (...nodes) => {
-    disposeTooltips();
+    disposeControls();
     window.clearTimeout(verificationTimers.poll);
     window.clearTimeout(verificationTimers.expiry);
     window.clearInterval(verificationTimers.countdown);
@@ -286,7 +288,8 @@ const initServerSubmit = () => {
         value: item?.description,
         placeholder: `Describe the server experience in ${SERVER_DESCRIPTION_LIMIT} characters or less.`,
         counter: true,
-      })
+      }),
+      ...createListingMetadataFields(item)
     );
 
     const publicFields = document.createElement("div");
@@ -377,15 +380,7 @@ const initServerSubmit = () => {
       };
     };
 
-    const currentPublicSnapshot = () => {
-      const formData = new FormData(form);
-
-      return {
-        description: comparableValue(formData.get("description")),
-        websiteUrl: comparableValue(formData.get("websiteUrl")),
-        ...readSocialFormValues(formData, comparableValue),
-      };
-    };
+    const currentPublicSnapshot = () => publicFormSnapshot(form);
 
     const review = createSubmitSection("Server Verification");
     const reviewRow = review.querySelector(".row");
@@ -763,6 +758,7 @@ const initServerSubmit = () => {
     stats.className = "server-stats row row-cols-1 row-cols-sm-2 g-2";
     stats.append(
       createOwnerStat(item.owner, "col-12 w-100"),
+      ...createServerMetadataStats(item),
       createServerStat("Players", playerCountLabel(item.status), "fa-solid fa-user-group"),
       createServerStat("Version", versionLabel(item.status), "fa-solid fa-code-branch"),
       createServerStat(
@@ -860,20 +856,12 @@ const initServerSubmit = () => {
     back.addEventListener("click", () => renderOwnedState(item));
 
     actions.append(save, back);
-    form.append(section, actions);
+    form.append(createSubmitSection("Server Information", ...createListingMetadataFields(item)), section, actions);
     panel.append(form);
     replaceRoot(panel);
 
     const baselinePublic = publicSnapshot(item);
-    const currentPublicSnapshot = () => {
-      const formData = new FormData(form);
-
-      return {
-        description: comparableValue(formData.get("description")),
-        websiteUrl: comparableValue(formData.get("websiteUrl")),
-        ...readSocialFormValues(formData, comparableValue),
-      };
-    };
+    const currentPublicSnapshot = () => publicFormSnapshot(form);
     const hasPublicChanges = () =>
       Object.keys(baselinePublic).some(
         (key) => currentPublicSnapshot()[key] !== baselinePublic[key]

@@ -28,6 +28,8 @@ describe("Discord listing embeds", () => {
         slug: "server-discord",
         name: "@everyone *Example*",
         description: "A public server description with @here and markdown.",
+        regions_json: '["eu-central","na-east"]',
+        languages_json: JSON.stringify(["English", "Deutsch *DE*", "<@987654321098765432>"]),
         normalized_host: "play.kingdomsx.com",
         port: 25566,
         website_url: "https://kingdomsx.com/",
@@ -70,6 +72,8 @@ describe("Discord listing embeds", () => {
       embeds: [
         {
           fields: expect.arrayContaining([
+            { name: "Regions", value: "EU Central, NA East", inline: true },
+            { name: "Server languages", value: "English, Deutsch \\*DE\\*, \\<@987654321098765432\\>", inline: true },
             {
               name: "Website",
               value: "<https://kingdomsx.com/>",
@@ -107,6 +111,8 @@ describe("Discord listing embeds", () => {
         slug: "server-no-website",
         name: "No Website",
         description: "A public description without a website.",
+        regions_json: "[]",
+        languages_json: "[]",
         normalized_host: "play.kingdomsx.com",
         port: 25565,
         website_url: null,
@@ -136,6 +142,8 @@ describe("Discord listing embeds", () => {
 
     expect(serialized).not.toContain('"name":"Website"');
     expect(serialized).not.toContain('"name":"Socials"');
+    expect(serialized).not.toContain('"name":"Region"');
+    expect(serialized).not.toContain('"name":"Server language"');
     expect(payload).toMatchObject({
       embeds: [
         {
@@ -164,6 +172,8 @@ describe("Discord delivery", () => {
         `
         UPDATE servers
         SET website_url = 'https://kingdomsx.com/',
+            regions_json = '["na-east","eu-west"]',
+            languages_json = '["English","Español"]',
             social_links_json = '[{"key":"discord","label":"Discord","url":"https://discord.gg/example","host":"discord.gg"}]',
             updated_at = ?
         WHERE id = 'server-review-notification'
@@ -223,6 +233,8 @@ describe("Discord delivery", () => {
           title: "Server review\\-notification",
           footer: { text: "Submitted for review" },
           fields: expect.arrayContaining([
+            { name: "Regions", value: "NA East, EU West", inline: true },
+            { name: "Server languages", value: "English, Español", inline: true },
             {
               name: "Owner",
               value: "<@123456789012345678>",
@@ -427,6 +439,8 @@ describe("Discord delivery", () => {
     const firstEdit = await updatePublicDetails(cookie, {
       name: "Discord Lifecycle",
       description: "A public description for Discord lifecycle testing.",
+      regions: ["eu-central"],
+      languages: ["English", "German"],
       websiteUrl: "https://kingdomsx.com",
       socialLinks: { discord: "https://discord.gg/example" }
     });
@@ -460,6 +474,25 @@ describe("Discord delivery", () => {
     await processDiscordEmbedJobs(discordEnv);
     expect(requests[1]).toMatchObject({ method: "PATCH" });
     expect(requests[1].url).toContain("/messages/123456789012345678");
+
+    const metadataEdit = await updatePublicDetails(cookie, {
+      name: "Discord Lifecycle Renamed",
+      description: "A second public description for Discord lifecycle testing.",
+      websiteUrl: "https://kingdomsx.com",
+      regions: ["oceania", "asia-east"],
+      languages: ["English", "日本語"]
+    });
+
+    expect(metadataEdit.status).toBe(200);
+    await processDiscordEmbedJobs(discordEnv);
+    expect(requests[2]).toMatchObject({ method: "PATCH" });
+    expect(requests[2].url).toContain("/messages/123456789012345678");
+    expect(requests[2].body).toMatchObject({
+      embeds: [{ fields: expect.arrayContaining([
+        { name: "Regions", value: "Oceania, Asia East", inline: true },
+        { name: "Server languages", value: "English, 日本語", inline: true }
+      ]) }]
+    });
   });
 
   it("reposts stale Discord messages and removes them when the listing is suspended", async () => {

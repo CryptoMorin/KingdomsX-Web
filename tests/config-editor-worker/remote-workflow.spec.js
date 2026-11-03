@@ -26,7 +26,7 @@ test("editor sends encrypted configs through the real Worker and receives the sa
   const source = encoder.encode("updates:\n  check: false\n");
   const manifest = encoder.encode(JSON.stringify({
     protocol: 1,
-    pluginVersion: "1.17.27.1",
+    pluginVersion: "1.17.28",
     files: [{ path: "config.yml", sha256: await sha256Hex(source) }],
     capabilities: {
       schematicDirectories: [],
@@ -49,7 +49,7 @@ test("editor sends encrypted configs through the real Worker and receives the sa
     data: {
       protocol: 1,
       name: "server-configs.zip",
-      pluginVersion: "1.17.27.1",
+      pluginVersion: "1.17.28",
       serverTokenHash: await sha256Hex(encoder.encode(serverToken)),
       browserTokenHash: await sha256Hex(encoder.encode(browserToken)),
       original: {

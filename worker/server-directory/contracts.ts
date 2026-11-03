@@ -60,6 +60,8 @@ export interface ServerRow {
   slug: string;
   name: string;
   description: string;
+  regions_json: string;
+  languages_json: string;
   normalized_host: string;
   port: number;
   website_url: string | null;
@@ -211,6 +213,8 @@ export interface SubmissionInput {
   name: string;
   address: string;
   description: string;
+  regions: string[];
+  languages: string[];
   websiteUrl: string | null;
   socialLinks: SocialLink[];
   normalized: { host: string; port: number; address: string };

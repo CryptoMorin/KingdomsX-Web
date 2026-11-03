@@ -1,4 +1,6 @@
 import type { DiscordReviewSubmissionRow, DiscordServerRow } from "../contracts";
+import { serverRegionsLabel } from "../../../src/server-listing-metadata";
+import { parseStoredServerLanguages, parseStoredServerRegions } from "../core/listing-fields";
 import { safeParseSocialLinks } from "../core/social-links";
 
 type ReviewDisplayStatus = "pending" | "approved" | "rejected" | "suspended" | "hidden_offline" | "deleted";
@@ -11,6 +13,8 @@ interface EmbedSocialLink {
 interface EmbedListing {
   name: string;
   description: string;
+  regions: string[];
+  languages: string[];
   normalizedHost: string;
   port: number;
   websiteUrl: string | null;
@@ -145,6 +149,8 @@ export function buildDiscordServerMessage(
     {
       name: server.name,
       description: server.description,
+      regions: parseStoredServerRegions(server.regions_json),
+      languages: parseStoredServerLanguages(server.languages_json),
       normalizedHost: server.normalized_host,
       port: server.port,
       websiteUrl: server.website_url,
@@ -164,6 +170,8 @@ export function buildDiscordReviewNotificationMessage(
     {
       name: server.name,
       description: server.description,
+      regions: parseStoredServerRegions(server.regions_json),
+      languages: parseStoredServerLanguages(server.languages_json),
       normalizedHost: server.normalized_host,
       port: server.port,
       websiteUrl: server.website_url,
@@ -199,6 +207,22 @@ function buildDiscordListingMessage(
     },
     { name: "Owner", value: ownerId ? `<@${ownerId}>` : "Not available", inline: true }
   ];
+
+  if (server.regions.length) {
+    fields.push({
+      name: server.regions.length > 1 ? "Regions" : "Region",
+      value: escapeDiscordMarkdown(serverRegionsLabel(server.regions)),
+      inline: true
+    });
+  }
+
+  if (server.languages.length) {
+    fields.push({
+      name: server.languages.length > 1 ? "Server languages" : "Server language",
+      value: server.languages.map(escapeDiscordMarkdown).join(", "),
+      inline: true
+    });
+  }
 
   if (server.websiteUrl) {
     fields.push({ name: "Website", value: `<${server.websiteUrl}>`, inline: true });

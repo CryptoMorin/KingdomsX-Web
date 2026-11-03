@@ -8,9 +8,12 @@ import {
   createReviewStatus,
   createServerCardShell,
   createServerLink,
+  createServerMetadataStats,
   createServerStat,
   createServerStatus,
+  disposeServerMetadataTooltips,
   formatNumber,
+  initServerMetadataTooltips,
   playerCountLabel,
   renderServerCards,
   renderServerCardSkeletons,
@@ -109,10 +112,15 @@ const ADMIN_MESSAGES = {
 
 let localAdminToken = "";
 
-const setAdminState = (container, title, message = "", kind = "", icon = "fa-shield-halved") =>
+const setAdminState = (container, title, message = "", kind = "", icon = "fa-shield-halved") => {
+  disposeServerMetadataTooltips(container);
   renderServerState(container, title, message, kind, icon);
-const setAdminLoadingSkeleton = (container, count = ADMIN_PAGE_SIZE) =>
+};
+
+const setAdminLoadingSkeleton = (container, count = ADMIN_PAGE_SIZE) => {
+  disposeServerMetadataTooltips(container);
   renderServerCardSkeletons(container, count);
+};
 
 const createLocalAdminUnlock = (message, onSubmit) => {
   const state = document.createElement("div");
@@ -171,6 +179,7 @@ const createAdminCard = (server) => {
     createOwnerStat(server.owner, "col-12 w-100"),
     createServerStat("Players", playerCountLabel(server.status), "fa-solid fa-user-group"),
     createServerStat("Version", versionLabel(server.status), "fa-solid fa-code-branch"),
+    ...createServerMetadataStats(server),
     createServerStat(
       "Submitted",
       formatDate(server.submission?.createdAt ?? server.createdAt),
@@ -223,7 +232,11 @@ const createAdminCard = (server) => {
   });
 };
 
-const renderCards = (container, items) => renderServerCards(container, items, createAdminCard);
+const renderCards = (container, items) => {
+  disposeServerMetadataTooltips(container);
+  renderServerCards(container, items, createAdminCard);
+  initServerMetadataTooltips(container);
+};
 
 // Local admin token only applies on the dev servers host
 const isLocalAdminOrigin = () =>
@@ -312,6 +325,8 @@ const initServerAdmin = () => {
 
   const modalController = modal instanceof HTMLElement ? Modal.getOrCreateInstance(modal) : null;
 
+  modal?.addEventListener("hide.bs.modal", () => disposeServerMetadataTooltips(modal));
+
   const setMessage = (message, kind = "") => {
     if (!statusMessage) {
       return;
@@ -324,6 +339,7 @@ const initServerAdmin = () => {
   const showLocalAdminUnlock = (message = ADMIN_MESSAGES.localUnlock.message) => {
     renderAdminPagination(pagination, 1, 1);
     list.removeAttribute("aria-busy");
+    disposeServerMetadataTooltips(list);
     list.replaceChildren(
       createLocalAdminUnlock(message, (token) => {
         if (!token) {
@@ -505,7 +521,11 @@ const initServerAdmin = () => {
     const current = list.querySelector(`[data-server-id="${CSS.escape(server.id)}"]`);
     const replacement = createAdminCard(server);
 
-    current?.replaceWith(replacement);
+    if (current) {
+      disposeServerMetadataTooltips(current);
+      current.replaceWith(replacement);
+      initServerMetadataTooltips(replacement);
+    }
 
     if (modal instanceof HTMLElement && modal.dataset.serverId === server.id) {
       fillManageModal(modal, server, ADMIN_MESSAGES);

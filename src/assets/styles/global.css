@@ -2654,6 +2654,8 @@ h3 {
 
 .server-submit-section {
   min-width: 0;
+  /* Keep field icons inside their section when another section opens a dropdown */
+  isolation: isolate;
 }
 
 .server-submit-section-title {
@@ -2694,6 +2696,26 @@ h3 {
   box-shadow: inset 0 0 0 0.0625rem rgba(255, 255, 255, 0.05);
   color: #fff8ea;
   transition: width 220ms ease, flex-basis 220ms ease, border-color 180ms ease, background 180ms ease, box-shadow 180ms ease, filter 180ms ease;
+}
+
+.servers-region-control {
+  flex: 1 1 12.5rem;
+  min-width: 0;
+  max-width: 100%;
+  height: 3.25rem;
+}
+
+.servers-region-control .form-select {
+  border-color: rgba(251, 176, 59, 0.8);
+  border-radius: 0.5rem;
+  background-color: rgba(16, 27, 39, 0.7);
+  color: #fff8ea;
+  cursor: pointer;
+}
+
+.servers-region-control .form-select:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 0.25rem rgba(251, 176, 59, 0.1);
 }
 
 .servers-sort-control:hover,
@@ -3065,22 +3087,46 @@ h3 {
   pointer-events: none;
 }
 
-.server-submit-floating > .form-control {
+.server-submit-floating > .form-control,
+.server-submit-region-toggle {
   border-color: rgba(251, 176, 59, 0.2);
-  background: rgba(7, 16, 25, 0.7);
+  background-color: rgba(7, 16, 25, 0.7);
   color: var(--text);
 }
 
-.server-submit-floating > .form-control:focus {
+.server-submit-floating > .form-control:focus,
+.server-submit-region-toggle:focus {
   border-color: rgba(251, 176, 59, 0.6);
-  background: rgba(7, 16, 25, 0.9);
+  background-color: rgba(7, 16, 25, 0.9);
   color: var(--text);
   box-shadow: 0 0 0 0.25rem rgba(251, 176, 59, 0.1);
 }
 
 .server-submit-floating > .form-control:focus ~ label,
-.server-submit-floating > .form-control:not(:placeholder-shown) ~ label {
+.server-submit-floating > .form-control:not(:placeholder-shown) ~ label,
+.server-submit-floating > .form-select ~ label {
   color: var(--amber);
+}
+
+.server-submit-region-toggle[aria-invalid="true"] {
+  border-color: var(--bs-form-invalid-border-color);
+}
+
+.server-submit-region-menu {
+  max-height: 19rem;
+  border-color: rgba(251, 176, 59, 0.2);
+  background: var(--kingdomsx-surface);
+  color: var(--text);
+}
+
+.server-submit-region-menu .form-check:hover,
+.server-submit-region-menu .form-check:focus-within {
+  background: var(--kingdomsx-selected-background);
+}
+
+.server-submit-section:has(.server-submit-region-menu.show) {
+  position: relative;
+  z-index: 3;
 }
 
 .server-submit-floating > textarea.form-control {

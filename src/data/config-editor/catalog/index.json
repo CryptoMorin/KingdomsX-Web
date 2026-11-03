@@ -4,7 +4,7 @@
     "kind": "kingdomsx-github-languages",
     "repository": "CryptoMorin/KingdomsX",
     "ref": "master",
-    "commitSha": "b797369ffd59a2a42b9b3f2d30978683b839af7e",
+    "commitSha": "4e85625500c5b7065a3d5eb9936228e5c17fd915",
     "rootPath": "resources/languages",
     "languages": [
       {
@@ -16,8 +16,8 @@
       {
         "locale": "de",
         "path": "resources/languages/de/de.yml",
-        "blobSha": "0d7f3e2b001c2d36cdc4ce5387d402c55083be40",
-        "sha256": "65d7fcb0290abae2ab1199bc93b044b0d4420439e54deb02eb2a524dfce59cc1"
+        "blobSha": "fa311950d49562bd301176c32404e41a21b5f7b2",
+        "sha256": "e3d3b2bde577a71c7744b121de0d7ef083c7158640bab0e1d29518e4655d211d"
       },
       {
         "locale": "en",
@@ -28,8 +28,8 @@
       {
         "locale": "es",
         "path": "resources/languages/es/es.yml",
-        "blobSha": "e88f2fbef0fa428870e62c6e2457e15791c6fd95",
-        "sha256": "cfb104fcd8f186aa0d5bdb96415e07f4e1c94d1df8d9583469ba9936d854d314"
+        "blobSha": "e30a283a7489bfd66bc3e45e93c19fcbe1f2adcf",
+        "sha256": "d7457af2bfea1f924c3de67302d32bd75284a008c0e2a3c7c052012be36c3fb9"
       },
       {
         "locale": "hu",
@@ -64,14 +64,14 @@
       {
         "locale": "tr",
         "path": "resources/languages/tr/tr.yml",
-        "blobSha": "8fdd2020e5d51c9e33e76caf435ad3400bd3e514",
-        "sha256": "7b4c05fddbfcde9d806719eba5f777932ee29ad0672f393844f1216b556d992e"
+        "blobSha": "531dacefc6dee407e208aea532d935941ce8a633",
+        "sha256": "4a5febb838e0ecb3fef047b85d7cdee78c05f69f90a37ce97c210c5c7cc3a616"
       },
       {
         "locale": "uk",
         "path": "resources/languages/uk/uk.yml",
-        "blobSha": "d5f08924a8a0c9eece7a3425322228c4110db6e7",
-        "sha256": "c07043703ce9d8c534a329d3d60252850f8ce44b71f7ed7cd02707bb6f49f655"
+        "blobSha": "1249107ae33f034f5687b37d95a031c3c1565fc3",
+        "sha256": "2cb9f1499011a5d7c3c8c29d21b7ec61792166e67527e1b90e569d24e7078e51"
       },
       {
         "locale": "vi",
@@ -101,7 +101,7 @@
       "resourceName": "languages/de.yml",
       "schemaId": "language",
       "fileName": "default--languages__de.json",
-      "sha256": "65d7fcb0290abae2ab1199bc93b044b0d4420439e54deb02eb2a524dfce59cc1"
+      "sha256": "e3d3b2bde577a71c7744b121de0d7ef083c7158640bab0e1d29518e4655d211d"
     },
     {
       "resourceName": "languages/en.yml",
@@ -113,7 +113,7 @@
       "resourceName": "languages/es.yml",
       "schemaId": "language",
       "fileName": "default--languages__es.json",
-      "sha256": "cfb104fcd8f186aa0d5bdb96415e07f4e1c94d1df8d9583469ba9936d854d314"
+      "sha256": "d7457af2bfea1f924c3de67302d32bd75284a008c0e2a3c7c052012be36c3fb9"
     },
     {
       "resourceName": "languages/hu.yml",
@@ -149,13 +149,13 @@
       "resourceName": "languages/tr.yml",
       "schemaId": "language",
       "fileName": "default--languages__tr.json",
-      "sha256": "7b4c05fddbfcde9d806719eba5f777932ee29ad0672f393844f1216b556d992e"
+      "sha256": "4a5febb838e0ecb3fef047b85d7cdee78c05f69f90a37ce97c210c5c7cc3a616"
     },
     {
       "resourceName": "languages/uk.yml",
       "schemaId": "language",
       "fileName": "default--languages__uk.json",
-      "sha256": "c07043703ce9d8c534a329d3d60252850f8ce44b71f7ed7cd02707bb6f49f655"
+      "sha256": "2cb9f1499011a5d7c3c8c29d21b7ec61792166e67527e1b90e569d24e7078e51"
     },
     {
       "resourceName": "languages/vi.yml",

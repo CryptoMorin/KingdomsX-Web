@@ -35,6 +35,13 @@ beforeEach(() => {
 });
 
 describe("editor Worker routes", () => {
+  it("rejects KingdomsX versions below the editor minimum", async () => {
+    const response = await createSession({ pluginVersion: "1.17.27.3" });
+
+    expect(response.status).toBe(400);
+    await expect(response.json()).resolves.toMatchObject({ error: "invalid_session" });
+  });
+
   it("forwards valid creation metadata with whitespace and unknown fields", async () => {
     const body = JSON.stringify(createBody({ futureMetadata: { label: "é" } }), null, 2);
     const response = await api("", {
@@ -1045,7 +1052,7 @@ function createBody(overrides: Record<string, unknown> = {}) {
   return {
     protocol: 1,
     name: "server-configs.zip",
-    pluginVersion: "1.17.27",
+    pluginVersion: "1.17.28",
     serverTokenHash,
     browserTokenHash,
     original: { bytes: original.byteLength, sha256: originalSha256 },

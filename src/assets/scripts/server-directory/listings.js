@@ -1,11 +1,14 @@
 import {
   createPaginationControl,
+  disposeServerMetadataTooltips,
+  initServerMetadataTooltips,
   renderPagination,
   renderServerCardSkeletons,
   renderServerState,
 } from "./ui.js";
 import { publicServerCardsHtml } from "./listing-html.ts";
 import { DIRECTORY_UNAVAILABLE, emptyDirectoryState, FALLBACK_SERVER_ICON, playerCountLabel, publicDirectoryPath } from "./listing-presentation.ts";
+import { normalizeServerRegionFilter } from "../../../server-listing-metadata";
 
 const PAGE_SIZE_DEFAULT = 8;
 const STATUS_FILTERS = new Set(["all", "online", "offline"]);
@@ -13,6 +16,7 @@ const SORT_OPTIONS = new Set(["newest", "players", "name"]);
 const DEFAULT_SORT = "newest";
 
 const enhanceServerCards = (container) => {
+  initServerMetadataTooltips(container);
   // Server-rendered counts use the browser's locale without refetching the listings
   container.querySelectorAll("[data-server-player-count]").forEach((value) => {
     const label = playerCountLabel(JSON.parse(value.dataset.serverPlayerCount));
@@ -49,7 +53,7 @@ const renderServers = (container, items, context = {}) => {
   renderServerState(container, state.title, state.message, "", state.icon);
 };
 
-const fetchServers = async ({ apiBase, mode, page = 1, limit = 12, status = "all", sort = DEFAULT_SORT }) => {
+const fetchServers = async ({ apiBase, mode, page = 1, limit = 12, status = "all", sort = DEFAULT_SORT, region = "" }) => {
   const origin = apiBase || window.location.origin;
   const url = mode === "recent"
     ? new URL("/api/servers/recent", origin)
@@ -61,6 +65,10 @@ const fetchServers = async ({ apiBase, mode, page = 1, limit = 12, status = "all
     url.searchParams.set("page", String(page));
     url.searchParams.set("status", status);
     url.searchParams.set("sort", sort);
+
+    if (region) {
+      url.searchParams.set("region", region);
+    }
   }
 
   const response = await fetch(url, {
@@ -89,8 +97,8 @@ const directoryBasePath = () =>
     ? "/servers"
     : "";
 
-const directoryPath = (status, page, sort = DEFAULT_SORT) =>
-  publicDirectoryPath(status, page, sort, directoryBasePath());
+const directoryPath = (status, page, sort = DEFAULT_SORT, region = "") =>
+  publicDirectoryPath(status, page, sort, directoryBasePath(), region);
 
 const readDirectoryStateFromUrl = () => {
   const segments = window.location.pathname
@@ -119,17 +127,19 @@ const readDirectoryStateFromUrl = () => {
     page = cleanPageNumber(segments[1]);
   }
 
-  return { page, status, sort };
+  const region = normalizeServerRegionFilter(new URLSearchParams(window.location.search).get("region"));
+
+  return { page, status, sort, region };
 };
 
-const updateFilterControls = (filters, status, sort = DEFAULT_SORT) => {
+const updateFilterControls = (filters, status, sort = DEFAULT_SORT, region = "") => {
   filters?.querySelectorAll("[data-server-filter]").forEach((filter) => {
     const filterStatus = filter instanceof HTMLElement ? filter.dataset.serverFilter ?? "all" : "all";
     const active = filterStatus === status;
     filter.classList.toggle("is-active", active);
 
     if (filter instanceof HTMLAnchorElement) {
-      filter.href = directoryPath(filterStatus, 1, sort);
+      filter.href = directoryPath(filterStatus, 1, sort, region);
     }
 
     if (active) {
@@ -146,7 +156,7 @@ const updateSortControl = (control, sort) => {
   }
 };
 
-const renderListPagination = (pagination, currentPage, totalPages, status, sort = DEFAULT_SORT) => {
+const renderListPagination = (pagination, currentPage, totalPages, status, sort = DEFAULT_SORT, region = "") => {
   renderPagination(pagination, currentPage, totalPages, (control) => {
     const link = createPaginationControl(
       document.createElement(control.disabled ? "span" : "a"),
@@ -157,7 +167,7 @@ const renderListPagination = (pagination, currentPage, totalPages, status, sort 
       link.classList.add("disabled");
       link.setAttribute("aria-disabled", "true");
     } else {
-      link.href = directoryPath(status, control.page, sort);
+      link.href = directoryPath(status, control.page, sort, region);
     }
 
     return link;
@@ -171,20 +181,23 @@ const initServerLists = () => {
     const page = initialState.page;
     const status = initialState.status;
     const sort = cleanSort(initialState.sort ?? DEFAULT_SORT);
+    const region = initialState.region ?? "";
     const apiBase = container.dataset.serverApiBase ?? "";
     const limit = Number(container.dataset.serverLimit ?? String(PAGE_SIZE_DEFAULT));
     const pagination = document.querySelector("[data-server-pagination]");
     const filters = document.querySelector("[data-server-filters]");
     const sortControl = document.querySelector("[data-server-sort]");
+    const regionControl = document.querySelector("[data-server-region]");
 
     const load = async () => {
+      disposeServerMetadataTooltips(container);
       renderServerCardSkeletons(container, Math.max(1, Math.min(limit, 8)));
 
       try {
-        const data = await fetchServers({ apiBase, mode, page, limit, status, sort });
+        const data = await fetchServers({ apiBase, mode, page, limit, status, sort, region });
 
         if (mode !== "recent" && page > (data.totalPages ?? 1)) {
-          window.location.replace(directoryPath(status, data.totalPages ?? 1, data.sort ?? sort));
+          window.location.replace(directoryPath(status, data.totalPages ?? 1, data.sort ?? sort, data.region ?? region));
 
           return;
         }
@@ -193,12 +206,13 @@ const initServerLists = () => {
           mode,
           status,
           counts: data.counts ?? {},
+          region: data.region ?? region,
         });
 
         if (mode !== "recent") {
           updateSortControl(sortControl, data.sort ?? sort);
-          updateFilterControls(filters, status, data.sort ?? sort);
-          renderListPagination(pagination, data.page ?? page, data.totalPages ?? 1, status, data.sort ?? sort);
+          updateFilterControls(filters, status, data.sort ?? sort, data.region ?? region);
+          renderListPagination(pagination, data.page ?? page, data.totalPages ?? 1, status, data.sort ?? sort, data.region ?? region);
         }
       } catch {
         renderServerState(
@@ -212,12 +226,20 @@ const initServerLists = () => {
     };
 
     if (mode !== "recent") {
-      updateFilterControls(filters, status, sort);
+      updateFilterControls(filters, status, sort, region);
       updateSortControl(sortControl, sort);
+
+      if (regionControl instanceof HTMLSelectElement) {
+        regionControl.value = region;
+        regionControl.addEventListener("change", () => {
+          window.location.href = directoryPath(status, 1, cleanSort(sortControl?.value ?? sort), normalizeServerRegionFilter(regionControl.value));
+        });
+      }
+
       sortControl?.addEventListener("change", () => {
         const nextSort = cleanSort(sortControl instanceof HTMLSelectElement ? sortControl.value : DEFAULT_SORT);
 
-        window.location.href = directoryPath(status, 1, nextSort);
+        window.location.href = directoryPath(status, 1, nextSort, region);
       });
     }
 

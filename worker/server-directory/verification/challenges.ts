@@ -1,3 +1,4 @@
+import { MINIMUM_KINGDOMSX_WEB_VERSION, supportsKingdomsWebIntegrations } from "../../../src/kingdomsx-version";
 import {
   JSON_HEADERS,
   NO_STORE_JSON_HEADERS,
@@ -363,6 +364,14 @@ async function verifyPluginChallenge(
       return pluginVerifyErrorResponse("rate_limited", rateLimit.error, 429, {
         "retry-after": String(VERIFICATION_RATE_LIMIT_RETRY_SECONDS)
       });
+    }
+
+    if (!supportsKingdomsWebIntegrations(callbackPayload.pluginVersion)) {
+      return pluginVerifyErrorResponse(
+        "invalid_request",
+        `Server verification requires KingdomsX ${MINIMUM_KINGDOMSX_WEB_VERSION} or newer. Update KingdomsX and run the verification command again.`,
+        400
+      );
     }
 
     const codeHash = await verificationCodeHash(code, env);

@@ -50,6 +50,8 @@ describe("public directory HTML", () => {
         { key: "discord", label: '<svg onload="alert(4)">', url: "https://discord.gg/example" },
         { key: "x", label: "Bad URL", url: "javascript:alert(5)" }
       ])).run();
+    await testEnv.DB.prepare("UPDATE servers SET regions_json = '[\"eu-west\",\"na-east\"]', languages_json = ? WHERE id = 'server-public'")
+      .bind(JSON.stringify(["English", "Spanish", '<img src=x onerror="alert(8)">'])).run();
     await testEnv.DB.prepare("INSERT INTO server_status (server_id, online, version_name, favicon_url_or_hash) VALUES ('server-public', 1, ?, ?)")
       .bind('<svg onload="alert(6)">', "javascript:alert(7)").run();
 
@@ -67,6 +69,8 @@ describe("public directory HTML", () => {
     expect(html).not.toMatch(/<script>alert|<svg onload|javascript:|Skeleton|JavaScript required|server-private|account-public|discord-public|session_hash/);
     expect(html).toContain('data-copy-server-address="play-public.kingdomsx.com"');
     expect(html).toContain("Tester public");
+    expect(html).toContain("EU West, NA East");
+    expect(html).toContain('data-bs-title="&lt;img src=x onerror=&quot;alert(8)&quot;&gt;"');
   });
 
   it("keeps valid pagination crawlable and marks filter/sort variations noindex", async () => {
@@ -118,6 +122,41 @@ describe("public directory HTML", () => {
         expect(await missing.text()).toBe("");
       }
     }
+  });
+
+  it("renders regional results and preserves the filter in links, controls, and canonical metadata", async () => {
+    for (let index = 0; index < 10; index += 1) {
+      const suffix = `regional-${index}`;
+      await seedSubmitter(suffix);
+      await seedOwnedServer(suffix);
+      await testEnv.DB.prepare("UPDATE servers SET regions_json = ? WHERE id = ?")
+        .bind(index === 9 ? '["na-east"]' : '["eu-west","eu-central"]', `server-${suffix}`).run();
+      await testEnv.DB.prepare("INSERT INTO server_status (server_id, online, checked_at) VALUES (?, 1, ?)")
+        .bind(`server-${suffix}`, new Date().toISOString()).run();
+    }
+
+    const response = await page("/?region=eu-west");
+    const html = await response.text();
+
+    expect(response.status).toBe(200);
+    expect(response.headers.get("x-robots-tag")).toBe("noindex, follow");
+    expect(response.headers.get("link")).toBe(`<${origin}/?region=eu-west>; rel="canonical"`);
+    expect(html.match(/<article /g)).toHaveLength(8);
+    expect(html).toContain('href="/page/2?region=eu-west"');
+    expect(html).toContain('href="/offline?region=eu-west"');
+    expect(html).toContain('value="eu-west" selected');
+    expect(html).not.toContain("play-regional-9.kingdomsx.com");
+
+    const second = await page("/page/2?region=eu-west");
+    expect((await second.text()).match(/<article /g)).toHaveLength(1);
+
+    const sorted = await page("/all?sort=name&region=eu-west");
+    expect(sorted.status).toBe(301);
+    expect(sorted.headers.get("location")).toBe(`${origin}/all/sort/name?region=eu-west`);
+
+    const empty = await page("/?region=oceania");
+    expect(empty.status).toBe(200);
+    expect(await empty.text()).toContain("region");
   });
 
   it("shares the normalized public API cache instead of repeating database reads", async () => {

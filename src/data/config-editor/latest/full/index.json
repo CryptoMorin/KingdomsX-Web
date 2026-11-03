@@ -3,15 +3,15 @@
   "source": {
     "schema": {
       "kind": "kingdomsx-jar",
-      "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
-      "pluginVersion": "1.17.27.3"
+      "sha256": "556563f0fe5856f59080bfc4faeb1cb28b5981c0b24a1b599be40db78a28836f",
+      "pluginVersion": "1.17.28"
     },
     "catalog": {
       "core": {
         "kind": "kingdomsx-github-languages",
         "repository": "CryptoMorin/KingdomsX",
         "ref": "master",
-        "commitSha": "b797369ffd59a2a42b9b3f2d30978683b839af7e",
+        "commitSha": "4e85625500c5b7065a3d5eb9936228e5c17fd915",
         "rootPath": "resources/languages",
         "languages": [
           {
@@ -23,8 +23,8 @@
           {
             "locale": "de",
             "path": "resources/languages/de/de.yml",
-            "blobSha": "0d7f3e2b001c2d36cdc4ce5387d402c55083be40",
-            "sha256": "65d7fcb0290abae2ab1199bc93b044b0d4420439e54deb02eb2a524dfce59cc1"
+            "blobSha": "fa311950d49562bd301176c32404e41a21b5f7b2",
+            "sha256": "e3d3b2bde577a71c7744b121de0d7ef083c7158640bab0e1d29518e4655d211d"
           },
           {
             "locale": "en",
@@ -35,8 +35,8 @@
           {
             "locale": "es",
             "path": "resources/languages/es/es.yml",
-            "blobSha": "e88f2fbef0fa428870e62c6e2457e15791c6fd95",
-            "sha256": "cfb104fcd8f186aa0d5bdb96415e07f4e1c94d1df8d9583469ba9936d854d314"
+            "blobSha": "e30a283a7489bfd66bc3e45e93c19fcbe1f2adcf",
+            "sha256": "d7457af2bfea1f924c3de67302d32bd75284a008c0e2a3c7c052012be36c3fb9"
           },
           {
             "locale": "hu",
@@ -71,14 +71,14 @@
           {
             "locale": "tr",
             "path": "resources/languages/tr/tr.yml",
-            "blobSha": "8fdd2020e5d51c9e33e76caf435ad3400bd3e514",
-            "sha256": "7b4c05fddbfcde9d806719eba5f777932ee29ad0672f393844f1216b556d992e"
+            "blobSha": "531dacefc6dee407e208aea532d935941ce8a633",
+            "sha256": "4a5febb838e0ecb3fef047b85d7cdee78c05f69f90a37ce97c210c5c7cc3a616"
           },
           {
             "locale": "uk",
             "path": "resources/languages/uk/uk.yml",
-            "blobSha": "d5f08924a8a0c9eece7a3425322228c4110db6e7",
-            "sha256": "c07043703ce9d8c534a329d3d60252850f8ce44b71f7ed7cd02707bb6f49f655"
+            "blobSha": "1249107ae33f034f5687b37d95a031c3c1565fc3",
+            "sha256": "2cb9f1499011a5d7c3c8c29d21b7ec61792166e67527e1b90e569d24e7078e51"
           },
           {
             "locale": "vi",
@@ -98,28 +98,28 @@
         "kind": "kingdomsx-addon-jars",
         "repository": "CryptoMorin/KingdomsX",
         "ref": "master",
-        "commitSha": "b797369ffd59a2a42b9b3f2d30978683b839af7e",
+        "commitSha": "4e85625500c5b7065a3d5eb9936228e5c17fd915",
         "artifacts": [
           {
             "addonId": "admin-tools",
-            "artifactPath": "addons/Kingdoms-Addon-Admin-Tools-1.2.3.2.jar",
-            "artifactBlobSha": "c63f5eab8d950936ae09f12aed4ff1383c87cee2",
-            "artifactSha256": "c07ed8f5f52b657f57beca205d12755f0b4f94e26dfcd691834e2ad77043256f",
-            "addonVersion": "1.2.3.2"
+            "artifactPath": "addons/Kingdoms-Addon-Admin-Tools-1.2.3.3.jar",
+            "artifactBlobSha": "c01e9005e338c39628f7894b9b308dce4428a3f0",
+            "artifactSha256": "f50725b79acf8575cf42edab37bab8f84f3722113d98b37e9f911e542e983de3",
+            "addonVersion": "1.2.3.1"
           },
           {
             "addonId": "enginehub",
-            "artifactPath": "addons/Kingdoms-Addon-EngineHub-1.6.0.jar",
-            "artifactBlobSha": "67f070da4d22ca24adbed543854603585d031d35",
-            "artifactSha256": "5031072f65ae645269301935d8b38dcf26df31572b420e3f437dc8042d2a0423",
-            "addonVersion": "1.6.0"
+            "artifactPath": "addons/Kingdoms-Addon-EngineHub-1.6.1.jar",
+            "artifactBlobSha": "b51ea18741874b0b03e961ab8085eab0369d9662",
+            "artifactSha256": "e83ae18389e7de50c32b86fdfa81a336db892630da5e6aa8a5214b584b7662aa",
+            "addonVersion": "1.6.1"
           },
           {
             "addonId": "map-viewers",
-            "artifactPath": "addons/Kingdoms-Addon-Map-Viewers-3.2.2.jar",
-            "artifactBlobSha": "29aaabc3ae8f20ecc1fe6ff4ea14652e4f5e96ac",
-            "artifactSha256": "b169a040912e6c578a6092569ea0e64e092b530f846bbb40b9f56f11104dcf4e",
-            "addonVersion": "3.2.2"
+            "artifactPath": "addons/Kingdoms-Addon-Map-Viewers-3.2.2.1.jar",
+            "artifactBlobSha": "7f6adfb83c7e635c0caccd45962ccca029fea121",
+            "artifactSha256": "4c30c8c5f98b35920ba4952f59cec5b8463bb53329a6aaca64a961f766ec1fd9",
+            "addonVersion": "3.2.2.1"
           },
           {
             "addonId": "outposts",
@@ -140,8 +140,8 @@
     },
     "runtime": {
       "kind": "kingdomsx-jar",
-      "sha256": "f06f43dcd7c50ad414ef49e87f89e61642d00bb8d0022a6a405a2bda8c236aba",
-      "pluginVersion": "1.17.27.3"
+      "sha256": "556563f0fe5856f59080bfc4faeb1cb28b5981c0b24a1b599be40db78a28836f",
+      "pluginVersion": "1.17.28"
     }
   },
   "schemaCount": 28,

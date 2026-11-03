@@ -2,10 +2,10 @@
   "formatVersion": 1,
   "source": {
     "addonId": "admin-tools",
-    "artifactPath": "addons/Kingdoms-Addon-Admin-Tools-1.2.3.2.jar",
-    "artifactBlobSha": "c63f5eab8d950936ae09f12aed4ff1383c87cee2",
-    "artifactSha256": "c07ed8f5f52b657f57beca205d12755f0b4f94e26dfcd691834e2ad77043256f",
-    "addonVersion": "1.2.3.2"
+    "artifactPath": "addons/Kingdoms-Addon-Admin-Tools-1.2.3.3.jar",
+    "artifactBlobSha": "c01e9005e338c39628f7894b9b308dce4428a3f0",
+    "artifactSha256": "f50725b79acf8575cf42edab37bab8f84f3722113d98b37e9f911e542e983de3",
+    "addonVersion": "1.2.3.1"
   },
   "resourceName": "guis/item-editor/attributes/list.yml",
   "schemaId": "guis/schema",

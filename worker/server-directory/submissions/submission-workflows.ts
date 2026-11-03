@@ -74,7 +74,7 @@ import {
   publicDetailsMatch,
   validateTurnstile
 } from "./validation";
-import { validateListingNameAndDescription } from "../core/listing-fields";
+import { parseListingMetadata, parseStoredServerLanguages, parseStoredServerRegions, validateListingNameAndDescription } from "../core/listing-fields";
 
 export async function routeOwnerSubmissions(
   context: DirectoryRequestContext
@@ -381,7 +381,8 @@ async function resubmitMyServer(
     verificationRequired,
     verifiedAfter: rejectionRequiresFreshVerification
       ? (owned.review_event_created_at ?? owned.updated_at)
-      : null
+      : null,
+    currentMetadata: { regions: parseStoredServerRegions(owned.regions_json), languages: parseStoredServerLanguages(owned.languages_json) }
   });
 
   const existingAddress = await getConflictingAddress(
@@ -509,7 +510,7 @@ async function updateMyPublicDetails(
   }
 
   const body = await readJsonObject(request);
-  const details = parsePublicDetailsInput(body, owned.name);
+  const details = parsePublicDetailsInput(body, owned);
 
   if (publicDetailsMatch(owned, details)) {
     return json(
@@ -589,7 +590,11 @@ async function parseSubmissionInput(
   env: DirectoryEnv,
   body: Record<string, unknown>,
   ownerAccountId: string,
-  verificationPolicy: { verificationRequired?: boolean; verifiedAfter?: string | null } = {}
+  verificationPolicy: {
+    verificationRequired?: boolean;
+    verifiedAfter?: string | null;
+    currentMetadata?: { regions: string[]; languages: string[] };
+  } = {}
 ): Promise<SubmissionInput> {
   if (env.APP_ENVIRONMENT !== "local" && (!env.TURNSTILE_SECRET || !env.RATE_LIMIT_SALT)) {
     logError("submission.missing_required_secrets");
@@ -608,6 +613,7 @@ async function parseSubmissionInput(
   const websiteValue = stringField(body, "websiteUrl", 255, false);
   const websiteUrl = normalizeWebsiteInput(websiteValue);
   const socialLinks = parseSocialLinks(body.socialLinks);
+  const metadata = parseListingMetadata(body, verificationPolicy.currentMetadata);
   const normalized = normalizeAddress(address, port);
 
   validateListingNameAndDescription(name, description);
@@ -654,6 +660,7 @@ async function parseSubmissionInput(
     name: name.trim(),
     address,
     description: description.trim(),
+    ...metadata,
     websiteUrl,
     socialLinks,
     normalized,

@@ -177,12 +177,14 @@ export function newSubmissionServerStatement(
   return input.existing
     ? env.DB.prepare(
       `
-        UPDATE servers SET name = ?, description = ?, website_url = ?, social_links_json = ?, status = 'pending',
+        UPDATE servers SET name = ?, description = ?, regions_json = ?, languages_json = ?, website_url = ?, social_links_json = ?, status = 'pending',
           owner_account_id = ?, approved_at = NULL, suspended_at = NULL, updated_at = ? WHERE id = ?
       `
     ).bind(
       input.submission.name,
       input.submission.description,
+      JSON.stringify(input.submission.regions),
+      JSON.stringify(input.submission.languages),
       input.submission.websiteUrl,
       JSON.stringify(input.submission.socialLinks),
       input.accountId,
@@ -191,14 +193,16 @@ export function newSubmissionServerStatement(
     )
     : env.DB.prepare(
       `
-        INSERT INTO servers (id, slug, name, description, normalized_host, port, website_url, social_links_json, status, owner_account_id, created_at, updated_at)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'pending', ?, ?, ?)
+        INSERT INTO servers (id, slug, name, description, regions_json, languages_json, normalized_host, port, website_url, social_links_json, status, owner_account_id, created_at, updated_at)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending', ?, ?, ?)
       `
     ).bind(
       input.id,
       input.slug,
       input.submission.name,
       input.submission.description,
+      JSON.stringify(input.submission.regions),
+      JSON.stringify(input.submission.languages),
       input.submission.normalized.host,
       input.submission.normalized.port,
       input.submission.websiteUrl,
@@ -247,12 +251,14 @@ export function resubmissionServerStatement(
   return keepsApproval
     ? env.DB.prepare(
       `
-        UPDATE servers SET name = ?, description = ?, normalized_host = ?, port = ?, website_url = ?, social_links_json = ?, updated_at = ?
+        UPDATE servers SET name = ?, description = ?, regions_json = ?, languages_json = ?, normalized_host = ?, port = ?, website_url = ?, social_links_json = ?, updated_at = ?
         WHERE id = ? AND owner_account_id = ? AND status = 'approved'
       `
     ).bind(
       input.name,
       input.description,
+      JSON.stringify(input.regions),
+      JSON.stringify(input.languages),
       input.normalized.host,
       input.normalized.port,
       input.websiteUrl,
@@ -263,12 +269,14 @@ export function resubmissionServerStatement(
     )
     : env.DB.prepare(
       `
-        UPDATE servers SET name = ?, description = ?, normalized_host = ?, port = ?, website_url = ?, social_links_json = ?,
+        UPDATE servers SET name = ?, description = ?, regions_json = ?, languages_json = ?, normalized_host = ?, port = ?, website_url = ?, social_links_json = ?,
           status = 'pending', approved_at = NULL, suspended_at = NULL, updated_at = ? WHERE id = ? AND owner_account_id = ?
       `
     ).bind(
       input.name,
       input.description,
+      JSON.stringify(input.regions),
+      JSON.stringify(input.languages),
       input.normalized.host,
       input.normalized.port,
       input.websiteUrl,
@@ -303,6 +311,8 @@ export function publicDetailsStatements(
     details: {
       name: string;
       description: string;
+      regions: string[];
+      languages: string[];
       websiteUrl: string | null;
       socialLinks: unknown[];
     };
@@ -313,11 +323,13 @@ export function publicDetailsStatements(
 ): D1PreparedStatement[] {
   return [
     env.DB.prepare(
-      `UPDATE servers SET name = ?, description = ?, website_url = ?, social_links_json = ?, updated_at = ?
+      `UPDATE servers SET name = ?, description = ?, regions_json = ?, languages_json = ?, website_url = ?, social_links_json = ?, updated_at = ?
       WHERE id = ? AND owner_account_id = ? AND status = 'approved'`
     ).bind(
       input.details.name,
       input.details.description,
+      JSON.stringify(input.details.regions),
+      JSON.stringify(input.details.languages),
       input.details.websiteUrl,
       JSON.stringify(input.details.socialLinks),
       input.timestamp,
@@ -382,11 +394,13 @@ export function autoSuspendServerStatement(
 ): D1PreparedStatement {
   return input.existing
     ? env.DB.prepare(
-      `UPDATE servers SET name = ?, description = ?, website_url = ?, social_links_json = ?, status = 'suspended',
+      `UPDATE servers SET name = ?, description = ?, regions_json = ?, languages_json = ?, website_url = ?, social_links_json = ?, status = 'suspended',
         owner_account_id = ?, approved_at = NULL, suspended_at = ?, updated_at = ? WHERE id = ?`
     ).bind(
       input.submission.name,
       input.submission.description,
+      JSON.stringify(input.submission.regions),
+      JSON.stringify(input.submission.languages),
       input.submission.websiteUrl,
       JSON.stringify(input.submission.socialLinks),
       input.accountId,
@@ -395,13 +409,15 @@ export function autoSuspendServerStatement(
       input.id
     )
     : env.DB.prepare(
-      `INSERT INTO servers (id, slug, name, description, normalized_host, port, website_url, social_links_json, status, owner_account_id, suspended_at, created_at, updated_at)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'suspended', ?, ?, ?, ?)`
+      `INSERT INTO servers (id, slug, name, description, regions_json, languages_json, normalized_host, port, website_url, social_links_json, status, owner_account_id, suspended_at, created_at, updated_at)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'suspended', ?, ?, ?, ?)`
     ).bind(
       input.id,
       input.slug,
       input.submission.name,
       input.submission.description,
+      JSON.stringify(input.submission.regions),
+      JSON.stringify(input.submission.languages),
       input.submission.normalized.host,
       input.submission.normalized.port,
       input.submission.websiteUrl,
@@ -421,11 +437,13 @@ export function autoSuspendOwnedServerStatement(
   timestamp: string
 ) {
   return env.DB.prepare(
-    `UPDATE servers SET name = ?, description = ?, normalized_host = ?, port = ?, website_url = ?, social_links_json = ?,
+    `UPDATE servers SET name = ?, description = ?, regions_json = ?, languages_json = ?, normalized_host = ?, port = ?, website_url = ?, social_links_json = ?,
       status = 'suspended', approved_at = NULL, suspended_at = ?, updated_at = ? WHERE id = ? AND owner_account_id = ?`
   ).bind(
     input.name,
     input.description,
+    JSON.stringify(input.regions),
+    JSON.stringify(input.languages),
     input.normalized.host,
     input.normalized.port,
     input.websiteUrl,

@@ -7,6 +7,7 @@ import {
   playerCountLabel,
   publicDirectoryPath,
   SERVER_DESCRIPTION_LIMIT,
+  serverMetadataSummaries,
   SOCIAL_ICON_CLASSES,
   truncateServerDescription,
   versionLabel
@@ -20,7 +21,7 @@ export function publicServerCardsHtml(items: PublicServer[]): string {
 export function publicDirectoryHtml(data: PublicServerCollection, status: string): string {
   return data.items.length
     ? publicServerCardsHtml(data.items)
-    : publicDirectoryStateHtml(emptyDirectoryState({ status, counts: data.counts }));
+    : publicDirectoryStateHtml(emptyDirectoryState({ status, counts: data.counts, region: data.region }));
 }
 
 export function publicDirectoryStateHtml(state: { title: string; message: string; icon?: string }, isError = false): string {
@@ -43,7 +44,7 @@ export function publicPaginationHtml(data: PublicServerCollection, status: strin
 
     return control.disabled
       ? `<span class="${classes} disabled" aria-disabled="true">${content}</span>`
-      : `<a class="${classes}" href="${publicDirectoryPath(status, control.page, data.sort)}"${control.current ? ' aria-current="page"' : ""}>${content}</a>`;
+      : `<a class="${classes}" href="${publicDirectoryPath(status, control.page, data.sort, "", data.region)}"${control.current ? ' aria-current="page"' : ""}>${content}</a>`;
   }).join("");
 }
 
@@ -102,6 +103,7 @@ function serverCardHtml(server: PublicServer): string {
         })}
         ${statHtml("Players", playerCountLabel(server.status), "fa-solid fa-user-group", { playerCountData })}
         ${statHtml("Version", versionLabel(server.status), "fa-solid fa-code-branch")}
+        ${serverMetadataSummaries(server).map((summary) => statHtml(summary.label, summary.value, summary.iconClass, { wrap: true, more: summary.more })).join("")}
       </div>
       ${links ? `<div class="server-links d-flex flex-wrap gap-2 mt-3">${links}</div>` : ""}
     </div>
@@ -112,17 +114,20 @@ function serverCardHtml(server: PublicServer): string {
 function statHtml(label: string, value: string, icon: string, {
   column = "col",
   secondary = "",
+  wrap = false,
+  more = null,
   playerCountData
-}: { column?: string; secondary?: string; playerCountData?: string } = {}): string {
+}: { column?: string; secondary?: string; wrap?: boolean; more?: { text: string; title: string; label: string } | null; playerCountData?: string } = {}): string {
   const title = escapeHtml(secondary ? `${value} · ${secondary}` : value);
   const content = `${escapeHtml(value)}${secondary ? ` · <small class="text-body-secondary fw-bold">${escapeHtml(secondary)}</small>` : ""}`;
+  const moreButton = more ? ` <button type="button" class="border-0 bg-transparent p-0 small fw-normal text-body-secondary text-nowrap" data-server-metadata-more data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="${escapeHtml(more.title)}" title="${escapeHtml(more.title)}" aria-label="${escapeHtml(more.label)}">${escapeHtml(more.text)}</button>` : "";
 
   return `<div class="${column}">
     <div class="server-stat d-flex align-items-center gap-2 min-w-0 h-100 p-2 rounded-2">
       <span class="server-stat-icon d-inline-flex align-items-center justify-content-center flex-shrink-0 rounded-2"><i class="${icon}" aria-hidden="true"></i></span>
       <span class="server-stat-text d-grid gap-1 min-w-0">
         <span class="server-stat-label">${label}</span>
-        <strong class="server-stat-value text-truncate" title="${title}"${playerCountData ? ` data-server-player-count="${escapeHtml(playerCountData)}"` : ""}>${content}</strong>
+        <strong class="server-stat-value ${wrap ? "text-break" : "text-truncate"}"${more ? "" : ` title="${title}"`}${playerCountData ? ` data-server-player-count="${escapeHtml(playerCountData)}"` : ""}>${content}${moreButton}</strong>
       </span>
     </div>
   </div>`;
