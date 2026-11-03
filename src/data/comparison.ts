@@ -76,7 +76,7 @@ export const comparisonCategories: ComparisonCategory[] = [
         hint: "The Minecraft server versions supported by current latest plugin version.",
         values: {
           kingdomsx: {
-            label: "1.9–26.2",
+            label: "1.9–26.3",
             href: "https://kingdoms.wiki/FAQ#supported-server-versions-by-the-plugin",
           },
           factionsuuid: "26.2–26.3",
