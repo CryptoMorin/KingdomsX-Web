@@ -2169,10 +2169,6 @@ h3 {
 }
 
 .server-description {
-  display: -webkit-box;
-  overflow: hidden;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
   font-size: 0.95rem;
   line-height: 1.6;
 }

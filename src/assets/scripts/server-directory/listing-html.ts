@@ -6,10 +6,8 @@ import {
   paginationControls,
   playerCountLabel,
   publicDirectoryPath,
-  SERVER_DESCRIPTION_LIMIT,
   serverMetadataSummaries,
   SOCIAL_ICON_CLASSES,
-  truncateServerDescription,
   versionLabel
 } from "./listing-presentation";
 
@@ -49,8 +47,6 @@ export function publicPaginationHtml(data: PublicServerCollection, status: strin
 }
 
 function serverCardHtml(server: PublicServer): string {
-  const description = truncateServerDescription(server.description);
-  const descriptionTitle = server.description.length > SERVER_DESCRIPTION_LIMIT ? ` title="${escapeHtml(server.description)}"` : "";
   const owner = server.owner;
   const playerCountData = JSON.stringify({
     online: server.status.online,
@@ -94,7 +90,7 @@ function serverCardHtml(server: PublicServer): string {
         </div>
       </div>
     </div>
-    <p class="server-description flex-grow-1 mb-0"${descriptionTitle}>${escapeHtml(description)}</p>
+    <p class="server-description flex-grow-1 mb-0">${escapeHtml(server.description)}</p>
     <div class="server-card-bottom mt-auto min-w-0">
       <div class="server-stats row row-cols-1 row-cols-sm-2 g-2">
         ${statHtml("Owner", owner?.displayName || owner?.username || "Not available", "fa-brands fa-discord", {

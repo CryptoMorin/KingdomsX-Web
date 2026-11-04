@@ -1,7 +1,7 @@
 import { formatDate } from "../site-date.js";
 import { Tooltip } from "bootstrap";
 import { checkedAgoLabel, FALLBACK_SERVER_ICON, paginationControls, serverMetadataSummaries, SOCIAL_ICON_CLASSES, SOCIAL_PLATFORMS } from "./listing-presentation.ts";
-export { checkedAgoLabel, formatNumber, playerCountLabel, SERVER_DESCRIPTION_LIMIT, SOCIAL_PLATFORMS, truncateServerDescription, versionLabel } from "./listing-presentation.ts";
+export { checkedAgoLabel, formatNumber, playerCountLabel, SERVER_DESCRIPTION_LIMIT, SOCIAL_PLATFORMS, versionLabel } from "./listing-presentation.ts";
 
 const copyResetTimers = new WeakMap();
 
@@ -222,7 +222,6 @@ export const createServerCardShell = ({
   chips = null,
   description = "",
   descriptionClassName = "server-description flex-grow-1 mb-0",
-  descriptionTitle = "",
   afterDescription = [],
   footer = null,
 }) => {
@@ -264,10 +263,6 @@ export const createServerCardShell = ({
   const descriptionNode = document.createElement("p");
   descriptionNode.className = descriptionClassName;
   descriptionNode.textContent = description;
-
-  if (descriptionTitle) {
-    descriptionNode.title = descriptionTitle;
-  }
 
   const sections = [top, descriptionNode, ...afterDescription];
 

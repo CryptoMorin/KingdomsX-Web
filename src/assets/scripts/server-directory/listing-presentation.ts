@@ -58,12 +58,6 @@ export function serverMetadataSummaries(server: { regions?: readonly string[]; l
   ];
 }
 
-export function truncateServerDescription(value: unknown, max = SERVER_DESCRIPTION_LIMIT): string {
-  const text = String(value ?? "").trim();
-
-  return text.length <= max ? text : `${text.slice(0, max - 1).trimEnd()}…`;
-}
-
 export function checkedAgoLabel(status?: StatusPresentation): string {
   const checkedTime = status?.checkedAt ? new Date(status.checkedAt).getTime() : NaN;
 
