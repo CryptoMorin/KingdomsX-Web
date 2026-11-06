@@ -101,6 +101,7 @@ const directoryPath = (status, page, sort = DEFAULT_SORT, region = "") =>
   publicDirectoryPath(status, page, sort, directoryBasePath(), region);
 
 const readDirectoryStateFromUrl = () => {
+  const query = new URLSearchParams(window.location.search);
   const segments = window.location.pathname
     .replace(/\/+$/, "")
     .split("/")
@@ -111,11 +112,17 @@ const readDirectoryStateFromUrl = () => {
   }
 
   let status = "online";
+  let region = "";
   let page = 1;
-  let sort = cleanSort(new URLSearchParams(window.location.search).get("sort"));
+  let sort = cleanSort(query.get("sort"));
 
   if (segments[0] === "all" || segments[0] === "online" || segments[0] === "offline") {
     status = segments.shift() ?? "online";
+  }
+
+  if (segments[0] === "region") {
+    segments.shift();
+    region = segments.shift() ?? "";
   }
 
   if (segments[0] === "sort") {
@@ -127,9 +134,7 @@ const readDirectoryStateFromUrl = () => {
     page = cleanPageNumber(segments[1]);
   }
 
-  const region = normalizeServerRegionFilter(new URLSearchParams(window.location.search).get("region"));
-
-  return { page, status, sort, region };
+  return { page, status, sort, region: normalizeServerRegionFilter(query.get("region") ?? region) };
 };
 
 const updateFilterControls = (filters, status, sort = DEFAULT_SORT, region = "") => {

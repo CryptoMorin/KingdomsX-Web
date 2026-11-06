@@ -25,8 +25,7 @@ interface DirectoryRoute {
   status: DirectoryStatus;
   sort: DirectorySort;
   page: number;
-  canonicalPath: string;
-  region?: string;
+  region: string;
 }
 
 export default {
@@ -199,10 +198,20 @@ function parseDirectoryRoute(pathname: string): DirectoryRoute | null {
   const normalized = pathname.replace(/\/+$/, "") || "/";
   const segments = normalized.split("/").filter(Boolean);
   let status: DirectoryStatus = "online";
+  let region = "";
   let sort: DirectorySort = "newest";
 
   if (segments[0] === "all" || segments[0] === "online" || segments[0] === "offline") {
     status = segments.shift() as DirectoryStatus;
+  }
+
+  if (segments[0] === "region") {
+    segments.shift();
+    region = normalizeServerRegionFilter(segments.shift() ?? null);
+
+    if (!region) {
+      return null;
+    }
   }
 
   if (segments[0] === "sort") {
@@ -218,7 +227,7 @@ function parseDirectoryRoute(pathname: string): DirectoryRoute | null {
   }
 
   if (segments.length === 0) {
-    return { status, sort, page: 1, canonicalPath: directoryPath(status, 1, sort) };
+    return { status, sort, page: 1, region };
   }
 
   if (segments.length !== 2 || segments[0] !== "page" || !/^[1-9]\d*$/.test(segments[1])) {
@@ -228,7 +237,7 @@ function parseDirectoryRoute(pathname: string): DirectoryRoute | null {
   const page = Number(segments[1]);
 
   return page <= PUBLIC_DIRECTORY_MAX_PAGE
-    ? { status, sort, page, canonicalPath: directoryPath(status, page, sort) }
+    ? { status, sort, page, region }
     : null;
 }
 
@@ -236,11 +245,9 @@ async function serveDirectoryPage(
   request: Request,
   url: URL,
   env: WorkerEnv,
-  route: DirectoryRoute,
+  pathRoute: DirectoryRoute,
   ctx: ExecutionContext
 ): Promise<Response> {
-  route = { ...route, region: normalizeServerRegionFilter(url.searchParams.get("region")) };
-
   if (request.method !== "GET" && request.method !== "HEAD") {
     return new Response("Method not allowed", {
       status: 405,
@@ -252,18 +259,23 @@ async function serveDirectoryPage(
     });
   }
 
-  if (url.searchParams.has("sort")) {
-    const querySort = parseDirectorySort(url.searchParams.get("sort"));
-    const redirect = new URL(url);
-    redirect.pathname = directoryPath(route.status, route.page, querySort);
-    redirect.searchParams.delete("sort");
+  const querySort = url.searchParams.get("sort");
+  const queryRegion = url.searchParams.get("region");
+  const route = {
+    ...pathRoute,
+    sort: querySort === null ? pathRoute.sort : parseDirectorySort(querySort),
+    region: queryRegion === null ? pathRoute.region : normalizeServerRegionFilter(queryRegion)
+  };
+  const canonicalPath = directoryPath(route.status, route.page, route.sort, "", route.region);
 
-    return Response.redirect(redirect.toString(), 301);
-  }
-
-  if (url.pathname !== route.canonicalPath) {
+  if (url.pathname !== canonicalPath || querySort !== null || queryRegion !== null) {
     const redirect = new URL(url);
-    redirect.pathname = route.canonicalPath;
+    redirect.pathname = canonicalPath;
+
+    if (querySort !== null || queryRegion !== null) {
+      redirect.searchParams.delete("sort");
+      redirect.searchParams.delete("region");
+    }
 
     return Response.redirect(redirect.toString(), 301);
   }
@@ -307,13 +319,7 @@ async function serveDirectoryPage(
   }
 
   const response = await fetchAsset(request, url, env, "/servers.html");
-  const canonical = new URL(route.canonicalPath, url);
-  canonical.search = "";
-  canonical.hash = "";
-
-  if (route.region) {
-    canonical.searchParams.set("region", route.region);
-  }
+  const canonical = new URL(canonicalPath, url);
 
   if (!response.ok || !response.headers.get("content-type")?.includes("text/html")) {
     return response;

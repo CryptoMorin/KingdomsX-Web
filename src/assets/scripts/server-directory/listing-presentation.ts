@@ -144,6 +144,11 @@ export function paginationControls(currentPage: number, totalPages: number): Pag
 
 export function publicDirectoryPath(status: string, page: number, sort = "newest", basePath = "", region = ""): string {
   const segments = status === "online" ? [] : [status];
+  const regionFilter = normalizeServerRegionFilter(region);
+
+  if (regionFilter) {
+    segments.push("region", regionFilter);
+  }
 
   if (sort !== "newest") {
     segments.push("sort", sort);
@@ -155,10 +160,7 @@ export function publicDirectoryPath(status: string, page: number, sort = "newest
 
   const path = [basePath, ...segments].filter(Boolean).join("/");
 
-  const pathname = path ? `/${path.replace(/^\/+/, "")}` : "/";
-  const regionFilter = normalizeServerRegionFilter(region);
-
-  return regionFilter ? `${pathname}?region=${regionFilter}` : pathname;
+  return path ? `/${path.replace(/^\/+/, "")}` : "/";
 }
 
 export const DIRECTORY_UNAVAILABLE = {

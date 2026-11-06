@@ -135,28 +135,38 @@ describe("public directory HTML", () => {
         .bind(`server-${suffix}`, new Date().toISOString()).run();
     }
 
-    const response = await page("/?region=eu-west");
+    const response = await page("/region/eu-west?utm_source=test");
     const html = await response.text();
 
     expect(response.status).toBe(200);
     expect(response.headers.get("x-robots-tag")).toBe("noindex, follow");
-    expect(response.headers.get("link")).toBe(`<${origin}/?region=eu-west>; rel="canonical"`);
+    expect(response.headers.get("link")).toBe(`<${origin}/region/eu-west>; rel="canonical"`);
+    expect(html).toContain(`rel="canonical" href="${origin}/region/eu-west"`);
     expect(html.match(/<article /g)).toHaveLength(8);
-    expect(html).toContain('href="/page/2?region=eu-west"');
-    expect(html).toContain('href="/offline?region=eu-west"');
+    expect(html).toContain('href="/region/eu-west/page/2"');
+    expect(html).toContain('href="/offline/region/eu-west"');
     expect(html).toContain('value="eu-west" selected');
     expect(html).not.toContain("play-regional-9.kingdomsx.com");
 
-    const second = await page("/page/2?region=eu-west");
-    expect((await second.text()).match(/<article /g)).toHaveLength(1);
+    const second = await page("/all/region/eu-west/sort/name/page/2");
+    const secondHtml = await second.text();
 
-    const sorted = await page("/all?sort=name&region=eu-west");
-    expect(sorted.status).toBe(301);
-    expect(sorted.headers.get("location")).toBe(`${origin}/all/sort/name?region=eu-west`);
+    expect(second.status).toBe(200);
+    expect(secondHtml.match(/<article /g)).toHaveLength(1);
+    expect(secondHtml).toContain('href="/all/region/eu-west/sort/name"');
+    expect(secondHtml).toContain('data-server-sort-form action="/all"');
+    expect(secondHtml).toContain('value="name" selected');
 
-    const empty = await page("/?region=oceania");
+    const empty = await page("/region/oceania");
     expect(empty.status).toBe(200);
-    expect(await empty.text()).toContain("region");
+    expect(await empty.text()).toContain("No servers match this region.");
+  });
+
+  it("redirects the native filter form to the clean directory URL", async () => {
+    const response = await page("/all?region=eu-west&sort=name");
+
+    expect(response.status).toBe(301);
+    expect(response.headers.get("location")).toBe(`${origin}/all/region/eu-west/sort/name`);
   });
 
   it("shares the normalized public API cache instead of repeating database reads", async () => {
