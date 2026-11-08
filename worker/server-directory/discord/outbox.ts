@@ -60,12 +60,13 @@ export function discordReviewStatusJobStatement(
   serverId: string,
   desiredStatus: ServerState,
   desiredVersion: string,
-  expectedVersion?: string
+  options: { expectedVersion?: string; editOnly?: boolean } = {}
 ): D1PreparedStatement {
+  // A quiet showcase sync must preserve any queued review event that can post
   return env.DB.prepare(
     `
     INSERT INTO discord_review_notification_jobs (
-      server_id, submission_id, notification_type, desired_status, desired_version,
+      server_id, submission_id, notification_type, desired_status, desired_version, edit_only,
       attempt_count, next_attempt_at, last_attempt_at, last_error_code, last_error,
       lease_token, lease_expires_at, created_at, updated_at
     )
@@ -75,7 +76,7 @@ export function discordReviewStatusJobStatement(
         (SELECT notification_type FROM discord_review_notifications WHERE server_id = ?),
         CASE WHEN (SELECT COUNT(*) FROM submissions WHERE server_id = ?) > 1 THEN 'resubmitted' ELSE 'submitted' END
       ),
-      ?, ?, 0, ?, NULL, NULL, NULL, NULL, NULL, ?, ?
+      ?, ?, ?, 0, ?, NULL, NULL, NULL, NULL, NULL, ?, ?
     FROM submissions latest
     WHERE latest.server_id = ?
       AND (? IS NULL OR EXISTS (
@@ -87,6 +88,7 @@ export function discordReviewStatusJobStatement(
       submission_id = excluded.submission_id,
       desired_status = excluded.desired_status,
       desired_version = excluded.desired_version,
+      edit_only = MIN(discord_review_notification_jobs.edit_only, excluded.edit_only),
       attempt_count = 0,
       next_attempt_at = excluded.next_attempt_at,
       last_attempt_at = NULL,
@@ -100,13 +102,14 @@ export function discordReviewStatusJobStatement(
     serverId,
     desiredStatus,
     desiredVersion,
+    options.editOnly ? 1 : 0,
     desiredVersion,
     desiredVersion,
     desiredVersion,
     serverId,
-    expectedVersion ?? null,
+    options.expectedVersion ?? null,
     desiredStatus,
-    expectedVersion ?? null
+    options.expectedVersion ?? null
   );
 }
 
@@ -121,16 +124,17 @@ export function discordReviewNotificationJobStatement(
   return env.DB.prepare(
     `
     INSERT INTO discord_review_notification_jobs (
-      server_id, submission_id, notification_type, desired_status, desired_version, attempt_count, next_attempt_at,
+      server_id, submission_id, notification_type, desired_status, desired_version, edit_only, attempt_count, next_attempt_at,
       last_attempt_at, last_error_code, last_error, lease_token, lease_expires_at,
       created_at, updated_at
     )
-    VALUES (?, ?, ?, ?, ?, 0, ?, NULL, NULL, NULL, NULL, NULL, ?, ?)
+    VALUES (?, ?, ?, ?, ?, 0, 0, ?, NULL, NULL, NULL, NULL, NULL, ?, ?)
     ON CONFLICT(server_id) DO UPDATE SET
       submission_id = excluded.submission_id,
       notification_type = excluded.notification_type,
       desired_status = excluded.desired_status,
       desired_version = excluded.desired_version,
+      edit_only = excluded.edit_only,
       attempt_count = 0,
       next_attempt_at = excluded.next_attempt_at,
       last_attempt_at = NULL,
@@ -327,7 +331,7 @@ export async function recordDiscordReviewNotificationFailure(
     SET attempt_count = ?, next_attempt_at = ?, last_attempt_at = ?,
         last_error_code = ?, last_error = ?, lease_token = NULL, lease_expires_at = NULL
     WHERE server_id = ? AND submission_id = ? AND notification_type = ?
-      AND desired_status = ? AND desired_version = ? AND lease_token = ?
+      AND desired_status = ? AND desired_version = ? AND edit_only = ? AND lease_token = ?
   `
     ).bind(
       attempts,
@@ -340,6 +344,7 @@ export async function recordDiscordReviewNotificationFailure(
       job.notification_type,
       job.desired_status,
       job.desired_version,
+      job.edit_only,
       leaseToken
     )
   );
@@ -444,7 +449,7 @@ export async function discordReviewNotificationJobStillCurrent(
     SELECT server_id
     FROM discord_review_notification_jobs
     WHERE server_id = ? AND submission_id = ? AND notification_type = ?
-      AND desired_status = ? AND desired_version = ? AND lease_token = ?
+      AND desired_status = ? AND desired_version = ? AND edit_only = ? AND lease_token = ?
   `
   )
     .bind(
@@ -453,6 +458,7 @@ export async function discordReviewNotificationJobStillCurrent(
       job.notification_type,
       job.desired_status,
       job.desired_version,
+      job.edit_only,
       leaseToken
     )
     .first<{ server_id: string }>();
@@ -512,7 +518,7 @@ export async function deleteDiscordReviewNotificationJob(
       `
     DELETE FROM discord_review_notification_jobs
     WHERE server_id = ? AND submission_id = ? AND notification_type = ?
-      AND desired_status = ? AND desired_version = ? AND lease_token = ?
+      AND desired_status = ? AND desired_version = ? AND edit_only = ? AND lease_token = ?
   `
     ).bind(
       job.server_id,
@@ -520,6 +526,7 @@ export async function deleteDiscordReviewNotificationJob(
       job.notification_type,
       job.desired_status,
       job.desired_version,
+      job.edit_only,
       leaseToken
     )
   );
@@ -616,7 +623,12 @@ export async function storeDiscordEmbed(
       timestamp
     )
   );
-  await runD1Statement(discordReviewStatusJobStatement(env, serverId, "approved", syncedVersion));
+  await runD1Statement(
+    discordReviewStatusJobStatement(env, serverId, "approved", syncedVersion, {
+      expectedVersion: syncedVersion,
+      editOnly: true
+    })
+  );
 }
 
 // Review deletion state

@@ -234,7 +234,7 @@ async function updateListingDetails(
   const timestamp = new Date(Math.max(Date.now(), Date.parse(updatedAt) + 1)).toISOString();
 
   // Queue against the same original revision so a concurrent change skips the entire batch
-  const statements = [discordReviewStatusJobStatement(env, id, status, timestamp, updatedAt)];
+  const statements = [discordReviewStatusJobStatement(env, id, status, timestamp, { expectedVersion: updatedAt })];
   if (status === "approved") {
     statements.push(discordEmbedJobStatement(env, id, "upsert", timestamp, updatedAt));
   }

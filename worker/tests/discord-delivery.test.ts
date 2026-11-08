@@ -160,6 +160,68 @@ describe("Discord listing embeds", () => {
 });
 
 describe("Discord delivery", () => {
+  it.each(["stale", "deleted", "untracked"])(
+    "keeps owner detail edits quiet in the staff channel when the message is %s",
+    async (messageState) => {
+      const cookie = await seedSubmitter("quiet-owner-edit");
+      await seedOwnedServer("quiet-owner-edit");
+      const timestamp = new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString();
+
+      await testEnv.DB.prepare(`
+        INSERT INTO submissions (
+          id, server_id, owner_account_id, contact, verification_method, verification_evidence,
+          submitter_ip_hash, user_agent_hash, turnstile_result, created_at
+        )
+        VALUES (
+          'submission-quiet-owner-edit', 'server-quiet-owner-edit', 'account-quiet-owner-edit',
+          'Tester', 'plugin_callback', 'Verified', 'ip', 'ua', '{}', ?
+        )
+      `).bind(timestamp).run();
+      if (messageState !== "untracked") {
+        await testEnv.DB.prepare(`
+          INSERT INTO discord_review_notifications (
+            server_id, submission_id, message_id, notification_type, synced_status,
+            synced_version, synced_at, created_at, updated_at
+          )
+          VALUES (
+            'server-quiet-owner-edit', 'submission-quiet-owner-edit', '123456789012345678',
+            'submitted', 'approved', ?, ?, ?, ?
+          )
+        `).bind(timestamp, timestamp, timestamp, timestamp).run();
+      }
+
+      const description = "A new description for an already approved listing";
+      const edit = await updatePublicDetails(cookie, { name: "Server quiet-owner-edit", description });
+      expect(edit.status).toBe(200);
+      const publicRequests = captureDiscordRequests(["222222222222222222"]);
+      await processDiscordEmbedJobs(localDiscordEnv());
+      expect(publicRequests.map(({ method }) => method)).toEqual(["POST"]);
+
+      const staffRequests: string[] = [];
+      let staffPatch: { url: string; body: unknown } | undefined;
+      stubFetch(async (request) => {
+        staffRequests.push(request.method);
+
+        if (request.method === "PATCH") {
+          staffPatch = { url: request.url, body: await request.json() };
+
+          return new Response(null, { status: messageState === "deleted" ? 404 : 204 });
+        }
+
+        return Response.json({ id: "333333333333333333" });
+      });
+
+      await processDiscordReviewNotificationJobs(localReviewDiscordEnv());
+      expect(staffRequests).toEqual(messageState === "untracked" ? [] : ["PATCH"]);
+      if (messageState !== "untracked") {
+        expect(staffPatch?.url).toContain("/messages/123456789012345678");
+        expect(staffPatch?.body).toMatchObject({ embeds: [{ description }] });
+      }
+
+      expect(await testEnv.DB.prepare("SELECT server_id FROM discord_review_notification_jobs").first()).toBeNull();
+    }
+  );
+
   it("creates a review notification and updates it across moderation and deletion", async () => {
     await seedSubmitter("review-notification");
     await seedOwnedServer("review-notification", "pending");
@@ -303,6 +365,11 @@ describe("Discord delivery", () => {
     const approval = await adminApi("/api/admin/servers/server-review-notification/approve");
 
     expect(approval.status).toBe(200);
+    await processDiscordEmbedJobs(localDiscordEnv());
+    expect(requests.pop()).toMatchObject({
+      method: "PATCH",
+      url: expect.stringContaining("/messages/222222222222222222")
+    });
     await processDiscordReviewNotificationJobs(localReviewDiscordEnv());
 
     expect(requests[1]).toMatchObject({ method: "POST" });

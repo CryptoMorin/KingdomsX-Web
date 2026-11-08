@@ -128,6 +128,7 @@ export interface DiscordReviewNotificationJob {
   notification_type: "submitted" | "resubmitted";
   desired_status: ServerState;
   desired_version: string;
+  edit_only: 0 | 1;
   attempt_count: number;
 }
 

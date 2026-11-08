@@ -72,7 +72,7 @@ export async function processDiscordDeliveryJobs(env: DirectoryEnv): Promise<voi
 export async function processDiscordReviewNotificationJobs(env: DirectoryEnv): Promise<void> {
   await processLeasedDiscordJobs(env, {
     table: "discord_review_notification_jobs",
-    selectedColumns: "server_id, submission_id, notification_type, desired_status, desired_version, attempt_count",
+    selectedColumns: "server_id, submission_id, notification_type, desired_status, desired_version, edit_only, attempt_count",
     failureEvent: "discord.review_notification_processing_failed",
     process: processDiscordReviewNotificationJob
   });
@@ -202,7 +202,8 @@ async function processDiscordReviewNotificationJob(
           env,
           job.server_id,
           submission.status,
-          submission.updated_at
+          submission.updated_at,
+          { expectedVersion: submission.updated_at, editOnly: job.edit_only === 1 }
         )
       );
       await releaseDiscordReviewNotificationLease(env, job.server_id, leaseToken);
@@ -216,15 +217,24 @@ async function processDiscordReviewNotificationJob(
       return;
     }
 
+    const editOnly = job.edit_only === 1;
+    const notification = await getReviewNotification(env, job.server_id);
+
+    if (editOnly && !notification) {
+      await deleteDiscordReviewNotificationJob(env, job, leaseToken);
+
+      return;
+    }
+
     const webhook = parseDiscordWebhookUrl(
       env.DISCORD_SERVER_REVIEW_WEBHOOK_URL,
       "review notification"
     );
-    const notification = await getReviewNotification(env, job.server_id);
     const payload = buildDiscordReviewNotificationMessage(submission, job.notification_type);
     let messageId = notification?.message_id ?? null;
     let supersededMessageId = notification?.superseded_message_id ?? null;
     const repostMessage = Boolean(
+      !editOnly &&
       messageId &&
       notification &&
       discordMessageShouldBeReposted(notification.synced_at, DISCORD_ADMIN_MESSAGE_REPOST_AFTER_MS)
@@ -257,6 +267,13 @@ async function processDiscordReviewNotificationJob(
 
       if (response.status === 404) {
         await cancelResponseBody(response);
+
+        if (editOnly) {
+          await deleteDiscordReviewNotificationJob(env, job, leaseToken);
+
+          return;
+        }
+
         messageId = null;
       } else {
         await requireDiscordSuccess(response, "update review notification");
