@@ -75,7 +75,7 @@ export async function prepareSiteBuild(target, outputDirectory) {
 
   await assertFilesExist(root, config.htmlRoots);
   await removeUnownedHtml(root, new Set(config.htmlRoots));
-  await pruneBuildAssets(root, config.htmlRoots);
+  await pruneBuildAssets(root, config.htmlRoots, target);
 
   await Promise.all((config.removeFiles ?? []).map((file) =>
     rm(path.join(root, file), { force: true })
@@ -122,9 +122,16 @@ async function removeUnownedHtml(root, retainedRelativePaths) {
   await removeEmptyDirectories(root);
 }
 
-async function pruneBuildAssets(root, htmlRoots) {
+async function pruneBuildAssets(root, htmlRoots, target) {
   const buildDirectory = path.join(root, "build");
-  const assets = await collectFiles(buildDirectory);
+  const spigotDirectory = path.join(buildDirectory, "spigot");
+  if (target !== "main") {
+    await rm(spigotDirectory, { recursive: true, force: true });
+  }
+
+  // External Spigot embeds have stable URLs and can reuse filenames across versions
+  const assets = (await collectFiles(buildDirectory))
+    .filter((asset) => !asset.startsWith(spigotDirectory + path.sep));
   const byName = new Map();
 
   for (const asset of assets) {
