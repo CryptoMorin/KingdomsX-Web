@@ -1,5 +1,11 @@
 import { formatDate } from "../site-date.js";
 import {
+  appendPublicFields,
+  createListingDescriptionField,
+  createListingMetadataFields,
+  createListingNameField,
+} from "./listing-detail-fields.js";
+import {
   createAddressButton,
   createOwnerStat,
   createReviewStatus,
@@ -46,7 +52,9 @@ const createActionButton = (action, label, icon, variant = "") => {
   const button = document.createElement("button");
   button.className = `btn btn-site d-inline-flex align-items-center justify-content-center gap-2 ${variant}`.trim();
   button.type = "button";
-  button.dataset.adminAction = action;
+  if (action) {
+    button.dataset.adminAction = action;
+  }
   button.innerHTML = `<i class="fa-solid ${icon}" aria-hidden="true"></i> ${label}`;
 
   return button;
@@ -251,7 +259,7 @@ const createCurrentModerationReason = (server, messages) => {
   return notice;
 };
 
-export const fillManageModal = (modal, server, messages) => {
+export const fillManageModal = (modal, server, messages, feedback = "") => {
   const title = modal.querySelector("[data-admin-modal-title]");
   const body = modal.querySelector("[data-admin-modal-body]");
   const footer = modal.querySelector("[data-admin-modal-footer]");
@@ -263,6 +271,9 @@ export const fillManageModal = (modal, server, messages) => {
   if (title) {
     title.textContent = server.name;
   }
+
+  const editButton = modal.querySelector('[data-admin-action="edit-details"]');
+  editButton.hidden = server.reviewStatus !== "pending" && server.reviewStatus !== "approved";
 
   disposeServerMetadataTooltips(modal);
   body.replaceChildren();
@@ -363,6 +374,13 @@ export const fillManageModal = (modal, server, messages) => {
     createModalSection("Submission", submissionContent),
   ].filter(Boolean);
 
+  if (feedback) {
+    const status = createTextBlock(feedback, "mb-0 text-success");
+    status.setAttribute("role", "status");
+    body.append(status);
+    body.scrollTop = 0;
+  }
+
   body.append(...sections);
 
   const refreshGroup = document.createElement("div");
@@ -391,6 +409,53 @@ export const fillManageModal = (modal, server, messages) => {
   return null;
 };
 
+export const fillListingDetailsModal = (modal, server) => {
+  const title = modal.querySelector("[data-admin-modal-title]");
+  const body = modal.querySelector("[data-admin-modal-body]");
+  const footer = modal.querySelector("[data-admin-modal-footer]");
+
+  title.textContent = "Edit Listing Details";
+  modal.querySelector('[data-admin-action="edit-details"]').hidden = true;
+  disposeServerMetadataTooltips(modal);
+
+  const form = document.createElement("form");
+  form.id = "server-admin-edit-details";
+  form.dataset.adminEditDetails = "";
+  form.dataset.updatedAt = server.updatedAt;
+
+  const fields = document.createElement("fieldset");
+  fields.className = "d-flex flex-column gap-3";
+  const listing = document.createElement("div");
+  listing.className = "row g-3";
+  listing.append(
+    createListingNameField(server, "col-12"),
+    createListingDescriptionField(server),
+    ...createListingMetadataFields(server)
+  );
+
+  const links = document.createElement("div");
+  links.className = "row g-3";
+  appendPublicFields(links, server);
+  fields.append(createModalSection("Listing", listing), createModalSection("Website & Socials", links));
+
+  const error = document.createElement("p");
+  error.className = "mb-0 text-danger";
+  error.setAttribute("role", "alert");
+  error.tabIndex = -1;
+  error.dataset.adminEditError = "";
+  form.append(error, fields);
+
+  const back = createActionButton("cancel-edit", "Back", "fa-arrow-left", "btn-site-sm");
+  const save = createActionButton(null, "Save Changes", "fa-check", "btn-site-sm");
+  save.type = "submit";
+  save.setAttribute("form", form.id);
+
+  body.replaceChildren(form);
+  body.scrollTop = 0;
+  footer.replaceChildren(back, save);
+  form.elements.namedItem("name").focus();
+};
+
 export const fillReasonModal = (modal, server, action, messages) => {
   const title = modal.querySelector("[data-admin-modal-title]");
   const body = modal.querySelector("[data-admin-modal-body]");
@@ -405,6 +470,7 @@ export const fillReasonModal = (modal, server, action, messages) => {
     title.textContent = `${action === "suspend" ? "Suspend" : "Reject"} ${server.name}`;
   }
 
+  modal.querySelector('[data-admin-action="edit-details"]').hidden = true;
   disposeServerMetadataTooltips(modal);
   body.replaceChildren();
   footer.replaceChildren();

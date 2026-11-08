@@ -26,7 +26,8 @@ export function discordEmbedJobStatement(
   env: DirectoryEnv,
   serverId: string,
   action: "upsert" | "delete",
-  version: string
+  version: string,
+  expectedVersion?: string
 ): D1PreparedStatement {
   // One row per server means newer changes replace old jobs instead of piling up
   return env.DB.prepare(
@@ -36,7 +37,10 @@ export function discordEmbedJobStatement(
       last_attempt_at, last_error_code, last_error, lease_token, lease_expires_at,
       created_at, updated_at
     )
-    VALUES (?, ?, ?, 0, ?, NULL, NULL, NULL, NULL, NULL, ?, ?)
+    SELECT ?, ?, ?, 0, ?, NULL, NULL, NULL, NULL, NULL, ?, ?
+    WHERE ? IS NULL OR EXISTS (
+      SELECT 1 FROM servers WHERE id = ? AND status = 'approved' AND updated_at = ?
+    )
     ON CONFLICT(server_id) DO UPDATE SET
       desired_action = excluded.desired_action,
       desired_version = excluded.desired_version,
@@ -47,7 +51,7 @@ export function discordEmbedJobStatement(
       last_error = NULL,
       updated_at = excluded.updated_at
   `
-  ).bind(serverId, action, version, version, version, version);
+  ).bind(serverId, action, version, version, version, version, expectedVersion ?? null, serverId, expectedVersion ?? null);
 }
 
 // Review notification jobs
@@ -55,7 +59,8 @@ export function discordReviewStatusJobStatement(
   env: DirectoryEnv,
   serverId: string,
   desiredStatus: ServerState,
-  desiredVersion: string
+  desiredVersion: string,
+  expectedVersion?: string
 ): D1PreparedStatement {
   return env.DB.prepare(
     `
@@ -73,6 +78,9 @@ export function discordReviewStatusJobStatement(
       ?, ?, 0, ?, NULL, NULL, NULL, NULL, NULL, ?, ?
     FROM submissions latest
     WHERE latest.server_id = ?
+      AND (? IS NULL OR EXISTS (
+        SELECT 1 FROM servers WHERE id = latest.server_id AND status = ? AND updated_at = ?
+      ))
     ORDER BY latest.created_at DESC, latest.id DESC
     LIMIT 1
     ON CONFLICT(server_id) DO UPDATE SET
@@ -95,7 +103,10 @@ export function discordReviewStatusJobStatement(
     desiredVersion,
     desiredVersion,
     desiredVersion,
-    serverId
+    serverId,
+    expectedVersion ?? null,
+    desiredStatus,
+    expectedVersion ?? null
   );
 }
 

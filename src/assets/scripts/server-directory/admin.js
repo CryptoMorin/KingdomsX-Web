@@ -1,6 +1,7 @@
-import { Modal } from "bootstrap";
+import { Dropdown, Modal } from "bootstrap";
 import { formatDate } from "../site-date.js";
-import { fillManageModal, fillReasonModal } from "./admin-modals.js";
+import { fillListingDetailsModal, fillManageModal, fillReasonModal } from "./admin-modals.js";
+import { listingDetailsPayload } from "./listing-detail-fields.js";
 import {
   createOwnerStat,
   createPaginationControl,
@@ -325,7 +326,24 @@ const initServerAdmin = () => {
 
   const modalController = modal instanceof HTMLElement ? Modal.getOrCreateInstance(modal) : null;
 
-  modal?.addEventListener("hide.bs.modal", () => disposeServerMetadataTooltips(modal));
+  const disposeEditControls = () => {
+    modal.querySelectorAll("[data-server-regions-toggle]").forEach((toggle) => Dropdown.getInstance(toggle)?.dispose());
+  };
+
+  modal?.addEventListener("hide.bs.modal", (event) => {
+    if (modal.querySelector('[data-admin-edit-details][aria-busy="true"]')) {
+      event.preventDefault();
+
+      return;
+    }
+
+    disposeEditControls();
+    disposeServerMetadataTooltips(modal);
+  });
+
+  modal?.addEventListener("hidden.bs.modal", () => {
+    list.querySelector(`[data-admin-manage="${CSS.escape(modal.dataset.serverId ?? "")}"]`)?.focus();
+  });
 
   const setMessage = (message, kind = "") => {
     if (!statusMessage) {
@@ -515,7 +533,12 @@ const initServerAdmin = () => {
     }
   };
 
-  const refreshServerCard = (server) => {
+  const refreshServerCard = (server, editFeedback = "") => {
+    const currentServer = servers.get(server.id);
+    if (!editFeedback && currentServer?.updatedAt > server.updatedAt) {
+      return;
+    }
+
     servers.set(server.id, server);
 
     const current = list.querySelector(`[data-server-id="${CSS.escape(server.id)}"]`);
@@ -527,8 +550,9 @@ const initServerAdmin = () => {
       initServerMetadataTooltips(replacement);
     }
 
-    if (modal instanceof HTMLElement && modal.dataset.serverId === server.id) {
-      fillManageModal(modal, server, ADMIN_MESSAGES);
+    if (modal instanceof HTMLElement && modal.dataset.serverId === server.id &&
+      (editFeedback || !modal.querySelector("[data-admin-edit-details]"))) {
+      fillManageModal(modal, server, ADMIN_MESSAGES, editFeedback);
     }
   };
 
@@ -591,7 +615,7 @@ const initServerAdmin = () => {
     }
 
     fillManageModal(modal, server, ADMIN_MESSAGES);
-    modalController?.show();
+    modalController?.show(button);
   });
 
   const runAdminAction = async (button, id, action, notes = "", reasonCode = "") => {
@@ -655,6 +679,55 @@ const initServerAdmin = () => {
     }
   };
 
+  modal?.addEventListener("submit", async (event) => {
+    const form = event.target;
+    if (!(form instanceof HTMLFormElement) || !form.matches("[data-admin-edit-details]")) {
+      return;
+    }
+
+    event.preventDefault();
+    if (form.getAttribute("aria-busy") === "true") {
+      return;
+    }
+
+    const payload = { ...listingDetailsPayload(form), updatedAt: form.dataset.updatedAt };
+    const fields = form.querySelector("fieldset");
+    const errorMessage = form.querySelector("[data-admin-edit-error]");
+    const back = modal.querySelector('[data-admin-action="cancel-edit"]');
+    const save = modal.querySelector(`button[form="${form.id}"]`);
+    const saveLabel = save.innerHTML;
+
+    errorMessage.textContent = "";
+    form.setAttribute("aria-busy", "true");
+    fields.disabled = back.disabled = save.disabled = true;
+    save.textContent = "Saving…";
+    modal.focus();
+
+    try {
+      const response = await fetch(`/api/admin/servers/${encodeURIComponent(modal.dataset.serverId)}/details`, {
+        method: "PATCH",
+        headers: { ...adminHeaders(), "content-type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const data = await response.json().catch(() => ({}));
+
+      if (!response.ok || !data.item) {
+        throw new Error(data.error || "Unable to save listing details. Refresh the list and try again.");
+      }
+
+      disposeEditControls();
+      refreshServerCard(data.item, data.unchanged ? "No listing details changed." : "Listing details saved.");
+      modal.querySelector('[data-admin-action="edit-details"]')?.focus();
+    } catch (error) {
+      errorMessage.textContent = error instanceof Error ? error.message : "Unable to save listing details.";
+      errorMessage.focus();
+    } finally {
+      form.removeAttribute("aria-busy");
+      fields.disabled = back.disabled = save.disabled = false;
+      save.innerHTML = saveLabel;
+    }
+  });
+
   modal?.addEventListener("click", async (event) => {
     const back = event.target instanceof Element ? event.target.closest("[data-admin-reason-back]") : null;
 
@@ -698,6 +771,20 @@ const initServerAdmin = () => {
     const action = button.dataset.adminAction;
 
     if (!id || !action) {
+      return;
+    }
+
+    if (action === "edit-details" || action === "cancel-edit") {
+      const server = servers.get(id);
+
+      if (server && action === "edit-details") {
+        fillListingDetailsModal(modal, server);
+      } else if (server) {
+        disposeEditControls();
+        fillManageModal(modal, server, ADMIN_MESSAGES);
+        modal.querySelector('[data-admin-action="edit-details"]')?.focus();
+      }
+
       return;
     }
 

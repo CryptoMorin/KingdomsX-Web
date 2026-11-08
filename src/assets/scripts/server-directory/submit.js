@@ -17,6 +17,14 @@ import {
   VERIFICATION_POLL_DELAYS,
   createVerificationController,
 } from "./submit-verification.js";
+import {
+  appendPublicFields,
+  createListingDescriptionField,
+  createListingMetadataFields,
+  createListingNameField,
+  listingDetailsPayload,
+  publicDetailsPayload,
+} from "./listing-detail-fields.js";
 import { createSubmitFormKit } from "./submit-forms.js";
 
 const SERVER_MESSAGES = {
@@ -223,15 +231,10 @@ const initServerSubmit = () => {
     publicSnapshot,
     publicFormSnapshot,
     identitySnapshot,
-    field,
-    createListingMetadataFields,
     parseAddressPort,
     isValidPublicServerAddress,
     createAddressPortGroup,
     createSubmitSection,
-    appendPublicFields,
-    publicDetailsPayload,
-    approvedDetailsPayload,
     submissionPayload,
     renderTurnstile,
     renderTurnstileField,
@@ -269,26 +272,9 @@ const initServerSubmit = () => {
 
     const identity = createSubmitSection(
       "Server Information",
-      field("name", "Server name", {
-        required: true,
-        maxLength: 80,
-        autocomplete: "organization",
-        value: item?.name,
-        placeholder: "KingdomsX Realm",
-      }),
+      createListingNameField(item),
       createAddressPortGroup(item),
-      field("description", "Description", {
-        column: "col-12",
-        textarea: true,
-        rows: 4,
-        required: true,
-        minLength: 40,
-        maxLength: SERVER_DESCRIPTION_LIMIT,
-        allowOverLimit: true,
-        value: item?.description,
-        placeholder: `Describe the server experience in ${SERVER_DESCRIPTION_LIMIT} characters or less.`,
-        counter: true,
-      }),
+      createListingDescriptionField(item),
       ...createListingMetadataFields(item)
     );
 
@@ -632,7 +618,7 @@ const initServerSubmit = () => {
             accept: "application/json",
           },
           body: JSON.stringify(
-            needsStaffReview || requiresVerification ? payload : approvedDetailsPayload(form)
+            needsStaffReview || requiresVerification ? payload : listingDetailsPayload(form)
           )
         });
         const data = await response.json().catch(() => ({}));

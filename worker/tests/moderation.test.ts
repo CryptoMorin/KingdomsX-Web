@@ -14,6 +14,91 @@ import {
 
 beforeEach(resetDatabase);
 
+describe("Staff listing edits", () => {
+  const serverId = "server-staff-edit";
+  const path = `/api/admin/servers/${serverId}/details`;
+  const adminHeaders = { "x-admin-token": "local-admin-token" };
+  const originalVersion = "2026-01-01T00:00:00.000Z";
+  const details = {
+    updatedAt: originalVersion,
+    name: "Corrected listing name",
+    description: "Staff corrected the description of the server listing.",
+    regions: ["eu-west", "na-east"],
+    languages: ["English", "French"],
+    websiteUrl: "https://kingdomsx.com/",
+    socialLinks: { discord: "https://discord.gg/kingdomsx" },
+  };
+
+  async function seedListing(status: "pending" | "approved" | "rejected") {
+    await seedSubmitter("staff-edit");
+    await seedOwnedServer("staff-edit", status);
+  }
+
+  it.each(["pending", "approved"] as const)("edits %s details and queues Discord updates without recording an event", async (status) => {
+    await seedListing(status);
+    await testEnv.DB.prepare(
+      `
+      INSERT INTO submissions (
+        id, server_id, owner_account_id, contact, verification_method, verification_evidence,
+        submitter_ip_hash, user_agent_hash, turnstile_result, created_at
+      )
+      VALUES ('staff-edit-submission', ?, 'account-staff-edit', 'Tester', 'plugin_callback', 'verified', 'ip-hash', 'ua-hash', '{}', ?)
+      `
+    ).bind(serverId, originalVersion).run();
+
+    const response = await jsonApi(path, "PATCH", {
+      ...details,
+      address: "other.kingdomsx.com",
+      port: 25566,
+      reviewStatus: "suspended",
+    }, { headers: adminHeaders });
+
+    expect(response.status).toBe(200);
+    const { item } = await response.json<{ item: { updatedAt: string } }>();
+    expect(item).toMatchObject({
+      name: details.name,
+      description: details.description,
+      regions: details.regions,
+      languages: details.languages,
+      websiteUrl: details.websiteUrl,
+      socialLinks: [{ key: "discord", url: "https://discord.gg/kingdomsx" }],
+      reviewStatus: status,
+      address: "play-staff-edit.kingdomsx.com",
+    });
+    expect(await testEnv.DB.prepare("SELECT desired_status, desired_version FROM discord_review_notification_jobs WHERE server_id = ?")
+      .bind(serverId).first()).toEqual({ desired_status: status, desired_version: item.updatedAt });
+    expect(await testEnv.DB.prepare("SELECT desired_action, desired_version FROM discord_embed_jobs WHERE server_id = ?")
+      .bind(serverId).first()).toEqual(status === "approved" ? { desired_action: "upsert", desired_version: item.updatedAt } : null);
+    expect(await testEnv.DB.prepare("SELECT id FROM moderation_events WHERE server_id = ?")
+      .bind(serverId).first()).toBeNull();
+  });
+
+  it("rejects edits to a listing outside the editable states", async () => {
+    await seedListing("rejected");
+
+    const response = await jsonApi(path, "PATCH", details, { headers: adminHeaders });
+
+    expect(response.status).toBe(409);
+  });
+
+  it("rejects concurrent saves based on the same revision", async () => {
+    await seedListing("approved");
+
+    const responses = await Promise.all(["First correction", "Second correction"].map((name) =>
+      jsonApi(path, "PATCH", { ...details, name }, { headers: adminHeaders })
+    ));
+
+    expect(responses.map((response) => response.status).sort()).toEqual([200, 409]);
+    const saved = responses.find((response) => response.ok);
+    const result = await saved?.json<{ item: { name: string; updatedAt: string } }>();
+
+    expect(await testEnv.DB.prepare("SELECT name, updated_at FROM servers WHERE id = ?").bind(serverId).first())
+      .toEqual({ name: result?.item.name, updated_at: result?.item.updatedAt });
+    expect(await testEnv.DB.prepare("SELECT desired_version FROM discord_embed_jobs WHERE server_id = ?").bind(serverId).first())
+      .toEqual({ desired_version: result?.item.updatedAt });
+  });
+});
+
 describe("Moderation and submission jobs", () => {
   it("approves a listing without waiting for Discord and queues its embed in the same transaction", async () => {
     await seedSubmitter("approval");

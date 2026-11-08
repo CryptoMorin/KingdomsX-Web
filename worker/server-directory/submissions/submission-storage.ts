@@ -13,6 +13,7 @@ import {
 } from "../discord/outbox";
 import { adminSelectSql, suspendedAddressStatement } from "../moderation/moderation-storage";
 import { verificationConsumptionStatements } from "../verification/proofs";
+import type { parsePublicDetailsInput } from "./validation";
 
 export async function getOwnedServerRow(
   env: DirectoryEnv,
@@ -308,37 +309,43 @@ export function resubmissionEventStatement(
 export function publicDetailsStatements(
   env: DirectoryEnv,
   input: {
-    details: {
-      name: string;
-      description: string;
-      regions: string[];
-      languages: string[];
-      websiteUrl: string | null;
-      socialLinks: unknown[];
-    };
+    details: ReturnType<typeof parsePublicDetailsInput>;
     serverId: string;
     accountId: string;
     timestamp: string;
   }
 ): D1PreparedStatement[] {
   return [
-    env.DB.prepare(
-      `UPDATE servers SET name = ?, description = ?, regions_json = ?, languages_json = ?, website_url = ?, social_links_json = ?, updated_at = ?
-      WHERE id = ? AND owner_account_id = ? AND status = 'approved'`
-    ).bind(
-      input.details.name,
-      input.details.description,
-      JSON.stringify(input.details.regions),
-      JSON.stringify(input.details.languages),
-      input.details.websiteUrl,
-      JSON.stringify(input.details.socialLinks),
-      input.timestamp,
-      input.serverId,
-      input.accountId
-    ),
+    publicDetailsUpdateStatement(env, input.serverId, input.details, input.timestamp, input),
     env.DB.prepare("INSERT INTO moderation_events (id, server_id, actor, action, notes, created_at) VALUES (?, ?, 'owner', 'public-details-updated', 'Owner updated approved listing details.', ?)").bind(crypto.randomUUID(), input.serverId, input.timestamp),
     discordEmbedJobStatement(env, input.serverId, "upsert", input.timestamp)
   ];
+}
+
+export function publicDetailsUpdateStatement(
+  env: DirectoryEnv,
+  serverId: string,
+  details: ReturnType<typeof parsePublicDetailsInput>,
+  timestamp: string,
+  target: { accountId: string } | { status: "pending" | "approved"; updatedAt: string }
+): D1PreparedStatement {
+  const owner = "accountId" in target;
+
+  return env.DB.prepare(
+    `UPDATE servers
+    SET name = ?, description = ?, regions_json = ?, languages_json = ?, website_url = ?, social_links_json = ?, updated_at = ?
+    WHERE id = ? AND ${owner ? "owner_account_id = ? AND status = 'approved'" : "status = ? AND updated_at = ?"}`
+  ).bind(
+    details.name,
+    details.description,
+    JSON.stringify(details.regions),
+    JSON.stringify(details.languages),
+    details.websiteUrl,
+    JSON.stringify(details.socialLinks),
+    timestamp,
+    serverId,
+    ...(owner ? [target.accountId] : [target.status, target.updatedAt])
+  );
 }
 
 export function ownerDeletionStatements(

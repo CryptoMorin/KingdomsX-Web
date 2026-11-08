@@ -10,7 +10,7 @@ import { runD1Batch } from "../core/d1";
 import { clampInt, json, readJsonObject, stringField } from "../core/http";
 import { logError, nowIso } from "../core/runtime";
 import { handleAdminDiscordAction } from "../discord/public-listings";
-import { getDiscordReviewDeletionSnapshot } from "../discord/outbox";
+import { discordEmbedJobStatement, discordReviewStatusJobStatement, getDiscordReviewDeletionSnapshot } from "../discord/outbox";
 import { scheduleDiscordDeliveryProcessing } from "../discord/delivery";
 import {
   fetchServerStatus,
@@ -19,6 +19,8 @@ import {
 } from "../status/refresh";
 import type { StatusSnapshot } from "../status/providers";
 import { toPublicServer } from "../public-directory/listings";
+import { publicDetailsUpdateStatement } from "../submissions/submission-storage";
+import { parsePublicDetailsInput, publicDetailsMatch } from "../submissions/validation";
 import {
   deletionStatements,
   getAdminServer,
@@ -66,6 +68,11 @@ export async function handleAdmin(
   const deleteMatch = url.pathname.match(/^\/api\/admin\/servers\/([^/]+)$/);
   if (deleteMatch && request.method === "DELETE") {
     return deleteServer(deleteMatch[1], env, actor, ctx);
+  }
+
+  const detailsMatch = url.pathname.match(/^\/api\/admin\/servers\/([^/]+)\/details$/);
+  if (detailsMatch && request.method === "PATCH") {
+    return updateListingDetails(request, detailsMatch[1], env, ctx);
   }
 
   const discordMatch = url.pathname.match(/^\/api\/admin\/servers\/([^/]+)\/discord\/sync$/);
@@ -193,6 +200,55 @@ async function refreshOneServer(
     200,
     NO_STORE_JSON_HEADERS
   );
+}
+
+async function updateListingDetails(
+  request: Request,
+  id: string,
+  env: DirectoryEnv,
+  ctx?: ExecutionContext
+): Promise<Response> {
+  const body = await readJsonObject(request);
+  const expectedVersion = stringField(body, "updatedAt", 32);
+  const existing = await getAdminServer(env, id);
+
+  if (!existing) {
+    return json({ error: "Server not found." }, 404, NO_STORE_JSON_HEADERS);
+  }
+
+  const { status, updated_at: updatedAt } = existing;
+  if (status !== "pending" && status !== "approved") {
+    return json({ error: "Only pending and approved listings can be edited." }, 409, NO_STORE_JSON_HEADERS);
+  }
+
+  const conflict = "This listing changed while you were editing. Refresh the list before trying again.";
+  if (expectedVersion !== updatedAt) {
+    return json({ error: conflict }, 409, NO_STORE_JSON_HEADERS);
+  }
+
+  const details = parsePublicDetailsInput(body, existing);
+  if (publicDetailsMatch(existing, details)) {
+    return json({ ok: true, unchanged: true, item: toAdminServer(existing) }, 200, NO_STORE_JSON_HEADERS);
+  }
+
+  const timestamp = new Date(Math.max(Date.now(), Date.parse(updatedAt) + 1)).toISOString();
+
+  // Queue against the same original revision so a concurrent change skips the entire batch
+  const statements = [discordReviewStatusJobStatement(env, id, status, timestamp, updatedAt)];
+  if (status === "approved") {
+    statements.push(discordEmbedJobStatement(env, id, "upsert", timestamp, updatedAt));
+  }
+
+  statements.push(publicDetailsUpdateStatement(env, id, details, timestamp, { status, updatedAt }));
+  const results = await runD1Batch(env, statements);
+  if (!results.at(-1)?.meta.changes) {
+    return json({ error: conflict }, 409, NO_STORE_JSON_HEADERS);
+  }
+
+  scheduleDiscordDeliveryProcessing(env, ctx);
+  const refreshed = await getAdminServer(env, id);
+
+  return json({ ok: true, item: refreshed ? toAdminServer(refreshed) : null }, 200, NO_STORE_JSON_HEADERS);
 }
 
 export function toAdminServer(row: AdminServerRow) {
