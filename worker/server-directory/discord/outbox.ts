@@ -724,8 +724,11 @@ export function getDiscordServer(
 ): Promise<DiscordServerRow | null> {
   return env.DB.prepare(
     `
-    SELECT s.*, owner.discord_user_id AS owner_discord_user_id
-    FROM servers s LEFT JOIN submitter_accounts owner ON owner.id = s.owner_account_id WHERE s.id = ?
+    SELECT s.*, public_id.id AS public_id, owner.discord_user_id AS owner_discord_user_id
+    FROM servers s
+    JOIN server_public_ids public_id ON public_id.server_id = s.id
+    LEFT JOIN submitter_accounts owner ON owner.id = s.owner_account_id
+    WHERE s.id = ?
   `
   )
     .bind(serverId)

@@ -1,4 +1,5 @@
 import type { DiscordReviewSubmissionRow, DiscordServerRow } from "../contracts";
+import { publicServerPermalink } from "../../../src/server-listing-permalink";
 import { serverRegionsLabel } from "../../../src/server-listing-metadata";
 import { parseStoredServerLanguages, parseStoredServerRegions } from "../core/listing-fields";
 import { safeParseSocialLinks } from "../core/social-links";
@@ -55,6 +56,7 @@ interface DiscordListingMessageOptions {
   color: number;
   footer: string;
   timestamp: string;
+  titleUrl?: string;
   additionalFields?: readonly DiscordEmbedField[];
   actionButtons?: readonly DiscordLinkButton[];
 }
@@ -64,7 +66,7 @@ const PUBLIC_DIRECTORY_URL = "https://servers.kingdomsx.com/";
 const ADMIN_DASHBOARD_URL = "https://servers.kingdomsx.com/admin";
 
 function buildDiscordServerEmbedPayload(
-  server: EmbedListing,
+  server: EmbedListing & { publicId: number },
   embed: { updated: boolean; timestamp: string }
 ): Record<string, unknown> {
   return buildDiscordListingMessage(server, {
@@ -75,7 +77,8 @@ function buildDiscordServerEmbedPayload(
     },
     color: 0xfbb03b,
     footer: embed.updated ? "Updated" : "Listed",
-    timestamp: embed.timestamp
+    timestamp: embed.timestamp,
+    titleUrl: publicServerPermalink(server.name, server.publicId)
   });
 }
 
@@ -147,6 +150,7 @@ export function buildDiscordServerMessage(
 ): Record<string, unknown> {
   return buildDiscordServerEmbedPayload(
     {
+      publicId: server.public_id,
       name: server.name,
       description: server.description,
       regions: parseStoredServerRegions(server.regions_json),
@@ -256,6 +260,7 @@ function buildDiscordListingMessage(
       {
         author: options.author,
         title: escapeDiscordMarkdown(server.name).slice(0, 256),
+        ...(options.titleUrl ? { url: options.titleUrl } : {}),
         description: escapeDiscordMarkdown(server.description).slice(0, 4096),
         color: options.color,
         fields,

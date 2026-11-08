@@ -25,6 +25,7 @@ describe("Discord listing embeds", () => {
     const payload = buildDiscordServerMessage(
       {
         id: "server-discord",
+        public_id: 42,
         slug: "server-discord",
         name: "@everyone *Example*",
         description: "A public server description with @here and markdown.",
@@ -71,6 +72,8 @@ describe("Discord listing embeds", () => {
     expect(payload).toMatchObject({
       embeds: [
         {
+          title: "@everyone \\*Example\\*",
+          url: "https://servers.kingdomsx.com/everyone-example.42/",
           fields: expect.arrayContaining([
             { name: "Regions", value: "EU Central, NA East", inline: true },
             { name: "Server languages", value: "English, Deutsch \\*DE\\*, \\<@987654321098765432\\>", inline: true },
@@ -108,6 +111,7 @@ describe("Discord listing embeds", () => {
     const payload = buildDiscordServerMessage(
       {
         id: "server-no-website",
+        public_id: 43,
         slug: "server-no-website",
         name: "No Website",
         description: "A public description without a website.",
@@ -259,6 +263,7 @@ describe("Discord delivery", () => {
     });
     const serialized = JSON.stringify(requests[0].body);
 
+    expect(requests[0].body).not.toMatchObject({ embeds: [{ url: expect.anything() }] });
     expect(serialized).not.toContain('"name":"Review"');
     expect(
       await testEnv.DB.prepare("SELECT server_id FROM discord_review_notification_jobs").first()
@@ -433,6 +438,8 @@ describe("Discord delivery", () => {
     const cookie = await seedSubmitter("discord-lifecycle");
 
     await seedOwnedServer("discord-lifecycle");
+    const publicId = await testEnv.DB.prepare("SELECT id FROM server_public_ids WHERE server_id = 'server-discord-lifecycle'")
+      .first<number>("id");
     const requests = captureDiscordRequests(["123456789012345678"]);
     const discordEnv = localDiscordEnv();
 
@@ -450,6 +457,9 @@ describe("Discord delivery", () => {
     expect(requests[0].method).toBe("POST");
     expect(requests[0].url).toContain("?wait=true");
     expect(requests[0].body.allowed_mentions).toEqual({ parse: [] });
+    expect(requests[0].body).toMatchObject({
+      embeds: [{ url: `https://servers.kingdomsx.com/discord-lifecycle.${publicId}/` }]
+    });
     expect(
       await testEnv.DB.prepare(
         `
@@ -474,6 +484,12 @@ describe("Discord delivery", () => {
     await processDiscordEmbedJobs(discordEnv);
     expect(requests[1]).toMatchObject({ method: "PATCH" });
     expect(requests[1].url).toContain("/messages/123456789012345678");
+    expect(requests[1].body).toMatchObject({
+      embeds: [{
+        title: "Discord Lifecycle Renamed",
+        url: `https://servers.kingdomsx.com/discord-lifecycle-renamed.${publicId}/`
+      }]
+    });
 
     const metadataEdit = await updatePublicDetails(cookie, {
       name: "Discord Lifecycle Renamed",

@@ -41,7 +41,7 @@ const enhanceServerCards = (container) => {
 
 const renderServers = (container, items, context = {}) => {
   if (items.length) {
-    container.innerHTML = publicServerCardsHtml(items);
+    container.innerHTML = publicServerCardsHtml(items, context.directoryOrigin);
     container.removeAttribute("aria-busy");
     enhanceServerCards(container);
 
@@ -100,9 +100,10 @@ const directoryBasePath = () =>
 const directoryPath = (status, page, sort = DEFAULT_SORT, region = "") =>
   publicDirectoryPath(status, page, sort, directoryBasePath(), region);
 
-const readDirectoryStateFromUrl = () => {
-  const query = new URLSearchParams(window.location.search);
-  const segments = window.location.pathname
+const readDirectoryStateFromUrl = (renderedPath) => {
+  const url = new URL(renderedPath ?? window.location.href, window.location.origin);
+  const query = url.searchParams;
+  const segments = url.pathname
     .replace(/\/+$/, "")
     .split("/")
     .filter(Boolean);
@@ -182,7 +183,7 @@ const renderListPagination = (pagination, currentPage, totalPages, status, sort 
 const initServerLists = () => {
   document.querySelectorAll("[data-server-list]").forEach((container) => {
     const mode = container.dataset.serverMode ?? "recent";
-    const initialState = mode === "recent" ? { page: 1, status: "all" } : readDirectoryStateFromUrl();
+    const initialState = mode === "recent" ? { page: 1, status: "all" } : readDirectoryStateFromUrl(container.dataset.serverDirectoryPath);
     const page = initialState.page;
     const status = initialState.status;
     const sort = cleanSort(initialState.sort ?? DEFAULT_SORT);
@@ -208,6 +209,7 @@ const initServerLists = () => {
         }
 
         renderServers(container, data.items ?? [], {
+          directoryOrigin: mode === "recent" ? apiBase || undefined : window.location.origin,
           mode,
           status,
           counts: data.counts ?? {},
@@ -250,6 +252,12 @@ const initServerLists = () => {
 
     if (container.dataset.serverRendered === "true") {
       enhanceServerCards(container);
+      const highlighted = container.querySelector("[data-server-highlighted]");
+
+      if (highlighted) {
+        highlighted.focus({ preventScroll: true });
+        highlighted.scrollIntoView({ block: "start", behavior: "instant" });
+      }
 
       return;
     }

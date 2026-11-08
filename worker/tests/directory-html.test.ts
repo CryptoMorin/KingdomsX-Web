@@ -13,9 +13,9 @@ import {
 const origin = "https://servers.kingdomsx.com";
 type RouteEnv = Parameters<typeof worker.fetch>[1];
 
-async function page(path: string, method = "GET", overrides: Partial<RouteEnv> = {}) {
+async function page(path: string, method = "GET", overrides: Partial<RouteEnv> = {}, requestOrigin = origin) {
   const ctx = createExecutionContext();
-  const response = await worker.fetch(new Request(`${origin}${path}`, { method }), {
+  const response = await worker.fetch(new Request(`${requestOrigin}${path}`, { method }), {
     APP_ENVIRONMENT: "production",
     DB: testEnv.DB,
     ASSETS: assetBinding([]),
@@ -33,7 +33,7 @@ beforeEach(async () => {
   for (const status of ["all", "online", "offline"]) {
     for (const sort of ["newest", "name", "players"]) {
       for (const page of [1, 2, 3]) {
-        await caches.default.delete(`${origin}/api/servers?limit=8&page=${page}&sort=${sort}&status=${status}`);
+        await caches.default.delete(`${origin}/api/servers?projection=2&limit=8&page=${page}&sort=${sort}&status=${status}`);
       }
     }
   }
@@ -106,6 +106,90 @@ describe("public directory HTML", () => {
     expect(sortedHtml).toContain('data-server-sort-form action="/all"');
     expect(sortedHtml).toContain('value="name" selected');
     expect(sortedHtml).toContain('href="/offline/sort/name"');
+  });
+
+  it("redirects by ID after an offline listing is renamed and moves to a later page", async () => {
+    await seedSubmitter("permalink-target");
+    await seedOwnedServer("permalink-target");
+    const serverId = "server-permalink-target";
+    const publicId = await testEnv.DB.prepare("SELECT id FROM server_public_ids WHERE server_id = ?")
+      .bind(serverId).first<number>("id");
+    const originalPath = `/server-permalink-target.${publicId}/`;
+    const first = await page(originalPath);
+    const firstHtml = await first.text();
+    expect(first.status).toBe(200);
+    expect(firstHtml).toContain('data-server-directory-path="/all"');
+    expect(firstHtml).toContain(`data-copy-server-link="${origin}${originalPath}"`);
+
+    for (let index = 0; index < 9; index += 1) {
+      const suffix = `permalink-newer-${index}`;
+      await seedSubmitter(suffix);
+      await seedOwnedServer(suffix);
+    }
+
+    await testEnv.DB.prepare("UPDATE servers SET approved_at = ? WHERE id != ?")
+      .bind("2026-01-02T00:00:00.000Z", serverId).run();
+    await testEnv.DB.prepare("UPDATE servers SET name = 'All', normalized_host = 'new-address.example.com' WHERE id = ?")
+      .bind(serverId).run();
+    await caches.default.delete(`${origin}/api/servers?projection=2&limit=8&page=1&sort=newest&status=all`);
+
+    const currentPath = `/all.${publicId}/`;
+    for (const path of [originalPath, `/${publicId}/`]) {
+      const alias = await page(path);
+      expect(alias.status).toBe(302);
+      expect(alias.headers.get("location")).toBe(`${origin}${currentPath}`);
+      expect(alias.headers.get("cache-control")).toBe("no-store");
+    }
+
+    const later = await page(currentPath);
+    const html = await later.text();
+
+    expect(later.status).toBe(200);
+    expect(later.headers.get("location")).toBeNull();
+    expect(later.headers.get("link")).toBe(`<${origin}${currentPath}>; rel="canonical"`);
+    expect(later.headers.get("x-robots-tag")).toBe("noindex, follow");
+    expect(html).toContain('data-server-directory-path="/all/page/2"');
+    expect(html).toContain('data-server-filter="all" href="/all" aria-current="page"');
+    expect(html).toContain('href="/all/page/2" aria-current="page"');
+    expect(html.match(/<article /g)).toHaveLength(2);
+    expect(html.match(/data-server-highlighted/g)).toHaveLength(1);
+    expect(html).toContain('id="linked-server-title">All</h3>');
+    expect(html).toContain(`data-copy-server-link="${origin}${currentPath}"`);
+
+    const cached = await page(currentPath, "HEAD", {
+      DB: { prepare() { throw new Error("Unexpected database read"); } } as unknown as D1Database
+    });
+    expect(cached.status).toBe(200);
+    expect(await cached.text()).toBe("");
+  });
+
+  it("renders copy links with the local preview's scheme, host, and port", async () => {
+    const localOrigin = "http://172.19.83.150:8787";
+    await seedSubmitter("local-link");
+    await seedOwnedServer("local-link");
+    await testEnv.DB.prepare("INSERT INTO server_status (server_id, online, checked_at) VALUES ('server-local-link', 1, ?)")
+      .bind(new Date().toISOString()).run();
+    const publicId = await testEnv.DB.prepare("SELECT id FROM server_public_ids WHERE server_id = 'server-local-link'")
+      .first<number>("id");
+
+    const response = await page("/all", "GET", { APP_ENVIRONMENT: "local" }, localOrigin);
+
+    expect(response.status).toBe(200);
+    expect(await response.text()).toContain(`data-copy-server-link="${localOrigin}/server-local-link.${publicId}/"`);
+  });
+
+  it("keeps existing routes ahead of permalinks and returns 404 for private or missing listings", async () => {
+    await seedSubmitter("permalink-private");
+    await seedOwnedServer("permalink-private", "pending");
+    const privateId = await testEnv.DB.prepare("SELECT id FROM server_public_ids WHERE server_id = 'server-permalink-private'")
+      .first<number>("id");
+
+    const directory = await page("/all");
+    expect(directory.status).toBe(200);
+    expect(await directory.text()).not.toContain("data-server-highlighted");
+    expect((await page(`/${privateId}/`)).status).toBe(404);
+    expect((await page("/permalink-missing/")).status).toBe(404);
+    expect((await page("/9999999/", "HEAD")).status).toBe(404);
   });
 
   it("returns a real 404 for nonexistent pages on GET and HEAD, preserving the empty first page", async () => {

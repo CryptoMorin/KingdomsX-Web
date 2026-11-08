@@ -1,13 +1,20 @@
-import { HOMEPAGE_DIRECTORY_ORDER, PUBLIC_DIRECTORY_ORDER } from "../config";
+import {
+  HOMEPAGE_DIRECTORY_ORDER,
+  PUBLIC_DIRECTORY_MAX_PAGE,
+  PUBLIC_DIRECTORY_ORDER,
+  PUBLIC_DIRECTORY_PAGE_SIZE
+} from "../config";
 import type { DirectoryEnv, PublicServerRow, PublicSort, PublicStatusFilter } from "../contracts";
 import { SERVER_STATUS_SELECT_COLUMNS } from "../core/server-status-columns";
 
-function publicSelectSql(whereSql: string, orderBySql: string, tail: string): string {
+function publicSelectSql(whereSql: string, orderBySql: string, tail: string, extraColumns = ""): string {
   return `
     SELECT${SERVER_STATUS_SELECT_COLUMNS},
+      public_id.id AS public_id,
       owner.username AS owner_username,
-      owner.global_name AS owner_global_name
+      owner.global_name AS owner_global_name${extraColumns}
     FROM servers s
+    JOIN server_public_ids public_id ON public_id.server_id = s.id
     LEFT JOIN server_status ss ON ss.server_id = s.id
     LEFT JOIN submitter_accounts owner ON owner.id = s.owner_account_id
     WHERE ${whereSql}
@@ -80,11 +87,52 @@ export function getPublicServerRow(
     .first<PublicServerRow>();
 }
 
+type StatusTotals = { all_total: number; online_total: number; offline_total: number };
+
+export async function getPublicPermalinkPage(env: DirectoryEnv, publicId: number) {
+  const pageSize = PUBLIC_DIRECTORY_PAGE_SIZE;
+  const pageRows = env.DB.prepare(`
+    WITH ranked AS (
+      SELECT s.id,
+        (ROW_NUMBER() OVER (ORDER BY ${PUBLIC_DIRECTORY_ORDER}) - 1) / CAST(? AS INTEGER) + 1 AS page
+      FROM servers s
+      WHERE ${publicWhere("all")}
+      ORDER BY ${PUBLIC_DIRECTORY_ORDER}
+      LIMIT ?
+    ), target AS (
+      SELECT page FROM ranked WHERE id = (SELECT server_id FROM server_public_ids WHERE id = ?)
+    )
+    ${publicSelectSql(
+      "s.id IN (SELECT id FROM ranked WHERE page = (SELECT page FROM target))",
+      PUBLIC_DIRECTORY_ORDER,
+      "",
+      ", (SELECT page FROM target) AS page"
+    )}
+  `).bind(pageSize, pageSize * PUBLIC_DIRECTORY_MAX_PAGE, publicId);
+
+  // Read the target's page and the pagination counts in the same snapshot
+  const [cards, totals] = await env.DB.batch<PublicServerRow & { page: number } | StatusTotals>([
+    pageRows,
+    publicStatusCountsStatement(env, "")
+  ]);
+  const rows = cards.results as (PublicServerRow & { page: number })[];
+
+  return rows.length
+    ? { page: rows[0].page, rows, counts: statusCounts(totals.results[0] as StatusTotals | undefined) }
+    : null;
+}
+
 export async function publicStatusCounts(
   env: DirectoryEnv,
   region = ""
 ): Promise<Record<PublicStatusFilter, number>> {
-  const row = await env.DB.prepare(
+  const row = await publicStatusCountsStatement(env, region).first<StatusTotals>();
+
+  return statusCounts(row);
+}
+
+function publicStatusCountsStatement(env: DirectoryEnv, region: string): D1PreparedStatement {
+  return env.DB.prepare(
     `
     SELECT
       COUNT(*) AS all_total,
@@ -94,8 +142,10 @@ export async function publicStatusCounts(
     LEFT JOIN server_status ss ON ss.server_id = s.id
     WHERE s.status = 'approved'${region ? ` AND ${REGION_FILTER_SQL}` : ""}
   `
-  ).bind(...(region ? [region] : [])).first<{ all_total: number; online_total: number; offline_total: number }>();
+  ).bind(...(region ? [region] : []));
+}
 
+function statusCounts(row: StatusTotals | null | undefined): Record<PublicStatusFilter, number> {
   return {
     all: row?.all_total ?? 0,
     online: row?.online_total ?? 0,

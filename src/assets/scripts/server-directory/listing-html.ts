@@ -1,4 +1,5 @@
 import type { PublicServer, PublicServerCollection } from "../../../../worker/server-directory/public-directory/listings";
+import { publicServerPermalink } from "../../../server-listing-permalink";
 import {
   checkedAgoLabel,
   emptyDirectoryState,
@@ -12,13 +13,13 @@ import {
 } from "./listing-presentation";
 
 // Both initial Worker HTML and browser-loaded public lists use this escaped markup
-export function publicServerCardsHtml(items: PublicServer[]): string {
-  return `<div class="row row-cols-1 row-cols-md-2 g-3">${items.map(serverCardHtml).join("")}</div>`;
+export function publicServerCardsHtml(items: PublicServer[], directoryOrigin?: string, highlightedId?: number): string {
+  return `<div class="row row-cols-1 row-cols-md-2 g-3">${items.map((server) => serverCardHtml(server, directoryOrigin, highlightedId !== undefined && server.publicId === highlightedId)).join("")}</div>`;
 }
 
-export function publicDirectoryHtml(data: PublicServerCollection, status: string): string {
+export function publicDirectoryHtml(data: PublicServerCollection, status: string, directoryOrigin: string, highlightedId?: number): string {
   return data.items.length
-    ? publicServerCardsHtml(data.items)
+    ? publicServerCardsHtml(data.items, directoryOrigin, highlightedId)
     : publicDirectoryStateHtml(emptyDirectoryState({ status, counts: data.counts, region: data.region }));
 }
 
@@ -46,7 +47,7 @@ export function publicPaginationHtml(data: PublicServerCollection, status: strin
   }).join("");
 }
 
-function serverCardHtml(server: PublicServer): string {
+function serverCardHtml(server: PublicServer, directoryOrigin: string | undefined, highlighted: boolean): string {
   const owner = server.owner;
   const playerCountData = JSON.stringify({
     online: server.status.online,
@@ -67,8 +68,16 @@ function serverCardHtml(server: PublicServer): string {
     </a>`;
   }).join("");
 
+  // An older browser-cached listing response may predate public IDs
+  const copyLink = server.publicId
+    ? `<button class="server-link server-social-link d-inline-flex align-items-center justify-content-center flex-shrink-0 overflow-hidden text-nowrap px-2 ms-auto" type="button" data-copy-server-link="${escapeHtml(publicServerPermalink(server.name, server.publicId, directoryOrigin))}" aria-label="Copy link" title="Copy link">
+        <i class="fa-solid fa-link flex-shrink-0" aria-hidden="true"></i>
+        <span class="server-social-label d-inline-grid overflow-hidden text-nowrap"><span class="fw-bolder">Copy link</span></span>
+      </button>`
+    : "";
+
   return `<div class="col d-flex">
-  <article class="server-card surface-panel surface-lift d-flex flex-column gap-3 w-100 h-100 p-3 overflow-hidden rounded-3">
+  <article class="server-card surface-panel surface-lift d-flex flex-column gap-3 w-100 h-100 p-3 overflow-hidden rounded-3"${highlighted ? ' data-server-highlighted tabindex="-1" aria-labelledby="linked-server-title"' : ""}>
     <div class="server-card-top d-flex align-items-center gap-3">
       <div class="server-icon-frame d-inline-flex align-items-center justify-content-center flex-shrink-0 overflow-hidden rounded-2">
         <img class="server-icon w-100 h-100" src="${escapeHtml(server.status.icon || FALLBACK_SERVER_ICON)}" alt="" loading="lazy" decoding="async">
@@ -76,7 +85,7 @@ function serverCardHtml(server: PublicServer): string {
       <div class="server-card-main d-flex flex-column justify-content-center flex-grow-1 gap-2 min-w-0">
         <div class="server-title-row d-flex align-items-start justify-content-between gap-2">
           <div class="server-card-identity d-flex flex-column gap-2 flex-grow-1 min-w-0">
-            <h3 class="server-card-title mb-0 text-truncate">${escapeHtml(server.name)}</h3>
+            <h3 class="server-card-title mb-0 text-truncate"${highlighted ? ' id="linked-server-title"' : ""}>${escapeHtml(server.name)}</h3>
             <button class="btn btn-site copy-action server-address d-inline-flex align-items-center gap-2 overflow-hidden text-start text-nowrap" type="button" data-copy-server-address="${escapeHtml(server.address)}" data-copy-success-label="Copied!" aria-label="Copy server address ${escapeHtml(server.address || "unavailable")}">
               <span class="server-address-label flex-shrink-0">IP:</span>
               <span class="server-address-value text-truncate">${escapeHtml(server.address || "Address unavailable")}</span>
@@ -101,7 +110,10 @@ function serverCardHtml(server: PublicServer): string {
         ${statHtml("Version", versionLabel(server.status), "fa-solid fa-code-branch")}
         ${serverMetadataSummaries(server).map((summary) => statHtml(summary.label, summary.value, summary.iconClass, { wrap: true, more: summary.more })).join("")}
       </div>
-      ${links ? `<div class="server-links d-flex flex-wrap gap-2 mt-3">${links}</div>` : ""}
+      ${links || copyLink ? `<div class="d-flex align-items-end gap-2 mt-3">
+        ${links ? `<div class="server-links d-flex flex-wrap gap-2">${links}</div>` : ""}
+        ${copyLink}
+      </div>` : ""}
     </div>
   </article>
   </div>`;

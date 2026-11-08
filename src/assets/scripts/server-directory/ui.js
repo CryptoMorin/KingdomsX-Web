@@ -520,36 +520,44 @@ const copyText = async (value) => {
   return false;
 };
 
-const resetCopiedAddress = (button, value) => {
-  button.classList.remove("is-copied");
-  button.setAttribute("aria-label", `Copy server address ${value}`);
+const setCopyState = (button, label, copied) => {
+  button.classList.toggle("is-copied", copied);
+  button.setAttribute("aria-label", `${copied ? "Copied" : "Copy"} ${label}`);
+
+  if (button.hasAttribute("data-copy-server-link")) {
+    const text = copied ? "Copied!" : "Copy link";
+    button.title = text;
+    button.querySelector(".server-social-label > span").textContent = text;
+    button.querySelector("i").classList.replace(copied ? "fa-link" : "fa-check", copied ? "fa-check" : "fa-link");
+  }
 };
 
-export const initServerAddressCopy = () => {
+export const initServerCopy = () => {
   document.addEventListener("click", async (event) => {
-    const button = event.target instanceof Element ? event.target.closest("[data-copy-server-address]") : null;
+    const button = event.target instanceof Element ? event.target.closest("[data-copy-server-address], [data-copy-server-link]") : null;
 
     if (!(button instanceof HTMLButtonElement)) {
       return;
     }
 
-    const value = button.dataset.copyServerAddress ?? "";
+    const link = button.dataset.copyServerLink;
+    const value = link ?? button.dataset.copyServerAddress ?? "";
+    const label = link ? "link" : `server address ${value}`;
 
     window.clearTimeout(copyResetTimers.get(button));
 
     const copied = await copyText(value).catch(() => false);
 
     if (!copied) {
-      resetCopiedAddress(button, value);
+      setCopyState(button, label, false);
 
       return;
     }
 
-    button.classList.add("is-copied");
-    button.setAttribute("aria-label", `Copied server address ${value}`);
+    setCopyState(button, label, true);
     copyResetTimers.set(
       button,
-      window.setTimeout(() => resetCopiedAddress(button, value), 1800)
+      window.setTimeout(() => setCopyState(button, label, false), 1800)
     );
   });
 };

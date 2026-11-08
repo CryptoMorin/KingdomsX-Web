@@ -30,6 +30,7 @@ import {
   scheduleDiscordEmbedProcessing,
   scheduleDiscordReviewNotificationProcessing
 } from "../discord/delivery";
+import { serverNameSlug } from "../../../src/server-listing-permalink";
 import { sha256 } from "../core/crypto";
 import { runD1Batch } from "../core/d1";
 import { ApiError, json, readJsonObject, stringField } from "../core/http";
@@ -222,7 +223,7 @@ async function submitServer(
   const submissionId = crypto.randomUUID();
   const slug =
     existing?.slug ??
-    `${slugify(input.name)}-${(await sha256(`${input.normalized.host}:${input.normalized.port}`)).slice(0, 8)}`;
+    `${serverNameSlug(input.name)}-${(await sha256(`${input.normalized.host}:${input.normalized.port}`)).slice(0, 8)}`;
   const createdAt = nowIso();
   const contact = submitterContact(session.account);
   const serverMutation = newSubmissionServerStatement(env, {
@@ -721,7 +722,7 @@ async function autoSuspendSubmission(
   const id = existing?.id ?? crypto.randomUUID();
   const slug =
     existing?.slug ??
-    `${slugify(input.name)}-${(await sha256(`${input.normalized.host}:${input.normalized.port}`)).slice(0, 8)}`;
+    `${serverNameSlug(input.name)}-${(await sha256(`${input.normalized.host}:${input.normalized.port}`)).slice(0, 8)}`;
   const timestamp = nowIso();
   const submissionId = crypto.randomUUID();
   const notes = reason || "This server address is suspended by staff.";
@@ -800,15 +801,5 @@ async function autoSuspendOwnedSubmission(
     },
     202,
     NO_STORE_JSON_HEADERS
-  );
-}
-
-function slugify(value: string): string {
-  return (
-    value
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/^-+|-+$/g, "")
-      .slice(0, 60) || "server"
   );
 }

@@ -1,6 +1,7 @@
 import {
   PUBLIC_DIRECTORY_LIMITS,
   PUBLIC_DIRECTORY_MAX_PAGE,
+  PUBLIC_DIRECTORY_PAGE_SIZE,
   PUBLIC_JSON_CACHE_SECONDS,
   PUBLIC_JSON_HEADERS,
   RECENT_SERVER_LIMITS
@@ -22,6 +23,7 @@ import { safeParseSocialLinks } from "../core/social-links";
 import { isStatusStale, refreshLocalApprovedStatuses } from "../status/refresh";
 import { validatedStatusIcon } from "../status/providers";
 import {
+  getPublicPermalinkPage,
   getPublicServerRow,
   listPublicServerRows,
   publicStatusCounts,
@@ -77,6 +79,36 @@ export async function routePublicDetail(
   return cachedPublicJson(request, publicServerCacheKey(url, slug), env, executionCtx, () =>
     getPublicServer(slug, env)
   );
+}
+
+export function loadPublicPermalinkPage(
+  context: DirectoryRequestContext,
+  publicId: number
+): Promise<Response> {
+  const { request, url, env, executionCtx } = context;
+  const key = new Request(new URL(`/__cache/server-directory/permalink/${publicId}`, url));
+  const cacheRequest = new Request(request.url, { headers: request.headers });
+
+  return cachedPublicJson(cacheRequest, key, env, executionCtx, async () => {
+    const result = await getPublicPermalinkPage(env, publicId);
+
+    if (!result) {
+      return publicJson({ error: "Server not found." }, 404);
+    }
+
+    const limit = PUBLIC_DIRECTORY_PAGE_SIZE;
+
+    return publicJson({
+      items: result.rows.map(toPublicServer),
+      page: result.page,
+      limit,
+      sort: "newest",
+      region: "",
+      total: result.counts.all,
+      totalPages: Math.max(1, Math.ceil(result.counts.all / limit)),
+      counts: result.counts
+    } satisfies PublicServerCollection);
+  });
 }
 
 async function listPublicServers(url: URL, env: DirectoryRequestContext["env"]): Promise<Response> {
@@ -150,7 +182,7 @@ function parsePublicDirectoryLimit(value: string | null): number {
 
   return PUBLIC_DIRECTORY_LIMITS.includes(limit as (typeof PUBLIC_DIRECTORY_LIMITS)[number])
     ? limit
-    : 8;
+    : PUBLIC_DIRECTORY_PAGE_SIZE;
 }
 
 function parseRecentServerLimit(value: string | null): number {
@@ -230,8 +262,7 @@ function withCacheDiagnostic(response: Response, value: "HIT" | "MISS"): Respons
 }
 
 function publicServersCacheKey(url: URL): Request {
-  const normalized = new URL(url.origin);
-  normalized.pathname = "/api/servers";
+  const normalized = publicProjectionCacheUrl("/api/servers", url);
   normalized.searchParams.set(
     "limit",
     String(parsePublicDirectoryLimit(url.searchParams.get("limit")))
@@ -252,8 +283,7 @@ function publicServersCacheKey(url: URL): Request {
 }
 
 function recentServersCacheKey(url: URL): Request {
-  const normalized = new URL(url.origin);
-  normalized.pathname = "/api/servers/recent";
+  const normalized = publicProjectionCacheUrl("/api/servers/recent", url);
   normalized.searchParams.set(
     "limit",
     String(parseRecentServerLimit(url.searchParams.get("limit")))
@@ -263,13 +293,21 @@ function recentServersCacheKey(url: URL): Request {
 }
 
 function publicServerCacheKey(url: URL, slug: string): Request {
-  const normalized = new URL(url.origin);
-  normalized.pathname = `/api/servers/${slug}`;
-
-  return new Request(normalized.toString(), { method: "GET" });
+  return new Request(publicProjectionCacheUrl(`/api/servers/${slug}`, url));
 }
 
-export function toPublicServer(row: PublicServerRow) {
+function publicProjectionCacheUrl(path: string, url: URL): URL {
+  const normalized = new URL(path, url);
+  // Older cached public projections have no numeric listing ID
+  normalized.searchParams.set("projection", "2");
+  return normalized;
+}
+
+function toPublicServer(row: PublicServerRow) {
+  return { ...toServerListing(row), publicId: row.public_id };
+}
+
+export function toServerListing(row: Omit<PublicServerRow, "public_id">) {
   return {
     slug: row.slug,
     name: row.name,

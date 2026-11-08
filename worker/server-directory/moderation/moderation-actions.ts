@@ -18,7 +18,7 @@ import {
   refreshLocalApprovedStatuses
 } from "../status/refresh";
 import type { StatusSnapshot } from "../status/providers";
-import { toPublicServer } from "../public-directory/listings";
+import { toServerListing } from "../public-directory/listings";
 import { publicDetailsUpdateStatement } from "../submissions/submission-storage";
 import { parsePublicDetailsInput, publicDetailsMatch } from "../submissions/validation";
 import {
@@ -263,7 +263,7 @@ export function toAdminServer(row: AdminServerRow) {
           : "not_applicable";
 
   return {
-    ...toPublicServer(row),
+    ...toServerListing(row),
     id: row.id,
     reviewStatus: row.status,
     createdAt: row.created_at,

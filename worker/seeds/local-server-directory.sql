@@ -4,10 +4,12 @@ DELETE FROM moderation_events WHERE server_id LIKE 'local-%';
 DELETE FROM moderation_events WHERE server_id LIKE 'real-%';
 DELETE FROM submissions WHERE server_id LIKE 'local-%';
 DELETE FROM submissions WHERE server_id LIKE 'real-%';
-DELETE FROM servers WHERE id LIKE 'local-%';
+DELETE FROM discord_review_notification_jobs WHERE server_id LIKE 'local-%';
+UPDATE suspended_server_addresses SET server_id = NULL WHERE server_id LIKE 'local-%';
 DELETE FROM servers WHERE id LIKE 'real-%';
 
-INSERT OR REPLACE INTO servers (
+-- Update existing fixtures in place to keep their public listing IDs
+INSERT INTO servers (
   id,
   slug,
   name,
@@ -216,7 +218,22 @@ INSERT OR REPLACE INTO servers (
     NULL,
     strftime('%Y-%m-%dT%H:%M:%fZ', 'now'),
     strftime('%Y-%m-%dT%H:%M:%fZ', 'now')
-  );
+  )
+ON CONFLICT(id) DO UPDATE SET
+  slug = excluded.slug,
+  name = excluded.name,
+  description = excluded.description,
+  normalized_host = excluded.normalized_host,
+  port = excluded.port,
+  website_url = excluded.website_url,
+  social_links_json = excluded.social_links_json,
+  status = excluded.status,
+  featured_rank = excluded.featured_rank,
+  approved_at = excluded.approved_at,
+  suspended_at = NULL,
+  owner_account_id = NULL,
+  created_at = excluded.created_at,
+  updated_at = excluded.updated_at;
 
 INSERT OR REPLACE INTO submissions (
   id,

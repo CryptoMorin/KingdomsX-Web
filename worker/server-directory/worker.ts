@@ -4,11 +4,17 @@ import {
   scheduleServerDirectoryRefresh
 } from "./index";
 import type { DirectoryEnv } from "./contracts";
-import { routePublicCollections, type PublicServerCollection } from "./public-directory/listings";
+import { PUBLIC_DIRECTORY_PAGE_SIZE } from "./config";
+import {
+  loadPublicPermalinkPage,
+  routePublicCollections,
+  type PublicServerCollection
+} from "./public-directory/listings";
 import { logError } from "./core/runtime";
 import { publicDirectoryHtml, publicDirectoryStateHtml, publicPaginationHtml } from "../../src/assets/scripts/server-directory/listing-html";
 import { DIRECTORY_UNAVAILABLE, publicDirectoryPath as directoryPath } from "../../src/assets/scripts/server-directory/listing-presentation";
 import { normalizeServerRegionFilter } from "../../src/server-listing-metadata";
+import { publicServerPermalinkPath } from "../../src/server-listing-permalink";
 
 type WorkerEnv = Omit<Cloudflare.Env, "APP_ENVIRONMENT"> & DirectoryEnv;
 
@@ -54,6 +60,14 @@ export default {
     }
 
     if ((request.method === "GET" || request.method === "HEAD") && !url.pathname.endsWith(".html")) {
+      const match = /^\/(?:[a-z0-9-]{1,60}\.)?([1-9][0-9]{0,15})\/?$/.exec(url.pathname);
+      const publicId = Number(match?.[1]);
+
+      // Keep the bare error asset paths available even when their numbers are listing IDs
+      if (Number.isSafeInteger(publicId) && url.pathname !== "/403" && url.pathname !== "/404") {
+        return serveDirectoryPage(request, url, env, { status: "all", sort: "newest", page: 1, region: "" }, ctx, publicId);
+      }
+
       const assetResponse = await env.ASSETS.fetch(request);
 
       if (assetResponse.status !== 404) {
@@ -246,7 +260,8 @@ async function serveDirectoryPage(
   url: URL,
   env: WorkerEnv,
   pathRoute: DirectoryRoute,
-  ctx: ExecutionContext
+  ctx: ExecutionContext,
+  highlightedId?: number
 ): Promise<Response> {
   if (request.method !== "GET" && request.method !== "HEAD") {
     return new Response("Method not allowed", {
@@ -259,14 +274,14 @@ async function serveDirectoryPage(
     });
   }
 
-  const querySort = url.searchParams.get("sort");
-  const queryRegion = url.searchParams.get("region");
+  const querySort = highlightedId ? null : url.searchParams.get("sort");
+  const queryRegion = highlightedId ? null : url.searchParams.get("region");
   const route = {
     ...pathRoute,
     sort: querySort === null ? pathRoute.sort : parseDirectorySort(querySort),
     region: queryRegion === null ? pathRoute.region : normalizeServerRegionFilter(queryRegion)
   };
-  const canonicalPath = directoryPath(route.status, route.page, route.sort, "", route.region);
+  let canonicalPath = highlightedId ? url.pathname : directoryPath(route.status, route.page, route.sort, "", route.region);
 
   if (url.pathname !== canonicalPath || querySort !== null || queryRegion !== null) {
     const redirect = new URL(url);
@@ -286,7 +301,7 @@ async function serveDirectoryPage(
 
   try {
     const apiUrl = new URL("/api/servers", url);
-    apiUrl.searchParams.set("limit", "8");
+    apiUrl.searchParams.set("limit", String(PUBLIC_DIRECTORY_PAGE_SIZE));
     apiUrl.searchParams.set("page", String(route.page));
     apiUrl.searchParams.set("status", route.status);
     apiUrl.searchParams.set("sort", route.sort);
@@ -305,17 +320,60 @@ async function serveDirectoryPage(
 
     if (collection?.ok) {
       data = await collection.json<PublicServerCollection>();
+
+      if (highlightedId && !data.items.some((server) => server.publicId === highlightedId)) {
+        if (data.totalPages === 1) {
+          return renderNotFoundPage(request, env);
+        }
+
+        const permalink = await loadPublicPermalinkPage({ request, url, env, executionCtx: ctx }, highlightedId);
+
+        if (permalink.status === 404) {
+          return renderNotFoundPage(request, env);
+        }
+
+        if (permalink.ok) {
+          data = await permalink.json<PublicServerCollection>();
+          route.page = data.page;
+        } else {
+          data = null;
+          status = permalink.status === 429 ? 429 : 503;
+          retryAfter = permalink.headers.get("retry-after");
+        }
+      }
     } else {
       status = collection?.status === 429 ? 429 : 503;
       retryAfter = collection?.headers.get("retry-after") ?? null;
     }
   } catch (error) {
     logError("public_directory.page_failed", error);
+    data = null;
     status = 503;
   }
 
   if (data && route.page > data.totalPages) {
     return renderNotFoundPage(request, env);
+  }
+
+  if (data && highlightedId) {
+    const server = data.items.find((item) => item.publicId === highlightedId);
+
+    if (!server) {
+      return renderNotFoundPage(request, env);
+    }
+
+    canonicalPath = publicServerPermalinkPath(server.name, highlightedId);
+
+    if (url.pathname !== canonicalPath) {
+      const redirect = new URL(url);
+      redirect.pathname = canonicalPath;
+
+      // A listing can be renamed again, so browsers must resolve aliases on each visit
+      return new Response(null, {
+        status: 302,
+        headers: { Location: redirect.toString(), "Cache-Control": "no-store" }
+      });
+    }
   }
 
   const response = await fetchAsset(request, url, env, "/servers.html");
@@ -331,7 +389,7 @@ async function serveDirectoryPage(
     headers.set("Retry-After", retryAfter);
   }
 
-  return rewriteDirectoryMetadata(new Response(request.method === "HEAD" ? null : response.body, { status, headers }), canonical.toString(), route, data);
+  return rewriteDirectoryMetadata(new Response(request.method === "HEAD" ? null : response.body, { status, headers }), canonical.toString(), route, data, highlightedId);
 }
 
 function parseDirectorySort(value: string | null): DirectorySort {
@@ -362,7 +420,8 @@ function rewriteDirectoryMetadata(
   response: Response,
   canonicalUrl: string,
   route: DirectoryRoute,
-  data: PublicServerCollection | null
+  data: PublicServerCollection | null,
+  highlightedId?: number
 ): Response {
   const statusLabel = route.status === "all" ? "All" : route.status === "offline" ? "Offline" : "Online";
   const pageLabel = route.page > 1 ? ` - Page ${route.page}` : "";
@@ -379,7 +438,7 @@ function rewriteDirectoryMetadata(
   headers.delete("ETag");
   headers.delete("Last-Modified");
   headers.set("Link", `<${canonicalUrl}>; rel="canonical"`);
-  const robots = response.ok && route.status === "online" && route.sort === "newest" && !route.region
+  const robots = response.ok && !highlightedId && route.status === "online" && route.sort === "newest" && !route.region
     ? "index, follow, max-image-preview:large"
     : "noindex, follow";
   headers.set("X-Robots-Tag", robots);
@@ -389,6 +448,7 @@ function rewriteDirectoryMetadata(
     return new Response(null, { status: response.status, headers });
   }
 
+  const directoryOrigin = new URL(canonicalUrl).origin;
   const webPageStructuredData = JSON.stringify({
     "@context": "https://schema.org",
     "@type": "WebPage",
@@ -396,7 +456,7 @@ function rewriteDirectoryMetadata(
     "url": canonicalUrl,
     "name": title,
     "description": description,
-    "isPartOf": { "@id": `${new URL(canonicalUrl).origin}/#website` },
+    "isPartOf": { "@id": `${directoryOrigin}/#website` },
     "about": { "@id": `https://${APEX_HOST}/#software` },
     "inLanguage": "en"
   });
@@ -419,8 +479,11 @@ function rewriteDirectoryMetadata(
     .on('[data-server-list]', {
       element(element) {
         element.setAttribute("data-server-rendered", "true");
+        if (highlightedId) {
+          element.setAttribute("data-server-directory-path", directoryPath(route.status, route.page));
+        }
         element.removeAttribute("aria-busy");
-        element.setInnerContent(data ? publicDirectoryHtml(data, route.status) : publicDirectoryStateHtml(DIRECTORY_UNAVAILABLE, true), { html: true });
+        element.setInnerContent(data ? publicDirectoryHtml(data, route.status, directoryOrigin, highlightedId) : publicDirectoryStateHtml(DIRECTORY_UNAVAILABLE, true), { html: true });
       }
     })
     .on('[data-server-pagination]', {

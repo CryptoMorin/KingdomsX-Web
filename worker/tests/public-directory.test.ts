@@ -44,7 +44,7 @@ describe("Public server APIs", () => {
   });
 
   it("restores the public cache policy when Cloudflare changes cached response headers", async () => {
-    const cacheKey = new Request("https://servers.kingdomsx.com/api/servers/cached-policy");
+    const cacheKey = new Request("https://servers.kingdomsx.com/api/servers/cached-policy?projection=2");
     const cachedResponse = Response.json({ item: null }, {
       status: 404,
       headers: { "cache-control": "public, max-age=14400", "access-control-allow-origin": "*" }

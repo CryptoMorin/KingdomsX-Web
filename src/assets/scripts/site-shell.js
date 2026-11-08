@@ -1,7 +1,7 @@
 import { Offcanvas } from "bootstrap";
 import { gsap } from "gsap";
 import { initAmbientPointer } from "./ambient-pointer.js";
-import { initServerAddressCopy } from "./server-directory/ui.js";
+import { initServerCopy } from "./server-directory/ui.js";
 
 const compactNavigationQuery = window.matchMedia("(max-width: 1399.98px)");
 const ambientPointerQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
@@ -78,4 +78,4 @@ const initCursorTilt = () => {
 
 initAmbientPointer();
 initCursorTilt();
-initServerAddressCopy();
+initServerCopy();

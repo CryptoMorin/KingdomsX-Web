@@ -86,11 +86,12 @@ export interface ServerRow {
 }
 
 export interface PublicServerRow extends ServerRow {
+  public_id: number;
   owner_username: string | null;
   owner_global_name: string | null;
 }
 
-export interface AdminServerRow extends PublicServerRow {
+export interface AdminServerRow extends Omit<PublicServerRow, "public_id"> {
   submission_contact: string | null;
   submission_verification_evidence: string | null;
   submission_moderation_notes: string | null;
@@ -110,6 +111,7 @@ export interface AdminServerRow extends PublicServerRow {
 }
 
 export interface DiscordServerRow extends ServerRow {
+  public_id: number;
   owner_discord_user_id: string | null;
 }
 
@@ -144,7 +146,7 @@ export interface DiscordReviewDeletionJob {
   attempt_count: number;
 }
 
-export interface DiscordReviewSubmissionRow extends DiscordServerRow {
+export interface DiscordReviewSubmissionRow extends Omit<DiscordServerRow, "public_id"> {
   submission_id: string;
   submission_created_at: string;
   submission_verification_evidence: string | null;

@@ -1956,6 +1956,11 @@ h3 {
   min-height: 18rem;
 }
 
+.server-card[data-server-highlighted] {
+  outline: var(--kingdomsx-focus-ring);
+  scroll-margin-top: calc(var(--kingdomsx-header-height) + 1rem);
+}
+
 .server-card-skeleton {
   pointer-events: none;
 }

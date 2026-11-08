@@ -8,6 +8,7 @@ export const NO_STORE_JSON_HEADERS = { ...JSON_HEADERS, "cache-control": "no-sto
 export const PUBLIC_JSON_CACHE_SECONDS = 120;
 export const PUBLIC_DIRECTORY_MAX_PAGE = 100;
 export const PUBLIC_DIRECTORY_LIMITS = [8, 16, 32] as const;
+export const PUBLIC_DIRECTORY_PAGE_SIZE = PUBLIC_DIRECTORY_LIMITS[0];
 export const RECENT_SERVER_LIMITS = [4, 8, 12] as const;
 export const PUBLIC_JSON_HEADERS = {
   ...JSON_HEADERS,
