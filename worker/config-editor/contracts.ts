@@ -43,6 +43,7 @@ export interface SessionRecord {
   resultSha256?: string;
   failureCode?: string;
   cleanupAt?: number;
+  payloadPrefix?: string;
   pending?: {
     kind: "original" | "result";
     operationId: string;

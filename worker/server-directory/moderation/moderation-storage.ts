@@ -7,6 +7,7 @@ import type {
 } from "../contracts";
 import { SERVER_STATUS_SELECT_COLUMNS } from "../core/server-status-columns";
 import type { StatusSnapshot } from "../status/providers";
+import { listingWriteCondition, type ListingWriteGuard } from "../core/listing-write-guard";
 import { statusSnapshotStatements } from "../status/status-storage";
 import {
   discordEmbedJobStatement,
@@ -70,19 +71,23 @@ export function suspendedAddressStatement(
   serverId: string | null,
   reason: string | null,
   suspendedAt: string,
-  updatedAt: string
+  updatedAt: string,
+  guard?: ListingWriteGuard
 ): D1PreparedStatement {
+  const condition = listingWriteCondition(guard);
+
   return env.DB.prepare(
     `
     INSERT INTO suspended_server_addresses (normalized_host, port, server_id, reason, suspended_at, created_at, updated_at)
-    VALUES (?, ?, ?, ?, ?, ?, ?)
+    SELECT ?, ?, ?, ?, ?, ?, ?
+    WHERE ${condition.sql}
     ON CONFLICT(normalized_host, port) DO UPDATE SET
       server_id = excluded.server_id,
       reason = excluded.reason,
       suspended_at = excluded.suspended_at,
       updated_at = excluded.updated_at
   `
-  ).bind(host, port, serverId, reason || "Suspended by staff.", suspendedAt, updatedAt, updatedAt);
+  ).bind(host, port, serverId, reason || "Suspended by staff.", suspendedAt, updatedAt, updatedAt, ...condition.bindings);
 }
 
 function adminOrderBy(sort: AdminSort): string {

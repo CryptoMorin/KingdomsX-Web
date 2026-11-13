@@ -3,6 +3,7 @@ import type { DirectoryEnv } from "../contracts";
 import { msAgoIso } from "../core/runtime";
 import type { StatusSnapshot } from "./providers";
 import { discordEmbedJobStatement, discordReviewStatusJobStatement } from "../discord/outbox";
+import { listingWriteCondition, type ListingWriteGuard } from "../core/listing-write-guard";
 
 export interface StatusRefreshRow {
   id: string;
@@ -50,13 +51,17 @@ export function statusSnapshotStatements(
   env: DirectoryEnv,
   serverId: string,
   snapshot: StatusSnapshot,
-  timestamp: string
+  timestamp: string,
+  guard?: ListingWriteGuard
 ): D1PreparedStatement[] {
+  const condition = listingWriteCondition(guard);
+
   return [
     env.DB.prepare(
       `
     INSERT INTO server_status (server_id, online, players_online, players_max, motd_text, version_name, favicon_url_or_hash, checked_at, provider, failure_count, offline_since, refresh_attempted_at, refresh_error)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NULL)
+    SELECT ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NULL
+    WHERE ${condition.sql}
     ON CONFLICT(server_id) DO UPDATE SET
       online = excluded.online,
       players_online = excluded.players_online,
@@ -87,7 +92,8 @@ export function statusSnapshotStatements(
       snapshot.provider,
       snapshot.online ? 0 : 1,
       snapshot.online ? null : timestamp,
-      timestamp
+      timestamp,
+      ...condition.bindings
     )
   ];
 }

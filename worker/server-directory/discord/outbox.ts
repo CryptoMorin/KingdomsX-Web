@@ -20,6 +20,7 @@ import { runD1Statement } from "../core/d1";
 import { logError, logWarn, nowIso } from "../core/runtime";
 import { discordFailureSchedule } from "./webhook-client";
 import { buildDiscordReviewNotificationMessage } from "./messages";
+import { listingWriteCondition, type ListingWriteGuard } from "../core/listing-write-guard";
 
 // Public listing embed jobs
 export function discordEmbedJobStatement(
@@ -27,8 +28,11 @@ export function discordEmbedJobStatement(
   serverId: string,
   action: "upsert" | "delete",
   version: string,
-  expectedVersion?: string
+  expectedVersion?: string,
+  guard?: ListingWriteGuard
 ): D1PreparedStatement {
+  const condition = listingWriteCondition(guard);
+
   // One row per server means newer changes replace old jobs instead of piling up
   return env.DB.prepare(
     `
@@ -38,9 +42,9 @@ export function discordEmbedJobStatement(
       created_at, updated_at
     )
     SELECT ?, ?, ?, 0, ?, NULL, NULL, NULL, NULL, NULL, ?, ?
-    WHERE ? IS NULL OR EXISTS (
+    WHERE (? IS NULL OR EXISTS (
       SELECT 1 FROM servers WHERE id = ? AND status = 'approved' AND updated_at = ?
-    )
+    )) AND (${condition.sql})
     ON CONFLICT(server_id) DO UPDATE SET
       desired_action = excluded.desired_action,
       desired_version = excluded.desired_version,
@@ -51,7 +55,7 @@ export function discordEmbedJobStatement(
       last_error = NULL,
       updated_at = excluded.updated_at
   `
-  ).bind(serverId, action, version, version, version, version, expectedVersion ?? null, serverId, expectedVersion ?? null);
+  ).bind(serverId, action, version, version, version, version, expectedVersion ?? null, serverId, expectedVersion ?? null, ...condition.bindings);
 }
 
 // Review notification jobs
@@ -119,8 +123,11 @@ export function discordReviewNotificationJobStatement(
   submissionId: string,
   notificationType: "submitted" | "resubmitted",
   timestamp: string,
-  desiredStatus: ServerState = "pending"
+  desiredStatus: ServerState = "pending",
+  guard?: ListingWriteGuard
 ): D1PreparedStatement {
+  const condition = listingWriteCondition(guard);
+
   return env.DB.prepare(
     `
     INSERT INTO discord_review_notification_jobs (
@@ -128,7 +135,8 @@ export function discordReviewNotificationJobStatement(
       last_attempt_at, last_error_code, last_error, lease_token, lease_expires_at,
       created_at, updated_at
     )
-    VALUES (?, ?, ?, ?, ?, 0, 0, ?, NULL, NULL, NULL, NULL, NULL, ?, ?)
+    SELECT ?, ?, ?, ?, ?, 0, 0, ?, NULL, NULL, NULL, NULL, NULL, ?, ?
+    WHERE ${condition.sql}
     ON CONFLICT(server_id) DO UPDATE SET
       submission_id = excluded.submission_id,
       notification_type = excluded.notification_type,
@@ -150,7 +158,8 @@ export function discordReviewNotificationJobStatement(
     timestamp,
     timestamp,
     timestamp,
-    timestamp
+    timestamp,
+    ...condition.bindings
   );
 }
 
@@ -158,8 +167,10 @@ export function discordReviewNotificationJobStatement(
 export function discordReviewDeletionJobStatement(
   env: DirectoryEnv,
   snapshot: DiscordReviewDeletionSnapshot,
-  timestamp: string
+  timestamp: string,
+  guard?: ListingWriteGuard
 ): D1PreparedStatement {
+  const condition = listingWriteCondition(guard);
   const payload = buildDiscordReviewNotificationMessage(
     { ...snapshot, updated_at: timestamp },
     snapshot.review_notification_type,
@@ -174,7 +185,8 @@ export function discordReviewDeletionJobStatement(
       last_attempt_at, last_error_code, last_error, lease_token, lease_expires_at,
       created_at, updated_at
     )
-    VALUES (?, ?, ?, ?, NULL, 0, ?, NULL, NULL, NULL, NULL, NULL, ?, ?)
+    SELECT ?, ?, ?, ?, NULL, 0, ?, NULL, NULL, NULL, NULL, NULL, ?, ?
+    WHERE ${condition.sql}
     ON CONFLICT(server_id) DO UPDATE SET
       message_id = excluded.message_id,
       payload_json = excluded.payload_json,
@@ -198,7 +210,8 @@ export function discordReviewDeletionJobStatement(
       : 0,
     timestamp,
     timestamp,
-    timestamp
+    timestamp,
+    ...condition.bindings
   );
 }
 

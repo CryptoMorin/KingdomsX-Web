@@ -18,6 +18,7 @@ import { bytesToHex, hmacSha256 } from "../core/crypto";
 import { ApiError, json } from "../core/http";
 import { nowIso } from "../core/runtime";
 import { consumeVerificationChallengeStatement, getChallengeForOwner } from "./challenge-storage";
+import type { ListingWriteGuard } from "../core/listing-write-guard";
 
 export function normalizeVerificationCode(value: string): string | null {
   const normalized = value.trim().toLowerCase();
@@ -109,10 +110,11 @@ export async function requireVerifiedChallenge(
 export function verificationConsumptionStatements(
   env: DirectoryEnv,
   input: SubmissionInput,
-  timestamp: string
+  timestamp: string,
+  guard?: ListingWriteGuard
 ): D1PreparedStatement[] {
   return input.verification
-    ? [consumeVerificationChallengeStatement(env, input.verification.id, timestamp)]
+    ? [consumeVerificationChallengeStatement(env, input.verification.id, timestamp, guard)]
     : [];
 }
 

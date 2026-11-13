@@ -66,7 +66,8 @@ import {
   resubmissionServerStatement,
   submissionQuotaCounts,
   submissionInsertStatement,
-  submittedEventStatement
+  submittedEventStatement,
+  type ExistingAddressRow
 } from "./submission-storage";
 import {
   normalizeWebsiteInput,
@@ -224,7 +225,8 @@ async function submitServer(
   const slug =
     existing?.slug ??
     `${serverNameSlug(input.name)}-${(await sha256(`${input.normalized.host}:${input.normalized.port}`)).slice(0, 8)}`;
-  const createdAt = nowIso();
+  const createdAt = nextListingTimestamp(existing?.updated_at);
+  const guard = { submissionId };
   const contact = submitterContact(session.account);
   const serverMutation = newSubmissionServerStatement(env, {
     existing,
@@ -236,9 +238,8 @@ async function submitServer(
   });
 
   // Staff should never see a submission without the proof/status rows it was reviewed against
-  await runD1Batch(env, [
+  const results = await runD1Batch(env, [
     serverMutation,
-    ...statusSnapshotStatements(env, id, verification.snapshot, createdAt),
     submissionInsertStatement(env, {
       id: submissionId,
       serverId: id,
@@ -249,16 +250,20 @@ async function submitServer(
       moderationNotes: null,
       createdAt
     }),
-    ...verificationConsumptionStatements(env, input, createdAt),
-    submittedEventStatement(env, id, Boolean(existing), createdAt),
+    ...statusSnapshotStatements(env, id, verification.snapshot, createdAt, guard),
+    ...verificationConsumptionStatements(env, input, createdAt, guard),
+    submittedEventStatement(env, id, Boolean(existing), createdAt, guard),
     discordReviewNotificationJobStatement(
       env,
       id,
       submissionId,
       existing ? "resubmitted" : "submitted",
-      createdAt
+      createdAt,
+      "pending",
+      guard
     )
   ]);
+  requireChangedListing(results[0]);
 
   scheduleDiscordReviewNotificationProcessing(env, ctx);
 
@@ -418,8 +423,9 @@ async function resubmitMyServer(
     return verification.response;
   }
 
-  const timestamp = nowIso();
+  const timestamp = nextListingTimestamp(owned.updated_at);
   const submissionId = crypto.randomUUID();
+  const guard = { submissionId };
   const serverMutation = resubmissionServerStatement(
     env,
     input,
@@ -429,9 +435,8 @@ async function resubmitMyServer(
     timestamp
   );
 
-  await runD1Batch(env, [
+  const results = await runD1Batch(env, [
     serverMutation,
-    ...statusSnapshotStatements(env, owned.id, verification.snapshot, timestamp),
     submissionInsertStatement(env, {
       id: submissionId,
       serverId: owned.id,
@@ -446,20 +451,24 @@ async function resubmitMyServer(
       moderationNotes: null,
       createdAt: timestamp
     }),
-    ...verificationConsumptionStatements(env, input, timestamp),
-    resubmissionEventStatement(env, owned.id, keepsApproval, timestamp),
+    ...statusSnapshotStatements(env, owned.id, verification.snapshot, timestamp, guard),
+    ...verificationConsumptionStatements(env, input, timestamp, guard),
+    resubmissionEventStatement(env, owned.id, keepsApproval, timestamp, guard),
     ...(keepsApproval
-      ? [discordEmbedJobStatement(env, owned.id, "upsert", timestamp)]
+      ? [discordEmbedJobStatement(env, owned.id, "upsert", timestamp, undefined, guard)]
       : [
         discordReviewNotificationJobStatement(
           env,
           owned.id,
           submissionId,
           "resubmitted",
-          timestamp
+          timestamp,
+          "pending",
+          guard
         )
       ])
   ]);
+  requireChangedListing(results[0]);
 
   if (keepsApproval) {
     scheduleDiscordEmbedProcessing(env, ctx);
@@ -527,17 +536,19 @@ async function updateMyPublicDetails(
     return rateLimitResponse(mutationRateLimit.error);
   }
 
-  const timestamp = nowIso();
+  const timestamp = nextListingTimestamp(owned.updated_at);
 
-  await runD1Batch(
+  const results = await runD1Batch(
     env,
     publicDetailsStatements(env, {
       details,
       serverId: owned.id,
       accountId: session.account.id,
+      updatedAt: owned.updated_at,
       timestamp
     })
   );
+  requireChangedListing(results[0]);
 
   scheduleDiscordEmbedProcessing(env, ctx);
 
@@ -580,7 +591,8 @@ async function deleteMyServer(
     reviewSnapshot
   });
 
-  await runD1Batch(env, statements);
+  const results = await runD1Batch(env, statements);
+  requireChangedListing(results.at(-1));
   scheduleDiscordDeliveryProcessing(env, ctx);
 
   return json({ ok: true, id: owned.id, deleted: true }, 200, NO_STORE_JSON_HEADERS);
@@ -716,14 +728,14 @@ async function autoSuspendSubmission(
   env: DirectoryEnv,
   account: SubmitterAccount,
   input: SubmissionInput,
-  existing: { id: string; slug: string; status: ServerState; updated_at: string } | null,
+  existing: ExistingAddressRow | null,
   reason: string | null
 ): Promise<Response> {
   const id = existing?.id ?? crypto.randomUUID();
   const slug =
     existing?.slug ??
     `${serverNameSlug(input.name)}-${(await sha256(`${input.normalized.host}:${input.normalized.port}`)).slice(0, 8)}`;
-  const timestamp = nowIso();
+  const timestamp = nextListingTimestamp(existing?.updated_at);
   const submissionId = crypto.randomUUID();
   const notes = reason || "This server address is suspended by staff.";
   const serverMutation = autoSuspendServerStatement(env, {
@@ -735,7 +747,7 @@ async function autoSuspendSubmission(
     timestamp
   });
 
-  await runD1Batch(
+  const results = await runD1Batch(
     env,
     autoSuspensionStatements(env, {
       serverMutation,
@@ -749,6 +761,7 @@ async function autoSuspendSubmission(
       timestamp
     })
   );
+  requireChangedListing(results[0]);
 
   const refreshed = await getOwnedServerRow(env, account.id);
 
@@ -766,12 +779,12 @@ async function autoSuspendOwnedSubmission(
   input: SubmissionInput,
   reason: string | null
 ): Promise<Response> {
-  const timestamp = nowIso();
+  const timestamp = nextListingTimestamp(owned.updated_at);
   const submissionId = crypto.randomUUID();
   const notes = reason || "This server address is suspended by staff.";
   const serverMutation = autoSuspendOwnedServerStatement(env, input, owned, account.id, timestamp);
 
-  await runD1Batch(
+  const results = await runD1Batch(
     env,
     autoSuspensionStatements(env, {
       serverMutation,
@@ -789,6 +802,7 @@ async function autoSuspendOwnedSubmission(
       timestamp
     })
   );
+  requireChangedListing(results[0]);
 
   const refreshed = await getOwnedServerRow(env, account.id);
 
@@ -802,4 +816,14 @@ async function autoSuspendOwnedSubmission(
     202,
     NO_STORE_JSON_HEADERS
   );
+}
+
+function requireChangedListing(result: D1Result | undefined): void {
+  if (!result?.meta.changes) {
+    throw new ApiError(409, "This listing changed while your request was being checked. Refresh the page and try again.");
+  }
+}
+
+function nextListingTimestamp(previous?: string): string {
+  return new Date(previous ? Math.max(Date.now(), Date.parse(previous) + 1) : Date.now()).toISOString();
 }

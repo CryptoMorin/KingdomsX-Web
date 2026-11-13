@@ -4,6 +4,10 @@ import { parseSimpleLiteral } from "./yaml-source.js";
 
 const MESSAGE_MACRO = /\{\$([^${}]+)}/g;
 const MESSAGE_REFERENCE = /\{\$\$([^{}]+)}/g;
+const MAX_EXPANSION_DEPTH = 64;
+const MAX_PREVIEW_LENGTH = 65_536;
+const MAX_EXPANSION_WORK = 1_000_000;
+const MAX_RESOLVED_LENGTH = 2_000_000;
 const RUNTIME_MESSAGE_MACROS = new Set([
   "channel",
   "groupcolor",
@@ -46,24 +50,26 @@ export function messageMacroContext(
     collectLanguageReferences(references, fallbackLanguageOptions, "languages/en.yml");
   }
 
+  const budget = { work: 0, length: 0 };
+
   return {
     configFileName: configSession?.fileName ?? "",
     languageFileName: languageSession?.fileName ?? "",
     canValidate: Boolean(configSession) && (!guiLanguage(session?.fileName) || languageSession),
     definitions,
-    values: resolveDefinitions(definitions),
-    references: resolveReferences(references)
+    values: resolveDefinitions(definitions, MESSAGE_MACRO, normalizeName, "$", budget),
+    references: resolveDefinitions(references, MESSAGE_REFERENCE, normalizeReference, "$$", budget)
   };
 }
 
 export function resolveMessageMacros(source, context) {
   const values = context?.values ?? context ?? new Map();
   const references = context?.references ?? new Map();
-  const referenced = String(source ?? "").replace(MESSAGE_REFERENCE, (token, name) =>
+  const referenced = replaceWithinPreviewLimit(String(source ?? ""), MESSAGE_REFERENCE, (token, name) =>
     references.get(normalizeReference(name)) ?? token
   );
 
-  return referenced.replace(MESSAGE_MACRO, (token, name) =>
+  return replaceWithinPreviewLimit(referenced, MESSAGE_MACRO, (token, name) =>
     values.get(normalizeName(name)) ?? token
   );
 }
@@ -199,7 +205,7 @@ function collectDefinitions(target, session, parentPath) {
   }
 }
 
-function resolveDefinitions(definitions) {
+function resolveDefinitions(definitions, pattern, normalize, prefix, budget) {
   const resolved = new Map();
 
   const resolve = (name, stack = new Set()) => {
@@ -209,16 +215,23 @@ function resolveDefinitions(definitions) {
 
     const definition = definitions.get(name);
 
-    if (!definition || stack.has(name)) {
-      return `{$${definition?.name ?? name}}`;
+    if (!definition || stack.has(name) || stack.size >= MAX_EXPANSION_DEPTH
+      || budget.work >= MAX_EXPANSION_WORK || budget.length >= MAX_RESOLVED_LENGTH) {
+      return `{${prefix}${definition?.name ?? name}}`;
     }
 
     const nextStack = new Set(stack).add(name);
-    const value = definition.value.replace(MESSAGE_MACRO, (token, referencedName) => {
-      const referencedKey = normalizeName(referencedName);
+    const value = replaceWithinPreviewLimit(definition.value, pattern, (token, referencedName) => {
+      budget.work += 1;
+      const referencedKey = normalize(referencedName);
 
-      return definitions.has(referencedKey) ? resolve(referencedKey, nextStack) : token;
+      return budget.work <= MAX_EXPANSION_WORK && definitions.has(referencedKey)
+        ? resolve(referencedKey, nextStack) : token;
     });
+    if (value.length > MAX_PREVIEW_LENGTH || budget.length + value.length > MAX_RESOLVED_LENGTH) {
+      return `{${prefix}${definition.name}}`;
+    }
+    budget.length += value.length;
     resolved.set(name, value);
     return value;
   };
@@ -230,35 +243,20 @@ function resolveDefinitions(definitions) {
   return resolved;
 }
 
-function resolveReferences(definitions) {
-  const resolved = new Map();
+function replaceWithinPreviewLimit(source, pattern, replacement) {
+  let length = source.length;
 
-  const resolve = (name, stack = new Set()) => {
-    if (resolved.has(name)) {
-      return resolved.get(name);
+  return source.replace(pattern, (token, name) => {
+    const value = replacement(token, name);
+    const nextLength = length - token.length + value.length;
+
+    if (nextLength > MAX_PREVIEW_LENGTH && nextLength > length) {
+      return token;
     }
 
-    const definition = definitions.get(name);
-
-    if (!definition || stack.has(name)) {
-      return `{$$${definition?.name ?? name}}`;
-    }
-
-    const nextStack = new Set(stack).add(name);
-    const value = definition.value.replace(MESSAGE_REFERENCE, (token, referencedName) => {
-      const referencedKey = normalizeReference(referencedName);
-
-      return definitions.has(referencedKey) ? resolve(referencedKey, nextStack) : token;
-    });
-    resolved.set(name, value);
+    length = nextLength;
     return value;
-  };
-
-  for (const name of definitions.keys()) {
-    resolve(name);
-  }
-
-  return resolved;
+  });
 }
 
 function collectUnknownMacros(target, source, path, definitions) {

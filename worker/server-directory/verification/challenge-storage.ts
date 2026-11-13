@@ -5,6 +5,7 @@ import type {
   VerificationChallengeRow
 } from "../contracts";
 import { runD1Statement } from "../core/d1";
+import { listingWriteCondition, type ListingWriteGuard } from "../core/listing-write-guard";
 
 const CHALLENGE_COLUMNS = `
   id, owner_account_id, server_name, normalized_host, port, status, expires_at, verified_at, consumed_at,
@@ -203,15 +204,19 @@ export function expirePendingChallenge(
 export function consumeVerificationChallengeStatement(
   env: DirectoryEnv,
   id: string,
-  timestamp: string
+  timestamp: string,
+  guard?: ListingWriteGuard
 ): D1PreparedStatement {
+  const condition = listingWriteCondition(guard);
+
   return env.DB.prepare(
     `
     UPDATE server_verification_challenges
     SET status = 'consumed', consumed_at = ?, updated_at = ?
     WHERE id = ? AND status = 'verified' AND consumed_at IS NULL
+      AND (${condition.sql})
   `
-  ).bind(timestamp, timestamp, id);
+  ).bind(timestamp, timestamp, id, ...condition.bindings);
 }
 
 export function staleChallengeCleanupStatement(

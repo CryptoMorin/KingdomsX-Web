@@ -301,10 +301,16 @@ describe("editor sessions", () => {
     await expect(applied.json()).resolves.toMatchObject({ state: "applied", resultRevision: 1 });
   });
 
-  it("recovers an original upload interrupted after R2 saved it", async () => {
+  it.each(["current", "older"] as const)("recovers an interrupted original upload from %s storage", async (layout) => {
     await createSession();
+
+    if (layout === "older") {
+      await useLegacyPayloadPrefix();
+    }
+
     const stub = env.EDITOR_SESSIONS.getByName(sessionId);
-    await env.EDITOR_PAYLOADS.put(`${sessionId}/original.bin`, original, {
+    const prefix = await sessionPayloadPrefix();
+    await env.EDITOR_PAYLOADS.put(`${prefix}original.bin`, original, {
       customMetadata: { sha256: originalSha256 }
     });
     await runInDurableObject(stub, async (_instance: EditorSession, state) => {
@@ -335,12 +341,19 @@ describe("editor sessions", () => {
     expect(record?.pending).toBeUndefined();
   });
 
-  it("recovers a result upload interrupted after R2 saved it", async () => {
+  it.each(["current", "older"] as const)("recovers an interrupted result upload from %s storage", async (layout) => {
+    await createSession();
+
+    if (layout === "older") {
+      await useLegacyPayloadPrefix();
+    }
+
     await prepareResult();
     const stub = env.EDITOR_SESSIONS.getByName(sessionId);
     const result = new Uint8Array(96).fill(11);
     const resultSha256 = await digest(result);
-    await env.EDITOR_PAYLOADS.put(`${sessionId}/result-2.bin`, result, {
+    const prefix = await sessionPayloadPrefix();
+    await env.EDITOR_PAYLOADS.put(`${prefix}result-2.bin`, result, {
       customMetadata: { sha256: resultSha256 }
     });
     await runInDurableObject(stub, async (_instance: EditorSession, state) => {
@@ -651,6 +664,225 @@ describe("editor sessions", () => {
     await expect(snapshot.json()).resolves.toMatchObject({ state: "cancelled", resultRevision: 1 });
   });
 
+  it.each([
+    { kind: "original", terminal: "cancelled" },
+    { kind: "result", terminal: "cancelled" },
+    { kind: "original", terminal: "expired" },
+    { kind: "result", terminal: "expired" }
+  ])("removes a late $kind upload after $terminal session cleanup", async ({ kind, terminal }) => {
+    if (kind === "result") {
+      await prepareResult();
+    } else {
+      await createSession();
+    }
+
+    const bytes = kind === "original" ? original : new Uint8Array(96).fill(17);
+    const sha256 = await digest(bytes);
+    const path = kind === "original" ? "payloads/original" : "payloads/result/2";
+    const token = kind === "original" ? serverToken : browserToken;
+    const prefix = await sessionPayloadPrefix();
+    const stub = env.EDITOR_SESSIONS.getByName(sessionId);
+    const status = await runInDurableObject(stub, async (instance: EditorSession, state) => {
+      const putStarted = deferred();
+      const releasePut = deferred();
+      const bucket = objectEnv(instance).EDITOR_PAYLOADS;
+      const restore = replaceBucket(instance, {
+        put: (async (...args: unknown[]) => {
+          putStarted.resolve();
+          await releasePut.promise;
+          return Reflect.apply(bucket.put, bucket, args);
+        }) as R2Bucket["put"]
+      });
+
+      try {
+        const uploading = instance.fetch(sessionRequest(path, payloadRequest(bytes, token, sha256)));
+        await putStarted.promise;
+
+        if (terminal === "cancelled") {
+          expect((await instance.fetch(sessionRequest("", {
+            method: "DELETE",
+            headers: auth(serverToken)
+          }))).status).toBe(200);
+        } else {
+          const record = await state.storage.get<SessionRecord>("session");
+          if (!record) {
+            throw new Error("Expected the test session record.");
+          }
+
+          record.expiresAt = Date.now() - 1;
+          await state.storage.put("session", record);
+          await instance.alarm();
+        }
+
+        const closed = await state.storage.get<SessionRecord>("session");
+        if (!closed) {
+          throw new Error("Expected the terminal session record.");
+        }
+
+        closed.cleanupAt = Date.now() - 1;
+        await state.storage.put("session", closed);
+        await instance.alarm();
+        expect(await state.storage.get("session")).toBeUndefined();
+
+        releasePut.resolve();
+        return (await uploading).status;
+      } finally {
+        releasePut.resolve();
+        restore();
+      }
+    });
+
+    expect(status).toBe(404);
+    expect((await env.EDITOR_PAYLOADS.list({ prefix })).objects).toHaveLength(0);
+  });
+
+  it.each(["current", "older"] as const)("protects a new session from an unfinished upload to %s storage", async (layout) => {
+    await createSession();
+
+    if (layout === "older") {
+      await useLegacyPayloadPrefix();
+    }
+
+    const previousPrefix = await sessionPayloadPrefix();
+    const replacementToken = "C".repeat(43);
+    const replacementHash = await digest(new TextEncoder().encode(replacementToken));
+    const stub = env.EDITOR_SESSIONS.getByName(sessionId);
+    const raced = await runInDurableObject(stub, async (instance: EditorSession, state) => {
+      const putStarted = deferred();
+      const releasePut = deferred();
+      const bucket = objectEnv(instance).EDITOR_PAYLOADS;
+      let held = false;
+      const restore = replaceBucket(instance, {
+        put: (async (...args: unknown[]) => {
+          if (!held) {
+            held = true;
+            putStarted.resolve();
+            await releasePut.promise;
+          }
+
+          return Reflect.apply(bucket.put, bucket, args);
+        }) as R2Bucket["put"]
+      });
+
+      try {
+        const uploading = instance.fetch(sessionRequest("payloads/original", payloadRequest(original, serverToken, originalSha256)));
+        await putStarted.promise;
+        await instance.fetch(sessionRequest("", { method: "DELETE", headers: auth(serverToken) }));
+        const closed = await state.storage.get<SessionRecord>("session");
+
+        if (!closed) {
+          throw new Error("Expected the terminal session record.");
+        }
+
+        closed.cleanupAt = Date.now() - 1;
+        await state.storage.put("session", closed);
+        await instance.alarm();
+
+        const recreated = await instance.fetch(sessionRequest("", {
+          method: "PUT",
+          body: JSON.stringify(createBody({ serverTokenHash: replacementHash }))
+        }));
+        expect(recreated.status).toBe(201);
+        expect((await instance.fetch(sessionRequest("payloads/original", payloadRequest(original, replacementToken, originalSha256)))).status).toBe(201);
+
+        releasePut.resolve();
+        const late = await uploading;
+        const record = await state.storage.get<SessionRecord>("session");
+
+        return { status: late.status, record };
+      } finally {
+        releasePut.resolve();
+        restore();
+      }
+    });
+
+    expect(raced.status).toBe(409);
+    expect(raced.record?.state).toBe("ready");
+    expect(raced.record?.payloadPrefix).not.toBe(previousPrefix);
+    expect((await env.EDITOR_PAYLOADS.list({ prefix: previousPrefix })).objects).toHaveLength(0);
+    const downloaded = await api("payloads/original", { headers: auth(replacementToken) });
+    expect(downloaded.status).toBe(200);
+    expect(new Uint8Array(await downloaded.arrayBuffer())).toEqual(original);
+  });
+
+  it("retries failed upload cleanup without affecting a new session", async () => {
+    await createSession();
+    const prefix = await sessionPayloadPrefix();
+    const stub = env.EDITOR_SESSIONS.getByName(sessionId);
+    const errorLog = vi.spyOn(console, "error").mockImplementation(() => undefined);
+
+    try {
+      const observed = await runInDurableObject(stub, async (instance: EditorSession, state) => {
+        const putStarted = deferred();
+        const releasePut = deferred();
+        const bucket = objectEnv(instance).EDITOR_PAYLOADS;
+        let failDelete = true;
+        let retryArmedBeforeDelete = false;
+        const restore = replaceBucket(instance, {
+          put: (async (...args: unknown[]) => {
+            putStarted.resolve();
+            await releasePut.promise;
+            return Reflect.apply(bucket.put, bucket, args);
+          }) as R2Bucket["put"],
+          delete: (async (key: string | string[]) => {
+            if (failDelete && key === `${prefix}original.bin`) {
+              retryArmedBeforeDelete = (await state.storage.getAlarm()) !== null;
+              throw new Error("Synthetic late-upload deletion failure.");
+            }
+
+            return bucket.delete(key);
+          }) as R2Bucket["delete"]
+        });
+
+        try {
+          const uploading = instance.fetch(sessionRequest("payloads/original", payloadRequest(original, serverToken, originalSha256)));
+          await putStarted.promise;
+          await instance.fetch(sessionRequest("", { method: "DELETE", headers: auth(serverToken) }));
+          const closed = await state.storage.get<SessionRecord>("session");
+
+          if (!closed) {
+            throw new Error("Expected the terminal session record.");
+          }
+
+          closed.cleanupAt = Date.now() - 1;
+          await state.storage.put("session", closed);
+          await instance.alarm();
+          releasePut.resolve();
+          expect((await uploading).status).toBe(404);
+          expect(retryArmedBeforeDelete).toBe(true);
+          expect(await state.storage.get("session")).toBeUndefined();
+          const retryAlarm = await state.storage.getAlarm();
+          expect(retryAlarm).not.toBeNull();
+
+          expect((await instance.fetch(sessionRequest("", {
+            method: "PUT",
+            body: JSON.stringify(createBody())
+          }))).status).toBe(201);
+          expect(await state.storage.getAlarm()).toBe(retryAlarm);
+          expect((await instance.fetch(sessionRequest("payloads/original", payloadRequest(original, serverToken, originalSha256)))).status).toBe(201);
+
+          failDelete = false;
+          await instance.alarm();
+          const current = await state.storage.get<SessionRecord>("session");
+
+          return { current, alarm: await state.storage.getAlarm() };
+        } finally {
+          releasePut.resolve();
+          restore();
+        }
+      });
+
+      expect((await env.EDITOR_PAYLOADS.list({ prefix })).objects).toHaveLength(0);
+      expect(observed.current?.state).toBe("ready");
+      expect(observed.alarm).toBe(observed.current?.expiresAt);
+      const downloaded = await api("payloads/original", { headers: auth(browserToken) });
+      expect(downloaded.status).toBe(200);
+      expect(new Uint8Array(await downloaded.arrayBuffer())).toEqual(original);
+    } finally {
+      errorLog.mockRestore();
+    }
+  });
+
   it("cancels conflicted sessions without extending cleanup on repeated requests", async () => {
     await prepareResult();
     expect((await apply("started")).status).toBe(200);
@@ -876,10 +1108,11 @@ describe("editor sessions", () => {
   it("retries cleanup after some R2 files fail", async () => {
     await createSession();
     const stub = env.EDITOR_SESSIONS.getByName(sessionId);
+    const prefix = await sessionPayloadPrefix();
     const keys = [
-      `${sessionId}/original.bin`,
-      ...Array.from({ length: 1_002 }, (_, index) => `${sessionId}/result-${index + 1}.bin`),
-      `${sessionId}/residual-upload.bin`
+      `${prefix}original.bin`,
+      ...Array.from({ length: 1_002 }, (_, index) => `${prefix}result-${index + 1}.bin`),
+      `${prefix}residual-upload.bin`
     ];
 
     for (let offset = 0; offset < keys.length; offset += 100) {
@@ -941,13 +1174,13 @@ describe("editor sessions", () => {
     expect(failedCleanup.deleteBatchSizes.every((size) => size <= 1_000)).toBe(true);
     expect(failedCleanup.recordRetained).toBe(true);
     expect(failedCleanup.retryAlarm).not.toBeNull();
-    expect((await env.EDITOR_PAYLOADS.list({ prefix: `${sessionId}/` })).objects).toHaveLength(4);
+    expect((await env.EDITOR_PAYLOADS.list({ prefix })).objects).toHaveLength(4);
 
     const retryCleanup = await runInDurableObject(stub, async (instance: EditorSession, state) => {
       await instance.alarm();
       return state.storage.get("session");
     });
-    expect((await env.EDITOR_PAYLOADS.list({ prefix: `${sessionId}/` })).objects).toHaveLength(0);
+    expect((await env.EDITOR_PAYLOADS.list({ prefix })).objects).toHaveLength(0);
     expect(retryCleanup).toBeUndefined();
     await runInDurableObject(stub, async (instance: EditorSession) => instance.alarm());
   }, 30_000);
@@ -1131,6 +1364,31 @@ function replaceBucket(instance: EditorSession, methods: Record<PropertyKey, unk
 
 function api(path: string, init: RequestInit = {}) {
   return SELF.fetch(`https://editor.test/api/editor/v1/sessions/${sessionId}${path ? `/${path}` : ""}`, init);
+}
+
+async function sessionPayloadPrefix(): Promise<string> {
+  return runInDurableObject(env.EDITOR_SESSIONS.getByName(sessionId), async (_instance: EditorSession, state) => {
+    const record = await state.storage.get<SessionRecord>("session");
+
+    if (!record) {
+      throw new Error("Expected the test session record.");
+    }
+
+    return record.payloadPrefix ?? `${sessionId}/`;
+  });
+}
+
+async function useLegacyPayloadPrefix(): Promise<void> {
+  await runInDurableObject(env.EDITOR_SESSIONS.getByName(sessionId), async (_instance: EditorSession, state) => {
+    const record = await state.storage.get<SessionRecord>("session");
+
+    if (!record) {
+      throw new Error("Expected the test session record.");
+    }
+
+    delete record.payloadPrefix;
+    await state.storage.put("session", record);
+  });
 }
 
 function browserSocket() {

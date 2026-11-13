@@ -21,6 +21,8 @@ import {
 import { discardRequestBody, json, logUnexpectedError, problem, readJson, RequestProblem } from "./http";
 
 const RECORD_KEY = "session";
+const PAYLOAD_CLEANUP_PREFIX = "payload_cleanup:";
+const PAYLOAD_CLEANUP_RETRY_KEY = "payload_cleanup_retry";
 const API_PREFIX = "/api/editor/v1/sessions/";
 const SOCKET_PREFIX = "/socket/editor/v1/sessions/";
 const CLEANUP_RETRY_MS = 60_000;
@@ -42,7 +44,7 @@ type BoundedPayload = {
 };
 type UploadReservation =
   | { status: "complete"; record: SessionRecord }
-  | { status: "reserved" | "resumed"; operationId: string };
+  | { status: "reserved" | "resumed"; operationId: string; record: SessionRecord };
 
 export class EditorSession extends DurableObject<Cloudflare.Env> {
   private mutationQueue: Promise<void> = Promise.resolve();
@@ -173,6 +175,8 @@ export class EditorSession extends DurableObject<Cloudflare.Env> {
 
   async alarm(): Promise<void> {
     try {
+      await this.serializeMutation(() => this.retryPayloadCleanup());
+
       const cleanup = await this.serializeMutation(async () => {
         const record = await this.load();
 
@@ -184,7 +188,7 @@ export class EditorSession extends DurableObject<Cloudflare.Env> {
 
         if (record.cleanupAt && now >= record.cleanupAt) {
           return {
-            id: record.id,
+            prefix: this.payloadPrefix(record),
             cleanupAt: record.cleanupAt,
             hasUploads: record.uploadedBytes !== 0 || Boolean(record.pending) || record.resultRevision !== 0
           };
@@ -195,7 +199,7 @@ export class EditorSession extends DurableObject<Cloudflare.Env> {
           return null;
         }
 
-        await this.ctx.storage.setAlarm(record.cleanupAt ?? record.expiresAt);
+        await this.scheduleAlarm(record.cleanupAt ?? record.expiresAt);
         return null;
       });
 
@@ -205,22 +209,24 @@ export class EditorSession extends DurableObject<Cloudflare.Env> {
 
       try {
         if (cleanup.hasUploads) {
-          await this.deleteSessionPayloads(cleanup.id);
+          await this.deleteSessionPayloads(cleanup.prefix);
         }
       } catch (error) {
         logUnexpectedError("cleanup_payloads", error);
-        await this.scheduleCleanupRetry(cleanup.id, cleanup.cleanupAt);
+        await this.scheduleCleanupRetry(cleanup.prefix, cleanup.cleanupAt);
         return;
       }
 
       await this.serializeMutation(async () => {
         const record = await this.load();
 
-        if (!record || record.id !== cleanup.id || record.cleanupAt !== cleanup.cleanupAt) {
+        if (!record || this.payloadPrefix(record) !== cleanup.prefix || record.cleanupAt !== cleanup.cleanupAt) {
           return;
         }
 
-        await this.ctx.storage.deleteAll();
+        // Deleting all storage here would also erase pending file cleanup
+        await this.ctx.storage.delete(RECORD_KEY);
+        await this.scheduleAlarm();
       });
     } catch (error) {
       logUnexpectedError("cleanup_session", error);
@@ -290,11 +296,13 @@ export class EditorSession extends DurableObject<Cloudflare.Env> {
         state: "awaiting_original",
         resultRevision: 0,
         uploadedBytes: 0,
-        downloadedBytes: 0
+        downloadedBytes: 0,
+        // Keep new files outside folders that older session cleanup can delete
+        payloadPrefix: `sessions/${id}/${crypto.randomUUID()}/`
       };
 
       await this.save(record);
-      await this.ctx.storage.setAlarm(record.expiresAt);
+      await this.scheduleAlarm(record.expiresAt);
 
       return json(this.snapshot(record), 201);
     });
@@ -311,7 +319,7 @@ export class EditorSession extends DurableObject<Cloudflare.Env> {
       return problem(422, "payload_mismatch", "The original encrypted file does not match this editor session.");
     }
 
-    const reservation = await this.reserveOriginal(payload);
+    const reservation = await this.reserveOriginal(record, payload);
 
     if (reservation.status === "complete") {
       return await this.payloadExists(this.originalKey(reservation.record), payload)
@@ -320,7 +328,7 @@ export class EditorSession extends DurableObject<Cloudflare.Env> {
     }
 
     try {
-      const key = this.originalKey(record);
+      const key = this.originalKey(reservation.record);
 
       if (reservation.status === "resumed" && await this.payloadExists(key, payload)) {
         await consumeRequestBody(request);
@@ -333,7 +341,14 @@ export class EditorSession extends DurableObject<Cloudflare.Env> {
         }
       }
 
-      const finalized = await this.finalizeOriginal(reservation.operationId, payload);
+      let finalized: SessionRecord;
+
+      try {
+        finalized = await this.finalizeOriginal(reservation.record, reservation.operationId, payload);
+      } catch (error) {
+        await this.cleanupRejectedPayload(reservation.record, key);
+        throw error;
+      }
 
       return json(this.snapshot(finalized), 201);
     } finally {
@@ -347,7 +362,7 @@ export class EditorSession extends DurableObject<Cloudflare.Env> {
     }
 
     const payload = validatePayloadRequest(request);
-    const reservation = await this.reserveResult(revision, payload);
+    const reservation = await this.reserveResult(record, revision, payload);
 
     if (reservation.status === "complete") {
       return await this.payloadExists(this.resultKey(reservation.record, revision), payload)
@@ -356,7 +371,7 @@ export class EditorSession extends DurableObject<Cloudflare.Env> {
     }
 
     try {
-      const key = this.resultKey(record, revision);
+      const key = this.resultKey(reservation.record, revision);
 
       if (reservation.status === "resumed" && await this.payloadExists(key, payload)) {
         await consumeRequestBody(request);
@@ -369,7 +384,14 @@ export class EditorSession extends DurableObject<Cloudflare.Env> {
         }
       }
 
-      const finalized = await this.finalizeResult(reservation.operationId, revision, payload);
+      let finalized: SessionRecord;
+
+      try {
+        finalized = await this.finalizeResult(reservation.record, reservation.operationId, revision, payload);
+      } catch (error) {
+        await this.cleanupRejectedPayload(reservation.record, key);
+        throw error;
+      }
 
       if (revision > 1) {
         this.ctx.waitUntil(
@@ -393,6 +415,7 @@ export class EditorSession extends DurableObject<Cloudflare.Env> {
 
     return this.serializeMutation(async () => {
       const current = await this.requireRecord();
+      this.requireSameSession(current, record);
 
       if (!Number.isSafeInteger(input.revision) || input.revision !== current.resultRevision) {
         return problem(409, "invalid_revision", "The apply event does not match the current result revision.");
@@ -433,6 +456,7 @@ export class EditorSession extends DurableObject<Cloudflare.Env> {
 
     return this.serializeMutation(async () => {
       const current = await this.requireRecord();
+      this.requireSameSession(current, record);
 
       if (current.state === "cancelled" || current.state === "expired") {
         return json(this.snapshot(current));
@@ -445,7 +469,7 @@ export class EditorSession extends DurableObject<Cloudflare.Env> {
       current.cleanupAt = Date.now() + TERMINAL_GRACE_MS;
 
       await this.saveAndBroadcast(current);
-      await this.ctx.storage.setAlarm(current.cleanupAt);
+      await this.scheduleAlarm(current.cleanupAt);
       this.closeSockets(1000, "Session cancelled");
 
       return json(this.snapshot(current));
@@ -464,7 +488,7 @@ export class EditorSession extends DurableObject<Cloudflare.Env> {
     }
 
     try {
-      await this.reserveDownload(object.size);
+      await this.reserveDownload(record, object.size);
     } catch (error) {
       try {
         await object.body.cancel();
@@ -515,6 +539,8 @@ export class EditorSession extends DurableObject<Cloudflare.Env> {
       if (!record || record.id !== id) {
         return problem(404, "not_found", "That editor session does not exist.");
       }
+
+      this.requireSameSession(record, preliminary);
 
       if (Date.now() >= record.expiresAt && !["expired", "cancelled"].includes(record.state)) {
         await this.markExpired(record);
@@ -664,13 +690,14 @@ export class EditorSession extends DurableObject<Cloudflare.Env> {
     record.cleanupAt = Date.now() + TERMINAL_GRACE_MS;
 
     await this.saveAndBroadcast(record);
-    await this.ctx.storage.setAlarm(record.cleanupAt);
+    await this.scheduleAlarm(record.cleanupAt);
     this.closeSockets(1000, "Session expired");
   }
 
-  private async reserveOriginal(payload: PayloadMetadata): Promise<UploadReservation> {
+  private async reserveOriginal(expected: SessionRecord, payload: PayloadMetadata): Promise<UploadReservation> {
     return this.serializeMutation(async () => {
       const record = await this.requireRecord();
+      this.requireSameSession(record, expected);
 
       if (record.state === "ready") {
         return { status: "complete", record };
@@ -690,7 +717,7 @@ export class EditorSession extends DurableObject<Cloudflare.Env> {
 
           this.activeUploads.add(operationId);
 
-          return { status: "resumed", operationId };
+          return { status: "resumed", operationId, record };
         }
 
         throw new RequestProblem(409, "invalid_state", "Another file is already uploading.");
@@ -708,13 +735,14 @@ export class EditorSession extends DurableObject<Cloudflare.Env> {
       await this.save(record);
       this.activeUploads.add(operationId);
 
-      return { status: "reserved", operationId };
+      return { status: "reserved", operationId, record };
     });
   }
 
-  private async finalizeOriginal(operationId: string, payload: PayloadMetadata): Promise<SessionRecord> {
+  private async finalizeOriginal(expected: SessionRecord, operationId: string, payload: PayloadMetadata): Promise<SessionRecord> {
     return this.serializeMutation(async () => {
       const record = await this.requireRecord();
+      this.requireSameSession(record, expected);
 
       if (record.state === "ready") {
         return record;
@@ -734,9 +762,10 @@ export class EditorSession extends DurableObject<Cloudflare.Env> {
     });
   }
 
-  private async reserveResult(revision: number, payload: PayloadMetadata): Promise<UploadReservation> {
+  private async reserveResult(expected: SessionRecord, revision: number, payload: PayloadMetadata): Promise<UploadReservation> {
     return this.serializeMutation(async () => {
       const record = await this.requireRecord();
+      this.requireSameSession(record, expected);
 
       if (!RESULT_UPLOAD_STATES.includes(record.state)) {
         throw new RequestProblem(409, "invalid_state", "A result cannot be uploaded in this session state.");
@@ -770,7 +799,7 @@ export class EditorSession extends DurableObject<Cloudflare.Env> {
 
           this.activeUploads.add(operationId);
 
-          return { status: "resumed", operationId };
+          return { status: "resumed", operationId, record };
         }
 
         throw new RequestProblem(409, "invalid_state", "Another file is already uploading.");
@@ -788,17 +817,19 @@ export class EditorSession extends DurableObject<Cloudflare.Env> {
       await this.save(record);
       this.activeUploads.add(operationId);
 
-      return { status: "reserved", operationId };
+      return { status: "reserved", operationId, record };
     });
   }
 
   private async finalizeResult(
+    expected: SessionRecord,
     operationId: string,
     revision: number,
     payload: PayloadMetadata
   ): Promise<SessionRecord> {
     return this.serializeMutation(async () => {
       const record = await this.requireRecord();
+      this.requireSameSession(record, expected);
 
       if (
         record.resultRevision === revision
@@ -844,9 +875,10 @@ export class EditorSession extends DurableObject<Cloudflare.Env> {
     });
   }
 
-  private async reserveDownload(bytes: number): Promise<void> {
+  private async reserveDownload(expected: SessionRecord, bytes: number): Promise<void> {
     await this.serializeMutation(async () => {
       const record = await this.requireRecord();
+      this.requireSameSession(record, expected);
 
       if (["cancelled", "expired", "conflicted"].includes(record.state)) {
         throw new RequestProblem(410, "session_closed", "This editor session is no longer available.");
@@ -864,9 +896,7 @@ export class EditorSession extends DurableObject<Cloudflare.Env> {
     });
   }
 
-  private async deleteSessionPayloads(id: string): Promise<void> {
-    const prefix = `${id}/`;
-
+  private async deleteSessionPayloads(prefix: string): Promise<void> {
     while (true) {
       const objects = await this.env.EDITOR_PAYLOADS.list({ prefix, limit: R2_DELETE_LIMIT });
 
@@ -882,16 +912,104 @@ export class EditorSession extends DurableObject<Cloudflare.Env> {
     }
   }
 
-  private async scheduleCleanupRetry(id: string, cleanupAt: number): Promise<void> {
+  private async scheduleCleanupRetry(prefix: string, cleanupAt: number): Promise<void> {
     await this.serializeMutation(async () => {
       const record = await this.load();
 
-      if (!record || record.id !== id || record.cleanupAt !== cleanupAt) {
+      if (!record || this.payloadPrefix(record) !== prefix || record.cleanupAt !== cleanupAt) {
         return;
       }
 
-      await this.ctx.storage.setAlarm(Date.now() + CLEANUP_RETRY_MS);
+      await this.scheduleAlarm(Date.now() + CLEANUP_RETRY_MS);
     });
+  }
+
+  private async cleanupRejectedPayload(expected: SessionRecord, key: string): Promise<void> {
+    await this.serializeMutation(async () => {
+      const current = await this.load();
+
+      // A failed save can still be retried using the uploaded file
+      if (current && this.payloadPrefix(current) === this.payloadPrefix(expected)
+        && current.state !== "cancelled" && current.state !== "expired") {
+        return;
+      }
+
+      const cleanupKey = `${PAYLOAD_CLEANUP_PREFIX}${key}`;
+
+      // Save the retry before deleting the file in case the Worker stops
+      await this.ctx.storage.transaction(async (storage) => {
+        const retryAt = await storage.get<number>(PAYLOAD_CLEANUP_RETRY_KEY) ?? Date.now() + CLEANUP_RETRY_MS;
+
+        await storage.put<string | number>({ [cleanupKey]: key, [PAYLOAD_CLEANUP_RETRY_KEY]: retryAt });
+        await storage.setAlarm(Math.min(current?.cleanupAt ?? current?.expiresAt ?? Infinity, retryAt));
+      });
+
+      try {
+        await this.env.EDITOR_PAYLOADS.delete(key);
+        await this.ctx.storage.delete(cleanupKey);
+      } catch (error) {
+        logUnexpectedError("cleanup_rejected_payload", error);
+      }
+
+      const pending = await this.ctx.storage.list({ prefix: PAYLOAD_CLEANUP_PREFIX, limit: 1 });
+
+      if (!pending.size) {
+        await this.ctx.storage.delete(PAYLOAD_CLEANUP_RETRY_KEY);
+      }
+
+      await this.scheduleAlarm(current?.cleanupAt ?? current?.expiresAt);
+    });
+  }
+
+  private async retryPayloadCleanup(): Promise<void> {
+    const pending = await this.ctx.storage.list<string>({ prefix: PAYLOAD_CLEANUP_PREFIX, limit: R2_DELETE_LIMIT });
+
+    if (!pending.size) {
+      await this.ctx.storage.delete(PAYLOAD_CLEANUP_RETRY_KEY);
+      return;
+    }
+
+    const current = await this.load();
+    const retryAt = Date.now() + CLEANUP_RETRY_MS;
+
+    await this.ctx.storage.transaction(async (storage) => {
+      await storage.put(PAYLOAD_CLEANUP_RETRY_KEY, retryAt);
+      await storage.setAlarm(Math.min(current?.cleanupAt ?? current?.expiresAt ?? Infinity, retryAt));
+    });
+
+    for (const [cleanupKey, key] of pending) {
+      try {
+        await this.env.EDITOR_PAYLOADS.delete(key);
+        await this.ctx.storage.delete(cleanupKey);
+      } catch (error) {
+        logUnexpectedError("retry_payload_cleanup", error);
+      }
+    }
+
+    const remaining = await this.ctx.storage.list({ prefix: PAYLOAD_CLEANUP_PREFIX, limit: 1 });
+
+    if (!remaining.size) {
+      await this.ctx.storage.delete(PAYLOAD_CLEANUP_RETRY_KEY);
+    }
+
+    await this.scheduleAlarm(current?.cleanupAt ?? current?.expiresAt);
+  }
+
+  private async scheduleAlarm(sessionAt?: number): Promise<void> {
+    const retryAt = await this.ctx.storage.get<number>(PAYLOAD_CLEANUP_RETRY_KEY);
+    const next = Math.min(sessionAt ?? Infinity, retryAt ?? Infinity);
+
+    if (Number.isFinite(next)) {
+      await this.ctx.storage.setAlarm(next);
+    } else {
+      await this.ctx.storage.deleteAlarm();
+    }
+  }
+
+  private requireSameSession(current: SessionRecord, expected: SessionRecord): void {
+    if (this.payloadPrefix(current) !== this.payloadPrefix(expected)) {
+      throw new RequestProblem(409, "mutation_superseded", "A newer session change replaced this request.");
+    }
   }
 
   private async requireRecord(): Promise<SessionRecord> {
@@ -952,11 +1070,15 @@ export class EditorSession extends DurableObject<Cloudflare.Env> {
   }
 
   private originalKey(record: SessionRecord): string {
-    return `${record.id}/original.bin`;
+    return `${this.payloadPrefix(record)}original.bin`;
   }
 
   private resultKey(record: SessionRecord, revision: number): string {
-    return `${record.id}/result-${revision}.bin`;
+    return `${this.payloadPrefix(record)}result-${revision}.bin`;
+  }
+
+  private payloadPrefix(record: SessionRecord): string {
+    return record.payloadPrefix ?? `${record.id}/`;
   }
 }
 

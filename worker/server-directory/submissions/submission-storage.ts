@@ -13,6 +13,7 @@ import {
 } from "../discord/outbox";
 import { adminSelectSql, suspendedAddressStatement } from "../moderation/moderation-storage";
 import { verificationConsumptionStatements } from "../verification/proofs";
+import { listingWriteCondition, type ListingWriteGuard } from "../core/listing-write-guard";
 import type { parsePublicDetailsInput } from "./validation";
 
 export async function getOwnedServerRow(
@@ -58,6 +59,7 @@ export function submissionInsertStatement(
   env: DirectoryEnv,
   submission: SubmissionInsertInput
 ): D1PreparedStatement {
+  // Keep this directly after the listing update because changes() reports the previous statement
   return env.DB.prepare(
     `
     INSERT INTO submissions (
@@ -65,7 +67,8 @@ export function submissionInsertStatement(
       submitter_ip_hash, user_agent_hash, turnstile_result, verification_challenge_id,
       moderation_notes, created_at
     )
-    VALUES (?, ?, ?, ?, 'plugin_callback', ?, ?, ?, ?, ?, ?, ?)
+    SELECT ?, ?, ?, ?, 'plugin_callback', ?, ?, ?, ?, ?, ?, ?
+    WHERE changes() = 1
   `
   ).bind(
     submission.id,
@@ -98,6 +101,9 @@ export function autoSuspensionStatements(
   env: DirectoryEnv,
   suspension: AutoSuspensionInput
 ): D1PreparedStatement[] {
+  const guard = { submissionId: suspension.submissionId };
+  const condition = listingWriteCondition(guard);
+
   return [
     suspension.serverMutation,
     submissionInsertStatement(env, {
@@ -110,13 +116,14 @@ export function autoSuspensionStatements(
       moderationNotes: suspension.notes,
       createdAt: suspension.timestamp
     }),
-    ...verificationConsumptionStatements(env, suspension.input, suspension.timestamp),
+    ...verificationConsumptionStatements(env, suspension.input, suspension.timestamp, guard),
     env.DB.prepare(
       `
       INSERT INTO moderation_events (id, server_id, actor, action, notes, created_at)
-      VALUES (?, ?, 'system', 'suspend', ?, ?)
+      SELECT ?, ?, 'system', 'suspend', ?, ?
+      WHERE ${condition.sql}
     `
-    ).bind(crypto.randomUUID(), suspension.serverId, suspension.eventNotes, suspension.timestamp),
+    ).bind(crypto.randomUUID(), suspension.serverId, suspension.eventNotes, suspension.timestamp, ...condition.bindings),
     suspendedAddressStatement(
       env,
       suspension.input.normalized.host,
@@ -124,9 +131,10 @@ export function autoSuspensionStatements(
       suspension.serverId,
       suspension.notes,
       suspension.timestamp,
-      suspension.timestamp
+      suspension.timestamp,
+      guard
     ),
-    discordEmbedJobStatement(env, suspension.serverId, "delete", suspension.timestamp)
+    discordEmbedJobStatement(env, suspension.serverId, "delete", suspension.timestamp, undefined, guard)
   ];
 }
 
@@ -135,6 +143,7 @@ export type ExistingAddressRow = {
   slug: string;
   status: ServerState;
   updated_at: string;
+  owner_account_id: string | null;
 };
 
 export function getExistingAddress(
@@ -142,7 +151,7 @@ export function getExistingAddress(
   host: string,
   port: number
 ): Promise<ExistingAddressRow | null> {
-  return env.DB.prepare("SELECT id, slug, status, updated_at FROM servers WHERE normalized_host = ? AND port = ?")
+  return env.DB.prepare("SELECT id, slug, status, updated_at, owner_account_id FROM servers WHERE normalized_host = ? AND port = ?")
     .bind(host, port)
     .first<ExistingAddressRow>();
 }
@@ -179,7 +188,9 @@ export function newSubmissionServerStatement(
     ? env.DB.prepare(
       `
         UPDATE servers SET name = ?, description = ?, regions_json = ?, languages_json = ?, website_url = ?, social_links_json = ?, status = 'pending',
-          owner_account_id = ?, approved_at = NULL, suspended_at = NULL, updated_at = ? WHERE id = ?
+          owner_account_id = ?, approved_at = NULL, suspended_at = NULL, updated_at = ?
+        WHERE id = ? AND owner_account_id IS ? AND status = ? AND updated_at = ?
+          AND NOT EXISTS (SELECT 1 FROM suspended_server_addresses WHERE normalized_host = ? AND port = ?)
       `
     ).bind(
       input.submission.name,
@@ -190,12 +201,18 @@ export function newSubmissionServerStatement(
       JSON.stringify(input.submission.socialLinks),
       input.accountId,
       input.timestamp,
-      input.id
+      input.id,
+      input.existing.owner_account_id,
+      input.existing.status,
+      input.existing.updated_at,
+      input.submission.normalized.host,
+      input.submission.normalized.port
     )
     : env.DB.prepare(
       `
         INSERT INTO servers (id, slug, name, description, regions_json, languages_json, normalized_host, port, website_url, social_links_json, status, owner_account_id, created_at, updated_at)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending', ?, ?, ?)
+        SELECT ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending', ?, ?, ?
+        WHERE NOT EXISTS (SELECT 1 FROM suspended_server_addresses WHERE normalized_host = ? AND port = ?)
       `
     ).bind(
       input.id,
@@ -210,7 +227,9 @@ export function newSubmissionServerStatement(
       JSON.stringify(input.submission.socialLinks),
       input.accountId,
       input.timestamp,
-      input.timestamp
+      input.timestamp,
+      input.submission.normalized.host,
+      input.submission.normalized.port
     );
 }
 
@@ -218,15 +237,19 @@ export function submittedEventStatement(
   env: DirectoryEnv,
   serverId: string,
   resubmitted: boolean,
-  timestamp: string
+  timestamp: string,
+  guard: ListingWriteGuard
 ): D1PreparedStatement {
-  return env.DB.prepare(`INSERT INTO moderation_events (id, server_id, actor, action, notes, created_at) VALUES (?, ?, 'system', 'submitted', ?, ?)`).bind(
+  const condition = listingWriteCondition(guard);
+
+  return env.DB.prepare(`INSERT INTO moderation_events (id, server_id, actor, action, notes, created_at) SELECT ?, ?, 'system', 'submitted', ?, ? WHERE ${condition.sql}`).bind(
     crypto.randomUUID(),
     serverId,
     resubmitted
       ? "Resubmitted through public website form."
       : "Submitted through public website form.",
-    timestamp
+    timestamp,
+    ...condition.bindings
   );
 }
 
@@ -253,7 +276,8 @@ export function resubmissionServerStatement(
     ? env.DB.prepare(
       `
         UPDATE servers SET name = ?, description = ?, regions_json = ?, languages_json = ?, normalized_host = ?, port = ?, website_url = ?, social_links_json = ?, updated_at = ?
-        WHERE id = ? AND owner_account_id = ? AND status = 'approved'
+        WHERE id = ? AND owner_account_id = ? AND status = 'approved' AND updated_at = ?
+          AND NOT EXISTS (SELECT 1 FROM suspended_server_addresses WHERE normalized_host = ? AND port = ?)
       `
     ).bind(
       input.name,
@@ -266,12 +290,17 @@ export function resubmissionServerStatement(
       JSON.stringify(input.socialLinks),
       timestamp,
       owned.id,
-      accountId
+      accountId,
+      owned.updated_at,
+      input.normalized.host,
+      input.normalized.port
     )
     : env.DB.prepare(
       `
         UPDATE servers SET name = ?, description = ?, regions_json = ?, languages_json = ?, normalized_host = ?, port = ?, website_url = ?, social_links_json = ?,
-          status = 'pending', approved_at = NULL, suspended_at = NULL, updated_at = ? WHERE id = ? AND owner_account_id = ?
+          status = 'pending', approved_at = NULL, suspended_at = NULL, updated_at = ?
+        WHERE id = ? AND owner_account_id = ? AND status = ? AND updated_at = ?
+          AND NOT EXISTS (SELECT 1 FROM suspended_server_addresses WHERE normalized_host = ? AND port = ?)
       `
     ).bind(
       input.name,
@@ -284,7 +313,11 @@ export function resubmissionServerStatement(
       JSON.stringify(input.socialLinks),
       timestamp,
       owned.id,
-      accountId
+      accountId,
+      owned.status,
+      owned.updated_at,
+      input.normalized.host,
+      input.normalized.port
     );
 }
 
@@ -292,9 +325,12 @@ export function resubmissionEventStatement(
   env: DirectoryEnv,
   serverId: string,
   keepsApproval: boolean,
-  timestamp: string
+  timestamp: string,
+  guard: ListingWriteGuard
 ) {
-  return env.DB.prepare(`INSERT INTO moderation_events (id, server_id, actor, action, notes, created_at) VALUES (?, ?, ?, ?, ?, ?)`).bind(
+  const condition = listingWriteCondition(guard);
+
+  return env.DB.prepare(`INSERT INTO moderation_events (id, server_id, actor, action, notes, created_at) SELECT ?, ?, ?, ?, ?, ? WHERE ${condition.sql}`).bind(
     crypto.randomUUID(),
     serverId,
     keepsApproval ? "owner" : "system",
@@ -302,7 +338,8 @@ export function resubmissionEventStatement(
     keepsApproval
       ? "Owner updated the address of an approved listing after plugin verification."
       : "Resubmitted through public website form.",
-    timestamp
+    timestamp,
+    ...condition.bindings
   );
 }
 
@@ -312,13 +349,16 @@ export function publicDetailsStatements(
     details: ReturnType<typeof parsePublicDetailsInput>;
     serverId: string;
     accountId: string;
+    updatedAt: string;
     timestamp: string;
   }
 ): D1PreparedStatement[] {
+  const eventId = crypto.randomUUID();
+
   return [
     publicDetailsUpdateStatement(env, input.serverId, input.details, input.timestamp, input),
-    env.DB.prepare("INSERT INTO moderation_events (id, server_id, actor, action, notes, created_at) VALUES (?, ?, 'owner', 'public-details-updated', 'Owner updated approved listing details.', ?)").bind(crypto.randomUUID(), input.serverId, input.timestamp),
-    discordEmbedJobStatement(env, input.serverId, "upsert", input.timestamp)
+    env.DB.prepare("INSERT INTO moderation_events (id, server_id, actor, action, notes, created_at) SELECT ?, ?, 'owner', 'public-details-updated', 'Owner updated approved listing details.', ? WHERE changes() = 1").bind(eventId, input.serverId, input.timestamp),
+    discordEmbedJobStatement(env, input.serverId, "upsert", input.timestamp, undefined, { eventId })
   ];
 }
 
@@ -327,14 +367,14 @@ export function publicDetailsUpdateStatement(
   serverId: string,
   details: ReturnType<typeof parsePublicDetailsInput>,
   timestamp: string,
-  target: { accountId: string } | { status: "pending" | "approved"; updatedAt: string }
+  target: { accountId: string; updatedAt: string } | { status: "pending" | "approved"; updatedAt: string }
 ): D1PreparedStatement {
   const owner = "accountId" in target;
 
   return env.DB.prepare(
     `UPDATE servers
     SET name = ?, description = ?, regions_json = ?, languages_json = ?, website_url = ?, social_links_json = ?, updated_at = ?
-    WHERE id = ? AND ${owner ? "owner_account_id = ? AND status = 'approved'" : "status = ? AND updated_at = ?"}`
+    WHERE id = ? AND ${owner ? "owner_account_id = ? AND status = 'approved' AND updated_at = ?" : "status = ? AND updated_at = ?"}`
   ).bind(
     details.name,
     details.description,
@@ -344,7 +384,7 @@ export function publicDetailsUpdateStatement(
     JSON.stringify(details.socialLinks),
     timestamp,
     serverId,
-    ...(owner ? [target.accountId] : [target.status, target.updatedAt])
+    ...(owner ? [target.accountId, target.updatedAt] : [target.status, target.updatedAt])
   );
 }
 
@@ -358,6 +398,12 @@ export function ownerDeletionStatements(
   }
 ): D1PreparedStatement[] {
   const { owned } = input;
+  const guard = {
+    serverId: owned.id,
+    ownerAccountId: input.accountId,
+    status: owned.status,
+    updatedAt: owned.updated_at
+  };
 
   return [
     // Keep the address suspension after delete so another account cannot resubmit it
@@ -370,20 +416,20 @@ export function ownerDeletionStatements(
           owned.id,
           owned.submission_moderation_notes,
           owned.suspended_at ?? input.timestamp,
-          input.timestamp
+          input.timestamp,
+          guard
         )
       ]
       : []),
-    discordEmbedJobStatement(env, owned.id, "delete", input.timestamp),
+    discordEmbedJobStatement(env, owned.id, "delete", input.timestamp, undefined, guard),
     ...(input.reviewSnapshot
-      ? [discordReviewDeletionJobStatement(env, input.reviewSnapshot, input.timestamp)]
+      ? [discordReviewDeletionJobStatement(env, input.reviewSnapshot, input.timestamp, guard)]
       : []),
-    env.DB.prepare("DELETE FROM submissions WHERE server_id = ?").bind(owned.id),
-    env.DB.prepare("DELETE FROM server_status WHERE server_id = ?").bind(owned.id),
-    env.DB.prepare("DELETE FROM moderation_events WHERE server_id = ?").bind(owned.id),
-    env.DB.prepare("DELETE FROM servers WHERE id = ? AND owner_account_id = ?").bind(
+    env.DB.prepare("DELETE FROM servers WHERE id = ? AND owner_account_id = ? AND status = ? AND updated_at = ?").bind(
       owned.id,
-      input.accountId
+      input.accountId,
+      owned.status,
+      owned.updated_at
     )
   ];
 }
@@ -402,7 +448,9 @@ export function autoSuspendServerStatement(
   return input.existing
     ? env.DB.prepare(
       `UPDATE servers SET name = ?, description = ?, regions_json = ?, languages_json = ?, website_url = ?, social_links_json = ?, status = 'suspended',
-        owner_account_id = ?, approved_at = NULL, suspended_at = ?, updated_at = ? WHERE id = ?`
+        owner_account_id = ?, approved_at = NULL, suspended_at = ?, updated_at = ?
+      WHERE id = ? AND owner_account_id IS ? AND status = ? AND updated_at = ?
+        AND EXISTS (SELECT 1 FROM suspended_server_addresses WHERE normalized_host = ? AND port = ?)`
     ).bind(
       input.submission.name,
       input.submission.description,
@@ -413,11 +461,17 @@ export function autoSuspendServerStatement(
       input.accountId,
       input.timestamp,
       input.timestamp,
-      input.id
+      input.id,
+      input.existing.owner_account_id,
+      input.existing.status,
+      input.existing.updated_at,
+      input.submission.normalized.host,
+      input.submission.normalized.port
     )
     : env.DB.prepare(
       `INSERT INTO servers (id, slug, name, description, regions_json, languages_json, normalized_host, port, website_url, social_links_json, status, owner_account_id, suspended_at, created_at, updated_at)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'suspended', ?, ?, ?, ?)`
+        SELECT ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'suspended', ?, ?, ?, ?
+        WHERE EXISTS (SELECT 1 FROM suspended_server_addresses WHERE normalized_host = ? AND port = ?)`
     ).bind(
       input.id,
       input.slug,
@@ -432,7 +486,9 @@ export function autoSuspendServerStatement(
       input.accountId,
       input.timestamp,
       input.timestamp,
-      input.timestamp
+      input.timestamp,
+      input.submission.normalized.host,
+      input.submission.normalized.port
     );
 }
 
@@ -445,7 +501,9 @@ export function autoSuspendOwnedServerStatement(
 ) {
   return env.DB.prepare(
     `UPDATE servers SET name = ?, description = ?, regions_json = ?, languages_json = ?, normalized_host = ?, port = ?, website_url = ?, social_links_json = ?,
-      status = 'suspended', approved_at = NULL, suspended_at = ?, updated_at = ? WHERE id = ? AND owner_account_id = ?`
+      status = 'suspended', approved_at = NULL, suspended_at = ?, updated_at = ?
+    WHERE id = ? AND owner_account_id = ? AND status = ? AND updated_at = ?
+      AND EXISTS (SELECT 1 FROM suspended_server_addresses WHERE normalized_host = ? AND port = ?)`
   ).bind(
     input.name,
     input.description,
@@ -458,6 +516,10 @@ export function autoSuspendOwnedServerStatement(
     timestamp,
     timestamp,
     owned.id,
-    accountId
+    accountId,
+    owned.status,
+    owned.updated_at,
+    input.normalized.host,
+    input.normalized.port
   );
 }
