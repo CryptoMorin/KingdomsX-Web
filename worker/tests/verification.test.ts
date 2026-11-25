@@ -120,6 +120,25 @@ describe("Plugin verification API", () => {
 });
 
 describe("Verification code input", () => {
+  it("accepts Minecraft join addresses and commands while rejecting links in the description", async () => {
+    const cookie = await seedSubmitter("description-with-server-addresses");
+    const description = "A survival server with //wand for builders. Java: play.kingdomsx.com | Bedrock: bedrock.kingdomsx.com:19132 or 192.0.2.12:19132. Supports 1.21.4/1.21.5.";
+    const request = (value: string) => jsonApi("/api/servers/verification-challenges", "POST", {
+      name: "Description Link Test",
+      address: "play.kingdomsx.com",
+      description: value
+    }, { cookie, clientIp: "198.51.100.219" });
+
+    for (const invite of ["discord.gg/cKsSwtt", "//discord.gg/cKsSwtt"]) {
+      const rejected = await request(`${description} | ${invite}`);
+      expect(rejected.status).toBe(400);
+      await expect(rejected.json()).resolves.toMatchObject({ error: expect.stringContaining("Website & Socials") });
+    }
+
+    const accepted = await request(description);
+    expect(accepted.status).toBe(201);
+  });
+
   it("accepts server descriptions up to 240 characters", async () => {
     const cookie = await seedSubmitter("description-limit");
     const headers = {

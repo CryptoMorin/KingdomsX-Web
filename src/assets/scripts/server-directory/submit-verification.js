@@ -358,6 +358,8 @@ export const createVerificationController = ({
       );
     } else if (descriptionRawValue.length > SERVER_DESCRIPTION_LIMIT) {
       addIssue(description, messages.submit.verification.requirements.descriptionMaximum);
+    } else if (description instanceof HTMLTextAreaElement && description.validity.customError) {
+      addIssue(description, description.validationMessage);
     }
 
     if (issues.length > 0) {

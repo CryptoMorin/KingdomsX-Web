@@ -1,4 +1,5 @@
 import { Dropdown } from "bootstrap";
+import { listingDescriptionLinkError } from "../../../server-listing-description";
 import {
   SERVER_LANGUAGE_LIMIT,
   SERVER_LANGUAGE_MAX_LENGTH,
@@ -83,16 +84,18 @@ const field = (name, label, options = {}) => {
     counter.id = `${control.id}-counter`;
     control.setAttribute("aria-describedby", counter.id);
 
-    const updateCounter = () => {
+    const updateFieldState = () => {
       counter.textContent = `${control.value.length}/${maxLength}`;
       const overLimit = control.value.length > maxLength;
+      const validationMessage = overLimit ? "" : (options.validate?.(control.value) ?? "");
 
+      control.setCustomValidity(validationMessage);
       counter.style.color = overLimit ? "#ff463d" : "";
-      control.setAttribute("aria-invalid", String(overLimit));
+      control.setAttribute("aria-invalid", String(overLimit || Boolean(validationMessage)));
     };
 
-    control.addEventListener("input", updateCounter);
-    updateCounter();
+    control.addEventListener("input", updateFieldState);
+    updateFieldState();
     floating.append(counter);
   }
 
@@ -303,4 +306,6 @@ export const createListingDescriptionField = (item) =>
     value: item?.description,
     placeholder: `Describe the server experience in ${SERVER_DESCRIPTION_LIMIT} characters or less.`,
     counter: true,
+    help: "Use Website & Socials for links.",
+    validate: listingDescriptionLinkError,
   });

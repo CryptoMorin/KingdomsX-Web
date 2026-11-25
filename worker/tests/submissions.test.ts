@@ -9,12 +9,58 @@ import {
   requestChallenge,
   verifyPlugin,
   stubSubmissionServices,
-  seedOwnedServer
+  seedOwnedServer,
+  updatePublicDetails
 } from "../test-support/directory";
 
 beforeEach(resetDatabase);
 
 describe("Resubmission rules", () => {
+  it("rejects links in a verified submission without consuming the proof", async () => {
+    const cookie = await seedSubmitter("description-link");
+    const challenge = await createChallenge(cookie, "play.kingdomsx.com");
+    expect((await verifyPlugin(String(challenge.code))).status).toBe(200);
+
+    const response = await jsonApi("/api/servers/submit", "POST", {
+      name: "Description Link Test",
+      address: "play.kingdomsx.com",
+      description: "A survival server with weekly building events. https://kingdomsx.com",
+      regions: ["eu-west"],
+      verificationChallengeId: challenge.id,
+      turnstileToken: "test-token"
+    }, { cookie });
+
+    expect(response.status).toBe(400);
+    await expect(response.json()).resolves.toMatchObject({ error: expect.stringContaining("Website & Socials") });
+    expect(await testEnv.DB.prepare("SELECT status FROM server_verification_challenges WHERE id = ?")
+      .bind(challenge.id).first()).toEqual({ status: "verified" });
+  });
+
+  it("requires removing existing description links before saving other details", async () => {
+    const suffix = "existing-description-link";
+    const cookie = await seedSubmitter(suffix);
+    await seedOwnedServer(suffix);
+    const description = "A previously accepted description with a community link. discord.gg/cKsSwtt";
+    await testEnv.DB.prepare("UPDATE servers SET description = ? WHERE id = ?")
+      .bind(description, `server-${suffix}`).run();
+
+    const rejected = await updatePublicDetails(cookie, { name: "Updated Server Name", description });
+    expect(rejected.status).toBe(400);
+    await expect(rejected.json()).resolves.toMatchObject({ error: expect.stringContaining("Website & Socials") });
+    expect(await testEnv.DB.prepare("SELECT name, description FROM servers WHERE id = ?")
+      .bind(`server-${suffix}`).first()).toEqual({ name: `Server ${suffix}`, description });
+
+    const cleanup = await updatePublicDetails(cookie, {
+      name: "Updated Server Name",
+      description: "A survival server with weekly building events.",
+      socialLinks: { discord: "discord.gg/cKsSwtt" }
+    });
+    expect(cleanup.status).toBe(200);
+    await expect(cleanup.json()).resolves.toMatchObject({
+      item: { name: "Updated Server Name", socialLinks: [{ key: "discord", url: "https://discord.gg/cKsSwtt" }] }
+    });
+  });
+
   it.each([
     { label: "missing", regions: undefined },
     { label: "empty", regions: [] }

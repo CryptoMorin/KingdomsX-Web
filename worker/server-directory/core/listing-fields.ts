@@ -1,4 +1,5 @@
 import { ApiError } from "./http";
+import { listingDescriptionLinkError } from "../../../src/server-listing-description";
 import {
   SERVER_LANGUAGE_LIMIT,
   SERVER_LANGUAGE_MAX_LENGTH,
@@ -118,5 +119,11 @@ export function validateListingNameAndDescription(name: string, description: str
 
   if (!description || description.length < 40) {
     throw new ApiError(400, "Description must be at least 40 characters.");
+  }
+
+  const linkError = listingDescriptionLinkError(description);
+
+  if (linkError) {
+    throw new ApiError(400, linkError);
   }
 }

@@ -103,12 +103,16 @@ describe("Moderation and submission jobs", () => {
   it("approves a listing without waiting for Discord and queues its embed in the same transaction", async () => {
     await seedSubmitter("approval");
     await seedOwnedServer("approval", "pending");
+    const description = "A pending listing submitted before the link rule. discord.gg/cKsSwtt";
+    await testEnv.DB.prepare("UPDATE servers SET description = ? WHERE id = 'server-approval'")
+      .bind(description).run();
+
     const response = await adminApi("/api/admin/servers/server-approval/approve");
 
     expect(response.status).toBe(200);
     expect(
-      await testEnv.DB.prepare("SELECT status FROM servers WHERE id = 'server-approval'").first()
-    ).toEqual({ status: "approved" });
+      await testEnv.DB.prepare("SELECT status, description FROM servers WHERE id = 'server-approval'").first()
+    ).toEqual({ status: "approved", description });
     expect(
       await testEnv.DB.prepare("SELECT desired_action FROM discord_embed_jobs WHERE server_id = 'server-approval'").first()
     ).toEqual({ desired_action: "upsert" });
