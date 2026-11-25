@@ -1,4 +1,4 @@
-import { SERVER_DESCRIPTION_LIMIT } from "./ui.js";
+import { listingDescriptionIssue } from "./listing-detail-fields.js";
 
 export const VERIFICATION_POLL_DELAYS = [30_000, 30_000, 45_000, 60_000];
 export const VERIFICATION_STORAGE_KEY = "server-submission-verification";
@@ -334,8 +334,8 @@ export const createVerificationController = ({
 
     const nameValue = name instanceof HTMLInputElement ? name.value.trim() : "";
     const addressValue = address instanceof HTMLInputElement ? address.value.trim() : "";
-    const descriptionRawValue = description instanceof HTMLTextAreaElement ? description.value : "";
-    const descriptionValue = descriptionRawValue.trim();
+    const descriptionValue = description instanceof HTMLTextAreaElement ? description.value : "";
+    const descriptionIssue = listingDescriptionIssue(descriptionValue, messages.submit.verification.requirements);
 
     if (nameValue.length < 3) {
       addIssue(name, messages.submit.verification.requirements.name);
@@ -349,17 +349,8 @@ export const createVerificationController = ({
       addIssue(port, messages.submit.verification.requirements.port);
     }
 
-    if (descriptionValue.length < 40) {
-      addIssue(
-        description,
-        messages.submit.verification.requirements.descriptionMinimum(
-          descriptionValue.length
-        )
-      );
-    } else if (descriptionRawValue.length > SERVER_DESCRIPTION_LIMIT) {
-      addIssue(description, messages.submit.verification.requirements.descriptionMaximum);
-    } else if (description instanceof HTMLTextAreaElement && description.validity.customError) {
-      addIssue(description, description.validationMessage);
+    if (descriptionIssue) {
+      addIssue(description, descriptionIssue);
     }
 
     if (issues.length > 0) {

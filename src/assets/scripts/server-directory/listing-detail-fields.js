@@ -84,31 +84,20 @@ const field = (name, label, options = {}) => {
     counter.id = `${control.id}-counter`;
     control.setAttribute("aria-describedby", counter.id);
 
-    const updateFieldState = () => {
+    const updateCounter = () => {
       counter.textContent = `${control.value.length}/${maxLength}`;
       const overLimit = control.value.length > maxLength;
-      const validationMessage = overLimit ? "" : (options.validate?.(control.value) ?? "");
 
-      control.setCustomValidity(validationMessage);
       counter.style.color = overLimit ? "#ff463d" : "";
-      control.setAttribute("aria-invalid", String(overLimit || Boolean(validationMessage)));
+      control.setAttribute("aria-invalid", String(overLimit));
     };
 
-    control.addEventListener("input", updateFieldState);
-    updateFieldState();
+    control.addEventListener("input", updateCounter);
+    updateCounter();
     floating.append(counter);
   }
 
   wrap.append(floating);
-
-  if (options.help) {
-    const help = document.createElement("p");
-    help.className = "form-text";
-    help.id = `${control.id}-help`;
-    help.textContent = options.help;
-    control.setAttribute("aria-describedby", [control.getAttribute("aria-describedby"), help.id].filter(Boolean).join(" "));
-    wrap.append(help);
-  }
 
   return wrap;
 };
@@ -294,6 +283,20 @@ export const createListingNameField = (item, column) =>
     placeholder: "KingdomsX Realm",
   });
 
+export const listingDescriptionIssue = (value, { descriptionMinimum, descriptionMaximum }) => {
+  const length = value.trim().length;
+
+  if (length < 40) {
+    return descriptionMinimum(length);
+  }
+
+  if (value.length > SERVER_DESCRIPTION_LIMIT) {
+    return descriptionMaximum;
+  }
+
+  return listingDescriptionLinkError(value);
+};
+
 export const createListingDescriptionField = (item) =>
   field("description", "Description", {
     column: "col-12",
@@ -306,6 +309,4 @@ export const createListingDescriptionField = (item) =>
     value: item?.description,
     placeholder: `Describe the server experience in ${SERVER_DESCRIPTION_LIMIT} characters or less.`,
     counter: true,
-    help: "Use Website & Socials for links.",
-    validate: listingDescriptionLinkError,
   });

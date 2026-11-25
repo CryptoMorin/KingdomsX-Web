@@ -22,6 +22,7 @@ import {
   createListingDescriptionField,
   createListingMetadataFields,
   createListingNameField,
+  listingDescriptionIssue,
   listingDetailsPayload,
   publicDetailsPayload,
 } from "./listing-detail-fields.js";
@@ -532,14 +533,14 @@ const initServerSubmit = () => {
       event.preventDefault();
 
       const description = form.elements.namedItem("description");
+      const descriptionIssue = description instanceof HTMLTextAreaElement
+        ? listingDescriptionIssue(description.value, SERVER_MESSAGES.submit.verification.requirements)
+        : "";
 
-      if (
-        description instanceof HTMLTextAreaElement &&
-        description.value.length > SERVER_DESCRIPTION_LIMIT
-      ) {
+      if (descriptionIssue) {
         showToast({
           title: SERVER_MESSAGES.submit.verification.incompleteTitle,
-          message: SERVER_MESSAGES.submit.verification.requirements.descriptionMaximum,
+          message: descriptionIssue,
           kind: "is-warning",
           delay: 6500,
         });
